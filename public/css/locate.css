@@ -1,0 +1,154 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);{
+  font-family: Nanum Gothic;
+}
+.main-menu{
+width: 1130px;
+margin: 0 auto;
+border-width: 5px;
+border-style: solid;
+border-color: pink;
+}
+.main{
+  width: 50%;
+margin: 0 auto;
+border-width: 5px;
+border-style: solid;
+border-color: pink;
+}
+.logo{
+  width: 200px;
+  display: inline-block;
+}
+#searchbar{
+  width: 250px;
+  display: inline-block;
+}
+.box1{
+  display: inline-block;
+}
+.menu3{
+  width: 50%;
+  margin: 0 auto;
+  border-width: 5px;
+  border-style: solid;
+  border-color: pink;
+}
+.btn-group{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+.dropbtn{
+  float: left;
+}
+.menu4{
+  border-width: 5px;
+  border-style: solid;
+  border-color: pink;
+}
+.menu5{
+  height: 500px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: pink;
+}
+.dropdown-menu{
+  display: inline-block;
+}
+.shopname{
+  width:500px;
+  float: left;
+}
+.shopimg{
+  width: 500px;
+  float: right;
+}
+.information{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.myinfo{
+  width: 50%;
+  margin: 0 auto;
+}
+/* 드롭다운 */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.btn-group {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.drop-group:hover .dropdown-content {display: block;}
+
+.btn-group:hover .dropbtn {background-color: #3e8e41;}
+/*드롭다운클릭*/
+.dropbtn2 {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn2:hover,
+.dropbtn2:focus {
+  background-color: #2980B9;
+}
+
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown2-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown2-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown2 a:hover {
+  background-color: #ddd
+}
+
+.show {
+  display: block;
+}
+.privacy{
+  text-align: center;
+}
