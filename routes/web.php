@@ -22,3 +22,6 @@ Route::get('/locate1', function () {
 Route::get('/mypage1', function () {
     return view('mypage');
 });
+Route::get('/index', function () {
+    return view('index');
+});

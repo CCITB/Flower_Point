@@ -42,7 +42,7 @@ a{
 </div>
 <div id="dropdown-menu">
   <div class="dropdown">
-    <button class="dropbtn" onclick="location.href = 'http://laravel.site/nearflower'">내 주변 꽃집</button>
+    <button class="dropbtn" onclick="location.href = 'http://laravel.site/locate1'">내 주변 꽃집</button>
     <div class="dropdown-content">
 
     </div>
