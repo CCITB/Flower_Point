@@ -39,3 +39,4 @@ Route::get('/mypage1', function () {
 });
 Route::get('/index', function () {
     return view('index');
+});
