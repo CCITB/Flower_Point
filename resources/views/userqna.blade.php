@@ -63,5 +63,4 @@
 <style>
 
 </style>
-  </body>
-</html>
+@include('footer')

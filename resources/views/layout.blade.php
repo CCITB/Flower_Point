@@ -17,6 +17,28 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -24,6 +46,28 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
 
@@ -32,6 +76,28 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -39,6 +105,28 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -46,9 +134,28 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
-              </div>
-              <div class="">
-                hihihihihihihihihihihihihii
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -56,59 +163,44 @@
             <div class="image">
               <div class="image-in">
                 <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
    <style>
-   .container-wrap{
-   width: 900px;
-      position: relative;
-      padding: 0 30px;
-      margin: auto;
-   }
-   .container-wrapping{
-   position: relative;
-     width: 100%;
-     margin: 0px auto;
-     height: 500px;
-   }
-
-   .container-image{
-     float: left;
-     width: 33.3%;
-     height: 50%;
-     position: relative;
-   }
-.image{
-  width: 90%;
- height: 90%;
- float: left;
- position: absolute;
-border: 1px solid #d9d9d9;
-border-radius: 10px;
 
 
-  }
-img{
-  border-top-right-radius:10px;
-  border-top-left-radius:10px;
-}
-footer{
-  border-top: 1px solid black;
-  text-align: center;
 
-}
     </style>
-    <footer>
-    <a href="#">이용약관</a>
-     /
-     <a href="#">개인정보 취급방침</a>
-     /
-     <a href="#">자주 묻는 질문</a>
-     /
-     <a href="#">입점문의</a>
-    </footer>
-  </body>
-</html>
+    <script>
+    $( ".star_rating a" ).click(function() {
+         $(this).parent().children("a").removeClass("on");
+         $(this).addClass("on").prevAll("a").addClass("on");
+         return false;
+    });
+
+    </script>
+@include('footer')
