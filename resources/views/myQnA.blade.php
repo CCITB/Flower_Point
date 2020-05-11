@@ -75,5 +75,4 @@ th{
 
 }
     </style>
-  </body>
-  </html>
+@include('footer')
