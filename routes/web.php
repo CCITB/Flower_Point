@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/find_id', function () {
-    return view('find_id');
-});
+//eojisu
+Route::get('/', 'MainController@main');
 
-Route::get('/find_password', function () {
-    return view('find_password');
-});
+Route::get('/login', 'MainController@login');
 
+Route::get('/register', 'RegisterController@registerview');
+
+Route::post('/RegisterController', 'RegisterController@store');
+
+Route::get('/find_id', 'LoginController@find_id';
+
+Route::get('/find_password', 'LoginController@find_pw');
+
+// jisu ---- Incomplete
 Route::get('/find_pw_way', function () {
     return view('find_pw_way');
 });
