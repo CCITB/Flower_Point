@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 재설정</title>
+    <script>
+      window.addEventListener('load', function() {
+      var signup = document.querySelector('#signup');
+
+      signup.addEventListener('click', function() {
+      var new_pw = document.querySelector('#new_pw');
+			var check = document.querySelector('#check');
+
+      if (new_pw.value != check.value) {
+				alert('비밀번호가 일치하지 않습니다.');
+				check.focus();
+      } else if (new_pw.value == ''){
+        alert('비밀번호를 입력해주세요.')
+        new_pw.focus();
+      }else {
+       location.href = "http://laravel.site/find_id";<!-- 로그인 주소로 바꿔야댐-->
+     }
+   });
+});
+
+    </script>
+
+
     <style>
-    #all{
+    .all{
       margin:0 auto;
       border: 1px solid;
       width : 450px;
@@ -46,7 +69,7 @@
 
 </head>
 <body>
- <div id="all">
+ <div class="all">
    <div class="text">
       <h1> 비밀번호 재설정 </h1>
       <hr class = way>
@@ -63,11 +86,11 @@
       </div>
 
         <form action = '처리할 주소' method='GET or POST'>
-            <label><input type="password" autofocus placeholder="새 비밀번호" name="new_pw" size=30 required ></label><br>
-            <label> <input type="password" autofocus placeholder="새 비밀번호 확인" name="pw_check" size=30 required ></label><br>
+            <input type="password" autofocus placeholder="새 비밀번호" id="new_pw" size=30 required ><br>
+            <input type="password" autofocus placeholder="새 비밀번호 확인" id="check" size=30 required ><br>
             영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.
           <p>
-            <button type="submit" > <a href="http://laravel.site/로그인창주소">확인</a> </button>
+            <input type="button" id="signup" value="확인" style="border-radius:5px; font-s"/>
           </p>
         </form>
     </div>
