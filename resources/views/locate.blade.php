@@ -10,6 +10,7 @@
    </select>
    <div>
       <select id="output" onchange="random_function1()">
+      </select>
    </div>
 
         <div class="menu5">
