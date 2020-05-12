@@ -36,7 +36,6 @@
         width: 450px;
         border-bottom: 0px;
         text-align: center;
-        border-color: #6B9900;
       }
       .find_id {
         padding: 20px;
@@ -44,7 +43,6 @@
         border: 1px solid;
         border-radius: 25px;
         height: 300px;
-        border-color: #6B9900;
       }
     </style>
 </head>
@@ -66,8 +64,8 @@
 
             </p>
         <form action = 'url' method='GET or POST'>
-              <label>이름 : <input type="name" autofocus placeholder="이름을 입력하세요." name="name" size=20 required ></label><br>
-              <label>전화번호 : <input type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" size=20 required title="000-0000-0000"><input type="submit" value="인증번호받기"></label><br>
+              이름 : <input type="name" autofocus placeholder="이름을 입력하세요." name="name" size=20 required ><br>
+              전화번호 : <input type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" size=20 required title="000-0000-0000"><input type="submit" value="인증번호받기"><br>
               <label> <input type="name" autofocus placeholder="인증번호 입력" name="name" size=20 required ></label>
               <input type="submit" value="확인"><br>
             <p>
