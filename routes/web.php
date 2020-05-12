@@ -26,7 +26,7 @@ Route::get('/find_id', 'LoginController@find_id';
 
 Route::get('/find_password', 'LoginController@find_pw');
 
-// jisu ---- Incomplete
+// jisu ---- Incomplete.
 Route::get('/find_pw_way', function () {
     return view('find_pw_way');
 });
