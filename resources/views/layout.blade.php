@@ -203,4 +203,3 @@
     });
 
     </script>
-@include('footer')

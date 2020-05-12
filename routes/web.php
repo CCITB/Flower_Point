@@ -22,7 +22,7 @@ Route::get('/register', 'RegisterController@registerview');
 
 Route::post('/RegisterController', 'RegisterController@store');
 
-Route::get('/find_id', 'LoginController@find_id';
+Route::get('/find_id', 'LoginController@find_id');
 
 Route::get('/find_password', 'LoginController@find_pw');
 
