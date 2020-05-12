@@ -195,6 +195,9 @@
 
 
     </style>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js">
+
+    </script>
     <script>
     $( ".star_rating a" ).click(function() {
          $(this).parent().children("a").removeClass("on");

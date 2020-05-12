@@ -11,7 +11,7 @@
           <div id="block_container">
             <div id="header">
               <div id="block1">
-                <span><a href="http://laravel.site/index">꽃갈피</a></span>
+                <h1><a href="http://laravel.site/index">꽃갈피</a></h1>
               </div>
               <div id="block2">
                 <form class="headersearch">

@@ -1,7 +1,7 @@
  /* 곽승지 css 무단 수정 금지*/
  a{
-   /* text-decoration: none; */
-   /* color: black; */
+   text-decoration: none;
+   color: black;
  }
 .headersearch{
   display: inline-block;
@@ -116,7 +116,7 @@ ul
 {
 margin: 0px auto;
 width: 1130px;
-  height: 100%;
+  height: 90%;
 display: block;
 position: relative;
 }
@@ -127,9 +127,9 @@ left: 300px;
 
 }
 #block1{
-top:50%;
+top:40%;
 position: absolute;
-left: 240px;
+left: 200px;
 }
 #header{
   position: relative;
@@ -295,7 +295,7 @@ position: absolute;
 border: 1px solid #d9d9d9;
 border-radius: 10px;
 box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
-
+background-color: #f8f9fb;
 }
 .image-in{
  width: 100%;
@@ -312,6 +312,7 @@ margin: 0 auto;
 padding-bottom: 5px;
 }
 .image-in-bottom{
+  position: relative;
 width: 90%;
 margin: 0 auto;
 display: -webkit-box;
@@ -319,8 +320,7 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 height: 18px;
 overflow: hidden;
-
-
+text-overflow: ellipsis;
 }
 .image-in-star{
 width: 90%;

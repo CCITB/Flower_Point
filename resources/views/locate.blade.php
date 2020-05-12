@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>꽃갈피</title>
+<link rel="stylesheet" href="/css/seungji.css">
+  </head>
+  <body>
 @include('header')
         <div class="menu4"><!--탑헤더 밑-->
             <h3>내 주변 꽃집</h3>
@@ -37,6 +46,7 @@
             </div>
         </div>
     </div>
+    @include('footer')
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
