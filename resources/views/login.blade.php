@@ -37,12 +37,11 @@
         border-bottom: 0px;
         text-align: center;
       }
-      .login {
-        padding: 20px;
+      .go{
+        text-align: right;
+      }
+      .submit{
         text-align: center;
-        border: 1px solid;
-        border-radius: 25px;
-        height: 300px;
       }
     </style>
 </head>
@@ -57,15 +56,19 @@
       <div class ="login">
         <form action = 'url' method='GET or POST'>
             <p>
-              <input type="text" autofocus placeholder="ID" name="id" size=20 required ><br>
-              <input type="password" autofocus placeholder="Password" name="pw" size=20 required>
+              <input type="text" autofocus placeholder="ID" name="id" style="width:350px; height:30px; font-size:20px;" required ><br><br>
+              <input type="password" autofocus placeholder="Password" name="pw" style="width:350px; height:30px; font-size:20px;" required>
             </p>
-              <a href="http://laravel.site/find_id">아이디/비밀번호 찾기</a><br>
-              <input type="submit" id="login" value="로그인">
-            <p>
-              <button type="button" > <a href="http://laravel.site/user">구매자 회원가입</a> </button> <br>
-              <button type="button" > <a href="http://laravel.site/seller">판매자 회원가입</a> </button>
-            </p>
+            <div class="go">
+              <a href="http://laravel.site/find_id">아이디/비밀번호 찾기</a><br><br>
+            </div>
+            <div class="submit">
+                  <input type="submit" style="width:100px; height:30px; font-size:15px;" id="login" value="로그인">
+                <p>
+                  <br><br><button type="button" style="width:350px; height:30px; font-size:15px;" > <a href="http://laravel.site/user">구매자 회원가입</a> </button><br><br>
+                  <button type="button" style="width:350px; height:30px; font-size:15px;" > <a href="http://laravel.site/seller">판매자 회원가입</a> </button>
+                </p>
+            </div>
         </form>
       </div>
 </div>
