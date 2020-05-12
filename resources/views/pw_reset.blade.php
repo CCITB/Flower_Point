@@ -19,7 +19,7 @@
         alert('비밀번호를 입력해주세요.')
         new_pw.focus();
       }else {
-       location.href = "http://laravel.site/find_id";<!-- 로그인 주소로 바꿔야댐-->
+       location.href = "http://laravel.site/login";
      }
    });
 });
@@ -86,12 +86,15 @@
       </div>
 
         <form action = '처리할 주소' method='GET or POST'>
-            <input type="password" autofocus placeholder="새 비밀번호" id="new_pw" size=30 required ><br>
-            <input type="password" autofocus placeholder="새 비밀번호 확인" id="check" size=30 required ><br>
+            <p>
+              <input type="password" autofocus placeholder="새 비밀번호" id="new_pw" size=30 required >
+              <input type="password" autofocus placeholder="새 비밀번호 확인" id="check" size=30 required >
+            </p>
             영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.
-          <p>
-            <input type="button" id="signup" value="확인" style="border-radius:5px; font-s"/>
-          </p>
+            <p>
+              <input type="button" id="signup" value="확인" style="border-radius:5px; font-s"/>
+            </p>
+          </table>
         </form>
     </div>
   </div >
