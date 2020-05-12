@@ -1,4 +1,8 @@
  /* 곽승지 css 무단 수정 금지*/
+ a{
+   /* text-decoration: none; */
+   /* color: black; */
+ }
 .headersearch{
   display: inline-block;
   border: 5px solid pink;

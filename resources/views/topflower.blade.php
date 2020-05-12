@@ -1,20 +1,5 @@
  <!-- 곽승지 무단 수정 금지 -->
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>꽃갈피</title>
-<link rel="stylesheet" href="/css/seungji.css">
-  </head>
-<style>
-a{
-  /* text-decoration: none; */
-  /* color: black; */
-}
-</style>
-
-  <body>
+<!-- 화면 상단에 들어가는 검색 및 메뉴의 구성입니다. -->
     <div id="wrap">
         <div class="topheader">
           <div id="user">

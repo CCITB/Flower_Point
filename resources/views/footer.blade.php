@@ -8,5 +8,3 @@
  /
  <a href="#">입점문의</a>
 </footer>
-</body>
-</html>
