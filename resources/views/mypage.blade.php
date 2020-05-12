@@ -1,4 +1,4 @@
-@include('topflower')
+@include('header')
 <div class="menu4">
 <h3 align="center">마이페이지</h3>
 <hr align="left" class="one"></hr>

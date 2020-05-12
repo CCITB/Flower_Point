@@ -7,7 +7,7 @@
  <link rel="stylesheet" href="/css/seungji.css">
    </head>
    <body>
-@include('topflower')
+@include('header')
 <div class="hr-line">
   <div id="line">
     <h2>나의 QnA</h2>

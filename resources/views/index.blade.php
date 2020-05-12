@@ -7,7 +7,7 @@
  <link rel="stylesheet" href="/css/seungji.css">
    </head>
    <body>
-@include('topflower')
+@include('header')
 @include('layout')
 @include('footer')
 </body>
