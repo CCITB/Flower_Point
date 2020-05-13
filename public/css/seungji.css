@@ -3,10 +3,6 @@
    text-decoration: none;
    color: black;
  }
- a:hover{
-   color: #9c9c9c;
-   text-decoration: underline;
- }
 .headersearch{
   display: inline-block;
   border: 3px solid pink;
@@ -184,7 +180,6 @@ left: 200px;
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   color: #FFC0CB;
-  border-bottom: 1px solid;
 }
 #dropdown-menu{
   white-space : nowrap;
