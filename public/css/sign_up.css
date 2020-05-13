@@ -14,7 +14,7 @@ body {
   background-color: #FFD8D8;
 }
 p{
-  padding-top: 5px;
+  padding-bottom:5px;
   text-align: center;
 }
 .text{
@@ -24,4 +24,20 @@ hr{
   width: 450px;
   border-bottom: 0px;
   text-align: center;
+}
+.inf1{
+  width:350px;
+  height:30px;
+  font-size:20px;
+}
+.inf2{
+  width:250px;
+  height:30px;
+  font-size:20px;
+}
+td{
+  padding-bottom: 5px;
+}
+.sign{
+  align: right;
 }

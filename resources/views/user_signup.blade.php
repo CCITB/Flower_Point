@@ -39,47 +39,47 @@ new_pw.focus();
             <td>아이디</td>
           </tr>
           <tr>
-            <td><input type="text" autofocus placeholder="ID" id="id" name="id"></td>
+            <td><input class="inf1" type="text" autofocus placeholder="ID" id="id" name="id"></td>
           </tr>
           <tr>
             <td>비밀번호</td>
           </tr>
           <tr>
-            <td><input type="password" autofocus placeholder="Password" id="new_pw" size=30 required ></td>
+            <td><input class="inf1" type="password" autofocus placeholder="Password" id="new_pw" size=30 required ></td>
           </tr>
           <tr>
             <td>비밀번호 확인</td>
           </tr>
           <tr>
-            <td><input type="password" autofocus placeholder="Password" id="check" size=30 required ></td>
+            <td><input class="inf1" type="password" autofocus placeholder="Password" id="check" size=30 required ></td>
           </tr>
           <tr>
             <td>이름</td>
           </tr>
           <tr>
-            <td><input type="name" autofocus placeholder="Name" id="name" name="name" size=30 ></td>
+            <td><input class="inf1" type="name" autofocus placeholder="Name" id="name" name="name" size=30 ></td>
           </tr>
           <tr>
             <td>연락처</td>
           </tr>
           <tr>
-            <td><input type="number" autofocus placeholder="Phone Number" id="phone" name="phone" size=20>인증번호</td>
+            <td><input class="inf2" type="number" autofocus placeholder="Phone Number" id="phone" name="phone" size=20>인증번호</td>
           </tr>
           <tr>
             <td>주소</td>
           </tr>
           <tr>
-            <td><input type="text" autofocus placeholder="Address" id="address" name="address" size=30></td>
+            <td><input class="inf1" type="text" autofocus placeholder="Address" id="address" name="address" size=30></td>
           </tr>
           <tr>
             <td>이메일</td>
           </tr>
           <tr>
-            <td><input type="text" autofocus placeholder="email "id="email" name="email" size=30></td>
+            <td><input class="inf1" type="text" autofocus placeholder="email "id="email" name="email" size=30></td>
           </tr>
           <tr>
-            <td><button type="button" style="border-radius:5px;"> <a href="http://laravel.site/login">돌아가기</a> </button>
-              <button type="formenctype" value="회원가입" style="border-radius:5px;">회원가입</button></td>
+            <td><button class="back" type="button" onclick="location.href = '/login'">돌아가기</button>
+              <button class="signup" type="formenctype">회원가입</button></td>
             </tr>
           </table>
         </form>
