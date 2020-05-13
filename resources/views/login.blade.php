@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html> <!--박소현 계속 수정중 -->
 <html lang="en" dir="ltr">
 <head>
@@ -12,6 +13,11 @@
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 >>>>>>> 9dcaf328c8a586eaea45f3067fc8703ac9a10051
+=======
+<!-- [jisuEO + sohyun ] -->
+    <!DOCTYPE html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+>>>>>>> 9dcaf328c8a586eaea45f3067fc8703ac9a10051
 
         <head>
             <meta charset="utf-8">
@@ -19,6 +25,7 @@
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <title>꽃갈피 - 로그인</title>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   </script>
 
@@ -62,6 +69,19 @@
                   <hr class = way>
               </div>
 
+=======
+            <!-- Fonts -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+            <!--design-->
+            <link rel="stylesheet" href="/css/login.css">
+        </head>
+        <div id="all">
+              <div class="text">
+                  <h1> 로그인 </h1>
+                  <hr class = way>
+              </div>
+
+>>>>>>> 9dcaf328c8a586eaea45f3067fc8703ac9a10051
               <div class ="login">
                 <form action = 'url' method='post'>
                     <p>
@@ -109,4 +129,7 @@
         </form> -->
         </body>
     </html>
+<<<<<<< HEAD
+>>>>>>> 9dcaf328c8a586eaea45f3067fc8703ac9a10051
+=======
 >>>>>>> 9dcaf328c8a586eaea45f3067fc8703ac9a10051
