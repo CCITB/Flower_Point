@@ -16,42 +16,37 @@ use Illuminate\Support\Facades\Route;
 //eojisu
 Route::get('/', 'MainController@main');
 
-Route::get('/login', 'MainController@login');
+Route::get('/login', 'MainController@login_customer');
+
+Route::get('/login', 'MainController@login_seller');
+
+Route::get('/user','MainController@register_costomer');
+
+Route::get('/seller','MainController@register_seller');
 
 Route::get('/register', 'RegisterController@registerview');
 
 Route::post('/RegisterController', 'RegisterController@store');
 
-Route::get('/find_id', 'LoginController@find_id');
+Route::get('/find_id', 'FindController@find_id');
 
-Route::get('/find_password', 'LoginController@find_pw');
+Route::get('/find_pw', 'FindController@find_pw');
 
-// jisu ---- Incomplete.
-Route::get('/find_pw_way', function () {
-    return view('find_pw_way');
-});
+Route::get('/find_pw_way', 'FindController@find_pw_way');
 
-Route::get('/pw_reset', function () {
-    return view('pw_reset');
-});
+Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+
+
 Route::get('/locate1', function () {
-    return view('locate');
+  return view('locate');
 });
 Route::get('/mypage1', function () {
-    return view('mypage');
+  return view('mypage');
 });
-Route::get('/main', function () {
-    return view('mainlayout');
-});
+
 Route::get('/faq', function () {
-    return view('FAQ');
+  return view('FAQ');
 });
 Route::get('/myqna', function () {
-    return view('myQnA');
-});
-Route::get('/user', function () {
-    return view('user_signup');
-});
-Route::get('/seller', function () {
-    return view('seller_signup');
+  return view('myQnA');
 });
