@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn"onclick="location.href = 'http://laravel.site/userqna'">고객센터</button>
+    <button class="dropbtn"onclick="location.href = 'http://laravel.site/faq'">고객센터</button>
     <div class="dropdown-content">
       <a href="http://laravel.site/myqna">문의관리</a>
 
