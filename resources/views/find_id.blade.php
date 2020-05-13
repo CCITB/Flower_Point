@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/sohyun.css">
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>아이디 찾기</title>
   <script>
 
@@ -35,7 +35,7 @@
         <p>
           <button type="button" > <a href="http://laravel.site/">홈으로</a> </button>
           <input type="submit">
-          <button type="button" > <a href="http://laravel.sit/find_password">비밀번호 찾기</a> </button>
+          <button type="button" > <a href="/find_password">비밀번호 찾기</a> </button>
         </p>
       </form>
     </div>

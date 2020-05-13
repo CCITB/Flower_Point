@@ -1,0 +1,27 @@
+/* 수정시 소현에게 */
+
+#all{
+  margin:0 auto;
+  border: 1px solid;
+  width : 450px;
+  height: 700px;
+  border-radius: 25px;
+  padding: 40px;
+  background-color: #FFFFFF;
+  border-style: hidden;
+}
+body {
+  background-color: #FFD8D8;
+}
+p{
+  padding-top: 5px;
+  text-align: center;
+}
+.text{
+  padding-bottom:20px;
+}
+hr{
+  width: 450px;
+  border-bottom: 0px;
+  text-align: center;
+}

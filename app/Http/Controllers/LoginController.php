@@ -12,8 +12,8 @@ class LoginController extends Controller
     }
 
     public function find_pw(){
-        return view('find_passwordw');
+        return view('find_password');
     }
 
-    
+
 }

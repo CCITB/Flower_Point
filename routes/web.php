@@ -49,3 +49,9 @@ Route::get('/faq', function () {
 Route::get('/myqna', function () {
     return view('myQnA');
 });
+Route::get('/user', function () {
+    return view('user_signup');
+});
+Route::get('/seller', function () {
+    return view('seller_signup');
+});

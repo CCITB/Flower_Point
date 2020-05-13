@@ -1,35 +1,93 @@
-/*sohyun*/
-   <style>
+/* 수정시 소현에게 */
 
-     #all{
-       margin:0 auto;
-       border: 1px solid;
-       width : 450px;
-       height: 500px;
-       border-radius: 25px;
-       padding: 40px;
-       background-color: #FFFFFF;
-       border-style: hidden;
-     }
-     body {
-       background-color: #FFD8D8;
-     }
-     p{
-       padding-top: 5px;
-       text-align: center;
-     }
-     .text{
-       padding-bottom:20px;
-     }
-     hr{
-       width: 450px;
-       border-bottom: 0px;
-       text-align: center;
-     }
-     .go{
-       text-align: right;
-     }
-     .submit{
-       text-align: center;
-     }
-   </style>
+#all{
+  margin:0 auto;
+  border: 1px solid;
+  width : 450px;
+  height: 520px;
+  border-radius: 25px;
+  padding: 40px;
+  background-color: #FFFFFF;
+  border-style: hidden;
+}
+body {
+  background-color: #FFD8D8;
+}
+p{
+  padding-top: 5px;
+  text-align: center;
+}
+.text{
+  padding-bottom:20px;
+}
+hr{
+  width: 450px;
+  border-bottom: 0px;
+  text-align: center;
+}
+.find_id {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 25px;
+  height: 350px;
+}
+.find_pw{
+  padding: 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 25px;
+  height: 350px;
+}
+.find_pw_way{
+  padding: 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 25px;
+  height: 350px;
+}
+.pw_reset{
+  padding: 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 25px;
+  height: 350px;
+}
+.my_id{
+  border: 1px solid;
+}
+.login {
+  padding: 30px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 25px;
+  height: 350px;
+}
+.lg{
+  width:350px;
+  height:30px;
+  font-size:20px;
+}
+.go{
+  text-align: right;
+}
+.lg_bt{
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+.user_sign_bt{
+  width: 350px;
+  height: 35px;
+  font-size: 15px;
+  text-align: center;
+  background-color:#FFA7A7;
+}
+.sel_sign_bt{
+  width: 350px;
+  height: 35px;
+  font-size: 15px;
+  text-align: center;
+  background-color:#B2CCFF;
+}
