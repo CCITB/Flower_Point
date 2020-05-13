@@ -6,14 +6,7 @@
   <link rel="stylesheet" type="text/css" href="/css/sohyun.css">
   <title>로그인</title>
   <script>
-
-  <!-- [jisuEO + sohyun ] -->
-
   </script>
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <!--design-->
-  <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
   <div id="all">
@@ -25,19 +18,17 @@
     <div class ="login">
       <form action = 'url' method='post'>
         <p>
-          <input type="text" autofocus placeholder="ID" name="id" style="width:350px; height:30px; font-size:20px;" required ><br><br>
-          <input type="password" autofocus placeholder="Password" name="pw" style="width:350px; height:30px; font-size:20px;" required>
+          <input class="lg" type="text" autofocus placeholder="ID" name="id" required ><br><br>
+          <input class="lg" type="password" autofocus placeholder="Password" name="pw" required>
         </p>
         <div class="go">
-          <a href="http://laravel.site/find_id">아이디/비밀번호 찾기</a><br><br>
+          <a href="/find_id">아이디/비밀번호 찾기</a><br><br>
         </div>
-        <div class="submit">
-          <input type="submit" style="width:100px; height:30px; font-size:15px;" id="login" value="로그인">
-          <p>
-            <br><br><button type="button" style="width:350px; height:30px; font-size:15px;" > <a href="http://laravel.site/user">구매자 회원가입</a> </button><br><br>
-            <button type="button" style="width:350px; height:30px; font-size:15px;" > <a href="http://laravel.site/seller">판매자 회원가입</a> </button>
-          </p>
-        </div>
+        <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
+        <p>
+          <button class="user_sign_bt" type="button" onclick="location.href = '/user'">구매자 회원가입</button><br><br>
+          <button class="sel_sign_bt" type="button" onclick="location.href = '/seller'">판매자 회원가입</button>
+        </p>
       </form>
     </div>
   </div>

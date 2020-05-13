@@ -61,6 +61,11 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
+.lg{
+  width:350px;
+  height:30px; 
+  font-size:20px;
+}
 .go{
   text-align: right;
 }
