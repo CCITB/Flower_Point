@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>꽃갈피</title>
+<link rel="stylesheet" href="/css/seungji.css">
+  </head>
+  <body>
 @include('header')
 <div class="menu4">
 <h3 align="center">마이페이지</h3>

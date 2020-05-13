@@ -43,3 +43,9 @@ Route::get('/mypage1', function () {
 Route::get('/main', function () {
     return view('mainlayout');
 });
+Route::get('/faq', function () {
+    return view('FAQ');
+});
+Route::get('/myqna', function () {
+    return view('myQnA');
+});

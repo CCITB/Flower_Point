@@ -21,10 +21,10 @@
     <div class="frequently">
       <div class="frequently-qna">
         <div class="myqna-num">
-        잉여태그
+        block
         </div>
         <div class="myqna-title">
-          잉여 태그
+          block
         </div>
         <table>
           <tr>
