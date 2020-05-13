@@ -1,11 +1,11 @@
  /* 곽승지 css 무단 수정 금지*/
  a{
-   /* text-decoration: none; */
-   /* color: black; */
+   text-decoration: none;
+   color: black;
  }
 .headersearch{
   display: inline-block;
-  border: 5px solid pink;
+  border: 3px solid pink;
 }
 #wrap{
   overflow: hidden;
@@ -116,7 +116,7 @@ ul
 {
 margin: 0px auto;
 width: 1130px;
-  height: 100%;
+  height: 90%;
 display: block;
 position: relative;
 }
@@ -127,9 +127,9 @@ left: 300px;
 
 }
 #block1{
-top:50%;
+top:40%;
 position: absolute;
-left: 240px;
+left: 200px;
 }
 #header{
   position: relative;
@@ -140,7 +140,7 @@ left: 240px;
 /* Dropdown Button */
 .dropbtn {
   background-color: white;
-  color: black;
+  color: #9c9c9c;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -158,7 +158,7 @@ left: 240px;
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -167,21 +167,21 @@ left: 240px;
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: #9c9c9c;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {background-color: #FFC0CB; color: white;}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #F6D0B6;
+  color: #FFC0CB;
 }
 #dropdown-menu{
   white-space : nowrap;
@@ -295,12 +295,20 @@ position: absolute;
 border: 1px solid #d9d9d9;
 border-radius: 10px;
 box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
-
+background-color: #f8f9fb;
 }
 .image-in{
  width: 100%;
  height: 100%;
-
+-webkit-filter: brightness(100%);
+}
+.image-in:hover{
+  -webkit-filter: brightness(70%);
+     -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+     -o-transition: all 1s ease;
+     -ms-transition: all 1s ease;
+     transition: all 1s ease;
 }
 img{
 border-top-right-radius:10px;
@@ -312,6 +320,7 @@ margin: 0 auto;
 padding-bottom: 5px;
 }
 .image-in-bottom{
+  position: relative;
 width: 90%;
 margin: 0 auto;
 display: -webkit-box;
@@ -319,8 +328,7 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 height: 18px;
 overflow: hidden;
-
-
+text-overflow: ellipsis;
 }
 .image-in-star{
 width: 90%;

@@ -4,14 +4,14 @@
         <div class="topheader">
           <div id="user">
               <ul>
-                <li>  <a href="#">로그인</a></li>
-                <li>  <a href="#">회원가입</a></li>
+                <li>  <a href="/login">로그인</a></li>
+                <li>  <a href="/register">회원가입</a></li>
               </ul>
           </div>
           <div id="block_container">
             <div id="header">
               <div id="block1">
-                <span><a href="http://laravel.site/index">꽃갈피</a></span>
+                <h1><a href="http://laravel.site/main">꽃갈피</a></h1>
               </div>
               <div id="block2">
                 <form class="headersearch">
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn"onclick="location.href = 'http://laravel.site/userqna'">고객센터</button>
+    <button class="dropbtn"onclick="location.href = 'http://laravel.site/faq'">고객센터</button>
     <div class="dropdown-content">
       <a href="http://laravel.site/myqna">문의관리</a>
 
