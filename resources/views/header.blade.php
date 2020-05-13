@@ -11,7 +11,7 @@
           <div id="block_container">
             <div id="header">
               <div id="block1">
-                <h1><a href="http://laravel.site/main">꽃갈피</a></h1>
+                <h1><a href="/main">꽃갈피</a></h1>
               </div>
               <div id="block2">
                 <form class="headersearch">
@@ -27,7 +27,7 @@
 </div>
 <div id="dropdown-menu">
   <div class="dropdown">
-    <button class="dropbtn" onclick="location.href = 'http://laravel.site/locate1'">내 주변 꽃집</button>
+    <button class="dropbtn" onclick="location.href = '/locate1'">내 주변 꽃집</button>
     <div class="dropdown-content">
 
     </div>
@@ -39,9 +39,9 @@
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn"onclick="location.href = 'http://laravel.site/faq'">고객센터</button>
+    <button class="dropbtn"onclick="location.href = '/faq'">고객센터</button>
     <div class="dropdown-content">
-      <a href="http://laravel.site/myqna">문의관리</a>
+      <a href="/myqna">문의관리</a>
 
     </div>
   </div>
