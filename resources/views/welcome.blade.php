@@ -8,6 +8,8 @@
 
     </head>
     <body>
+  <h1>꽃갈피 메인화면임</h1>
+  <h4><a href="http://laravel.site/login">로그인</a></h4>
             CCIT B조 웹페이지 입니다.
             hihi
     </body>
