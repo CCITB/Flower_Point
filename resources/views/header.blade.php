@@ -1,28 +1,31 @@
- <!-- 곽승지 무단 수정 금지 -->
+<!-- 곽승지 무단 수정 금지 -->
 <!-- 화면 상단에 들어가는 검색 및 메뉴의 구성입니다. -->
-    <div id="wrap">
-        <div class="topheader">
-          <div id="user">
-              <ul>
-                <li>  <a href="/login">로그인</a></li>
-                <li>  <a href="/register">회원가입</a></li>
-              </ul>
-          </div>
-          <div id="block_container">
-            <div id="header">
-              <div id="block1">
-                <h1><a href="/main">꽃갈피</a></h1>
-              </div>
-              <div id="block2">
-                <form class="headersearch">
-                  <input type="text" id="searchbar" placeholder="Search.." name="search">
-                  <label for="headersearch">
-                    <button type="submit"class="zxc">검색</button>
-                  </label>
-                </form>
-              </div>
-          </div>
+<div id="headwrap">
+  <div class="topheader">
+    <div id="user">
+      <span>로그인</span>
+      <span class="list">
+        <a href="#">개인</a>
+        <a href="#">판매자</a>
+      </span>
+
+      <a href="/register">회원가입</a>
+    </div>
+    <div id="block_container">
+      <div id="header">
+        <div id="block1">
+          <h1><a href="/">꽃갈피</a></h1>
         </div>
+        <div id="block2">
+          <form class="headersearch">
+            <input type="text" id="searchbar" placeholder="Search.." name="search">
+            <label for="headersearch">
+              <button type="submit"class="search-button">검색</button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div id="dropdown-menu">

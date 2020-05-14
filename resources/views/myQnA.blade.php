@@ -4,7 +4,9 @@
    <head>
      <meta charset="utf-8">
      <title>꽃갈피</title>
- <link rel="stylesheet" href="/css/seungji.css">
+ <link rel="stylesheet" href="/css/header.css">
+ <link rel="stylesheet" href="/css/QNA.css">
+
    </head>
    <body>
 @include('header')
