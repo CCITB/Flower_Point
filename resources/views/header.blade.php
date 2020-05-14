@@ -4,24 +4,23 @@
   <div class="topheader">
     <div class="user-wrap">
 
-    <div id="user">
-      <div class="login">
-        <span>로그인</span>
-        <div class="login-list">
-          <a href="/login_customer">개인</a>
-          <a href="/login_seller">판매자</a>
+      <div id="user">
+        <div class="login">
+          <span>로그인</span>
+          <div class="login-list">
+            <a href="/login_customer">개인</a>
+            <a href="/login_seller">판매자</a>
+          </div>
         </div>
-      </div>
-      <div class="login">
-        <span>회원가입</span>
-        <div class="login-list">
-          <a href="/register_customer">개인</a>
-          <a href="/register_seller">판매자</a>
+        <div class="login">
+          <span>회원가입</span>
+          <div class="login-list">
+            <a href="/terms_customers">개인</a>
+            <a href="/terms_sellers">판매자</a>
+          </div>
         </div>
-
       </div>
     </div>
-  </div>
 
     <div id="block_container">
       <div id="header">
@@ -72,9 +71,5 @@
   </div>
 </div>
 <style>
-.dropdown-wrap{
-  border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid #d9d9d9;
-  background-color: #F5E6DE;
-}
+
 </style>
