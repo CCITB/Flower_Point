@@ -24,7 +24,7 @@
           <input type="name" autofocus placeholder="인증번호 입력" name="name" required >
           <input type="submit" value="확인"><br>
           <p>
-            <button type="submit" > <a href="http://laravel.site/pw_reset">다음</a> </button>
+            <button type="submit" > <a href="/find_pw_reset">다음</a> </button>
           </p>
         </form>
       </p>
