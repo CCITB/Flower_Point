@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>꽃갈피</title>
 <link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/locate.css">
   </head>
   <body>
 @include('header')
@@ -45,11 +46,12 @@
   </tr>
 </table>
 </table>
+<button class="btn btn-primary">수정
+</button>
   </div>
 </div>
 </div>
-<button class="btn btn-primary">수정
-</button>
+
 @include('footer')
 </body>
 </html>
