@@ -16,10 +16,14 @@ class CreateProductImageTable extends Migration
   {
     Schema::create('product_image', function (Blueprint $table) {
       $table->bigIncrements('i_no');
-      // $table->forein('product_no')->references('p_no')->on('product');
       $table->string('i_filename');
       $table->date('i_date');
       $table->string('i_status')->nullable()->default('등록'); //or 삭제
+
+
+      //외래키
+      $table->unsignedBigInteger('product_no')->nullable()->onDelete('cascade')->onUpdate('cascade');
+      $table->foreign('product_no')->references('p_no')->on('product')->onDelete('cascade')->onUpdate('cascade');
       $table->timestamps();
     });
   }
