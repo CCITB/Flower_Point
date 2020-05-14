@@ -16,13 +16,13 @@ class RegisterController extends Controller
 public function customer_store(Request $request)
 {
     DB::table('customer')->insert([
-      's_id'=>$request->input('s_id'),
-      's_password' => $request->input('s_password'),
-      's_name' => $request->input('s_name'),
-      's_phonenum' => $request->input('s_phonenum'),
-      's_email' => $request->input('s_email'),
-      's_gender' => $request->input('s_gender'),
-      's_birth' => $request->input('s_birth')
+      's_id'=>$request->input('c_id'),
+      's_password' => $request->input('c_password'),
+      's_name' => $request->input('c_name'),
+      's_phonenum' => $request->input('c_phonenum'),
+      's_email' => $request->input('c_email'),
+      's_gender' => $request->input('c_gender'),
+      's_birth' => $request->input('c_birth')
     ]);
     return redirect('/login');
 }
