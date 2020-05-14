@@ -24,7 +24,7 @@
         <div class="go">
           <a href="/find_id">아이디/비밀번호 찾기</a><br><br>
         </div>
-        <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
+        <button class="lg_bt" type="button" id="login" value="로그인">로그인</button>
         <p>
           <button class="user_sign_bt" type="button" onclick="location.href = '/user'">구매자 회원가입</button>
         </p>

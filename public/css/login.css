@@ -91,3 +91,16 @@ hr{
   text-align: center;
   background-color:#B2CCFF;
 }
+.shop_title{
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+.shop_info{
+  width:350px;
+  height:30px;
+  font-size:20px;
+}
+.paragraph{
+  padding-bottom: 20px;
+}

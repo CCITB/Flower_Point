@@ -4,58 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/css/login.css">
-  <title>로그인</title>
+  <title>매장 정보 기입</title>
   <script>
   </script>
 </head>
 <body>
   <div id="all">
     <div class="text">
-      <h1> 구매자 로그인 </h1>
+      <h1> 매장 정보 기입 </h1>
       <hr class = way>
     </div>
 
-    <div class ="login">
-      <form action = 'url' method='post'>
-        <p>
-          <input class="lg" type="text" autofocus placeholder="ID" name="id" required ><br><br>
-          <input class="lg" type="password" autofocus placeholder="Password" name="pw" required>
-        </p>
-        <div class="go">
-          <a href="/find_id">아이디/비밀번호 찾기</a><br><br>
+
+    <form action = 'url' method='post'>
+      <div class="paragraph">
+        <div class="shop_title">
+          매장 이름
         </div>
-        <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
-        <p>
-          <button class="user_sign_bt" type="button" onclick="location.href = '/user'">구매자 회원가입</button>
-        </p>
-      </form>
-    </div>
+        <input class="shop_info" type="text" autofocus placeholder="Shop Name" name="Shop Name" required >
+      </div>
+      <div class="paragraph">
+        <div class="shop_title">
+          사업자 등록번호
+        </div>
+        <input class="shop_info" type="text" autofocus placeholder="Company Registration Number" name="Company Registration Number" required>
+      </div>
+      <div class="paragraph">
+        <div class="shop_title">
+          매장 주소
+        </div>
+        <input class="shop_info" type="text" autofocus placeholder="Shop Address" name="Shop Address" required>
+      </div>
+      <div class="paragraph">
+        <div class="shop_title">
+          고객센터 번호
+        </div>
+        <input class="shop_info" type="tell" autofocus placeholder="Service Number" name="Service Number" required>
+      </div>
+        <button class="lg_bt" type="button" id="login" value="가입하기" onclick="location.href = '/'">가입하기</button>
+    </form>
   </div>
-  <!-- <body>
-  <h1>로그인</h1>
 
-  <form class="form-horizontal">
-  <div class="form-group">
-  <div class="col-sm-10">
-  <input type="id" class="form-control" id="inputEmail3" placeholder="ID">
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-10">
-<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-</div>
-</div>
-
-<div class="form-group">
-<div class="col-sm-10">
-<button type="button" class="btn btn-default" onclick="location.href='http://laravel.site/register'">회원가입</button>
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-offset-2 col-sm-10">
-<button type="submit" class="btn btn-default">로그인</button>
-</div>
-</div>
-</form> -->
 </body>
 </html>
