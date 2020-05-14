@@ -2,23 +2,27 @@
 <!-- 화면 상단에 들어가는 검색 및 메뉴의 구성입니다. -->
 <div id="headwrap">
   <div class="topheader">
-    <div id="user">
-      <div class="login">
-        <span>로그인</span>
-        <div class="login-list">
-          <a href="#">개인</a>
-          <a href="#">판매자</a>
-        </div>
-      </div>
-      <div class="login">
-        <span>회원가입</span>
-        <div class="login-list">
-          <a href="#">개인</a>
-          <a href="#">판매자</a>
-        </div>
-      </div>
+    <div class="user-wrap">
 
+      <div id="user">
+        <div class="login">
+          <span>로그인</span>
+          <div class="login-list">
+            <a href="#">개인</a>
+            <a href="#">판매자</a>
+          </div>
+        </div>
+        <div class="login">
+          <span>회원가입</span>
+          <div class="login-list">
+            <a href="#">개인</a>
+            <a href="#">판매자</a>
+          </div>
+        </div>
+
+      </div>
     </div>
+
     <div id="block_container">
       <div id="header">
         <div id="block1">
@@ -35,33 +39,42 @@
       </div>
     </div>
   </div>
+  <div class="dropdown-wrap">
+    <div id="dropdown-menu">
+      <div class="dropdown">
+        <button class="dropbtn" onclick="location.href = '/locate1'">내 주변 꽃집</button>
+        <div class="dropdown-content">
+
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">전체 상품 보기</button>
+        <div class="dropdown-content">
+
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"onclick="location.href = '/faq'">고객센터</button>
+        <div class="dropdown-content">
+          <a href="/myqna">문의관리</a>
+
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">마이페이지</button>
+        <div class="dropdown-content">
+          <a href="#">내 정보</a>
+          <a href="#">내 꽃집 가기</a>
+          <a href="#">나의 주문 관리</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div id="dropdown-menu">
-  <div class="dropdown">
-    <button class="dropbtn" onclick="location.href = '/locate1'">내 주변 꽃집</button>
-    <div class="dropdown-content">
-
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">전체 상품 보기</button>
-    <div class="dropdown-content">
-
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn"onclick="location.href = '/faq'">고객센터</button>
-    <div class="dropdown-content">
-      <a href="/myqna">문의관리</a>
-
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">마이페이지</button>
-    <div class="dropdown-content">
-      <a href="#">내 정보</a>
-      <a href="#">내 꽃집 가기</a>
-      <a href="#">나의 주문 관리</a>
-    </div>
-  </div>
-</div>
+<style>
+.dropdown-wrap{
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #F5E6DE;
+}
+</style>
