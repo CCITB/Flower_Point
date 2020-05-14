@@ -16,23 +16,19 @@ use Illuminate\Support\Facades\Route;
 //eojisu
 Route::get('/', 'MainController@main');
 
-Route::get('/login_customer', 'MainController@login_customer');
+Route::get('/login', 'MainController@login_customer');
 
-Route::get('/login_seller', 'MainController@login_seller');
+Route::get('/login', 'MainController@login_seller');
 
-Route::get('/register_customer','MainController@register_costomer');
+Route::get('/user','MainController@register_costomer');
 
-Route::get('/register_seller','MainController@register_seller');
-
-Route::get('/terms_customers', 'MainController@register_terms_customers');
-
-Route::get('/terms_sellers', 'MainController@register_terms_sellers');
+Route::get('/seller','MainController@register_seller');
 
 Route::get('/information', 'MainController@register_information');
 
 Route::get('/register', 'RegisterController@registerview');
 
-Route::post('/RegisterController', 'RegisterController@seller_store');
+Route::post('/RegisterController', 'RegisterController@store');
 
 Route::get('/find_id', 'FindController@find_id');
 
