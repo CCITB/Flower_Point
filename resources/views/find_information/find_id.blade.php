@@ -35,7 +35,7 @@
         <p>
           <button type="button" > <a href="http://laravel.site/">홈으로</a> </button>
           <input type="submit">
-          <button type="button" > <a href="/find_password">비밀번호 찾기</a> </button>
+          <button type="button" > <a href="/find_pw">비밀번호 찾기</a> </button>
         </p>
       </form>
     </div>
