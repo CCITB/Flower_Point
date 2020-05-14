@@ -40,6 +40,6 @@ public function customer_store(Request $request)
         's_gender' => $request->input('s_gender'),
         's_birth' => $request->input('s_birth')
       ]);
-      return redirect('/login');
+      return redirect('/information');
   }
 }
