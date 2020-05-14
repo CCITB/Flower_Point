@@ -24,6 +24,10 @@ Route::get('/user','MainController@register_costomer');
 
 Route::get('/seller','MainController@register_seller');
 
+Route::get('/terms_customers', 'MainController@register_terms_customers');
+
+Route::get('/terms_sellers', 'MainController@register_terms_sellers');
+
 Route::get('/register', 'RegisterController@registerview');
 
 Route::post('/RegisterController', 'RegisterController@store');

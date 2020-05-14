@@ -22,4 +22,10 @@ class MainController extends Controller
   public function register_seller(){
     return view('register.register_seller');
   }
+  public function register_terms_customers(){
+    return view('register.register_terms_customers');
+  }
+  public function register_terms_sellers(){
+    return view('register.register_terms_sellers');
+  }
 }
