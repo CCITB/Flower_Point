@@ -86,4 +86,4 @@ new_pw.focus();
       </div>
     </div>
 
-    @include('footer')
+    

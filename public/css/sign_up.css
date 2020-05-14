@@ -9,6 +9,7 @@
   padding: 40px;
   background-color: #FFFFFF;
   border-style: hidden;
+  text-align: center;
 }
 body {
   background-color: #FFD8D8;
@@ -24,6 +25,9 @@ hr{
   width: 450px;
   border-bottom: 0px;
   text-align: center;
+}
+h1{
+  text-align: left;
 }
 .inf1{
   width:350px;
@@ -60,4 +64,18 @@ textarea{
 .mini{
   width: 15px;
   height: 15px;
+}
+.back{
+  width:100px;
+  height:40px;
+  font-size:20px;
+  background-color:#B2CCFF;
+  text-align: center;
+}
+.submit{
+  width:100px;
+  height:40px;
+  font-size:20px;
+  background-color:#FFA7A7;
+  text-align: center;
 }

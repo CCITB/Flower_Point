@@ -28,6 +28,8 @@ Route::get('/terms_customers', 'MainController@register_terms_customers');
 
 Route::get('/terms_sellers', 'MainController@register_terms_sellers');
 
+Route::get('/information', 'MainController@register_information');
+
 Route::get('/register', 'RegisterController@registerview');
 
 Route::post('/RegisterController', 'RegisterController@seller_store');

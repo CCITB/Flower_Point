@@ -57,7 +57,5 @@
       </form>
     </div>
   </div >
-
-  @include('footer')
 </body>
 </html>

@@ -28,4 +28,7 @@ class MainController extends Controller
   public function register_terms_sellers(){
     return view('register.register_terms_sellers');
   }
+  public function register_information(){
+    return view('register.register_information');
+  }
 }
