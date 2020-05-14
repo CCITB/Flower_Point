@@ -20,16 +20,21 @@
     </div>
 
     <div class ="find_id">
-      <p>
+      <div class="text1">
         회원 정보에 등록한 휴대전화로 인증
-      </p>
-      <p>
+      </div>
+      <div class="text2">
         회원 정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 일치해야 인증번호를 받을 수 있습니다.
-
-      </p>
+      </div>
       <form action = 'url' method='POST'>
-        이름 : <input type="name" autofocus placeholder="이름을 입력하세요." name="name" required ><br>
-        전화번호 : <input type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000"><input type="submit" value="인증번호받기"><br>
+<div class="text1">
+        이름 :
+</div>
+        <input class="find_input" type="name" autofocus placeholder="이름을 입력하세요." name="name" required ><br>
+<div class="text1">
+        전화번호 :
+</div>
+        <input class="find_input" type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000"><input type="submit" value="인증번호받기"><br>
         <input type="name" autofocus placeholder="인증번호 입력" name="name" required >
         <input type="submit" value="확인"><br>
         <p>

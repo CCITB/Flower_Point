@@ -25,6 +25,18 @@ hr{
   border-bottom: 0px;
   text-align: center;
 }
+.text1{
+  font-size: 22px;
+  padding: 20px;
+}
+.text2{
+  font-size: 14px;
+  padding-bottom: 30px;
+  border:1px solid;
+  border-style: hidden;
+  width: 350px;
+  margin: 0 auto;
+}
 .find_id {
   padding: 20px;
   text-align: center;
@@ -103,4 +115,9 @@ hr{
 }
 .paragraph{
   padding-bottom: 20px;
+}
+.find_input{
+  width;300
+  height:25;
+  font-size: 20px;
 }

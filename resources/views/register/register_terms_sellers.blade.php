@@ -17,7 +17,7 @@
     <form action = 'url' method='POST'>
       <div class="checkbox">
         <div class="checkbt">
-          <input class="mini" type="checkbox" name="chk">
+          <input class="mini" type="checkbox" name="chk" id="chk">
           전자상거래 이용에 대한 안내<br>
         </div>
         <div class="box">
@@ -275,7 +275,7 @@
 
       <div class="checkbox">
         <div class="checkbt">
-          <input class="mini" type="checkbox" name="chk">
+          <input class="mini" type="checkbox" name="chk" id="chk">
           개인정보 취급방침 약관 안내<br>
         </div>
         <div class="box">
