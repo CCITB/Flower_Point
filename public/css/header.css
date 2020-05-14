@@ -1,5 +1,10 @@
  /* 곽승지 css 무단 수정 금지*/
  /* 화면헤더 */
+ .dropdown-wrap{
+   border-top: 1px solid #d9d9d9;
+   border-bottom: 1px solid #d9d9d9;
+   background-color: #F5E6DE;
+ }
  .user-wrap{
    background-color: #FFDDDD;
 
@@ -192,7 +197,7 @@ display: inline-block;
 /* Dropdown Button */
 .dropbtn {
   background-color: #F5E6DE;
-  color: #9c9c9c;
+  color: black;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -218,7 +223,7 @@ display: inline-block;
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: #9c9c9c;
+  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
