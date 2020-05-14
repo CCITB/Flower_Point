@@ -79,7 +79,7 @@ new_pw.focus();
           </tr>
           <tr>
             <td><button class="back" type="button" onclick="location.href = '/login'">돌아가기</button>
-              <button class="signup" type="formenctype">회원가입</button></td>
+              <button class="sign" type="formenctype">회원가입</button></td>
             </tr>
           </table>
         </form>
