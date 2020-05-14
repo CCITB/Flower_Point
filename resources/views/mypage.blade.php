@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>꽃갈피</title>
-<link rel="stylesheet" href="/css/seungji.css">
+<link rel="stylesheet" href="/css/header.css">
   </head>
   <body>
 @include('header')
@@ -17,7 +17,7 @@
   <h4>내 정보</h4>
 </myinfo>
   <div class="privacy">
-    <div class="table">
+    <table class="table1">
 <table cellpadding="10" cellspacing="10" width="100%">
   <tr>
     <th>ID</th>
@@ -43,10 +43,13 @@
     <th>주소</th>
     <td>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
   </tr>
+</table>
+</table>
   </div>
 </div>
 </div>
-</div>
+<button class="btn btn-primary">수정
+</button>
 @include('footer')
 </body>
 </html>
