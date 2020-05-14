@@ -3,13 +3,21 @@
 <div id="headwrap">
   <div class="topheader">
     <div id="user">
-      <span>로그인</span>
-      <span class="list">
-        <a href="#">개인</a>
-        <a href="#">판매자</a>
-      </span>
+      <div class="login">
+        <span>로그인</span>
+        <div class="login-list">
+          <a href="/login_customer">개인</a>
+          <a href="/login_seller">판매자</a>
+        </div>
+      </div>
+      <div class="login">
+        <span>회원가입</span>
+        <div class="login-list">
+          <a href="/register_customer">개인</a>
+          <a href="/register_seller">판매자</a>
+        </div>
+      </div>
 
-      <a href="/register">회원가입</a>
     </div>
     <div id="block_container">
       <div id="header">

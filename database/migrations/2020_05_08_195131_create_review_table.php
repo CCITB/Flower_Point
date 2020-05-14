@@ -16,10 +16,14 @@ class CreateReviewTable extends Migration
   {
     Schema::create('review', function (Blueprint $table) {
       $table->bigIncrements('r_no');
-      // $table->forein('product_no')->references('p_no')->on('product');
       $table->string('r_title');
       $table->string('r_contents');
       $table->string('p_status')->nullable()->default('등록'); //or삭제
+
+      //외래키
+      $table->unsignedBigInteger('product_no')->nullable();
+      $table->foreign('product_no')->references('p_no')->on('product')->onDelete('cascade')->onUpdate('cascade');
+
       $table->timestamps();
     });
   }

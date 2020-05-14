@@ -17,6 +17,10 @@ class CreateOrderTable extends Migration
     Schema::create('order', function (Blueprint $table) {
       $table->bigIncrements('o_no');
       $table->string('o_status')->nullable();
+
+      //외래키
+      $table->unsignedBigInteger('payment_no')->nullable();
+      $table->foreign('payment_no')->references('pm_no')->on('payment')->onDelete('cascade')->onUpdate('cascade');
       $table->timestamps();
     });
   }

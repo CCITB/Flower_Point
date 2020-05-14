@@ -1,8 +1,35 @@
  /* 곽승지 css 무단 수정 금지*/
  /* 화면헤더 */
+ .login:hover .login-list {display: block;}
+ span{
+
+ }
+ span a:hover{
+
+ }
+ .login{
+   display: inline-block;
+ }
+.login-list{
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  text-align: left;
+}
+.login-list a:hover{
+ color: black;
+}
+ #user{
+   width: 1130px;
+   margin: 0 auto;
+ }
  a{
    text-decoration: none;
    color: black;
+ }
+ {
+
  }
  a:hover{
    color: #9c9c9c;
@@ -95,7 +122,7 @@ outline: none;
 height: 200px;
 
 }
-li
+/* li
 {
 list-style-type: none;
 display: inline-block;
@@ -105,7 +132,7 @@ ul
 {
   margin: 0px;
   padding-left: 0px;
-}
+} */
 
 #block_container
 {

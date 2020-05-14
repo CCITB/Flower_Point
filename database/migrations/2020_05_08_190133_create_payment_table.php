@@ -20,6 +20,15 @@ class CreatePaymentTable extends Migration
       $table->string('pm_pay');
       $table->date('pm_date');
       $table->string('pm_status')->nullable();
+
+      //외래키
+      $table->unsignedBigInteger('customer_no')->nullable();
+      $table->foreign('customer_no')->references('c_no')->on('customer')->onDelete('cascade')->onUpdate('cascade');
+      $table->unsignedBigInteger('delivery_no')->nullable()->nullable();
+      $table->foreign('delivery_no')->references('d_no')->on('delivery')->onDelete('cascade')->onUpdate('cascade');
+      $table->unsignedBigInteger('product_no')->nullable();
+      $table->foreign('product_no')->references('p_no')->on('product')->onDelete('cascade')->onUpdate('cascade');
+
       $table->timestamps();
     });
   }

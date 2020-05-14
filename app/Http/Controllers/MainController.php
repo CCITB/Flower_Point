@@ -17,7 +17,7 @@ class MainController extends Controller
     return view('login.login_seller');
   }
   public function register_costomer(){
-    return view('register.register_costomer');
+    return view('register.register_customer');
   }
   public function register_seller(){
     return view('register.register_seller');

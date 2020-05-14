@@ -7,6 +7,7 @@
     <title>꽃갈피</title>
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/header.css">
+
   </head>
   <body>
 @include('header')

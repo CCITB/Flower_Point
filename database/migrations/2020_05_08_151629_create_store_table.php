@@ -23,6 +23,14 @@ class CreateStoreTable extends Migration
       $table->string('st_introduce');
       $table->string('st_date');
       $table->string('st_status')->nullable()->default('사용중'); //or 휴면
+
+      //외래키
+      $table->unsignedBigInteger('store_no')->nullable();
+      $table->foreign('store_no')->references('st_no')->on('store')->onDelete('cascade')->onUpdate('cascade');
+
+      $table->unsignedBigInteger('payment_no')->nullable();
+      $table->foreign('payment_no')->references('pm_no')->on('payment')->onDelete('cascade')->onUpdate('cascade');
+
       $table->timestamps();
     });
   }
