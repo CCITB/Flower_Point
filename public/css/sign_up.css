@@ -18,7 +18,7 @@ p{
   text-align: center;
 }
 .text{
-  padding-bottom:20px;
+  padding-bottom:30px;
 }
 hr{
   width: 450px;
@@ -40,4 +40,24 @@ td{
 }
 .sign{
   align: right;
+}
+textarea{
+  width: 400px;
+  height: 150px;
+  resize: none;
+}
+.checkbt{
+  text-align: left;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+.box{
+  text-align: center;
+}
+.checkbox{
+  padding-bottom: 40px;
+}
+.mini{
+  width: 15px;
+  height: 15px;
 }

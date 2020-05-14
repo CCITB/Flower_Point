@@ -4,24 +4,24 @@
   <div class="topheader">
     <div class="user-wrap">
 
-      <div id="user">
-        <div class="login">
-          <span>로그인</span>
-          <div class="login-list">
-            <a href="#">개인</a>
-            <a href="#">판매자</a>
-          </div>
+    <div id="user">
+      <div class="login">
+        <span>로그인</span>
+        <div class="login-list">
+          <a href="/login_customer">개인</a>
+          <a href="/login_seller">판매자</a>
         </div>
-        <div class="login">
-          <span>회원가입</span>
-          <div class="login-list">
-            <a href="#">개인</a>
-            <a href="#">판매자</a>
-          </div>
+      </div>
+      <div class="login">
+        <span>회원가입</span>
+        <div class="login-list">
+          <a href="/register_customer">개인</a>
+          <a href="/register_seller">판매자</a>
         </div>
 
       </div>
     </div>
+  </div>
 
     <div id="block_container">
       <div id="header">
