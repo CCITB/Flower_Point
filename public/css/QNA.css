@@ -1,0 +1,38 @@
+/* 곽승지 */
+/* FAQ.blade.php 화면css */
+/* myQnA.blade.php 화면 css */
+/* 두 블레이드 파일과 동일 css 입니다. */
+
+.frequently-qna{
+width: 50%;
+border: 1px solid gray;
+margin: 0 auto;
+}
+.frequently{
+  position: relative;
+  width: 1130px;
+  height: 500px;
+  border: 5px solid pink;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+.nav-page{
+  margin-top: 60px;
+  border-radius: solid 2px gray;
+  text-align: center;
+  vertical-align: middle;
+    display: block;
+}
+nav{
+  border: solid 1px gray;
+display: inline-block;
+width: 24px;
+height: 24px;
+border-radius: 2px;
+color: gray;
+}
+.active{
+  color: red;
+  text-decoration: none;
+}
+/* FAQ.blade.phpcss 끝나는곳 */

@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>꽃갈피</title>
-<link rel="stylesheet" href="/css/seungji.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
   </head>
   <body>
 @include('header')
@@ -19,8 +20,7 @@
       <div class="hr-sect">
       인기상품
       </div>
-
-      <!-- 혹시모를 경우를 대비하여 남겨둔 메인페이지 6개의 이미지 박스 -->
+<!-- 상품진열 테이블입니다. -->
       <div class="container-wrap">
         <div class="container-wrapping">
           <div class="container-image">
@@ -200,11 +200,13 @@
           </div>
         </div>
       </div>
+      <!-- 상품진열 테이블 끝나는 곳 입니다. -->
    <style>
 
 
 
     </style>
+    <!-- 평점 jQuery -->
     <script src="//code.jquery.com/jquery-3.3.1.min.js">
 
     </script>

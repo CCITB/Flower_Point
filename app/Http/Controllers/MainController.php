@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
   public function main(){
-    return view('mainlayout');
+    return view('main');
   }
   public function login_customer(){
     return view('login.login_customer');
