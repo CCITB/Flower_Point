@@ -32,7 +32,9 @@ Route::get('/information', 'MainController@register_information');
 
 Route::get('/register', 'RegisterController@registerview');
 
-Route::post('/RegisterController', 'RegisterController@seller_store');
+Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
+
+Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
 Route::get('/find_id', 'FindController@find_id');
 

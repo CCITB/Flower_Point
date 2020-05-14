@@ -12,9 +12,24 @@ class RegisterController extends Controller
   {
     return view('register');
   }
+  #customer register query
+public function customer_store(Request $request)
+{
+    DB::table('customer')->insert([
+      's_id'=>$request->input('s_id'),
+      's_password' => $request->input('s_password'),
+      's_name' => $request->input('s_name'),
+      's_phonenum' => $request->input('s_phonenum'),
+      's_email' => $request->input('s_email'),
+      's_gender' => $request->input('s_gender'),
+      's_birth' => $request->input('s_birth')
+    ]);
+    return redirect('/login');
+}
+
 
     #seller register query
-  public function store(Request $request)
+  public function seller_store(Request $request)
   {
       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
@@ -22,6 +37,8 @@ class RegisterController extends Controller
         's_name' => $request->input('s_name'),
         's_phonenum' => $request->input('s_phonenum'),
         's_email' => $request->input('s_email'),
+        's_gender' => $request->input('s_gender'),
+        's_birth' => $request->input('s_birth')
       ]);
       return redirect('/login');
   }
