@@ -18,7 +18,7 @@ class CreateReviewTable extends Migration
       $table->bigIncrements('r_no');
       $table->string('r_title');
       $table->string('r_contents');
-      $table->string('p_status')->nullable()->default('등록'); //or삭제
+      $table->string('r_status')->nullable()->default('등록'); //or삭제
 
       //외래키
       $table->unsignedBigInteger('product_no')->nullable();
