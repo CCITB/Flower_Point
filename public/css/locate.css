@@ -1,37 +1,73 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);{
-  font-family: Nanum Gothic;
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+    {
+    font-family: Nanum Gothic;
 }
 
+.shopname {
+    width: 500px;
+    float: left;
+}
 
+.shopimg {
+    width: 500px;
+    float: right;
+}
 
-.menu5{
-  height: 500px;
+.information {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
 }
-.shopname{
-  width:500px;
-  float: left;
+
+.myinfo {
+    width: 50%;
+    margin: 0 auto;
 }
-.shopimg{
-  width: 500px;
-  float: right;
-}
-.information{
-  width: 50%;
-  margin: 0 auto;
-  text-align: center;
-}
-.myinfo{
-  width: 50%;
-  margin: 0 auto;
-}
+
 .show {
-  display: block;
-}
-.privacy{
-  text-align: center;
+    display: block;
 }
 
-.btn{
-  margin: 0 85%;
-  cursor: pointer;
+.privacy {
+    text-align: center;
+}
+
+.btn {
+    margin: 0 85%;
+    cursor: pointer;
+    margin-bottom: 300px;
+}
+
+.quickbuttonwrap {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    height: 500px;
+}
+
+.quickbutton {
+    width: 45%;
+    margin: 0 auto;
+    float: left;
+    height: 50%;
+    z-index: 3;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 20px;
+    box-shadow: 10px 5px 5px black;
+}
+
+.quickgroup {
+    position: relative;
+}
+
+.innerbutton {
+    top: 40px;
+    left: 80px;
+    position: absolute;
 }
