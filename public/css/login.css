@@ -37,6 +37,23 @@ hr{
   width: 350px;
   margin: 0 auto;
 }
+.character{
+  float: left;
+  text-align: right;
+  font-size: 18px;
+}
+.window{
+  float: right;
+  text-align: left;
+}
+.under{
+  clear: both;
+}
+.find_input{
+  width:200px;
+  height:23px;
+  font-size: 15px;
+}
 .find_id {
   padding: 20px;
   text-align: center;
@@ -115,9 +132,4 @@ hr{
 }
 .paragraph{
   padding-bottom: 20px;
-}
-.find_input{
-  width:300;
-  height:25;
-  font-size: 20px;
 }
