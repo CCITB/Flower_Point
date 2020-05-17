@@ -25,11 +25,12 @@
           <a href="/find_id">아이디</a> ·
           <a href="/find_pw">비밀번호 찾기</a>
         </div><br>
-        <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
         <p>
-          <button class="sel_sign_bt" type="button"
-          onclick="location.href = '/seller'">판매자 회원가입</button>
+          <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
         </p>
+        <p><p>
+          <button class="sel_sign_bt" type="button" onclick="location.href = '/seller'">판매자 회원가입</button>
+        </p></p>
       </form>
     </div>
   </div>

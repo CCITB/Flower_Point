@@ -20,7 +20,7 @@
         alert('비밀번호를 입력해주세요.')
         new_pw.focus();
       }else {
-        location.href = "http://laravel.site/login";
+        location.href = "/login_customer";
       }
     });
   });

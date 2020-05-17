@@ -22,7 +22,7 @@
           <input type="name" autofocus placeholder="꽃갈피 아이디" name="name" required ><br>
           <p>
             <input type="submit">
-            <button type="submit" > <a href="http://laravel.site/find_pw_way">다음</a> </button>
+            <button type="submit" > <a href="/find_pw_way">다음</a> </button>
           </p>
         </form>
       </p>

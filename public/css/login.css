@@ -77,8 +77,8 @@ hr{
 }
 .lg{
   width:350px;
-  height:30px;
-  font-size:20px;
+  height:35px;
+  font-size:23px;
 }
 .go{
   text-align: right;
@@ -91,15 +91,15 @@ hr{
 }
 .user_sign_bt{
   width: 350px;
-  height: 35px;
-  font-size: 15px;
+  height: 40px;
+  font-size: 17px;
   text-align: center;
   background-color:#FFA7A7;
 }
 .sel_sign_bt{
   width: 350px;
-  height: 35px;
-  font-size: 15px;
+  height: 40px;
+  font-size: 20px;
   text-align: center;
   background-color:#B2CCFF;
 }
@@ -117,7 +117,7 @@ hr{
   padding-bottom: 20px;
 }
 .find_input{
-  width;300
+  width:300;
   height:25;
   font-size: 20px;
 }

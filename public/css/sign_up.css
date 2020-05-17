@@ -4,7 +4,7 @@
   margin:0 auto;
   border: 1px solid;
   width : 450px;
-  height: 700px;
+  height: 800px;
   border-radius: 25px;
   padding: 40px;
   background-color: #FFFFFF;
@@ -78,4 +78,8 @@ textarea{
   font-size:20px;
   background-color:#FFA7A7;
   text-align: center;
+}
+th{
+  text-align: left;
+  font-size: 20px;
 }
