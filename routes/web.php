@@ -64,3 +64,6 @@ Route::get('/postlist', function () {
 Route::get('/sellershoppost', function () {
   return view('seller_shoppost');
 });
+Route::get('/bi', function () {
+  return view('Buy_information');
+});
