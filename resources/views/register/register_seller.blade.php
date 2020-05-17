@@ -15,6 +15,21 @@
       <hr class = way>
     </div>
     <div class="signup">
+
+      <!--ID form 태그-->
+      <!-- <form action = '/RegisterControllerID' method="post" name="registerform" onsubmit='return check_signup();'>
+        @csrf
+        <table>
+          <tr>
+            <th>아이디</th>
+          </tr>
+          <tr>
+            <td><input class="inf1" type="text" placeholder="ID" id="id" name="s_id" required></td>
+            <td><input class="end" type='submit' value="중복확인"></td>
+          </tr>
+      </from> -->
+
+      <!--패스워드부터 나머지 세부사항 form-->
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return check_signup();'>
         @csrf
         <table>
@@ -47,7 +62,7 @@
           </tr>
           <tr>
             <td><input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum" name="s_phonenum" required></td>
-            <td><button type="button" value="인증번호" id="certification">인증번호</button></td>
+            <td><button type="button"  class="end" value="인증번호" id="certification">인증번호</button></td>
           </tr>
           <tr>
             <th>
