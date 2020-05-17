@@ -14,10 +14,6 @@
 <br>
 <br>
 <br>
-
-
-
-
       <div class="hr-sect">
       인기상품
       </div>
@@ -31,7 +27,6 @@
                 <div class="image-in-font">
                   <div class="image-in-post">
                     제품내용
-
                   </div>
                   <div class="image-in-container">
                     <div class="image-in-star">
@@ -48,7 +43,6 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>

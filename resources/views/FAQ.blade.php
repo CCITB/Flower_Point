@@ -17,10 +17,6 @@
       </div>
     </div>
 
-<br>
-<br>
-<br>
-<br>
   <div class="frequently">
     <div class="frequently-qna">
       <h3>자주 묻는 질문</h3>
