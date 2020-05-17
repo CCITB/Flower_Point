@@ -17,20 +17,27 @@
     </div>
 
     <div class ="find_pw_way">
-      <p>
-        <form action = '처리할 주소' method='POST'>
-          이름 : <input type="name" name="name"required ><br>
-          전화번호 : <input type="tell" name="tell" size=20 required title="000-0000-0000"><input type="submit" value="인증번호받기"><br>
-          <input type="name" autofocus placeholder="인증번호 입력" name="name" required >
-          <input type="submit" value="확인"><br>
+      <form action = '처리할 주소' method='POST'>
+<p>
+        <div class="character">
+          이름 : <br><br>
+          전화번호 :
+        </div>
+        <div class="window">
+          <input class="find_input" type="name" name="name"required ><br><br>
+          <input class="find_input" type="tell" name="tell" required title="000-0000-0000"><input type="submit" value="인증번호받기"><br><br>
+          <input class="find_input" type="name" autofocus placeholder="인증번호 입력" name="name" required >
+          <input type="submit" value="확인"><br><br>
+        </div>
+
+        <div class="under">
           <p>
             <button type="submit" > <a href="/find_pw_reset">다음</a> </button>
           </p>
-        </form>
-      </p>
+        </p>
+        </div>
+      </form>
     </div>
-
   </div>
-
 </body>
 </html>

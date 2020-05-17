@@ -41,7 +41,7 @@
         </div>
         <input class="shop_info" type="tell" autofocus placeholder="Service Number" name="Service Number" required>
       </div>
-        <button class="lg_bt" type="button" id="login" value="가입하기" onclick="location.href = '/'">가입하기</button>
+        <br><button class="lg_bt" type="button" id="login" value="가입하기" onclick="location.href = '/'">가입하기</button>
     </form>
   </div>
 
