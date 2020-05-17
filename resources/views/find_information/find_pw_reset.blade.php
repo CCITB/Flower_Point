@@ -47,8 +47,8 @@
 
       <form action = '처리할 주소' method='POST'>
         <p>
-          <input type="password" autofocus placeholder="새 비밀번호" id="new_pw" required ><br>
-          <input type="password" autofocus placeholder="새 비밀번호 확인" id="check" required >
+          <input class="find_input" type="password" autofocus placeholder="새 비밀번호" id="new_pw" required ><br><br>
+          <input class="find_input" type="password" autofocus placeholder="새 비밀번호 확인" id="check" required >
         </p>
         영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.
         <p>

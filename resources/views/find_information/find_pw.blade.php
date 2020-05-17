@@ -19,7 +19,7 @@
     <div class ="find_pw">
       <p>
         <form action = '처리할 주소' method='POST'>
-          <input type="name" autofocus placeholder="꽃갈피 아이디" name="name" required ><br>
+          <input class="find_input" type="name" autofocus placeholder="꽃갈피 아이디" name="name" required ><br>
           <p>
             <input type="submit">
             <button type="submit" > <a href="/find_pw_way">다음</a> </button>
