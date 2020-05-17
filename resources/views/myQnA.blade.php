@@ -16,10 +16,7 @@
     <hr>
   </div>
 </div>
-<br>
-<br>
-<br>
-<br>
+
     <div class="frequently">
       <div class="frequently-qna">
         <div class="myqna-num">
@@ -64,26 +61,7 @@
       </div>
     </div>
     <style>
-.myqna-num{
-text-align: center;
-display: inline-block;
-border: 1px solid gray;
-}
-.myqna-title{
-  text-align: center;
-  display:inline;
-}
-table{
-  border-collapse: collapse;
-  width: 100%;
-}
-th{
-  border: 1px solid pink;
-  width: 20%;
- /* border-left: 0px;
- border-right: 0px; */
 
-}
     </style>
 @include('footer')
 </body>

@@ -3,12 +3,12 @@
 /* myQnA.blade.php 화면 css */
 /* 두 블레이드 파일과 동일 css 입니다. */
 
-.frequently-qna{
-width: 50%;
+.productlist-item{
+width: 60%;
 border: 1px solid gray;
 margin: 0 auto;
 }
-.frequently{
+.productlist{
   position: relative;
   width: 1130px;
   height: 500px;
@@ -50,9 +50,30 @@ table{
 }
 th{
   border: 1px solid pink;
-  width: 20%;
+  cursor: pointer;
  /* border-left: 0px;
  border-right: 0px; */
 
 }
-/* FAQ.blade.phpcss 끝나는곳 */
+td{
+    border: 1px solid pink;
+}
+.registration-date{
+  width: 20%;
+}
+.product-name{
+  width: 45%;
+}
+.product-price{
+  width: 20%;
+}
+.product-amount{
+  width: 15%;
+}
+.date-sort{
+display: inline-block;
+}
+.write-post{
+  display: inline-block;
+}
+/* postlist.css 끝나는곳 */
