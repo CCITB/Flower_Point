@@ -4,7 +4,7 @@
   margin:0 auto;
   border: 1px solid;
   width : 450px;
-  height: 800px;
+  height: 850px;
   border-radius: 25px;
   padding: 40px;
   background-color: #FFFFFF;
@@ -29,18 +29,15 @@ hr{
 h1{
   text-align: left;
 }
-.inf1{
-  width:350px;
-  height:30px;
-  font-size:20px;
+.inf1{ /* 회원가입 input */
+  width:360px;
+  height:25px;
+  font-size:15px;
 }
-.inf2{
-  width:250px;
-  height:30px;
-  font-size:20px;
-}
-td{
-  padding-bottom: 5px;
+.end{
+  width: 70px;
+  height: 30px;
+  float: left;
 }
 .sign{
   align: right;
@@ -79,7 +76,9 @@ textarea{
   background-color:#FFA7A7;
   text-align: center;
 }
-th{
+th{  /* 회원가입  */
   text-align: left;
-  font-size: 20px;
+  font-size: 19px;
+  padding-top: 10px;
+  padding-bottom: 3px;
 }

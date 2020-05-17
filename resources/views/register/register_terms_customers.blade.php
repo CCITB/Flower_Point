@@ -330,7 +330,7 @@
           </textarea>
         </div>
       </div>
-      <button class="back" type="button" id="back" value="취소" onclick="location.href = '/login_customers'">취소</button>
+      <button class="back" type="button" id="back" value="취소" onclick="location.href = '/login_customer'">취소</button>
       <button class="submit" type="button" id="submit" value="확인" onclick="location.href = '/register_customer'">확인</button>
 
     </form>

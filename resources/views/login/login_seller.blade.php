@@ -29,7 +29,7 @@
           <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
         </p>
         <p><p>
-          <button class="sel_sign_bt" type="button" onclick="location.href = '/seller'">판매자 회원가입</button>
+          <button class="sel_sign_bt" type="button" onclick="location.href = '/register_seller'">판매자 회원가입</button>
         </p></p>
       </form>
     </div>

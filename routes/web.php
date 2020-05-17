@@ -58,3 +58,6 @@ Route::get('/faq', function () {
 Route::get('/myqna', function () {
   return view('myQnA');
 });
+Route::get('/bi', function () {
+  return view('Buy_information');
+});
