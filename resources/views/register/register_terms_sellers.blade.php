@@ -33,7 +33,7 @@
       <hr class = way>
     </div>
 
-    <form name="terms_agree" action = 'url' method='POST' onsubmit="return checkform(this)">
+    <form name="terms_agree" action = '/register_seller' method='post' onsubmit="return checkform(this)">
       <div class="checkbox">
         <div class="checkbt">
           <label><input class="mini" type="checkbox" name="chk1" id="chk1">
