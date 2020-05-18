@@ -56,9 +56,19 @@ class RegisterController extends Controller
       ]);
       return redirect('/information');
     }
-
     else{
-      return redirect('/register_seller');
+      //code...
     }
+
+    //id_cehck
+     if($_POST['s_id'] != NULL){
+
+       if($sellers<1){
+         echo "존재하지 않는 아이디입니다.";
+       }
+
+       else{
+         echo "존재하는 아이디입니다.";
+       }
   }
 }
