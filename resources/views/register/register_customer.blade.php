@@ -82,7 +82,6 @@
             <td><input type="email" placeholder="email "id="email" name="c_email"  required></td>
           </tr>
           <tr>
-            <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
             <td><button type='button' onclick="history.back()">돌아가기</button></td>
             <td><input type='submit' value="다음"></td>
           </tr>
@@ -102,7 +101,7 @@
         alert('비밀번호를 5자 이상 입력하세요.');
         return false;
       }
-      if(registerform['s_password'].value = registerform['s_re_password'].value){
+      if(registerform['s_password'].value != registerform['s_re_password'].value){
         alert('비밀번호가 동일하지 않습니다.');
         return false;
       }
