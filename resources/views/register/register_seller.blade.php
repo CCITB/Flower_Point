@@ -102,7 +102,7 @@
         alert('비밀번호를 5자 이상 입력하세요.');
         return false;
       }
-      if(registerform['s_password'].value = registerform['s_re_password'].value){
+      if(registerform['s_password'].value != registerform['s_re_password'].value){
         alert('비밀번호가 동일하지 않습니다.');
         return false;
       }
