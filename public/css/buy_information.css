@@ -1,34 +1,47 @@
+/* --- 전체 틀 --- */
 #total{
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
   width: 900px;
+  height: 2000px;
+  align-content: flex-start;
 }
-.pd_image{ /* 이미지 전체틀 */
-  width: 40%;
-  height: 600px;
-  float: left;
+/* --- 전체 틀 끝 --- */
+
+/* --- 이미지 전체틀 시작 --- */
+.pd_image{
+  width: 41%;
   background-color: #E4F7BA;
+  margin-top: 30px;
+  padding: 20px;
 }
-/* ------- 옵션 전체틀 시작 ------- */
+/* --- 이미지 전체틀 끝 --- */
+
+/* --- 옵션 전체틀 시작 --- */
 .pd_option{
-  width: 60%;
-  height: 600px;
-  float: right;
+  width: 50%;
   background-color: #D4F4FA;
+  margin-top: 30px;
+  padding: 20px;
+}
+.span{
+  font-size: 20px;
 }
 hr{
-  width: 500px;
+  width: 100%;
   border-bottom: 0px;
   text-align: center;
 }
 .shop_name{
   float: left;
-  width: 50%;
+  width: 70%;
   text-align: left;
 }
 .shop_lacation{
   float: left;
-  width: 50%;
-  text-align: right; /* 왜 이것만 안먹냐 */
+  width: 30%;
+  text-align: right;; /* 왜 이것만 안먹냐 */
 }
 .pd_deliver1{
   float: left;
@@ -61,11 +74,17 @@ hr{
   width: 15%;
   text-align: center;
 }
+.select_option{
+  width: 80%;
+  height: 30px;
+  text-align: center;
+}
 /* ------- 옵션 전체틀 끝 ------- */
 
 /* ------ 상품설명 디테일 시작 ------*/
 .pd_detail{
   width: 100%;
-  height: 900px;
   background-color: #E8D9FF;
+  margin-top: 30px;
+  padding: 30px;
 }

@@ -4,12 +4,13 @@
   margin:0 auto;
   border: 1px solid;
   width : 450px;
-  height: 850px;
   border-radius: 25px;
   padding: 40px;
   background-color: #FFFFFF;
   border-style: hidden;
   text-align: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 body {
   background-color: #FFD8D8;

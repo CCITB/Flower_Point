@@ -30,7 +30,7 @@
   <div id="all">
     <div class="text">
       <h1> 회원가입 이용약관 </h1>
-      <hr class = way>
+      <hr>
     </div>
 
     <form name="terms_agree" action = '/register_seller' onsubmit="return checkform(this)">
