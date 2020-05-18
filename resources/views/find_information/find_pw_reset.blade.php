@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>비밀번호 재설정</title>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
+
   <script>
   window.addEventListener('load', function() {
     var signup = document.querySelector('#signup');
@@ -32,7 +33,7 @@
   <div id="all">
     <div class="text">
       <h1> 비밀번호 재설정 </h1>
-      <hr class = way>
+      <hr>
       비밀번호를 변경해주세요.<br>
     </div>
 

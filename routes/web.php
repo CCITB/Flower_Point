@@ -67,3 +67,4 @@ Route::get('/sellershoppost', function () {
 Route::get('/bi', function () {
   return view('Buy_information');
 });
+Route::post('index', 'postcontroller@post');

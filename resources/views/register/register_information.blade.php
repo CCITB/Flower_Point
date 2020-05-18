@@ -12,7 +12,7 @@
   <div id="all">
     <div class="text">
       <h1> 매장 정보 기입 </h1>
-      <hr class = way>
+      <hr>
     </div>
 
 

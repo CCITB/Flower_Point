@@ -43,7 +43,7 @@
   <div id="all">
     <div class="text">
       <h1>판매자 회원가입 </h1>
-      <hr class = way>
+      <hr>
     </div>
     <div class="signup">
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return validatate();'>

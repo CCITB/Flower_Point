@@ -30,10 +30,10 @@
   <div id="all">
     <div class="text">
       <h1> 회원가입 이용약관 </h1>
-      <hr class = way>
+      <hr>
     </div>
 
-    <form name="terms_agree" action = 'url' method='POST' onsubmit="return checkform(this)">
+    <form name="terms_agree" action = '/register_customer' onsubmit="return checkform(this)">
       <div class="checkbox">
         <div class="checkbt">
           <label><input class="mini" type="checkbox" name="chk1" id="chk1">

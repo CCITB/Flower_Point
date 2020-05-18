@@ -8,11 +8,13 @@
   <script>
   </script>
 </head>
+
 <body>
+
   <div id="all">
     <div class="text">
       <h1> 판매자 로그인 </h1>
-      <hr class = way>
+      <hr>
     </div>
 
     <div class ="login">
