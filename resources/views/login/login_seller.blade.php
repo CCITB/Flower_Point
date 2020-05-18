@@ -18,8 +18,8 @@
     <div class ="login">
       <form action = 'url' method='post'>
         <p>
-          <input class="lg" type="text"  placeholder="ID" name="id" required ><br><br>
-          <input class="lg" type="password"  placeholder="Password" name="pw" required>
+          <input class="lg" type="text"  placeholder="ID" name="login_id" required ><br><br>
+          <input class="lg" type="password"  placeholder="Password" name="login_pw" required>
         </p>
         <div class="go">
           <a href="/find_id">아이디</a> ·
