@@ -44,6 +44,19 @@ class RegisterController extends Controller
     $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
     // $sellers = DB::select("SELECT * FROM seller WHERE ['s_id','=',$input_id]")->count();
 
+    //id_cehck
+    if($_POST['s_id'] != NULL){
+
+      if($sellers<1){
+        echo "존재하지 않는 아이디입니다.";
+      }
+
+      else{
+        echo "존재하는 아이디입니다.";
+      }
+    }
+
+    //database insert
     if($sellers<1){
       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
@@ -59,16 +72,4 @@ class RegisterController extends Controller
     else{
       //code...
     }
-
-    //id_cehck
-     if($_POST['s_id'] != NULL){
-
-       if($sellers<1){
-         echo "존재하지 않는 아이디입니다.";
-       }
-
-       else{
-         echo "존재하는 아이디입니다.";
-       }
   }
-}
