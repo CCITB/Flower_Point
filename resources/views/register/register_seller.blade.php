@@ -2,12 +2,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <title>꽃갈피 - 판매자 회원가입</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>꽃갈피 - 판매자 회원가입</title>
+
   <link rel="stylesheet" type="text/css" href="/css/sign_up.css">
+  <!-- <script src="js/jquery.js"></script> -->
 </head>
+
 <body>
   <div id="all">
     <div class="text">
@@ -105,36 +108,56 @@
       </form>
     </div>
 
-    <script type="text/javascript">
-    function check_signup(){
-      var registerform = document.forms['registerform'];
+  //영어 대,소문자 / 특수문자 (_),(-)가능 / 5~20자
+  if(!id_validate.test(id.value)){
+    alert('아이디를 잘못 입력하셨습니다.');
+    return false;
+  }
+  else {
+    alert('아이디 확인');
+    return true;
+  }
+  // var registerform = document.forms['registerform'];
+  //
+  // if(registerform['s_id'].value.length<5){
+  //   alert('아이디를 5자 이상 입력하세요.');
+  //   return false;
+  // }
+  // if(registerform['s_password'].value.length<5){
+  //   alert('비밀번호를 5자 이상 입력하세요.');
+  //   return false;
+  // }
+  // if(registerform['s_password'].value != registerform['s_re_password'].value){
+  //   alert('비밀번호가 동일하지 않습니다.');
+  //   return false;
+  // }
+  // if(registerform['s_name'].value.length<1){
+  //   alert('이름을 입력하세요.');
+  //   return false;
+  // }
+  // if(registerform['s_phonenum'].value.length<1){
+  //   alert('연락처를 입력하세요.');
+  //   return false;
+  // }
+  // if(registerform['s_email'].value.length<1){
+  //   alert('이메일을 입력하세요.');
+  //   return false;
+  // }
+}
 
-      if(registerform['s_id'].value.length<5){
-        alert('아이디를 5자 이상 입력하세요.');
-        return false;
-      }
-      if(registerform['s_password'].value.length<5){
-        alert('비밀번호를 5자 이상 입력하세요.');
-        return false;
-      }
-      if(registerform['s_password'].value = registerform['s_re_password'].value){
-        alert('비밀번호가 동일하지 않습니다.');
-        return false;
-      }
-      if(registerform['s_name'].value.length<1){
-        alert('이름을 입력하세요.');
-        return false;
-      }
-      if(registerform['s_phonenum'].value.length<1){
-        alert('연락처를 입력하세요.');
-        return false;
-      }
-      if(registerform['s_email'].value.length<1){
-        alert('이메일을 입력하세요.');
-        return false;
-      }
-      else {
-        return true;
-      }
-    }
-    </script>
+// function checkSellerId(s_id){
+//   var idRegExp = /^[A-Z0-9_-]{5,20}$/); //ID 유효성
+//   //공백 오류
+//   if(s_id.value==""){
+//     alert("아이디를 입력해주세요.");
+//     return false;
+//   }
+//   else if{
+//     //정규화 오류
+//     if(!idRegExp.test(id)){
+//       alert("아이디는 5-20자의 영어 대소문자, 특수문자(-),(_)만 가능합니다.");
+//     }
+//   }
+//   return true;
+// }
+</script>
