@@ -8,15 +8,13 @@ use DB;
 
 class RegisterController extends Controller
 {
-    public function registerview()
+  public function registerview()
   {
     return view('register');
   }
   #customer register query
-public function customer_store(Request $request)
-{
-    $customers
-
+  public function customer_store(Request $request)
+  {
     DB::table('customer')->insert([
       'c_id'=>$request->input('c_id'),
       'c_password' => $request->input('c_password'),
@@ -27,12 +25,17 @@ public function customer_store(Request $request)
       'c_birth' => $request->input('c_birth')
     ]);
     return redirect('/login');
-}
+  }
 
 
-    #seller register query
+  #seller register query
   public function seller_store(Request $request)
   {
+    $sellers = trim($_POST['s_id']);
+
+    $sellers_count = DB::table('seller')->where('s_id','=',$sellers)->get()->count();
+
+    if($sellers_count<1){
       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
         's_password' => $request->input('s_password'),
@@ -43,5 +46,11 @@ public function customer_store(Request $request)
         's_birth' => $request->input('s_birth')
       ]);
       return redirect('/information');
+    }
+
+    else {
+      // return redirect('/register_seller');
+    }
+
   }
 }
