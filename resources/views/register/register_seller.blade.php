@@ -143,10 +143,11 @@
     var address = document.getElementById("address");
     var email = document.getElementById("email");
 
-    //정규화
+    //정규식
     var id_validate = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
     var pw_validate = RegExp(/^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/);
-
+    var phone_balidate = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+    //유효성
     if(!id_validate.test(id.value)){
       alert('5~20자리의 영문 대소문자와 특수기호 (-),(_)만 사용가능합니다.');
       return false;
