@@ -45,6 +45,7 @@ Route::get('/find_pw_way', 'FindController@find_pw_way');
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
 
+
 Route::get('/locate1', function () {
   return view('locate');
 });

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
   <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
   </script>
 </head>
@@ -18,7 +19,7 @@
     </div>
 
     <div class ="login">
-      <form action = 'url' method='post'>
+      <form action = '/RegisterControllerSeller' method='post' name="seller_login">
         <p>
           <input class="lg" type="text"  placeholder="ID" name="login_id" required ><br><br>
           <input class="lg" type="password"  placeholder="Password" name="login_pw" required>
@@ -28,7 +29,7 @@
           <a href="/find_pw">비밀번호 찾기</a>
         </div><br>
         <p>
-          <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
+          <input class="lg_bt" type="submit" value="로그인">
         </p>
         <p><p>
           <button class="sel_sign_bt" type="button" onclick="location.href = '/register_seller'">판매자 회원가입</button>
