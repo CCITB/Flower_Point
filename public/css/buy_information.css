@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   margin: 0 auto;
   width: 900px;
-  height: 2000px;
   align-content: flex-start;
 }
 /* --- 전체 틀 끝 --- */
@@ -25,23 +24,37 @@
   margin-top: 30px;
   padding: 20px;
 }
-.span{
-  font-size: 20px;
+.pd_basic{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.pd_name{
+  width: 40%;
+}
+.star{
+  width: 60%;
+}
+.pd_name{
+  font-size: 25px;
 }
 hr{
   width: 100%;
   border-bottom: 0px;
   text-align: center;
 }
+.shop_basic{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
 .shop_name{
-  float: left;
   width: 70%;
   text-align: left;
 }
-.shop_lacation{
-  float: left;
+.shop_location{ /* space-between으로 하긴했지만
+   이 class자체가 전혀 먹지 않는다 */
   width: 30%;
-  text-align: right;; /* 왜 이것만 안먹냐 */
+  text-align: right;
 }
 .pd_deliver1{
   float: left;
