@@ -74,6 +74,7 @@ class RegisterController extends Controller
     }
   }
 
+//승지
   public function login_seller(Request $request)
   {
     header("Content-Type:text/html; charset= UTF-8");
@@ -89,11 +90,13 @@ class RegisterController extends Controller
     if($res -> num_rows >0){
       $_SESSION['login_id'] = $s_id;
     if(isset($_SESSION['login_id'])){
-      echo "<script>location.href='/';</script>"
-    }else{
-      echo "<script>alert('다시 로그인해주세요.');</script>"
-    } else{
-      echo "<script>alert('다시 로그인해주세요.');</script>"
+      echo "<script>location.href='/';</script>";
+    }
+    else{
+      echo "<script>alert('다시 로그인해주세요.');</script>";
+    }
+    else{
+      echo "<script>alert('다시 로그인해주세요.');</script>";
     }
   }
 
