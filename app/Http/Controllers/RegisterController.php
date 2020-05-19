@@ -27,15 +27,6 @@ class RegisterController extends Controller
     return redirect('/login');
   }
 
-
-  // public function seller_id(Request $request){
-  //   //동일 아이디 검사
-  //   $input_id = trim($_POST['s_id']);
-  //   $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
-  //
-  //
-  // }
-
   #seller register query
   public function seller_store(Request $request)
   {
@@ -44,32 +35,25 @@ class RegisterController extends Controller
     $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
     // $sellers = DB::select("SELECT * FROM seller WHERE ['s_id','=',$input_id]")->count();
 
-    //id_cehck
     if($_POST['s_id'] != NULL){
-
+      //database insert
       if($sellers<1){
-        echo "존재하지 않는 아이디입니다.";
+        DB::table('seller')->insert([
+          's_id'=>$request->input('s_id'),
+          's_password' => $request->input('s_password'),
+          's_name' => $request->input('s_name'),
+          's_phonenum' => $request->input('s_phonenum'),
+          's_email' => $request->input('s_email'),
+          's_gender' => $request->input('s_gender'),
+          's_birth' => $request->input('s_birth')
+        ]);
+        echo "존재하는 아이디입니다.";
+        return redirect('/information');
       }
 
       else{
-        echo "존재하는 아이디입니다.";
+        echo "존재하지 않는 아이디입니다.";
       }
     }
-
-    //database insert
-    if($sellers<1){
-      DB::table('seller')->insert([
-        's_id'=>$request->input('s_id'),
-        's_password' => $request->input('s_password'),
-        's_name' => $request->input('s_name'),
-        's_phonenum' => $request->input('s_phonenum'),
-        's_email' => $request->input('s_email'),
-        's_gender' => $request->input('s_gender'),
-        's_birth' => $request->input('s_birth')
-      ]);
-      return redirect('/information');
-    }
-    else{
-      //code...
-    }
   }
+}
