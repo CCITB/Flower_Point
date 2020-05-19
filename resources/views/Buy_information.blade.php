@@ -20,17 +20,22 @@
 
       <form action = 'url' method='post'>
 
-        <span>리시안셔스</span>
-        <button class="convenience" type="button">관심매장등록</button>
-        <button class="convenience" type="button" onclick="location.href = '/myqna'">문의하기</button>
-
+        <div class="pd_basic">
+          <div class="pd_name">리시안셔스</div>
+          <div class="star">
+            <button class="convenience" type="button">관심매장등록</button>
+            <button class="convenience" type="button" onclick="location.href = '/myqna'">문의하기</button>
+          </div>
+        </div>
         <hr>
 
-        <div class = "shop_name">
-          <a href="/해당매장">ccit 1</a> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
-        </div>
-        <div claas="shop_lacation">
-          서울시 종로구
+        <div class="shop_basic">
+          <div class = "shop_name">
+            <a href="/해당매장">ccit 1</a> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
+          </div>
+          <div claas = "shop_location">
+            서울시 종로구
+          </div>
         </div>
 
         <div class="pd_price">
