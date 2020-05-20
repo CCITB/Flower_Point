@@ -33,8 +33,7 @@
       <hr>
     </div>
 
-    <form name="terms_agree" method="post" action = '/register_seller' onsubmit="return checkform(this)">
-      @csrf
+    <form name="terms_agree" action = '/register_seller' onsubmit="return checkform(this)">
       <div class="checkbox">
         <div class="checkbt">
           <label><input class="mini" type="checkbox" name="chk1" id="chk1">
@@ -350,7 +349,7 @@
               </textarea>
             </div>
           </div>
-          <button class="back" type="button" id="back" value="취소" onclick="location.href = '/login_seller'">취소</button>
+          <button class="back" type="button" id="back" value="취소" onclick="location.href = '/'">취소</button>
           <input class="terms_submit" type="submit" value="확인">
 
         </form>
