@@ -20,9 +20,13 @@ Route::get('/login_customer', 'MainController@login_customer');
 
 Route::get('/login_seller', 'MainController@login_seller');
 
+
 Route::get('/register_customer','MainController@register_costomer');
 
 Route::get('/register_seller','MainController@register_seller');
+
+Route::post('/register_seller', 'RegisterController@index');
+
 
 Route::get('/terms_customers', 'MainController@register_terms_customers');
 

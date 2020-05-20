@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
-//jisuEO
+//어지수
 class RegisterController extends Controller
 {
   public function registerview()
   {
     return view('register');
   }
-  #customer register query
+
+//customer register query -- 어지수
   public function customer_store(Request $request)
   {
     DB::table('customer')->insert([
@@ -28,26 +29,12 @@ class RegisterController extends Controller
     return redirect('/login');
   }
 
-  //jisuEO 
-  #seller register query
+//seller register query -- 어지수
   public function seller_store(Request $request)
   {
-    //동일 아이디 검사
+    //동일 아이디 확인
     $input_id = trim($_POST['s_id']);
     $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
-    // $sellers = DB::select("SELECT * FROM seller WHERE ['s_id','=',$input_id]")->count();
-
-    //id_cehck
-    if($_POST['s_id'] != NULL){
-
-      if($sellers<1){
-        echo "존재하지 않는 아이디입니다.";
-      }
-
-      else{
-        echo "존재하는 아이디입니다.";
-      }
-    }
 
     //database insert
     if($sellers<1){
@@ -66,30 +53,24 @@ class RegisterController extends Controller
       //code...
     }
   }
+
+//[register_seller jQuery부분] ID중복검사 -- 어지수
+  public function index(Request $request)
+  {
+    $input = $request->input('id');
+    $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
+
+    return response()->json($sellers);
+
+    // if($input != NULL)
+    // {
+    //   if($sellers<1){
+    //     return response()->json(['success'=>'아이디가 중복되지 않았습니다.']);
+    //   }
+    //   else{
+    //     return response()->json(['success'=>'아이디가 중복됩니다.']);
+    //   }
+    // }
+  }
+
 }
-  //박소현
-  // public function login_seller(Request $request)
-  // {
-  //   header("Content-Type:text/html; charset= UTF-8");
-  //   session_start();
-  //   $conn = mysqli_connect('ccit2020.cafe24.com','root','ccit200414!!');
-  //   mysqli_query($conn,'SET NAMES utf8');
-  //   $s_id = $_POST['login_id'];
-  //   $s_password = $_POST['login_pw'];
-  //   $sql = "select * from seller where login_id = '$s_id' and login_pw = '$s_password'";
-  //   $res = $conn->query($sql);
-  //   $row = mysqli_fetch_array($res);
-  //
-  //   if($res -> num_rows >0){
-  //     $_SESSION['login_id'] = $s_id;
-  //     if(isset($_SESSION['login_id'])){
-  //       echo "<script>location.href='/';</script>";
-  //     }
-  //     else{
-  //       echo "<script>alert('다시 로그인해주세요.');</script>";
-  //     }
-  //     else{echo "<script>alert('다시 로그인해주세요.');</script>";}
-  //   }
-  //
-  //   return ('/');
-  // }
