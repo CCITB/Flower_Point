@@ -6,6 +6,7 @@
 
       <div id="user">
         <div class="login">
+          @if(session('iding')==false)
           <span>로그인</span>
           <div class="login-list">
             <a href="/login_customer">개인</a>
@@ -19,6 +20,11 @@
             <a href="/terms_sellers">판매자</a>
           </div>
         </div>
+        @else
+        <div class="login">
+          <span><a href="/logout">로그아웃</a></span>
+        </div>
+        @endif
       </div>
     </div>
 

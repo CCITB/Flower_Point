@@ -64,29 +64,49 @@ class RegisterController extends Controller
       //code...
     }
   }
-}
-  // public function login_seller(Request $request)
-  // {
-  //   header("Content-Type:text/html; charset= UTF-8");
-  //   session_start();
-  //   $conn = mysqli_connect('ccit2020.cafe24.com','root','ccit200414!!');
-  //   mysqli_query($conn,'SET NAMES utf8');
-  //   $s_id = $_POST['login_id'];
-  //   $s_password = $_POST['login_pw'];
-  //   $sql = "select * from seller where login_id = '$s_id' and login_pw = '$s_password'";
-  //   $res = $conn->query($sql);
-  //   $row = mysqli_fetch_array($res);
-  //
-  //   if($res -> num_rows >0){
-  //     $_SESSION['login_id'] = $s_id;
-  //     if(isset($_SESSION['login_id'])){
-  //       echo "<script>location.href='/';</script>";
-  //     }
-  //     else{
-  //       echo "<script>alert('다시 로그인해주세요.');</script>";
-  //     }
-  //     else{echo "<script>alert('다시 로그인해주세요.');</script>";}
-  //   }
-  //
-  //   return ('/');
-  // }
+
+  public function login_s(Request $request)//$request 가 form에 있는 모든 값을 가지고 있음
+  {
+    $seller_id = $request->get('login_id');
+    $seller_pw = $request->get('login_pw');
+    $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+      's_id'=>$seller_id,
+      's_password'=>$seller_pw
+      ])->get();
+
+      if(count($db_seller)>0){
+        session()->put('iding',$seller_id);
+
+        return view('main');
+      }else {
+        return redirect('/login_seller');
+      }
+      // header("Content-Type:text/html; charset= UTF-8");
+      // session_start();
+      // $conn = mysqli_connect('ccit2020.cafe24.com','root','ccit200414!!');
+      // mysqli_query($conn,'SET NAMES utf8');
+      // $s_id = $_POST['login_id'];
+      // $s_password = $_POST['login_pw'];
+      // $sql = "select * from seller where login_id = '$s_id' and login_pw = '$s_password'";
+      // $res = $conn->query($sql);
+      // $row = mysqli_fetch_array($res);
+      //
+      // if($res -> num_rows >0){
+      //   $_SESSION['login_id'] = $s_id;
+      //   if(isset($_SESSION['login_id'])){
+      //     echo "<script>location.href='/';</script>";
+      //   }
+      //   else{
+      //     echo "<script>alert('다시 로그인해주세요.');</script>";
+      //   }
+      //   else{echo "<script>alert('다시 로그인해주세요.');</script>";}
+      // }
+      //
+      // return ('/');
+    }
+    public function logout(Request $request)
+    {
+      session()->forget('iding');
+      return redirect('/');
+    }
+  }

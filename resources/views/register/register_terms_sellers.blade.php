@@ -33,7 +33,8 @@
       <hr>
     </div>
 
-    <form name="terms_agree" action = '/register_seller' onsubmit="return checkform(this)">
+    <form name="terms_agree" method="post" action = '/register_seller' onsubmit="return checkform(this)">
+      @csrf
       <div class="checkbox">
         <div class="checkbt">
           <label><input class="mini" type="checkbox" name="chk1" id="chk1">

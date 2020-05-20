@@ -19,7 +19,8 @@
     </div>
 
     <div class ="login">
-      <form action = '/RegisterControllerSeller' method='post' name="seller_login">
+      <form action = '/login_s' method='post' name="seller_login">
+        @csrf
         <p>
           <input class="lg" type="text"  placeholder="ID" name="login_id" required ><br><br>
           <input class="lg" type="password"  placeholder="Password" name="login_pw" required>
