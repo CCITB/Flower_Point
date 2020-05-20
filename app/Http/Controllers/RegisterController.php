@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
+//jisuEO
 class RegisterController extends Controller
 {
   public function registerview()
@@ -27,6 +28,7 @@ class RegisterController extends Controller
     return redirect('/login');
   }
 
+  //jisuEO 
   #seller register query
   public function seller_store(Request $request)
   {
@@ -65,6 +67,7 @@ class RegisterController extends Controller
     }
   }
 }
+  //박소현
   // public function login_seller(Request $request)
   // {
   //   header("Content-Type:text/html; charset= UTF-8");
