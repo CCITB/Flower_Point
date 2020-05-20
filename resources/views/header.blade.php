@@ -5,8 +5,8 @@
     <div class="user-wrap">
 
       <div id="user">
+        @if(session('iding')==false)
         <div class="login">
-          @if(session('iding')==false)
           <span>로그인</span>
           <div class="login-list">
             <a href="/login_customer">개인</a>
