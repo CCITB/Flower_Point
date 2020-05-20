@@ -5,6 +5,7 @@
     <div class="user-wrap">
 
       <div id="user">
+        @if(session('iding')==false)
         <div class="login">
           <span>로그인</span>
           <div class="login-list">
@@ -19,6 +20,11 @@
             <a href="/terms_sellers">판매자</a>
           </div>
         </div>
+        @else
+        <div class="login">
+          <span><a href="/logout">로그아웃</a></span>
+        </div>
+        @endif
       </div>
     </div>
 

@@ -48,6 +48,12 @@ Route::get('/find_pw_way', 'FindController@find_pw_way');
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
+Route::post('/login_s', 'RegisterController@login_s');
+
+Route::post('/login_c', 'RegisterController@login_c');
+
+Route::get('/logout', 'RegisterController@logout');
+
 
 
 Route::get('/locate1', function () {

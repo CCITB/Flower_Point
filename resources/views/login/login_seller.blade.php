@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
   <link rel="stylesheet" type="text/css" href="/css/login.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
   </script>
 </head>
@@ -19,7 +18,8 @@
     </div>
 
     <div class ="login">
-      <form action = '/RegisterControllerSeller' method='post' name="seller_login">
+      <form action = '/login_s' method='post' name="seller_login">
+        @csrf
         <p>
           <input class="lg" type="text"  placeholder="ID" name="login_id" required ><br><br>
           <input class="lg" type="password"  placeholder="Password" name="login_pw" required>

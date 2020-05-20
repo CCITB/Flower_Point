@@ -11,9 +11,7 @@
   </head>
   <body>
 @include('header')
-<br>
-<br>
-<br>
+
       <div class="hr-sect">
       인기상품
       </div>
