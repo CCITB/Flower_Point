@@ -62,7 +62,6 @@ class RegisterController extends Controller
   {
     $input = $request->input('id');
     $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
-
     return response()->json($sellers);
 
     // if($input != NULL)
@@ -76,8 +75,7 @@ class RegisterController extends Controller
     // }
   }
 
-}
-
+//
   public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
   {
     $seller_id = $login->get('login_id');
