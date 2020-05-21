@@ -152,18 +152,18 @@
       success : function(data) {
         console.log(data);
 
+        //PW 공백 체크
+        if (seller_pw == ""){
+          $('#pw_check').text('비밀번호를 입력해주세요.');
+          $('#pw_check').css('color', 'red');
+        }
         //PW 정규식 일치O
         if(pwJ.test(seller_pw)){
           $("#pw_check").text("");
           $('#pw_check').css('color', 'red');
         }
-        //PW 공백 체크
-        else if (seller_pw == ""){
-          $('#pw_check').text('비밀번호를 입력해주세요.');
-          $('#pw_check').css('color', 'red');
-        }
         //PW 정규식 일치X
-        else{
+        if(!pwJ.test(seller_pw)){
           $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
           $('#pw_check').css('color', 'red');
         }
@@ -189,7 +189,6 @@
         if(seller_re_pw==""){
           $("#re_pw_check").text("필수 정보입니다.");
           $('#re_pw_check').css('color', 'red');
-          return false;
         }
 
         //PW와 일치O
@@ -205,7 +204,6 @@
           $("#re_pw_check").text("비밀번호가 일치하지 않습니다.");
           $('#re_pw_check').css('color', 'red');
           console.log("비일치");
-          return false;
         }
 
       }//success

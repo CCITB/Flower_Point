@@ -15,7 +15,7 @@ class RegisterController extends Controller
     return view('register');
   }
 
-  //insert customer table -- 어지수
+  //customer register query -- 어지수
   public function customer_store(Request $request)
   {
     //동일 아이디 확인
@@ -37,7 +37,7 @@ class RegisterController extends Controller
     }
   }
 
-  //insert seller table -- 어지수
+  //seller register query -- 어지수
   public function seller_store(Request $request)
   {
     //동일 아이디 확인
@@ -62,14 +62,21 @@ class RegisterController extends Controller
   //[register_seller jQuery부분] ID중복검사 -- 어지수
   public function overlapID(Request $request)
   {
+    $overlap_id = $request->input('id');
     $sellers = DB::table('seller')-> where('s_id','=',$overlap_id)->get()->count();
     return response()->json($sellers);
-
-    $overlap_id = $request->input('id');
   }
 
+  //[resister_seller jQuery부분] PW일치여부 -- 어지수
+  // public function overlapPW(Request $request)
+  // {
+  //   $overlap_pw = $request->input('pw');
+  //   return response()->json($overlap_pw);
+  // }
+
   //insert stroe table -- 어지수
-  public function store_information(Request $request){
+  public function store_information(Request $request)
+  {
 
     //동일 매장 확인
     $input_stname = trim($_POST['st_name']);
@@ -82,54 +89,55 @@ class RegisterController extends Controller
         'st_address' => $request->input('st_address'),
         'st_tel' => $request->input('st_tel'),
         'st_introduce' => $request->input('st_introduce')
-      }
+      ]);
+    }
+  }
+
+//
+public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
+{
+  $seller_id = $login->get('login_id');
+  $seller_pw = $login->get('login_pw');
+  $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+    's_id'=>$seller_id,
+    's_password'=>$seller_pw
+    ])->get();
+
+    if(count($db_seller)>0){
+      session()->put('iding',$seller_id);
+
+      return view('main');
+    }else {
+      return redirect('/login_seller');
     }
 
-    //
-    public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
-    {
-      $seller_id = $login->get('login_id');
-      $seller_pw = $login->get('login_pw');
-      $db_seller = DB::table('seller')->select('s_id','s_password')->where([
-        's_id'=>$seller_id,
-        's_password'=>$seller_pw
-        ])->get();
+  }
 
-        if(count($db_seller)>0){
-          session()->put('iding',$seller_id);
 
-          return view('main');
-        }else {
-          return redirect('/login_seller');
-        }
+  public function login_c(Request $login)
+  {
+    $customer_id = $login->get('login_id');
+    $customer_pw = $login->get('login_pw');
+    $db_customer = DB::table('customer')->select('c_id','c_password')->where([
+      'c_id'=>$customer_id,
+      'c_password'=>$customer_pw
+      ])->get();
 
+      if(count($db_customer)>0){
+        session()->put('iding',$customer_id);
+
+        return view('main');
+      }
+      else {
+        return redirect('/login_customer');
       }
 
-
-      public function login_c(Request $login)
-      {
-        $customer_id = $login->get('login_id');
-        $customer_pw = $login->get('login_pw');
-        $db_customer = DB::table('customer')->select('c_id','c_password')->where([
-          'c_id'=>$customer_id,
-          'c_password'=>$customer_pw
-          ])->get();
-
-          if(count($db_customer)>0){
-            session()->put('iding',$customer_id);
-
-            return view('main');
-          }
-          else {
-            return redirect('/login_customer');
-          }
-
-        }
+    }
 
 
-        public function logout(Request $logout)
-        {
-          session()->forget('iding');
-          return redirect('/');
-        }
-}
+    public function logout(Request $logout)
+    {
+      session()->forget('iding');
+      return redirect('/');
+    }
+  }
