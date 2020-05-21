@@ -20,10 +20,10 @@
         <h4>내 정보</h4>
         <div class="privacy">
             <table class="table1">
-                <table cellpadding="10" cellspacing="10" width="100%">
+                <table border="1" cellpadding="10" cellspacing="10" width="100%">
                     <tr>
                         <th>ID</th>
-                        <td>정경진</td>
+                        <td>asd</td>
                     </tr>
                     <tr>
                         <th>PW</th>
@@ -54,7 +54,7 @@
                     <div class="quickbutton">
                         <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
-                            <h1><a href="http://127.0.0.1/locate1">내 주변 꽃집</h1>
+                            <h1>내 주변 꽃집</h1>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="quickbutton">
                         <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
-                            <h1><a href="http://127.0.0.1/mypage1">내 주문관리</h1>
+                            <h1>내 주문관리</h1>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="quickbutton">
                         <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
-                            <h1><a href="#">쿠폰관리</h1>
+                            <h1>쿠폰관리</h1>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <div class="quickbutton">
                         <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
-                            <h1><a href="#">물품관리</h1>
+                            <h1>물품관리</h1>
                         </div>
                     </div>
                 </div>

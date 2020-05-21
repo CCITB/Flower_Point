@@ -71,3 +71,6 @@ img {
     left: 80px;
     position: absolute;
 }
+td{
+  display: inline;
+}
