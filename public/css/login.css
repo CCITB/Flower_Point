@@ -107,28 +107,28 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
-.lg{ //로그인 input 창
+.lg{
   width:350px;
   height:35px;
   font-size:23px;
 }
-.go{ // 아이디/비밀번호 찾기
+.go{
   text-align: right;
 }
-.lg_bt{ // 로그인 버튼
+.lg_bt{
   width: 100px;
   height: 30px;
   font-size: 15px;
   text-align: center;
 }
-.user_sign_bt{ // 구매자 회원가입 이동버튼
+.user_sign_bt{
   width: 350px;
   height: 40px;
   font-size: 17px;
   text-align: center;
   background-color:#FFA7A7;
 }
-.sel_sign_bt{ // 판매자 회원가입 이동버튼
+.sel_sign_bt{
   width: 350px;
   height: 40px;
   font-size: 20px;

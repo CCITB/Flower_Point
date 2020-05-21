@@ -11,8 +11,8 @@
 /* --- 이미지 전체틀 시작 --- */
 .pd_image{
   width: 41%;
-  background-color: #E4F7BA;
-  margin-top: 30px;
+  background-color: #F6FFCC;
+  margin-top: 40px;
   padding: 20px;
 }
 /* --- 이미지 전체틀 끝 --- */
@@ -20,19 +20,21 @@
 /* --- 옵션 전체틀 시작 --- */
 .pd_option{
   width: 50%;
-  background-color: #D4F4FA;
-  margin-top: 30px;
+  background-color: #F6FFFF;
+  margin-top: 40px;
   padding: 20px;
 }
 .pd_basic{
   display: flex;
   flex-wrap: nowrap;
+  align-items: baseline;
 }
 .pd_name{
-  width: 40%;
+  width: 50%;
 }
 .star{
-  width: 60%;
+  width: 50%;
+  text-align: right;
 }
 .pd_name{
   font-size: 25px;
@@ -42,56 +44,86 @@ hr{
   border-bottom: 0px;
   text-align: center;
 }
+
+
 .shop_basic{
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .shop_name{
-  width: 70%;
+  width: 40%;
   text-align: left;
 }
-.shop_location{ /* space-between으로 하긴했지만
-   이 class자체가 전혀 먹지 않는다 */
-  width: 30%;
+.shop_lo{
+  width: 60%;
   text-align: right;
 }
+.pd_price{
+  clear: both;
+  width: 100%;
+  font-size: 30px;
+  text-align: right;
+  margin-top: 50px;
+}
+
+
+.pd_deliver{
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: nowrap;
+}
 .pd_deliver1{
-  float: left;
   width: 33%;
   text-align: center;
   border-right: 1px solid;
 }
 .pd_deliver2{
-  float: left;
   width: 33%;
   text-align: center;
   border-right: 1px solid;
 }
 .pd_deliver3{
-  float: left;
   width: 33%;
   text-align: center;
 }
-.total_price_text{
-  float: left;
-  width: 20%;
+.del_text{
+  font-size: 17px;
+  line-height: 200%
 }
-.total_price{
-  float: left;
-  width: 60%;
-  text-align: right;
-}
-.order_bt{
-  float: left;
-  width: 15%;
+
+.options{
   text-align: center;
+  margin-top: 20px;
 }
 .select_option{
   width: 80%;
   height: 30px;
-  text-align: center;
+  margin-top: 20px;
 }
+
+
+.pd_pay{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+}
+.total_price_text{
+  width: 20%;
+}
+.total_price{
+  width: 55%;
+  text-align: right;
+}
+.order_bt{
+  width: 25%;
+  text-align: right;
+}
+.order{
+  width: 70px;
+  height: 30px;
+}
+
 /* ------- 옵션 전체틀 끝 ------- */
 
 /* ------ 상품설명 디테일 시작 ------*/
@@ -99,5 +131,5 @@ hr{
   width: 100%;
   background-color: #E8D9FF;
   margin-top: 30px;
-  padding: 30px;
+  padding: 55px;
 }
