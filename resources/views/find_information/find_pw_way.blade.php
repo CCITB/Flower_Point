@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>비밀번호 찾기</title>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
 
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div id="all">
     <div class="text">
       <h1> 비밀번호 찾기 </h1>
-      <hr class = way>
+      <hr>
       비밀번호를 찾을 방법을 선택해 주세요.
     </div>
 

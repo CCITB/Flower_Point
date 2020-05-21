@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>아이디 찾기</title>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
+
   <script>
 
 
   </script>
+  
 </head>
 <body>
 
   <div id="all">
     <div class="text">
       <h1> 아이디 찾기 </h1>
-      <hr class = way>
+      <hr>
       아이디  찾는 방법을 선택해 주세요.
     </div>
 
@@ -26,7 +28,7 @@
       <div class="text2">
         회원 정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 일치해야 인증번호를 받을 수 있습니다.
       </div>
-      
+
       <form action = 'url' method='POST'>
         <div class="character">
           이름 : <br><br>

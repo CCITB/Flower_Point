@@ -1,0 +1,135 @@
+/* --- 전체 틀 --- */
+#total{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 900px;
+  align-content: flex-start;
+}
+/* --- 전체 틀 끝 --- */
+
+/* --- 이미지 전체틀 시작 --- */
+.pd_image{
+  width: 41%;
+  background-color: #F6FFCC;
+  margin-top: 40px;
+  padding: 20px;
+}
+/* --- 이미지 전체틀 끝 --- */
+
+/* --- 옵션 전체틀 시작 --- */
+.pd_option{
+  width: 50%;
+  background-color: #F6FFFF;
+  margin-top: 40px;
+  padding: 20px;
+}
+.pd_basic{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+.pd_name{
+  width: 50%;
+}
+.star{
+  width: 50%;
+  text-align: right;
+}
+.pd_name{
+  font-size: 25px;
+}
+hr{
+  width: 100%;
+  border-bottom: 0px;
+  text-align: center;
+}
+
+
+.shop_basic{
+  display: flex;
+  flex-wrap: wrap;
+}
+.shop_name{
+  width: 40%;
+  text-align: left;
+}
+.shop_lo{
+  width: 60%;
+  text-align: right;
+}
+.pd_price{
+  clear: both;
+  width: 100%;
+  font-size: 30px;
+  text-align: right;
+  margin-top: 50px;
+}
+
+
+.pd_deliver{
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: nowrap;
+}
+.pd_deliver1{
+  width: 33%;
+  text-align: center;
+  border-right: 1px solid;
+}
+.pd_deliver2{
+  width: 33%;
+  text-align: center;
+  border-right: 1px solid;
+}
+.pd_deliver3{
+  width: 33%;
+  text-align: center;
+}
+.del_text{
+  font-size: 17px;
+  line-height: 200%
+}
+
+.options{
+  text-align: center;
+  margin-top: 20px;
+}
+.select_option{
+  width: 80%;
+  height: 30px;
+  margin-top: 20px;
+}
+
+
+.pd_pay{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+}
+.total_price_text{
+  width: 20%;
+}
+.total_price{
+  width: 55%;
+  text-align: right;
+}
+.order_bt{
+  width: 25%;
+  text-align: right;
+}
+.order{
+  width: 70px;
+  height: 30px;
+}
+
+/* ------- 옵션 전체틀 끝 ------- */
+
+/* ------ 상품설명 디테일 시작 ------*/
+.pd_detail{
+  width: 100%;
+  background-color: #E8D9FF;
+  margin-top: 30px;
+  padding: 55px;
+}

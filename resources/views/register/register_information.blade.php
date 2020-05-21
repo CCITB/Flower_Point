@@ -1,49 +1,102 @@
-<!DOCTYPE html> <!--박소현 계속 수정중 -->
+<!--어지수-->
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <title>매장 정보 기입</title>
-  <script>
-  </script>
 </head>
+
 <body>
   <div id="all">
     <div class="text">
-      <h1> 매장 정보 기입 </h1>
-      <hr class = way>
+      <h1>꽃갈피 - 매장 정보 기입 </h1>
+      <hr>
     </div>
-
-
     <form action = 'url' method='post'>
+      @csrf
       <div class="paragraph">
         <div class="shop_title">
-          매장 이름
+          <label>매장 이름</label>
         </div>
-        <input class="shop_info" type="text" autofocus placeholder="Shop Name" name="Shop Name" required >
+        <input class="shop_info" type="text" placeholder="store name" id="st_name" name="st_name" >
+        <div class="check_div" style="height:45px;"id="stname_check" value=""></div>
       </div>
       <div class="paragraph">
         <div class="shop_title">
           사업자 등록번호
         </div>
-        <input class="shop_info" type="text" autofocus placeholder="Company Registration Number" name="Company Registration Number" required>
+        <input class="shop_info" type="text" placeholder="Company Registration Number" id="registeration_num" name="registeration_num">
+        <div class="check_div" style="height:45px;"id="stnum_check" value=""></div>
       </div>
       <div class="paragraph">
         <div class="shop_title">
           매장 주소
         </div>
-        <input class="shop_info" type="text" autofocus placeholder="Shop Address" name="Shop Address" required>
+        <input class="shop_info" type="text" placeholder="Shop Address" id="st_address" name="st_address">
+        <div class="check_div" style="height:45px;"id="staddress_check" value=""></div>
       </div>
+
       <div class="paragraph">
         <div class="shop_title">
           고객센터 번호
         </div>
-        <input class="shop_info" type="tell" autofocus placeholder="Service Number" name="Service Number" required>
+        <input class="shop_info" type="text" placeholder="Service Number" id="st_tel" name="st_tel">
       </div>
-        <br><button class="lg_bt" type="button" id="login" value="가입하기" onclick="location.href = '/'">가입하기</button>
+      <div class="paragraph">
+        <div class="shop_title">
+          <label>매장 소개</label>
+        </div>
+        <textarea cols="50" rows="10" style=resize:none; placeholder="introduce" id="st_introduce" name="st_introduce" ></textarea>
+      </div>
+        <br><input class="end" type='submit' id="login" value="가입하기">
     </form>
   </div>
-
 </body>
 </html>
+
+<script type="text/javascript">
+// jQuery -- 어지수
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$("#st_name").blur(function() {
+  checkStNameInput();
+});//blur
+
+function checkStNameInput(){
+  var store_name = $('#st_name').val();
+  $.ajax({
+
+    type: 'post',
+    url: 'register_InsertStore',
+    dataType: 'json',
+    data: { "name":store_name },
+
+    success : function(data) {
+      //ID 공백체크
+      if(store_name == ""){
+        $('#stname_check').text('필수 정보입니다.');
+        $('#stname_check').css('color', 'red');
+      }
+      //ID 중복O
+      if(data>=1){
+        $('#stname_check').text('존재하는 매장 입니다.');
+        $('#stname_check').css('color', 'red');
+      }
+      //ID 중복X
+      else {
+        $('#stname_check').text('');
+      }
+    }//success
+    ,error : function() {  console.log("실패");  }
+  }) //ajax
+  }
+</script>

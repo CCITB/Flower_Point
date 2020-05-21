@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <title>로그인</title>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
   <script>
   </script>
 </head>
+
 <body>
+
   <div id="all">
     <div class="text">
       <h1> 판매자 로그인 </h1>
-      <hr class = way>
+      <hr>
     </div>
 
     <div class ="login">
-      <form action = 'url' method='post'>
+      <form action = '/login_s' method='post' name="seller_login">
+        @csrf
         <p>
-          <input class="lg" type="text"  placeholder="ID" name="id" required ><br><br>
-          <input class="lg" type="password"  placeholder="Password" name="pw" required>
+          <input class="lg" type="text"  placeholder="ID" name="login_id" required ><br><br>
+          <input class="lg" type="password"  placeholder="Password" name="login_pw" required>
         </p>
         <div class="go">
           <a href="/find_id">아이디</a> ·
           <a href="/find_pw">비밀번호 찾기</a>
         </div><br>
         <p>
-          <button class="lg_bt" type="submit" id="login" value="로그인">로그인</button>
+          <input class="lg_bt" type="submit" value="로그인">
         </p>
         <p><p>
           <button class="sel_sign_bt" type="button" onclick="location.href = '/register_seller'">판매자 회원가입</button>

@@ -4,14 +4,15 @@
   margin:0 auto;
   border: 1px solid;
   width : 450px;
-  height: 520px;
   border-radius: 25px;
   padding: 40px;
   background-color: #FFFFFF;
   border-style: hidden;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 body {
-  background-color: #FFD8D8;
+  background-color: #FFDDDD;
 }
 p{
   padding-top: 5px;
@@ -37,22 +38,26 @@ hr{
   width: 350px;
   margin: 0 auto;
 }
-.character{
+.find_input{ //input 각각 style
+  width:200px;
+  height:23px;
+  font-size: 15px;
+}
+.character{ //이름, 전화번호 글씨
   float: left;
   text-align: right;
   font-size: 18px;
 }
-.window{
+.window{ //input 전체
   float: right;
   text-align: left;
 }
-.under{
+/* -------------------- */
+
+
+/* ----- find_id ------ */
+.under{ //홈, 비밀번호 버튼 전체 class
   clear: both;
-}
-.find_input{
-  width:200px;
-  height:23px;
-  font-size: 15px;
 }
 .find_id {
   padding: 20px;
@@ -61,6 +66,8 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
+/* -------------------- */
+/* ----- find_pw ------ */
 .find_pw{
   padding: 20px;
   text-align: center;
@@ -68,6 +75,8 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
+/* -------------------- */
+/* ----- find_pw_way ------ */
 .find_pw_way{
   padding: 20px;
   text-align: center;
@@ -75,6 +84,8 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
+/* -------------------- */
+/* ----- pw_reset ------ */
 .pw_reset{
   padding: 20px;
   text-align: center;
@@ -82,9 +93,13 @@ hr{
   border-radius: 25px;
   height: 350px;
 }
-.my_id{
+.my_id{ //내 아이디 불러오는 창
   border: 1px solid;
 }
+/* -------------------- */
+
+
+/* -------- 로그인 --------- */
 .login {
   padding: 30px;
   text-align: center;
