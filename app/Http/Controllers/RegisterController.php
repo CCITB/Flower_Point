@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Carbon;
 
 
 //어지수
@@ -77,7 +78,9 @@ class RegisterController extends Controller
   //insert stroe table -- 어지수
   public function store_information(Request $request)
   {
-
+    //현재날짜
+    $dt = Carbon::now();
+    $date = $dt->toDateString();
     //동일 매장 확인
     $input_stname = trim($_POST['st_name']);
     $stores = DB::table('store')-> where('st_name','=',$input_stname)->get()->count();
@@ -85,59 +88,60 @@ class RegisterController extends Controller
     if($stores<1){
       DB::table('store')->insert([
         'st_name'=>$request->input('st_name'),
-        'registeration_num' => $request->input('st_registeration_num'),
+        'st_registeration_num' => $request->input('registeration_num'),
         'st_address' => $request->input('st_address'),
         'st_tel' => $request->input('st_tel'),
-        'st_introduce' => $request->input('st_introduce')
+        'st_introduce' => $request->input('st_introduce'),
       ]);
+     return redirect('/login_seller');
     }
   }
 
-//
-public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
-{
-  $seller_id = $login->get('login_id');
-  $seller_pw = $login->get('login_pw');
-  $db_seller = DB::table('seller')->select('s_id','s_password')->where([
-    's_id'=>$seller_id,
-    's_password'=>$seller_pw
-    ])->get();
-
-    if(count($db_seller)>0){
-      session()->put('iding',$seller_id);
-
-      return view('main');
-    }else {
-      return redirect('/login_seller');
-    }
-
-  }
-
-
-  public function login_c(Request $login)
+  //
+  public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
   {
-    $customer_id = $login->get('login_id');
-    $customer_pw = $login->get('login_pw');
-    $db_customer = DB::table('customer')->select('c_id','c_password')->where([
-      'c_id'=>$customer_id,
-      'c_password'=>$customer_pw
+    $seller_id = $login->get('login_id');
+    $seller_pw = $login->get('login_pw');
+    $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+      's_id'=>$seller_id,
+      's_password'=>$seller_pw
       ])->get();
 
-      if(count($db_customer)>0){
-        session()->put('iding',$customer_id);
+      if(count($db_seller)>0){
+        session()->put('iding',$seller_id);
 
         return view('main');
-      }
-      else {
-        return redirect('/login_customer');
+      }else {
+        return redirect('/login_seller');
       }
 
     }
 
 
-    public function logout(Request $logout)
+    public function login_c(Request $login)
     {
-      session()->forget('iding');
-      return redirect('/');
+      $customer_id = $login->get('login_id');
+      $customer_pw = $login->get('login_pw');
+      $db_customer = DB::table('customer')->select('c_id','c_password')->where([
+        'c_id'=>$customer_id,
+        'c_password'=>$customer_pw
+        ])->get();
+
+        if(count($db_customer)>0){
+          session()->put('iding',$customer_id);
+
+          return view('main');
+        }
+        else {
+          return redirect('/login_customer');
+        }
+
+      }
+
+
+      public function logout(Request $logout)
+      {
+        session()->forget('iding');
+        return redirect('/');
+      }
     }
-  }
