@@ -1,4 +1,3 @@
-<!--어지수-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -13,10 +12,8 @@
 
 <body>
   <div id="all">
-    <div class="text">
       <h1>판매자 회원가입 </h1>
       <hr>
-    </div>
     <div class="signup">
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return validatate();'>
         @csrf
@@ -103,19 +100,11 @@
 
       success : function(data) {
         console.log(data);
-
-        //ID 공백체크
-        if(seller_id == ""){
-          $('#id_check').text('필수 정보입니다.');
-          $('#id_check').css('color', 'red');
-
-        }
-
         //ID 중복O
         if(data>=1){
           $('#id_check').text('이미 사용중인 아이디입니다.');
           $('#id_check').css('color', 'red');
-
+          //return false;
         }
 
         //ID 중복X
@@ -124,12 +113,20 @@
           if(idJ.test(seller_id)){
             $("#id_check").text("사용가능한 아이디입니다!");
             $('#id_check').css('color', 'green');
+            //return true;
           }
           //정규식 일치X
           if(!idJ.test(seller_id)){
             $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
             $('#id_check').css('color', 'red');
+            //return false;
           }
+        }
+        //ID 공백체크
+        if(seller_id == ""){
+          $('#id_check').text('필수 정보입니다.');
+          $('#id_check').css('color', 'red');
+          //return false;
         }
 
       }//success
@@ -151,22 +148,25 @@
 
       success : function(data) {
         console.log(data);
-
-        //PW 공백 체크
-        if (seller_pw == ""){
-          $('#pw_check').text('비밀번호를 입력해주세요.');
-          $('#pw_check').css('color', 'red');
-        }
         //PW 정규식 일치O
         if(pwJ.test(seller_pw)){
           $("#pw_check").text("");
           $('#pw_check').css('color', 'red');
+          return true;
+        }
+        //PW 공백 체크
+        else if(seller_pw == ""){
+          $('#pw_check').text('비밀번호를 입력해주세요.');
+          $('#pw_check').css('color', 'red');
+          return false;
         }
         //PW 정규식 일치X
-        if(!pwJ.test(seller_pw)){
+        else{
           $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
           $('#pw_check').css('color', 'red');
+          return false;
         }
+
       }//success
       ,error : function() {  console.log("pw실패");  }
     }) //ajax
@@ -178,9 +178,9 @@
     $.ajax({
 
       type: 'post',
-      url: '',
+      url: 'register_OverlapPW',
       dataType: 'json',
-      data: { },
+      data: { "pw":seller_pw },
 
       success : function(data) {
         console.log(data);
@@ -189,13 +189,14 @@
         if(seller_re_pw==""){
           $("#re_pw_check").text("필수 정보입니다.");
           $('#re_pw_check').css('color', 'red');
+        // return false;
         }
 
         //PW와 일치O
-        if(seller_pw==seller_re_pw){
-          $("#re_pw_check").text("");
-          $('#re_pw_check').css('color', 'red');
-          console.log("일치");
+        else if(seller_pw==seller_re_pw){
+          $("#re_pw_check").text("비밀번호가 일치합니다.");
+          $('#re_pw_check').css('color', 'green');
+          //return true;
         }
 
         //PW와 일치X
@@ -203,7 +204,7 @@
         {
           $("#re_pw_check").text("비밀번호가 일치하지 않습니다.");
           $('#re_pw_check').css('color', 'red');
-          console.log("비일치");
+          //return false;
         }
 
       }//success
@@ -215,7 +216,7 @@
     var seller_name = $('#name').val();
 
     //정규식 (스페이스바)
-    var nameJ = /[가-힣A-Za-z]/g;
+    var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
     var emptyJ = /[~!@#$%^&*()_+|<>?:{}\s]/g;
 
     console.log(seller_name);
@@ -227,20 +228,22 @@
       data: {  },
 
       success : function(data) {
-        // 공백체크
-        if(seller_name == ""){
-          $('#name_check').text('필수 정보입니다.');
-          $('#name_check').css('color', 'red');
-        }
         //특수문자, 스페이스바 체크
-        else if(emptyJ.test(seller_name)){
+        if(!nameJ.test(seller_name)&&emptyJ.test(seller_name)){
           $("#name_check").text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
           $('#name_check').css('color', 'red');
+          //return false;
         }
-        else{
-          $("#pw_check").text("");
+        // 공백체크
+        if(seller_name==""){
+          $('#name_check').text('필수 정보입니다.');
+          $('#name_check').css('color', 'red');
+          //return false;
         }
-
+        if(nameJ.test(seller_name)){
+          $("#name_check").text("");
+        //  return true;
+        }
       }//success
       ,error : function() {  console.log("실패");  }
     }) //ajax
@@ -255,9 +258,8 @@
     var name = document.getElementById("name");
     var phonenum = document.getElementById("phonenum");
     var gender = document.getElementById("gender");
-    //var birth
-    var address = document.getElementById("address");
     var email = document.getElementById("email");
+    var birth = document.getElementById("birth");
 
     //정규식
     var id_validate = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
@@ -286,11 +288,19 @@
       return false;
     }
     if((phonenum.value)==""){
-      alert('휴대폰 번호를 입력해주세요.');
+      alert('연락처를 입력해주세요.');
       return false;
     }
-    if((address.value)==""){
-      alert('주소를 입력해주세요.');
+    if((phonenum.value)==""){
+      alert('연락처를 입력해주세요.');
+      return false;
+    }
+    if((email.value)==""){
+      alert('이메일 입력해주세요.');
+      return false;
+    }
+    if((birth.value)==""){
+      alert('생일을 입력해주세요.');
       return false;
     }
     else {

@@ -68,11 +68,11 @@ class RegisterController extends Controller
   }
 
   //[resister_seller jQuery부분] PW일치여부 -- 어지수
-  // public function overlapPW(Request $request)
-  // {
-  //   $overlap_pw = $request->input('pw');
-  //   return response()->json($overlap_pw);
-  // }
+  public function overlapPW(Request $request)
+  {
+    $overlap_pw = $request->input('pw');
+    return response()->json($overlap_pw);
+  }
 
   //insert stroe table -- 어지수
   public function store_information(Request $request)
