@@ -25,7 +25,11 @@ Route::get('/register_customer','MainController@register_costomer');
 
 Route::get('/register_seller','MainController@register_seller');
 
-Route::post('/register_seller', 'RegisterController@index');
+Route::post('/register_OverlapID', 'RegisterController@overlapID');
+
+Route::post('/register_OverlapPW', 'RegisterController@overlapPW');
+
+Route::post('/register_InsertStore', 'RegisterController@store_information');
 
 
 Route::get('/terms_customers', 'MainController@register_terms_customers');
