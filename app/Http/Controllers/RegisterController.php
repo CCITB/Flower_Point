@@ -15,7 +15,7 @@ class RegisterController extends Controller
     return view('register');
   }
 
-//customer register query -- 어지수
+  //customer register query -- 어지수
   public function customer_store(Request $request)
   {
     DB::table('customer')->insert([
@@ -30,7 +30,7 @@ class RegisterController extends Controller
     return redirect('/login');
   }
 
-//seller register query -- 어지수
+  //seller register query -- 어지수
   #seller register query
   public function seller_store(Request $request)
   {
@@ -57,7 +57,7 @@ class RegisterController extends Controller
   }
 
 
-//[register_seller jQuery부분] ID중복검사 -- 어지수
+  //[register_seller jQuery부분] ID중복검사 -- 어지수
   public function index(Request $request)
   {
     $input = $request->input('id');
@@ -75,7 +75,7 @@ class RegisterController extends Controller
     // }
   }
 
-//
+  //
   public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
   {
     $seller_id = $login->get('login_id');
@@ -84,6 +84,7 @@ class RegisterController extends Controller
       's_id'=>$seller_id,
       's_password'=>$seller_pw
       ])->get();
+
 
       if(count($db_seller)>0){
         session()->put('iding',$seller_id);
@@ -94,7 +95,6 @@ class RegisterController extends Controller
       }
 
     }
-
 
     public function login_c(Request $login)
     {
@@ -116,9 +116,9 @@ class RegisterController extends Controller
       }
 
 
-    public function logout(Request $logout)
-    {
-      session()->forget('iding');
-      return redirect('/');
+      public function logout(Request $logout)
+      {
+        session()->forget('iding');
+        return redirect('/');
+      }
     }
-  }

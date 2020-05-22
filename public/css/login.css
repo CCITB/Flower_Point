@@ -1,9 +1,9 @@
 /* 수정시 소현에게 */
 
 #all{
-  margin:0 auto;
+  margin:5% auto;
   border: 1px solid;
-  width : 450px;
+  width : 480px;
   border-radius: 25px;
   padding: 40px;
   background-color: #FFFFFF;
@@ -22,7 +22,7 @@ p{
   padding-bottom:20px;
 }
 hr{
-  width: 450px;
+  width: 100%;
   border-bottom: 0px;
   text-align: center;
 }
@@ -38,17 +38,17 @@ hr{
   width: 350px;
   margin: 0 auto;
 }
-.find_input{ //input 각각 style
+.find_input{
   width:200px;
   height:23px;
   font-size: 15px;
 }
-.character{ //이름, 전화번호 글씨
+.character{
   float: left;
   text-align: right;
   font-size: 18px;
 }
-.window{ //input 전체
+.window{
   float: right;
   text-align: left;
 }
@@ -56,7 +56,7 @@ hr{
 
 
 /* ----- find_id ------ */
-.under{ //홈, 비밀번호 버튼 전체 class
+.under{
   clear: both;
 }
 .find_id {
