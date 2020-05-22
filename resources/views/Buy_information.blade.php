@@ -57,11 +57,13 @@
 
         <div class="options">
           <select class="select_option" name="select_option">
+            <option value="option 1">옵션 없음</option>
             <option value="option 1">옵션 1</option>
             <option value="option 2">옵션 2</option>
           </select>
 
           <select class="select_option" name="select_pack">
+            <option value="pack 1">포장 없음</option>
             <option value="pack 1">포장 1</option>
             <option value="pack 2">포장 2</option>
           </select>
@@ -86,11 +88,13 @@
 
     <div class = "pd_detail"> <!-- 상품설명 디테일 -->
       <pre>
-        상품 본문 글 입니다.
 
-        쓰는 만큼 늘어납니다.
+상품 본문 글 입니다.
 
-        아시겠습니까?
+
+
+쓰는 만큼 늘어납니다.
+
       </pre>
     </div>
   </div>

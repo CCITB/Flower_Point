@@ -16,7 +16,7 @@
       <h1>꽃갈피 - 매장 정보 기입 </h1>
       <hr>
     </div>
-    <form action = 'url' method='post'>
+    <form action = 'register_InsertStore' method='post' name="insertstore" onsubmit='return validatate();' >
       @csrf
       <div class="paragraph">
         <div class="shop_title">
@@ -59,44 +59,36 @@
 </html>
 
 <script type="text/javascript">
-// jQuery -- 어지수
+  //onsubmit -- 어지수
+  function validatate(){
+    var st_name = document.getElementById("st_name");
+    var registeration_num = document.getElementById("registeration_num");
+    var st_address = document.getElementById("st_address");
+    var st_tel = document.getElementById("st_tel");
+    var st_introduce = document.getElementById("st_introduce");
 
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
-$("#st_name").blur(function() {
-  checkStNameInput();
-});//blur
-
-function checkStNameInput(){
-  var store_name = $('#st_name').val();
-  $.ajax({
-
-    type: 'post',
-    url: 'register_InsertStore',
-    dataType: 'json',
-    data: { "name":store_name },
-
-    success : function(data) {
-      //ID 공백체크
-      if(store_name == ""){
-        $('#stname_check').text('필수 정보입니다.');
-        $('#stname_check').css('color', 'red');
-      }
-      //ID 중복O
-      if(data>=1){
-        $('#stname_check').text('존재하는 매장 입니다.');
-        $('#stname_check').css('color', 'red');
-      }
-      //ID 중복X
-      else {
-        $('#stname_check').text('');
-      }
-    }//success
-    ,error : function() {  console.log("실패");  }
-  }) //ajax
+    if(st_name.value()==""){
+      alert('매장명을 입력해주세요.');
+      return false;
+    }
+    if(registeration_num.value()==""){
+      alert('사업자등록번호를 입력해주세요.');
+      return false;
+    }
+    if(st_address.value()==""){
+      alert('매장주소를 입력해주세요.');
+      return false;
+    }
+    if(st_tel.value()==""){
+      alert('고객센터 번호를 입력해주세요.');
+      return false;
+    }
+    if(st_introduce.value()==""){
+      alert('고객센터 번호를 입력해주세요.');
+      return false;
+    }
+    else {
+      return true;
+    }
   }
 </script>

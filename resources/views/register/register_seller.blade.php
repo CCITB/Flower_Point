@@ -6,32 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="stylesheet" type="text/css" href="/css/sign_up.css">
+  <link rel="stylesheet" type="text/css" href="/css/register.css">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
   <div id="all">
-      <h1>판매자 회원가입 </h1>
-      <hr>
+    <h1>판매자 회원가입 </h1>
+    <hr>
     <div class="signup">
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return validatate();'>
         @csrf
         <label>아이디</label>
         <input class="inf1" type="text" placeholder="ID" id="id" name="s_id">
-        <div class="check_div" style="height:45px;"id="id_check" value=""></div>
+        <div class="check_div" style="height:45px; font-size:12px;"id="id_check" value=""></div>
 
         <label>비밀번호</label>
         <input class="inf1" type="password" placeholder="Password" name="s_password" id="pw" >
-        <div class="check_div" style="height:45px;" id="pw_check" value=""></div>
+        <div class="check_div" style="height:45px; font-size:12px;" id="pw_check" value=""></div>
 
         <label>비밀번호 확인</label>
         <input class="inf1" type="password" placeholder="Password" name="s_re_password" id="check" >
-        <div class="check_div" style="height:45px;" id="re_pw_check" value=""></div>
+        <div class="check_div" style="height:45px; font-size:12px;" id="re_pw_check" value=""></div>
 
         <label>이름</label>
         <input class="inf1" type="name" placeholder="Name" id="name" name="s_name" >
-        <div class="check_div" id="name_check" style="height:45px;" value=""></div>
+        <div class="check_div" id="name_check" style="height:45px; font-size:12px;" value=""></div>
 
         <label>연락처</label>
         <input class="inf1" type="text" placeholder="Phone Number" id="phonenum" name="s_phonenum" >
@@ -39,7 +39,7 @@
 
         <label>생년월일</label>
         <input class="inf1" type="text" placeholder="ex)200514" id="birth" name="s_birth">
-
+        <div class="check_div" id="phonenum_check" style="height:25px;" value=""></div>
         <br>
         <div class="gender">
           <label>성별</label>
@@ -49,6 +49,7 @@
             <option value="여성">여성</option>
           </select>
         </div>
+        <div class="check_div" id="phonenum_check" style="height:20px;" value=""></div>
         <br>
         <label>이메일</label>
         <input class="inf1" type="email" placeholder="email "id="email" name="s_email"  >
@@ -60,7 +61,7 @@
       </form>
     </div>
   </body>
-</html>
+  </html>
   <script type="text/javascript">
   // jQuery -- 어지수
 
@@ -189,7 +190,7 @@
         if(seller_re_pw==""){
           $("#re_pw_check").text("필수 정보입니다.");
           $('#re_pw_check').css('color', 'red');
-        // return false;
+          // return false;
         }
 
         //PW와 일치O
@@ -242,7 +243,7 @@
         }
         if(nameJ.test(seller_name)){
           $("#name_check").text("");
-        //  return true;
+          //  return true;
         }
       }//success
       ,error : function() {  console.log("실패");  }
@@ -308,4 +309,4 @@
     }
   }
 
-</script>
+  </script>
