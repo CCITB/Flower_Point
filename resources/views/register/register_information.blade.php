@@ -52,43 +52,44 @@
         </div>
         <textarea cols="50" rows="10" style=resize:none; placeholder="introduce" id="st_introduce" name="st_introduce" ></textarea>
       </div>
-        <br><input class="end" type='submit' id="login" value="가입하기">
+      <br><input class="end" type='submit' id="login" value="가입하기">
     </form>
   </div>
 </body>
 </html>
 
 <script type="text/javascript">
-  //onsubmit -- 어지수
-  function validatate(){
-    var st_name = document.getElementById("st_name");
-    var registeration_num = document.getElementById("registeration_num");
-    var st_address = document.getElementById("st_address");
-    var st_tel = document.getElementById("st_tel");
-    var st_introduce = document.getElementById("st_introduce");
+//onsubmit -- 어지수
+function validatate(){
+  var st_name = document.getElementById("st_name");
+  var registeration_num = document.getElementById("registeration_num");
+  var st_address = document.getElementById("st_address");
+  var st_tel = document.getElementById("st_tel");
+  var st_introduce = document.getElementById("st_introduce");
 
-    if(st_name.value()==""){
-      alert('매장명을 입력해주세요.');
-      return false;
-    }
-    if(registeration_num.value()==""){
-      alert('사업자등록번호를 입력해주세요.');
-      return false;
-    }
-    if(st_address.value()==""){
-      alert('매장주소를 입력해주세요.');
-      return false;
-    }
-    if(st_tel.value()==""){
-      alert('고객센터 번호를 입력해주세요.');
-      return false;
-    }
-    if(st_introduce.value()==""){
-      alert('고객센터 번호를 입력해주세요.');
-      return false;
-    }
-    else {
-      return true;
-    }
+  if(st_name.value()==""){
+    alert('매장명을 입력해주세요.');
+    return false;
   }
+  if(registeration_num.value()==""){
+    alert('사업자등록번호를 입력해주세요.');
+    return false;
+  }
+  if(st_address.value()==""){
+    alert('매장주소를 입력해주세요.');
+    return false;
+  }
+  if(st_tel.value()==""){
+    alert('고객센터 번호를 입력해주세요.');
+    return false;
+  }
+  if(st_introduce.value()==""){
+    alert('매장소개를 입력해주세요.');
+    return false;
+  }
+
+  else {
+    return true;
+  }
+}
 </script>

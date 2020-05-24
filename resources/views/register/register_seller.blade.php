@@ -89,7 +89,8 @@
 
     //정규식
     var idJ = /^[a-z0-9_\-]{5,20}$/;
-    var phoneJ = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+
+    //var phoneJ = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
     console.log(seller_id);
     $.ajax({
@@ -217,7 +218,7 @@
     var seller_name = $('#name').val();
 
     //정규식 (스페이스바)
-    var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+    var nameJ = /^[가-힣]|[a-zA-Z]\s[a-zA-Z]$/;
     var emptyJ = /[~!@#$%^&*()_+|<>?:{}\s]/g;
 
     console.log(seller_name);
@@ -231,7 +232,8 @@
       success : function(data) {
         //특수문자, 스페이스바 체크
         if(!nameJ.test(seller_name)&&emptyJ.test(seller_name)){
-          $("#name_check").text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
+          $("#name_check").text(
+            "한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
           $('#name_check').css('color', 'red');
           //return false;
         }
@@ -265,7 +267,7 @@
     //정규식
     var id_validate = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
     var pw_validate = RegExp(/^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/);
-    var phone_balidate = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+    //var phone_balidate = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
     //유효성
     if(!id_validate.test(id.value)){
       alert('5~20자리의 영문 대소문자와 특수기호 (-),(_)만 사용가능합니다.');

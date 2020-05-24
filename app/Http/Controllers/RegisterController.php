@@ -47,7 +47,7 @@ class RegisterController extends Controller
 
     //database insert
     if($sellers<1){
-      DB::table('seller')->insert([
+       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
         's_password' => $request->input('s_password'),
         's_name' => $request->input('s_name'),
