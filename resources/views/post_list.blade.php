@@ -10,49 +10,31 @@
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable");
   switching = true;
-  //Set the sorting direction to ascending:
   dir = "asc";
-  /*Make a loop that will continue until
-  no switching has been done:*/
   while (switching) {
-    //start by saying: no switching is done:
     switching = false;
     rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
     for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
       shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
       if (dir == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
         }
       } else if (dir == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       }
     }
     if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
-      //Each time a switch is done, increase this count by 1:
       switchcount ++;
     } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
       if (switchcount == 0 && dir == "asc") {
         dir = "desc";
         switching = true;
@@ -87,7 +69,19 @@
           <input type="text" name="" value="">
           <button type="submit" name="button" >검색</button>
         </div>
+        <style>
+        td.upload-date{
+          text-align: center;
+        }
+        td.upload-price{
+          text-align: right;
+        }
+        td.upload-name{
+          text-align: left;
+          padding-left: 15px;
 
+        }
+        </style>
         <table id="myTable">
             <tr>
               <th class="registration-date">날짜</th>
@@ -96,27 +90,27 @@
               <th class="product-amount">주문량</th>
             </tr>
           <tr>
-            <td>2020.05.16</td>
-            <td>asdf</td>
-            <td>0원</td>
+            <td class="upload-date">2020.05.16</td>
+            <td class="upload-name">asdf</td>
+            <td class="upload-price">0원</td>
             <td></td>
           </tr>
           <tr>
-            <td>2020.05.18</td>
-            <td>sdf</td>
-            <td>10000원</td>
+            <td class="upload-date">2020.05.18</td>
+            <td class="upload-name">sdf</td>
+            <td class="upload-price">10000원</td>
             <td></td>
           </tr>
           <tr>
-            <td>2020.05.14</td>
-            <td>sefasd</td>
-            <td>20000원</td>
+            <td class="upload-date">2020.05.14</td>
+            <td class="upload-name">sefasd</td>
+            <td class="upload-price">20000원</td>
             <td></td>
           </tr>
           <tr>
-            <td>2022.03.25</td>
-            <td>asdf</td>
-            <td>30000원</td>
+            <td class="upload-date">2022.03.25</td>
+            <td class="upload-name">asdf</td>
+            <td class="upload-price">30000원</td>
             <td></td>
           </tr>
 

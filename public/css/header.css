@@ -4,6 +4,7 @@
    border-top: 1px solid #d9d9d9;
    border-bottom: 1px solid #d9d9d9;
    background-color: #F5E6DE;
+   margin-bottom: 30px;
  }
  .user-wrap{
    background-color: #FFDDDD;
@@ -69,7 +70,7 @@
   height: 100%;
 }
 #headwrap{
-
+  margin-bottom: 150px;
   min-width: 1160px;
   height: 254px;
 }
@@ -135,10 +136,9 @@ background: white;
 	color: rgba(0, 0, 0, 0.35);
 	font-size: 20px;
 	margin: 8px auto;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   width: 1130px;
-  padding-top: 50px;
-  margin-top: 100px;
+
 }
 .hr-sect::before,
 .hr-sect::after {

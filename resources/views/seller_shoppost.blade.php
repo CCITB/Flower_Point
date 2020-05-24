@@ -69,11 +69,53 @@ overflow: hidden;
 clip: rect(0, 0, 0, 0);
 border: 0;
 } */
-#preview img{
+.preview-wrap{
+  width: 100%;
+  height: 202px;
+
+
+}
+.preview img{
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: relative;
+}
+.preview{
   width: 200px;
   height: 200px;
-}
+  border: 1px solid gray;
+  float: right;
 
+  display: inline-block;
+}
+.preview-image{
+  display: inline-block;
+
+  z-index: 1;
+}
+.image-upload{
+  display: inline-block;
+
+}
+.preview-left{
+  width: 45%;
+
+  display: inline-block;
+  float: left;
+
+}
+.preview-right{
+  width: 50%;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  padding-left: 30px;
+
+  float: left;
+}
+.preview{
+
+}
 </style>
 </head>
 <body>
@@ -86,69 +128,87 @@ border: 0;
   </div>
   <div class="post">
     <div id="se2_sample" style="margin:10px 0;">
+      <!-- <div class="">
       <input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
       <input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
       <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
       <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
+    </div> -->
+    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8">
+      @csrf
+      <div class="" style="">
+        <table>
+          <tr>
+            <th>상품명</th>
+            <td>
+              <input type="text" name="productname" value=""placeholder="상품명..." class="post-title">
+            </td>
+          </tr>
+        </table>
+        <textarea name="ir1" id="weditor" rows="10" cols="100"> 텍스트를 적으시지 않으면 기본값으로 출력됩니다.</textarea>
 
 
-      <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8">
-        @csrf
-        <div class="" style="">
-          <table>
-            <tr>
-              <th>상품명</th>
-              <td>
-                <input type="text" name="productname" value=""placeholder="상품명..." class="post-title">
-              </td>
-            </tr>
-          </table>
-          <textarea name="ir1" id="weditor" rows="10" cols="100"> 텍스트를 적으시지 않으면 기본값으로 출력됩니다.</textarea>
-
-          <div class="filebox">
-            <label for="real-input">사진 업로드</label>
-            <input type="file" onchange=" chk_file_type(this); checkFile(this); readURL();" id="real-input" name="picture" class="image_inputType_file" accept="image/*" required multiple>
-            <div id="preview">
-              <img src="#" alt="??" id="image-session">
-              사진공간
-
+        <!-- <div class="filebox">사진 업로드 부트스트랩 버튼 -->
+        <div class="preview-wrap">
+          <div class="preview-left">
+            <div class="preview">
+              <img src="#" alt="" id="image-session">
+              <div class="preview-image">
+                <!-- 이미지 미리보기 -->
+              </div>
             </div>
-            <!-- <button class="browse-btn">사진업로드</button> -->
           </div>
-
-          <table>
-            <tr>
-              <th>배송비</th>
-              <td><input type="text"numberonly="true" name="deliverycharge" value="" placeholder="0" style="text-align:right;">원</td>
-            </tr>
-            <tr>
-              <th>판매금액</th>
-              <td><input type="text" name="sellingprice" value=""placeholder="0"style="text-align:right;"numberonly="true">원</td>
-            </tr>
-            <tr>
-              <th>적립금</th>
-              <td><input type="text"numberonly="true" name="" value="">원</td>
-            </tr>
-          </table>
+          <div class="preview-right">
+            <div class="image-upload">
+              <label for="real-input">사진 업로드</label>
+              <input type="file" onchange=" chk_file_type(this); checkFile(this); readURL();" id="real-input" name="picture" class="image_inputType_file" accept="image/*" required multiple>
+            </div>
+          </div>
         </div>
+
+        <!-- <button class="browse-btn">사진업로드</button> -->
+
+
+        <!-- </div>사진 업로드 부트스트랩 버튼 -->
+
+        <table>
+          <tr>
+            <th>배송비</th>
+            <td><input type="text"numberonly="true" name="deliverycharge" value="" placeholder="0" style="text-align:right;">원</td>
+          </tr>
+          <tr>
+            <th>판매금액</th>
+            <td><input type="text" name="sellingprice" value=""placeholder="0"style="text-align:right;"numberonly="true">원</td>
+          </tr>
+          <tr>
+            <th>적립금</th>
+            <td><input type="text"numberonly="true" name="" value="">원</td>
+          </tr>
+        </table>
+      </div>
+      <div class="postbutton">
         <input type="submit" name="" value="저장" id="save">
         <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
         <button type="button" name="button" class="Cancellation-btn">취소</button>
-      </form>
-    </div>
-
+      </div>
+    </form>
   </div>
 
-  <style media="screen">
-  .post{
-    border: 5px solid pink;
-    width: 1130px;
-    margin: 0 auto;
-    padding: 0 30px;
-    text-align: center;
-  }
-  </style>
-  @include('footer')
+</div>
+
+<style media="screen">
+.postbutton{
+  text-align: center;
+}
+.post{
+  border: 5px solid pink;
+  width: 1130px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+}
+</style>
+@include('footer')
 </body>
 </html>
 <script type="text/javascript">
@@ -247,60 +307,51 @@ oEditor.setDefaultFont(sDefaultFont, nFontSize);
 //     var reader = new FileReader();
 //     reader.onload = function(event) { var img = document.createElement("img"); img.setAttribute("src", event.target.result); document.querySelector("#preview").appendChild(img); };
 //     console.log(image); reader.readAsDataURL(image); } }
-    // 파일용량제한 스크립트
-    function checkFile(el){
-
-    	// files 로 해당 파일 정보 얻기.
-    	var file = el.files;
-
-    	// file[0].size 는 파일 용량 정보입니다.
-    	if(file[0].size > 1024 * 1024 * 2){
-    		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-    		alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' + '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
-    	}
-    	// 체크를 통과했다면 종료.
-    	else return;
-    	// 체크에 걸리면 선택된 내용 취소 처리를 해야함.
-    	// 파일선택 폼의 내용은 스크립트로 컨트롤 할 수 없습니다.
-    	// 그래서 그냥 새로 폼을 새로 써주는 방식으로 초기화 합니다.
-    	// 이렇게 하면 간단 !?
-    	el.outerHTML = el.outerHTML;
-    }
-    function chk_file_type(obj) {
-	var file_kind = obj.value.lastIndexOf('.');
-	var file_name = obj.value.substring(file_kind+1,obj.length);
-	var file_type = file_name.toLowerCase();
-	var check_file_type=new Array();
-	check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
-	if(check_file_type.indexOf(file_type)==-1) {
-		alert('이미지 파일만 업로드 가능합니다.');
-		var parent_Obj=obj.parentNode;
-		var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
-		document.getElementById("wfb-field-219958876").value = "";    //초기화를 위한 추가 코드
-		document.getElementById("wfb-field-219958876").select();        //초기화를 위한 추가 코드
-		document.selection.clear();                                                //일부 브라우저 미지원
-		return false;
-	}
+// 파일용량제한 스크립트
+function checkFile(el){
+  var file = el.files;
+  if(file[0].size > 1024 * 1024 * 2){
+    alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
+    '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
+  }
+  else return;
+  el.outerHTML = el.outerHTML;
+}
+function chk_file_type(obj) {
+  var file_kind = obj.value.lastIndexOf('.');
+  var file_name = obj.value.substring(file_kind+1,obj.length);
+  var file_type = file_name.toLowerCase();
+  var check_file_type=new Array();
+  check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
+  if(check_file_type.indexOf(file_type)==-1) {
+    alert('이미지 파일만 업로드 가능합니다.');
+    var parent_Obj=obj.parentNode;
+    var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+    document.getElementById("wfb-field-219958876").value = "";    //초기화를 위한 추가 코드
+    document.getElementById("wfb-field-219958876").select();        //초기화를 위한 추가 코드
+    document.selection.clear();                                                //일부 브라우저 미지원
+    return false;
+  }
 }
 // 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
 function readURL(input) {
- if (input.files && input.files[0]) {
-  var reader = new FileReader();
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-  reader.onload = function (e) {
-   $('#image-session').attr('src', e.target.result);
-  }
+    reader.onload = function (e) {
+      $('#image-session').attr('src', e.target.result);
+    }
 
-  reader.readAsDataURL(input.files[0]);
+    reader.readAsDataURL(input.files[0]);
   }
 }
 
 $("#real-input").change(function(){
-   readURL(this);
+  readURL(this);
 });
-  </script>
-  <script>
-  $(document).on("keyup", "input:text[numberonly]", function() {
-      $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-  });
-  </script>
+</script>
+<script>
+$(document).on("keyup", "input:text[numberonly]", function() {
+  $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+});
+</script>

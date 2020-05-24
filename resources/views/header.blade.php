@@ -75,7 +75,136 @@
       </div>
     </div>
   </div>
-</div>
-<style>
 
+  <!-- 사이드네비바 시작입니다 -->
+  <div class="side-nav">
+    <div class="topbtn" onclick="">
+      <div class="topover">
+        위로이동
+      </div>
+
+    </div>
+    <div class="bottombtn" onclick="">
+      <div class="bottomover">
+        아래로 이동
+      </div>
+    </div>
+    <div class="mainbtn" onclick="location.href='/'">
+      <div class="mainover">
+        메인페이지로 이동
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.topbtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+}
+.topbtn:hover .topover{
+  display: block;
+}
+.topover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+.topbtn:hover{
+
+
+}
+.bottombtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  position: relative;
+
+}
+.bottombtn:hover .bottomover{
+  display: block;
+}
+.bottombtn:hover{
+
+}
+.bottomover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+.mainbtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.mainbtn:hover{
+
+}
+.mainbtn:hover .mainover{
+  display: block;
+}
+.mainover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+.side-nav{
+  position: fixed;
+  right: 15px;
+  font-size: 12px;
+  z-index: 3;
+}
+/* html{
+  scroll-behavior: smooth;
+} */
 </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$(function () {
+		$('.topbtn').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+var scrollHeight = $(document).height();
+		$('.bottombtn').click(function () {
+			$('body,html').animate({
+				scrollTop: scrollHeight
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
