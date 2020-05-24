@@ -194,6 +194,187 @@
         </div>
       </div>
       <!-- 상품진열 테이블 끝나는 곳 입니다. -->
+      <div class="hr-sect">
+      할인상품
+      </div>
+<!-- 상품진열 테이블입니다. -->
+      <div class="container-wrap">
+        <div class="container-wrapping">
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-image">
+            <div class="image">
+              <div class="image-in">
+                <img src="\flower1.jpg" alt="꽃" height="150" width="270">
+                <div class="image-in-font">
+                  <div class="image-in-post">
+                    제품내용
+
+                  </div>
+                  <div class="image-in-container">
+                    <div class="image-in-star">
+                      <p class="star_rating">
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                        <a href="#" class="on">★</a>
+                      </p>
+                    </div>
+                    <div class="image-in-bottom">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
    <style>
 
 
