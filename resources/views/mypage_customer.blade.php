@@ -57,10 +57,53 @@
         <button onclick="showPanel(0,'gray')">꽃</button>
         <button onclick="showPanel(1,'gray')">가게</button>
       </div>
-    <div class="tabPanel"></div>
-    <div class="tabPanel"></div>
-</div>
+      <div class="tabPanel">
+      <div class="panelbox">
+        <ul class="list_item">
+          <li class="list_item2">
+            <a href="#">
+            <div class="imagebox">
+        <img src="dummy.jpg" alt="꽃사진" align="left">
       </div>
+        <div class="box_information">
+          <div class="text_name">장미</div>
+          <div class="box_price">111111</div>
+        </div>
+      </a>
+      </li>
+      <li class="list_item2">
+        <a href="#">
+          <div class="imagebox">
+      <img src="dummy.jpg" alt="꽃사진" align="left">
+      </div>
+      <div class="box_information">
+        <div class="text_name">백합</div>
+        <div class="box_price">22222</div>
+      </div>
+      </a>
+      </li>
+    </ul>
+      </div>
+      </div>
+      <div class="tabPanel">
+        <div class="panelbox">
+        <ul class="list_item">
+          <li class="list_item2">
+            <a href="#">
+            <div class="imagebox">
+        <img src="dummy.jpg" alt="가게사진" align="left">
+      </div>
+        <div class="box_information">
+          <div class="text_name">가게이름</div>
+          <div class="box_price">ㅁㄴㄻㄴㄹ</div>
+        </div>
+      </a>
+      </li>
+    </ul>
+      </div>
+      </div>
+    </div>
+    </div>
       <div class="tablespace3">
         <h4 align="left">나의 주문 현황</h4>
         <table class="myorder">

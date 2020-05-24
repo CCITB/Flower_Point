@@ -114,10 +114,18 @@ margin-bottom: 50px;
     height: 85%;
     background-color: gray;
     color: white;
-    text-align: center;
-    padding-top: 105px;
+    text-align: left;
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 22px;
     display: none;
+    padding-top: 20px;
+}
+.list_item2{
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+.box_information{
+  text-align: center;
 }
