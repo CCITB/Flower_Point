@@ -87,3 +87,6 @@ Route::post('index', 'postcontroller@post');
 Route::get('/sellermyshop', function () {
   return view('gwang_jin.Seller_myshop2');
 });
+Route::get('/mypage2', function () {
+  return view('mypage_customer');
+});
