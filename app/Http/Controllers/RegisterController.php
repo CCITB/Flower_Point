@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Carbon;
 
 
 //어지수
@@ -19,31 +18,25 @@ class RegisterController extends Controller
   //customer register query -- 어지수
   public function customer_store(Request $request)
   {
-    //동일 아이디 확인
-    $input_cid = trim($_POST['c_id']);
-    $customers = DB::table('customer')-> where('c_id','=',$input_cid)->get()->count();
-
-    if($customers<1){
-      DB::table('customer')->insert([
-        'c_id'=>$request->input('c_id'),
-        'c_password' => $request->input('c_password'),
-        'c_name' => $request->input('c_name'),
-        'c_phonenum' => $request->input('c_phonenum'),
-        'c_address'=> $request->input('c_address'),
-        'c_email' => $request->input('c_email'),
-        'c_gender' => $request->input('c_gender'),
-        'c_birth' => $request->input('c_birth')
-      ]);
-      return redirect('/login_customer');
-    }
+    DB::table('customer')->insert([
+      'c_id'=>$request->input('c_id'),
+      'c_password' => $request->input('c_password'),
+      'c_name' => $request->input('c_name'),
+      'c_phonenum' => $request->input('c_phonenum'),
+      'c_email' => $request->input('c_email'),
+      'c_gender' => $request->input('c_gender'),
+      'c_birth' => $request->input('c_birth')
+    ]);
+    return redirect('/login');
   }
 
   //seller register query -- 어지수
+  #seller register query
   public function seller_store(Request $request)
   {
     //동일 아이디 확인
-    $input_sid = trim($_POST['s_id']);
-    $sellers = DB::table('seller')-> where('s_id','=',$input_sid)->get()->count();
+    $input_id = trim($_POST['s_id']);
+    $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
 
     //database insert
     if($sellers<1){
@@ -58,43 +51,28 @@ class RegisterController extends Controller
       ]);
       return redirect('/information');
     }
+    else{
+      //code...
+    }
   }
+
 
   //[register_seller jQuery부분] ID중복검사 -- 어지수
-  public function overlapID(Request $request)
+  public function index(Request $request)
   {
-    $overlap_id = $request->input('id');
-    $sellers = DB::table('seller')-> where('s_id','=',$overlap_id)->get()->count();
+    $input = $request->input('id');
+    $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
     return response()->json($sellers);
-  }
 
-  //[resister_seller jQuery부분] PW일치여부 -- 어지수
-  public function overlapPW(Request $request)
-  {
-    $overlap_pw = $request->input('pw');
-    return response()->json($overlap_pw);
-  }
-
-  //insert stroe table -- 어지수
-  public function store_information(Request $request)
-  {
-    //현재날짜
-    $dt = Carbon::now();
-    $date = $dt->toDateString();
-    //동일 매장 확인
-    $input_stname = trim($_POST['st_name']);
-    $stores = DB::table('store')-> where('st_name','=',$input_stname)->get()->count();
-
-    if($stores<1){
-      DB::table('store')->insert([
-        'st_name'=>$request->input('st_name'),
-        'st_registeration_num' => $request->input('registeration_num'),
-        'st_address' => $request->input('st_address'),
-        'st_tel' => $request->input('st_tel'),
-        'st_introduce' => $request->input('st_introduce'),
-      ]);
-     return redirect('/login_seller');
-    }
+    // if($input != NULL)
+    // {
+    //   if($sellers<1){
+    //     return response()->json(['success'=>'아이디가 중복되지 않았습니다.']);
+    //   }
+    //   else{
+    //     return response()->json(['success'=>'아이디가 중복됩니다.']);
+    //   }
+    // }
   }
 
   //
@@ -107,6 +85,7 @@ class RegisterController extends Controller
       's_password'=>$seller_pw
       ])->get();
 
+
       if(count($db_seller)>0){
         session()->put('iding',$seller_id);
 
@@ -116,7 +95,6 @@ class RegisterController extends Controller
       }
 
     }
-
 
     public function login_c(Request $login)
     {
@@ -131,8 +109,7 @@ class RegisterController extends Controller
           session()->put('iding',$customer_id);
 
           return view('main');
-        }
-        else {
+        }else {
           return redirect('/login_customer');
         }
 
