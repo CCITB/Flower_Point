@@ -13,9 +13,17 @@
       <h1 id="title"><a href="/">꽃갈피</a></h1>
     </div>
 
-    <b><div class="text">주문/결제</div></b>
-    <hr id="textline">
-
+<div class="text">
+  <h2 class="titlepage">Order/Payment</h2>
+  <span>주문/결제</span>
+  <div class="page-sorting">
+					<a href="#"><span>상품선택</span></a>
+					<span>&gt;</span>
+					<span class="current-page">주문결제</span>
+					<span>&gt;</span>
+					<span>주문 완료</span>
+				</div>
+</div>
 <div class="containerbox">
 <!--정보기입창-->
 <div class="infobox">
