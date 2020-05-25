@@ -29,11 +29,12 @@ h1#title{
 
 div.text{
 display: block;
-border-bottom: 3px solid #ddd;
+border-bottom: 2px solid #ffb0b0;
 position: relative;
 width: 80%;
 margin: 0 auto;
 }
+
 
 .titlepage{
   letter-spacing: -1px;
@@ -53,9 +54,14 @@ div.containerbox{
 }
 
 hr#textline{
-  border:solid 3px #f27979;
-  width:80%;
+  border:solid 2px #f27979;
+  width:60%;
   margin-bottom: 30px;
+}
+
+input.inputtext{
+  height:14px;
+  padding:10px;
 }
 
 div.orderbox{

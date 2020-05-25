@@ -14,8 +14,7 @@
     </div>
 
 <div class="text">
-  <h2 class="titlepage">Order/Payment</h2>
-  <span>주문/결제</span>
+  <span class="title">주문/결제</span>
   <div class="page-sorting">
 					<a href="#"><span>상품선택</span></a>
 					<span>&gt;</span>
@@ -31,7 +30,7 @@
   <table class="customerinfo" cellpadding="5" cellspacing="5" width: 100%>
     <tr>
       <th>주문고객</th>
-      <td>곽승지(010-3371-6542)</td>
+      <td>c_name(c_phonenum)</td>
     </tr>
   </table>
 </div>
@@ -39,16 +38,16 @@
   <form class="info" action="#" method="post">
     @csrf
     <label>수령인</label>
-    <input class="recipient" type="text" name="recipient">
+    <input class="inputtext" type="text" name="recipient">
     <div class="infodiv"></div>
     <label>전화번호</label>
-    <input class="order_tel" type="text" name="order_tel">
+    <input class="inputtext" type="text" name="order_tel">
     <div class="infodiv"></div>
     <label>주 소</label>
-    <input class="order_address" type="text" name="order_address">
+    <input class="inputtext" type="text" name="order_address">
     <div class="infodiv"></div>
     <label>요청사항</label>
-    <input class="request" type="text" name="request">
+    <input class="inputtext" type="text" name="request">
     <div class="infodiv"></div>
   </form>
 </div>
@@ -61,11 +60,11 @@
           <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
             <tr>
               <th>주문자</th>
-              <td>곽승지</td>
+              <td>c_name</td>
             </tr>
             <tr>
-              <th>연락처</th>
-              <td>010-1234-5678</td>
+              <th>c_phonenum</th>
+              <td>c_tel</td>
             </tr>
           </table>
           <div class="detail">
@@ -88,7 +87,7 @@
               <div class="paypay">
                 <tr>
                   <th>결제금액</th>
-                  <td>23,500원</td>
+                  <td>p_price + o_delivery</td>
                 </tr>
               </table>
             </div>
