@@ -4,14 +4,14 @@
 /* 두 블레이드 파일과 동일 css 입니다. */
 
 .frequently-qna{
-width: 50%;
-border: 1px solid gray;
+width: 70%;
+
 margin: 0 auto;
 }
 .frequently{
   position: relative;
   width: 1130px;
-  height: 500px;
+
   border: 5px solid pink;
   padding: 0 30px;
   margin: 0 auto;
@@ -47,6 +47,7 @@ border: 1px solid gray;
 table{
   border-collapse: collapse;
   width: 100%;
+
 }
 th{
   border: 1px solid pink;

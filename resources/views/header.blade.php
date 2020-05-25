@@ -9,15 +9,15 @@
         <div class="login">
           <span>로그인</span>
           <div class="login-list">
-            <a href="/login_customer">개인</a>
-            <a href="/login_seller">판매자</a>
+            <a href="/login_customer" class="login_left">개인</a>
+            <a href="/login_seller" class="login_right">판매자</a>
           </div>
         </div>
         <div class="login">
           <span>회원가입</span>
           <div class="login-list">
-            <a href="/terms_customers">개인</a>
-            <a href="/terms_sellers">판매자</a>
+            <a href="/terms_customers" class="login_left">개인</a>
+            <a href="/terms_sellers" class="login_right">판매자</a>
           </div>
         </div>
         @else
@@ -78,26 +78,43 @@
 
   <!-- 사이드네비바 시작입니다 -->
   <div class="side-nav">
+    <div class="mainbtn" onclick="location.href='/'">
+      <img src="/imglib/mainicon.png" alt="">
+      <div class="mainover">
+        메인페이지로 이동
+      </div>
+    </div>
     <div class="topbtn" onclick="">
+      <img src="/imglib/topbtn.png" alt="">
       <div class="topover">
         위로이동
       </div>
-
     </div>
     <div class="bottombtn" onclick="">
+      <img src="/imglib/bottombtn.png" alt="">
       <div class="bottomover">
         아래로 이동
-      </div>
-    </div>
-    <div class="mainbtn" onclick="location.href='/'">
-      <div class="mainover">
-        메인페이지로 이동
       </div>
     </div>
   </div>
 </div>
 
 <style>
+.topbtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
+.bottombtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
+.mainbtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
 .topbtn{
   width: 30px;
   height: 30px;
@@ -106,7 +123,7 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
-
+  border-radius: 2px;
 }
 .topbtn:hover .topover{
   display: block;
@@ -121,10 +138,13 @@
   top: 10px;
   text-align: center;
   white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
 }
 .topbtn:hover{
-
-
+  background: #999;
+  border-radius: 2px;
 }
 .bottombtn{
   width: 30px;
@@ -133,13 +153,14 @@
   margin-bottom: 5px;
   cursor: pointer;
   position: relative;
-
+  border-radius: 2px;
 }
 .bottombtn:hover .bottomover{
   display: block;
 }
 .bottombtn:hover{
-
+  background: #999;
+  border-radius: 2px;
 }
 .bottomover{
   display: none;
@@ -151,6 +172,9 @@
   top: 10px;
   text-align: center;
   white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
 }
 .mainbtn{
   width: 30px;
@@ -159,9 +183,11 @@
   margin-bottom: 5px;
   cursor: pointer;
   position: relative;
+  border-radius: 2px;
 }
 .mainbtn:hover{
-
+  background: #999;
+  border-radius: 2px;
 }
 .mainbtn:hover .mainover{
   display: block;
@@ -176,35 +202,39 @@
   top: 10px;
   text-align: center;
   white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
 }
 .side-nav{
   position: fixed;
   right: 15px;
   font-size: 12px;
   z-index: 3;
+
 }
 /* html{
-  scroll-behavior: smooth;
+scroll-behavior: smooth;
 } */
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	$(function () {
-		$('.topbtn').click(function () {
-			$('body,html').animate({
-				scrollTop: 0
-			}, 800);
-			return false;
-		});
-var scrollHeight = $(document).height();
-		$('.bottombtn').click(function () {
-			$('body,html').animate({
-				scrollTop: scrollHeight
-			}, 800);
-			return false;
-		});
-	});
+  $(function () {
+    $('.topbtn').click(function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 800);
+      return false;
+    });
+    var scrollHeight = $(document).height();
+    $('.bottombtn').click(function () {
+      $('body,html').animate({
+        scrollTop: scrollHeight
+      }, 800);
+      return false;
+    });
+  });
 
 });
 </script>
