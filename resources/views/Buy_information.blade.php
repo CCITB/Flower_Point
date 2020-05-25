@@ -102,6 +102,30 @@
 </div>
 <div class="reviews">
 
+<div class="detail_tabs">
+  <ul class="tab_table" role="tablist">
+    <li class="detail_tab" role="presentation">
+      <a class="detail_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
+    </li>
+    <li class="purchase_review_tab" role="presentation">
+      <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#">리뷰</a>
+    </li>
+    <li class="qna_tab" role="presentation">
+      <a class="qna_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
+    </li>
+    <li class="claim_info_tab" role="presentation">
+      <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#">반품/교환정보</a>
+    </li>
+  </ul>
+
+
+</div>
+
+
+
+
+
+
 
       <div class="review_list">
         <ul>
@@ -113,7 +137,7 @@
               </div>
               <div class="review_text">
                 <div class="star_small">
-                  ★★★★★
+                  <span class="stars">★★★★★</span>
                 </div>
                 <div class="status_user">
                   <span class="text_info">ID</span>
