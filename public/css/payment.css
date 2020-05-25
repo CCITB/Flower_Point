@@ -1,0 +1,67 @@
+/* 어지수 */
+body{
+  min-width: 1260px;
+  margin: 0px;
+}
+
+/**/
+
+div.wrapping{
+  height: 800px;
+  background: #ebebeb;
+}
+
+/*head*/
+div.topheader{
+  height: 150px;
+  background-color: #FFDDDD;
+  position : relative;
+
+}
+
+h1#title{
+  margin:0;
+  font-family: "바탕";
+  position : absolute;
+  top:30%;
+  left:3%;
+}
+
+div.text{
+margin-left:10em;
+}
+
+hr#textline{
+  border:solid 3px #f27979;
+  width:631px;
+}
+
+div.orderbox{
+    width: 300px;
+    margin: 0 auto;
+    border: 2px ridge black;
+    background-color: white;
+}
+
+div.paybox{
+  width: 100%;
+  text-align: center;
+}
+
+div.payresult{
+    text-align: center;
+}
+
+
+table.tablebox{
+  margin-bottom: 50px;
+}
+
+div.detail{
+  color: red;
+  margin-bottom: 100px;
+}
+
+div.ordertable{
+  margin-bottom: 100px;
+}
