@@ -12,7 +12,6 @@
 .pd_image{
   width: 41%;
   background-color: #F6FFCC;
-  margin-top: 40px;
   padding: 20px;
 }
 /* --- 이미지 전체틀 끝 --- */
@@ -21,7 +20,6 @@
 .pd_option{
   width: 50%;
   background-color: #F6FFFF;
-  margin-top: 40px;
   padding: 20px;
 }
 .pd_basic{
@@ -131,5 +129,68 @@ hr{
   width: 100%;
   background-color: #E8D9FF;
   margin-top: 30px;
-  padding: 55px;
+  padding: 20px;
+}
+
+
+.reviews{
+  width: 100%;
+  margin-top: 20px;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li{
+  margin-bottom: 30px;
+}
+.user_review{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.review_one{
+  display: table-cell;
+  width: 60%;
+}
+.user_profile{
+  float: left;
+  border: 1px solid;
+  width : 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0 12px 0 20px;
+}
+.review_text{
+  float: left;
+  padding-bottom: 10px;
+}
+.star_small{
+  /* 별 맨 위로 옮기기 */
+}
+.status_user{
+  font-size: 13px;
+}
+.text_info::after{
+  content:'';
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  vertical-align: top;
+  margin: 6px 5px 0 4px;
+}
+.user_write{
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+.review_image{
+  display: table-cell;
+  width: 25%;
+  vertical-align: middle;
+}
+.review_good{
+  display: table-cell;
+  width: 15%;
+  vertical-align: middle;
 }

@@ -3,9 +3,9 @@
 #all{
   margin:5% auto;
   border: 1px solid;
-  width : 480px;
+  width : 450px;
   border-radius: 25px;
-  padding: 40px;
+  padding: 35px;
   background-color: #FFFFFF;
   border-style: hidden;
   flex-wrap: wrap;
@@ -20,6 +20,7 @@ p{
 }
 .text{
   padding-bottom:20px;
+  font-size: 30px;
 }
 hr{
   width: 100%;
@@ -101,14 +102,14 @@ hr{
 
 /* -------- 로그인 --------- */
 .login {
-  padding: 30px;
+  padding: 25px;
   text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
+  /*border: 1px solid;
+  border-radius: 25px;*/
   height: 350px;
 }
 .lg{
-  width:350px;
+  width:90%;
   height:35px;
   font-size:23px;
 }

@@ -14,7 +14,7 @@
 <body>
   <div id="all">
     <div class="text">
-      <h1> 구매자 로그인 </h1>
+      Customer Login
       <hr>
     </div>
 
@@ -30,7 +30,7 @@
           <a href="/find_pw">비밀번호 찾기</a>
         </div><br>
         <p><br>
-          <input class="btn btn-outline-secondary" type="submit" value="    로그인    ">
+          <input class="btn btn-outline-secondary" type="submit" value="로그인 ">
         </p>
         <p>
           <button class="btn btn-outline-danger" type="button" onclick="location.href = '/register_customer'">구매자 회원가입</button>

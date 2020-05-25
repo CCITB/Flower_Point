@@ -89,15 +89,85 @@
     <div class = "pd_detail"> <!-- 상품설명 디테일 -->
       <pre>
 
-상품 본문 글 입니다.
+        상품 본문 글 입니다.
 
 
 
-쓰는 만큼 늘어납니다.
+
+
+
+        쓰는 만큼 늘어납니다.
 
       </pre>
+</div>
+<div class="reviews">
+
+
+      <div class="review_list">
+        <ul>
+          <li class="user_review">
+
+            <div class="review_one">
+              <div class="user_profile">
+
+              </div>
+              <div class="review_text">
+                <div class="star_small">
+                  ★★★★★
+                </div>
+                <div class="status_user">
+                  <span class="text_info">ID</span>
+                  <span class="text_info">20.05.23</span>
+                  <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                </div>
+                <div class="user_write">
+                  <span class="writing">꽃이 너무 마음에 들어요</span>
+                </div>
+                <a href="#">더보기</a>
+              </div>
+            </div>
+
+            <div class="review_image">
+              이미지
+            </div>
+            <div class="review_good">
+              좋아요
+            </div>
+          </li>
+
+          <li class="user_review">
+
+            <div class="review_one">
+              <div class="user_profile">
+
+              </div>
+              <div class="review_text">
+                <div class="star_small">
+                  ★★★★★
+                </div>
+                <div class="status_user">
+                  <span class="text_info">ID</span>
+                  <span class="text_info">20.05.23</span>
+                  <span class ="text_info_option">제품 : 리시안셔스   옵션 : 꽃바구니</span>
+                </div>
+                <div class="user_write">
+                  <span class="writing">향기가 너무 좋아요</span>
+                </div>
+                <a href="#">더보기</a>
+              </div>
+            </div>
+
+            <div class="review_image">
+              이미지
+            </div>
+            <div class="review_good">
+              좋아요
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  @include('footer')
+@include('footer')
 </body>
 </html>
