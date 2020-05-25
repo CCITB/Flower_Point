@@ -1,0 +1,15 @@
+.price-container {
+  display: inline-block;
+  position: absolute;
+  width: 50%;
+  margin: auto 0;
+  text-align: right;
+  bottom: 0px;
+}
+.line-wrap{
+  position: relative;
+}
+.void-container{
+display: inline-block;
+width: 50%;
+}

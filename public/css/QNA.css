@@ -35,15 +35,7 @@ color: gray;
   color: red;
   text-decoration: none;
 }
-.myqna-num{
-text-align: center;
-display: inline-block;
-border: 1px solid gray;
-}
-.myqna-title{
-  text-align: center;
-  display:inline;
-}
+
 table{
   border-collapse: collapse;
   width: 100%;
@@ -55,5 +47,10 @@ th{
  /* border-left: 0px;
  border-right: 0px; */
 
+}
+.user-QnA td{
+  border: 1px solid pink;
+  width: 20%;
+  text-align: center;
 }
 /* FAQ.blade.phpcss 끝나는곳 */
