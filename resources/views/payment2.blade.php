@@ -13,37 +13,40 @@
       <h1 id="title"><a href="/">꽃갈피</a></h1>
     </div>
 
-    <div class="text">주문/결제</div>
+    <b><div class="text">주문/결제</div></b>
     <hr id="textline">
 
+<div class="containerbox">
 <!--정보기입창-->
 <div class="infobox">
-  <table class="customerinfo">
+  <div class="customerbox">
+  <table class="customerinfo" cellpadding="5" cellspacing="5" width: 100%>
     <tr>
       <th>주문고객</th>
       <td>곽승지(010-3371-6542)</td>
     </tr>
   </table>
-  <form class="" action="#" method="post">
+</div>
+<div class="customerbox2">
+  <form class="info" action="#" method="post">
     @csrf
     <label>수령인</label>
     <input class="recipient" type="text" name="recipient">
-
+    <div class="infodiv"></div>
     <label>전화번호</label>
     <input class="order_tel" type="text" name="order_tel">
-
+    <div class="infodiv"></div>
     <label>주 소</label>
     <input class="order_address" type="text" name="order_address">
-
+    <div class="infodiv"></div>
     <label>요청사항</label>
     <input class="request" type="text" name="request">
-
+    <div class="infodiv"></div>
   </form>
 </div>
-
+</div>
 
 <!--주문창-->
-    <div class="containerbox">
       <div class="orderbox">
         <div class="paybox">주문정보
           <hr>
@@ -86,5 +89,6 @@
       </div>
     </div>
   </div>
+  @include('footer')
 </body>
 </html>

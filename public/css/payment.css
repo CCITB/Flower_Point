@@ -7,7 +7,7 @@ body{
 /**/
 
 div.wrapping{
-  height: 800px;
+  height: 1000px;
   background: #ebebeb;
 }
 
@@ -16,7 +16,7 @@ div.topheader{
   height: 150px;
   background-color: #FFDDDD;
   position : relative;
-
+  margin-bottom: 20px;
 }
 
 h1#title{
@@ -31,19 +31,31 @@ div.text{
 margin-left:10em;
 }
 
+div.containerbox{
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
 hr#textline{
   border:solid 3px #f27979;
-  width:631px;
+  width:80%;
+  margin-bottom: 30px;
 }
 
 div.orderbox{
+    position: absolute;
     width: 300px;
     margin: 0 auto;
-    border: 2px ridge black;
+    border: 2px solid #333;
     background-color: white;
+    margin-left: 110%;
+    border-radius: 2px;
+    box-shadow: 10px 5px 5px gray;
 }
 
 div.paybox{
+  padding-top: 10px;
   width: 100%;
   text-align: center;
 }
@@ -54,7 +66,7 @@ div.payresult{
 
 
 table.tablebox{
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 }
 
 div.detail{
@@ -64,4 +76,31 @@ div.detail{
 
 div.ordertable{
   margin-bottom: 100px;
+}
+div.infobox{
+  position:absolute;
+  width: 350px;
+  margin-left: 50%;
+  height: 300px;
+}
+
+div.customerbox{
+  border: solid 1px #ebebeb;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 10px 5px 5px gray;
+  border-radius: 2px;
+}
+
+div.customerbox2{
+    border: solid 1px #ebebeb;
+    border-radius: 2px;
+    background-color: #fff;
+    line-height: 2.5;
+    box-shadow: 10px 5px 5px gray;
+}
+
+form.info{
+  padding: 10px;
+  display: block;
 }

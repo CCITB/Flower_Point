@@ -129,3 +129,18 @@ margin-bottom: 50px;
 .box_information{
   text-align: center;
 }
+.containerbox{
+  width: 100%;
+  background-color: #eee;
+  margin: 0 auto;
+}
+.paybox1{
+  width: 100%;
+}
+.paybox2{
+  position:relative;
+  width: auto;
+}
+.paytable{
+
+}

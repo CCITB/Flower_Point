@@ -90,6 +90,6 @@ Route::get('/sellermyshop', function () {
 Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
-Route::get('/Allprouct', function () {
-  return view('allproductpage');
+Route::get('/pay', function () {
+  return view('payment2');
 });
