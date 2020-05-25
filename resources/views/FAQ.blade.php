@@ -19,7 +19,7 @@
 
   <div class="frequently">
     <div class="frequently-qna">
-      <h3>자주 묻는 질문</h3>
+      <h3 style="margin-bottom: 50px;">자주 묻는 질문</h3>
     </div>
     <table class="frequently-qna">
       <tr onclick="faq_new(1)" class="faq-question">

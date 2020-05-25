@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">전체 상품 보기</button>
+        <button class="dropbtn" onclick="location.href= '/Allprouct'">전체 상품 보기</button>
         <div class="dropdown-content">
 
         </div>

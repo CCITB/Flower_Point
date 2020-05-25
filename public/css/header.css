@@ -92,14 +92,15 @@ a:hover{
   width: 1130px;
   margin: 0 auto;
   margin-top: 130px;
+  margin-bottom: 8px;
 }
 #line{
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 }
 
 
-body{ 
+body{
   min-width: 1260px;
   margin: 0px;
 }

@@ -19,13 +19,7 @@
 
     <div class="frequently">
       <div class="frequently-qna">
-        <div class="myqna-num">
-        block
-        </div>
-        <div class="myqna-title">
-          block
-        </div>
-        <table>
+        <table style="margin-top:50px;">
           <tr>
             <th>작성번호</th>
             <th>제목</th>
@@ -33,12 +27,12 @@
             <th>등록일</th>
             <th>답변상태</th>
           </tr>
-          <tr>
-            <th>1</th>
-            <th>꽃이안와요</th>
-            <th>꽃</th>
-            <th>2020.01.01</th>
-            <th>답변대기</th>
+          <tr class="user-QnA">
+            <td>1</td>
+            <td>꽃이안와요</td>
+            <td>꽃</td>
+            <td>2020.01.01</td>
+            <td>답변대기</td>
           </tr>
         </table>
         <div class="nav-page">
