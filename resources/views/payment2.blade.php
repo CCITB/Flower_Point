@@ -60,9 +60,9 @@
           <!--상품 정보창-->
           <div class="product_data">
             <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-            <table>
+            <table cellpadding="10" cellspacing="10" width="300px">
               <tr>
-                <td><img class="product_image" src="flower1.jpg" alt="Flower Image"></td>
+                <td><img class="product_image" src="dummy.jpg" alt="Flower Image" width="100px" height="100px"></td>
                 <td>상품명 : p_name</td>
               </tr>
             </table>
@@ -70,11 +70,11 @@
 
           <!--결제창-->
           <div class="pay_data">
-            <table>
+            <table cellpadding="5" cellspacing="5" width="100%">
               <label>무통장 입금</label>
               <th><li>은행 선택</li></th>
               <td>
-              <select name=bank>
+              <select name=bank margin-left:10px;>
                 <option value="">은행을 선택해주세요</option>
                 <option value="농협">농협</option>
                 <option value="국민은행">국민은행</option>

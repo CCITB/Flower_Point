@@ -7,6 +7,9 @@ h1.titles {
   margin:0;
 }
 
+li{
+  list-style: none;
+}
 /**/
 
 div.wrapping{
@@ -69,8 +72,8 @@ div.containerbox{
 }
 
 input.inputtext{
-  height:14px;
-  padding:10px;
+  margin-left: 30px;
+  width: 15em;
 }
 
 table{
@@ -186,9 +189,4 @@ th{
 }
 td{
   text-align:right;
-}
-
-input.inputtext{
-  margin-left:30px;
-  width:15em;
 }
