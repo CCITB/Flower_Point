@@ -27,7 +27,7 @@
             <button class="convenience" type="button" onclick="location.href = '/myqna'">문의하기</button>
           </div>
         </div>
-        <hr>
+        <hr class="option_line">
 
         <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
           <div class="shop_name"><a href="/해당매장">ccit 1</a></div>
@@ -86,7 +86,31 @@
     </div>
 
 
+
+
+    <div class="detail_tabs">
+      <ul class="tab_table" role="tablist">
+        <li class="detail_tab" role="presentation">
+          <a class="detail_tab_link" role="tab" aria-selected="false" href="#dtil">상세정보</a>
+        </li>
+        <li class="purchase_review_tab" role="presentation">
+          <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#revw">리뷰</a>
+        </li>
+        <li class="qna_tab" role="presentation">
+          <a class="qna_tab_link" role="tab" aria-selected="false" href="#que">문의하기</a>
+        </li>
+        <li class="claim_info_tab" role="presentation">
+          <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#clm">반품/교환정보</a>
+        </li>
+      </ul>
+    </div>
+
+
+
     <div class = "pd_detail"> <!-- 상품설명 디테일 -->
+      <div class="pd_detail_title">
+        <h3 class="blind" id="dtil">상품리뷰</h3>
+      </div>
       <pre>
 
         상품 본문 글 입니다.
@@ -96,102 +120,189 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         쓰는 만큼 늘어납니다.
-
       </pre>
-</div>
-<div class="reviews">
+    </div>
 
-<div class="detail_tabs">
-  <ul class="tab_table" role="tablist">
-    <li class="detail_tab" role="presentation">
-      <a class="detail_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
-    </li>
-    <li class="purchase_review_tab" role="presentation">
-      <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#">리뷰</a>
-    </li>
-    <li class="qna_tab" role="presentation">
-      <a class="qna_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
-    </li>
-    <li class="claim_info_tab" role="presentation">
-      <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#">반품/교환정보</a>
-    </li>
-  </ul>
-
-
-</div>
-
-
-
-
-
-
-
+    <div class="reviews">
+      <div class="review_title">
+        <h3 class="title_detail">
+          <em class="anchor" id="revw"></em>
+          상품 리뷰
+        </h3>
+        <p class ="revw_introduction">
+          상품을 구매하신 분들이 작성한 리뷰입니다.
+        </p>
+      </div>
       <div class="review_list">
         <ul>
           <li class="user_review">
-
             <div class="review_one">
-              <div class="user_profile">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
 
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
               </div>
-              <div class="review_text">
-                <div class="star_small">
-                  <span class="stars">★★★★★</span>
-                </div>
-                <div class="status_user">
-                  <span class="text_info">ID</span>
-                  <span class="text_info">20.05.23</span>
-                  <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                </div>
-                <div class="user_write">
-                  <span class="writing">꽃이 너무 마음에 들어요</span>
-                </div>
-                <a href="#">더보기</a>
-              </div>
-            </div>
 
-            <div class="review_image">
-              이미지
-            </div>
-            <div class="review_good">
-              좋아요
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
+              </div>
             </div>
           </li>
 
           <li class="user_review">
-
             <div class="review_one">
-              <div class="user_profile">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
 
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
               </div>
-              <div class="review_text">
-                <div class="star_small">
-                  ★★★★★
-                </div>
-                <div class="status_user">
-                  <span class="text_info">ID</span>
-                  <span class="text_info">20.05.23</span>
-                  <span class ="text_info_option">제품 : 리시안셔스   옵션 : 꽃바구니</span>
-                </div>
-                <div class="user_write">
-                  <span class="writing">향기가 너무 좋아요</span>
-                </div>
-                <a href="#">더보기</a>
+
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
               </div>
             </div>
+          </li>
 
-            <div class="review_image">
-              이미지
-            </div>
-            <div class="review_good">
-              좋아요
+          <li class="user_review">
+            <div class="review_one">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
+              </div>
+
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
+              </div>
             </div>
           </li>
         </ul>
       </div>
     </div>
+
+    <div class="pd_qna">
+      <div class="qna_title">
+        <h3 class="qna_title_detail">
+          <em class="anchor" id="que"></em>
+          문의하기
+        </h3>
+      </div>
+      내용
+    </div>
+
+
+
+    <div class="pd_component">
+      <div class="comp_title">
+        <h3 class="comp_title_detail">
+          <em class="anchor" id="clm"></em>
+          반품/교환정보
+        </h3>
+      </div>
+      내용
+    </div>
+
+
+
+
+
   </div>
-@include('footer')
+  @include('footer')
 </body>
 </html>
