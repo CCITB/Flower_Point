@@ -99,27 +99,27 @@
         쓰는 만큼 늘어납니다.
 
       </pre>
-</div>
-<div class="reviews">
+    </div>
+    <div class="reviews">
 
-<div class="detail_tabs">
-  <ul class="tab_table" role="tablist">
-    <li class="detail_tab" role="presentation">
-      <a class="detail_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
-    </li>
-    <li class="purchase_review_tab" role="presentation">
-      <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#">리뷰</a>
-    </li>
-    <li class="qna_tab" role="presentation">
-      <a class="qna_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
-    </li>
-    <li class="claim_info_tab" role="presentation">
-      <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#">반품/교환정보</a>
-    </li>
-  </ul>
+      <div class="detail_tabs">
+        <ul class="tab_table" role="tablist">
+          <li class="detail_tab" role="presentation">
+            <a class="detail_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
+          </li>
+          <li class="purchase_review_tab" role="presentation">
+            <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#">리뷰</a>
+          </li>
+          <li class="qna_tab" role="presentation">
+            <a class="qna_tab_link" role="tab" aria-selected="false" href="#">상세정보</a>
+          </li>
+          <li class="claim_info_tab" role="presentation">
+            <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#">반품/교환정보</a>
+          </li>
+        </ul>
 
 
-</div>
+      </div>
 
 
 
@@ -191,7 +191,60 @@
         </ul>
       </div>
     </div>
+    <table class="qna-table">
+      <tr>
+        <th>번호</th>
+        <th>문의/답변</th>
+        <th>답변상태</th>
+        <th>작성자</th>
+        <th>작성일</th>
+      </tr>
+      <tr>
+        <td class="qna-index">1</td>
+        <td class="qna-content">내용</td>
+        <td class="qna-condition">답변완료</td>
+        <td class="qna-writer">ccit1</td>
+        <td class="qna-date">2020.01.01</td>
+      </tr>
+      <tr>
+        <td class="qna-index">2</td>
+        <td class="qna-content">내용</td>
+        <td class="qna-condition">답변완료</td>
+        <td class="qna-writer">ccit1</td>
+        <td class="qna-date">2020.01.01</td>
+      </tr>
+    </table>
+    <div class="qna-product-btn">
+      <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+    </div>
+    <div id="qna-inquiry1" class="faq_an">
+      문의하기
+      <form class="" action="index.html" method="post">
+        <textarea name="name" rows="8" cols="80"></textarea>
+        <div class="bottom-btn">
+          <button type="button" name="button" class="qna-submit-btn">저장</button>
+          <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+        </div>
+      </form>
+    </div>
   </div>
-@include('footer')
+<style>
+
+</style>
+  @include('footer')
 </body>
 </html>
+<script>
+// 상품문의하기 클릭시에 나타나는 input 공간
+function qna_new(num) {
+	if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+  {
+		$("#qna-inquiry"+num).removeClass("faq_an_show");
+	}
+  else
+  {
+		$(".faq_an").removeClass("faq_an_show");
+		$("#qna-inquiry"+num).addClass("faq_an_show");
+	}
+}
+</script>
