@@ -4,17 +4,20 @@ body{
   margin: 0px;
 }
 
+a{
+
+}
 /**/
 
 div.wrapping{
   height: 1000px;
-  background: #ebebeb;
+  background:#FCD3D1;
 }
 
 /*head*/
 div.topheader{
   height: 150px;
-  background-color: #FFDDDD;
+  background-color: #3A3A3A;
   position : relative;
   margin-bottom: 20px;
 }
@@ -25,16 +28,22 @@ h1#title{
   position : absolute;
   top:30%;
   left:3%;
+  color: #ffffff;
 }
 
 div.text{
 display: block;
 border-bottom: 2px solid #ffb0b0;
 position: relative;
-width: 80%;
+width: 60%;
 margin: 0 auto;
+padding-bottom: 15px;
 }
 
+span.title{
+  font-weight: bold;
+  font-size: 24px;
+}
 
 .titlepage{
   letter-spacing: -1px;
@@ -44,6 +53,13 @@ margin: 0 auto;
 
 .page-sorting{
   float: right;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+span.current-page{
+  color: red;
 }
 
 div.containerbox{
@@ -64,21 +80,29 @@ input.inputtext{
   padding:10px;
 }
 
+table{
+  border-collapse: collapse;
+}
+
 div.orderbox{
     position: absolute;
     width: 300px;
     margin: 0 auto;
-    border: 2px solid #333;
+    border: 1px solid #333;
     background-color: #fff;
     margin-left: 110%;
     border-radius: 2px;
-    box-shadow: 10px 5px 5px gray;
 }
 
 div.paybox{
   padding-top: 10px;
   width: 100%;
   text-align: center;
+}
+
+
+hr.line1{
+  border-top: dotted  black 2px;
 }
 
 div.payresult{
@@ -88,11 +112,14 @@ div.payresult{
 
 table.tablebox{
   margin-bottom: 35px;
+
 }
 
 div.detail{
   color: red;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
+  margin-left: 100px;
+  font-size: 7px;
 }
 
 div.ordertable{
@@ -109,16 +136,14 @@ div.customerbox{
   border: solid 1px #ebebeb;
   background-color: #fff;
   margin-bottom: 20px;
-  box-shadow: 10px 5px 5px gray;
-  border-radius: 2px;
+  border-radius: 7px;
 }
 
 div.customerbox2{
     border: solid 1px #ebebeb;
-    border-radius: 2px;
+    border-radius: 7px;
     background-color: #fff;
     line-height: 2.5;
-    box-shadow: 10px 5px 5px gray;
     position: relative;
 }
 
@@ -126,4 +151,5 @@ form.info{
   padding: 10px;
   display: block;
   position: relative;
+  margin-left: 20%;
 }
