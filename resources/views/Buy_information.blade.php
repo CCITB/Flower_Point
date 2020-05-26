@@ -283,7 +283,48 @@
           문의하기
         </h3>
       </div>
-      내용
+      <table class="qna-table">
+            <tr>
+              <th>번호</th>
+              <th>문의/답변</th>
+              <th>답변상태</th>
+              <th>작성자</th>
+              <th>작성일</th>
+            </tr>
+            <tr>
+              <td class="qna-index">1</td>
+              <td class="qna-content">내용</td>
+              <td class="qna-condition">답변완료</td>
+              <td class="qna-writer">ccit1</td>
+              <td class="qna-date">2020.01.01</td>
+            </tr>
+            <tr>
+              <td class="qna-index">2</td>
+              <td class="qna-content">내용</td>
+              <td class="qna-condition">답변완료</td>
+              <td class="qna-writer">ccit1</td>
+              <td class="qna-date">2020.01.01</td>
+            </tr>
+          </table>
+          <div class="qna-product-btn">
+            <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+          </div>
+          <div id="qna-inquiry1" class="faq_an">
+            문의하기
+            <form class="" action="index.html" method="post">
+              <textarea name="name" rows="8" cols="80"></textarea>
+              <div class="bottom-btn">
+                <button type="button" name="button" class="qna-submit-btn">저장</button>
+                <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+              </div>
+            </form>
+          </div>
+
+
+
+
+
+
     </div>
 
 
@@ -305,4 +346,18 @@
   </div>
   @include('footer')
 </body>
+<script>
+// 상품문의하기 클릭시에 나타나는 input 공간
+function qna_new(num) {
+	if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+  {
+		$("#qna-inquiry"+num).removeClass("faq_an_show");
+	}
+  else
+  {
+		$(".faq_an").removeClass("faq_an_show");
+		$("#qna-inquiry"+num).addClass("faq_an_show");
+	}
+}
+</script>
 </html>
