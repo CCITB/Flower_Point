@@ -8,13 +8,13 @@ body{
 
 div.wrapping{
   height: 1000px;
-  background: #ebebeb;
+  background:#ECE4E2;
 }
 
 /*head*/
 div.topheader{
   height: 150px;
-  background-color: #FFDDDD;
+  background-color: #FCD3D1;
   position : relative;
   margin-bottom: 20px;
 }
@@ -31,10 +31,15 @@ div.text{
 display: block;
 border-bottom: 2px solid #ffb0b0;
 position: relative;
-width: 80%;
+width: 60%;
 margin: 0 auto;
+padding-bottom: 15px;
 }
 
+span.title{
+  font-weight: bold;
+  font-size: 24px;
+}
 
 .titlepage{
   letter-spacing: -1px;
@@ -44,6 +49,13 @@ margin: 0 auto;
 
 .page-sorting{
   float: right;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+span.current-page{
+  color: red;
 }
 
 div.containerbox{
@@ -72,7 +84,6 @@ div.orderbox{
     background-color: #fff;
     margin-left: 110%;
     border-radius: 2px;
-    box-shadow: 10px 5px 5px gray;
 }
 
 div.paybox{
@@ -85,6 +96,8 @@ div.payresult{
     text-align: center;
 }
 
+#paypay{ border-top: 1px solid black;
+}
 
 table.tablebox{
   margin-bottom: 35px;
@@ -92,7 +105,9 @@ table.tablebox{
 
 div.detail{
   color: red;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
+  margin-left: 100px;
+  font-size: 7px;
 }
 
 div.ordertable{
@@ -109,7 +124,7 @@ div.customerbox{
   border: solid 1px #ebebeb;
   background-color: #fff;
   margin-bottom: 20px;
-  box-shadow: 10px 5px 5px gray;
+  box-shadow: 3px 1px 1px gray;
   border-radius: 2px;
 }
 
@@ -118,7 +133,7 @@ div.customerbox2{
     border-radius: 2px;
     background-color: #fff;
     line-height: 2.5;
-    box-shadow: 10px 5px 5px gray;
+    box-shadow: 3px 1px 1px gray;
     position: relative;
 }
 
@@ -126,4 +141,5 @@ form.info{
   padding: 10px;
   display: block;
   position: relative;
+  text-align: center;
 }

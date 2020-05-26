@@ -37,18 +37,24 @@
 <div class="customerbox2">
   <form class="info" action="#" method="post">
     @csrf
-    <label>수령인</label>
-    <input class="inputtext" type="text" name="recipient">
-    <div class="infodiv"></div>
-    <label>전화번호</label>
-    <input class="inputtext" type="text" name="order_tel">
-    <div class="infodiv"></div>
-    <label>주 소</label>
-    <input class="inputtext" type="text" name="order_address">
-    <div class="infodiv"></div>
-    <label>요청사항</label>
-    <input class="inputtext" type="text" name="request">
-    <div class="infodiv"></div>
+    <table>
+      <tr>
+        <td><label>수령인</label></td>
+        <td><input class="inputtext" type="text" name="recipient"></td>
+      </tr>
+      <tr>
+        <td><label>전화번호</label></td>
+        <td><input class="inputtext" type="text" name="order_tel"></td>
+      </tr>
+      <tr>
+        <td><label>주 소</label></td>
+        <td><input class="inputtext" type="text" name="order_address"></td>
+      </tr>
+      <tr>
+        <td><label>요청사항</label></td>
+        <td><input class="inputtext" type="text" name="request"></td>
+      </tr>
+    </table>
   </form>
 </div>
 </div>
@@ -73,7 +79,6 @@
         </div>
 
         <div class="payresult">결제정보
-          <hr>
           <div class="paymentbox">
             <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
               <tr>
@@ -84,13 +89,13 @@
                 <th>배송비</th>
                 <td>o_delivery</td>
               </tr>
-              <div class="paypay">
-                <tr>
+
+                <tr id="paypay">
                   <th>결제금액</th>
                   <td>p_price + o_delivery</td>
                 </tr>
+
               </table>
-            </div>
           </div>
         </div><!--결제정보 -->
       </div>
