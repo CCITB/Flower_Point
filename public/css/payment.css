@@ -4,17 +4,20 @@ body{
   margin: 0px;
 }
 
+a{
+
+}
 /**/
 
 div.wrapping{
   height: 1000px;
-  background:#ECE4E2;
+  background:#FCD3D1;
 }
 
 /*head*/
 div.topheader{
   height: 150px;
-  background-color: #FCD3D1;
+  background-color: #3A3A3A;
   position : relative;
   margin-bottom: 20px;
 }
@@ -25,6 +28,7 @@ h1#title{
   position : absolute;
   top:30%;
   left:3%;
+  color: #ffffff;
 }
 
 div.text{
@@ -76,11 +80,15 @@ input.inputtext{
   padding:10px;
 }
 
+table{
+  border-collapse: collapse;
+}
+
 div.orderbox{
     position: absolute;
     width: 300px;
     margin: 0 auto;
-    border: 2px solid #333;
+    border: 1px solid #333;
     background-color: #fff;
     margin-left: 110%;
     border-radius: 2px;
@@ -92,15 +100,19 @@ div.paybox{
   text-align: center;
 }
 
+
+hr.line1{
+  border-top: dotted  black 2px;
+}
+
 div.payresult{
     text-align: center;
 }
 
-#paypay{ border-top: 1px solid black;
-}
 
 table.tablebox{
   margin-bottom: 35px;
+
 }
 
 div.detail{
@@ -124,16 +136,14 @@ div.customerbox{
   border: solid 1px #ebebeb;
   background-color: #fff;
   margin-bottom: 20px;
-  box-shadow: 3px 1px 1px gray;
-  border-radius: 2px;
+  border-radius: 7px;
 }
 
 div.customerbox2{
     border: solid 1px #ebebeb;
-    border-radius: 2px;
+    border-radius: 7px;
     background-color: #fff;
     line-height: 2.5;
-    box-shadow: 3px 1px 1px gray;
     position: relative;
 }
 
@@ -141,5 +151,5 @@ form.info{
   padding: 10px;
   display: block;
   position: relative;
-  text-align: center;
+  margin-left: 20%;
 }

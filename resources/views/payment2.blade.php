@@ -18,9 +18,9 @@
   <div class="page-sorting">
 					<a href="#"><span>상품선택</span></a>
 					<span>&gt;</span>
-					<span class="current-page">주문결제</span>
+					<span class="current-page">주문/결제</span>
 					<span>&gt;</span>
-					<span>주문 완료</span>
+					<a href="#"><span>주문 완료</span></a>
 				</div>
 </div>
 <div class="containerbox">
@@ -61,8 +61,11 @@
 
 <!--주문창-->
       <div class="orderbox">
-        <div class="paybox">주문정보
-          <hr>
+        <div class="paybox">
+          <div class="orderinfo">
+            주문정보
+          </div>
+          <hr class="line1">
           <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
             <tr>
               <th>주문자</th>
@@ -78,7 +81,10 @@
           </div>
         </div>
 
-        <div class="payresult">결제정보
+        <div class="payresult">
+          <div class="payinfo">결제정보
+          </div>
+          <hr class="line1">
           <div class="paymentbox">
             <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
               <tr>
@@ -101,6 +107,7 @@
       </div>
     </div>
   </div>
+</div>
   @include('footer')
 </body>
 </html>
