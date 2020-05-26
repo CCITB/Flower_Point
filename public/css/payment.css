@@ -4,7 +4,7 @@ body{
   margin:0;
 }
 h1.titles {
-    margin:0;
+  margin:0;
 }
 
 /**/
@@ -80,11 +80,10 @@ table{
 div.orderbox{
   position: absolute;
   width: 300px;
-  height:530px;
+  height:570px;
   margin: 0 auto;
   border-top: 2px solid #595959;
   border-bottom: 2px solid #595959;
-  border-radius: 2px;
   background-color: #f5f5f5;
   margin-left: 110%;
   border-radius: 2px;
@@ -102,7 +101,7 @@ hr.line1{
   border-top: dotted  gray 2px;
 }
 hr.line2{
-  border-top: solid  black 2px;
+  border-top: solid  gray 2px;
 }
 
 div.payresult{
@@ -112,7 +111,7 @@ div.payresult{
 
 table.tablebox{
   margin-bottom: 35px;
-
+  border-bottom: none;
 }
 
 div.detail{
@@ -151,7 +150,22 @@ form.info{
   padding: 10px;
   display: block;
   position: relative;
-  margin-left: 20%;
+}
+
+div.product_data{
+  padding:10px;
+  margin-top:20px;
+  border: solid 1px #d6d6d6;
+}
+
+div.pay_data{
+  border: solid 1px #d6d6d6;
+  margin-top:20px;
+  padding:10px;
+}
+
+div.line{
+  margin:20px;
 }
 
 input[type=checkbox]{
@@ -162,6 +176,9 @@ input[type=checkbox]{
 input[type=submit]{
   background:#ea9999ff;
   color:#ffffff;
+  width:16em;
+  height:4em;
+  border:none;
 }
 
 th{
@@ -169,4 +186,9 @@ th{
 }
 td{
   text-align:right;
+}
+
+input.inputtext{
+  margin-left:30px;
+  width:15em;
 }

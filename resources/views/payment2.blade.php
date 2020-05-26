@@ -5,7 +5,6 @@
   <title>결제</title>
   <link rel="stylesheet" href="/css/payment.css">
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" type="text/css" href="/css/buy_information.css">
 </head>
 <body>
   <div class="wrapping">
@@ -35,32 +34,64 @@
           </table>
         </div>
         <div class="customerbox2">
+          <!--결제 정보 창-->
           <form class="info" action="#" method="post">
             @csrf
             <table>
               <tr>
-                <td><label>수령인</label></td>
+                <th>수령인</th>
                 <td><input class="inputtext" type="text" name="recipient"></td>
               </tr>
               <tr>
-                <td><label>전화번호</label></td>
+                <th>전화번호</th>
                 <td><input class="inputtext" type="text" name="order_tel"></td>
               </tr>
               <tr>
-                <td><label>주 소</label></td>
+                <th>주 소</th>
                 <td><input class="inputtext" type="text" name="order_address"></td>
               </tr>
               <tr>
-                <td><label>요청사항</label></td>
+                <th>요청사항</th>
                 <td><input class="inputtext" type="text" name="request"></td>
               </tr>
             </table>
           </div>
-        <div class="">
 
-        </div>
-        </div>
+          <!--상품 정보창-->
+          <div class="product_data">
+            <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+            <table>
+              <tr>
+                <td><img class="product_image" src="flower1.jpg" alt="Flower Image"></td>
+                <td>상품명 : p_name</td>
+              </tr>
+            </table>
+          </div>
 
+          <!--결제창-->
+          <div class="pay_data">
+            <table>
+              <label>무통장 입금</label>
+              <th><li>은행 선택</li></th>
+              <td>
+              <select name=bank>
+                <option value="">은행을 선택해주세요</option>
+                <option value="농협">농협</option>
+                <option value="국민은행">국민은행</option>
+                <option value="우리은행">우리은행</option>
+                <option value="하나은행">하나은행</option>
+                <option value="신한은행">신한은행</option>
+                <option value="외한은행">외한은행</option>
+                <option value="씨티은행">씨티은행</option>
+                <option value="기업은행">기업은행</option>
+                <option value="우체국">우체국</option>
+                <option value="부산은행">부산은행</option>
+                <option value="SC은행">SC은행</option>
+              </select>
+              </td>
+            </table>
+          </div>
+        </div>
         <!--주문창-->
         <div class="orderbox">
           <div class="paybox">
@@ -74,8 +105,8 @@
                 <td>c_name</td>
               </tr>
               <tr>
-                <th>c_phonenum</th>
-                <td>c_tel</td>
+                <th>연락처</th>
+                <td>c_phonenum</td>
               </tr>
             </table>
             <div class="detail">
@@ -102,14 +133,15 @@
                   <td>p_price + p_delivery</td>
                 </tr>
               </table>
-              <hr class="line1">
+              <hr class="line2">
             </form>
-            <div><input class="check" type="checkbox" name="ck" id="ck">주문내역확인 동의(필수)</div>
-            <div><input class="end" type='submit' value="다음"></div>
+            <div class="line"><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</div>
+            <div class="line"><input class="end" type='submit' value="다음"></div>
           </div>
         </div><!--결제정보 -->
       </div><!--오른쪽 주문정보 박스 -->
-    </div>
+    </div><!--컨테이너박스-->
   </div>
+</div>
 </body>
 </html>
