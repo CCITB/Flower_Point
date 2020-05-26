@@ -25,9 +25,14 @@ Route::get('/register_customer','MainController@register_costomer');
 
 Route::get('/register_seller','MainController@register_seller');
 
-Route::post('/register_OverlapID', 'RegisterController@overlapID');
+//중복 검사
+Route::post('/seller_OverlapID', 'RegisterController@s_overlapID');
 
-Route::post('/register_OverlapPW', 'RegisterController@overlapPW');
+Route::post('/seller_OverlapPW', 'RegisterController@s_overlapPW');
+
+Route::post('/customer_OverlapID', 'RegisterController@c_overlapID');
+
+Route::post('/customer_OverlapPW', 'RegisterController@c_overlapPW');
 
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 

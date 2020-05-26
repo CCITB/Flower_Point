@@ -7,6 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>꽃갈피 - 구매자 회원가입</title>
   <link rel="stylesheet" type="text/css" href="/css/sign_up.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
@@ -38,9 +39,6 @@
         <input class="inf1" type="text" placeholder="Phone Number" id="phonenum" name="c_phonenum" >
         <div class="check_div" id="phonenum_check" style="height:45px;" value=""></div>
 
-        <label>주소</label>
-        <input class="inf1" type="text" placeholder="address" id="address" name="c_address" >
-
         <label>생년월일</label>
         <input class="inf1" type="text" placeholder="ex)200514" id="birth" name="c_birth">
 
@@ -64,58 +62,150 @@
       </form>
     </div>
   </body>
-
+  </html>
     <script type="text/javascript">
-    //onsubmit -- 어지수
-    function validatate(){
-      //Input
-      var id = document.getElementById("id");
-      var password = document.getElementById("new_pw");
-      var re_password = document.getElementById("check");
-      var name = document.getElementById("name");
-      var phonenum = document.getElementById("phonenum");
-      var gender = document.getElementById("gender");
-      //var birth
-      var address = document.getElementById("address");
-      var email = document.getElementById("email");
+    // jQuery -- 어지수
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $("#id").blur(function() {
+      checkIdInput();
+    });//blur
+    $("#pw").blur(function() {
+      checkPwInput();
+    });//blur
+    $("#check").blur(function() {
+      checkRePwInput();
+    });//blur
+
+    function checkIdInput(){
+      var customer_id = $('#id').val();
 
       //정규식
-      var id_validate = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
-      var pw_validate = RegExp(/^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/);
-      var phone_balidate = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-      //유효성
-      if(!id_validate.test(id.value)){
-        alert('5~20자리의 영문 대소문자와 특수기호 (-),(_)만 사용가능합니다.');
-        return false;
-      }
-      if((id.value)==""){
-        alert('아이디 입력해주세요.');
-        id.focus();
-        return false;
-      }
-      if(!pw_validate.test(password.value)){
-        alert('8~16자리의 영문 대소문자와 특수기호만 사용가능합니다.');
-        return false;
-      }
-      if(password.value!=re_password.value){
-        alert('비밀번호가 일치하지 않습니다.');
-        return false;
-      }
-      if((name.value)==""){
-        alert('이름을 입력해주세요.');
-        return false;
-      }
-      if((phonenum.value)==""){
-        alert('휴대폰 번호를 입력해주세요.');
-        return false;
-      }
-      if((address.value)==""){
-        alert('주소를 입력해주세요.');
-        return false;
-      }
-      else {
-        alert('회원가입되었습니다.');
-        return true;
-      }
+      var idJ = /^[a-z0-9_\-]{5,20}$/;
+
+      //var phoneJ = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+
+      console.log(customer_id);
+      $.ajax({
+
+        type: 'post',
+        url: 'customer_OverlapID',
+        dataType: 'json',
+        data: { "id":customer_id },
+
+        success : function(data) {
+          console.log(data);
+          //ID 중복O
+          if(data>=1){
+            $('#id_check').text('이미 사용중인 아이디입니다.');
+            $('#id_check').css('color', 'red');
+            //return false;
+          }
+
+          //ID 중복X
+          if(data<1){
+            //정규식 일치O
+            if(idJ.test(customer_id)){
+              $("#id_check").text("사용가능한 아이디입니다!");
+              $('#id_check').css('color', 'green');
+              //return true;
+            }
+            //정규식 일치X
+            if(!idJ.test(customer_id)){
+              $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
+              $('#id_check').css('color', 'red');
+              //return false;
+            }
+          }
+          //ID 공백체크
+          if(customer_id == ""){
+            $('#id_check').text('필수 정보입니다.');
+            $('#id_check').css('color', 'red');
+            //return false;
+          }
+
+        }//success
+        ,error : function() {   console.log("실패");  }
+      }) //ajax
+    }
+    function checkPwInput(){
+
+      var customer_pw = $('#pw').val();
+      var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+
+      $.ajax({
+
+        type: 'post',
+        url: 'customer_OverlapPW',
+        dataType: 'json',
+        data: { "pw":customer_pw },
+
+        success : function(data) {
+          console.log(data);
+          //PW 정규식 일치O
+          if(pwJ.test(customer_pw)){
+            $("#pw_check").text("");
+            $('#pw_check').css('color', 'red');
+            //return true;
+          }
+          //PW 공백 체크
+          else if(customer_pw == ""){
+            $('#pw_check').text('비밀번호를 입력해주세요.');
+            $('#pw_check').css('color', 'red');
+            //return false;
+          }
+          //PW 정규식 일치X
+          else{
+            $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
+            $('#pw_check').css('color', 'red');
+          //  return false;
+          }
+
+        }//success
+        ,error : function() {  console.log("pw실패");  }
+      }) //ajax
+    }
+    function checkRePwInput(){
+      var customer_re_pw = $('#check').val();
+      var customer_pw = $('#pw').val();
+      $.ajax({
+
+        type: 'post',
+        url: 'customer_OverlapPW',
+        dataType: 'json',
+        data: { "pw":customer_pw },
+
+        success : function(data) {
+          console.log(data);
+
+          //PW 공백
+          if(customer_re_pw==""){
+            $("#re_pw_check").text("필수 정보입니다.");
+            $('#re_pw_check').css('color', 'red');
+            // return false;
+          }
+
+          //PW와 일치O
+          else if(customer_re_pw==customer_pw){
+            $("#re_pw_check").text("비밀번호가 일치합니다.");
+            $('#re_pw_check').css('color', 'green');
+            //return true;
+          }
+
+          //PW와 일치X
+          else
+          {
+            $("#re_pw_check").text("비밀번호가 일치하지 않습니다.");
+            $('#re_pw_check').css('color', 'red');
+            //return false;
+          }
+
+        }//success
+        ,error : function() {  console.log("pw실패");  }
+      }) //ajax
     }
     </script>

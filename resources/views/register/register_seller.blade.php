@@ -96,7 +96,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'register_OverlapID',
+      url: 'seller_OverlapID',
       dataType: 'json',
       data: { "id":seller_id },
 
@@ -144,7 +144,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'register_OverlapPW',
+      url: 'seller_OverlapPW',
       dataType: 'json',
       data: { "pw":seller_pw },
 
@@ -180,7 +180,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'register_OverlapPW',
+      url: 'seller_OverlapPW',
       dataType: 'json',
       data: { "pw":seller_pw },
 
@@ -213,45 +213,6 @@
       ,error : function() {  console.log("pw실패");  }
     }) //ajax
   }
-
-  function checkNameInput(){
-    var seller_name = $('#name').val();
-
-    //정규식 (스페이스바)
-    var nameJ = /^[가-힣]|[a-zA-Z]\s[a-zA-Z]$/;
-    var emptyJ = /[~!@#$%^&*()_+|<>?:{}\s]/g;
-
-    console.log(seller_name);
-    $.ajax({
-
-      type: 'post',
-      url: 'register_OverlapID',
-      dataType: 'json',
-      data: {  },
-
-      success : function(data) {
-        //특수문자, 스페이스바 체크
-        if(!nameJ.test(seller_name)&&emptyJ.test(seller_name)){
-          $("#name_check").text(
-            "한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
-          $('#name_check').css('color', 'red');
-          //return false;
-        }
-        // 공백체크
-        if(seller_name==""){
-          $('#name_check').text('필수 정보입니다.');
-          $('#name_check').css('color', 'red');
-          //return false;
-        }
-        if(nameJ.test(seller_name)){
-          $("#name_check").text("");
-          //  return true;
-        }
-      }//success
-      ,error : function() {  console.log("실패");  }
-    }) //ajax
-  }
-
   //onsubmit -- 어지수
   function validatate(){
     //Input
