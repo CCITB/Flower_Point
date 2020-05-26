@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
     //database insert
     if($sellers<1){
-       DB::table('seller')->insert([
+      DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
         's_password' => $request->input('s_password'),
         's_name' => $request->input('s_name'),
@@ -55,27 +55,36 @@ class RegisterController extends Controller
       //code...
     }
   }
-
+  //[resister_seller jQuery부분] PW일치여부 -- 어지수
+  public function s_overlapPW(Request $request)
+  {
+    $overlap_pw = $request->input('pw');
+    return response()->json($overlap_pw);
+  }
 
   //[register_seller jQuery부분] ID중복검사 -- 어지수
-  public function index(Request $request)
+  public function s_overlapID(Request $request)
   {
     $input = $request->input('id');
     $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
     return response()->json($sellers);
-
-    // if($input != NULL)
-    // {
-    //   if($sellers<1){
-    //     return response()->json(['success'=>'아이디가 중복되지 않았습니다.']);
-    //   }
-    //   else{
-    //     return response()->json(['success'=>'아이디가 중복됩니다.']);
-    //   }
-    // }
+  }
+  //[resister_seller jQuery부분] PW일치여부 -- 어지수
+  public function c_overlapPW(Request $request)
+  {
+    $overlap_pw2 = $request->input('pw');
+    return response()->json($overlap_pw2);
   }
 
-  //
+  //[register_customer jQuery부분] ID중복 검사 --어지수
+  public function c_overlapID(Request $request)
+  {
+    $input = $request->input('id');
+    $customers = DB::table('customer')-> where('c_id','=',$input)->get()->count();
+    return response()->json($customers);
+  }
+
+
   public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
   {
     $seller_id = $login->get('login_id');
