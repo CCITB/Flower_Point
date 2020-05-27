@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-<!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
+        <!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
         <!-- <button class="browse-btn">사진업로드</button> -->
 
 
@@ -134,10 +134,11 @@ function chk_file_type(el) {
     document.getElementById("real-input").value = "";    //초기화를 위한 추가 코드
     document.getElementById("real-input").select();        //초기화를 위한 추가 코드                                               //일부 브라우저 미지원
   }
-  else readURL(el);
-  $("#real-input").change(function(){
-    readURL(this);
-  });
+  else{readURL(el);
+    $("#real-input").change(function(){
+      readURL(this);
+    });
+  }
 }
 // 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
 function readURL(el) {
