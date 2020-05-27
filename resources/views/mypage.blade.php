@@ -106,7 +106,7 @@
             <div class="quickbuttonwrap">
                 <div class="quickgroup"><a href="/locate1">
                     <div class="quickbutton">
-                        <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
+                        <img src="/imglib/goflowershop" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>내 주변 꽃집</h1>
                         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="quickgroup"><a href="/mypage1">
                     <div class="quickbutton">
-                        <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
+                        <img src="imglib/orderlist.png" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>내 주문관리</h1>
                         </div>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="quickgroup"><a href="#">
                     <div class="quickbutton">
-                        <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
+                        <img src="imglib/coupon.png" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>쿠폰관리</h1>
                         </div>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="quickgroup"><a href="#">
                     <div class="quickbutton">
-                        <img src="goflowershop.jpg" alt="" height="200px" width="300px;">
+                        <img src="product.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>물품관리</h1>
                         </div>

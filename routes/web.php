@@ -104,3 +104,6 @@ Route::get('/order', function () {
 Route::get('/complete', function(){
   return view('payment.complete');
 });
+Route::get('/order1', function(){
+  return view('orderlist');
+});
