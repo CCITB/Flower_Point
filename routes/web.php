@@ -98,9 +98,9 @@ Route::get('/mypage2', function () {
 });
 
 //결제
-Route::get('/pay', function () {
-  return view('payment');
+Route::get('/order', function () {
+  return view('payment.order');
 });
 Route::get('/complete', function(){
-  return view('complete');
+  return view('payment.complete');
 });
