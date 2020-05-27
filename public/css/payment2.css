@@ -1,4 +1,4 @@
-/* 어지수 */
+/* =================== payment -- 어지수 , 정경진 =================== */
 body{
   min-width: 1260px;
   margin:0;
@@ -10,7 +10,6 @@ h1.titles {
 li{
   list-style: none;
 }
-/**/
 
 div.wrapping{
   background:#ffffff;
@@ -54,7 +53,6 @@ div.text{
   margin: 0 auto;
   margin-bottom: 30px;
   padding-bottom: 10px;
-  /*padding-bottom: 15px;*/
 }
 
 span.title{
@@ -204,4 +202,26 @@ th{
 }
 td{
   text-align:right;
+}
+
+
+/* ===================== complete -- 어지수 ====================*/
+hr.dotted_line{
+  width: 100%;
+  border:none;
+  border-top : dotted 2px #dbdbdb;
+}
+
+div.wrapping_complete{
+  position: relative;
+  width:50%;
+  margin:auto;
+}
+
+div.product_info{
+display: inline;
+}
+
+div.product_data{
+  display: inline-block;
 }
