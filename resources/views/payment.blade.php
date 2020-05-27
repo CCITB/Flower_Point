@@ -16,8 +16,11 @@
       <div class="page-sorting">
         <span>상품선택</span>
         <span>&gt;</span>
-        <span class="current-page">주문/결제</span>
+        <span class="current-page">
+          <i class="fas fa-credit-card fa-2x"></i>
+          주문/결제</span>
         <span>&gt;</span>
+        <i class="fas fa-gift fa-2x"></i>
         <span>주문 완료</span>
       </div>
     </div>
@@ -146,4 +149,5 @@
 </div>
 @include('footer')
 </body>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </html>

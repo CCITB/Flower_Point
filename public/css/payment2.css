@@ -78,6 +78,9 @@ span.title{
 span.current-page{
   color: red;
 }
+img.card{
+  padding-top: 10px;
+}
 
 div.containerbox{
   position: relative;
@@ -133,7 +136,7 @@ table.tablebox{
 div.detail{
   color: red;
   margin-bottom: 70px;
-  margin-left: 100px;
+  margin-left: 60%;
   font-size: 7px;
 }
 
