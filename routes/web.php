@@ -96,3 +96,11 @@ Route::get('/sellermyshop', function () {
 Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
+
+//결제
+Route::get('/pay', function () {
+  return view('payment');
+});
+Route::get('/complete', function(){
+  return view('complete');
+});
