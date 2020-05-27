@@ -9,7 +9,20 @@
     <div class="">
     <h3 class="orderlist" float="left">주문내역</h3>
     <div class="searchlist">
+      <table id="searchlist">
+      <tr>
+        <td>기간별조회</td>
+        <td><button class="period">1주일</button></td>
+        <td><button class="period">1개월</button></td>
+        <td><button class="period">3개월</button></td>
+        <td><input type="date"></td>
+        <td><button>조회</button></td>
+      </tr>
+    </table>
+    <hr>
+    <div class="contentbox">경고내용칸
 
+    </div>
     </div>
   </div>
     <table class="orderinfo" cellpadding="10" cellspacing="10" width="100%">
