@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  <!--박소현 (문의 파트 - 곽승지) -->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">

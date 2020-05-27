@@ -4,52 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>아이디 찾기</title>
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
-
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/find.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
   <script>
 
 
   </script>
-  
+
 </head>
 <body>
 
   <div id="all">
     <div class="text">
-      <h1> 아이디 찾기 </h1>
-      <hr>
-      아이디  찾는 방법을 선택해 주세요.
+      <div class="id_title">Find ID</div> <hr>
+      <div class="text_des">아이디  찾는 방법을 선택해 주세요.</div>
     </div>
 
     <div class ="find_id">
-      <div class="text1">
-        회원 정보에 등록한 휴대전화로 인증
-      </div>
-      <div class="text2">
-        회원 정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 일치해야 인증번호를 받을 수 있습니다.
-      </div>
-
       <form action = 'url' method='POST'>
-        <div class="character">
-          이름 : <br><br>
-          전화번호 :
-        </div>
-        <div class="window">
-          <input class="find_input" type="name" autofocus placeholder="이름을 입력하세요." name="name" required ><br><br>
-          <input class="find_input" type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000">
-          <input type="submit" value="인증번호받기"><br><br>
-          <input class="find_input" type="name" autofocus placeholder="인증번호 입력" name="name" required >
-          <input type="submit" value="확인"><br><br>
-        </div>
+        <div class="fd_id">
+          <div class="character">
+              <br><br>
 
+          </div>
+          <div class="window">
+            <input class="find_input" type="name" autofocus placeholder="이름을 입력하세요." name="name" required ><br><br>
+            <input class="find_input" type="tell" autofocus placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000">
+            <input type="submit" value="인"><br><br>
+            <input class="find_input" type="name" autofocus placeholder="인증번호 입력" name="name" required >
+            <input type="submit" value="확인"><br><br>
+          </div>
+        </div>
         <div class="under">
-          <p>
-            <button type="button" > <a href="/">홈으로</a> </button>
-            <input type="submit">
-            <button type="button" > <a href="/find_pw">비밀번호 찾기</a> </button>
+          <p><br>
+            <button type="submit" value="찾기">찾기</button>
           </p>
         </div>
       </form>
+    </div>
+    <div class="bottom">
+      <a href = "/find_pw">비밀번호 찾기</a>
+    </div>
+    <div class="home">
+      <a href = "/">홈으로</a>
     </div>
   </div>
 </body>
