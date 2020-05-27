@@ -36,6 +36,7 @@ Route::post('/customer_OverlapPW', 'RegisterController@c_overlapPW');
 
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 
+Route::get('/register', 'RegisterController@registerview');
 
 Route::get('/terms_customers', 'MainController@register_terms_customers');
 
@@ -43,7 +44,7 @@ Route::get('/terms_sellers', 'MainController@register_terms_sellers');
 
 Route::get('/information', 'MainController@register_information');
 
-Route::get('/register', 'RegisterController@registerview');
+
 
 Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
 
@@ -95,6 +96,11 @@ Route::get('/sellermyshop', function () {
 Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
+
+//결제
 Route::get('/pay', function () {
-  return view('payment2');
+  return view('payment');
+});
+Route::get('/complete', function(){
+  return view('complete');
 });
