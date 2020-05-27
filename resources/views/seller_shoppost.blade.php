@@ -64,7 +64,7 @@
           <div class="preview-right">
             <div class="image-upload">
               <label for="real-input">사진 업로드</label>
-              <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*" required multiple>
+              <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
             </div>
           </div>
         </div>
@@ -108,6 +108,7 @@
 //     console.log(image); reader.readAsDataURL(image); } }
 // 파일용량제한 스크립트
 function checkFile(el){
+   $('#image-session').attr('src', '#');
   var file = el.files;
   if(file[0].size > 1024 * 1024 * 2){
     alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
