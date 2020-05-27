@@ -49,12 +49,12 @@
           </div>
         </div>
 
-
+        
         <div class="recv_info">
         </div>
       </div> <!--wrapping_complete-->
     </div>
     @include('footer')
-    </body>
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    </html>
+  </body>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  </html>
