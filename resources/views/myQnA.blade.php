@@ -5,7 +5,7 @@
      <meta charset="utf-8">
      <title>꽃갈피</title>
  <link rel="stylesheet" href="/css/header.css">
- <link rel="stylesheet" href="/css/QNA.css">
+ <link rel="stylesheet" href="/css/myqna.css">
 
    </head>
    <body>
@@ -19,22 +19,50 @@
 
     <div class="frequently">
       <div class="frequently-qna">
-        <table style="margin-top:50px;">
-          <tr>
-            <th>작성번호</th>
-            <th>제목</th>
-            <th>상품명</th>
-            <th>등록일</th>
-            <th>답변상태</th>
-          </tr>
-          <tr class="user-QnA">
-            <td>1</td>
-            <td>꽃이안와요</td>
-            <td>꽃</td>
-            <td>2020.01.01</td>
-            <td>답변대기</td>
-          </tr>
-        </table>
+        <table class="qna-table">
+              <tr>
+                <th>번호</th>
+                <th>문의/답변</th>
+                <th>답변상태</th>
+                <th>작성자</th>
+                <th>작성일</th>
+              </tr>
+              <tr>
+                <td class="qna-index">1</td>
+                <td class="qna-content">내용</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">ccit1</td>
+                <td class="qna-date">2020.01.01</td>
+              </tr>
+              <tr>
+                <td class="qna-index">2</td>
+                <td class="qna-content">내용</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">ccit1</td>
+                <td class="qna-date">2020.01.01</td>
+              </tr>
+              <tr>
+                <td class="qna-index">3</td>
+                <td class="qna-content">내용</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">ccit1</td>
+                <td class="qna-date">2020.01.01</td>
+              </tr>
+              <tr>
+                <td class="qna-index">4</td>
+                <td class="qna-content">내용</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">ccit1</td>
+                <td class="qna-date">2020.01.01</td>
+              </tr>
+              <tr>
+                <td class="qna-index">5</td>
+                <td class="qna-content">내용</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">ccit1</td>
+                <td class="qna-date">2020.01.01</td>
+              </tr>
+            </table>
         <div class="nav-page">
           <nav>
             <a href="#" class="active">1</a>
