@@ -98,3 +98,6 @@ Route::get('/mypage2', function () {
 Route::get('/pay', function () {
   return view('payment');
 });
+Route::get('/sellermyorderlist', function () {
+  return view('seller_myorderlist');
+});

@@ -6,117 +6,20 @@
   <meta http-equiv="Content-Style-Type" content="text/css">
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/sellerpost.css">
   <script>
   // const browseBtn = document.querySelector('.browse-btn');
-  const realInput = document.querySelector('#real-input');
-
-  browseBtn.addEventListener('click',()=>{
-    realInput.click();
-  });
+  // 무슨 코드인지 모름
+  // const realInput = document.querySelector('#real-input');
+  //
+  // browseBtn.addEventListener('click',()=>{
+  //   realInput.click();
+  // });
   </script>
 
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 
-  <style media="screen">
-  table{
-    border: 2px solid pink;
-    margin: 0 auto;
-
-  }
-  .post-title{
-    width: 680px;
-  }
-  th{
-
-  }
-  .send-btn{
-    cursor: pointer;
-  }
-  .Cancellation-btn{
-    cursor: pointer;
-  }
-  /* .filebox label {
-  display: inline-block;
-  padding: .5em .75em;
-  color: #fff;
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #5cb85c;
-  cursor: pointer;
-  border: 1px solid #4cae4c;
-  border-radius: .25em;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
-}
-
-.filebox label:hover {
-background-color: #6ed36e;
-}
-
-.filebox label:active {
-background-color: #367c36;
-}
-
-.filebox input[type="file"] {
-position: absolute;
-width: 1px;
-height: 1px;
-padding: 0;
-margin: -1px;
-overflow: hidden;
-clip: rect(0, 0, 0, 0);
-border: 0;
-} */
-.preview-wrap{
-  width: 100%;
-  height: 202px;
-
-
-}
-.preview img{
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  position: relative;
-}
-.preview{
-  width: 200px;
-  height: 200px;
-  border: 1px solid gray;
-  float: right;
-
-  display: inline-block;
-}
-.preview-image{
-  display: inline-block;
-
-  z-index: 1;
-}
-.image-upload{
-  display: inline-block;
-
-}
-.preview-left{
-  width: 45%;
-
-  display: inline-block;
-  float: left;
-
-}
-.preview-right{
-  width: 50%;
-  padding-top: 90px;
-  padding-bottom: 90px;
-  padding-left: 30px;
-
-  float: left;
-}
-.preview{
-
-}
-</style>
 </head>
 <body>
   @include('header')
@@ -161,11 +64,11 @@ border: 0;
           <div class="preview-right">
             <div class="image-upload">
               <label for="real-input">사진 업로드</label>
-              <input type="file" onchange=" chk_file_type(this); checkFile(this); readURL();" id="real-input" name="picture" class="image_inputType_file" accept="image/*" required multiple>
+              <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*" required multiple>
             </div>
           </div>
         </div>
-
+<!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
         <!-- <button class="browse-btn">사진업로드</button> -->
 
 
@@ -196,18 +99,68 @@ border: 0;
 
 </div>
 
-<style media="screen">
-.postbutton{
-  text-align: center;
-}
-.post{
-  border: 5px solid pink;
-  width: 1130px;
-  margin: 0 auto;
-  padding: 0 30px;
+<script>
+// function setThumbnail(event) {
+//   for
+//   (var image of event.target.files) {
+//     var reader = new FileReader();
+//     reader.onload = function(event) { var img = document.createElement("img"); img.setAttribute("src", event.target.result); document.querySelector("#preview").appendChild(img); };
+//     console.log(image); reader.readAsDataURL(image); } }
+// 파일용량제한 스크립트
+function checkFile(el){
+  var file = el.files;
+  if(file[0].size > 1024 * 1024 * 2){
+    alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
+    '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
+    el.outerHTML = el.outerHTML;
+  }
+  else chk_file_type(el);
 
 }
-</style>
+function chk_file_type(el) {
+  var file_kind = el.value.lastIndexOf('.');
+  var file_name = el.value.substring(file_kind+1,el.length);
+  var file_type = file_name.toLowerCase();
+  // console.log(file_name)
+  // console.log(file_kind)
+
+  var check_file_type=new Array();
+  check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
+  if(check_file_type.indexOf(file_type)==-1) {
+    alert('이미지 파일만 업로드 가능합니다.');
+    var parent_Obj=el.parentNode;
+    console.log(parent_Obj);
+    var node=parent_Obj.replaceChild(el.cloneNode(true),el);
+    document.getElementById("real-input").value = "";    //초기화를 위한 추가 코드
+    document.getElementById("real-input").select();        //초기화를 위한 추가 코드                                               //일부 브라우저 미지원
+  }
+  else readURL(el);
+  $("#real-input").change(function(){
+    readURL(this);
+  });
+}
+// 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
+function readURL(el) {
+  if (el.files && el.files[0]) {
+    var reader = new FileReader();
+    // 이미지 미리보기해주는 jquery
+    reader.onload = function (e) {
+      $('#image-session').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(el.files[0]);
+  }
+}
+// 사진 바꿔주는 jquery
+// $("#real-input").change(function(){
+//   readURL(this);
+// });
+</script>
+<script>
+$(document).on("keyup", "input:text[numberonly]", function() {
+  $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+});
+</script>
 @include('footer')
 </body>
 </html>
@@ -300,58 +253,3 @@ oEditor.setDefaultFont(sDefaultFont, nFontSize);
 }
 </script>
 <!--Example End-->
-<script>
-// function setThumbnail(event) {
-//   for
-//   (var image of event.target.files) {
-//     var reader = new FileReader();
-//     reader.onload = function(event) { var img = document.createElement("img"); img.setAttribute("src", event.target.result); document.querySelector("#preview").appendChild(img); };
-//     console.log(image); reader.readAsDataURL(image); } }
-// 파일용량제한 스크립트
-function checkFile(el){
-  var file = el.files;
-  if(file[0].size > 1024 * 1024 * 2){
-    alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
-    '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
-  }
-  else return;
-  el.outerHTML = el.outerHTML;
-}
-function chk_file_type(obj) {
-  var file_kind = obj.value.lastIndexOf('.');
-  var file_name = obj.value.substring(file_kind+1,obj.length);
-  var file_type = file_name.toLowerCase();
-  var check_file_type=new Array();
-  check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
-  if(check_file_type.indexOf(file_type)==-1) {
-    alert('이미지 파일만 업로드 가능합니다.');
-    var parent_Obj=obj.parentNode;
-    var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
-    document.getElementById("wfb-field-219958876").value = "";    //초기화를 위한 추가 코드
-    document.getElementById("wfb-field-219958876").select();        //초기화를 위한 추가 코드
-    document.selection.clear();                                                //일부 브라우저 미지원
-    return false;
-  }
-}
-// 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#image-session').attr('src', e.target.result);
-    }
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-$("#real-input").change(function(){
-  readURL(this);
-});
-</script>
-<script>
-$(document).on("keyup", "input:text[numberonly]", function() {
-  $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-});
-</script>

@@ -75,6 +75,8 @@
         }
         td.upload-price{
           text-align: right;
+          padding-right: 10px;
+          padding-left: 10px;
         }
         td.upload-name{
           text-align: left;
