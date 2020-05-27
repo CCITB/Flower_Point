@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>결제</title>
-  <link rel="stylesheet" href="/css/payment.css">
+  <link rel="stylesheet" href="/css/payment2.css">
   <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
@@ -16,13 +16,16 @@
       <div class="page-sorting">
         <span>상품선택</span>
         <span>&gt;</span>
-        <span class="current-page">주문/결제</span>
+        <span class="current-page">
+          <i class="fas fa-credit-card fa-2x"></i>
+          주문/결제</span>
         <span>&gt;</span>
+        <i class="fas fa-gift fa-2x"></i>
         <span>주문 완료</span>
       </div>
     </div>
+<div class="groupbox">
 
-    <div class="containerbox">
       <!--정보기입창-->
       <div class="infobox">
         <div class="customerbox">
@@ -140,8 +143,11 @@
           </div>
         </div><!--결제정보 -->
       </div><!--오른쪽 주문정보 박스 -->
-    </div><!--컨테이너박스-->
+  <!--컨테이너박스-->
+  </div>
   </div>
 </div>
+@include('footer')
 </body>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </html>

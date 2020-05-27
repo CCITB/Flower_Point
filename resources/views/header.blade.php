@@ -70,7 +70,7 @@
         <div class="dropdown-content">
           <a href="#">내 정보</a>
           <a href="#">내 꽃집 가기</a>
-          <a href="#">나의 주문 관리</a>
+          <a href="/sellermyorderlist">나의 주문 관리</a>
         </div>
       </div>
     </div>

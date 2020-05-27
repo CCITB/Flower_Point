@@ -1,0 +1,107 @@
+.postbutton{
+  text-align: center;
+}
+.post{
+  border: 5px solid pink;
+  width: 1130px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+}
+table{
+  border: 2px solid pink;
+  margin: 0 auto;
+
+}
+.post-title{
+  width: 680px;
+}
+th{
+
+}
+.send-btn{
+  cursor: pointer;
+}
+.Cancellation-btn{
+  cursor: pointer;
+}
+/* .filebox label {
+display: inline-block;
+padding: .5em .75em;
+color: #fff;
+font-size: inherit;
+line-height: normal;
+vertical-align: middle;
+background-color: #5cb85c;
+cursor: pointer;
+border: 1px solid #4cae4c;
+border-radius: .25em;
+-webkit-transition: background-color 0.2s;
+transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+background-color: #6ed36e;
+}
+
+.filebox label:active {
+background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+border: 0;
+} */
+.preview-wrap{
+width: 100%;
+height: 202px;
+
+
+}
+.preview img{
+width: 100%;
+height: 100%;
+z-index: 2;
+position: relative;
+}
+.preview{
+width: 200px;
+height: 200px;
+border: 1px solid gray;
+float: right;
+
+display: inline-block;
+}
+.preview-image{
+display: inline-block;
+
+z-index: 1;
+}
+.image-upload{
+display: inline-block;
+
+}
+.preview-left{
+width: 45%;
+
+display: inline-block;
+float: left;
+
+}
+.preview-right{
+width: 50%;
+padding-top: 90px;
+padding-bottom: 90px;
+padding-left: 30px;
+
+float: left;
+}
+.preview{
+
+}
