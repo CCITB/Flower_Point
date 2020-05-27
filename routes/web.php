@@ -96,5 +96,5 @@ Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
 Route::get('/pay', function () {
-  return view('payment2');
+  return view('payment');
 });
