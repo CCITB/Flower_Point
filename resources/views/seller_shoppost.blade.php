@@ -18,7 +18,6 @@
   </script>
 
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-  <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 
 </head>
 <body>
@@ -77,15 +76,15 @@
         <table>
           <tr>
             <th>배송비</th>
-            <td><input type="text"numberonly="true" name="deliverycharge" value="" placeholder="0" style="text-align:right;">원</td>
+            <td><input type="text" numberonly="true" name="deliverycharge" value="" placeholder="0" style="text-align:right;">원</td>
           </tr>
           <tr>
             <th>판매금액</th>
-            <td><input type="text" name="sellingprice" value=""placeholder="0"style="text-align:right;"numberonly="true">원</td>
+            <td><input type="text" name="sellingprice" value=""placeholder="0"style="text-align:right;" numberonly="true">원</td>
           </tr>
           <tr>
             <th>적립금</th>
-            <td><input type="text"numberonly="true" name="" value="">원</td>
+            <td><input type="text"numberonly="true" name="" value="" style="text-align:right;">원</td>
           </tr>
         </table>
       </div>
@@ -158,7 +157,9 @@ function readURL(el) {
 //   readURL(this);
 // });
 </script>
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 <script>
+// 숫자만
 $(document).on("keyup", "input:text[numberonly]", function() {
   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
 });

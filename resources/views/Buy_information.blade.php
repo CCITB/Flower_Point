@@ -312,7 +312,7 @@
           <div id="qna-inquiry1" class="faq_an">
             문의하기
             <form class="" action="index.html" method="post">
-              <textarea name="name" rows="8" cols="80"></textarea>
+              <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
               <div class="bottom-btn">
                 <button type="button" name="button" class="qna-submit-btn">저장</button>
                 <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>

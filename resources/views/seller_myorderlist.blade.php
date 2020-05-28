@@ -58,6 +58,10 @@
   </table> -->
   <div class="sellerorderlist">
     <form class="" action="index.html" method="post" name="mycheck">
+      <div class="orderlist-bottom">
+        <button type="button" name="button" class="ordercheck">발주확인</button>
+        <button type="button" name="button" class="sendmessage">발송처리</button>
+      </div>
       <table name="">
         <tr>
           <th> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
@@ -74,7 +78,7 @@
           <td><input type="checkbox" name="checkRow" class="checkf" value=""></td>
           <td>202000000</td>
           <td>프리지아 꽃</td>
-          <td></td>
+          <td><input type="text" name="" value=""></td>
           <td>우체국택배</td>
           <td>2020.04.16</td>
           <td>2020.04.15</td>
@@ -85,7 +89,7 @@
           <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
           <td>202000000</td>
           <td>프리지아 꽃</td>
-          <td></td>
+          <td><input type="text" name="" value=""></td>
           <td>우체국택배</td>
           <td>2020.04.16</td>
           <td>2020.04.15</td>
@@ -96,7 +100,7 @@
           <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
           <td>202000000</td>
           <td>프리지아 꽃</td>
-          <td></td>
+          <td><input type="text" name="" value=""></td>
           <td>우체국택배</td>
           <td>2020.04.16</td>
           <td>2020.04.15</td>
@@ -107,7 +111,7 @@
           <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
           <td>202000000</td>
           <td>프리지아 꽃</td>
-          <td></td>
+          <td><input type="text" name="" value=""></td>
           <td>우체국택배</td>
           <td>2020.04.16</td>
           <td>2020.04.15</td>
@@ -123,8 +127,32 @@
 </div>
 </div>
 <style media="screen">
+td input{
+
+}
+div.orderlist-bottom{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+button.sendmessage{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
+}
+button.ordercheck{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
+}
 .sellerorderlist{
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
 }
 .orderspace{
