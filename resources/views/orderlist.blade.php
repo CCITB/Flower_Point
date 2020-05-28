@@ -3,10 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>주문내역</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/order.css">
   </head>
   <body>
     @include('header')
-    <div class="">
+    <div class="all">
+    <div class="half">
+    <div class="wrapping">
     <h3 class="orderlist" float="left">주문내역</h3>
     <div class="searchlist">
       <table id="searchlist">
@@ -21,11 +25,13 @@
     </table>
     <hr>
     <div class="contentbox">경고내용칸
-
+      <div class="messagebox">
+        asdsafsafsagdgagadasgaddagadgda
+      </div>
     </div>
     </div>
   </div>
-    <table class="orderinfo" cellpadding="10" cellspacing="10" width="100%">
+    <table class="orderinfo" cellpadding="10"  width="100%">
       <tr>
         <th>배송예정일</th>
         <th>상품명</th>
@@ -35,30 +41,32 @@
         <th>수정/취소</th>
       </tr>
       <tr>
-        <td>2020-05-27</td>
-        <td>리시안셔스</td>
-        <td>2</td>
-        <td>2,5000</td>
-        <td>2,5000</td>
-        <td><button class="cancellist">결제취소</button></td>
+        <td class="tabletd">2020-05-27</td>
+        <td class="tabletd">리시안셔스</td>
+        <td class="tabletd">2</td>
+        <td class="tabletd">2,5000</td>
+        <td class="tabletd">2,5000</td>
+        <td class="tabletd"><button class="cancellist">결제취소</button></td>
       </tr>
       <tr>
-        <td>2020-05-27</td>
-        <td>장미</td>
-        <td>1</td>
-        <td>5,000</td>
-        <td>5,000</td>
-        <td><button class="cancellist">결제취소</button></td>
+        <td class="tabletd">2020-05-27</td>
+      <td class="tabletd">장미</td>
+        <td class="tabletd">1</td>
+        <td class="tabletd">5,000</td>
+        <td class="tabletd">5,000</td>
+        <td class="tabletd"><button class="cancellist">결제취소</button></td>
       </tr>
       <tr>
-        <td>2020-05-27</td>
-        <td>안개꽃</td>
-        <td>1</td>
-        <td>7,0000</td>
-        <td>7,0000</td>
-        <td><button class="cancellist">결제취소</button></td>
+        <td class="tabletd">2020-05-27</td>
+        <td class="tabletd">안개꽃</td>
+        <td class="tabletd">1</td>
+        <td class="tabletd">7,0000</td>
+        <td class="tabletd">7,0000</td>
+        <td class="tabletd"><button class="cancellist">결제취소</button></td>
       </tr>
     </table>
+  </div>
+</div>
   </body>
   @include('footer')
 </html>
