@@ -119,9 +119,10 @@
             <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
             <table cellpadding="10" cellspacing="10" width="300px">
               <tr>
-                <td><img class="product_image" src="dummy.jpg" alt="Flower Image" width="100px" height="100px"></td>
+                <td rowspan="2"><img class="product_image" src="dummy.jpg" alt="Flower Image" width="100px" height="100px"></td>
                 <td>상품명 : p_name</td>
               </tr>
+                <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
             </table>
           </div>
 
