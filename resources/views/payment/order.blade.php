@@ -91,6 +91,9 @@
                 <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" class="delivery_tel">
               </div>
 
+              <input type="radio" name="trade" value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
+              <input type="radio" name="trade" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+              <div id="divshow" style="display:none;">
               <div class="delivery_wrap">
                 <strong class="info">주 소</strong>
                 <!-- 우편번호 -->
@@ -108,8 +111,9 @@
               </div>
               <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
             </table>
-          </div>
 
+        </div>
+      </div>
           <!--상품 정보창-->
           <div class="product_data">
             <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
@@ -211,7 +215,17 @@ function checkform(Join){
   }
   }
 </script>
+<script>
+  function div_show(s,ss){
+    if(s == "무통장입금"){
+      document.getElementById(ss).style.display="";
+    }else{
+      document.getElementById(ss).style.display="none";
+    }
+  }
+</script>
 </html>
 
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
