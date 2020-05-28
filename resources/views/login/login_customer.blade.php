@@ -6,6 +6,8 @@
   <title>로그인</title>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
 
   <script>
   </script>
@@ -29,13 +31,15 @@
           <a href="/find_id">아이디</a> ·
           <a href="/find_pw">비밀번호 찾기</a>
         </div><br>
-        <p><br>
-          <input class="btn btn-outline-secondary" type="submit" value="로그인 ">
-        </p>
-        <p>
-          <button class="btn btn-outline-danger" type="button" onclick="location.href = '/register_customer'">구매자 회원가입</button>
-        </p>
+        <br>
+        <input class="lg_bt" type="submit" value="로그인 ">
       </form>
+    </div>
+    <div class="bottom">
+      <a href = "/register_customer">구매자 회원가입</a>
+    </div>
+    <div class="home">
+      <a href = "/">홈으로</a>
     </div>
   </div>
 </body>

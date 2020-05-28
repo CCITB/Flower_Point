@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>비밀번호 재설정</title>
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/find.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
 
   <script>
   window.addEventListener('load', function() {
@@ -32,29 +35,18 @@
 <body>
   <div id="all">
     <div class="text">
-      <h1> 비밀번호 재설정 </h1>
-      <hr>
-      비밀번호를 변경해주세요.<br>
+      <div class="id_title">Find Password</div> <hr>
+      <div class="text_des">비밀번호 재설정</div>
     </div>
 
     <div class ="pw_reset">
-      <p>
-        다른 아이디나 사이트에서 사용한 적 없는 안전한 비밀번호로 변경해 주세요.
-      </p>
-
-      <div class="my_id">
-        꽃갈피 아이디 : <!-- 아이디 불러올 곳 -->
-      </div>
-
-      <form action = '처리할 주소' method='POST'>
-        <p>
+      <form action = '처리할 주소' method='post'>
+        <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
           <input class="find_input" type="password" autofocus placeholder="새 비밀번호" id="new_pw" required ><br><br>
           <input class="find_input" type="password" autofocus placeholder="새 비밀번호 확인" id="check" required >
-        </p>
-        영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.
-        <p>
-          <input type="button" id="signup" value="확인" style="border-radius:5px; font-s"/>
-        </p>
+          <div class="under_pw">
+            <input class="lg_bt" type="submit" id="signup" value="다음">
+          </div>
       </form>
     </div>
   </div >

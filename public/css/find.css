@@ -1,0 +1,202 @@
+/* 수정시 소현에게 */
+
+#all{
+  margin:5% auto;
+  border: 1px solid;
+  width : 550px;
+  border-radius: 25px;
+  padding: 35px;
+  background-color: #FFFFFF;
+  border-style: hidden;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  opacity: 0.8;
+  font-family:'Kanit','Nanum Gothic Coding', monospace;
+}
+body {
+  background-image: url(https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
+  background-repeat : no-repeat;
+  background-size : cover;
+}
+p{
+  padding-top: 5px;
+  text-align: center;
+}
+
+/* 큰 타이틀 */
+.text{
+  padding-bottom: 20px;
+}
+.id_title{
+  font-size: 40px;
+}
+hr{
+  width: 100%;
+  border-bottom: 0px;
+  text-align: center;
+}
+.text_des{
+  font-size: 18px;
+}
+/* --------------- */
+
+.fd_id{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.character{
+  width: 25%;
+  text-align: right;
+  font-size: 15px;
+}
+.window{
+  width: 75%;
+  text-align: left;
+}
+.find_input{
+  width:210px;
+  height:33px;
+  font-size: 15px;
+}
+
+a:link{
+  text-decoration: none; color:#003E00;
+}
+a:visited{
+  text-decoration: none; color:#003E00;
+}
+a:active{
+  text-decoration: none; color:#003E00;
+}
+a:hover{
+  text-decoration: none; color:#003E00;
+}
+.lg_bt{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  cursor: pointer;
+}
+.lg_bt:hover{
+  opacity: 1
+}
+/* -------------------- */
+
+/* ----- find_id ------ */
+.bottom{
+  float: right;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.home{
+  float: left;
+  margin-bottom: 10px;
+}
+.find_id {
+  padding: 20px;
+  text-align: center;
+  height: 330px;
+}
+.ip_name{
+  font-size: 1em;
+  color: #A6A6A6;
+  margin-bottom:5px;
+}
+.under{
+  clear: both;
+  margin-top: 10px;
+}
+/* button{
+  background:#476600;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  border-radius: 5px;
+  font-size:1.1em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#476600;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #476600;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+} */
+/* -------------------- */
+
+/* ----- find_pw ------ */
+.find_pw{
+  padding: 20px;
+  text-align: center;
+  height: 330px;
+}
+.under_pw{
+  clear: both;
+  margin-top: 50px;
+}
+.intervel{
+  height: 60px;
+}
+/* -------------------- */
+/* ----- find_pw_way ------ */
+.find_pw_way{
+  padding: 20px;
+  text-align: center;
+  height: 330px;
+}
+/* -------------------- */
+/* ----- pw_reset ------ */
+.pw_reset{
+  padding: 20px;
+  text-align: center;
+  height: 330px;
+}
+.pw_requirement{
+  padding-bottom: 40px;
+}
+/* -------------------- */
+
+
+
+.shop_title{
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+.shop_info{
+  width:350px;
+  height:30px;
+  font-size:20px;
+}
+.paragraph{
+  padding-bottom: 20px;
+}

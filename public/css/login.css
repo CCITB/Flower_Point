@@ -8,11 +8,15 @@
   padding: 35px;
   background-color: #FFFFFF;
   border-style: hidden;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  opacity: 0.8;
+  font-family: 'Kanit','Nanum Gothic Coding', monospace;
 }
 body {
-  background-color: #FFDDDD;
+  background-image: url(https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
+  background-repeat : no-repeat;
+  background-size : cover;
 }
 p{
   padding-top: 5px;
@@ -20,7 +24,7 @@ p{
 }
 .text{
   padding-bottom:20px;
-  font-size: 30px;
+  font-size: 40px;
 }
 hr{
   width: 100%;
@@ -32,7 +36,7 @@ hr{
   padding: 20px;
 }
 .text2{
-  font-size: 14px;
+  font-size: 10px;
   padding-bottom: 30px;
   border:1px solid;
   border-style: hidden;
@@ -53,50 +57,28 @@ hr{
   float: right;
   text-align: left;
 }
-/* -------------------- */
+a:link{
+  text-decoration: none; color:#003E00;
+}
+a:visited{
+  text-decoration: none; color:#003E00;
+}
+a:active{
+  text-decoration: none; color:#003E00;
+}
+a:hover{
+  text-decoration: none; color:#003E00;
+}
+.bottom{
+  float: right;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.home{
+  float: left;
+  margin-bottom: 10px;
+}
 
-
-/* ----- find_id ------ */
-.under{
-  clear: both;
-}
-.find_id {
-  padding: 20px;
-  text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
-}
-/* -------------------- */
-/* ----- find_pw ------ */
-.find_pw{
-  padding: 20px;
-  text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
-}
-/* -------------------- */
-/* ----- find_pw_way ------ */
-.find_pw_way{
-  padding: 20px;
-  text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
-}
-/* -------------------- */
-/* ----- pw_reset ------ */
-.pw_reset{
-  padding: 20px;
-  text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
-}
-.my_id{ //내 아이디 불러오는 창
-  border: 1px solid;
-}
 /* -------------------- */
 
 
@@ -106,22 +88,42 @@ hr{
   text-align: center;
   /*border: 1px solid;
   border-radius: 25px;*/
-  height: 350px;
+  height: 330px;
 }
 .lg{
   width:90%;
   height:35px;
   font-size:23px;
+  padding: 5px;
 }
 .go{
   text-align: right;
 }
+/* .lg_bt{
+width: 100px;
+height: 30px;
+font-size: 15px;
+text-align: center;
+} */
 .lg_bt{
-  width: 100px;
-  height: 30px;
-  font-size: 15px;
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
   text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
 }
+.lg_bt:hover{
+  opacity: 1
+}
+
 .user_sign_bt{
   width: 350px;
   height: 40px;
