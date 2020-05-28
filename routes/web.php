@@ -109,3 +109,6 @@ Route::get('/complete', function(){
 Route::get('/list', function(){
   return view('orderlist');
 });
+Route::get('/sellermyorderlist', function(){
+  return view('seller_myorderlist');
+});

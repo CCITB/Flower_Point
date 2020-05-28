@@ -44,175 +44,170 @@
       </div>
     </div>
   </div>
-  <div class="dropdown-wrap">
+  <div class="dropdown-wrap" id=dropdown_hover>
     <div id="dropdown-menu">
-      <div class="dropdown">
-        <button class="dropbtn" onclick="location.href = '/locate1'">내 주변 꽃집</button>
-        <div class="dropdown-content">
-
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn" onclick="location.href= '/Allprouct'">전체 상품 보기</button>
-        <div class="dropdown-content">
-
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"onclick="location.href = '/faq'">고객센터</button>
-        <div class="dropdown-content">
-          <a href="/myqna">문의관리</a>
-
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">마이페이지</button>
-        <div class="dropdown-content">
-          <a href="#">내 정보</a>
-          <a href="#">내 꽃집 가기</a>
-          <a href="/sellermyorderlist">나의 주문 관리</a>
-        </div>
-      </div>
+      <ul class="mainmenu-wrap">
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/locate1">내 주변 꽃집</a>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+        </li>
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/Allprouct">전체 상품 보기</a>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list" >
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+        </li>
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/faq">고객센터</a>
+          <ul class="submenu_list">
+            <li class="submenu"><a href="/myqna">문의관리</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+          </ul>
+        </li>
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+          <a href="#">마이페이지</a>
+          <ul class="submenu_list">
+            <li class="submenu"><a href="#">내 정보</a></li>
+            <li class="submenu"><a href="#">내 꽃집 가기</a></li>
+            <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
+  <div class="topmenu-list">
 
-  <!-- 사이드네비바 시작입니다 -->
-  <div class="side-nav">
-    <div class="mainbtn" onclick="location.href='/'">
-      <img src="/imglib/mainicon.png" alt="">
-      <div class="mainover">
-        메인페이지로 이동
-      </div>
+  </div>
+  <style>
+  .dropdown-wrap{
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  ul.submenu_list{
+    padding: 0px;
+  }
+  ul{
+    list-style: none;
+  }
+  ul.mainmenu-wrap{
+    padding-left: 150px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin: 0;
+  }
+  li.submenu{
+
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    visibility:hidden;
+    opacity: 0; /*찾아라*/
+    transition: all 0.3s ease-in-out;
+
+  }
+  li.submenu:hover>a{
+    color: #f68500;
+    text-decoration: none;
+    /*찾아라*/
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3,1.3);
+  }
+  li.mainmenu:hover>a{
+    color: #f68500;
+
+  }
+  li.mainmenu{
+    float: left;
+    display: block;
+    width: 20%;
+    font-size: 22px;
+    transition: all 0.3s ease-in-out;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-right:1px solid white;
+    box-sizing: border-box;
+    border-collapse: collapse;
+
+  }
+  .dropdown-back{
+    background-color: #B2D0EB;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 30px;
+    border-radius: 0px 0px 50px 50px;
+  }
+  .dropdown-back li.submenu{
+    display: block;
+    /* margin-top: 2px;
+    margin-bottom: 2px; */
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    opacity: 1;
+    visibility:visible;
+
+  }
+  .dropdown-back li.mainmenu>a{
+    /* margin-bottom: 15px;
+    margin-top : 15px; */
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    padding-bottom: 16px;
+
+  }
+  .dropdown-back li.submenu:hover{
+    transform: scale(1.3,1.3);
+  }
+  li.mainmenu:hover{
+
+  }
+
+</style>
+<!-- 사이드네비바 시작입니다 -->
+<div class="side-nav">
+  <div class="mainbtn" onclick="location.href='/'">
+    <img src="/imglib/mainicon.png" alt="">
+    <div class="mainover">
+      메인페이지로 이동
     </div>
-    <div class="topbtn" onclick="">
-      <img src="/imglib/topbtn.png" alt="">
-      <div class="topover">
-        위로이동
-      </div>
+  </div>
+  <div class="topbtn" onclick="">
+    <img src="/imglib/topbtn.png" alt="">
+    <div class="topover">
+      위로이동
     </div>
-    <div class="bottombtn" onclick="">
-      <img src="/imglib/bottombtn.png" alt="">
-      <div class="bottomover">
-        아래로 이동
-      </div>
+  </div>
+  <div class="bottombtn" onclick="">
+    <img src="/imglib/bottombtn.png" alt="">
+    <div class="bottomover">
+      아래로 이동
     </div>
   </div>
 </div>
+</div>
 
 <style>
-.topbtn img{
-  width: 50%;
-  height: 50%;
-  padding: 7.5px;
-}
-.bottombtn img{
-  width: 50%;
-  height: 50%;
-  padding: 7.5px;
-}
-.mainbtn img{
-  width: 50%;
-  height: 50%;
-  padding: 7.5px;
-}
-.topbtn{
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  margin-bottom: 5px;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  border-radius: 2px;
-}
-.topbtn:hover .topover{
-  display: block;
-}
-.topover{
-  display: none;
-  padding: 0 5px;
-  height: 18px;
-  position: absolute;
-  right: 40px;
-  border: 1px solid gray;
-  top: 10px;
-  text-align: center;
-  white-space: nowrap;
-  background: #999;
-  color: white;
-  border-radius: 2px;
-}
-.topbtn:hover{
-  background: #999;
-  border-radius: 2px;
-}
-.bottombtn{
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  margin-bottom: 5px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 2px;
-}
-.bottombtn:hover .bottomover{
-  display: block;
-}
-.bottombtn:hover{
-  background: #999;
-  border-radius: 2px;
-}
-.bottomover{
-  display: none;
-  padding: 0 5px;
-  height: 18px;
-  position: absolute;
-  right: 40px;
-  border: 1px solid gray;
-  top: 10px;
-  text-align: center;
-  white-space: nowrap;
-  background: #999;
-  color: white;
-  border-radius: 2px;
-}
-.mainbtn{
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  margin-bottom: 5px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 2px;
-}
-.mainbtn:hover{
-  background: #999;
-  border-radius: 2px;
-}
-.mainbtn:hover .mainover{
-  display: block;
-}
-.mainover{
-  display: none;
-  padding: 0 5px;
-  height: 18px;
-  position: absolute;
-  right: 40px;
-  border: 1px solid gray;
-  top: 10px;
-  text-align: center;
-  white-space: nowrap;
-  background: #999;
-  color: white;
-  border-radius: 2px;
-}
-.side-nav{
-  position: fixed;
-  right: 15px;
-  font-size: 12px;
-  z-index: 3;
 
-}
+
 /* html{
 scroll-behavior: smooth;
 } */
@@ -237,4 +232,22 @@ $(document).ready(function(){
   });
 
 });
+</script>
+<script>
+function mouseOver(){
+  document.getElementById("dropdown_hover").className = "dropdown-back";
+}
+function mouseOut() {
+  document.getElementById("dropdown_hover").className = "dropdown-wrap";
+}
+</script>
+<script>
+// $(document).ready(function() {
+//   $('.mainmenu').mouseover(function(){
+//     $('.dropdown-back').animate({opacity:"1"}, 100);
+//   });
+//   $('.mainmenu').mouseleave(function(){
+//     $('.dropdown-wrap').animate({opacity:"1"}, 100);
+//   });
+// })
 </script>

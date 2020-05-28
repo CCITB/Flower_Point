@@ -1,4 +1,6 @@
 .postbutton{
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
 }
 .post{
@@ -104,4 +106,22 @@ float: left;
 }
 .preview{
 
+}
+#save{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #666;
+  width: 83.675px;
+  background-color: #666;
+  color: white;
+}
+.Cancellation-btn{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
 }

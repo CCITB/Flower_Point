@@ -1,11 +1,7 @@
 /* 곽승지 css 무단 수정 금지*/
 /* 화면헤더 */
-.dropdown-wrap{
-  border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid #d9d9d9;
-  background-color: #F5E6DE;
-  margin-bottom: 30px;
-}
+
+
 .user-wrap{
   background-color: #FFDDDD;
 
@@ -161,6 +157,29 @@ body{
   margin: 0px 16px;
 
 }
+
+.hr-sect1 {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 20px;
+  margin: 8px auto 8px auto;
+  padding-bottom: 20px;
+  width: 1130px;
+
+}
+.hr-sect1::before,
+.hr-sect1::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 0.1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
+
+}
 .topheader
 {
   height: 190px;
@@ -206,88 +225,6 @@ padding-left: 0px;
   text-align: center;
 
 }
-/* Dropdown Button */
-.dropbtn {
-  background-color: #F5E6DE;
-  color: black;
-  padding: 16px 30px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-
-  display: inline-block;
-
-
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  z-index: 1;
-  text-align: left;
-  visibility: hidden;
-  opacity: 0;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: #806c63;
-  padding: 16px 30px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #FFC0CB; color: white;
-  visibility: visible;
-  opacity: 1;
-  transition: all 1s ease;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover > .dropdown-content {display: block;
-  height: 0px;
-  visibility: visible;
-  opacity: 1;
-  background-color: white;
-}
-.dropdown:hover > .dropdown-content:nth-child(1){
-  animation: animate 300ms ease-in-out forwards;
-  animation-delay: -150ms;
-}
-.dropdown:hover > .dropdown-content:nth-child(2){
-  animation: animate 300ms ease-in-out forwards;
-  animation-delay: 0ms;
-}
-.dropdown:hover > .dropdown-content:nth-child(3){
-  animation: animate 300ms ease-in-out forwards;
-  animation-delay: 150ms;
-}
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn{
-  color: #FFC0CB;
-  border-bottom: 1px solid;
-}
-@keyframes animate {
-  0%{
-    opacity: 0;
-    transform: rotateX(-90deg);
-  }
-  50%{
-    transform: rotateX(20deg);
-  }
-  100%{
-    opacity: 1;
-    transform: rotateX(0deg);
-  }
-}
 
 #dropdown-menu{
   white-space : nowrap;
@@ -299,6 +236,122 @@ padding-left: 0px;
   padding: 0 30px;
   text-align: center;
 }
+
+.topbtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
+.bottombtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
+.mainbtn img{
+  width: 50%;
+  height: 50%;
+  padding: 7.5px;
+}
+.topbtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  border-radius: 2px;
+}
+.topbtn:hover .topover{
+  display: block;
+}
+
+.topover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
+}
+.topbtn:hover{
+  background: #999;
+  border-radius: 2px;
+}
+.bottombtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 2px;
+}
+.bottombtn:hover .bottomover{
+  display: block;
+}
+.bottombtn:hover{
+  background: #999;
+  border-radius: 2px;
+}
+.bottomover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
+}
+.mainbtn{
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 2px;
+}
+.mainbtn:hover{
+  background: #999;
+  border-radius: 2px;
+}
+.mainbtn:hover .mainover{
+  display: block;
+}
+.mainover{
+  display: none;
+  padding: 0 5px;
+  height: 18px;
+  position: absolute;
+  right: 40px;
+  border: 1px solid gray;
+  top: 10px;
+  text-align: center;
+  white-space: nowrap;
+  background: #999;
+  color: white;
+  border-radius: 2px;
+}
+.side-nav{
+  position: fixed;
+  right: 15px;
+  font-size: 12px;
+  z-index: 3;
+
+}
+
 
 /* 화면 하단부 영역 */
 footer{
