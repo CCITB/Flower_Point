@@ -1,0 +1,39 @@
+div.all{
+  position: relative;
+  width: 100%;
+}
+
+div.half{
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+div.wrapping{
+  position: relative;
+  width: 100%;
+}
+
+table#searchlist{
+
+}
+
+div.contentbox{
+  margin-bottom: 20px;
+}
+
+th{
+  background-color: pink;
+
+}
+
+table.orderinfo{
+  text-align: center;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-top: 1px solid;
+}
+td.tabletd{
+  border-top:1px solid;
+  border-bottom: 1px solid;
+}
