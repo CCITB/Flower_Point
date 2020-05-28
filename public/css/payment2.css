@@ -87,14 +87,10 @@ div.containerbox{
 
 }
 
-input.inputtext{
-  margin-left: 30px;
-  width: 15em;
-}
-
 table{
   border-collapse: collapse;
 }
+
 
 div.orderbox{
   width: 50%;
@@ -104,6 +100,7 @@ div.orderbox{
   border-radius: 2px;
   position: relative;
   margin-bottom: 30px;
+  padding:10px;
 }
 
 div.paybox{
@@ -155,10 +152,10 @@ div.customerbox{
 
 div.customerbox2{
   border: solid 1px #d6d6d6;
-  border-radius: 2px;
+  /*border-radius: 2px;*/
   background-color: #fff;
   line-height: 2.5;
-  position: relative;
+  /*position: relative;*/
 }
 
 form.info{
@@ -196,10 +193,74 @@ input[type=submit]{
   border:none;
 }
 
+input.delivery_tel{
+  height: 18px;
+  width : 35px;
+  padding : 5px;
+}
+select.delivery_tel{
+  height: 32px;
+  width : 55px;
+  padding:5px;
+}
+
+input#inputtext{
+  width: 15em;
+  height: 18px;
+  padding:5px;
+}
+
+input#address{
+  width: 15em;
+  height: 18px;
+  padding:5px;
+}
+
+input#postcode{
+  width: 5em;
+  height: 2em;
+  padding-left: 5px;
+}
+
+input#find_post{
+  height: 30px;
+  width:70px;
+}
+input#detailAddress{
+  height: 30px;
+  padding-left: 5px;
+  width:130px;
+}
+input#extraAddress{
+  height: 30px;
+  width:60px;
+  padding-left: 5px;
+}
+
+input.delivery_address_list{
+  display:inline-block;
+}
+
+strong.info{
+  float:left;
+  width:110px;
+}
+div.delivery_input{
+  float: left;
+}
+div.delivery_input2{
+  text-align: right;
+}
+
+div.delivery_wrap2{
+  text-align: right;
+  margin-right:5px;
+}
+
 th{
   text-align:left;
 }
-td{
+td.order_text{
   text-align:right;
 }
 
