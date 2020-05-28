@@ -42,7 +42,7 @@ Route::get('/terms_customers', 'MainController@register_terms_customers');
 
 Route::get('/terms_sellers', 'MainController@register_terms_sellers');
 
-Route::get('/information', 'MainController@register_information');
+Route::get('/sto_info', 'MainController@register_information');
 
 
 
@@ -96,7 +96,9 @@ Route::get('/sellermyshop', function () {
 Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
-
+Route::get('/find_chk', function () {
+  return view('find_information.find_check');
+});
 //결제
 Route::get('/order', function () {
   return view('payment.order');

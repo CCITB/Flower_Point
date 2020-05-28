@@ -3,7 +3,7 @@
 #all{
   margin:5% auto;
   border: 1px solid;
-  width : 550px;
+  width : 530px;
   border-radius: 25px;
   padding: 35px;
   background-color: #FFFFFF;
@@ -45,7 +45,7 @@ hr{
   flex-wrap: nowrap;
 }
 .character{
-  width: 25%;
+  width: 20%;
   text-align: right;
   font-size: 15px;
 }
@@ -161,7 +161,7 @@ button:hover:before,button:hover:after{
 }
 .under_pw{
   clear: both;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .intervel{
   height: 60px;
@@ -181,11 +181,18 @@ button:hover:before,button:hover:after{
   height: 330px;
 }
 .pw_requirement{
-  padding-bottom: 40px;
+  padding-bottom: 55px;
 }
 /* -------------------- */
+/* -----  my_id ------ */
+.my_id{
+  padding: 20px;
+  text-align: center;
+  height: 330px;
+}
 
 
+/* -------------------- */
 
 .shop_title{
   font-size: 20px;
