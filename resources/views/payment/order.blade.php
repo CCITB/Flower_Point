@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="/css/payment2.css">
   <link rel="stylesheet" href="/css/header.css">
 </head>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" type="text/javascript">
+</script>
 <body>
   <div class="wrapping">
     <div class="topheader">
@@ -138,8 +140,9 @@
               </table>
               <hr class="line2">
             </form>
-            <div class="line"><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</div>
-            <div class="line"><input class="end" type='submit' value="다음"></div>
+            <form class="check" action="/complete" onsubmit="return checkform(this)" name="check">
+            <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+            <div class="line"><input class="end" type='submit' value="다음" ></div></form>
           </div>
         </div><!--결제정보 -->
       </div><!--오른쪽 주문정보 박스 -->
@@ -149,5 +152,15 @@
 </div>
 @include('footer')
 </body>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script type="text/javascript">
+
+function checkform(Join){
+
+  var check1=document.check.ck.checked;
+  if(!check1){
+    alert('약관에 동의해 주세요');
+    return false;
+  }
+  }
+</script>
 </html>

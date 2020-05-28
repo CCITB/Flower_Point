@@ -23,27 +23,27 @@
                 <table border="0" cellpadding="10" cellspacing="10" width="100%">
                     <tr>
                         <th>ID</th>
-                        <td>asd</td>
+                        <td contenteditable='true'>asd</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td>******</td>
+                        <td contenteditable='true'>******</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td>정경진</td>
+                        <td contenteditable='true'>정경진</td>
                     </tr>
                     <tr>
                         <th>연락처</th>
-                        <td>*****</td>
+                        <td contenteditable='true'>*****</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td>asdsad@naver.com</td>
+                        <td contenteditable='true'>asdsad@naver.com</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
+                        <td contenteditable='true'>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
                     </tr>
                 </table>
             </table>
@@ -52,11 +52,11 @@
             <h3 align="center">문의관리</h3>
             <hr align="center" width="100%" >
             <table class="questiontable" border="1" cellpadding="10" width="100%";>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>등록일</th>
-                <th>답변상태</th>
+                <th class="thinfo">번호</th>
+                <th class="thinfo">제목</th>
+                <th class="thinfo">작성자</th>
+                <th class="thinfo">등록일</th>
+                <th class="thinfo">답변상태</th>
                 <tr>
                   <td>123</td>
                   <td>꽃에관한 질문입니다.</td>
@@ -106,15 +106,15 @@
             <div class="quickbuttonwrap">
                 <div class="quickgroup"><a href="/locate1">
                     <div class="quickbutton">
-                        <img src="/imglib/goflowershop" alt="" height="200px" width="300px;">
+                        <img src="/imglib/orangerose.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>내 주변 꽃집</h1>
                         </div>
                     </div>
                 </div>
-                <div class="quickgroup"><a href="/mypage1">
+                <div class="quickgroup"><a href="/order1">
                     <div class="quickbutton">
-                        <img src="imglib/orderlist.png" alt="" height="200px" width="300px;">
+                        <img src="imglib/rose.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>내 주문관리</h1>
                         </div>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="quickgroup"><a href="#">
                     <div class="quickbutton">
-                        <img src="imglib/coupon.png" alt="" height="200px" width="300px;">
+                        <img src="imglib/sunflower.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>쿠폰관리</h1>
                         </div>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="quickgroup"><a href="#">
                     <div class="quickbutton">
-                        <img src="product.jpg" alt="" height="200px" width="300px;">
+                        <img src="imglib/pink.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>물품관리</h1>
                         </div>

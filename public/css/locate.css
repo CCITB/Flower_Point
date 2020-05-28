@@ -3,7 +3,9 @@
     {
     font-family: Nanum Gothic;
 }
-
+img{
+  opacity: 70%;
+}
 .shopname {
     width: 500px;
     float: left;
@@ -22,7 +24,7 @@
 
 .myinfo {
     width: 50%;
-    margin-left: 10%;
+    margin: 0 auto;
 }
 
 .show {
@@ -44,6 +46,7 @@
     position: relative;
     margin: 0 auto;
     height: 500px;
+    display: inline-block;
 }
 
 .quickbutton {
@@ -51,30 +54,29 @@
     margin: 0 auto;
     float: left;
     height: 50%;
-    z-index: 3;
     position: relative;
-    margin: 10px;
     cursor: pointer;
-}
-
-img {
-    border-radius: 20px;
-    box-shadow: 10px 5px 5px black;
 }
 
 .quickgroup {
     position: relative;
+    display: inline-block;
 }
 
 .innerbutton {
     top: 40px;
-    left: 80px;
+    left: 25%;
+    width: 100%;
     position: absolute;
 }
 .questiontable{
+  border-collapse: collapse;
   margin-bottom: 50px;
 }
 
+th.thinfo{
+  background-color: pink;
+}
 nav{
   border: solid 1px gray;
 display: inline-block;
