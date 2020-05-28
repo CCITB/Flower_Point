@@ -1,94 +1,132 @@
 /* 수정시 소현에게 */
 
 #all{
-  margin:0 auto;
+  margin:5% auto;
   border: 1px solid;
-  width : 450px;
+  width : 550px;
   border-radius: 25px;
-  padding: 40px;
+  padding: 35px;
   background-color: #FFFFFF;
   border-style: hidden;
-  text-align: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: flex-start;
+  opacity: 0.8;
+  font-family:'Kanit','Nanum Gothic Coding', monospace;
 }
 body {
-  background-color: #FFD8D8;
+  background-image: url(https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
+  background-repeat : no-repeat;
+  background-size : cover;
 }
-p{
-  padding-bottom:5px;
-  text-align: center;
-}
+/* 큰 타이틀 */
 .text{
-  padding-bottom:30px;
+  padding-bottom: 20px;
+}
+.id_title{
+  font-size: 40px;
 }
 hr{
-  width: 450px;
+  width: 100%;
   border-bottom: 0px;
   text-align: center;
 }
-h1{
-  text-align: left;
+.text_des{
+  font-size: 18px;
+}
+/* --------------- */
+.lg_bt{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  cursor: pointer;
+}
+.lg_bt:hover{
+  opacity: 1
+}
+a:link{
+  text-decoration: none; color:#003E00;
+}
+a:visited{
+  text-decoration: none; color:#003E00;
+}
+a:active{
+  text-decoration: none; color:#003E00;
+}
+a:hover{
+  text-decoration: none; color:#003E00;
 }
 
-.inf1{ /* 회원가입 input */
-  width:300px;
-  height:40px;
-  font-size:15px;
+/*    약관동의    */
+.agree_terms{
+  text-align: center;
+  padding: 0 20px 20px;
 }
-.end{
-  width: 70px;
-  height: 30px;
-  float: left;
-}
-.sign{
-  align: right;
+.terms_title{
+  font-size: 1.2em;
+  color: #747474;
 }
 textarea{
-  width: 400px;
+  width: 100%;
   height: 150px;
   resize: none;
 }
 .checkbt{
   text-align: left;
-  padding-bottom: 13px;
+  padding-bottom: 10px;
   font-size: 20px;
 }
 .box{
   text-align: center;
 }
 .checkbox{
-  padding-bottom: 35px;
+  padding-bottom: 20px;
 }
 .mini{
   width: 15px;
   height: 15px;
 }
-.back{
-  width:100px;
-  height:40px;
-  font-size:20px;
-  background-color:#B2CCFF;
-  text-align: center;
+.home{
+  float: left;
+  margin-bottom: 10px;
 }
-.terms_submit{
-  width:100px;
-  height:40px;
-  font-size:20px;
-  background-color:#FFA7A7;
-  text-align: center;
+/* ----------- */
+.signup{
+  padding-left: 20px;
 }
-div.label{
-    text-align: left;
+.sign_name{
+  font-size: 1em;
+  color: #747474;
+  margin-bottom:7px;
 }
-label{  /* 회원가입  */
-  /*text-align: left;*/
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 3px;
+.inf1{ /* 회원가입 input */
+  width:80%;
+  height:38px;
+  font-size:15px;
+  padding: 5px;
 }
 .form_select{
-  width:200px;
-  height: 30px;
-  float: left;
+  width:50%;
+  height: 38px;
+  margin-top: -5px;
+}
+.check_div{
+  height: 33px;
+  font-size: 12px;
+}
+
+
+.st_if{
+  padding:0 20px 20px;
+}
+.under{
+  margin-top:30px;
+  text-align: center;
 }

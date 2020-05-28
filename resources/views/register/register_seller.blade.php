@@ -6,60 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="stylesheet" type="text/css" href="/css/register.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/sign_up.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
   <div id="all">
-    <h1>판매자 회원가입 </h1>
-    <hr>
+    <div class="text">
+      <div class="id_title">Seller Register</div> <hr>
+    </div>
     <div class="signup">
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return validatate();'>
         @csrf
-        <label>아이디</label>
+        <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="s_id">
-        <div class="check_div" style="height:45px; font-size:12px;"id="id_check" value=""></div>
+        <div class="check_div" id="id_check" value=""></div>
 
-        <label>비밀번호</label>
+        <div class="sign_name">비밀번호</div>
         <input class="inf1" type="password" placeholder="Password" name="s_password" id="pw" >
-        <div class="check_div" style="height:45px; font-size:12px;" id="pw_check" value=""></div>
+        <div class="check_div" id="pw_check" value=""></div>
 
-        <label>비밀번호 확인</label>
+        <div class="sign_name">비밀번호 확인</div>
         <input class="inf1" type="password" placeholder="Password" name="s_re_password" id="check" >
-        <div class="check_div" style="height:45px; font-size:12px;" id="re_pw_check" value=""></div>
+        <div class="check_div" id="re_pw_check" value=""></div>
 
-        <label>이름</label>
+        <div class="sign_name">이름</div>
         <input class="inf1" type="name" placeholder="Name" id="name" name="s_name" >
-        <div class="check_div" id="name_check" style="height:45px; font-size:12px;" value=""></div>
+        <div class="check_div" id="name_check" value=""></div>
 
-        <label>연락처</label>
+        <div class="sign_name">연락처</div>
         <input class="inf1" type="text" placeholder="Phone Number" id="phonenum" name="s_phonenum" >
-        <div class="check_div" id="phonenum_check" style="height:45px;" value=""></div>
+        <div class="check_div" id="phonenum_check" value=""></div>
 
-        <label>생년월일</label>
+        <div class="sign_name">생년월일</div>
         <input class="inf1" type="text" placeholder="ex)200514" id="birth" name="s_birth">
-        <div class="check_div" id="phonenum_check" style="height:25px;" value=""></div>
-        <br>
+        <div class="check_div" id="phonenum_check" value=""></div>
+
         <div class="gender">
-          <label>성별</label>
+          <div class="sign_name">성별</div>
           <select class="form_select" name="s_gender" id=gender >
             <option value="">성별</option>
             <option value="남성">남성</option>
             <option value="여성">여성</option>
           </select>
-        </div>
-        <div class="check_div" id="phonenum_check" style="height:20px;" value=""></div>
-        <br>
-        <label>이메일</label>
+        </div><br>
+
+        <div class="sign_name">이메일</div>
         <input class="inf1" type="email" placeholder="email "id="email" name="s_email"  >
+      </div>
+      <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
+      <div class="under">
+        <button class="lg_bt" type='button' onclick="history.back()">뒤로</button>
+        <input class="lg_bt" type='submit' value="다음">
+      </div>
+    </form>
 
-        <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
-        <button class="end" type='button' onclick="history.back()">돌아가기</button>
-        <input class="end" type='submit' value="다음">
-
-      </form>
-    </div>
   </body>
   </html>
   <script type="text/javascript">

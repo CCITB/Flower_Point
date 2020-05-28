@@ -36,7 +36,7 @@
       </form>
     </div>
     <div class="bottom">
-      <a href = "/register_customer">구매자 회원가입</a>
+      <a href = "/terms_customers">구매자 회원가입</a>
     </div>
     <div class="home">
       <a href = "/">홈으로</a>
