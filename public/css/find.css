@@ -3,7 +3,7 @@
 #all{
   margin:5% auto;
   border: 1px solid;
-  width : 600px;
+  width : 550px;
   border-radius: 25px;
   padding: 35px;
   background-color: #FFFFFF;
@@ -22,8 +22,10 @@ p{
   padding-top: 5px;
   text-align: center;
 }
+
+/* 큰 타이틀 */
 .text{
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 .id_title{
   font-size: 40px;
@@ -36,6 +38,8 @@ hr{
 .text_des{
   font-size: 18px;
 }
+/* --------------- */
+
 .fd_id{
   display: flex;
   flex-wrap: nowrap;
@@ -44,19 +48,15 @@ hr{
   width: 25%;
   text-align: right;
   font-size: 15px;
-  margin-right: 15px;
 }
 .window{
-  width: 60%;
+  width: 75%;
   text-align: left;
 }
 .find_input{
-  width:200px;
-  height:30px;
+  width:210px;
+  height:33px;
   font-size: 15px;
-}
-.under{
-  clear: both;
 }
 
 a:link{
@@ -71,9 +71,24 @@ a:active{
 a:hover{
   text-decoration: none; color:#003E00;
 }
-
+.lg_bt{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  cursor: pointer;
+}
+.lg_bt:hover{
+  opacity: 1
+}
 /* -------------------- */
-
 
 /* ----- find_id ------ */
 .bottom{
@@ -88,55 +103,18 @@ a:hover{
 .find_id {
   padding: 20px;
   text-align: center;
-  height: 300px;
+  height: 330px;
 }
-
-.find_bt{
-  background: #476600;
-  color:#fff;
-  border:none;
-  position:relative;
-  border-radius: 5px;
-  height:40px;
-  font-size:16px;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
+.ip_name{
+  font-size: 1em;
+  color: #A6A6A6;
+  margin-bottom:5px;
 }
-.find_bt:hover{
-  background:#fff;
-  color: #476600;
+.under{
+  clear: both;
+  margin-top: 10px;
 }
-.find_bt:before{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background:  #476600;
-  transition:400ms ease all;
-}
-.find_bt:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #476600;
-  transition:400ms ease all;
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.find_bt:hover::before
-, .find_bt:hover::after{
-  width:100%;
-  transition:800ms ease all;
-}
-button{
+/* button{
   background:#476600;
   color:#fff;
   border:none;
@@ -172,39 +150,38 @@ button:after{
 button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
-}
-
-
-
+} */
 /* -------------------- */
+
 /* ----- find_pw ------ */
 .find_pw{
   padding: 20px;
   text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
+  height: 330px;
+}
+.under_pw{
+  clear: both;
+  margin-top: 50px;
+}
+.intervel{
+  height: 60px;
 }
 /* -------------------- */
 /* ----- find_pw_way ------ */
 .find_pw_way{
   padding: 20px;
   text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
+  height: 330px;
 }
 /* -------------------- */
 /* ----- pw_reset ------ */
 .pw_reset{
   padding: 20px;
   text-align: center;
-  border: 1px solid;
-  border-radius: 25px;
-  height: 350px;
+  height: 330px;
 }
-.my_id{ //내 아이디 불러오는 창
-  border: 1px solid;
+.pw_requirement{
+  padding-bottom: 40px;
 }
 /* -------------------- */
 

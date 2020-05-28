@@ -4,40 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>비밀번호 찾기</title>
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/find.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
+
 
 </head>
 <body>
 
   <div id="all">
     <div class="text">
-      <h1> 비밀번호 찾기 </h1>
-      <hr>
-      비밀번호를 찾을 방법을 선택해 주세요.
+      <div class="id_title">Find Password</div> <hr>
+      <div class="text_des">회원정보에 등록한 휴대전화로 인증</div>
     </div>
 
     <div class ="find_pw_way">
       <form action = '처리할 주소' method='POST'>
-        <p>
+        <div class="fd_id">
           <div class="character">
-            이름 : <br><br>
-            전화번호 :
+
           </div>
           <div class="window">
-            <input class="find_input" type="name" name="name"required ><br><br>
-            <input class="find_input" type="tell" name="tell" required title="000-0000-0000"><input type="submit" value="인증번호받기"><br><br>
-            <input class="find_input" type="name" autofocus placeholder="인증번호 입력" name="name" required >
+            <div class="ip_name">이름</div>
+            <input class="find_input" type="name" placeholder="이름을 입력하세요." name="name" required ><br><br>
+            <div class="ip_name">전화번호</div>
+            <input class="find_input" type="tell" placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000">
+            <input type="submit" value="인증"><br><br>
+            <input class="find_input" type="name" placeholder="인증번호" name="name" required >
             <input type="submit" value="확인"><br><br>
           </div>
+        </div>
 
-          <div class="under">
-            <p>
-              <button type="submit" > <a href="/find_pw_reset">다음</a> </button>
-            </p>
-          </p>
+        <div class="under">
+          <input class="lg_bt" type="submit" value="다음">
         </div>
       </form>
     </div>
+
   </div>
 </body>
 </html>

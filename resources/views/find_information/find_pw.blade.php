@@ -4,30 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>비밀번호 찾기</title>
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/find.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
   <div id="all">
     <div class="text">
-      <h1> 비밀번호 찾기 </h1>
-      <hr>
-      비밀번호를 찾고자 하는 아이디를 입력해 주세요.
+      <div class="id_title">Find Password</div> <hr>
+      <div class="text_des">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</div>
     </div>
 
     <div class ="find_pw">
-      <p>
-        <form action = '처리할 주소' method='POST'>
+        <form action = '처리할 주소' method='post'>
+          <div class="intervel"></div>
           <input class="find_input" type="name" autofocus placeholder="꽃갈피 아이디" name="name" required ><br>
-          <p>
-            <input type="submit">
-            <button type="submit" > <a href="/find_pw_way">다음</a> </button>
-          </p>
+          <div class="under_pw">
+            <input class="lg_bt" type="submit" value="다음">
+          </div>
         </form>
-      </p>
     </div>
-
+    <div class="home">
+      <a href = "/">홈으로</a>
+    </div>
   </div>
 </body>
 </html>
