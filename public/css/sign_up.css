@@ -70,7 +70,7 @@ a:hover{
   padding: 0 20px 20px;
 }
 .terms_title{
-  font-size: 1.2em;
+  font-size: 1em;
   color: #747474;
 }
 textarea{
@@ -103,7 +103,7 @@ textarea{
 }
 .sign_name{
   font-size: 1em;
-  color: #747474;
+  color: #4C4C4C;
   margin-bottom:7px;
 }
 .inf1{ /* 회원가입 input */

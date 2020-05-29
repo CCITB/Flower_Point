@@ -47,7 +47,7 @@
 
         <div class="paragraph">
           <div class="sign_name">매장 소개</div>
-          <textarea cols="50" rows="10" style=resize:none; placeholder="introduce" id="st_introduce" name="st_introduce" ></textarea>
+          <textarea placeholder="introduce" id="st_introduce" name="st_introduce" ></textarea>
         </div>
         <div class="under">
           <input class="lg_bt" type='submit' id="login" value="가입하기">
