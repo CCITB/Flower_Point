@@ -115,7 +115,7 @@
     margin: 0;
   }
   li.submenu{
-
+    /* color: #a7acbc; */
     font-size: 13px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -123,7 +123,7 @@
     visibility:hidden;
     opacity: 0; /*찾아라*/
     transition: all 0.3s ease-in-out;
-
+    display: none;
   }
   li.submenu:hover>a{
     color: #f68500;
@@ -154,6 +154,7 @@
     transition: all 0.3s ease-in-out;
     margin-bottom: 30px;
     border-radius: 0px 0px 50px 50px;
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
   }
   .dropdown-back li.submenu{
     display: block;
@@ -163,7 +164,6 @@
     text-decoration: none;
     opacity: 1;
     visibility:visible;
-
   }
   .dropdown-back li.mainmenu>a{
     /* margin-bottom: 15px;
@@ -236,6 +236,9 @@ $(document).ready(function(){
 <script>
 function mouseOver(){
   document.getElementById("dropdown_hover").className = "dropdown-back";
+}
+function mouseOut() {
+  document.getElementById("dropdown_hover").className = "dropdown-wrap";
 }
 function mouseOut() {
   document.getElementById("dropdown_hover").className = "dropdown-wrap";
