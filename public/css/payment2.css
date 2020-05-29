@@ -172,11 +172,11 @@ div.product_data{
 }
 
 div.option{
-  
+
 }
 
 div.pay_data{
-  border: solid 1px #d6d6d6;
+  border-top: solid 1px #d6d6d6;
   margin-top:20px;
   padding:10px;
 }

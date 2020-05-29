@@ -94,26 +94,49 @@
               <input type="radio" name="trade" value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
               <input type="radio" name="trade" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
               <div id="divshow" style="display:none;">
-              <div class="delivery_wrap">
-                <strong class="info">주 소</strong>
-                <!-- 우편번호 -->
-                <input type="text" id="postcode" placeholder="우편번호">
-                <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-              </div>
-              <!--주소 -->
-              <div class="delivery_wrap2">
-                <input type="text"  id="address" placeholder="주소">
-
-                <div class="delivery_address_detail">
-                  <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
-                  <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
+                <div class="delivery_wrap">
+                  <strong class="info">주 소</strong>
+                  <!-- 우편번호 -->
+                  <input type="text" id="postcode" placeholder="우편번호">
+                  <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
                 </div>
-              </div>
-              <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
-            </table>
+                <!--주소 -->
+                <div class="delivery_wrap2">
+                  <input type="text"  id="address" placeholder="주소">
 
-        </div>
-      </div>
+                  <div class="delivery_address_detail">
+                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
+                    <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
+                  </div>
+                </div>
+                <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
+              </table>
+
+              <!--결제창-->
+              <div class="pay_data">
+                <table cellpadding="5" cellspacing="5" width="100%">
+                  <label>무통장 입금</label>
+                  <th><li>은행 선택</li></th>
+                  <td>
+                    <select name=bank margin-left:10px;>
+                      <option value="">은행을 선택해주세요</option>
+                      <option value="농협">농협</option>
+                      <option value="국민은행">국민은행</option>
+                      <option value="우리은행">우리은행</option>
+                      <option value="하나은행">하나은행</option>
+                      <option value="신한은행">신한은행</option>
+                      <option value="외한은행">외한은행</option>
+                      <option value="씨티은행">씨티은행</option>
+                      <option value="기업은행">기업은행</option>
+                      <option value="우체국">우체국</option>
+                      <option value="부산은행">부산은행</option>
+                      <option value="SC은행">SC은행</option>
+                    </select>
+                  </td>
+                </table>
+              </div>
+            </div>
+          </div>
           <!--상품 정보창-->
           <div class="product_data">
             <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
@@ -122,31 +145,7 @@
                 <td rowspan="2"><img class="product_image" src="dummy.jpg" alt="Flower Image" width="100px" height="100px"></td>
                 <td>상품명 : p_name</td>
               </tr>
-                <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
-            </table>
-          </div>
-
-          <!--결제창-->
-          <div class="pay_data">
-            <table cellpadding="5" cellspacing="5" width="100%">
-              <label>무통장 입금</label>
-              <th><li>은행 선택</li></th>
-              <td>
-                <select name=bank margin-left:10px;>
-                  <option value="">은행을 선택해주세요</option>
-                  <option value="농협">농협</option>
-                  <option value="국민은행">국민은행</option>
-                  <option value="우리은행">우리은행</option>
-                  <option value="하나은행">하나은행</option>
-                  <option value="신한은행">신한은행</option>
-                  <option value="외한은행">외한은행</option>
-                  <option value="씨티은행">씨티은행</option>
-                  <option value="기업은행">기업은행</option>
-                  <option value="우체국">우체국</option>
-                  <option value="부산은행">부산은행</option>
-                  <option value="SC은행">SC은행</option>
-                </select>
-              </td>
+              <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
             </table>
           </div>
         </div>
@@ -194,16 +193,16 @@
               <hr class="line2">
             </form>
             <form class="check" action="/complete" onsubmit="return checkform(this)" name="check">
-            <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-            <div class="line"><input class="end" type='submit' value="다음" ></div></form>
-          </div>
-        </div><!--결제정보 -->
-      </div><!--오른쪽 주문정보 박스 -->
-      <!--컨테이너박스-->
+              <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+              <div class="line"><input class="end" type='submit' value="다음" ></div></form>
+            </div>
+          </div><!--결제정보 -->
+        </div><!--오른쪽 주문정보 박스 -->
+        <!--컨테이너박스-->
+      </div>
     </div>
   </div>
-</div>
-@include('footer')
+  @include('footer')
 </body>
 <script type="text/javascript">
 
@@ -214,16 +213,16 @@ function checkform(Join){
     alert('약관에 동의해 주세요');
     return false;
   }
-  }
+}
 </script>
 <script>
-  function div_show(s,ss){
-    if(s == "무통장입금"){
-      document.getElementById(ss).style.display="";
-    }else{
-      document.getElementById(ss).style.display="none";
-    }
+function div_show(s,ss){
+  if(s == "무통장입금"){
+    document.getElementById(ss).style.display="";
+  }else{
+    document.getElementById(ss).style.display="none";
   }
+}
 </script>
 </html>
 
