@@ -38,6 +38,13 @@ class RegisterController extends Controller
     $input_id = trim($_POST['s_id']);
     $sellers = DB::table('seller')-> where('s_id','=',$input_id)->get()->count();
 
+    $s_birth_array = array();
+    $s_birth_array[0] = trim($_POST['s_birth_y']);
+    $s_birth_array[1] = trim($_POST['s_birth_m']);
+    $s_birth_array[2] = trim($_POST['s_birth_d']);
+
+    $s_birth = implode($s_birth_array);
+
     //database insert
     if($sellers<1){
       DB::table('seller')->insert([
@@ -47,7 +54,7 @@ class RegisterController extends Controller
         's_phonenum' => $request->input('s_phonenum'),
         's_email' => $request->input('s_email'),
         's_gender' => $request->input('s_gender'),
-        's_birth' => $request->input('s_birth')
+        's_birth' => $request->input($s_birth)
       ]);
       return redirect('/information');
     }
@@ -56,10 +63,13 @@ class RegisterController extends Controller
     }
   }
   //[resister_seller jQuery부분] PW일치여부 -- 어지수
-  public function s_overlapPW(Request $request)
+  public function s_overlap(Request $request)
   {
     $overlap_pw = $request->input('pw');
     return response()->json($overlap_pw);
+
+    $overlap_name = $request->input('name');
+    return response()->json($overlap_name);
   }
 
   //[register_seller jQuery부분] ID중복검사 -- 어지수
@@ -69,6 +79,8 @@ class RegisterController extends Controller
     $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
     return response()->json($sellers);
   }
+
+
   //[resister_seller jQuery부분] PW일치여부 -- 어지수
   public function c_overlapPW(Request $request)
   {

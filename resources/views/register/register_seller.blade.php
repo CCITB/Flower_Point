@@ -37,12 +37,25 @@
         <input class="inf1" type="name" placeholder="Name" id="name" name="s_name" >
         <div class="check_div" id="name_check" value=""></div>
 
-        <div class="sign_name">연락처</div>
-        <input class="inf1" type="text" placeholder="Phone Number" id="phonenum" name="s_phonenum" >
-        <div class="check_div" id="phonenum_check" value=""></div>
-
         <div class="sign_name">생년월일</div>
-        <input class="inf1" type="text" placeholder="ex)200514" id="birth" name="s_birth">
+        <input class="inf1" type="text" placeholder="년(4자)" id="s_birth_y" name="s_birth_y">
+
+        <select class="inf1" id="s_birth_m" name="s_birth_m">
+          <option value="">월</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <input class="inf1" type="text" placeholder="일" id="s_birth_d" name="s_birth_d">
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="gender">
@@ -53,6 +66,10 @@
             <option value="여성">여성</option>
           </select>
         </div><br>
+
+        <div class="sign_name">연락처</div>
+        <input class="inf1" type="text" placeholder="Phone Number" id="phonenum" name="s_phonenum" >
+        <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">이메일</div>
         <input class="inf1" type="email" placeholder="email "id="email" name="s_email"  >
@@ -87,6 +104,9 @@
   $("#name").blur(function() {
     checkNameInput();
   });//blur
+  $("#name").blur(function() {
+    checkNameInput();
+  });//blur
 
   function checkIdInput(){
     var seller_id = $('#id').val();
@@ -110,7 +130,6 @@
         if(data>=1){
           $('#id_check').text('이미 사용중인 아이디입니다.');
           $('#id_check').css('color', 'red');
-          //return false;
         }
 
         //ID 중복X
@@ -119,20 +138,17 @@
           if(idJ.test(seller_id)){
             $("#id_check").text("사용가능한 아이디입니다!");
             $('#id_check').css('color', 'green');
-            //return true;
           }
           //정규식 일치X
           if(!idJ.test(seller_id)){
             $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
             $('#id_check').css('color', 'red');
-            //return false;
           }
         }
         //ID 공백체크
         if(seller_id == ""){
           $('#id_check').text('필수 정보입니다.');
           $('#id_check').css('color', 'red');
-          //return false;
         }
 
       }//success
@@ -148,7 +164,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'seller_OverlapPW',
+      url: 'seller_Overlap',
       dataType: 'json',
       data: { "pw":seller_pw },
 
@@ -158,19 +174,16 @@
         if(pwJ.test(seller_pw)){
           $("#pw_check").text("");
           $('#pw_check').css('color', 'red');
-          return true;
         }
         //PW 공백 체크
         else if(seller_pw == ""){
           $('#pw_check').text('비밀번호를 입력해주세요.');
           $('#pw_check').css('color', 'red');
-          return false;
         }
         //PW 정규식 일치X
         else{
           $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
           $('#pw_check').css('color', 'red');
-          return false;
         }
 
       }//success
@@ -184,7 +197,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'seller_OverlapPW',
+      url: 'seller_Overlap',
       dataType: 'json',
       data: { "pw":seller_pw },
 
@@ -195,14 +208,12 @@
         if(seller_re_pw==""){
           $("#re_pw_check").text("필수 정보입니다.");
           $('#re_pw_check').css('color', 'red');
-          // return false;
         }
 
         //PW와 일치O
         else if(seller_pw==seller_re_pw){
           $("#re_pw_check").text("비밀번호가 일치합니다.");
           $('#re_pw_check').css('color', 'green');
-          //return true;
         }
 
         //PW와 일치X
@@ -210,13 +221,73 @@
         {
           $("#re_pw_check").text("비밀번호가 일치하지 않습니다.");
           $('#re_pw_check').css('color', 'red');
-          //return false;
         }
 
       }//success
       ,error : function() {  console.log("pw실패");  }
     }) //ajax
   }
+
+  function checkNameInput(){
+    var seller_name = $('#name').val();
+    var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+    var empty = /\s/gi;
+
+    $.ajax({
+      type: 'post',
+      url: 'seller_Overlap',
+      dataType: 'json',
+      data: { "name":seller_name },
+
+      success : function(data) {
+        console.log(data);
+        //공백(빈칸)
+        if(seller_name == ""){
+          $('#name_check').text("필수 정보입니다.");
+          $('#name_check').css('color', 'red');
+        }
+        else if(!markJ.test(seller_name)){
+          $("#name_check").text("");
+        }
+        //특수기호, 공백(space) 사용불가
+        else{
+          $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
+          $('#name_check').css('color', 'red');
+        }
+      }
+      ,error : function() {console.log("name실패");}
+    })
+  }
+
+  function checkBirthInput(){
+    var seller_birth = $('#name').val();
+
+    $.ajax({
+      type: 'post',
+      url: 'seller_Overlap',
+      dataType: 'json',
+      data: { "name":seller_name },
+
+      success : function(data) {
+        console.log(data);
+        //공백(빈칸)
+        if(seller_name == ""){
+          $('#name_check').text("필수 정보입니다.");
+          $('#name_check').css('color', 'red');
+        }
+        else if(!markJ.test(seller_name)){
+          $("#name_check").text("");
+        }
+        //특수기호, 공백(space) 사용불가
+        else{
+          $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
+          $('#name_check').css('color', 'red');
+        }
+      }
+      ,error : function() {console.log("name실패");}
+    })
+  }
+
   //onsubmit -- 어지수
   function validatate(){
     //Input
