@@ -5,7 +5,7 @@
     <div class="user-wrap">
 
       <div id="user">
-        @if(session('iding')==false)
+        @if(!auth()->user())
         <div class="login">
           <span>로그인</span>
           <div class="login-list">

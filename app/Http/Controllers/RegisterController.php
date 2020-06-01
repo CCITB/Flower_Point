@@ -42,7 +42,7 @@ class RegisterController extends Controller
     if($sellers<1){
       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),
-        's_password' => $request->input('s_password'),
+        's_password' => bcrypt($request->input('s_password')),
         's_name' => $request->input('s_name'),
         's_phonenum' => $request->input('s_phonenum'),
         's_email' => $request->input('s_email'),
@@ -108,21 +108,25 @@ class RegisterController extends Controller
   {
     $seller_id = $login->get('login_id');
     $seller_pw = $login->get('login_pw');
-    $db_seller = DB::table('seller')->select('s_id','s_password')->where([
-      's_id'=>$seller_id,
-      's_password'=>$seller_pw
-      ])->get();
-
-
-      if(count($db_seller)>0){
-        session()->put('iding',$seller_id);
-
-        return view('main');
-      }else {
-        return redirect('/login_seller');
-      }
-
+    // $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+    //   's_id'=>$seller_id,
+    //   's_password'=>$seller_pw
+    //   ])->get();
+    //
+    //
+    //   if(count($db_seller)>0){
+    //     session()->put('iding',$seller_id);
+    //
+    //     return view('main');
+    //   }else {
+    //     return redirect('/login_seller');
+    //   }
+    if(! auth() -> attempt(['s_id' => $seller_id, 'password' => $seller_pw])) {
+      return back();
     }
+
+    return redirect('/');
+  }
 
     public function login_c(Request $login)
     {
@@ -146,7 +150,8 @@ class RegisterController extends Controller
 
       public function logout(Request $logout)
       {
-        session()->forget('iding');
+        auth()->logout();
+        // session()->forget('iding');
         return redirect('/');
       }
     }
