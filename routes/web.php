@@ -112,3 +112,9 @@ Route::get('/list', function(){
 Route::get('/sellermyorderlist', function(){
   return view('seller_myorderlist');
 });
+Route::get('/shop', function(){
+  return view('flowershop');
+});
+Route::get('/all', function(){
+  return view('allproductpage');
+});
