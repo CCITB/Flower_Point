@@ -22,7 +22,7 @@
       <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return validatate();'>
         @csrf
         <div class="sign_name">아이디</div>
-        <input class="inf1" type="text" placeholder="ID" id="id" name="s_id">
+        <input class="inf1" type="text" placeholder="ID" id="id" name="s_id" >
         <div class="check_div" id="id_check" value=""></div>
 
         <div class="sign_name">비밀번호</div>
@@ -38,7 +38,7 @@
         <div class="check_div" id="name_check" value=""></div>
 
         <div class="sign_name">생년월일</div>
-        <input class="inf1" type="text" placeholder="년(4자)" id="s_birth_y" name="s_birth_y">
+        <input class="inf1" type="text" placeholder="년(4자)" id="s_birth_y" name="s_birth_y" maxlength="4">
 
         <select class="inf1" id="s_birth_m" name="s_birth_m">
           <option value="">월</option>
@@ -55,8 +55,8 @@
           <option value="11">11</option>
           <option value="12">12</option>
         </select>
-        <input class="inf1" type="text" placeholder="일" id="s_birth_d" name="s_birth_d">
-        <div class="check_div" id="phonenum_check" value=""></div>
+        <input class="inf1" type="text" placeholder="일" id="s_birth_d" name="s_birth_d" maxlength="4">
+        <div class="check_div" id="birth_check" value=""></div>
 
         <div class="gender">
           <div class="sign_name">성별</div>
@@ -104,8 +104,11 @@
   $("#name").blur(function() {
     checkNameInput();
   });//blur
-  $("#name").blur(function() {
-    checkNameInput();
+  $("#s_birth_y").blur(function() {
+    checkBirthInput1();
+  });//blur
+  $("#s_birth_y").blur(function() {
+    checkBirthInput2();
   });//blur
 
   function checkIdInput(){
@@ -237,7 +240,7 @@
       type: 'post',
       url: 'seller_Overlap',
       dataType: 'json',
-      data: { "name":seller_name },
+      data: { "name" : seller_name },
 
       success : function(data) {
         console.log(data);
@@ -259,35 +262,65 @@
     })
   }
 
-  function checkBirthInput(){
-    var seller_birth = $('#name').val();
+  function checkBirthInput1(){
 
+    var s_birth_y = $('#s_birth_y').val();
+    var birthJ =  /^[0-9]+$/
     $.ajax({
+
       type: 'post',
       url: 'seller_Overlap',
       dataType: 'json',
-      data: { "name":seller_name },
+      data: { "s_birth_y":s_birth_y },
 
       success : function(data) {
         console.log(data);
-        //공백(빈칸)
-        if(seller_name == ""){
-          $('#name_check').text("필수 정보입니다.");
-          $('#name_check').css('color', 'red');
+        // 정규식 일치O
+        if(birthJ.test(s_birth_y)&&s_birth_y.length>3){
+          $("#birth_check").text("");
+          $('#birth_check').css('color', 'red');
         }
-        else if(!markJ.test(seller_name)){
-          $("#name_check").text("");
-        }
-        //특수기호, 공백(space) 사용불가
+
+        //정규식 일치X
         else{
-          $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
-          $('#name_check').css('color', 'red');
+          $('#birth_check').text(' 태어난 년도 4자리를 정확하게 입력하세요. ');
+          $('#birth_check').css('color', 'red');
         }
-      }
-      ,error : function() {console.log("name실패");}
-    })
+
+      }//success
+      ,error : function() {  console.log("pw실패");  }
+    }) //ajax
   }
 
+  function checkBirthInput1(){
+
+    var s_birth_y = $('#s_birth_y').val();
+    var birthJ =  /^[0-9]+$/
+    $.ajax({
+
+      type: 'post',
+      url: 'seller_Overlap',
+      dataType: 'json',
+      data: { "s_birth_y":s_birth_y },
+
+      success : function(data) {
+        console.log(data);
+        // 정규식 일치O
+        if(birthJ.test(s_birth_y)&&s_birth_y.length>3){
+          $("#birth_check").text("");
+          $('#birth_check').css('color', 'red');
+        }
+
+        //정규식 일치X
+        else{
+          $('#birth_check').text(' 태어난 년도 4자리를 정확하게 입력하세요. ');
+          $('#birth_check').css('color', 'red');
+        }
+
+      }//success
+      ,error : function() {  console.log("pw실패");  }
+    }) //ajax
+  }
   //onsubmit -- 어지수
   function validatate(){
     //Input
