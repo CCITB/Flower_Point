@@ -22,4 +22,8 @@ class FindController extends Controller
     return view('find_information.find_pw_reset');
   }
 
+  public function find_check(){
+    return view('find_information.find_check');
+  }
+
 }

@@ -9,27 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
 
-  <script>
-  window.addEventListener('load', function() {
-    var signup = document.querySelector('#signup');
-
-    signup.addEventListener('click', function() {
-      var new_pw = document.querySelector('#new_pw');
-      var check = document.querySelector('#check');
-
-      if (new_pw.value != check.value) {
-        alert('비밀번호가 일치하지 않습니다.');
-        check.focus();
-      } else if (new_pw.value == ''){
-        alert('비밀번호를 입력해주세요.')
-        new_pw.focus();
-      }else {
-        location.href = "/login_customer";
-      }
-    });
-  });
-
-  </script>
 
 </head>
 <body>
@@ -40,15 +19,53 @@
     </div>
 
     <div class ="pw_reset">
-      <form action = '처리할 주소' method='post'>
+      <form action = '처리할 주소' method='post' onsubmit='return pw_check(this)'>
         <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
-          <input class="find_input" type="password" autofocus placeholder="새 비밀번호" id="new_pw" required ><br><br>
-          <input class="find_input" type="password" autofocus placeholder="새 비밀번호 확인" id="check" required >
-          <div class="under_pw">
-            <input class="lg_bt" type="submit" id="signup" value="다음">
-          </div>
+        <input class="find_input" type="password" placeholder="새 비밀번호" id="new_pw" name="new_pw"><br><br>
+        <input class="find_input" type="password" placeholder="새 비밀번호 확인" id="check" >
+        <div class="under_pw">
+          <input class="lg_bt" type="submit" id="signup" value="다음">
+        </div>
       </form>
     </div>
   </div >
 </body>
 </html>
+
+<script>
+// window.addEventListener('load', function() {
+//   var signup = document.querySelector('#signup');
+//
+//   signup.addEventListener('click', function() {
+//     var new_pw = document.querySelector('#new_pw');
+//     var check = document.querySelector('#check');
+//
+//     if (new_pw.value != check.value) {
+//       alert('비밀번호가 일치하지 않습니다.');
+//       check.focus();
+//     } else if (new_pw.value == ''){
+//       alert('비밀번호를 입력해주세요.')
+//       new_pw.focus();
+//     }else {
+//       location.replace = "/login_customer";
+//     }
+//   });
+// });
+
+function pw_check(Join){
+  var new_pw = document.getElementById('#new_pw');
+  var check = document.getElementById('#check');
+
+  if(new_pw.value != check.value){
+    alert('비밀번호가 일치하지 않습니다.');
+    check.focus();
+  }
+  if(new_pw.value == ''){
+    alert('비밀번호를 입력해주세요.')
+    new_pw.focus();
+  }
+}else {
+  location.replace("/login_customer");
+}
+}
+</script>

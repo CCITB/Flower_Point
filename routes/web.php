@@ -58,6 +58,8 @@ Route::get('/find_pw_way', 'FindController@find_pw_way');
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
+Route::get('/find_chk', 'FindController@find_check');
+
 Route::post('/login_s', 'RegisterController@login_s');
 
 Route::post('/login_c', 'RegisterController@login_c');
@@ -96,8 +98,8 @@ Route::get('/sellermyshop', function () {
 Route::get('/mypage2', function () {
   return view('mypage_customer');
 });
-Route::get('/find_chk', function () {
-  return view('find_information.find_check');
+Route::get('/review', function () {
+  return view('review');
 });
 //결제
 Route::get('/order', function () {
