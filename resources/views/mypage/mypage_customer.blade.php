@@ -24,31 +24,31 @@
                 <table border="0" cellpadding="10" cellspacing="10" width="100%">
                     <tr>
                         <th>ID</th>
-                        <td contenteditable='true'>asd</td>
+                        <td ='true'>asd</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td contenteditable='true'>******</td>
+                        <td ='true'>******</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td contenteditable='true'>정경진</td>
+                        <td ='true'>정경진</td>
                     </tr>
                     <tr>
                         <th>연락처</th>
-                        <td contenteditable='true'>*****</td>
+                        <td ='true'>*****</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td contenteditable='true'>asdsad@naver.com</td>
+                        <td ='true'>asdsad@naver.com</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td contenteditable='true'>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
+                        <td ='true'>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
                     </tr>
                 </table>
             </table>
-            <button class="btn btn-primary">수정</button>
+            <button class="btn btn-primary" onclick="location.href='/mypagecustomer'">수정</button>
           </div>
         <div class="tablespace2">
         <h4 align="left">즐겨찾기</h4>
