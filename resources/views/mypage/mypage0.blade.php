@@ -23,31 +23,31 @@
                 <table border="0" cellpadding="10" cellspacing="10" width="100%">
                     <tr>
                         <th>ID</th>
-                        <td contenteditable='true'>asd</td>
+                        <td >asd</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td contenteditable='true'>******</td>
+                        <td >******</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td contenteditable='true'>정경진</td>
+                        <td >정경진</td>
                     </tr>
                     <tr>
                         <th>연락처</th>
-                        <td contenteditable='true'>*****</td>
+                        <td >*****</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td contenteditable='true'>asdsad@naver.com</td>
+                        <td >asdsad@naver.com</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td contenteditable='true'>ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
+                        <td >ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
                     </tr>
                 </table>
             </table>
-            <button class="btn btn-primary">수정
+            <button class="btn btn-primary" onclick="location.href='mypage'">수정
             </button>
             <h3 align="center">문의관리</h3>
             <hr align="center" width="100%" >

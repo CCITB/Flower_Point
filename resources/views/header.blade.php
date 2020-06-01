@@ -60,7 +60,7 @@
           </ul>
         </li>
         <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-          <a href="/Allprouct">전체 상품 보기</a>
+          <a href="/all">전체 상품 보기</a>
           <ul class="submenu_list">
             <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
           </ul>
