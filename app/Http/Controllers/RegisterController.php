@@ -47,19 +47,25 @@ class RegisterController extends Controller
         's_phonenum' => $request->input('s_phonenum'),
         's_email' => $request->input('s_email'),
         's_gender' => $request->input('s_gender'),
-        's_birth' => $request->input('s_birth')
+        's_birth' => $request->input('s_birth_y').$request->input('s_birth_m').$request->input('s_birth_d')
       ]);
-      return redirect('/information');
+      return redirect('/login_seller');
     }
     else{
       //code...
     }
   }
   //[resister_seller jQuery부분] PW일치여부 -- 어지수
-  public function s_overlapPW(Request $request)
+  public function s_overlap(Request $request)
   {
     $overlap_pw = $request->input('pw');
     return response()->json($overlap_pw);
+
+    $overlap_name = $request->input('name');
+    return response()->json($overlap_name);
+
+    $overlap_birth_y = $request->input('birth_y');
+    return response()->json($overlap_birth_y);
   }
 
   //[register_seller jQuery부분] ID중복검사 -- 어지수
@@ -69,6 +75,8 @@ class RegisterController extends Controller
     $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
     return response()->json($sellers);
   }
+
+
   //[resister_seller jQuery부분] PW일치여부 -- 어지수
   public function c_overlapPW(Request $request)
   {

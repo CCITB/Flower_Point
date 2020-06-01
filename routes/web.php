@@ -28,7 +28,7 @@ Route::get('/register_seller','MainController@register_seller');
 //중복 검사
 Route::post('/seller_OverlapID', 'RegisterController@s_overlapID');
 
-Route::post('/seller_OverlapPW', 'RegisterController@s_overlapPW');
+Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
 Route::post('/customer_OverlapID', 'RegisterController@c_overlapID');
 
