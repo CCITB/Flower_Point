@@ -55,7 +55,7 @@ class RegisterController extends Controller
       //code...
     }
   }
-  //[resister_seller jQuery부분] PW일치여부 -- 어지수
+  //[resister_seller jQuery부분] -- 어지수
   public function s_overlap(Request $request)
   {
     $overlap_pw = $request->input('pw');
@@ -75,6 +75,7 @@ class RegisterController extends Controller
 
     $overlap_s_gender = $request->input('s_gender');
     return response()->json($overlap_s_gender);
+
     $overlap_s_email = $request->input('s_email');
     return response()->json($overlap_s_email);
   }
@@ -88,11 +89,29 @@ class RegisterController extends Controller
   }
 
 
-  //[resister_seller jQuery부분] PW일치여부 -- 어지수
-  public function c_overlapPW(Request $request)
+  //[resister_seller jQuery부분] --어지수
+  public function c_overlap(Request $request)
   {
     $overlap_pw2 = $request->input('pw');
     return response()->json($overlap_pw2);
+
+    $overlap_name = $request->input('name');
+    return response()->json($overlap_name);
+
+    $overlap_birth_y = $request->input('c_birth_y');
+    return response()->json($overlap_birth_y);
+
+    $overlap_birth_m = $request->input('c_birth_m');
+    return response()->json($overlap_birth_m);
+
+    $overlap_birth_d = $request->input('c_birth_d');
+    return response()->json($overlap_birth_d);
+
+    $overlap_s_gender = $request->input('c_gender');
+    return response()->json($overlap_s_gender);
+
+    $overlap_s_email = $request->input('c_email');
+    return response()->json($overlap_s_email);
   }
 
   //[register_customer jQuery부분] ID중복 검사 --어지수

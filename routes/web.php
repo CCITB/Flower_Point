@@ -32,7 +32,7 @@ Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
 Route::post('/customer_OverlapID', 'RegisterController@c_overlapID');
 
-Route::post('/customer_OverlapPW', 'RegisterController@c_overlapPW');
+Route::post('/customer_Overlap', 'RegisterController@c_overlap');
 
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 
