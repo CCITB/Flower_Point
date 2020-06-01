@@ -58,6 +58,8 @@ Route::get('/find_pw_way', 'FindController@find_pw_way');
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
+Route::get('/find_chk', 'FindController@find_check');
+
 Route::post('/login_s', 'RegisterController@login_s');
 
 Route::post('/login_c', 'RegisterController@login_c');
@@ -70,7 +72,7 @@ Route::get('/locate1', function () {
   return view('locate');
 });
 Route::get('/mypage1', function () {
-  return view('mypage');
+  return view('mypage/mypage');
 });
 
 Route::get('/faq', function () {
@@ -94,10 +96,10 @@ Route::get('/sellermyshop', function () {
   return view('gwang_jin.Seller_myshop2');
 });
 Route::get('/mypage2', function () {
-  return view('mypage_customer');
+  return view('mypage/mypage_customer');
 });
-Route::get('/find_chk', function () {
-  return view('find_information.find_check');
+Route::get('/review', function () {
+  return view('review');
 });
 //결제
 Route::get('/order', function () {
@@ -111,4 +113,25 @@ Route::get('/list', function(){
 });
 Route::get('/sellermyorderlist', function(){
   return view('seller_myorderlist');
+});
+Route::get('/shop', function(){
+  return view('myshop/flowershop');
+});
+Route::get('/shop2', function(){
+  return view('myshop/shop_seller');
+});
+Route::get('/all', function(){
+  return view('allproductpage');
+});
+Route::get('/mypagecustomer', function(){
+  return view('mypage/mypage_customer2');
+});
+Route::get('/mypage', function(){
+  return view('mypage/mypage_2');
+});
+Route::get('/mypageseller', function(){
+  return view('mypage/mypage0');
+});
+Route::get('/shopseller', function(){
+  return view('myshop/shop_seller2');
 });
