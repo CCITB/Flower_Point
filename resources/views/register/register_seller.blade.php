@@ -72,7 +72,7 @@
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">이메일  </div>
-        <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required>
+        <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" >
         <a href="#" class="inf4" id="btnSend" role="button"><span>인증번호 받기</span></a>
         <div class="check_div" id="email_check" value=""></div>
 
@@ -125,17 +125,14 @@
 
   function checkIdInput(){
     var seller_id = $('#id').val();
-
     //정규식
     var idJ = /^[a-z0-9_\-]{5,20}$/;
-
-    //var phoneJ = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
     console.log(seller_id);
     $.ajax({
 
       type: 'post',
-      url: 'seller_OverlapID',
+      url: 'seller_Overlap',
       dataType: 'json',
       data: { "id":seller_id },
 
@@ -169,7 +166,6 @@
           $('#id_check').css('color', 'red');
           $('#btnSubmit').attr('disabled',true);
         }
-
       }//success
       ,error : function() {   console.log("실패");  }
     }) //ajax
@@ -181,7 +177,6 @@
     var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
 
     $.ajax({
-
       type: 'post',
       url: 'seller_Overlap',
       dataType: 'json',
@@ -290,8 +285,8 @@
     var s_birth_m = $('#s_birth_m').val();
     var s_birth_d = $('#s_birth_d').val();
     var birthJ =  /^[0-9]+$/
-    $.ajax({
 
+    $.ajax({
       type: 'post',
       url: 'seller_Overlap',
       dataType: 'json',
@@ -387,22 +382,26 @@
   }
 
   function check_all(){
-    var id = document.getElementById("id");
+    // var id = document.getElementById("id");
     var password = document.getElementById("pw");
     var re_password = document.getElementById("check");
-    var name = document.getElementById("name");
-    var phonenum = document.getElementById("phonenum");
-    var s_gender = document.getElementById("s_gender");
-    var s_email = document.getElementById("s_email");
-    if((id.value)==""){
-      alert('아이디 입력해주세요.');
-      return false;
-    }
-    if(password.value.length==0){
+    var name = document.getElementById("s_name");
+    var birth_y = document.getElementById("s_birth_y");
+    var birth_m = document.getElementById("s_birth_m");
+    var birth_d = document.getElementById("s_birth_d");
+    var gender = document.getElementById("s_gender");
+    var phonenum = document.getElementById("s_phonenum");
+    var email = document.getElementById("s_email");
+    //
+    // if((id.value)==""){
+    //   alert('아이디 입력해주세요.');
+    //   return false;
+    // }
+    if((password.value)==""){
       alert('비밀번호를 확인해주세요.');
       return false;
     }
-    if(re_password.value.length==0){
+    if((re_password.value)==0){
       alert('비밀번호를 확인해주세요.');
       return false;
     }
@@ -414,8 +413,16 @@
       alert('휴대폰 번호를 입력해주세요.');
       return false;
     }
-    if((s_email.value)==""){
-      alert('휴대폰 번호를 입력해주세요.');
+    if((birth_y.value)==""||(birth_m.value)==""||(birth.value)==""){
+      alert('생년월일을 확인해주세요.');
+      return false;
+    }
+    if((gender.value)==""){
+      alert('성별을 입력해주세요.');
+      return false;
+    }
+    if((email.value)==""){
+      alert('이메일을 입력해주세요.');
       return false;
     }
     else {
@@ -423,6 +430,4 @@
       return true;
     }
   }
-
-
   </script>
