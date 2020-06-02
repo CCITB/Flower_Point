@@ -426,20 +426,31 @@ button.qna-submit-cancel-btn
 
 
 .pd_info{
+  display: flex;
   width: 100%;
   height: 100px;
-  background-color: #FFB9B9;
+}
+.rev_thumbnail{
+  width: 30%;
+  background-color: #FFEAEA;
+}
+.rev_pd_name{
+  width: 70%;
+  background-color: #FAE0D4;
 }
 .review_total{
   text-align: center;
 }
 .pd_satis{
   width: 100%;
-  border-bottom: 1px solid #FFB9B9;
+  border-bottom: 1px solid #FFD8D8;
   padding: 30px 0;
 }
 .satis_que{
   font-size: 18px;
+}
+.star_detail{
+  color: red;
 }
 .satis_text{
   padding: 30px 0;
@@ -467,7 +478,9 @@ textarea{
 }
 
 
-.choice_star {font-size:0; letter-spacing:-4px;}
+.choice_star {
+  font-size:0; letter-spacing:-4px;
+}
 .choice_star a {
  font-size:50px;
  letter-spacing:0;
@@ -475,5 +488,9 @@ textarea{
  color:#ccc;
  text-decoration:none;
 }
-.choice_star a:first-child {margin-left:0;}
-.choice_star a.on {color:#ffc801;}
+.choice_star a:first-child {
+  margin-left:0;
+}
+.choice_star a.on {
+  color:#FFE400;
+}
