@@ -54,12 +54,13 @@ class RegisterController extends Controller
       }
     }
     //register jquery -- 어지수
-    public function s_overlap(Request $request)
-    {
+    public function s_overlapID(Request $request){
       $input = $request->input('id');
       $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
       return response()->json($sellers);
-
+    }
+    public function s_overlap(Request $request)
+    {
       $overlap_pw = $request->input('pw');
       return response()->json($overlap_pw);
 
