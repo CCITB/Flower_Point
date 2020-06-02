@@ -61,6 +61,9 @@ class RegisterController extends Controller
     $overlap_pw = $request->input('pw');
     return response()->json($overlap_pw);
 
+    $overlap_ck = $request->input('check');
+    return response()->json($overlap_ck);
+
     $overlap_name = $request->input('name');
     return response()->json($overlap_name);
 
