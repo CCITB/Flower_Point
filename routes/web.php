@@ -57,11 +57,11 @@ Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
 Route::get('/find_chk', 'FindController@find_check');
 
-Route::post('/login_s', 'RegisterController@login_s');
+Route::post('/login_s', 'LoginController@login_s');
 
-Route::post('/login_c', 'RegisterController@login_c');
+Route::post('/login_c', 'LoginController@login_c');
 
-Route::get('/logout', 'RegisterController@logout');
+Route::get('/logout', 'LoginController@logout');
 
 
 
