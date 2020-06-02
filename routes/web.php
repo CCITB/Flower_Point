@@ -26,13 +26,10 @@ Route::get('/register_customer','MainController@register_costomer');
 Route::get('/register_seller','MainController@register_seller');
 
 //중복 검사
-Route::post('/seller_OverlapID', 'RegisterController@s_overlapID');
-
 Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
-Route::post('/customer_OverlapID', 'RegisterController@c_overlapID');
-
 Route::post('/customer_Overlap', 'RegisterController@c_overlap');
+
 
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 

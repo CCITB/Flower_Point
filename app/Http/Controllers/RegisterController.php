@@ -31,7 +31,6 @@ class RegisterController extends Controller
   }
 
   //seller register query -- 어지수
-  #seller register query
   public function seller_store(Request $request)
   {
     //동일 아이디 확인
@@ -55,11 +54,18 @@ class RegisterController extends Controller
       //code...
     }
   }
-  //[resister_seller jQuery부분] -- 어지수
+  //register jquery -- 어지수
   public function s_overlap(Request $request)
   {
+    $input = $request->input('id');
+    $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
+    return response()->json($sellers);
+
     $overlap_pw = $request->input('pw');
     return response()->json($overlap_pw);
+
+    $overlap_ck = $request->input('check');
+    return response()->json($overlap_ck);
 
     $overlap_name = $request->input('name');
     return response()->json($overlap_name);
@@ -80,18 +86,13 @@ class RegisterController extends Controller
     return response()->json($overlap_s_email);
   }
 
-  //[register_seller jQuery부분] ID중복검사 -- 어지수
-  public function s_overlapID(Request $request)
-  {
-    $input = $request->input('id');
-    $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
-    return response()->json($sellers);
-  }
-
-
   //[resister_seller jQuery부분] --어지수
   public function c_overlap(Request $request)
   {
+    $input = $request->input('id');
+    $customers = DB::table('customer')-> where('c_id','=',$input)->get()->count();
+    return response()->json($customers);
+
     $overlap_pw2 = $request->input('pw');
     return response()->json($overlap_pw2);
 
@@ -114,13 +115,6 @@ class RegisterController extends Controller
     return response()->json($overlap_s_email);
   }
 
-  //[register_customer jQuery부분] ID중복 검사 --어지수
-  public function c_overlapID(Request $request)
-  {
-    $input = $request->input('id');
-    $customers = DB::table('customer')-> where('c_id','=',$input)->get()->count();
-    return response()->json($customers);
-  }
 
 
   public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
