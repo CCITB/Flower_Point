@@ -11,7 +11,7 @@
 
 </style>
 <body>
-  @include('header')
+  @include('lib.header')
   <div class="hr-line">
     <div id="line">
       <div class="line-wrap">
@@ -380,6 +380,6 @@
       </div>
     </div>
   </div>
-  @include('footer')
+  @include('lib.footer')
 </body>
 </html>

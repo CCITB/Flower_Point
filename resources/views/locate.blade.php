@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/header.css">
   </head>
   <body>
-@include('header')
+@include('lib.header')
         <div class="menu4"><!--탑헤더 밑-->
             <h3>내 주변 꽃집</h3>
             <hr align="left" class="one">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    @include('footer')
+    @include('lib.footer')
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

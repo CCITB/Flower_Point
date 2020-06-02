@@ -82,7 +82,7 @@ Route::get('/postlist', function () {
   return view('post_list');
 });
 Route::get('/sellershoppost', function () {
-  return view('seller_shoppost');
+  return view('seller.seller_shoppost');
 });
 Route::get('/bi', function () {
   return view('Buy_information');
@@ -109,7 +109,7 @@ Route::get('/list', function(){
   return view('orderlist');
 });
 Route::get('/sellermyorderlist', function(){
-  return view('seller_myorderlist');
+  return view('seller.seller_myorderlist');
 });
 Route::get('/shop', function(){
   return view('myshop/flowershop');
