@@ -50,10 +50,9 @@ class RegisterController extends Controller
       ]);
       return redirect('/login_seller');
     }
-    else{
-      //code...
-    }
+
   }
+
   //register jquery -- 어지수
   public function s_overlap(Request $request)
   {
@@ -69,12 +68,89 @@ class RegisterController extends Controller
 
     $overlap_name = $request->input('name');
     return response()->json($overlap_name);
+=======
+    //register jquery -- 어지수
+    // public function s_overlapID(Request $request){
+    //   $input = $request->input('id');
+    //   $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
+    //   return response()->json($sellers);
+    // }
+    public function s_overlap(Request $request)
+    {
+      $input = $request->input('id');
+      $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
+      return response()->json($sellers);
+
+      $overlap_pw = $request->input('pw');
+      return response()->json($overlap_pw);
+
+    $overlap_ck = $request->input('check');
+    return response()->json($overlap_ck);
+
+    $overlap_name = $request->input('name');
+    return response()->json($overlap_name);
 
     $overlap_birth_y = $request->input('s_birth_y');
     return response()->json($overlap_birth_y);
 
-    $overlap_birth_m = $request->input('s_birth_m');
+
+    $overlap_s_gender = $request->input('s_gender');
+    return response()->json($overlap_s_gender);
+
+    $overlap_s_email = $request->input('s_email');
+    return response()->json($overlap_s_email);
+  }
+
+  //[resister_seller jQuery부분] --어지수
+  public function c_overlap(Request $request)
+  {
+    $input = $request->input('id');
+    $customers = DB::table('customer')-> where('c_id','=',$input)->get()->count();
+    return response()->json($customers);
+
+    $overlap_pw2 = $request->input('pw');
+    return response()->json($overlap_pw2);
+
+    $overlap_name = $request->input('name');
+    return response()->json($overlap_name);
+
+    $overlap_birth_y = $request->input('c_birth_y');
+    return response()->json($overlap_birth_y);
+
+    $overlap_birth_m = $request->input('c_birth_m');
     return response()->json($overlap_birth_m);
+
+    $overlap_birth_d = $request->input('c_birth_d');
+    return response()->json($overlap_birth_d);
+
+    $overlap_s_gender = $request->input('c_gender');
+    return response()->json($overlap_s_gender);
+
+    $overlap_s_email = $request->input('c_email');
+    return response()->json($overlap_s_email);
+  }
+
+  public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
+  {
+    $seller_id = $login->get('login_id');
+    $seller_pw = $login->get('login_pw');
+    // $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+    //   's_id'=>$seller_id,
+    //   's_password'=>$seller_pw
+    //   ])->get();
+    //
+    //
+    //   if(count($db_seller)>0){
+    //     session()->put('iding',$seller_id);
+    //
+    //     return view('main');
+    //   }else {
+    //     return redirect('/login_seller');
+    //   }
+    if(! auth() -> attempt(['s_id' => $seller_id, 'password' => $seller_pw])) {
+      return back();
+      $overlap_birth_m = $request->input('s_birth_m');
+      return response()->json($overlap_birth_m);
 
     $overlap_birth_d = $request->input('s_birth_d');
     return response()->json($overlap_birth_d);
@@ -85,7 +161,7 @@ class RegisterController extends Controller
     $overlap_s_email = $request->input('s_email');
     return response()->json($overlap_s_email);
   }
-
+    }
   //[resister_seller jQuery부분] --어지수
   public function c_overlap(Request $request)
   {
@@ -168,3 +244,4 @@ class RegisterController extends Controller
         return redirect('/');
       }
     }
+}
