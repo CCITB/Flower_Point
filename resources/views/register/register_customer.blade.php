@@ -133,7 +133,7 @@
     $.ajax({
 
       type: 'post',
-      url: 'customer_OverlapID',
+      url: 'customer_Overlap',
       dataType: 'json',
       data: { "id":customer_id },
 
