@@ -83,11 +83,11 @@ Route::get('/postlist', function () {
 });
 Route::get('/sellershoppost', function () {
   return view('seller.seller_shoppost');
-});
+})->middleware('auth:seller');
 Route::get('/bi', function () {
   return view('Buy_information');
 });
-Route::post('index', 'postcontroller@post');
+Route::post('index', 'ProductController@seller_product_register');
 
 Route::get('/sellermyshop', function () {
   return view('gwang_jin.Seller_myshop2');
