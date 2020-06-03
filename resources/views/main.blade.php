@@ -18,6 +18,7 @@
   <!-- 상품진열 테이블입니다. -->
   <div class="container-wrap">
     <div class="container-wrapping">
+
       <div class="container-image">
         <div class="image">
           <div class="image-in">
@@ -361,12 +362,18 @@
             <div class="image">
               <div class="image-in">
                 <div class="imagewrap" >
-                  <img src="\imglib\flower1.jpg" alt="꽃" >
+                  <img src="
+                  @if($image = DB::table('product_image')->where('i_no','=',10)->first())
+                    \storage\{{$image -> i_filename}}
+                  @endif
+                    " alt="꽃" >
                 </div>
 
                 <div class="image-in-font">
                   <div class="image-in-post">
-                    제품내용
+                  @if($data = DB::table('product')->where('p_no','=',11)->first())
+                    {{$data -> p_name}}
+                  @endif
                   </div>
                   <div class="image-in-container">
                     <div class="image-in-star">
@@ -379,8 +386,9 @@
                       </p>
                     </div>
                     <div class="image-in-bottom">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                      @if ($data)
+                        {{$data -> p_contents}}
+                      @endif
                     </div>
                   </div>
                 </div>
