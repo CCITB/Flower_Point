@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 
 class MainController extends Controller
 {
   public function main(){
-    return view('main');
+    return view('main',['data' => DB::table('product')->get()]);
   }
   public function login_customer(){
     return view('login.login_customer');

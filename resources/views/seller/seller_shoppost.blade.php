@@ -36,7 +36,7 @@
       <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
       <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
     </div> -->
-    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8">
+    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data">
       @csrf
       <div class="" style="">
         <table>
