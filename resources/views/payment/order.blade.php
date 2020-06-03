@@ -202,7 +202,7 @@
       </div>
     </div>
   </div>
-  @include('footer')
+  @include('lib.footer')
 </body>
 <script type="text/javascript">
 

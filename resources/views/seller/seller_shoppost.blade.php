@@ -21,7 +21,7 @@
 
 </head>
 <body>
-  @include('lib\header')
+  @include('lib.header')
   <div class="hr-line">
     <div id="line">
       <h2>물품등록</h2>
