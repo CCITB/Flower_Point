@@ -26,13 +26,10 @@ Route::get('/register_customer','MainController@register_costomer');
 Route::get('/register_seller','MainController@register_seller');
 
 //중복 검사
-Route::post('/seller_OverlapID', 'RegisterController@s_overlapID');
-
 Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
-Route::post('/customer_OverlapID', 'RegisterController@c_overlapID');
-
 Route::post('/customer_Overlap', 'RegisterController@c_overlap');
+
 
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 
@@ -60,11 +57,11 @@ Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
 Route::get('/find_chk', 'FindController@find_check');
 
-Route::post('/login_s', 'RegisterController@login_s');
+Route::post('/login_s', 'LoginController@login_s');
 
-Route::post('/login_c', 'RegisterController@login_c');
+Route::post('/login_c', 'LoginController@login_c');
 
-Route::get('/logout', 'RegisterController@logout');
+Route::get('/logout', 'LoginController@logout');
 
 
 
@@ -85,7 +82,7 @@ Route::get('/postlist', function () {
   return view('post_list');
 });
 Route::get('/sellershoppost', function () {
-  return view('seller_shoppost');
+  return view('seller.seller_shoppost');
 });
 Route::get('/bi', function () {
   return view('Buy_information');
@@ -112,7 +109,7 @@ Route::get('/list', function(){
   return view('orderlist');
 });
 Route::get('/sellermyorderlist', function(){
-  return view('seller_myorderlist');
+  return view('seller.seller_myorderlist');
 });
 Route::get('/shop', function(){
   return view('myshop/flowershop');

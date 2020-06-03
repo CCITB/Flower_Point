@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="/css/buy_information.css">
 </head>
 <body>
-  @include('header')
+  @include('lib.header')
 
   <div id="total">
     <div class = "pd_image"> <!--이미지 틀 -->
@@ -344,7 +344,7 @@
 
 
   </div>
-  @include('footer')
+  @include('lib.footer')
 </body>
 <script>
 // 상품문의하기 클릭시에 나타나는 input 공간

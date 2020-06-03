@@ -7,7 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-  @include('header')
+  @include('lib.header')
   <div class="myoderlist-wrap">
     <div class="hr-line">
       <div id="line">
@@ -204,7 +204,7 @@ th{
   border-top: 1px solid gray;
 }
 </style>
-@include('footer')
+@include('lib.footer')
 </body>
 </html>
 <script>

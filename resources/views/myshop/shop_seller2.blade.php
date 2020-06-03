@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/shop.css">
   </head>
   <body>
-    @include('header')
+    @include('lib.header')
     <div class="allwrap">
       <div class="wrap0">
       <div class="wrap1">
@@ -119,6 +119,6 @@
 </div>
   </div>  <!--wrap0-->
 </div>  <!--allwrap-->
-@include('footer')
+@include('lib.footer')
   </body>
 </html>

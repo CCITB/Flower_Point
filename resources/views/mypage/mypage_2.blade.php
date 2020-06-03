@@ -49,6 +49,95 @@
           </table>
             <button class="btn btn-primary">수정
             </button>
+            <h3 align="center">문의관리</h3>
+            <hr align="center" width="100%" >
+            <table class="questiontable" border="1" cellpadding="10" width="100%";>
+                <th class="thinfo">번호</th>
+                <th class="thinfo">제목</th>
+                <th class="thinfo">작성자</th>
+                <th class="thinfo">등록일</th>
+                <th class="thinfo">답변상태</th>
+                <tr>
+                  <td>123</td>
+                  <td>꽃에관한 질문입니다.</td>
+                  <td>CCIT3</td>
+                  <td>2020.04.15</td>
+                  <td>답변완료</td>
+                </tr>
+                <tr>
+                  <td>124</td>
+                  <td>꽃에관한 질문입니다.</td>
+                  <td>CCIT2</td>
+                  <td>2020.04.16</td>
+                  <td>답변대기</td>
+                </tr>
+                <tr>
+                  <td>125</td>
+                  <td>꽃에관한 질문입니다.</td>
+                  <td>CCIT1</td>
+                  <td>2020.04.16</td>
+                  <td>답변대기</td>
+                </tr>
+                <tr>
+                  <td>126</td>
+                  <td>꽃에관한 질문입니다.</td>
+                  <td>CCIT</td>
+                  <td>2020.04.17</td>
+                  <td>답변대기</td>
+                </tr>
+            </table>
+            <div class="nav-page">
+              <nav>
+                <a href="#" class="active">1</a>
+              </nav>
+              <nav>
+                2
+              </nav>
+              <nav>
+                3
+              </nav>
+              <nav>
+                4
+              </nav>
+              <nav>
+                5
+              </nav>
+            </div>
+            <div class="quickbuttonwrap">
+                <div class="quickgroup"><a href="/locate1">
+                    <div class="quickbutton">
+                        <img src="/imglib/orangerose.jpg" alt="" height="200px" width="300px;">
+                        <div class="innerbutton">
+                            <h1>내 주변 꽃집</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="quickgroup"><a href="/order1">
+                    <div class="quickbutton">
+                        <img src="imglib/rose.jpg" alt="" height="200px" width="300px;">
+                        <div class="innerbutton">
+                            <h1>내 주문관리</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="quickgroup"><a href="#">
+                    <div class="quickbutton">
+                        <img src="imglib/sunflower.jpg" alt="" height="200px" width="300px;">
+                        <div class="innerbutton">
+                            <h1>쿠폰관리</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="quickgroup"><a href="#">
+                    <div class="quickbutton">
+                        <img src="imglib/pink.jpg" alt="" height="200px" width="300px;">
+                        <div class="innerbutton">
+                            <h1>물품관리</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     @include('footer')
 </body>

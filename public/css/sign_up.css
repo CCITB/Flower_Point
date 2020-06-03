@@ -118,6 +118,19 @@ textarea{
   font-size:15px;
   padding: 5px;
 }
+.inf3{
+  width:60%;
+  height:38px;
+  font-size:15px;
+  padding: 5px;
+}
+.inf4{
+  width:25.7%;
+  height:38px;
+  font-size:15px;
+  padding: 5px;
+  background-color: #90d448;
+}
 .form_select{
   width:50%;
   height: 38px;
