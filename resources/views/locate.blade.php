@@ -60,13 +60,31 @@
           function searchPlaces() {
               var keyword = document.getElementById('keyword').value;
 
+
               if (!keyword.replace(/^\s+|\s+$/g, '')) {
                   alert('키워드를 입력해주세요!');
                   return false;
               }
-              
 
 
+
+              if(keyword.indexOf('꽃') != -1) {
+
+
+              }
+              else if(keyword.indexOf('플라워') != -1) {
+
+
+              }
+              else if(keyword.indexOf('flower') != -1) {
+
+
+              }
+
+              else {
+                alert('키워드를 확인해주세요! 예)일산 꽃집, 종로 플라워샵');
+                return false;
+              }
 
 
 
