@@ -13,6 +13,7 @@
             <h3>내 주변 꽃집</h3>
             <hr align="left" class="one">
             </hr>
+<<<<<<< HEAD
 
         </head>
         <body>
@@ -265,6 +266,42 @@
 
 
 
+=======
+            <select id="input" onchange="random_function()">
+       <option>지역선택</option>
+       <option>서울</option>
+       <option>부산</option>
+   </select>
+   <div>
+      <select id="output" onchange="random_function1()">
+      </select>
+   </div>
+
+        <div class="menu5">
+            <div class="shopname">
+                <h3>ccit3</h3>
+                <p>서울시 종로구 익선동</p>
+                <hr align="left" class="one">
+                </hr>
+            </div>
+            <div class="shopimg">
+                <img src="img/dummy.png">
+            </div>
+            <div class="shopname">
+                <h3>ccit2</h3>
+                <p>서울시 종로구</p>
+                <hr align="left" class="one">
+                </hr>
+            </div>
+            <div class="shopname">
+                <h3>ccit1</h3>
+                <p>서울시 종로구~~~</p>
+                <hr align="left" class="one">
+                </hr>
+            </div>
+        </div>
+    </div>
+>>>>>>> parent of 531e264... create blade folder --seungji
     @include('footer')
 </body>
 </html>
