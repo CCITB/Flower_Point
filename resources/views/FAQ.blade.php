@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/QNA.css">
     </head>
     <body>
-@include('header')
+@include('lib.header')
 
     <div class="hr-line">
       <div id="line">
@@ -107,7 +107,7 @@ display: none;
   font-weight: bold;
 }
 </style>
-@include('footer')
+@include('lib.footer')
 </body>
 </html>
 <script>

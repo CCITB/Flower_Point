@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/order.css">
   </head>
   <body>
-    @include('header')
+    @include('lib.header')
     <div class="all">
     <div class="half">
     <div class="wrapping">
@@ -68,5 +68,5 @@
   </div>
 </div>
   </body>
-  @include('footer')
+  @include('lib.footer')
 </html>

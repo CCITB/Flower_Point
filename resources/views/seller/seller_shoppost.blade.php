@@ -21,7 +21,7 @@
 
 </head>
 <body>
-  @include('header')
+  @include('lib\header')
   <div class="hr-line">
     <div id="line">
       <h2>물품등록</h2>
@@ -164,7 +164,7 @@ $(document).on("keyup", "input:text[numberonly]", function() {
   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
 });
 </script>
-@include('footer')
+@include('lib.footer')
 </body>
 </html>
 <script type="text/javascript">

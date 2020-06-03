@@ -45,7 +45,7 @@
     </script>
   </head>
   <body>
-    @include('header')
+    @include('lib.header')
     <div class="hr-line">
       <div id="line">
         <h2>물품관리</h2>
@@ -136,6 +136,6 @@
         </div>
       </div>
     </div>
-    @include('footer')
+    @include('lib.footer')
   </body>
 </html>

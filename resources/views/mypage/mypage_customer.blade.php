@@ -120,7 +120,7 @@
             <td>장미특가</td>
             <td>3000원</td>
             <td>cj대한통운</td>
-            <td><button>상품후기</button></td>
+            <td><input type="button" value="구매후기" onclick="show_popup()"></td>
           </tr>
           <tr>
             <td>2</td>
@@ -213,5 +213,8 @@ function showPanel(panelIndex,colorCode) {
   tabPanels[panelIndex].style.backgroundColor=colorCode;
 }
 showPanel(0,'gray');
+
+function show_popup() {
+  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px "); }
       </script>
       </html>

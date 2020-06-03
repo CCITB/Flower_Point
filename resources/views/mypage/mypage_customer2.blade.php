@@ -216,6 +216,6 @@ showPanel(0,'gray');
 
 
 function show_popup() {
-  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=650px, left=570px, top=150px "); }
+  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px "); }
   </script>
   </html>

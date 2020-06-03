@@ -10,7 +10,7 @@
 
 </head>
 <body>
-  @include('header')
+  @include('lib.header')
 
   <div class="hr-sect">
     인기상품
@@ -406,6 +406,6 @@
       });
 
       </script>
-      @include('footer')
+      @include('lib.footer')
     </body>
     </html>

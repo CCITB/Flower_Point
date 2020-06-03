@@ -9,7 +9,7 @@
 
    </head>
    <body>
-@include('header')
+@include('lib.header')
 <div class="hr-line">
   <div id="line">
     <h2>나의 QnA</h2>
@@ -85,6 +85,6 @@
     <style>
 
     </style>
-@include('footer')
+@include('lib.footer')
 </body>
 </html>
