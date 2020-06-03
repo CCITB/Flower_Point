@@ -169,6 +169,7 @@ div.product_data{
   margin-top:20px;
   border: solid 1px #d6d6d6;
   position: relative;
+  margin-bottom: 30px;
 }
 
 div.option{
@@ -206,6 +207,12 @@ input.delivery_tel{
 select.delivery_tel{
   height: 32px;
   width : 55px;
+  padding:5px;
+}
+
+input#receiver{
+  width: 15em;
+  height: 18px;
   padding:5px;
 }
 

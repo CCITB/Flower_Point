@@ -118,7 +118,7 @@
                   <label>무통장 입금</label>
                   <th><li>은행 선택</li></th>
                   <td>
-                    <select name=bank margin-left:10px;>
+                    <select id="bank" name=bank margin-left:10px;>
                       <option value="">은행을 선택해주세요</option>
                       <option value="농협">농협</option>
                       <option value="국민은행">국민은행</option>
@@ -192,7 +192,7 @@
               </table>
               <hr class="line2">
             </form>
-            <form class="check" action="/complete" onsubmit="return checkform(this)" name="check">
+            <form class="check" action="/complete" onsubmit="return checkform()" name="check">
               <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
               <div class="line"><input class="end" type='submit' value="다음" ></div></form>
             </div>
@@ -206,21 +206,89 @@
 </body>
 <script type="text/javascript">
 
-function checkform(Join){
+
+function checkform(){
 
   var check1=document.check.ck.checked;
   if(!check1){
     alert('약관에 동의해 주세요');
     return false;
   }
+
+  function checkNameInput(){
+    var seller_name = $('#inputtext').val();
+    var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+    var empty = /\s/gi;
+
+    $.ajax({
+      type: 'post',
+      url: 'seller_Overlap',
+      dataType: 'json',
+      data: { "name" : seller_name },
+
+      success : function(data) {
+        console.log(data);
+        //공백(빈칸)
+        if(seller_name == ""){
+          $('#name_check').text("필수 정보입니다.");
+          $('#name_check').css('color', 'red');
+          $('#btnSubmit').attr('disabled',true);
+        }
+        else if(!markJ.test(seller_name)){
+          $("#name_check").text("");
+          $('#btnSubmit').attr('disabled',false);
+        }
+        //특수기호, 공백(space) 사용불가
+        else{
+          $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
+          $('#name_check').css('color', 'red');
+          $('#btnSubmit').attr('disabled',true);
+        }
+      }
+      ,error : function() {console.log("name실패");}
+    })
+  }
+
+  var receiver = document.getElementById("inputtext");
+  var middlenum = document.getElementById("delivery_tel_no2");
+  var lastnum = document.getElementById("delivery_tel_no3");
+  var address = document.getElementById("address");
+  var detail_address = document.getElementById("detailAddress");
+  var bank = document.getElementById("bank");
+
+  if((receiver.value)==""){
+    alert('수령인을 입력해주세요');
+    return false;
+  }
+
+  if((middlenum.value)==""){
+    alert('중간번호를 입력해주세요');
+    return false;
+  }
+
+  if((lastnum.value)==""){
+    alert('번호 뒷자리를 입력해주세요');
+    return false;
+  }
+
+  if((address.value)==""){
+    alert('주소를 입력해주세요');
+    return false;
+  }
+
+  if((detail_address.value)==""){
+    alert('상세주소 입력해주세요');
+    return false;
+  }
+
+
 }
-</script>
-<script>
+
 function div_show(s,ss){
-  if(s == "무통장입금"){
-    document.getElementById(ss).style.display="";
-  }else{
+  if(s == "직접거래"){
     document.getElementById(ss).style.display="none";
+  }else{
+    document.getElementById(ss).style.display="";
   }
 }
 </script>

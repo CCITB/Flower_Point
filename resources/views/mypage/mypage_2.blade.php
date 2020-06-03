@@ -50,6 +50,7 @@
             <button class="btn btn-primary">수정
             </button>
     </div>
+  </div>
     @include('lib.footer')
 </body>
 
