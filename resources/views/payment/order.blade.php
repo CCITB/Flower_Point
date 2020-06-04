@@ -90,9 +90,10 @@
                 -
                 <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" class="delivery_tel">
               </div>
-
-              <input type="radio" name="trade" value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
-              <input type="radio" name="trade" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+              <div id="trade0">
+              <input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
+              <input type="radio" name="trade" id="trade2" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+            </div>
               <div id="divshow" style="display:none;">
                 <div class="delivery_wrap">
                   <strong class="info">주 소</strong>
@@ -215,43 +216,12 @@ function checkform(){
     return false;
   }
 
-  function checkNameInput(){
-    var seller_name = $('#inputtext').val();
-    var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-    var empty = /\s/gi;
-
-    $.ajax({
-      type: 'post',
-      url: 'seller_Overlap',
-      dataType: 'json',
-      data: { "name" : seller_name },
-
-      success : function(data) {
-        console.log(data);
-        //공백(빈칸)
-        if(seller_name == ""){
-          $('#name_check').text("필수 정보입니다.");
-          $('#name_check').css('color', 'red');
-          $('#btnSubmit').attr('disabled',true);
-        }
-        else if(!markJ.test(seller_name)){
-          $("#name_check").text("");
-          $('#btnSubmit').attr('disabled',false);
-        }
-        //특수기호, 공백(space) 사용불가
-        else{
-          $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
-          $('#name_check').css('color', 'red');
-          $('#btnSubmit').attr('disabled',true);
-        }
-      }
-      ,error : function() {console.log("name실패");}
-    })
-  }
 
   var receiver = document.getElementById("inputtext");
   var middlenum = document.getElementById("delivery_tel_no2");
   var lastnum = document.getElementById("delivery_tel_no3");
+  var trade1 = document.getElementById("trade1")
+  var trade2 = document.getElementById("trade2")
   var address = document.getElementById("address");
   var detail_address = document.getElementById("detailAddress");
   var bank = document.getElementById("bank");
@@ -270,18 +240,29 @@ function checkform(){
     alert('번호 뒷자리를 입력해주세요');
     return false;
   }
+  if(trade1.checked == trade2.checked){
+    alert('결제방식을 선택해주세요');
+      return false;
+    }
 
-  if((address.value)==""){
-    alert('주소를 입력해주세요');
+  if(trade1.checked){
+      return true;
+    }
+
+   if(trade2.checked){
+    if((address.value)==""){
+      alert('주소를 입력해주세요');
+      return false;
+    }
+    else if((detail_address.value)==""){
+      alert('상세주소를 입력해주세요');
+      return false;
+    }
+  }
+  if((bank.value)==""){
+    alert('은행을 선택해주세요');
     return false;
   }
-
-  if((detail_address.value)==""){
-    alert('상세주소 입력해주세요');
-    return false;
-  }
-
-
 }
 
 function div_show(s,ss){
@@ -289,6 +270,8 @@ function div_show(s,ss){
     document.getElementById(ss).style.display="none";
   }else{
     document.getElementById(ss).style.display="";
+
+
   }
 }
 </script>
