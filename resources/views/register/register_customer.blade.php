@@ -19,7 +19,7 @@
       <div class="id_title">Customer Register</div> <hr>
     </div>
     <div class="signup">
-      <form action = '/RegisterControllerCustomer' method="post" name="registerform" onsubmit='return validatate();'>
+      <form action = '/RegisterControllerCustomer' method="post" name="registerform" onsubmit='return check_all();'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="c_id">
@@ -34,7 +34,7 @@
         <div class="check_div" id="re_pw_check" value=""></div>
 
         <div class="sign_name">이름</div>
-        <input class="inf1" type="name" placeholder="Name" id="c_name" name="c_name" >
+        <input class="inf1" type="name" placeholder="Name" id="name" name="c_name" >
         <div class="check_div" id="name_check" value=""></div>
 
         <div class="sign_name">연락처</div>
@@ -92,34 +92,33 @@
     }
   });
 
-  $("#id").keyup(function() {
+  $("#id").blur(function() {
     checkIdInput();
   });//blur
   $("#pw").blur(function() {
     checkPwInput();
   });//blur
-  $("#check").keyup(function() {
+  $("#check").blur(function() {
     checkRePwInput();
   });//blur
   $("#name").blur(function() {
     checkNameInput();
   });//blur
   $("#s_birth_y").blur(function() {
-    checkBirthInput()});//blur
-
-    $("#s_birth_m").change(function() {
-      checkBirthInput()
-    });//blur
-
-    $("#s_birth_d").blur(function() {
-      checkBirthInput();
-    });
-    $("#s_gender").change(function() {
-      checkGender();
-    });
-    $("#s_email").change(function() {
-      checkEmail();
-    });
+    checkBirthInput()
+  });//blur
+  $("#s_birth_m").change(function() {
+    checkBirthInput()
+  });//blur
+  $("#s_birth_d").blur(function() {
+    checkBirthInput();
+  });
+  $("#s_gender").change(function() {
+    checkGender();
+  });
+  $("#s_email").change(function() {
+    checkEmail();
+  });
 
   function checkIdInput(){
     var customer_id = $('#id').val();
@@ -143,7 +142,7 @@
         if(data>=1){
           $('#id_check').text('이미 사용중인 아이디입니다.');
           $('#id_check').css('color', 'red');
-          //return false;
+          $('#btnSubmit').attr('disabled',true);
         }
 
         //ID 중복X
@@ -152,12 +151,14 @@
           if(idJ.test(customer_id)){
             $("#id_check").text("사용가능한 아이디입니다!");
             $('#id_check').css('color', 'green');
+            $('#btnSubmit').attr('disabled',false);
             //return true;
           }
           //정규식 일치X
           if(!idJ.test(customer_id)){
             $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
             $('#id_check').css('color', 'red');
+            $('#btnSubmit').attr('disabled',true);
             //return false;
           }
         }
@@ -255,10 +256,9 @@
     var customer_name = $('#name').val();
     var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
     var empty = /\s/gi;
-
     $.ajax({
       type: 'post',
-      url: 'customer_Overlap',
+      url: 'seller_Overlap',
       dataType: 'json',
       data: { "name" : customer_name },
 
@@ -268,17 +268,17 @@
         if(customer_name == ""){
           $('#name_check').text("필수 정보입니다.");
           $('#name_check').css('color', 'red');
-          $('#btnSubmit').attr('disabled', true);
+          $('#btnSubmit').attr('disabled',true);
         }
         else if(!markJ.test(customer_name)){
           $("#name_check").text("");
-          $('#btnSubmit').attr('disabled', false);
+          $('#btnSubmit').attr('disabled',false);
         }
         //특수기호, 공백(space) 사용불가
         else{
           $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
           $('#name_check').css('color', 'red');
-          $('#btnSubmit').attr('disabled', true);
+          $('#btnSubmit').attr('disabled',true);
         }
       }
       ,error : function() {console.log("name실패");}
@@ -389,5 +389,54 @@
       }
       ,error : function() {console.log("실패");}
     })
+  }
+  function check_all(){
+    // var id = document.getElementById("id");
+    var password = document.getElementById("pw");
+    var re_password = document.getElementById("check");
+    var name = document.getElementById("name");
+    var birth_y = document.getElementById("c_birth_y");
+    var birth_m = document.getElementById("c_birth_m");
+    var birth_d = document.getElementById("c_birth_d");
+    var gender = document.getElementById("c_gender");
+    var phonenum = document.getElementById("c_phonenum");
+    var email = document.getElementById("c_email");
+    //
+    // if((id.value)==""){
+    //   alert('아이디 입력해주세요.');
+    //   return false;
+    // }
+    if((password.value)==""){
+      alert('비밀번호를 확인해주세요.');
+      return false;
+    }
+    if((re_password.value)==""){
+      alert('비밀번호를 확인해주세요.');
+      return false;
+    }
+    if((name.value)==""){
+      alert('이름을 입력해주세요.');
+      return false;
+    }
+    if((phonenum.value)==""){
+      alert('휴대폰 번호를 입력해주세요.');
+      return false;
+    }
+    if((birth_y.value)==""){
+      alert('생년월일을 확인해주세요.');
+      return false;
+    }
+    if((gender.value)==""){
+      alert('성별을 입력해주세요.');
+      return false;
+    }
+    if((email.value)==""){
+      alert('이메일을 입력해주세요.');
+      return false;
+    }
+    else {
+      alert('회원가입되었습니다.');
+      return true;
+    }
   }
   </script>

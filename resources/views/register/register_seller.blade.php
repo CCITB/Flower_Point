@@ -19,7 +19,7 @@
       <div class="id_title">Seller Register</div> <hr>
     </div>
     <div class="signup">
-      <form action = '/RegisterControllerSeller' method="post" name="registerform" onsubmit='return check_all()'>
+      <form action = '/sto_info' method="post" name="registerform" onsubmit='return check_all()'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="s_id" >
@@ -68,11 +68,11 @@
         <div class="check_div" id="gender_check" value=""></div>
 
         <div class="sign_name">연락처</div>
-        <input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum" name="s_phonenum" >
+        <input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum" name="s_phonenum" required >
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">이메일  </div>
-        <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" >
+        <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required>
         <a href="#" class="inf4" id="btnSend" role="button"><span>인증번호 받기</span></a>
         <div class="check_div" id="email_check" value=""></div>
 
@@ -101,7 +101,7 @@
   $("#pw").blur(function() {
     checkPwInput();
   });//blur
-  $("#check").keyup(function() {
+  $("#check").blur(function() {
     checkRePwInput();
   });//blur
   $("#name").blur(function() {
@@ -401,7 +401,7 @@
       alert('비밀번호를 확인해주세요.');
       return false;
     }
-    if((re_password.value)==0){
+    if((re_password.value)==""){
       alert('비밀번호를 확인해주세요.');
       return false;
     }
@@ -413,7 +413,7 @@
       alert('휴대폰 번호를 입력해주세요.');
       return false;
     }
-    if((birth_y.value)==""||(birth_m.value)==""||(birth.value)==""){
+    if((birth_y.value)==""){
       alert('생년월일을 확인해주세요.');
       return false;
     }

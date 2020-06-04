@@ -40,7 +40,8 @@ Route::get('/terms_customers', 'MainController@register_terms_customers');
 
 Route::get('/terms_sellers', 'MainController@register_terms_sellers');
 
-Route::get('/sto_info', 'MainController@register_information');
+//register_seller
+Route::post('/sto_info', 'MainController@register_information');
 
 
 //Database Table에 Insert ****** 어지수
