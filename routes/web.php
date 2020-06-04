@@ -138,3 +138,23 @@ Route::get('/mypageseller', function(){
 Route::get('/shopseller', function(){
   return view('myshop/shop_seller2');
 });
+
+//mail
+Route::get('/', function() {
+  $user = array(
+    'email'=>'o1032002241@gmail.net',
+    'name'=>'Kim, Se-Hee'
+  );
+
+  $data = array(
+    'detail'=>'Your awesome detail here',
+    'name' => $user['name']
+  );
+  
+  Mail::send('emails.welcome', $data, function($message) use ($user)
+  {
+    $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
+    $message->to($user['email'], $user['name'])->subject('Welcome!');
+  });
+  return 'Done!';
+});
