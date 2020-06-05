@@ -364,7 +364,7 @@
           <div class="image">
             <div class="image-in">
               <div class="imagewrap" >
-                <img src="\storage\{{$productlist->p_filename}}" alt="꽃" >
+                <img src="\Storage\{{$productlist->p_filename}}" alt="꽃" >
               </div>
 
               <div class="image-in-font">
