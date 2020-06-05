@@ -207,7 +207,6 @@
 </body>
 <script type="text/javascript">
 
-
 function checkform(){
 
   var check1=document.check.ck.checked;
@@ -216,7 +215,7 @@ function checkform(){
     return false;
   }
 
-
+  var regex= /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
   var receiver = document.getElementById("inputtext");
   var middlenum = document.getElementById("delivery_tel_no2");
   var lastnum = document.getElementById("delivery_tel_no3");
@@ -228,6 +227,10 @@ function checkform(){
 
   if((receiver.value)==""){
     alert('수령인을 입력해주세요');
+    return false;
+  }
+  if(receiver.indexOf(regex.value)){
+    alert('ㄴ');
     return false;
   }
 
@@ -270,8 +273,6 @@ function div_show(s,ss){
     document.getElementById(ss).style.display="none";
   }else{
     document.getElementById(ss).style.display="";
-
-
   }
 }
 </script>

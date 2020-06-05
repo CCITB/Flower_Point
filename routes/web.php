@@ -95,9 +95,6 @@ Route::get('/bi', function () {
 });
 Route::post('index', 'ProductController@seller_product_register');
 
-Route::get('/sellermyshop', function () {
-  return view('gwang_jin.Seller_myshop2');
-});
 Route::get('/mypage2', function () {
   return view('mypage/mypage_customer');
 });
@@ -130,16 +127,11 @@ Route::get('/all', function(){
   return view('allproductpage');
 });
 Route::get('/mypagecustomer', function(){
-  return view('mypage/mypage_customer2');
+  return view('mypage/mypage_customer');
 });
+
 Route::get('/mypage', function(){
-  return view('mypage/mypage_2');
-});
-Route::get('/mypageseller', function(){
   return view('mypage/mypage0');
-});
-Route::get('/shopseller', function(){
-  return view('myshop/shop_seller2');
 });
 
 //mail

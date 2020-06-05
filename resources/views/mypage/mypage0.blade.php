@@ -19,34 +19,66 @@
     <div class="myinfo">
         <h4>내 정보</h4>
         <div class="privacy">
+          @if($seller = auth()->guard('seller')->user())
             <table class="table1">
                 <table border="0" cellpadding="10" cellspacing="10" width="100%">
                     <tr>
                         <th>ID</th>
-                        <td >asd</td>
+                        <td >{{$seller->s_id}}</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td >******</td>
+                        <td >{{$seller->s_password}}</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td >정경진</td>
+                        <td >{{$seller->s_name}}</td>
                     </tr>
                     <tr>
                         <th>연락처</th>
-                        <td >*****</td>
+                        <td >{{$seller->s_phonenum}}</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td >asdsad@naver.com</td>
+                        <td >{{$seller->s_email}}</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td >ㅁㄴㄹㄴㅁㄹㄴㅁㄹ</td>
+                        <td >{{$seller->s_address}}</td>
                     </tr>
                 </table>
             </table>
+
+          @elseif ($customer = auth()->guard('customer')->user())
+              <table class="table1">
+                  <table border="0" cellpadding="10" cellspacing="10" width="100%">
+                      <tr>
+                          <th>ID</th>
+                          <td >{{$customer->c_id}}</td>
+                      </tr>
+                      <tr>
+                          <th>PW</th>
+                          <td >{{$customer->c_password}}</td>
+                      </tr>
+                      <tr>
+                          <th>이름</th>
+                          <td >{{$customer->c_name}}</td>
+                      </tr>
+                      <tr>
+                          <th>연락처</th>
+                          <td >{{$customer->c_phonenum}}</td>
+                      </tr>
+                      <tr>
+                          <th>이메일</th>
+                          <td >{{$customer->c_email}}</td>
+                      </tr>
+                      <tr>
+                          <th>주소</th>
+                          <td >{{$customer->c_address}}</td>
+                      </tr>
+                  </table>
+              </table>
+          @endif
             <button class="btn btn-primary" onclick="location.href='mypage'">수정
             </button>
             <h3 align="center">문의관리</h3>
@@ -86,23 +118,6 @@
                   <td>답변대기</td>
                 </tr>
             </table>
-            <div class="nav-page">
-              <nav>
-                <a href="#" class="active">1</a>
-              </nav>
-              <nav>
-                2
-              </nav>
-              <nav>
-                3
-              </nav>
-              <nav>
-                4
-              </nav>
-              <nav>
-                5
-              </nav>
-            </div>
             <div class="quickbuttonwrap">
                 <div class="quickgroup"><a href="/locate1">
                     <div class="quickbutton">
