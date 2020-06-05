@@ -1,0 +1,18 @@
+POST /index HTTP/1.1
+Accept:                    text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding:           gzip, deflate
+Accept-Language:           ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+Cache-Control:             no-cache
+Connection:                keep-alive
+Content-Length:            324
+Content-Type:              application/x-www-form-urlencoded
+Cookie:                    XSRF-TOKEN=eyJpdiI6IkVueGI2L2IrbkN4Uzd6U3NuMXJzZHc9PSIsInZhbHVlIjoiL2lHc3ZuOXBJVnhlY1FiN1puZndHS0NiTXZsTFBQTDRaK3J5MTZuOFdWS3RBdlRwVTQxZ0FFanNqZWlldEJUUCIsIm1hYyI6ImRhMjFlNGI4OTk5Y2QxMDQ0ZGM1YmYzZTNjMjAyNTgyMTA1NTEzYzVhYjA1ZWZlNmM2MzkzNDNjZmI5ZTAxOTYifQ%3D%3D; flower_point_session=eyJpdiI6InhVU2Rwa20wRmFva2ZkZlZja1V2a2c9PSIsInZhbHVlIjoibGN6OHkvbysza2Vvc29jaE8vUEgrdzdSUkwyY3VJbnZLKzRZOXEybEllNFFvczQ5UXczWUx4WlBaVVJoSUZOMiIsIm1hYyI6IjFjNDk4M2MwYzBlMTkyOGYwZjAyODE1ODdjMTkzYjNjYWZhNDQ2ZTM4M2ZiZTVmZTNlM2Q5MTRlZDhiNWYxMjUifQ%3D%3D
+Host:                      laravel.site
+Origin:                    http://laravel.site
+Pragma:                    no-cache
+Referer:                   http://laravel.site/sellershoppost
+Upgrade-Insecure-Requests: 1
+User-Agent:                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+Cookie: XSRF-TOKEN=8p8mBK11uPHL51cgcVjJn2dVRAxrX2zynj2lfFjc; flower_point_session=JgCGVw2v0anFprzFfpPRBMY0CcIMPPDwipX5Tpu0
+
+_token=8p8mBK11uPHL51cgcVjJn2dVRAxrX2zynj2lfFjc&productname=&ir1=%ED%85%8D%EC%8A%A4%ED%8A%B8%EB%A5%BC+%EC%A0%81%EC%9C%BC%EC%8B%9C%EC%A7%80+%EC%95%8A%EC%9C%BC%EB%A9%B4+%EA%B8%B0%EB%B3%B8%EA%B0%92%EC%9C%BC%EB%A1%9C+%EC%B6%9C%EB%A0%A5%EB%90%A9%EB%8B%88%EB%8B%A4.&picture=bagofmoney_dollar_4399.png&deliverycharge=&sellingprice=

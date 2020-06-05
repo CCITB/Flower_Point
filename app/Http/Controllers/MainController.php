@@ -9,7 +9,8 @@ use DB;
 class MainController extends Controller
 {
   public function main(){
-    return view('main',['data' => DB::table('product')->get()]);
+    $data = DB::table('product')->where('p_no','=',14)->get();
+    return view('main',['data' => $data ]);
   }
   public function login_customer(){
     return view('login.login_customer');

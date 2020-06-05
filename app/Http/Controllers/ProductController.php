@@ -19,8 +19,8 @@ class ProductController extends Controller
 
 
 
-    $storeno = auth()->guard('seller')->user()->store_no;
-    $comparison = DB::table('store')->where('st_no','=', $storeno)->first();
+    $storeno = auth()->guard('seller')->user()->s_no;
+    $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
     // 로그확인용 주석
 
     // echo $comparison->st_no;

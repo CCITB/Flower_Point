@@ -371,9 +371,9 @@
 
                 <div class="image-in-font">
                   <div class="image-in-post">
-                  @if($data = DB::table('product')->where('p_no','=',11)->first())
+                  {{-- @if($data = DB::table('product')->where('p_no','=',11)->first())
                     {{$data -> p_name}}
-                  @endif
+                  @endif --}}
                   </div>
                   <div class="image-in-container">
                     <div class="image-in-star">
@@ -386,9 +386,15 @@
                       </p>
                     </div>
                     <div class="image-in-bottom">
-                      @if ($data)
+                      @foreach ($data as $product)
+                        @php
+                          echo $product->p_contents;
+                        @endphp
+                      @endforeach
+
+                      {{-- @if ($data)
                         {{$data -> p_contents}}
-                      @endif
+                      @endif --}}
                     </div>
                   </div>
                 </div>
