@@ -8,25 +8,6 @@
   <link rel="stylesheet" type="text/css" href="/css/sign_up.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
-
-  <script type="text/javascript">
-
-  function checkform(Join){
-
-    var check1=document.terms_agree.chk1.checked;
-    var check2=document.terms_agree.chk2.checked;
-
-    if(!check1){
-      alert('약관1에 동의해 주세요');
-      return false;
-    }
-    if(!check2) {
-      alert('약관2에 동의해 주세요');
-      return false;
-    }
-  }
-  </script>
-
 </head>
 
 <body>
@@ -360,6 +341,27 @@
           <a href = "/">홈으로</a>
         </div>
       </div>
+
+
+
+
+      <script type="text/javascript">
+
+      function checkform(Join){
+
+        var check1=document.terms_agree.chk1.checked;
+        var check2=document.terms_agree.chk2.checked;
+
+        if(!check1){
+          alert('약관1에 동의해 주세요');
+          return false;
+        }
+        if(!check2) {
+          alert('약관2에 동의해 주세요');
+          return false;
+        }
+      }
+      </script>
 
     </body>
     </html>

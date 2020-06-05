@@ -104,6 +104,9 @@ Route::get('/mypage2', function () {
 Route::get('/review', function () {
   return view('review');
 });
+Route::get('/rev2', function () {
+  return view('rev_image');
+});
 //결제
 Route::get('/order', function () {
   return view('payment.order');
