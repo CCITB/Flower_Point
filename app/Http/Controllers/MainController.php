@@ -9,8 +9,10 @@ use DB;
 class MainController extends Controller
 {
   public function main(){
-    $data = DB::table('product')->where('p_no','=',14)->get();
-    return view('main',['data' => $data ]);
+    $data = DB::table('product')->get();
+    // $alldata = [$data,$imagepath];
+    // return $data;
+    return view('main',compact('data'));
   }
   public function login_customer(){
     return view('login.login_customer');

@@ -12,19 +12,6 @@ class LoginController extends Controller
   {
     $seller_id = $login->get('login_id');
     $seller_pw = $login->get('login_pw');
-    // $db_seller = DB::table('seller')->select('s_id','s_password')->where([
-    //   's_id'=>$seller_id,
-    //   's_password'=>$seller_pw
-    //   ])->get();
-    //
-    //
-    //   if(count($db_seller)>0){
-    //     session()->put('iding',$seller_id);
-    //
-    //     return view('main');
-    //   }else {
-    //     return redirect('/login_seller');
-    //   }
     if(! auth() ->guard('seller') ->attempt(['s_id' => $seller_id, 'password' => $seller_pw])) {
       return back();
     }
@@ -52,3 +39,16 @@ class LoginController extends Controller
     }
 
 }
+// $db_seller = DB::table('seller')->select('s_id','s_password')->where([
+//   's_id'=>$seller_id,
+//   's_password'=>$seller_pw
+//   ])->get();
+//
+//
+//   if(count($db_seller)>0){
+//     session()->put('iding',$seller_id);
+//
+//     return view('main');
+//   }else {
+//     return redirect('/login_seller');
+//   }
