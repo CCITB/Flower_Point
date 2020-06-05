@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  @include('header')
+  @include('lib.header')
   <div class="menu4">
     <h3 align="center">마이페이지</h3>
     <hr align="left" class="one">
@@ -193,7 +193,7 @@
       </div>
     </div>
   </div>
-  @include('footer')
+  @include('lib.footer')
 </body>
 <script type="text/javascript">
 var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");

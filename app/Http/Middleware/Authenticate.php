@@ -15,6 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+          // 수정필요한듯
             return url('login_seller');
         }
     }

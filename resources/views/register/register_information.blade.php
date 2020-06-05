@@ -18,9 +18,20 @@
     <div class="text">
       <div class="id_title">Store Information</div> <hr>
     </div>
+
     <div class="st_if">
-      <form action = 'register_InsertStore' method='post' name="insertstore" onsubmit='return validatate();' >
+      <form action = '/RegisterControllerSeller' method='post' name="insertstore" onsubmit='return validatate();' >
         @csrf
+        <input type="hidden" name="s_id" value="<?php echo $_POST['s_id']?>">
+        <input type="hidden" name="s_password" value="<?php echo $_POST['s_password']?>">
+        <input type="hidden" name="s_name" value="<?php echo $_POST['s_name']?>">
+        <input type="hidden" name="s_phonenum" value="<?php echo $_POST['s_phonenum']?>">
+        <input type="hidden" name="s_email" value="<?php echo $_POST['s_email']?>">
+        <input type="hidden" name="s_gender" value="<?php echo $_POST['s_gender']?>">
+        <input type="hidden" name="s_birth_y" value="<?php echo $_POST['s_birth_y']?>">
+        <input type="hidden" name="s_birth_m" value="<?php echo $_POST['s_birth_m']?>">
+        <input type="hidden" name="s_birth_d" value="<?php echo $_POST['s_birth_d']?>">
+
         <div class="paragraph">
           <div class="sign_name">매장 이름</div>
           <input class="shop_info" type="text" placeholder="store name" id="st_name" name="st_name" >
@@ -67,23 +78,23 @@ function validatate(){
   var st_tel = document.getElementById("st_tel");
   var st_introduce = document.getElementById("st_introduce");
 
-  if(st_name.value()==""){
+  if((st_name.value)==""){
     alert('매장명을 입력해주세요.');
     return false;
   }
-  if(registeration_num.value()==""){
+  if((registeration_num.value)==""){
     alert('사업자등록번호를 입력해주세요.');
     return false;
   }
-  if(st_address.value()==""){
+  if((st_address.value)==""){
     alert('매장주소를 입력해주세요.');
     return false;
   }
-  if(st_tel.value()==""){
+  if((st_tel.value)==""){
     alert('고객센터 번호를 입력해주세요.');
     return false;
   }
-  if(st_introduce.value()==""){
+  if((st_introduce.value)==""){
     alert('매장소개를 입력해주세요.');
     return false;
   }

@@ -90,9 +90,10 @@
                 -
                 <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" class="delivery_tel">
               </div>
-
-              <input type="radio" name="trade" value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
-              <input type="radio" name="trade" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+              <div id="trade0">
+              <input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
+              <input type="radio" name="trade" id="trade2" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+            </div>
               <div id="divshow" style="display:none;">
                 <div class="delivery_wrap">
                   <strong class="info">주 소</strong>
@@ -118,7 +119,7 @@
                   <label>무통장 입금</label>
                   <th><li>은행 선택</li></th>
                   <td>
-                    <select name=bank margin-left:10px;>
+                    <select id="bank" name=bank margin-left:10px;>
                       <option value="">은행을 선택해주세요</option>
                       <option value="농협">농협</option>
                       <option value="국민은행">국민은행</option>
@@ -192,7 +193,7 @@
               </table>
               <hr class="line2">
             </form>
-            <form class="check" action="/complete" onsubmit="return checkform(this)" name="check">
+            <form class="check" action="/complete" onsubmit="return checkform()" name="check">
               <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
               <div class="line"><input class="end" type='submit' value="다음" ></div></form>
             </div>
@@ -202,25 +203,75 @@
       </div>
     </div>
   </div>
-  @include('footer')
+  @include('lib.footer')
 </body>
 <script type="text/javascript">
 
-function checkform(Join){
+
+function checkform(){
 
   var check1=document.check.ck.checked;
   if(!check1){
     alert('약관에 동의해 주세요');
     return false;
   }
+
+
+  var receiver = document.getElementById("inputtext");
+  var middlenum = document.getElementById("delivery_tel_no2");
+  var lastnum = document.getElementById("delivery_tel_no3");
+  var trade1 = document.getElementById("trade1")
+  var trade2 = document.getElementById("trade2")
+  var address = document.getElementById("address");
+  var detail_address = document.getElementById("detailAddress");
+  var bank = document.getElementById("bank");
+
+  if((receiver.value)==""){
+    alert('수령인을 입력해주세요');
+    return false;
+  }
+
+  if((middlenum.value)==""){
+    alert('중간번호를 입력해주세요');
+    return false;
+  }
+
+  if((lastnum.value)==""){
+    alert('번호 뒷자리를 입력해주세요');
+    return false;
+  }
+  if(trade1.checked == trade2.checked){
+    alert('결제방식을 선택해주세요');
+      return false;
+    }
+
+  if(trade1.checked){
+      return true;
+    }
+
+   if(trade2.checked){
+    if((address.value)==""){
+      alert('주소를 입력해주세요');
+      return false;
+    }
+    else if((detail_address.value)==""){
+      alert('상세주소를 입력해주세요');
+      return false;
+    }
+  }
+  if((bank.value)==""){
+    alert('은행을 선택해주세요');
+    return false;
+  }
 }
-</script>
-<script>
+
 function div_show(s,ss){
-  if(s == "무통장입금"){
-    document.getElementById(ss).style.display="";
-  }else{
+  if(s == "직접거래"){
     document.getElementById(ss).style.display="none";
+  }else{
+    document.getElementById(ss).style.display="";
+
+
   }
 }
 </script>

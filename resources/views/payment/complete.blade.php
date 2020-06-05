@@ -48,7 +48,7 @@
         </div>
       </div> <!--wrapping_complete-->
     </div>
-    @include('footer')
+    @include('lib.footer')
   </body>
   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
   </html>

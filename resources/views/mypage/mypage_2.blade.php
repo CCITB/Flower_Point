@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    @include('header')
+    @include('lib.header')
     <div class="menu4">
         <h3 align="center">마이페이지</h3>
         <hr align="left" class="one">
@@ -50,7 +50,8 @@
             <button class="btn btn-primary">수정
             </button>
     </div>
-    @include('footer')
+  </div>
+    @include('lib.footer')
 </body>
 
 </html>

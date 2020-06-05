@@ -47,10 +47,19 @@ class RegisterController extends Controller
           's_gender' => $request->input('s_gender'),
           's_birth' => $request->input('s_birth_y').$request->input('s_birth_m').$request->input('s_birth_d')
         ]);
+        $datas =  $request->input('s_id');
+        $sid = DB::table('seller')->where('s_id','=',$datas )->first();
+
+        DB::table('store')->insert([
+          'st_name'=>$request->input('st_name'),
+          'st_tel' => $request->input('st_tel'),
+          'st_address' => $request->input('st_address'),
+          'st_registeration_num' => $request->input('registeration_num'),
+          'st_introduce' => $request->input('st_introduce'),
+            'seller_no' =>  $sid->s_no
+        ]);
+        // return $sid->s_no;
         return redirect('/login_seller');
-      }
-      else{
-        //code...
       }
     }
     //register jquery -- 어지수
@@ -64,30 +73,30 @@ class RegisterController extends Controller
       $input = $request->input('id');
       $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
       return response()->json($sellers);
-
-      $overlap_pw = $request->input('pw');
-      return response()->json($overlap_pw);
-
-      $overlap_ck = $request->input('check');
-      return response()->json($overlap_ck);
-
-      $overlap_name = $request->input('name');
-      return response()->json($overlap_name);
-
-      $overlap_birth_y = $request->input('s_birth_y');
-      return response()->json($overlap_birth_y);
-
-      $overlap_birth_m = $request->input('s_birth_m');
-      return response()->json($overlap_birth_m);
-
-      $overlap_birth_d = $request->input('s_birth_d');
-      return response()->json($overlap_birth_d);
-
-      $overlap_s_gender = $request->input('s_gender');
-      return response()->json($overlap_s_gender);
-
-      $overlap_s_email = $request->input('s_email');
-      return response()->json($overlap_s_email);
+      //
+      // $overlap_pw = $request->input('pw');
+      // return response()->json($overlap_pw);
+      //
+      // $overlap_ck = $request->input('check');
+      // return response()->json($overlap_ck);
+      //
+      // $overlap_name = $request->input('name');
+      // return response()->json($overlap_name);
+      //
+      // $overlap_birth_y = $request->input('s_birth_y');
+      // return response()->json($overlap_birth_y);
+      //
+      // $overlap_birth_m = $request->input('s_birth_m');
+      // return response()->json($overlap_birth_m);
+      //
+      // $overlap_birth_d = $request->input('s_birth_d');
+      // return response()->json($overlap_birth_d);
+      //
+      // $overlap_s_gender = $request->input('s_gender');
+      // return response()->json($overlap_s_gender);
+      //
+      // $overlap_s_email = $request->input('s_email');
+      // return response()->json($overlap_s_email);
     }
 
     //[resister_seller jQuery부분] --어지수
@@ -118,4 +127,4 @@ class RegisterController extends Controller
       $overlap_s_email = $request->input('c_email');
       return response()->json($overlap_s_email);
     }
-}
+  }

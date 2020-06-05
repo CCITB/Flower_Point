@@ -54,23 +54,40 @@
           var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
           // 키워드로 장소를 검색합니다
-          searchPlaces();
+          // searchPlaces();
 
           // 키워드 검색을 요청하는 함수입니다
           function searchPlaces() {
-
               var keyword = document.getElementById('keyword').value;
+
 
               if (!keyword.replace(/^\s+|\s+$/g, '')) {
                   alert('키워드를 입력해주세요!');
                   return false;
               }
-              // else if {!keyword.replace('꽃'+'플라워'){
-              //   alert('키워드를 확인해주세요 ex)서울 꽃집, 일산 플라워샵');
-              //   return false;
-              // }
-              //
-              // }
+
+
+
+              if(keyword.indexOf('꽃') != -1) {
+
+
+              }
+              else if(keyword.indexOf('플라워') != -1) {
+
+
+              }
+              else if(keyword.indexOf('flower') != -1) {
+
+
+              }
+
+              else {
+                alert('키워드를 확인해주세요! 예)일산 꽃집, 종로 플라워샵');
+                return false;
+              }
+
+
+
               // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
               ps.keywordSearch( keyword, placesSearchCB);
           }
@@ -98,7 +115,6 @@
 
               }
           }
-
           // 검색 결과 목록과 마커를 표출하는 함수입니다
           function displayPlaces(places) {
 
@@ -265,7 +281,7 @@
 
 
 
-    @include('footer')
+    @include('lib.footer')
 </body>
 </html>
 <style media="screen">
@@ -273,7 +289,7 @@
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:280px;margin-left: 80%; border: 1px solid; padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:280px;margin-left: 80%; border: 2px solid; padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}

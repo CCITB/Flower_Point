@@ -28,4 +28,8 @@ class seller extends Authenticatable
     public function getAuthPassword(){
       return $this->s_password; // case sensitive
     }
+    // public function product(){
+    //   return $this->hasoneOne('App\product', 's_no');
+    // }
+
 }

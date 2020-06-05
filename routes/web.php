@@ -25,28 +25,34 @@ Route::get('/register_customer','MainController@register_costomer');
 
 Route::get('/register_seller','MainController@register_seller');
 
-//중복 검사
+//중복 검사, 정규식 조건 ***** 어지수
 Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
 Route::post('/customer_Overlap', 'RegisterController@c_overlap');
 
-
+//
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 
 Route::get('/register', 'RegisterController@registerview');
+
 
 Route::get('/terms_customers', 'MainController@register_terms_customers');
 
 Route::get('/terms_sellers', 'MainController@register_terms_sellers');
 
-Route::get('/sto_info', 'MainController@register_information');
+//register_seller
+Route::post('/sto_info', 'MainController@register_information');
 
 
-
+//Database Table에 Insert ****** 어지수
 Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
 
 Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
+//MAIL_HOST ****** 어지수
+Route::get('mail', 'MailController@send');
+
+//ID, PW 찾기
 Route::get('/find_id', 'FindController@find_id');
 
 Route::get('/find_pw', 'FindController@find_pw');
@@ -83,11 +89,11 @@ Route::get('/postlist', function () {
 });
 Route::get('/sellershoppost', function () {
   return view('seller.seller_shoppost');
-});
+})->middleware('auth:seller');
 Route::get('/bi', function () {
   return view('Buy_information');
 });
-Route::post('index', 'postcontroller@post');
+Route::post('index', 'ProductController@seller_product_register');
 
 Route::get('/sellermyshop', function () {
   return view('gwang_jin.Seller_myshop2');
@@ -135,3 +141,23 @@ Route::get('/mypageseller', function(){
 Route::get('/shopseller', function(){
   return view('myshop/shop_seller2');
 });
+
+//mail
+// Route::get('/', function() {
+//   $user = array(
+//     'email'=>'o1032002241@gmail.net',
+//     'name'=>'Kim, Se-Hee'
+//   );
+//
+//   $data = array(
+//     'detail'=>'Your awesome detail here',
+//     'name' => $user['name']
+//   );
+//
+//   Mail::send('emails.welcome', $data, function($message) use ($user)
+//   {
+//     $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
+//     $message->to($user['email'], $user['name'])->subject('Welcome!');
+//   });
+//   return 'Done!';
+// });
