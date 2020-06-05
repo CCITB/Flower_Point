@@ -156,10 +156,12 @@ li.mainmenu{
 }
 .dropdown-back{
   background-color: #B2D0EB;
+  z-index: 10;
   transition: all 0.3s ease-in-out;
   margin-bottom: 30px;
   border-radius: 0px 0px 50px 50px;
   box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  position: relative;
 }
 .dropdown-back li.submenu{
   display: block;
