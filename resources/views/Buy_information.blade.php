@@ -24,7 +24,7 @@
           <div class="pd_name">리시안셔스</div>
           <div class="star">
             <button class="convenience" type="button">관심매장등록</button>
-            <button class="convenience" type="button" onclick="location.href = '/myqna'">문의하기</button>
+            <button class="convenience" type="button">내 상품</button>
           </div>
         </div>
         <hr class="option_line">
