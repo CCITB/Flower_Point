@@ -183,6 +183,18 @@ button:hover:before,button:hover:after{
 .pw_requirement{
   padding-bottom: 55px;
 }
+.pw_re{
+  height: 40px;
+  color: red;
+  font-size: 15px;
+  padding-top: 5px;
+}
+.pw_re_ck{
+  height: 20px;
+  color: red;
+  font-size: 15px;
+  padding-top: 5px;
+}
 /* -------------------- */
 /* -----  my_id ------ */
 .my_id{

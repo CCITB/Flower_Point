@@ -19,10 +19,15 @@
     </div>
 
     <div class ="pw_reset">
-      <form action = '처리할 주소' method='post' onsubmit='return pw_check(this)'>
+      <form id="pw_ckform" action = '/find_chk' onsubmit='return pw_check()'>
         <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
-        <input class="find_input" type="password" placeholder="새 비밀번호" id="new_pw" name="new_pw"><br><br>
+
+        <input class="find_input" type="password" placeholder="새 비밀번호" id="new_pw" name="new_pw"><br>
+        <div id="pw_re" class="pw_re" value=""></div>
+
         <input class="find_input" type="password" placeholder="새 비밀번호 확인" id="check" >
+        <div id="pw_re_ck" class="pw_re_ck" value=""></div>
+
         <div class="under_pw">
           <input class="lg_bt" type="submit" id="signup" value="다음">
         </div>
@@ -33,6 +38,27 @@
 </html>
 
 <script>
+
+window.onload=function(){
+  document.getElementById('pw_ckform').onsubmit=function(){
+    var pass=document.getElementById('new_pw').value;
+    var passCheck=document.getElementById('check').value;
+
+    if (pass != passCheck){
+      document.getElementById("pw_re_ck").innerHTML = "비밀번호가 일치하지 않습니다.";
+      return false;
+    } if (pass == ''){
+      document.getElementById("pw_re").innerHTML = "비밀번호를 입력해주세요.";
+      return false;
+    }
+    var pw=$("#pass").val();
+    var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+    if (!check.test('pass')){
+      document.getElementById("pw_re").innerHTML = "8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.";
+      return false;
+    }
+  }
+}
 // window.addEventListener('load', function() {
 //   var signup = document.querySelector('#signup');
 //
@@ -46,26 +72,8 @@
 //     } else if (new_pw.value == ''){
 //       alert('비밀번호를 입력해주세요.')
 //       new_pw.focus();
-//     }else {
-//       location.replace = "/login_customer";
 //     }
 //   });
 // });
-
-function pw_check(Join){
-  var new_pw = document.getElementById('#new_pw');
-  var check = document.getElementById('#check');
-
-  if(new_pw.value != check.value){
-    alert('비밀번호가 일치하지 않습니다.');
-    check.focus();
-  }
-  if(new_pw.value == ''){
-    alert('비밀번호를 입력해주세요.')
-    new_pw.focus();
-  }
-}else {
-  location.replace("/login_customer");
-}
-}
+//
 </script>

@@ -17,7 +17,7 @@
     </div>
 
     <div class="agree_terms">
-      <form name="terms_agree"  action = '/register_customer' onsubmit="return checkform(this)">
+      <form name="terms_agree"  action = '/register_customer' onsubmit="return checkform()">
         <div class="checkbox">
           <div class="checkbt">
             <label><input class="mini" type="checkbox" name="chk1" id="chk1">
@@ -347,7 +347,7 @@
 
       <script type="text/javascript">
 
-      function checkform(Join){
+      function checkform(){
 
         var check1=document.terms_agree.chk1.checked;
         var check2=document.terms_agree.chk2.checked;
