@@ -43,7 +43,7 @@
           <textarea class="satis_detail_window" placeholder="최소 10자 이상 입력해주세요."></textarea>
         </div>
         <div class="satis_img">
-          <button class="img_bt" type="button"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
+          <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
         </div>
       </div>
     </div>
@@ -53,66 +53,77 @@
       <input class="rev_bt" type='submit' value="확인">
     </div>
   </div>
+
+
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+  $( ".choice_star a" ).click(function() {
+    $(this).parent().children("a").removeClass("on");
+    $(this).addClass("on").prevAll("a").addClass("on");
+    return false;
+  });
+
+  function star_text(st_nu){
+    console.log(st_nu);
+
+    switch (st_nu) {
+      case 1:
+      document.getElementById("st_detail").innerHTML = "1점 (별로예요)";
+      document.getElementById("satis_nu").innerHTML = "1";
+      document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
+      break;
+      case 2:
+      document.getElementById("st_detail").innerHTML = "2점 (그저그래요)";
+      document.getElementById("satis_nu").innerHTML = "2";
+      document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
+      break;
+      case 3:
+      document.getElementById("st_detail").innerHTML = "3점 (괜찮아요)";
+      document.getElementById("satis_nu").innerHTML = "3";
+      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+      break;
+      case 4:
+      document.getElementById("st_detail").innerHTML = "4점 (좋아요)";
+      document.getElementById("satis_nu").innerHTML = "4";
+      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+      break;
+      case 5:
+      document.getElementById("st_detail").innerHTML = "5점 (최고예요)";
+      document.getElementById("satis_nu").innerHTML = "5";
+      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+      break;
+      default:
+      break;
+    }
+    // if(st_nu == 1){
+    //   $('#st_detail').text('1점 (별로예요)');
+    //   $('#satis_nu').text('1');
+    //   $('#satis_nu2').text('아쉬웠나요?');
+    // }
+    // if(st_nu == 2){
+    //   $('#st_detail').text('2점 (그저그래요)');
+    //   $('#satis_nu').text('2');
+    //   $('#satis_nu2').text('아쉬웠나요?');
+    // }
+    // if(st_nu == 3){
+    //   $('#st_detail').text('3점 (괜찮아요)');
+    //   $('#satis_nu').text('3');
+    //   $('#satis_nu2').text('좋았나요?');
+    // }
+    // if(st_nu == 4){
+    //   $('#st_detail').text('4점 (좋아요)');
+    //   $('#satis_nu').text('4');
+    //   $('#satis_nu2').text('좋았나요?');
+    // }
+    // if(st_nu == 5){
+    //   $('#st_detail').text('5점 (최고예요)');
+    //   $('#satis_nu').text('5');
+    //   $('#satis_nu2').text('좋았나요?');
+    // }
+  }
+
+
+  </script>
+
 </body>
 </html>
-
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$( ".choice_star a" ).click(function() {
-  $(this).parent().children("a").removeClass("on");
-  $(this).addClass("on").prevAll("a").addClass("on");
-  return false;
-});
-
-function star_text(st_nu){
-  console.log(st_nu);
-
-  if(st_nu == 1){
-    $('#st_detail').text('1점 (별로예요)');
-    $('#satis_nu').text('1');
-    $('#satis_nu2').text('아쉬웠나요?');
-  }
-  if(st_nu == 2){
-    $('#st_detail').text('2점 (그저그래요)');
-    $('#satis_nu').text('2');
-    $('#satis_nu2').text('아쉬웠나요?');
-  }
-  if(st_nu == 3){
-    $('#st_detail').text('3점 (괜찮아요)');
-    $('#satis_nu').text('3');
-    $('#satis_nu2').text('좋았나요?');
-  }
-  if(st_nu == 4){
-    $('#st_detail').text('4점 (좋아요)');
-    $('#satis_nu').text('4');
-    $('#satis_nu2').text('좋았나요?');
-  }
-  if(st_nu == 5){
-    $('#st_detail').text('5점 (최고예요)');
-    $('#satis_nu').text('5');
-    $('#satis_nu2').text('좋았나요?');
-  }
-  // switch (st_nu) {
-  //   case 1:
-  //   document.write("1점 (별로예요)");
-  //   break;
-  //   case 2:
-  //   document.write("2점 (그저그래요)")
-  //   break;
-  //   case 3:
-  //   document.write("3점 (괜찮아요)")
-  //   break;
-  //   case 4:
-  //   document.write("4점 (좋아요)")
-  //   break;
-  //   case 5:
-  //   document.write("5점 (최고예요)")
-  //   break;
-  //   default:
-  //   document.write("별점을 눌러주세요")
-  // }
-
-}
-
-
-</script>

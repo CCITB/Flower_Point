@@ -494,3 +494,13 @@ textarea{
 .choice_star a.on {
   color:#FFE400;
 }
+
+
+/* ---- 파일 선택 ---- */
+.file_upload{
+  height: 100px;
+  text-align: center;
+}
+.thumimg{
+  height: 400px;
+}
