@@ -69,12 +69,12 @@ Route::post('/login_c', 'LoginController@login_c');
 
 Route::get('/logout', 'LoginController@logout');
 
-
+Route::post('/information_controller', 'information_controller@information');
 
 Route::get('/locate1', function () {
   return view('locate');
 });
-Route::get('/mypage1', function () {
+Route::get('/mypage', function () {
   return view('mypage/mypage');
 });
 
@@ -131,7 +131,10 @@ Route::get('/mypagecustomer', function(){
 });
 
 Route::get('/mypage', function(){
-  return view('mypage/mypage0');
+  return view('mypage/mypage');
+});
+Route::get('/modify', function(){
+  return view('mypage/modify');
 });
 
 //mail

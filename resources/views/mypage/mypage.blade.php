@@ -19,39 +19,40 @@
     <div class="myinfo">
         <h4>내 정보</h4>
         <div class="privacy">
+          <form action="#">
           @if($seller = auth()->guard('seller')->user())
             <table class="table1">
-                <table border="0" cellpadding="10" cellspacing="10" width="100%">
+                <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
                     <tr>
                         <th>ID</th>
-                        <td >{{$seller->s_id}}</td>
+                        <td>{{$seller->s_id}}</td>
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td >{{$seller->s_password}}</td>
+                        <td>{{$seller->s_password}}</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td >{{$seller->s_name}}</td>
+                        <td>{{$seller->s_name}}</td>
                     </tr>
                     <tr>
                         <th>연락처</th>
-                        <td >{{$seller->s_phonenum}}</td>
+                        <td>{{$seller->s_phonenum}}</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td >{{$seller->s_email}}</td>
+                        <td>{{$seller->s_email}}</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td >{{$seller->s_address}}</td>
+                        <td>{{$seller->s_address}}</td>
                     </tr>
                 </table>
             </table>
 
           @elseif ($customer = auth()->guard('customer')->user())
               <table class="table1">
-                  <table border="0" cellpadding="10" cellspacing="10" width="100%">
+                  <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
                       <tr>
                           <th>ID</th>
                           <td >{{$customer->c_id}}</td>
@@ -79,8 +80,9 @@
                   </table>
               </table>
           @endif
-            <button class="btn btn-primary" onclick="location.href='mypage'">수정
+            <button class="btn btn-primary" onclick="location.href='modify'">수정
             </button>
+          </form>
             <h3 align="center">문의관리</h3>
             <hr align="center" width="100%" >
             <table class="questiontable" border="1" cellpadding="10" width="100%";>
