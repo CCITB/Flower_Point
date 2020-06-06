@@ -19,7 +19,7 @@
     <div class="myinfo">
         <h4>내 정보</h4>
         <div class="privacy">
-          <form action="#">
+          <form action="/modify">
           @if($seller = auth()->guard('seller')->user())
             <table class="table1">
                 <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
@@ -80,7 +80,7 @@
                   </table>
               </table>
           @endif
-            <button class="btn btn-primary" onclick="location.href='modify'">수정
+            <button class="btn btn-primary"type="submit">수정
             </button>
           </form>
             <h3 align="center">문의관리</h3>

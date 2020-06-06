@@ -69,7 +69,7 @@ Route::post('/login_c', 'LoginController@login_c');
 
 Route::get('/logout', 'LoginController@logout');
 
-Route::post('/information_controller', 'information_controller@information');
+Route::post('/information_controller', 'InformationController@information');
 
 Route::get('/locate1', function () {
   return view('locate');
