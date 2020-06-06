@@ -20,7 +20,7 @@
     </div>
 
     <div class="st_if">
-      <form action = '/RegisterControllerSeller' method='post' name="insertstore" onsubmit='return validatate();' >
+      <form action = '/RegisterControllerSeller' method='post' name="insertstore" >
         @csrf
         <input type="hidden" name="s_id" value="<?php echo $_POST['s_id']?>">
         <input type="hidden" name="s_password" value="<?php echo $_POST['s_password']?>">
@@ -40,7 +40,11 @@
 
         <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
-          <input class="shop_info" type="text" placeholder="Company Registration Number" id="registeration_num" name="registeration_num">
+          <input class="shop_info2" type="text" id="registeration_num1" name="registeration_num1">
+          -
+          <input class="shop_info2" type="text" id="registeration_num2" name="registeration_num2">
+          -
+          <input class="shop_info2" type="text" id="registeration_num3" name="registeration_num3">
           <div class="check_div" id="stnum_check" value=""></div>
         </div>
 
@@ -53,7 +57,7 @@
         <div class="paragraph">
           <div class="sign_name">고객센터 번호</div>
           <input class="shop_info" type="text" placeholder="Service Number" id="st_tel" name="st_tel">
-          <div class="check_div" id="staddress_check" value=""></div>
+          <div class="check_div" id="staddress_num" value=""></div>
         </div>
 
         <div class="paragraph">
@@ -70,6 +74,73 @@
 </html>
 
 <script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$(document).ready(function(){
+
+  $("#st_name").blur(function() {
+    //input data
+    var st_name = $("#st_name").val();
+    //예외처리 -- 공백
+    if(st_name==''){
+      $('#stname_check').text('필수 정보입니다.');
+      $('#stname_check').css('color', 'red');
+    }
+    else{
+      $('#stname_check').text('');
+      $('#stname_check').css('color', 'red');
+    }
+  });//blur
+
+  $("#registeration_num1").blur(function() {
+    // input
+    var registeration_num1 = $('registeration_num1').val();
+    var registeration_num2 = $('registeration_num2').val();
+    var registeration_num3 = $('registeration_num3').val();
+    //숫자 정규식
+    var numJ = /^[0-9]*$/;
+    //예외처리 -- 공백
+    if(registeration_num1==''||registeration_num2==''||registeration_num3==''){
+      $('#stnum_check').text("필수항목 입니다.");
+      $('#stnum_check').css('color', 'red');
+    }
+    //공백X
+    else{
+
+    }
+  });//blur
+
+  $("#st_address").blur(function() {
+    //input data
+    var st_address = $('st_address').val();
+    //공백
+    if(st_address=''){
+      $('#staddress_check').text("필수항목 입니다.");
+      $('#staddress_check').css('color', 'red');
+    }
+    else{
+      $('#staddress_check').text("");
+    }
+  });//blur
+
+  $("#st_tel").blur(function() {
+    //Input
+    var st_tel = $('st_tel').val();
+    //공백
+    if(st_tel=''){
+      $('#staddress_num').text("필수항목 입니다.");
+      $('#staddress_num').css('color', 'red');
+    }
+    else{
+      $('#staddress_num').text("");
+    }
+  });//blur
+});
+
 //onsubmit -- 어지수
 function validatate(){
   var st_name = document.getElementById("st_name");
