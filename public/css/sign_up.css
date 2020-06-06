@@ -73,6 +73,10 @@ a:hover{
   font-size: 1em;
   color: #747474;
 }
+.shop_info2{
+  width : 25%;
+}
+
 textarea{
   width: 100%;
   height: 150px;
@@ -140,7 +144,6 @@ textarea{
   height: 33px;
   font-size: 12px;
 }
-
 
 .st_if{
   padding:0 20px 20px;
