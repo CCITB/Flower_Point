@@ -20,18 +20,19 @@
       <div class="imgbox">
     <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" width="100px" height="100px">
   </div>
+  @if($store = auth()->guard('seller')->user())
     <table class="shopinfo">
       <tr>
         <th>대표</th>
-        <td>홍길동</td>
+        <td>{{$store->st_name}}</td>
       </tr>
       <tr>
         <th>상호명</th>
-        <td>ccit flower</td>
+        <td>{{$store->st_name}}</td>
       </tr>
       <tr>
         <th>주소</th>
-        <td>서울특별시 종로 관철동 종로11길 311</td>
+        <td>{{$store->st_address}}</td>
       </tr>
     </table>
     <div class="shopintro">
