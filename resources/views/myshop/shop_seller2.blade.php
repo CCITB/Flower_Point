@@ -20,7 +20,7 @@
       <div class="imgbox">
     <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" width="100px" height="100px">
   </div>
-  @if($store = auth()->guard('seller')->user())
+  @if($seller = auth()->guard('seller')->user())
     <table class="shopinfo">
       <tr>
         <th>대표</th>
@@ -36,7 +36,7 @@
       </tr>
     </table>
     <div class="shopintro">
-      <span><input class="introduce" type="text" placeholder="소개"></span>
+      <span><input class="introduce" type="text" placeholder="소개">{{$store->st_introduce}}</span>
     </div>
   </div>
   <button class="btn2" type="button" name="button" onclick="location.href=''">수정하기</button>

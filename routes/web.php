@@ -139,5 +139,38 @@ Route::get('/mypage', function(){
 Route::get('/modify', function(){
   return view('mypage/modify');
 });
+<<<<<<< HEAD
 
 Route::get('/mail', 'MailController@send');
+=======
+Route::get('/flowercart', function(){
+  // if(auth()->guard('customer')->check()){
+  //   return view('flowercart');
+  // }
+  // if(auth()->guard('seller')->check()){
+  //   return redirect('/');
+  // }
+  // else
+  // return redirect('/login_customer');
+  return view('flowercart');
+});
+//mail
+// Route::get('/', function() {
+//   $user = array(
+//     'email'=>'o1032002241@gmail.net',
+//     'name'=>'Kim, Se-Hee'
+//   );
+//
+//   $data = array(
+//     'detail'=>'Your awesome detail here',
+//     'name' => $user['name']
+//   );
+//
+//   Mail::send('emails.welcome', $data, function($message) use ($user)
+//   {
+//     $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
+//     $message->to($user['email'], $user['name'])->subject('Welcome!');
+//   });
+//   return 'Done!';
+// });
+>>>>>>> a1bfa5db6a9adfc576fe3a3ceb43c30d5701ffa2
