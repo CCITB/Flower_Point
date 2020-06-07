@@ -54,3 +54,8 @@ th{
   text-align: center;
 }
 /* FAQ.blade.phpcss 끝나는곳 */
+.pagination {
+display:inline-block;
+margin-right:5px;
+cursor:pointer;
+}
