@@ -214,8 +214,9 @@ function checkform(){
     alert('약관에 동의해 주세요');
     return false;
   }
-
-  var regex= /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+  var special2 = /[\{\}\[\]\/?;:|\)*~`!^\+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var num =  /^[0-9]{3,4}$/;
   var receiver = document.getElementById("inputtext");
   var middlenum = document.getElementById("delivery_tel_no2");
   var lastnum = document.getElementById("delivery_tel_no3");
@@ -229,18 +230,28 @@ function checkform(){
     alert('수령인을 입력해주세요');
     return false;
   }
-  if(receiver.indexOf(regex.value)){
-    alert('ㄴ');
+  if(special.test(receiver.value)){
+    alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
     return false;
   }
-
   if((middlenum.value)==""){
     alert('중간번호를 입력해주세요');
     return false;
   }
-
+  if(!num.test(middlenum.value)){
+    alert('중간 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+ if(special.test(middlenum.value)){
+    alert('숫자만 입력해주세요.')
+    return false;
+  }
   if((lastnum.value)==""){
     alert('번호 뒷자리를 입력해주세요');
+    return false;
+  }
+  if(!num.test(lastnum.value)){
+    alert('뒤 4자리의 숫자를 입력해주세요')
     return false;
   }
   if(trade1.checked == trade2.checked){
@@ -257,11 +268,21 @@ function checkform(){
       alert('주소를 입력해주세요');
       return false;
     }
+    if(special2.test(address.value)){
+      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
+      return false;
+    }
     else if((detail_address.value)==""){
       alert('상세주소를 입력해주세요');
       return false;
     }
+    if(special2.test(detail_address.value)){
+      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
+      return false;
+    }
   }
+
+
   if((bank.value)==""){
     alert('은행을 선택해주세요');
     return false;
