@@ -29,11 +29,11 @@ class RegisterMail extends Mailable
      **/
     public function build()
     {
-        //Global "From" Address 이용
-        // return $this->view('view.name');
+        //발송자는 from이아닌 Global "From" Address 이용
+        return $this->view('emails.mail');
 
-        return $this->from('example@example.com')
-                    ->subject('꽃갈피 인증메일')
-                    ->view('emails.orders.shipped');
+        // return $this->view('view.name');
+        // return $this->subject('꽃갈피 인증메일')
+        //             ->view('emails.mail');
     }
 }

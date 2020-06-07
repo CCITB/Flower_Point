@@ -50,7 +50,10 @@ Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
 Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
 //MAIL_HOST ****** 어지수
-Route::get('mail', 'MailController@send');
+Route::get('/mailsend', 'MailController@send');
+Route::get('/mailview', function () {
+  return view('emails/mail');
+});
 
 //ID, PW 찾기
 Route::get('/find_id', 'FindController@find_id');
@@ -137,22 +140,4 @@ Route::get('/modify', function(){
   return view('mypage/modify');
 });
 
-//mail
-// Route::get('/', function() {
-//   $user = array(
-//     'email'=>'o1032002241@gmail.net',
-//     'name'=>'Kim, Se-Hee'
-//   );
-//
-//   $data = array(
-//     'detail'=>'Your awesome detail here',
-//     'name' => $user['name']
-//   );
-//
-//   Mail::send('emails.welcome', $data, function($message) use ($user)
-//   {
-//     $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
-//     $message->to($user['email'], $user['name'])->subject('Welcome!');
-//   });
-//   return 'Done!';
-// });
+Route::get('/mail', 'MailController@send');

@@ -73,7 +73,7 @@
 
         <div class="sign_name">이메일  </div>
         <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required >
-        <a href="#" class="inf4" id="btnSend" role="button"><span>인증번호 받기</span></a>
+        <a href="/mail" class="inf4" id="btnSend" role="button"><span>인증번호 받기</span></a>
         <div class="check_div" id="email_check" value=""></div>
 
       </div>
@@ -258,13 +258,13 @@
       //1. 공백 X
       if(!s_email == ""){
         $('#email_check').text("");
-        $('#btnSubmit').attr('disabled',false);
+        //$('#btnSubmit').attr('disabled',false);
       }
       //2. 내용이 없을 모든 경우의 수
       else {
         $('#email_check').text("필수 정보입니다.");
         $('#email_check').css('color', 'red');
-        $('#btnSubmit').attr('disabled',true);
+        //$('#btnSubmit').attr('disabled',true);
       }
     });
   });
@@ -309,50 +309,20 @@
     }
   }
 
-  // function check_all(){
-  //   // var id = document.getElementById("id");
-  //   // var password = document.getElementById("pw");
-  //   var re_password = document.getElementById("check");
-  //   var name = document.getElementById("s_name");
-  //   var birth_y = document.getElementById("s_birth_y");
-  //   var birth_m = document.getElementById("s_birth_m");
-  //   var birth_d = document.getElementById("s_birth_d");
-  //   var gender = document.getElementById("s_gender");
-  //   var phonenum = document.getElementById("s_phonenum");
+  function check_all(){
+    // var id = document.getElementById("id");
+    // var password = document.getElementById("pw");
+    // var re_password = document.getElementById("check");
+    // var name = document.getElementById("s_name");
+    // var birth_y = document.getElementById("s_birth_y");
+    // var birth_m = document.getElementById("s_birth_m");
+    // var birth_d = document.getElementById("s_birth_d");
+    // var gender = document.getElementById("s_gender");
+    // var phonenum = document.getElementById("s_phonenum");
   //   var email = document.getElementById("s_email");
   //
-  //   if((id.value)==""){
-  //     alert('아이디 입력해주세요.');
-  //     return false;
-  //   }
-  //   if((password.value)==""){
-  //     alert('비밀번호를 확인해주세요.');
-  //     return false;
-  //   }
-  //   if((re_password.value)==""){
-  //     alert('비밀번호를 확인해주세요.');
-  //     return false;
-  //   }
-  //   if((name.value)==""){
-  //     alert('이름을 입력해주세요.');
-  //     return false;
-  //   }
-    // if((phonenum.value)==""){
-    //   alert('휴대폰 번호를 입력해주세요.');
-    //   return false;
-    // }
-    // if((birth_y.value)==""){
-    //   alert('생년월일을 확인해주세요.');
-    //   return false;
-    // }
-    // if((gender.value)==""){
-    //   alert('성별을 입력해주세요.');
-    //   return false;
-    // }
-    // if((email.value)==""){
-    //   alert('이메일을 입력해주세요.');
-    //   return false;
-    // }
+  //
+  //
   //   else {
   //     alert('회원가입되었습니다.');
   //     return true;

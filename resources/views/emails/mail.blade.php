@@ -5,12 +5,7 @@
   <title></title>
 </head>
 <body>
-  안녕하세요. {{ $name }} 고객님.
-  <strong>{{ $name }}</strong>,
-  <p>{{body}}</p>
-
-  <div>
-    Price: {{ $orderPrice }}
-  </div>
+  이메일 인증코드
+  <strong>{{ $name }}</strong>
 </body>
 </html>
