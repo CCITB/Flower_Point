@@ -136,7 +136,17 @@ Route::get('/mypage', function(){
 Route::get('/modify', function(){
   return view('mypage/modify');
 });
-
+Route::get('/flowercart', function(){
+  // if(auth()->guard('customer')->check()){
+  //   return view('flowercart');
+  // }
+  // if(auth()->guard('seller')->check()){
+  //   return redirect('/');
+  // }
+  // else
+  // return redirect('/login_customer');
+  return view('flowercart');
+});
 //mail
 // Route::get('/', function() {
 //   $user = array(

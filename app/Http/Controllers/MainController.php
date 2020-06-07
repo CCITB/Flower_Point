@@ -15,9 +15,21 @@ class MainController extends Controller
     return view('main',compact('data'));
   }
   public function login_customer(){
+    if(auth()->guard('seller')->check()){
+      return redirect('/');
+    }
+    if(auth()->guard('customer')->check()){
+      return redirect('/');
+    }
     return view('login.login_customer');
   }
   public function login_seller(){
+    if(auth()->guard('customer')->check()){
+      return redirect('/');
+    }
+    if(auth()->guard('seller')->check()){
+      return redirect('/');
+    }
     return view('login.login_seller');
   }
   public function register_costomer(){
