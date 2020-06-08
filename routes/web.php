@@ -138,17 +138,10 @@ Route::get('/modify', function(){
   return view('mypage/modify');
 });
 
-<<<<<<< HEAD
-//메일 인증
-=======
-
 Route::get('/customer', function(){
   return view('mypage/customer');
 });
 
-
-
->>>>>>> 95af9edcb789fbacc80187949b02534600a8647f
 Route::get('/mail', 'MailController@send');
 //검색
 Route::get('/search', 'SearchController@result');
