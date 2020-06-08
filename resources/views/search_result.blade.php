@@ -12,9 +12,8 @@
     검색 결과
   </div>
     <div class="container-wrap">
+
       <div class="container-wrapping">
-
-
         @foreach ($result_data as $productlist)
           <div class="container-image">
             <div class="image">
@@ -25,6 +24,7 @@
 
                 <div class="image-in-font">
                   <div class="image-in-post">
+                    <!--게시글 제목-->
                     {{$productlist->p_name}}
                   </div>
                   <div class="image-in-container">
@@ -38,6 +38,7 @@
                       </p>
                     </div>
                     <div class="image-in-bottom">
+                      <!--물품 내용-->
                       {!!$productlist->p_contents!!}
                     </div>
                   </div>
