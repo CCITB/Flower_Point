@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>아름다움을 선물하자, 꽃갈피</title>
+  <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/header.css">
 
@@ -367,7 +367,7 @@
               <div class="imagewrap" >
                 <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
               </div>
-
+              
               <div class="image-in-font">
                 <div class="image-in-post">
                   {{$productlist->p_name}}
@@ -383,7 +383,7 @@
                     </p>
                   </div>
                   <div class="image-in-bottom">
-                    {!!$productlist->p_contents!!}
+                    {{$productlist->p_contents}}
                   </div>
                 </div>
               </div>

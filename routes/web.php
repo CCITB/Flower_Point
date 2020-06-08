@@ -98,9 +98,6 @@ Route::get('/bi', function () {
 });
 Route::post('index', 'ProductController@seller_product_register');
 
-Route::get('/mypage2', function () {
-  return view('mypage/mypage_customer');
-});
 Route::get('/review', function () {
   return view('review');
 });
@@ -120,19 +117,20 @@ Route::get('/list', function(){
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });
-Route::get('/shop', function(){
-  return view('myshop/flowershop');
+Route::get('/shop','InformationController@storeinfo');
+
+//       return view('myshop/shop_seller');
+
+Route::get('/customer', function(){
+  return view('mypage/customer');
 });
-Route::get('/shop2', function(){
-  return view('myshop/shop_seller');
-});
+
+
+//       return view('myshop/shop_seller');
+
 Route::get('/all', function(){
   return view('allproductpage');
 });
-Route::get('/mypagecustomer', function(){
-  return view('mypage/mypage_customer');
-});
-
 Route::get('/mypage', function(){
   return view('mypage/mypage');
 });
@@ -140,7 +138,17 @@ Route::get('/modify', function(){
   return view('mypage/modify');
 });
 
+<<<<<<< HEAD
 //메일 인증
+=======
+
+Route::get('/customer', function(){
+  return view('mypage/customer');
+});
+
+
+
+>>>>>>> 95af9edcb789fbacc80187949b02534600a8647f
 Route::get('/mail', 'MailController@send');
 //검색
 Route::get('/search', 'SearchController@result');
