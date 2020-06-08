@@ -137,14 +137,13 @@ Route::get('/mypage', function(){
 Route::get('/modify', function(){
   return view('mypage/modify');
 });
-<<<<<<< HEAD
+
 
 Route::get('/customer', function(){
   return view('mypage/customer');
 });
 
-=======
->>>>>>> 9937bf19303d3e01571600676a6831214d0bf9c7
+
 
 Route::get('/mail', 'MailController@send');
 

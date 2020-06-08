@@ -37,7 +37,7 @@
       </tr>
     </table>
     <div class="shopintro">
-      <span><input class="introduce" type="text" placeholder="소개">{{$data1->st_introduce}}</span>
+      <span>{{$data1->st_introduce}}</span>
     </div>
 @endforeach
     @endif
