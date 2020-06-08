@@ -59,7 +59,7 @@ class RegisterController extends Controller
           'st_address' => $request->input('st_address'),
           'st_registeration_num' => $s_num,
           'st_introduce' => $request->input('st_introduce'),
-            'seller_no' =>  $sid->s_no
+          'seller_no' =>  $sid->s_no
         ]);
         // return $sid->s_no;
         return redirect('/login_seller');

@@ -20,24 +20,27 @@
       <div class="imgbox">
     <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" width="100px" height="100px">
   </div>
-  @if($seller = auth()->guard('seller')->user())
+@if( auth()->guard('seller')->user())
+  @foreach ($data as $data1)
     <table class="shopinfo">
       <tr>
         <th>대표</th>
-        <td>{{$store->st_name}}</td>
+        <td>{{$data1->s_name}}</td>
       </tr>
       <tr>
         <th>상호명</th>
-        <td>{{$store->st_name}}</td>
+        <td>{{$data1->st_name}}</td>
       </tr>
       <tr>
         <th>주소</th>
-        <td>{{$store->st_address}}</td>
+        <td>{{$data1->st_address}}</td>
       </tr>
     </table>
     <div class="shopintro">
-      <span><input class="introduce" type="text" placeholder="소개">{{$store->st_introduce}}</span>
+      <span><input class="introduce" type="text" placeholder="소개">{{$data1->st_introduce}}</span>
     </div>
+@endforeach
+    @endif
   </div>
   <button class="btn2" type="button" name="button" onclick="location.href=''">수정하기</button>
       <div class="wrap4">
