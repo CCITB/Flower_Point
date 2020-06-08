@@ -92,7 +92,7 @@
         <a href="#">마이페이지</a>
         <ul class="submenu_list">
           <li class="submenu"><a href="/mypage">내 정보</a></li>
-          <li class="submenu"><a href="#">내 꽃집 가기</a></li>
+            <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
           <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
         </ul>
       </li>

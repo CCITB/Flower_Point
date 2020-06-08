@@ -98,9 +98,6 @@ Route::get('/bi', function () {
 });
 Route::post('index', 'ProductController@seller_product_register');
 
-Route::get('/mypage2', function () {
-  return view('mypage/mypage_customer');
-});
 Route::get('/review', function () {
   return view('review');
 });
@@ -120,19 +117,20 @@ Route::get('/list', function(){
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });
-Route::get('/shop', function(){
-  return view('myshop/flowershop');
+Route::get('/shop','InformationController@storeinfo');
+
+//       return view('myshop/shop_seller');
+
+Route::get('/customer', function(){
+  return view('mypage/customer');
 });
-Route::get('/shop2', function(){
-  return view('myshop/shop_seller');
-});
+
+
+//       return view('myshop/shop_seller');
+
 Route::get('/all', function(){
   return view('allproductpage');
 });
-Route::get('/mypagecustomer', function(){
-  return view('mypage/mypage_customer');
-});
-
 Route::get('/mypage', function(){
   return view('mypage/mypage');
 });
@@ -141,8 +139,15 @@ Route::get('/modify', function(){
 });
 <<<<<<< HEAD
 
-Route::get('/mail', 'MailController@send');
+Route::get('/customer', function(){
+  return view('mypage/customer');
+});
+
 =======
+>>>>>>> 9937bf19303d3e01571600676a6831214d0bf9c7
+
+Route::get('/mail', 'MailController@send');
+
 Route::get('/flowercart', function(){
   // if(auth()->guard('customer')->check()){
   //   return view('flowercart');
@@ -173,4 +178,3 @@ Route::get('/flowercart', function(){
 //   });
 //   return 'Done!';
 // });
->>>>>>> a1bfa5db6a9adfc576fe3a3ceb43c30d5701ffa2
