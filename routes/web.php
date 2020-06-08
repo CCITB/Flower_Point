@@ -140,7 +140,10 @@ Route::get('/modify', function(){
   return view('mypage/modify');
 });
 
+//메일 인증
 Route::get('/mail', 'MailController@send');
+//검색
+Route::get('/search', 'SearchController@result');
 
 Route::get('/flowercart', function(){
   // if(auth()->guard('customer')->check()){
@@ -153,22 +156,3 @@ Route::get('/flowercart', function(){
   // return redirect('/login_customer');
   return view('flowercart');
 });
-//mail
-// Route::get('/', function() {
-//   $user = array(
-//     'email'=>'o1032002241@gmail.net',
-//     'name'=>'Kim, Se-Hee'
-//   );
-//
-//   $data = array(
-//     'detail'=>'Your awesome detail here',
-//     'name' => $user['name']
-//   );
-//
-//   Mail::send('emails.welcome', $data, function($message) use ($user)
-//   {
-//     $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
-//     $message->to($user['email'], $user['name'])->subject('Welcome!');
-//   });
-//   return 'Done!';
-// });

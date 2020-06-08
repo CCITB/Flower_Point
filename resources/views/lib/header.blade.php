@@ -39,8 +39,10 @@
       <h1><a href="/">꽃갈피</a></h1>
     </div>
     <div id="block2">
-      <form class="headersearch">
-        <input type="text" id="searchbar" placeholder="Search.." name="search">
+      <form method="get" action="/search" class="headersearch">
+        @csrf
+        <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
+        autocomplete="off" >
         <label for="headersearch">
           <button type="submit"class="search-button">검색</button>
         </label>

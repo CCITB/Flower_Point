@@ -5,7 +5,7 @@
   <title></title>
 </head>
 <body>
-  이메일 인증코드
+  이메일 인증코드는 : ~~~ 입니다. 
   <strong>{{ $name }}</strong>
 </body>
 </html>

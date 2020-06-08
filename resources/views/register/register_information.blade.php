@@ -104,13 +104,19 @@ $(document).ready(function(){
     //숫자 정규식
     var numJ = /^[0-9]*$/;
     //예외처리 -- 공백
-    if(registeration_num1==''||registeration_num2==''||registeration_num3==''){
+    if(registeration_num1==''){
       $('#stnum_check').text("필수항목 입니다.");
       $('#stnum_check').css('color', 'red');
     }
     //공백X
     else{
-
+      if(numJ.test(registeration_num1)){
+        $('#stnum_check').text("");
+      }
+      else {
+        $('#stnum_check').text("숫자만 입력해주세요.");
+        $('#stnum_check').css('color', 'red');
+      }
     }
   });//blur
 
