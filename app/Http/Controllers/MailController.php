@@ -15,12 +15,12 @@ class MailController extends Controller
     $inputmail =  $request->input('email');
     //input대신 get도 가능
     //return response()->json($user);
-    $data = [
-      'data1' => 'ㅎㅇㅎㅇ',
-      'data2' => '테스트'
-    ];
+    // $data = [
+    //   'data1' => 'ㅎㅇㅎㅇ',
+    //   'data2' => '테스트'
+    // ];
 
-    Mail::to($inputmail)->send(new RegisterMail($data));
+    Mail::to($inputmail)->send(new RegisterMail());
 
     return response()->json($inputmail);
   }

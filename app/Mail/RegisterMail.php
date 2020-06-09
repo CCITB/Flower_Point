@@ -16,10 +16,10 @@ class RegisterMail extends Mailable
      *
      * @return void
      */
-    public $order;
-    public function __construct($order)
+    //public $order;
+    public function __construct()
     {
-        $this->order = $order;
+        //$this->order = $order;
     }
 
     /**

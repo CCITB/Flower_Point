@@ -76,7 +76,7 @@
           <div class="sign_name">이메일</div>
           <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
           <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required >
-          <input class="btn_e" id="btn_email" type="button" value="이메일전송">
+          <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
           <!--인증번호 기입란-->
           <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
           <div class="check_div" id="email_check" value=""></div>
@@ -313,6 +313,11 @@
       if(!seller_val == ""){
         //2. 정규식 O
         if(verifyJ.test(seller_val)){
+          //일부러 success에 안넣었어요!!!!
+          $('#email_check').text("인증번호가 전송되었습니다.");
+          $('#email_check').css('color', 'green');
+          $('#verify_num').attr('disabled', false);
+
           $.ajax({
 
             type: 'post',
@@ -322,9 +327,7 @@
 
             success : function(data) {
               //공백
-              $('#email_check').text("인증번호가 전송되었습니다.");
-              $('#email_check').css('color', 'green');
-              $('#verify_num').attr('disabled', false);
+
             }//success
             ,error : function() { }
           });
@@ -343,4 +346,28 @@
       }
     }
   });
+
+    //이메일 확인
+    $("#verify_num").blur(function() {
+      //input data
+      var verify = $('#verify_num').val();
+
+      //1. 공백 -- 빈칸
+      if(verify == ""){
+        $('#name_check').text("인증이 필요합니다.");
+        $('#name_check').css('color', 'red');
+      }
+      //2. 빈칸 X
+      else{
+        //랜덤값과 맞을 때
+        if(){
+
+        }
+        else{
+          $('#name_check').text("인증번호를 다시 확인해주세요.");
+          $('#name_check').css('color', 'red');
+        }
+      }
+    });//blur
+
     </script>
