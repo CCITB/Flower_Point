@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <!--어지수-->
   <title>꽃갈피 - 판매자 회원가입</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,10 +72,12 @@
         <input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum" name="s_phonenum" required >
         <div class="check_div" id="phonenum_check" value=""></div>
 
-        <div class="sign_name">이메일  </div>
-        <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required >
-        <a href="/mail" class="inf4" id="btnSend" role="button"><span>인증번호 받기</span></a>
-        <div class="check_div" id="email_check" value=""></div>
+        <div class="verify">
+          <div class="sign_name">이메일</div>
+          <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required >
+          <input href="/mail" class="btn_e" type="button" onclick="verify_email()" value="이메일전송"></input>
+          <div class="check_div" id="email_check" value=""></div>
+        </div>
 
       </div>
       <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
@@ -240,16 +243,16 @@
       //Input data
       var s_gender = $('#s_gender').val();
       //공백(빈칸)
-        if(!s_gender == ""){
-          $('#gender_check').text("");
-          $('#gender_check').css('color', 'red');
-          //$('#btnSubmit').attr('disabled',false);
-        }
-        else{
-          $('#gender_check').text("필수 정보입니다.");
-          $('#gender_check').css('color', 'red');
-          //$('#btnSubmit').attr('disabled',true);
-        }
+      if(!s_gender == ""){
+        $('#gender_check').text("");
+        $('#gender_check').css('color', 'red');
+        //$('#btnSubmit').attr('disabled',false);
+      }
+      else{
+        $('#gender_check').text("필수 정보입니다.");
+        $('#gender_check').css('color', 'red');
+        //$('#btnSubmit').attr('disabled',true);
+      }
     });
 
     $("#s_email").blur(function() {
@@ -309,23 +312,8 @@
     }
   }
 
-  function check_all(){
-    // var id = document.getElementById("id");
-    // var password = document.getElementById("pw");
-    // var re_password = document.getElementById("check");
-    // var name = document.getElementById("s_name");
-    // var birth_y = document.getElementById("s_birth_y");
-    // var birth_m = document.getElementById("s_birth_m");
-    // var birth_d = document.getElementById("s_birth_d");
-    // var gender = document.getElementById("s_gender");
-    // var phonenum = document.getElementById("s_phonenum");
-  //   var email = document.getElementById("s_email");
-  //
-  //
-  //
-  //   else {
-  //     alert('회원가입되었습니다.');
-  //     return true;
-  //   }
-  // }
-  </script>
+  function verify_email(){
+    var email = document.getElementById("s_email");
+    console.log(email);
+    }
+</script>
