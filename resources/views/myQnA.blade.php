@@ -373,13 +373,6 @@
             <td class="qna-writer">ccit1</td>
             <td class="qna-date">2020.01.01</td>
           </tr>
-          <tr>
-            <td class="qna-index">50</td>
-            <td class="qna-content">내용</td>
-            <td class="qna-condition">답변완료</td>
-            <td class="qna-writer">ccit1</td>
-            <td class="qna-date">2020.01.01</td>
-          </tr>
 
 
 
@@ -415,59 +408,13 @@
 
 <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 <script>
-// var totalData = 1000;    // 총 데이터 수
-// var dataPerPage = 5;    // 한 페이지에 나타낼 데이터 수
-// var pageCount = 5;        // 한 화면에 나타낼 페이지 수
-//
-// function paging(totalData, dataPerPage, pageCount, currentPage){
-//
-// console.log("currentPage : " + currentPage);
-//
-// var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
-// var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-//
-// console.log("pageGroup : " + pageGroup);
-//
-// var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
-// if(last > totalPage)
-// last = totalPage;
-// var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
-// var next = last+1;
-// var prev = first-1;
-//
-// console.log("last : " + last);
-// console.log("first : " + first);
-// console.log("next : " + next);
-// console.log("prev : " + prev);
-//
-//
-// const pages= $('#paging');
-//
-// if(totalPage < 1){
-// first=last;
-// }
-//
-// if (first >5){
-// pages.append("<li><a class=\"prev\"> < </a></li>");
-// }
-//
-// for (let j = first; j<= last; j++){
-// if (currentPage === (j)){
-// pages.append("<li>" + "<a class='active'(" + (j)+ ");\" >" + (j) + "</a></li>");
-// } else if (j>0){
-// pages.append("<li class=\"pagination-item\">" + "<a(" + (j)+ ");\">" + (j) + "</a></li>");
-// }
-// }
-//
-// if (next > 5 && next < totalPage){
-// pages.append("<li><a class=\"next\"> > </a></li>");
-// }
-// }
+
 function pagination(){
   var req_num_row=5;  // 한 페이지에 나타낼 데이터 수
-  var $tr=$('tbody tr');
-  var total_num_row=$tr.length;
+  var $tr=$('tbody tr'); // tr 하나
+  var total_num_row=$tr.length; // 총 길이
   var num_pages=0;
+  // 5의 배수면 현재페이지가 전체/5 이고 나머지의경우는 페이지를 하나 추가시킨다.
   if(total_num_row % req_num_row ==0){
     num_pages=total_num_row / req_num_row;
   }
@@ -477,19 +424,15 @@ function pagination(){
     num_pages=Math.floor(num_pages++);
   }
 
-  // var last = pageGroup * req_num_row;    // 화면에 보여질 마지막 페이지 번호
-  //  if(last > totalPage)
-  //  last = totalPage;
-  //  var first = last - (req_num_row-1);    // 화면에 보여질 첫번째 페이지 번호
-  //  var next = last+1;
-  //  var prev = first-1;
 
 
   // if($tr.length > 50){
   //   alert('50개 이상의 게시물은 쓸 수 없습니다.');
-  // }
+  //
 
-  $('.pagination').append("<li><a class=\"prev\"> < </a></li>");
+  if (num_pages > 5){
+    $('.pagination').append("<li><a class=\"prev\"> < </a></li>");
+  }
 
   for(var i=1; i<=num_pages; i++){
     $('.pagination').append("<li><a>"+i+"</a></li>");
@@ -499,7 +442,8 @@ function pagination(){
 
   $('.pagination').append("<li><a class=\"next\"> > </a></li>");
 
-// 게시물이 5개 이상이면 5개까지 숨기고, 5개 이하면 보여주기
+
+  // 첫 화면에서 게시물이 5개 이상이면 숨기고, 5개 이하면 보여주기
   $tr.each(function(i){
     $(this).hide();
     if(i+1 <= req_num_row){
@@ -507,6 +451,11 @@ function pagination(){
     }
   });
 
+  // num_pages.each(function(i){
+  //   if(num_pages <= 5){
+  //     num_pages.eq(i).show(5);
+  //   }
+  // });
 
   $('.pagination a').click('.pagination-link', function(e){
     e.preventDefault();
@@ -544,6 +493,7 @@ function pagination(){
 
 }
 
+
 $('document').ready(function(){
   pagination();
 
@@ -551,67 +501,10 @@ $('document').ready(function(){
 
 });
 
-// var totalData = 100;    // 총 데이터 수
-// var dataPerPage = 5;    // 한 페이지에 나타낼 데이터 수
-// var pageCount = 5;        // 한 화면에 나타낼 페이지 수
-//
-// function paging(totalData, dataPerPage, pageCount, currentPage){
-//
-//   console.log("currentPage : " + currentPage);
-//
-//   var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
-//   var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-//
-//   console.log("pageGroup : " + pageGroup);
-//
-//   var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
-//   if(last > totalPage)
-//   last = totalPage;
-//   var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
-//   var next = last+1;
-//   var prev = first-1;
-//
-//   console.log("last : " + last);
-//   console.log("first : " + first);
-//   console.log("next : " + next);
-//   console.log("prev : " + prev);
-//
-//   var $pingingView = $("#paging");
-//
-//   var html = "";
-//
-//   if(prev > 0)
-//   html += "<a href=# id='prev'><</a> ";
-//
-//   for(var i=first; i <= last; i++){
-//     html += "<a href='#' id=" + i + ">" + i + "</a> ";
-//   }
-//
-//   if(last < totalPage)
-//   html += "<a href=# id='next'>></a>";
-//
-//   $("#paging").html(html);    // 페이지 목록 생성
-//   $("#paging a").css("color", "black");
-//   $("#paging a#" + currentPage).css({"text-decoration":"none",
-//   "color":"red",
-//   "font-weight":"bold"});    // 현재 페이지 표시
-//
-//   $("#paging a").click(function(){
-//
-//     var $item = $(this);
-//     var $id = $item.attr("id");
-//     var selectedPage = $item.text();
-//
-//     if($id == "next")    selectedPage = next;
-//     if($id == "prev")    selectedPage = prev;
-//
-//     paging(totalData, dataPerPage, pageCount, selectedPage);
-//   });
-//
-// }
-// $("document").ready(function(){
-//   paging(totalData, dataPerPage, pageCount, 1);
-// });
+
+
+
+
 
 
 </script>
@@ -661,5 +554,14 @@ pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (j)+
 }
 if (next > 5 && next < totalPage){
 pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (next)+ ");\">next</a></li>");
+}
+
+
+
+if(current_link <= 5){
+$('.prev').addClass("disabled");
+}
+else {
+$('.prev').removeClass("disabled");
 }
 } -->

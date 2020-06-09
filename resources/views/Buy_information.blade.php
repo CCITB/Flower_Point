@@ -106,7 +106,6 @@
     </div>
 
 
-
     <div class = "pd_detail"> <!-- 상품설명 디테일 -->
       <div class="pd_detail_title">
         <h3 class="blind" id="dtil">상품리뷰</h3>
@@ -214,7 +213,6 @@
               <div class="review_cell">
                 <div class="user_profile">
                   <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-
                 </div>
                 <div class="review_text">
                   <div class="star_small">
@@ -246,7 +244,6 @@
               <div class="review_cell">
                 <div class="user_profile">
                   <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-
                 </div>
                 <div class="review_text">
                   <div class="star_small">
@@ -263,7 +260,6 @@
                   <a href="#">더보기</a>
                 </div>
               </div>
-
               <div class="review_image">
                 이미지
               </div>
@@ -276,6 +272,7 @@
       </div>
     </div>
 
+
     <div class="pd_qna">
       <div class="qna_title">
         <h3 class="qna_title_detail">
@@ -284,49 +281,42 @@
         </h3>
       </div>
       <table class="qna-table">
-            <tr>
-              <th>번호</th>
-              <th>문의/답변</th>
-              <th>답변상태</th>
-              <th>작성자</th>
-              <th>작성일</th>
-            </tr>
-            <tr>
-              <td class="qna-index">1</td>
-              <td class="qna-content">내용</td>
-              <td class="qna-condition">답변완료</td>
-              <td class="qna-writer">ccit1</td>
-              <td class="qna-date">2020.01.01</td>
-            </tr>
-            <tr>
-              <td class="qna-index">2</td>
-              <td class="qna-content">내용</td>
-              <td class="qna-condition">답변완료</td>
-              <td class="qna-writer">ccit1</td>
-              <td class="qna-date">2020.01.01</td>
-            </tr>
-          </table>
-          <div class="qna-product-btn">
-            <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+        <tr>
+          <th>번호</th>
+          <th>문의/답변</th>
+          <th>답변상태</th>
+          <th>작성자</th>
+          <th>작성일</th>
+        </tr>
+        <tr>
+          <td class="qna-index">1</td>
+          <td class="qna-content">내용</td>
+          <td class="qna-condition">답변완료</td>
+          <td class="qna-writer">ccit1</td>
+          <td class="qna-date">2020.01.01</td>
+        </tr>
+        <tr>
+          <td class="qna-index">2</td>
+          <td class="qna-content">내용</td>
+          <td class="qna-condition">답변완료</td>
+          <td class="qna-writer">ccit1</td>
+          <td class="qna-date">2020.01.01</td>
+        </tr>
+      </table>
+      <div class="qna-product-btn">
+        <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+      </div>
+      <div id="qna-inquiry1" class="faq_an">
+        문의하기
+        <form class="" action="index.html" method="post">
+          <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
+          <div class="bottom-btn">
+            <button type="button" name="button" class="qna-submit-btn">저장</button>
+            <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
           </div>
-          <div id="qna-inquiry1" class="faq_an">
-            문의하기
-            <form class="" action="index.html" method="post">
-              <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
-              <div class="bottom-btn">
-                <button type="button" name="button" class="qna-submit-btn">저장</button>
-                <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
-              </div>
-            </form>
-          </div>
-
-
-
-
-
-
+        </form>
+      </div>
     </div>
-
 
 
     <div class="pd_component">
@@ -339,25 +329,25 @@
       내용
     </div>
 
-
-
-
-
   </div>
+
+ @include('advertising')
   @include('lib.footer')
 </body>
 <script>
 // 상품문의하기 클릭시에 나타나는 input 공간
 function qna_new(num) {
-	if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+  if($("#qna-inquiry"+num).hasClass("faq_an_show"))
   {
-		$("#qna-inquiry"+num).removeClass("faq_an_show");
-	}
+    $("#qna-inquiry"+num).removeClass("faq_an_show");
+  }
   else
   {
-		$(".faq_an").removeClass("faq_an_show");
-		$("#qna-inquiry"+num).addClass("faq_an_show");
-	}
+    $(".faq_an").removeClass("faq_an_show");
+    $("#qna-inquiry"+num).addClass("faq_an_show");
+  }
 }
+
+
 </script>
 </html>
