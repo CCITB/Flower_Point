@@ -124,7 +124,7 @@ Route::get('/shop', function(){
   return view('myshop/flowershop');
 });
 Route::get('/shop2', function(){
-  return view('myshop/shop_seller');
+  return view('myshop.shop_seller2');
 });
 Route::get('/all', function(){
   return view('allproductpage');
@@ -139,10 +139,9 @@ Route::get('/mypage', function(){
 Route::get('/modify', function(){
   return view('mypage/modify');
 });
-<<<<<<< HEAD
 
 Route::get('/mail', 'MailController@send');
-=======
+
 Route::get('/flowercart', function(){
   // if(auth()->guard('customer')->check()){
   //   return view('flowercart');
@@ -173,4 +172,3 @@ Route::get('/flowercart', function(){
 //   });
 //   return 'Done!';
 // });
->>>>>>> a1bfa5db6a9adfc576fe3a3ceb43c30d5701ffa2

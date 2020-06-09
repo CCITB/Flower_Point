@@ -39,8 +39,10 @@
       <h1><a href="/">꽃갈피</a></h1>
     </div>
     <div id="block2">
-      <form class="headersearch">
-        <input type="text" id="searchbar" placeholder="Search.." name="search">
+      <form method="get" action="/search" class="headersearch">
+        @csrf
+        <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
+        autocomplete="off" >
         <label for="headersearch">
           <button type="submit"class="search-button">검색</button>
         </label>
@@ -92,7 +94,7 @@
         <a href="#">마이페이지</a>
         <ul class="submenu_list">
           <li class="submenu"><a href="/mypage">내 정보</a></li>
-          <li class="submenu"><a href="#">내 꽃집 가기</a></li>
+            <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
           <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
         </ul>
       </li>

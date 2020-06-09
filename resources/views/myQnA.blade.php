@@ -177,10 +177,217 @@
             <td class="qna-writer">ccit1</td>
             <td class="qna-date">2020.01.01</td>
           </tr>
+          <tr>
+            <td class="qna-index">22</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">23</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">24</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">25</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">26</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">27</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">28</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">29</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">30</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">31</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">32</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">33</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">34</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">35</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">36</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">37</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">38</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">39</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">40</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">41</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">42</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">43</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">44</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">45</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">46</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">47</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">48</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">49</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+          <tr>
+            <td class="qna-index">50</td>
+            <td class="qna-content">내용</td>
+            <td class="qna-condition">답변완료</td>
+            <td class="qna-writer">ccit1</td>
+            <td class="qna-date">2020.01.01</td>
+          </tr>
+
+
+
+
         </tbody>
 
       </table>
-      <!-- <div class="nav-page" id="paging">
+      {{-- <div class="nav-page" id="paging">
       <nav>
       <a href="#" class="active">1</a>
     </nav>
@@ -196,9 +403,9 @@
 <nav>
 5
 </nav>
-</div> -->
-<div class ="nav-page" id="paging">
-  <ul class="pagination" >
+</div> --}}
+<div class ="nav-page" >
+  <ul class="pagination" id="paging">
   </ul>
 </div>
 </div>
@@ -208,9 +415,144 @@
 
 <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 <script>
+// var totalData = 1000;    // 총 데이터 수
+// var dataPerPage = 5;    // 한 페이지에 나타낼 데이터 수
+// var pageCount = 5;        // 한 화면에 나타낼 페이지 수
+//
+// function paging(totalData, dataPerPage, pageCount, currentPage){
+//
+// console.log("currentPage : " + currentPage);
+//
+// var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
+// var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+//
+// console.log("pageGroup : " + pageGroup);
+//
+// var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+// if(last > totalPage)
+// last = totalPage;
+// var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+// var next = last+1;
+// var prev = first-1;
+//
+// console.log("last : " + last);
+// console.log("first : " + first);
+// console.log("next : " + next);
+// console.log("prev : " + prev);
+//
+//
+// const pages= $('#paging');
+//
+// if(totalPage < 1){
+// first=last;
+// }
+//
+// if (first >5){
+// pages.append("<li><a class=\"prev\"> < </a></li>");
+// }
+//
+// for (let j = first; j<= last; j++){
+// if (currentPage === (j)){
+// pages.append("<li>" + "<a class='active'(" + (j)+ ");\" >" + (j) + "</a></li>");
+// } else if (j>0){
+// pages.append("<li class=\"pagination-item\">" + "<a(" + (j)+ ");\">" + (j) + "</a></li>");
+// }
+// }
+//
+// if (next > 5 && next < totalPage){
+// pages.append("<li><a class=\"next\"> > </a></li>");
+// }
+// }
+function pagination(){
+  var req_num_row=5;  // 한 페이지에 나타낼 데이터 수
+  var $tr=$('tbody tr');
+  var total_num_row=$tr.length;
+  var num_pages=0;
+  if(total_num_row % req_num_row ==0){
+    num_pages=total_num_row / req_num_row;
+  }
+  if(total_num_row % req_num_row >=1){
+    num_pages=total_num_row / req_num_row;
+    num_pages++
+    num_pages=Math.floor(num_pages++);
+  }
+
+  // var last = pageGroup * req_num_row;    // 화면에 보여질 마지막 페이지 번호
+  //  if(last > totalPage)
+  //  last = totalPage;
+  //  var first = last - (req_num_row-1);    // 화면에 보여질 첫번째 페이지 번호
+  //  var next = last+1;
+  //  var prev = first-1;
+
+
+  // if($tr.length > 50){
+  //   alert('50개 이상의 게시물은 쓸 수 없습니다.');
+  // }
+
+  $('.pagination').append("<li><a class=\"prev\"> < </a></li>");
+
+  for(var i=1; i<=num_pages; i++){
+    $('.pagination').append("<li><a>"+i+"</a></li>");
+    $('.pagination li:nth-child(2)').addClass("active");
+    $('.pagination a').addClass("pagination-link");
+  }
+
+  $('.pagination').append("<li><a class=\"next\"> > </a></li>");
+
+// 게시물이 5개 이상이면 5개까지 숨기고, 5개 이하면 보여주기
+  $tr.each(function(i){
+    $(this).hide();
+    if(i+1 <= req_num_row){
+      $tr.eq(i).show();
+    }
+  });
+
+
+  $('.pagination a').click('.pagination-link', function(e){
+    e.preventDefault();
+    $tr.hide();
+    var page=$(this).text();
+    var temp=page-1;
+    var start=temp*req_num_row;
+    var current_link = temp;
+
+    $('.pagination li').removeClass("active");
+    $(this).parent().addClass("active");
+
+    for(var i=0; i< req_num_row; i++){
+      $tr.eq(start+i).show();
+    }
+
+    if(temp >= 1){
+      $('.pagination li:first-child').removeClass("disabled");
+    }
+    else {
+      $('.pagination li:first-child').addClass("disabled");
+    }
+
+  });
+
+  $('.prev').click(function(e){
+    e.preventDefault();
+    $('.pagination li:first-child').removeClass("active");
+  });
+
+  $('.next').click(function(e){
+    e.preventDefault();
+    $('.pagination li:last-child').removeClass("active");
+  });
+
+}
+
+$('document').ready(function(){
+  pagination();
+
+  $('.pagination li:first-child').addClass("disabled");
+
+});
 
 // var totalData = 100;    // 총 데이터 수
-// var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
+// var dataPerPage = 5;    // 한 페이지에 나타낼 데이터 수
 // var pageCount = 5;        // 한 화면에 나타낼 페이지 수
 //
 // function paging(totalData, dataPerPage, pageCount, currentPage){
@@ -219,9 +561,6 @@
 //
 //   var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
 //   var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-//
-//   const pages= $("#paging");
-//   pages.empty();
 //
 //   console.log("pageGroup : " + pageGroup);
 //
@@ -270,84 +609,11 @@
 //   });
 //
 // }
-//
 // $("document").ready(function(){
 //   paging(totalData, dataPerPage, pageCount, 1);
 // });
 
-function pagination(){
-		var req_num_row=5;
-		var $tr=jQuery('tbody tr');
-		var total_num_row=$tr.length;
-		var num_pages=0;
-		if(total_num_row % req_num_row ==0){
-			num_pages=total_num_row / req_num_row;
-		}
-		if(total_num_row % req_num_row >=1){
-			num_pages=total_num_row / req_num_row;
-			num_pages++;
-			num_pages=Math.floor(num_pages++);
-		}
 
-    jQuery('.pagination').append("<li><a class=\"prev\">Previous</a></li>");
-
-		for(var i=1; i<=num_pages; i++){
-			jQuery('.pagination').append("<li><a>"+i+"</a></li>");
-      jQuery('.pagination li:nth-child(2)').addClass("active");
-      jQuery('.pagination a').addClass("pagination-link");
-		}
-
-    jQuery('.pagination').append("<li><a class=\"next\">Next</a></li>");
-
-		$tr.each(function(i){
-      jQuery(this).hide();
-      if(i+1 <= req_num_row){
-				$tr.eq(i).show();
-			}
-		});
-
-		jQuery('.pagination a').click('.pagination-link', function(e){
-			e.preventDefault();
-			$tr.hide();
-			var page=jQuery(this).text();
-			var temp=page-1;
-			var start=temp*req_num_row;
-      var current_link = temp;
-
-      jQuery('.pagination li').removeClass("active");
-			jQuery(this).parent().addClass("active");
-
-			for(var i=0; i< req_num_row; i++){
-				$tr.eq(start+i).show();
-			}
-
-      if(temp >= 1){
-        jQuery('.pagination li:first-child').removeClass("disabled");
-      }
-      else {
-        jQuery('.pagination li:first-child').addClass("disabled");
-      }
-
-		});
-
-    jQuery('.prev').click(function(e){
-        e.preventDefault();
-        jQuery('.pagination li:first-child').removeClass("active");
-    });
-
-    jQuery('.next').click(function(e){
-        e.preventDefault();
-        jQuery('.pagination li:last-child').removeClass("active");
-    });
-
-	}
-
-jQuery('document').ready(function(){
-	pagination();
-
-  jQuery('.pagination li:first-child').addClass("disabled");
-
-});
 </script>
 </body>
 </html>
@@ -384,7 +650,7 @@ const pages= $("#paging");
 pages.empty();
 
 if (first >5){
-pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (prev)+ ");\" style='margin-left:2px'>prev</a></li>");
+pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (prev)+ ");\">prev</a></li>");
 }
 for (let j = first; j<= last; j++){
 if (currentPage === (j)){
@@ -394,6 +660,6 @@ pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (j)+
 }
 }
 if (next > 5 && next < totalPage){
-pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (next)+ ");\" style='margin-left:2px'>next</a></li>");
+pages.append("<li class=\"pagination-item\">" + "<a onclick=\"GetTarget(" + (next)+ ");\">next</a></li>");
 }
 } -->
