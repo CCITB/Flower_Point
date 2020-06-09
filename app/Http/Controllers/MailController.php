@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\RegisterMail;
+
 class MailController extends Controller
 {
-  public function send(Request $request)
+  public function sends(Request $request)
   {
-    $user = 'email' => $request->'s_email';
-    Mail::send('emails.mail', $data, function($message) use ($user)
-    {
-      $message->to($user['email'])
-      ->subject('Welcome!');
-    });
+
+    $inputmail =  $request->input('email');
+    //input대신 get도 가능
+    //return response()->json($user);
+    $data = [
+      'data1' => 'ㅎㅇㅎㅇ',
+      'data2' => '테스트'
+    ];
+
+    Mail::to($inputmail)->send(new RegisterMail($data));
+
+    return response()->json($inputmail);
   }
 }

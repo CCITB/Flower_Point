@@ -74,8 +74,11 @@
 
         <div class="verify">
           <div class="sign_name">이메일</div>
+          <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
           <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email" required >
-          <input href="/mail" class="btn_e" type="button" onclick="verify_email()" value="이메일전송"></input>
+          <input class="btn_e" id="btn_email" type="button" value="이메일전송">
+          <!--인증번호 기입란-->
+          <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
           <div class="check_div" id="email_check" value=""></div>
         </div>
 
@@ -229,6 +232,7 @@
         }
       }
     });//blur
+
     $("#s_birth_y").blur(function() {
       checkBirthInput();
     });//blur
@@ -255,65 +259,88 @@
       }
     });
 
-    $("#s_email").blur(function() {
-      //Input data
-      var s_email = $('#s_email').val();
-      //1. 공백 X
-      if(!s_email == ""){
-        $('#email_check').text("");
-        //$('#btnSubmit').attr('disabled',false);
-      }
-      //2. 내용이 없을 모든 경우의 수
-      else {
-        $('#email_check').text("필수 정보입니다.");
-        $('#email_check').css('color', 'red');
-        //$('#btnSubmit').attr('disabled',true);
-      }
+    $("#btn_email").click(function() {
+        verify_email();
     });
-  });
 
-  //생년월일 예외처리 함수
-  function checkBirthInput(){
-    //input data
-    var s_birth_y = $('#s_birth_y').val();
-    var s_birth_m = $('#s_birth_m').val();
-    var s_birth_d = $('#s_birth_d').val();
-    //정규식
-    var birthJ =  /^[0-9]+$/
-    //(년) - 정규식 O , 4자리
-    if(birthJ.test(s_birth_y)&&s_birth_y.length==4){
-      $("#birth_check").text("");
-      $('#birth_check').css('color', 'red');
-      //2. 월 - 공백 O
-      if(s_birth_m==""){
-        $("#birth_check").text('태어난 월을 선택하세요.');
+    //생년월일 예외처리 함수
+    function checkBirthInput(){
+      //input data
+      var s_birth_y = $('#s_birth_y').val();
+      var s_birth_m = $('#s_birth_m').val();
+      var s_birth_d = $('#s_birth_d').val();
+      //정규식
+      var birthJ =  /^[0-9]+$/
+      //(년) - 정규식 O , 4자리
+      if(birthJ.test(s_birth_y)&&s_birth_y.length==4){
+        $("#birth_check").text("");
         $('#birth_check').css('color', 'red');
-      }
-      //2. 월 - 공백 X
-      else{
-        $('#birth_check').text('');
-        $('#birth_check').css('color', 'red');
-        //3. 일 - 공백 O
-        if(s_birth_d==""){
-          $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
+        //2. 월 - 공백 O
+        if(s_birth_m==""){
+          $("#birth_check").text('태어난 월을 선택하세요.');
           $('#birth_check').css('color', 'red');
         }
-        //3. 일 - 공백 O
+        //2. 월 - 공백 X
         else{
           $('#birth_check').text('');
           $('#birth_check').css('color', 'red');
-          $('#btnSubmit').attr('disabled',false);
+          //3. 일 - 공백 O
+          if(s_birth_d==""){
+            $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
+            $('#birth_check').css('color', 'red');
+          }
+          //3. 일 - 공백 O
+          else{
+            $('#birth_check').text('');
+            $('#birth_check').css('color', 'red');
+            $('#btnSubmit').attr('disabled',false);
+          }
         }
       }
+      else{
+        $('#birth_check').text(' 태어난 년도 4자리를 정확하게 입력하세요. ');
+        $('#birth_check').css('color', 'red');
+      }
     }
-    else{
-      $('#birth_check').text(' 태어난 년도 4자리를 정확하게 입력하세요. ');
-      $('#birth_check').css('color', 'red');
-    }
-  }
 
-  function verify_email(){
-    var email = document.getElementById("s_email");
-    console.log(email);
+    //*****************이메일*******************
+    function verify_email(){
+      //  var email = document.getElementById("s_email");
+      var seller_val = $('#s_email').val();
+      //정규식
+      var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+      //1. 공백 X
+      if(!seller_val == ""){
+        //2. 정규식 O
+        if(verifyJ.test(seller_val)){
+          $.ajax({
+
+            type: 'post',
+            url: 'mail',
+            dataType: 'json',
+            data: { "email": seller_val },
+
+            success : function(data) {
+              //공백
+              $('#email_check').text("인증번호가 전송되었습니다.");
+              $('#email_check').css('color', 'green');
+              $('#verify_num').attr('disabled', false);
+            }//success
+            ,error : function() { }
+          });
+        }
+        //3. 정규식 X
+        else{
+          $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
+          $('#email_check').css('color', 'red');
+        }
+      } //공백조건식
+
+      //2. 공백 O
+      else{
+        $('#email_check').text("필수 정보입니다.");
+        $('#email_check').css('color', 'red');
+      }
     }
-</script>
+  });
+    </script>
