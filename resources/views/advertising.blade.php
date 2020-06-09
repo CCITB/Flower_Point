@@ -10,7 +10,7 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img src="http://placehold.it/300x100" style="width:100%">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaMR6IG-DroFbYHEuvqh95XDDU903t3tjHGgPwzG8oPNMugR9D&usqp=CAU" style="width:100%">
         <div class="text">Caption One</div>
       </div>
 
