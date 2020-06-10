@@ -5,18 +5,14 @@
   <title></title>
 </head>
 <body>
-  <?php
-  // 변수에 함수를 통해 생성된 난수를 저장함
-  $randomNum = mt_rand(1000, 10000);
-  ?>
-  <!-- 이메일 인증코드는 {{{$randomNum}}}  입니다. -->
+
   <h1>꽃갈피</h1>
   <hr>
-  이메일 인증코드는 {{$randomNum}}입니다.
+  이메일 인증코드는 {{$order}} 입니다.
 </body>
 </html>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 // jQuery -- 어지수
 var randomNum = $randomNum.value();
 
@@ -40,4 +36,4 @@ $.ajax({
   }//success
   ,error : function() {   console.log("실패");  }
 }) //ajax
-</script>
+</script> --}}

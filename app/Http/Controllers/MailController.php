@@ -14,14 +14,12 @@ class MailController extends Controller
 
     $inputmail =  $request->input('email');
     //input대신 get도 가능
-    //return response()->json($user);
-    // $data = [
-    //   'data1' => 'ㅎㅇㅎㅇ',
-    //   'data2' => '테스트'
-    // ];
+    // return response()->json($user);
 
-    Mail::to($inputmail)->send(new RegisterMail());
+    $random =  $request->get('random');
 
-    return response()->json($inputmail);
+    Mail::to($inputmail)->send(new RegisterMail($random));
+
+     return response()->json($random);
   }
 }
