@@ -20,17 +20,14 @@
         <h4>내 정보</h4>
         <div class="privacy">
           <form action="/modify">
-          @if($seller = auth()->guard('seller')->user())
             <table class="table1">
                 <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
+                  @if($seller = auth()->guard('seller')->user())
                     <tr>
                         <th>ID</th>
                         <td>{{$seller->s_id}}</td>
                     </tr>
-                    <tr>
-                        <th>PW</th>
-                        <td>{{$seller->s_password}}</td>
-                    </tr>
+
                     <tr>
                         <th>이름</th>
                         <td>{{$seller->s_name}}</td>
@@ -120,6 +117,7 @@
                   <td>답변대기</td>
                 </tr>
             </table>
+
             @if(auth()->guard('seller')->user())
             <div class="quickbuttonwrap">
                 <div class="quickgroup"><a href="/locate1">

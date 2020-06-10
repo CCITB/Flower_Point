@@ -214,7 +214,7 @@ function checkform(){
     alert('약관에 동의해 주세요');
     return false;
   }
-  var special2 = /[\{\}\[\]\/?;:|\)*~`!^\+<>@\#$%&\\\=\(\'\"\s]/gi;
+
   var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
   var num =  /^[0-9]{3,4}$/;
   var receiver = document.getElementById("inputtext");
@@ -268,20 +268,12 @@ function checkform(){
       alert('주소를 입력해주세요');
       return false;
     }
-    if(special2.test(address.value)){
-      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
-      return false;
-    }
     else if((detail_address.value)==""){
       alert('상세주소를 입력해주세요');
       return false;
     }
-    if(special2.test(detail_address.value)){
-      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
-      return false;
-    }
-  }
 
+  }
 
   if((bank.value)==""){
     alert('은행을 선택해주세요');

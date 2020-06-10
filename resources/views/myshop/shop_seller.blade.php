@@ -48,81 +48,35 @@
       <button class="btn1" type="button" name="button" onClick="location.href='all'">더보기</button>
     </div>
 <div class="wrap5">
+  @if( auth()->guard('seller')->user())
   <div class="wrap6">
     <div class="wrap6-1">
-      <img src="dummy.jpg" alt="" width="100px" height="100px">
+      <img src="\imglib\" alt="" width="100px" height="100px">
     </div>
+    @foreach ($data as $data1)
     <div class="wrap6-2">
       <div class="wrap7-1">
         <div class="wrap8-1">
           제목
+          {{-- {{$data->p_name}} --}}
         </div>
         <div class="wrap8-2">
-          상품명
+          이름
+          {{-- {{$data->p_title}} --}}
         </div>
       </div>
       <div class="wrap7-2">
-        가나다라마바사아자차카타파하
+        내용
+        {{-- {{$data->p_contents}} --}}
       </div>
     </div>
+    @endforeach
+  @endif
   </div>
-  <div class="wrap6">
-    <div class="wrap6-1">
-      <img src="dummy.jpg" alt="" width="100px" height="100px">
-    </div>
-    <div class="wrap6-2">
-      <div class="wrap7-1">
-        <div class="wrap8-1">
-          제목
-        </div>
-        <div class="wrap8-2">
-          상품명
-        </div>
-      </div>
-      <div class="wrap7-2">
-        가나다라마바사아자차카타파하
-      </div>
-    </div>
-  </div>
-  <div class="wrap6">
-    <div class="wrap6-1">
-      <img src="dummy.jpg" alt="" width="100px" height="100px">
-    </div>
-    <div class="wrap6-2">
-      <div class="wrap7-1">
-        <div class="wrap8-1">
-          제목
-        </div>
-        <div class="wrap8-2">
-          상품명
-        </div>
-      </div>
-      <div class="wrap7-2">
-        가나다라마바사아자차카타파하
-      </div>
-    </div>
-  </div>
-  <div class="wrap6">
-    <div class="wrap6-1">
-      <img src="dummy.jpg" alt="" width="100px" height="100px">
-    </div>
-    <div class="wrap6-2">
-      <div class="wrap7-1">
-        <div class="wrap8-1">
-          제목
-        </div>
-        <div class="wrap8-2">
-          상품명
-        </div>
-      </div>
-      <div class="wrap7-2">
-        가나다라마바사아자차카타파하
-      </div>
-    </div>
+
   </div>
 </div>
-  </div>  <!--wrap0-->
-</div>  <!--allwrap-->
+  </div>
 @include('lib.footer')
   </body>
 </html>

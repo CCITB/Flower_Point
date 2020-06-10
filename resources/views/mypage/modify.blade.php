@@ -21,16 +21,14 @@
         <div class="privacy">
           <form action="{{url('/information_controller')}}" method="post">
             @csrf
+            @if($seller= auth()->guard('seller')->user())
           <table class="table1">
               <table border="0" cellpadding="10" cellspacing="10" width="100%">
                   <tr>
                       <th>ID</th>
-                      <td><input type="text" name="s_id" placeholder="id"></td>
+                      <td>{{$seller->s_id}}</td>
                   </tr>
-                  <tr>
-                      <th>PW</th>
-                      <td><input type="password" name="s_password"placeholder="pw"></td>
-                  </tr>
+  
                   <tr>
                       <th>이름</th>
                       <td><input type="text" name="s_name"placeholder="이름"></td>
@@ -49,6 +47,36 @@
                   </tr>
               </table>
           </table>
+        @elseif($customer= auth()->guard('customer')->user())
+        <table class="table1">
+            <table border="0" cellpadding="10" cellspacing="10" width="100%">
+                <tr>
+                    <th>ID</th>
+                    <td>{{$customer->c_id}}</td>
+                </tr>
+                <tr>
+                    <th>PW</th>
+                    <td>{{$customer->c_password}}</td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="s_name"placeholder="이름"></td>
+                </tr>
+                <tr>
+                    <th>연락처</th>
+                    <td><input type="text" name="s_phonenum" placeholder="연락처"></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td><input type="email" name="s_email" placeholder="이메일"></td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td><input type="text" placeholder="주소"></td>
+                </tr>
+            </table>
+        </table>
+      @endif
             <button class="btn btn-primary" type="submit">수정
             </button>
           </form>
