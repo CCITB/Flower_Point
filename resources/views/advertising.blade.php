@@ -10,20 +10,21 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaMR6IG-DroFbYHEuvqh95XDDU903t3tjHGgPwzG8oPNMugR9D&usqp=CAU" style="width:100%">
-        <div class="text">Caption One</div>
+        <img class="ad_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaMR6IG-DroFbYHEuvqh95XDDU903t3tjHGgPwzG8oPNMugR9D&usqp=CAU" >
+        <div class="text">전문인재, 바른인재, 창의인재로의 학생성장을 지향하는 중부대학교!</div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
-        <img src="http://placehold.it/300x100" style="width:100%">
-        <div class="text">Caption Two</div>
+        <img class="ad_img" src="https://freshdon.com/wp-content/uploads/2018/12/%EC%83%9D%EC%83%9D-%EB%A1%9C%EA%B3%A0-300x100.png" >
+        <div class="text">돈까스 먹어버려!</div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">3 / 3</div>
-        <img src="http://placehold.it/300x100" style="width:100%">
-        <div class="text">Caption Three</div>
+        <img class="ad_img" src="https://www.paxetv.com/news/thumbnail/202001/85227_56981_1928_v150.jpg">
+        {{-- <img class="ad_img" src="http://placehold.it/300x100"> --}}
+        <div class="text">은행은 맛있어</div>
       </div>
     </div> <br>
     {{-- <div class="dotss">

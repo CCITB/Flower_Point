@@ -209,161 +209,11 @@
   <!-- 상품진열 테이블입니다. -->
   <div class="container-wrap">
     <div class="container-wrapping">
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
 
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p>
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p>
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p>
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p>
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p>
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      @foreach ($data as $productlist)
+      @foreach ($product as $productlist)
         <div class="container-image">
           <div class="image">
-            <div class="image-in" url="/bi">
+            <div class="image-in" url="/bi/{{$productlist->p_no}}">
               <div class="imagewrap" >
                 <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
               </div>
@@ -383,7 +233,7 @@
                     </p>
                   </div>
                   <div class="image-in-bottom">
-                    {{$productlist->p_contents}}
+                    {{strip_tags($productlist->p_contents)}}
                   </div>
                 </div>
               </div>
@@ -392,12 +242,9 @@
         </div>
       @endforeach
     </div>
+    {{ $product->links()}}
   </div>
-  <style>
 
-
-
-  </style>
   <!-- 평점 jQuery -->
   <script src="//code.jquery.com/jquery-3.3.1.min.js">
 
@@ -415,9 +262,9 @@
 </html>
 <script type="text/javascript">
 $("div.image-in").click(
-function()
-{
-window.location = $(this).attr("url");
-return false;
-});
+  function()
+  {
+    window.location = $(this).attr("url");
+    return false;
+  });
 </script>
