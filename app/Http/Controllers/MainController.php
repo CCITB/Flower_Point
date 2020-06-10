@@ -50,5 +50,8 @@ class MainController extends Controller
   public function register_information(){
     return view('register.register_information');
   }
-
+  public function showall(){
+    $data = DB::table('product')->get();
+    return view('allproductpage',compact('data'));
+  }
 }

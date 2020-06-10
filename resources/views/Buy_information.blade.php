@@ -11,8 +11,12 @@
   @include('lib.header')
 
   <div id="total">
-    <div class = "pd_image"> <!--이미지 틀 -->
-      이미지
+    <div class = "pd_image">
+       <!--이미지 틀 -->
+       @foreach ($productinfor as $protb)
+         <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
+
+
     </div>
 
     <!-- 상품정보와 옵션선택 -->
@@ -21,7 +25,7 @@
       <form action = 'url' method='post'>
 
         <div class="pd_basic">
-          <div class="pd_name">리시안셔스</div>
+          <div class="pd_name">{{$protb->p_name}}</div>
           <div class="star">
             <button class="convenience" type="button">관심매장등록</button>
             <button class="convenience" type="button">내 상품</button>
@@ -35,14 +39,14 @@
             서울시 종로구
           </div>
           <div class="pd_price"> <!-- 상품 가격 불러오기 -->
-            <strong>10,000원</strong>
+            <strong>{{$protb->p_price}} <span>원</span> </strong>
           </div>
         </div>
 
         <div class="pd_deliver">
           <div class="pd_deliver1">
             <span class="del_text">배송비</span><br>
-            2500원
+            {{$protb->p_title}}원
           </div>
           <div class="pd_deliver2">
             <span class="del_text">배송기간</span><br>
@@ -112,7 +116,7 @@
       </div>
       <pre>
 
-        상품 본문 글 입니다.
+        {!!$protb->p_contents!!}
 
 
 
@@ -330,7 +334,7 @@
     </div>
 
   </div>
-
+@endforeach
  @include('advertising')
   @include('lib.footer')
 </body>

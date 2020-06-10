@@ -96,9 +96,8 @@ Route::get('/sellershoppost', function () {
   return view('seller.seller_shoppost');
 })->middleware('auth:seller');
 
-Route::get('/bi', function () {
-  return view('Buy_information');
-});
+Route::get('/bi/{id}', 'ProductController@productpage');
+
 
 Route::post('index', 'ProductController@seller_product_register');
 
@@ -132,9 +131,8 @@ Route::get('/customer', function(){
 
 //       return view('myshop/shop_seller');
 
-Route::get('/all', function(){
-  return view('allproductpage');
-});
+Route::get('/all', 'MainController@showall');
+
 Route::get('/mypage', function(){
   return view('mypage/mypage');
 });

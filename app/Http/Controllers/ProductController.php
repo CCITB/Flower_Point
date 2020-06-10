@@ -40,8 +40,17 @@ class ProductController extends Controller
     // 이미지 저장경로 public\storage\
 
     // return $path;
-      // 이미지 product 테이블과 연결해서 저장
+    // 이미지 product 테이블과 연결해서 저장
 
     return redirect('/');
+  }
+  public function productpage($id){
+
+    $productinfor = DB::table('product')->where('p_no','=',$id)->get();
+    // return $productinfor;
+
+    // $productdata = DB::table('product')->where('p_no','=',$id)->first();
+    // return $productdata;
+    return view('Buy_information', compact('productinfor'));
   }
 }
