@@ -114,58 +114,9 @@
       <div class="pd_detail_title">
         <h3 class="blind" id="dtil">상품리뷰</h3>
       </div>
-      <pre>
-
+      
         {!!$protb->p_contents!!}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        쓰는 만큼 늘어납니다.
-      </pre>
     </div>
 
     <div class="reviews">
