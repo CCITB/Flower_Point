@@ -9,10 +9,13 @@ use DB;
 class MainController extends Controller
 {
   public function main(){
-    $data = DB::table('product')->get();
-    // $alldata = [$data,$imagepath];
-    // return $data;
-    return view('main',compact('data'));
+    // $data = DB::table('product')->get();
+    // // $alldata = [$data,$imagepath];
+    // // return $data;
+    // return view('main',compact('data'));
+    $product = DB::table('product')->paginate(2);
+
+    return view('main', ['product' => $product]);
   }
   public function login_customer(){
     if(auth()->guard('seller')->check()){
@@ -47,4 +50,5 @@ class MainController extends Controller
   public function register_information(){
     return view('register.register_information');
   }
+
 }

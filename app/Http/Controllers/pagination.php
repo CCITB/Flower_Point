@@ -13,4 +13,11 @@ class pagination extends Controller
 
       return view('myQna', ['myqn' => $myqna]);
   }
+
+  public function pd_pages()
+  {
+      $product = DB::table('product')->paginate(6);
+
+      return view('main', ['product' => $product]);
+  }
 }

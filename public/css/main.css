@@ -97,3 +97,11 @@ overflow: hidden;
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:#ffc801;}
 /* main.balde.php에 들어가는 css 끝나는 곳 입니다. */
+
+.page-item{
+  display: inline-block;
+  padding: 2px;
+}
+.pagination{
+  text-align: center;
+}
