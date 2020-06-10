@@ -233,7 +233,7 @@
                     </p>
                   </div>
                   <div class="image-in-bottom">
-                    {!!$productlist->p_contents!!}
+                    {{strip_tags($productlist->p_contents)}}
                   </div>
                 </div>
               </div>
