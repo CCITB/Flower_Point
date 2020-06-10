@@ -1,15 +1,14 @@
 /* ---- 박소현 ----- */
 
 /* --- 전체 틀 --- */
-* {
-  box-sizing: border-box;
-}
+
 #total{
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
   width: 900px;
   align-content: flex-start;
+  box-sizing: border-box;
 }
 ul{
   margin: 0;
