@@ -22,7 +22,7 @@
     <!-- 상품정보와 옵션선택 -->
     <div class= "pd_option">
 
-      <form action = 'url' method='post'>
+      <form action = '/order' method=''>
 
         <div class="pd_basic">
           <div class="pd_name">{{$protb->p_name}}</div>
@@ -45,8 +45,9 @@
 
         <div class="pd_deliver">
           <div class="pd_deliver1">
-            <span class="del_text">배송비</span><br>
-            {{$protb->p_title}}원
+            <span class="del_text">배송비</span>
+            <span>{{$protb->p_title}}</span>
+            <span>원</span>
           </div>
           <div class="pd_deliver2">
             <span class="del_text">배송기간</span><br>
@@ -79,10 +80,12 @@
             총 금액
           </div>
           <div class="total_price">
-            ~원
+            <span>00000</span>
+            <span>원</span>
           </div>
           <div class="order_bt">
-            <button class="order" type="button" onclick="location.href = '/결제창'">주문</button>
+            <button class="order" type="button" onclick="location.href = '/flowercart'">담기</button>
+            <button class="order" type="submit">주문</button>
           </div>
         </div>
 
@@ -114,7 +117,7 @@
       <div class="pd_detail_title">
         <h3 class="blind" id="dtil">상품리뷰</h3>
       </div>
-      
+
         {!!$protb->p_contents!!}
 
     </div>

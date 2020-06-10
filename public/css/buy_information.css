@@ -122,14 +122,14 @@ li{
   font-size: 20px;
 }
 .total_price_text{
-  width: 20%;
+  width: 18%;
 }
 .total_price{
-  width: 55%;
+  width: 44%;
   text-align: right;
 }
 .order_bt{
-  width: 25%;
+  width: 38%;
   text-align: right;
 }
 .order{
@@ -550,7 +550,7 @@ img {
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #f2f2f2;
+  color: #000000;
   font-size: 12px;
   padding: 8px 12px;
   position: absolute;
