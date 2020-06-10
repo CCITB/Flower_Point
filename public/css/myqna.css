@@ -99,28 +99,16 @@ button.qna-submit-cancel-btn
   padding: 0 30px;
   margin: 0 auto;
 }
-nav{
-  border: solid 1px gray;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 2px;
-  color: gray;
-}
-.nav-page{
-  margin-top: 60px;
-  border-radius: solid 2px gray;
-  text-align: center;
-  vertical-align: middle;
-  display: block;
-}
-.active{
-  color: red;
-  text-decoration: none;
-}
+
 
 ul li{
   list-style-type: none;
   display: inline;
   margin-left: 20px;
+}
+.page-item{
+  display: inline-block;
+}
+.pagination{
+  text-align: center;
 }

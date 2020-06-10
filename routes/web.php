@@ -84,18 +84,22 @@ Route::get('/mypage', function () {
 Route::get('/faq', function () {
   return view('FAQ');
 });
-Route::get('/myqna', function () {
-  return view('myQnA');
-});
+// Route::get('/myqna', function () {
+//   return view('myQnA');
+// });
+Route::get('/myqna','pagination@pages');
+
 Route::get('/postlist', function () {
   return view('post_list');
 });
 Route::get('/sellershoppost', function () {
   return view('seller.seller_shoppost');
 })->middleware('auth:seller');
+
 Route::get('/bi', function () {
   return view('Buy_information');
 });
+
 Route::post('index', 'ProductController@seller_product_register');
 
 Route::get('/review', function () {
