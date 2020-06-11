@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/flowercart.css">
   <title>장바구니</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
   @include('lib.header')
@@ -92,216 +93,89 @@
 <div class="flowercart-select">
   <input type="checkbox" name="checkAll" id="th_checkAll" value="">전체선택
 </div>
-
-<div class="flowercart-infor">
-  <div class="flowercart-top">
-    <input type="checkbox" name="checkRow" class="checkf" value="">
-    <strong class="flowercart-tradename">가게명</strong>
-  </div>
-  <div class="flowercart-middle">
-    <img class="flowercart-preview" src="/imglib/orangerose.jpg" alt="?">
-    <div class="flowercart-section">
-      <div class="product-name">상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보</div>
-      <div class="product-price"> 가격 <a href="#" >x</a> </div>
-
-      <div class="product-coupon">
-        쿠폰
-      </div>
-      <div class="product-count">
-        <button class="plus" type="button" name="button">
-          <img src="/imglib/add.png" alt="">
-        </button>
-        <input class="count-plmi" type="text" name="" value="">
-        <button type="button" class="minus" name="button">
-          <img src="imglib/remove.png" alt="">
-        </button>
-      </div>
-    </div>
+@if(auth()->guard('customer')->user())
+  @foreach ($data as $list)
 
 
-  </div>
-  <div class="flowercart-bottom">
-    <div class="text-section-wrap">
-      <div class="text-section">
-        상품금액
+    <div class="flowercart-infor">
+      <div class="flowercart-top">
+        <input type="checkbox" name="checkRow" class="checkf" value="">
+        <strong class="flowercart-tradename">가게명</strong>
       </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
+      <div class="flowercart-middle">
+        <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
+        <div class="flowercart-section">
+          <div class="product-name">{{$list->b_name}}</div>
+          <div class="product-price"> {{$list->b_price}}
+            <a class="btn{{$list->b_no}}" href="#" >x</a>
+            <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
+          </div>
+          {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
+          <div class="product-coupon">
+            쿠폰
+          </div>
+          <div class="product-count">
+            <button class="plus" type="button" name="button">
+              <img src="/imglib/add.png" alt="">
+            </button>
+            <input class="count-plmi" type="text" name="" value="{{$list->b_count}}">
+            <button type="button" class="minus" name="button">
+              <img src="/imglib/remove.png" alt="">
+            </button>
+          </div>
+        </div>
 
-    <div class="imgwrap-section">
-      <img src="imglib/minus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        할인금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/plus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        배송비
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/equal.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        주문금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-  </div>
-</div>
 
-{{-- 2222222222 --}}
-
-<div class="flowercart-infor">
-  <div class="flowercart-top">
-    <input type="checkbox" name="checkRow" class="checkf" value="">
-    <strong class="flowercart-tradename">가게명</strong>
-  </div>
-  <div class="flowercart-middle">
-    <img class="flowercart-preview" src="/imglib/orangerose.jpg" alt="?">
-    <div class="flowercart-section">
-      <div class="product-name"></div>
-      <div class="product-count"> <button type="button" name="button">-</button> 수량<button type="button" name="button">+</button> </div>
-      <div class="product-coupon">
-        쿠폰
       </div>
-      <div class="product-price"> 가격 <a href="#" >x</a> </div>
+      <div class="flowercart-bottom">
+        <div class="text-section-wrap">
+          <div class="text-section">
+            상품금액
+          </div>
+          <div class="price-section">
+            <strong class="text-option">{{$list->b_price}}</strong>원
+          </div>
+        </div>
+
+        <div class="imgwrap-section">
+          <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon"alt="">
+        </div>
+        <div class="text-section-wrap">
+          <div class="text-section">
+            할인금액
+          </div>
+          <div class="price-section">
+            <strong class="text-option">0</strong>원
+          </div>
+        </div>
+        <div class="imgwrap-section">
+          <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon"alt="">
+        </div>
+        <div class="text-section-wrap">
+          <div class="text-section">
+            배송비
+          </div>
+          <div class="price-section">
+            <strong class="text-option">{{$list->b_delivery}}</strong>원
+          </div>
+        </div>
+        <div class="imgwrap-section">
+          <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon"alt="">
+        </div>
+        <div class="text-section-wrap">
+          <div class="text-section">
+            주문금액
+          </div>
+          <div class="price-section">
+            <strong class="text-option">0</strong>원
+          </div>
+        </div>
+      </div>
     </div>
 
 
-  </div>
-  <div class="flowercart-bottom">
-    <div class="text-section-wrap">
-      <div class="text-section">
-        상품금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-
-    <div class="imgwrap-section">
-      <img src="imglib/minus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        할인금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/plus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        배송비
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/equal.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        주문금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-  </div>
-</div>
-
-{{-- 33333333333 --}}
-
-
-<div class="flowercart-infor">
-  <div class="flowercart-top">
-    <input type="checkbox" name="checkRow" class="checkf" value="">
-    <strong class="flowercart-tradename">가게명</strong>
-  </div>
-  <div class="flowercart-middle">
-    <img class="flowercart-preview" src="/imglib/orangerose.jpg" alt="?">
-    <div class="flowercart-section">
-      <div class="product-name">상품 정보</div>
-      <div class="product-count"> <button type="button" name="button">-</button> 수량<button type="button" name="button">+</button> </div>
-      <div class="product-coupon">
-        쿠폰
-      </div>
-      <div class="product-price"> 가격 <a href="#" >x</a> </div>
-    </div>
-
-
-  </div>
-  <div class="flowercart-bottom">
-    <div class="text-section-wrap">
-      <div class="text-section">
-        상품금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-
-    <div class="imgwrap-section">
-      <img src="imglib/minus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        할인금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/plus.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        배송비
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-    <div class="imgwrap-section">
-      <img src="imglib/equal.png" ondragstart="return false" class="plmieq-icon"alt="">
-    </div>
-    <div class="text-section-wrap">
-      <div class="text-section">
-        주문금액
-      </div>
-      <div class="price-section">
-        <strong class="text-option">0</strong>원
-      </div>
-    </div>
-  </div>
-</div>
-
-{{-- end --}}
-
-
+  @endforeach
+@endif
 <div class="flowercart-allprice">
   <div class="flowercart-right-top">
     <strong>전체 합계</strong>
@@ -454,4 +328,31 @@ for(var i=0; i<objs.length ; i++){
     selectAll.checked = true;
   }, false);
 }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+function del(e){
+  console.log(e);
+
+  $.ajax({
+    type: 'post',
+    url: '/delete',
+    dataType: 'json',
+    data: { "id" : e },
+    // console.log(jjim);
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data) {
+      console.log("error" +data);
+    }
+  });
+}
+
 </script>

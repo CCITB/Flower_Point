@@ -148,7 +148,12 @@ Route::post('/mail', 'MailController@sends');
 //검색
 Route::get('/search', 'SearchController@result');
 
-Route::get('/flowercart/{id}', 'ProductController@basket');
+Route::get('/flowercart', 'ProductController@basket');
+
+Route::post('/delete', 'ProductController@basketdelete');
+
+Route::post('/basketstore', 'ProductController@basketstore');
+
 
 // });
 //mail
