@@ -12,18 +12,17 @@ class SearchController extends Controller
   {
 
     //search data
-    $search_data = $request->input('query');
+    $search_query = $request->input('query');
     //input data의 문자가 포함된 product name 찾기
-    $result_data = DB::table('product')->where('p_name','like','%'.$search_data.'%')->get();
-    //input data의 문자가 포함된 product 개수
-    $result_count = $result_data->count();
+    $result_data = DB::table('product')->where('p_name','like','%'.$search_query.'%')->get();
+    $result_data2 = $result_data->count();
 
-    if($result_count>0){
-      return view('search_result', compact('result_data'));
-    }
-    //결과가 없을 때 ---(수정필요)
-    else{
-      //return view('search_result', )
-    }
+      //compact('result_data')
+    return view('search_result',
+      ['result_data'=>$result_data],
+      ['search_query'=>$search_query]
+
+    );
+
   }
 }

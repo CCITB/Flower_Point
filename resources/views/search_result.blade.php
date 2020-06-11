@@ -11,10 +11,13 @@
   <div class="hr-sect">
     검색 결과
   </div>
-    <div class="container-wrap">
+  <div class="container-wrap">
 
-      <div class="container-wrapping">
-        @foreach ($result_data as $productlist)
+    <!-- <div class="container-wrapping">
+      '{{$search_query}}'에 대한 검색결과가 없습니다.
+      <div> -->
+        <div class="container-wrapping">
+          @foreach ($result_data as $productlist)
           <div class="container-image">
             <div class="image">
               <div class="image-in">
@@ -39,16 +42,16 @@
                     </div>
                     <div class="image-in-bottom">
                       <!--물품 내용-->
-                      {!!$productlist->p_contents!!}
+                    {{strip_tags($productlist->p_contents)}}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        @endforeach
+          @endforeach
+        </div>
       </div>
     </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
