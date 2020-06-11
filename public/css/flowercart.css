@@ -15,7 +15,7 @@
 .allorderprice-section{
   float: right;
 
-  
+
 }
 span.allorderprice-right{
   font-size: 40px;
@@ -64,6 +64,7 @@ float: right;
 .product-coupon{
   width: 12%;
   display: inline-block;
+  float: right;
 }
 .product-name{
   width: 45%;
@@ -74,6 +75,8 @@ float: right;
 .product-count{
   width: 20%;
   display: inline-block;
+  position: relative;
+  float: right;
 
 }
 .product-price{

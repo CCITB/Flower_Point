@@ -101,12 +101,21 @@
   <div class="flowercart-middle">
     <img class="flowercart-preview" src="/imglib/orangerose.jpg" alt="?">
     <div class="flowercart-section">
-      <div class="product-name">상품 정보</div>
-      <div class="product-count"> <button type="button" name="button">-</button> 수량<button type="button" name="button">+</button> </div>
+      <div class="product-name">상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보상품 정보</div>
+      <div class="product-price"> 가격 <a href="#" >x</a> </div>
+
       <div class="product-coupon">
         쿠폰
       </div>
-      <div class="product-price"> 가격 <a href="#" >x</a> </div>
+      <div class="product-count">
+        <button class="plus" type="button" name="button">
+          <img src="/imglib/add.png" alt="">
+        </button>
+        <input class="count-plmi" type="text" name="" value="">
+        <button type="button" class="minus" name="button">
+          <img src="imglib/remove.png" alt="">
+        </button>
+      </div>
     </div>
 
 
@@ -167,7 +176,7 @@
   <div class="flowercart-middle">
     <img class="flowercart-preview" src="/imglib/orangerose.jpg" alt="?">
     <div class="flowercart-section">
-      <div class="product-name">상품 정보</div>
+      <div class="product-name"></div>
       <div class="product-count"> <button type="button" name="button">-</button> 수량<button type="button" name="button">+</button> </div>
       <div class="product-coupon">
         쿠폰
@@ -333,6 +342,40 @@
 </div>
 </div>
 <style media="screen">
+.plus img{
+  height: 21px;
+  width: 21px;
+  bottom: 3px;
+  left: 1px;
+  position: absolute;
+}
+.minus img{
+  height: 21px;
+  width: 21px;
+  right: 30px;
+  bottom: 3px;
+  position: absolute;
+}
+button.plus{
+  cursor: pointer;
+  border: none;
+  height: 21px;
+  width: 21px;
+  padding: 0px;
+  outline: 0;
+  border-radius: 10px;
+
+
+}
+button.minus{
+  cursor: pointer;
+  border: none;
+  height: 21px;
+  width: 21px;
+  padding: 0px;
+  outline: 0;
+  border-radius: 10px;
+}
 .text-option{
   font-size: 18px;
 }
@@ -357,6 +400,13 @@
   vertical-align: top;
   width: 127px;
   color: #A4A9B0;
+}
+.count-plmi{
+  width: 20px;
+  position: absolute;
+  bottom: 3px;
+  text-align: center;
+  /* height: 10px; */
 }
 </style>
 @include('lib.footer')

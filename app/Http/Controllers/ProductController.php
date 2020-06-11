@@ -53,4 +53,17 @@ class ProductController extends Controller
     // return $productdata;
     return view('Buy_information', compact('productinfor'));
   }
+  public function basket($id){
+    
+    // function(){
+     // if(auth()->guard('customer')->check()){
+     //   return view('flowercart');
+     // }
+     // if(auth()->guard('seller')->check()){
+     //   return redirect('/');
+     // }
+     // else
+     // return redirect('/login_customer');
+     return view('flowercart');
+  }
 }

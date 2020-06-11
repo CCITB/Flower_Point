@@ -84,7 +84,7 @@
             <span>원</span>
           </div>
           <div class="order_bt">
-            <button class="order" type="button" onclick="location.href = '/flowercart'">담기</button>
+            <button class="order" type="button" onclick="location.href = '/flowercart/{{$protb->p_no}}'">담기</button>
             <button class="order" type="submit">주문</button>
           </div>
         </div>
