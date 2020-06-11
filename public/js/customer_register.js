@@ -1,5 +1,4 @@
 //전역변수 random
-
 var random;
 // jQuery -- 어지수
 $.ajaxSetup({
@@ -27,21 +26,21 @@ $(document).ready(function(){
     check_name();
   });//blur
 
-  $("#s_birth_y").blur(function() {
+  $("#c_birth_y").blur(function() {
     checkBirthInput();
   });//blur
-  $("#s_birth_m").change(function() {
+  $("#c_birth_m").change(function() {
     checkBirthInput();
   });//blur
-  $("#s_birth_d").blur(function() {
+  $("#c_birth_d").blur(function() {
     checkBirthInput();
   });
 
-  $("#s_gender").change(function() {
+  $("#c_gender").change(function() {
     check_gender();
   });
 
-  $("#s_phonenum").blur(function() {
+  $("#c_phonenum").blur(function() {
     check_phonenum();
   });
 
@@ -56,18 +55,16 @@ $(document).ready(function(){
 
 //*************************************check******************************************
 function check_id(){
-  //seller register의 id input
-  var seller_val = $('#id').val();
+  var customer_val = $('#id').val();
   //정규식
   var idJ = /^[a-z0-9_\-]{5,20}$/;
-
   //예외처리 -- 공백
-  if(seller_val==''){
+  if(customer_val==''){
     //1. ID 공백체크
     $('#id_check').text('필수 정보입니다.');
     $('#id_check').css('color', 'red');
   }
-  else if(!idJ.test(seller_val)){
+  else if(!idJ.test(customer_val)){
     //2. 정규식 일치X
     $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
     $('#id_check').css('color', 'red');
@@ -76,11 +73,11 @@ function check_id(){
     $.ajax({
 
       type: 'post',
-      url: 'seller_Overlap',
+      url: 'customer_Overlap',
       dataType: 'json',
-      data: { "id": seller_val },
+      data: { "id": customer_val },
 
-      success : function name(data) {
+      success : function(data) {
         console.log(data);
         //1. ID 중복O
         if(data>0){
@@ -149,24 +146,24 @@ function check_re_pw(){
 
 function check_name(){
   //input data
-  var seller_name = $('#name').val();
+  var customer_name = $('#name').val();
   //정규식
   var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
 
   //1. 공백 -- 빈칸
-  if(seller_name == ""){
+  if(customer_name == ""){
     $('#name_check').text("필수 정보입니다.");
     $('#name_check').css('color', 'red');
   }
   //2. 공백X 특수기호, 스페이스바 사용
-  else if(markJ.test(seller_name)){
+  else if(markJ.test(customer_name)){
     $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
     $('#name_check').css('color', 'red');
   }
   //3. 공백X
   else{
     //4. 특수문자, 공백 미포함시
-    if(!markJ.test(seller_name)){
+    if(!markJ.test(customer_name)){
       $("#name_check").text("");
     }
   }
@@ -174,9 +171,9 @@ function check_name(){
 
 function check_gender(){
   //Input data
-  var s_gender = $('#s_gender').val();
+  var c_gender = $('#c_gender').val();
   //공백(빈칸)
-  if(s_gender == ""){
+  if(c_gender == ""){
     $('#gender_check').text("필수 정보입니다.");
     $('#gender_check').css('color', 'red');
   }
@@ -188,16 +185,16 @@ function check_gender(){
 
 function check_phonenum(){
   //seller register의 id input
-  var s_phonenum_val = $('#s_phonenum').val();
+  var c_phonenum_val = $('#c_phonenum').val();
   var regex= /^[0-9]+$/;
 
   //1. 정규식 일치 O
-  if(s_phonenum_val==""){
+  if(c_phonenum_val==""){
     $("#phonenum_check").text("필수 정보입니다.");
     $('#phonenum_check').css('color', 'red');
   }
   //2. 공백
-  else if(regex.test(s_phonenum_val)){
+  else if(regex.test(c_phonenum_val)){
     $('#phonenum_check').text('');
   }
   //3. 정규식 일치 X
@@ -210,18 +207,18 @@ function check_phonenum(){
 //*******************생년월일 예외처리 함수***********************
 function checkBirthInput(){
   //input data
-  var s_birth_y = $('#s_birth_y').val();
-  var s_birth_m = $('#s_birth_m').val();
-  var s_birth_d = $('#s_birth_d').val();
+  var c_birth_y = $('#c_birth_y').val();
+  var c_birth_m = $('#c_birth_m').val();
+  var c_birth_d = $('#c_birth_d').val();
   //정규식
   var birthJ =  /^[0-9]+$/
   //(년) - 정규식 O , 4자리
-  if(birthJ.test(s_birth_y)&&s_birth_y.length==4){
+  if(birthJ.test(c_birth_y)&&c_birth_y.length==4){
     $("#birth_check").text("");
     $('#birth_check').css('color', 'red');
 
     //2. 월 - 공백 O
-    if(s_birth_m==""){
+    if(c_birth_m==""){
       $("#birth_check").text('태어난 월을 선택하세요.');
       $('#birth_check').css('color', 'red');
 
@@ -233,7 +230,7 @@ function checkBirthInput(){
 
 
       //3. 일 - 공백 O
-      if(s_birth_d==""){
+      if(c_birth_d==""){
         $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
         $('#birth_check').css('color', 'red');
 
@@ -254,14 +251,14 @@ function checkBirthInput(){
 //*****************이메일*******************
 function verify_email(){
   //  var email = document.getElementById("s_email");
-  var seller_val = $('#s_email').val();
+  var customer_val = $('#c_email').val();
   //정규식
   var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
 
   //1. 공백 X
-  if(!seller_val == ""){
+  if(!customer_val == ""){
     //2. 정규식 O
-    if(verifyJ.test(seller_val)){
+    if(verifyJ.test(customer_val)){
       //일부러 success에 안넣었어요!!!!
       $('#email_check').text("인증번호가 전송되었습니다.");
       $('#email_check').css('color', 'green');
@@ -275,7 +272,7 @@ function verify_email(){
         type: 'post',
         url: 'mail',
         dataType: 'json',
-        data: { "email": seller_val,
+        data: { "email": customer_val,
         "random": random },
 
         success : function(data) {
@@ -322,39 +319,40 @@ else{
 }
 }
 
+
 function checkIt(){
   random;
   //공백 alert
-  if(document.f.s_id.value==""){
-    document.f.s_id.focus();
+  if(document.f.c_id.value==""){
+    document.f.c_id.focus();
     return false;
   }
-  if(document.f.s_password.value==""){
-    document.f.s_password.focus();
+  if(document.f.c_password.value==""){
+    document.f.c_password.focus();
     return false;
   }
-  if(document.f.s_re_password.value==""){
-    document.f.s_re_password.focus();
+  if(document.f.c_re_password.value==""){
+    document.f.c_re_password.focus();
     return false;
   }
-  if(document.f.s_name.value==""){
-    document.f.s_name.focus();
+  if(document.f.c_name.value==""){
+    document.f.c_name.focus();
     return false;
   }
-  if(document.f.s_birth_y.value==""){
-    document.f.s_birth_y.focus();
+  if(document.f.c_birth_y.value==""){
+    document.f.c_birth_y.focus();
     return false;
   }
-  if(document.f.s_gender.value==""){
-    document.f.s_gender.focus();
+  if(document.f.c_gender.value==""){
+    document.f.c_gender.focus();
     return false;
   }
-  if(document.f.s_phonenum.value==""){
-    document.f.s_phonenum.focus();
+  if(document.f.c_phonenum.value==""){
+    document.f.c_phonenum.focus();
     return false;
   }
-  if(document.f.s_email.value==""){
-    document.f.s_email.focus();
+  if(document.f.c_email.value==""){
+    document.f.c_email.focus();
     return false;
   }
   if(document.f.verify_num.value==""){

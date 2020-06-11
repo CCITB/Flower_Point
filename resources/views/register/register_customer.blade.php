@@ -19,7 +19,7 @@
       <div class="id_title">Customer Register</div> <hr>
     </div>
     <div class="signup">
-      <form action = '/RegisterControllerCustomer' method="post" name="registerform" onsubmit='return check_all();'>
+      <form action = '/RegisterControllerCustomer' method="post" name="f" onsubmit='return checkIt();'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="c_id">
@@ -72,250 +72,21 @@
         <div class="check_div" id="gender_check" value=""></div>
 
         <div class="sign_name">이메일</div>
-        <input class="inf1" type="email" placeholder="email "id="c_email" name="c_email"  >
+        <input class="inf3" type="email" placeholder="email "id="c_email" name="c_email"  >
+        <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
+        <!--인증번호 기입란-->
+        <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
         <div class="check_div" id="email_check" value=""></div>
       </div>
       <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
       <div class="under">
         <button class="lg_bt" type='button' onclick="history.back()">뒤로</button>
-        <input class="lg_bt" type='submit' value="다음">
+        <input class="lg_bt" type='submit' id="btnSubmit" value="다음" >
       </div>
     </form>
 
   </body>
   </html>
-  <script type="text/javascript">
-  // jQuery -- 어지수
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
 
-  $(document).ready(function(){
-    //***************ID 비교*******************
-    $("#id").blur(function() {
-      //seller register의 id input
-      var customer_val = $('#id').val();
-      //정규식
-      var idJ = /^[a-z0-9_\-]{5,20}$/;
-      //예외처리 -- 공백
-      if(customer_val==''){
-        //1. ID 공백체크
-        $('#id_check').text('필수 정보입니다.');
-        $('#id_check').css('color', 'red');
-      }
-      else if(!idJ.test(customer_val)){
-        //2. 정규식 일치X
-        $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
-        $('#id_check').css('color', 'red');
-      }
-      else{
-        $.ajax({
-
-          type: 'post',
-          url: 'customer_Overlap',
-          dataType: 'json',
-          data: { "id": customer_val },
-
-          success : function(data) {
-            console.log(data);
-            //1. ID 중복O
-            if(data>0){
-              $('#id_check').text('이미 사용중인 아이디입니다.');
-              $('#id_check').css('color', 'red');
-            }
-
-            //2. ID 중복X
-            if(data<1){
-              $("#id_check").text("사용가능한 아이디입니다!");
-              $('#id_check').css('color', 'green');
-            }
-          }//success
-          ,error : function() {   console.log("실패");  }
-        }) //ajax
-      }
-    });//blur
-
-    //pw 비교
-    $("#pw").blur(function() {
-      //input data
-      var pw=$("#pw").val();
-      //정규식
-      var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-
-      //1. 정규식 일치 O
-      if(pwJ.test(pw)){
-        $("#pw_check").text("");
-      }
-      //2. 공백
-      else if(pw==''){
-        $('#pw_check').text('비밀번호를 입력해주세요.');
-        $('#pw_check').css('color', 'red');
-      }
-      //3. 정규식 일치 X
-      else{
-        $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
-        $('#pw_check').css('color', 'red');
-      }
-    });//blur
-
-    $("#check").blur(function() {
-      //input data
-      var pw=$("#pw").val();
-      var check=$("#check").val();
-
-      //1. 공백이 아닐 경우
-      if(pw != "" || check != "")
-      {
-        if(pw == check)
-        {
-          $("#re_pw_check").text('비밀번호가 일치합니다!');
-          $('#re_pw_check').css('color', 'green');
-        }
-
-        else{
-          $('#re_pw_check').text('비밀번호가 일치하지 않습니다.');
-          $('#re_pw_check').css('color', 'red');
-        }
-      }
-      //2. 공백일 경우
-      else {
-        $('#re_pw_check').text('필수 정보입니다.');
-        $('#re_pw_check').css('color', 'red');
-      }
-    });//blur
-
-    $("#name").blur(function() {
-      //input data
-      var customer_name = $('#name').val();
-      //정규식
-      var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-
-      //1. 공백 -- 빈칸
-      if(customer_name == ""){
-        $('#name_check').text("필수 정보입니다.");
-        $('#name_check').css('color', 'red');
-      }
-      //2. 공백X 특수기호, 스페이스바 사용
-      else if(markJ.test(customer_name)){
-        $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
-        $('#name_check').css('color', 'red');
-      }
-      //3. 공백X
-      else{
-        //4. 특수문자, 공백 미포함시
-        if(!markJ.test(customer_name)){
-          $("#name_check").text("");
-        }
-      }
-    });//blur
-    $("#c_birth_y").blur(function() {
-      checkBirthInput();
-    });//blur
-    $("#c_birth_m").change(function() {
-      checkBirthInput();
-    });//blur
-    $("#c_birth_d").blur(function() {
-      checkBirthInput();
-    });
-
-    $("#c_gender").change(function() {
-      //Input data
-      var c_gender = $('#c_gender').val();
-      //공백(빈칸)
-      if(!c_gender == ""){
-        $('#gender_check').text("");
-        $('#gender_check').css('color', 'red');
-        //$('#btnSubmit').attr('disabled',false);
-      }
-      else{
-        $('#gender_check').text("필수 정보입니다.");
-        $('#gender_check').css('color', 'red');
-        //$('#btnSubmit').attr('disabled',true);
-      }
-    });
-
-    $("#c_phonenum").blur(function() {
-      //input data
-      var c_phonenum = $('#c_phonenum').val();
-      //정규식
-      var numJ = /^[0-9]*$/;
-      //공백 X
-      if(!c_phonenum=="")
-      //정규식 O
-      if(numJ.test(c_phonenum)){
-        $('#phonenum_check').text("");
-        $('#phonenum_check').css('color', 'red');
-        //$('#btnSubmit').attr('disabled',false);
-      }
-      //정규식 X
-      else {
-        $('#phonenum_check').text("형식에 맞지 않는 번호입니다.");
-        $('#phonenum_check').css('color', 'red');
-      }
-    //공백 O
-    else{
-      $('#phonenum_check').text("필수 정보입니다.");
-      $('#phonenum_check').css('color', 'red');
-      //$('#btnSubmit').attr('disabled',true);
-    }
-  });
-
-  $("#c_email").blur(function() {
-    //Input data
-    var c_email = $('#c_email').val();
-    //1. 공백 X
-    if(!c_email == ""){
-      $('#email_check').text("");
-      //$('#btnSubmit').attr('disabled',false);
-    }
-    //2. 내용이 없을 모든 경우의 수
-    else {
-      $('#email_check').text("필수 정보입니다.");
-      $('#email_check').css('color', 'red');
-      //$('#btnSubmit').attr('disabled',true);
-    }
-  });
-});
-
-//생년월일 예외처리 함수
-function checkBirthInput(){
-  //input data
-  var c_birth_y = $('#c_birth_y').val();
-  var c_birth_m = $('#c_birth_m').val();
-  var c_birth_d = $('#c_birth_d').val();
-  //정규식
-  var birthJ =  /^[0-9]+$/
-  //(년) - 정규식 O , 4자리
-  if(birthJ.test(c_birth_y)&&c_birth_y.length==4){
-    $("#birth_check").text("");
-    $('#birth_check').css('color', 'red');
-    //2. 월 - 공백 O
-    if(c_birth_m==""){
-      $("#birth_check").text('태어난 월을 선택하세요.');
-      $('#birth_check').css('color', 'red');
-    }
-    //2. 월 - 공백 X
-    else{
-      $('#birth_check').text('');
-      $('#birth_check').css('color', 'red');
-      //3. 일 - 공백 O
-      if(c_birth_d==""){
-        $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
-        $('#birth_check').css('color', 'red');
-      }
-      //3. 일 - 공백 O
-      else{
-        $('#birth_check').text('');
-        $('#birth_check').css('color', 'red');
-        //$('#btnSubmit').attr('disabled',false);
-      }
-    }
-  }
-  else{
-    $('#birth_check').text(' 태어난 년도 4자리를 정확하게 입력하세요. ');
-    $('#birth_check').css('color', 'red');
-  }
-}
-</script>
+<!--script Link -->
+<script type="text/javascript" src="/js/customer_register.js" charset="utf-8"></script>
