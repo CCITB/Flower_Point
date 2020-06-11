@@ -71,7 +71,7 @@ margin: 0 auto;
 display: -webkit-box;
 -webkit-line-clamp:1;
 -webkit-box-orient: vertical;
-height: 18px;
+height: 14px;
 overflow: hidden;
 text-overflow: ellipsis;
 }

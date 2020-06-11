@@ -148,17 +148,9 @@ Route::post('/mail', 'MailController@sends');
 //검색
 Route::get('/search', 'SearchController@result');
 
-Route::get('/flowercart', function(){
-  // if(auth()->guard('customer')->check()){
-  //   return view('flowercart');
-  // }
-  // if(auth()->guard('seller')->check()){
-  //   return redirect('/');
-  // }
-  // else
-  // return redirect('/login_customer');
-  return view('flowercart');
-});
+Route::get('/flowercart/{id}', 'ProductController@basket');
+
+// });
 //mail
 // Route::get('/', function() {
 //   $user = array(
