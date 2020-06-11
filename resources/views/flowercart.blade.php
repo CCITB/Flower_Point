@@ -95,9 +95,7 @@
 </div>
 @if(auth()->guard('customer')->user())
   @foreach ($data as $list)
-
-
-    <div class="flowercart-infor">
+    <div class="flowercart-infor" id="remove{{$list->b_no}}">
       <div class="flowercart-top">
         <input type="checkbox" name="checkRow" class="checkf" value="">
         <strong class="flowercart-tradename">가게명</strong>
@@ -348,6 +346,10 @@ function del(e){
     // console.log(jjim);
     success: function(data) {
       console.log(data);
+      if(data=e){
+        $("#remove"+e).remove();
+        console.log('삭제');
+      }
     },
     error: function(data) {
       console.log("error" +data);
