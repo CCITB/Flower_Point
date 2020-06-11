@@ -20,10 +20,19 @@ class InformationController extends Controller
   publiC function storeinfo(Request $request){
     if($sellerinfo = auth()->guard('seller')->user()){
       $sellerprimary = $sellerinfo->s_no;
-          $data = DB::table('seller')->join('store', 'seller.s_no', '=', 'store.seller_no')
-          ->where('s_no','=',$sellerprimary )->get();
-          // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
-          return view('myshop/shop_seller' , compact('data'));
+      // return $sellerprimary;
+          $data = DB::table('seller')
+          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+          ->where('s_no','=', $sellerprimary )->get();
+          // $data2 = 1;
+          // return $data2;
+          // return 0;
+          // echo $data;
+          $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
+
+           // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
+          // return $proro;
+          return view('myshop/shop_seller' , compact('data', 'proro'));
     }
     else return view('myshop/shop_seller');
 
