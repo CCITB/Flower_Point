@@ -20,7 +20,7 @@
       <div class="id_title">Seller Register</div> <hr>
     </div>
     <div class="signup">
-      <form action = '/sto_info' method="post" name="f" onsubmit="return submitCheck()">
+      <form action = '/sto_info' method="post" name="f" onsubmit='return checkIt();'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="s_id" >
@@ -35,7 +35,7 @@
         <div class="check_div" id="re_pw_check" value=""></div>
 
         <div class="sign_name">이름</div>
-        <input class="inf1" type="name" placeholder="Name" id="name"  name="s_name" >
+        <input class="inf1" type="text" placeholder="Name" id="name"  name="s_name" >
         <div class="check_div" id="name_check" value=""></div>
 
         <div class="sign_name">생년월일</div>
@@ -69,7 +69,7 @@
         <div class="check_div" id="gender_check" value=""></div>
 
         <div class="sign_name">연락처</div>
-        <input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum" name="s_phonenum"  >
+        <input class="inf1" type="text" placeholder="Phone Number" id="s_phonenum"  name="s_phonenum" >
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="verify">
@@ -95,54 +95,3 @@
 
   <!--script Link -->
   <script type="text/javascript" src="/js/seller_register.js" charset="utf-8"></script>
-  <script type="text/javascript">
-
-  function submitCheck(){
-    //공백 alert
-    if(document.f.s_id.value==""){
-      alert("test");
-      checkid();
-      return false;
-    }
-    if(document.f.s_password.value=""){
-      check_pw();
-      return false;
-    }
-    if(document.f.s_re_password.value=""){
-      check_re_pw();
-      return false;
-    }
-    if(document.f.s_name.value=""){
-      check_name();
-      return false;
-    }
-    if(document.f.s_birth_y.value=""){
-      checkBirthInput();
-      return false;
-    }
-    // if(document.f.s_birth_m.value=""){
-    //   return false;
-    // }
-    // if(document.f.s_birth_d.value=""){
-    //   return false;
-    // }
-    if(document.f.s_gender.value=""){
-      check_gender();
-      return false;
-    }
-    if(document.f.s_phonenum.value=""){
-      return false;
-    }
-    if(document.f.s_email.value=""){
-      verify_email();
-      return false;
-    }
-    if(document.f.verify_num.value=""){
-      email_check();
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-  </script>
