@@ -32,6 +32,7 @@ button.btn1{
 button.btn2{
     position: relative;
     margin-left: 88%;
+    margin-bottom: 30px;
 }
 
 div.wrap2{
@@ -94,7 +95,7 @@ div.wrap5{
 div.wrap6{
   position: relative;
   display:inline-flex;
-  width: 45%;
+  width: 90%;
   margin-bottom: 50px;
 }
 
