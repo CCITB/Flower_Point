@@ -17,14 +17,14 @@
       <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
         <img class="ad_img" src="https://freshdon.com/wp-content/uploads/2018/12/%EC%83%9D%EC%83%9D-%EB%A1%9C%EA%B3%A0-300x100.png" >
-        <div class="text">돈까스를 먹어서 혼을 내주자</div>
+        <div class="text"></div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">3 / 3</div>
         <img class="ad_img" src="https://www.paxetv.com/news/thumbnail/202001/85227_56981_1928_v150.jpg">
         {{-- <img class="ad_img" src="http://placehold.it/300x100"> --}}
-        <div class="text">은행은 맛있어  사이즈는 300x100이다</div>
+        <div class="text"></div>
       </div>
     </div> <br>
     {{-- <div class="dotss">

@@ -12,7 +12,7 @@
   @include('lib.header')
   <div class="hr-line">
     <div id="line">
-      <h2>나의 QnA</h2> question테이블에 데이터 없어서 안뜨는거임
+      <h2>나의 QnA</h2>
       <hr>
     </div>
   </div>
@@ -31,13 +31,13 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($myqn as $item)
+          @foreach($myqn as $mq)
             <tr>
-              <td class="qna-index">{{$item->q_no}}</td>
-              <td class="qna-content">{{$item->q_title}}</td>
+              <td class="qna-index">{{$mq->s_no}}</td>
+              <td class="qna-content">{{$mq->s_id}}</td>
               <td class="qna-condition">답변상태</td>
               <td class="qna-writer">작성자</td>
-              <td class="qna-date">{{$item->created_at}}</td>
+              <td class="qna-date">{{$mq->s_name}}</td>
             </tr>
           @endforeach
         </tbody>
@@ -55,8 +55,17 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
-
-
+  // (function($) {
+  //     $('ul.pagination li.active')
+  //         .prev().addClass('show-mobile')
+  //         .prev().addClass('show-mobile');
+  //     $('ul.pagination li.active')
+  //         .next().addClass('show-mobile')
+  //         .next().addClass('show-mobile');
+  //     $('ul.pagination')
+  //         .find('li:first-child, li:last-child, li.active')
+  //         .addClass('show-mobile');
+  // });
   </script>
 
 
