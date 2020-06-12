@@ -20,7 +20,7 @@
     </div>
 
     <div class ="find_pw_way">
-      <form action = '처리할 주소' method='POST'>
+      <form  method='POST'>
         <div class="fd_id">
           <div class="character">
 
