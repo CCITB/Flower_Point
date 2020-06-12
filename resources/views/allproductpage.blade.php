@@ -52,7 +52,7 @@
                     </p>
                   </div>
                   <div class="image-in-bottom">
-                    {{strip_tags($productlist->p_contents)}} 
+                    {{strip_tags($productlist->p_contents)}}
                   </div>
                 </div>
               </div>
@@ -65,3 +65,11 @@
   @include('lib.footer')
 </body>
 </html>
+<script type="text/javascript">
+$("div.image-in").click(
+  function()
+  {
+    window.location = $(this).attr("url");
+    return false;
+  });
+</script>
