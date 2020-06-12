@@ -19,7 +19,7 @@ class ProductController extends Controller
     // 로그확인용 주석
 
     // echo $comparison->st_no;
-    return $comparison->st_no;
+    // return $comparison->st_no;
 
     // 아래코드는 product table 에서 store테이블에 있는 st_no를 store_no와 비교해서  product-image table에 있는 기본값을 찾음
 
