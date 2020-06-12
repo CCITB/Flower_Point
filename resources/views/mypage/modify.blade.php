@@ -28,7 +28,7 @@
                       <th>ID</th>
                       <td>{{$seller->s_id}}</td>
                   </tr>
-  
+
                   <tr>
                       <th>이름</th>
                       <td><input type="text" name="s_name"placeholder="이름"></td>
@@ -54,10 +54,7 @@
                     <th>ID</th>
                     <td>{{$customer->c_id}}</td>
                 </tr>
-                <tr>
-                    <th>PW</th>
-                    <td>{{$customer->c_password}}</td>
-                </tr>
+
                 <tr>
                     <th>이름</th>
                     <td><input type="text" name="s_name"placeholder="이름"></td>

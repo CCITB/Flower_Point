@@ -105,7 +105,6 @@
               <td class="upload-date">{{$data3->p_date}}</td>
               <td class="upload-name"{{$data3->p_name}}</td>
               <td class="upload-price">{{$data3->p_price}}</td>
-              <td></td>
             </tr>
 
           </table>

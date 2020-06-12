@@ -285,7 +285,7 @@ function div_show(s,ss){
   if(s == "직접거래"){
     document.getElementById(ss).style.display="none";
   }else{
-    document.getElementById(ss).style.display="";
+    document.getElementById(ss).style.display="block";
   }
 }
 </script>

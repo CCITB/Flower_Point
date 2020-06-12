@@ -114,9 +114,7 @@ Route::get('/order', function () {
 Route::get('/complete', function(){
   return view('payment.complete');
 });
-Route::get('/list', function(){
-  return view('orderlist');
-});
+
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });
