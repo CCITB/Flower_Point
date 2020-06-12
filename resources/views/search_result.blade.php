@@ -12,10 +12,15 @@
     검색 결과
   </div>
   <div class="container-wrap">
-
-    <!-- <div class="container-wrapping">
+      @if($result_cnt<1)
+     <div class="container-wrapping">
       '{{$search_query}}'에 대한 검색결과가 없습니다.
-      <div> -->
+      <div>
+      @elseif($search_query == false)
+      <div class="container-wrapping">
+        ''에 대한 검색결과가 없습니다.
+      <div>
+      @else
         <div class="container-wrapping">
           @foreach ($result_data as $productlist)
           <div class="container-image">
@@ -53,5 +58,6 @@
         </div>
       </div>
     </div>
+  @endif
   </body>
   </html>
