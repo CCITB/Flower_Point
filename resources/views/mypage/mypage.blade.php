@@ -55,10 +55,6 @@
                           <td >{{$customer->c_id}}</td>
                       </tr>
                       <tr>
-                          <th>PW</th>
-                          <td >{{$customer->c_password}}</td>
-                      </tr>
-                      <tr>
                           <th>이름</th>
                           <td >{{$customer->c_name}}</td>
                       </tr>
