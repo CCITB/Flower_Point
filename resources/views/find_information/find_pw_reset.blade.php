@@ -45,16 +45,19 @@ window.onload=function(){
     var passCheck=document.getElementById('check').value;
 
     if (pass != passCheck){
-      document.getElementById("pw_re_ck").innerHTML = "비밀번호가 일치하지 않습니다.";
+      alert('비밀번호가 일치하지 않습니다.');
+      // document.getElementById("pw_re_ck").innerHTML = "비밀번호가 일치하지 않습니다.";
       return false;
     } if (pass == ''){
-      document.getElementById("pw_re").innerHTML = "비밀번호를 입력해주세요.";
+      alert('비밀번호를 입력해주세요.')
+      // document.getElementById("pw_re").innerHTML = "비밀번호를 입력해주세요.";
       return false;
     }
-    var pw=$("#pass").val();
+    var pw=$("#new_pw").val();
     var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-    if (!check.test('pass')){
-      document.getElementById("pw_re").innerHTML = "8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.";
+    if (!check.test('pw')){
+      alert("8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.");
+      // document.getElementById("pw_re").innerHTML = "8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.";
       return false;
     }
   }

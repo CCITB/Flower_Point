@@ -107,8 +107,13 @@ ul li{
   margin-left: 20px;
 }
 .page-item{
-  display: inline-block;
+display: inline-block;
 }
 .pagination{
   text-align: center;
 }
+/* @media (max-width: /* write what you need, for me it's 560px */) {
+    ul.pagination li:not(.show-mobile) {
+        display: none;
+    }
+} */

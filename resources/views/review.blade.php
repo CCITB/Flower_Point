@@ -40,7 +40,7 @@
           어떤 점이 <span id="satis_nu2">좋았나요?</span>
         </div>
         <div class="satis_detail">
-          <textarea class="satis_detail_window" placeholder="최소 10자 이상 입력해주세요."></textarea>
+          <textarea class="satis_detail_window" placeholder="후기를 입력해주세요."></textarea>
         </div>
         <div class="satis_img">
           <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>

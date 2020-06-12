@@ -13,7 +13,7 @@ class MainController extends Controller
     // // $alldata = [$data,$imagepath];
     // // return $data;
     // return view('main',compact('data'));
-    $product = DB::table('product')->paginate(2);
+    $product = DB::table('product')->paginate(3);
 
     return view('main', ['product' => $product]);
   }
