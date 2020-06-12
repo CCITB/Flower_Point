@@ -27,17 +27,17 @@
           </div>
           <div class="window">
             <div class="ip_name">이름</div>
-            <input class="find_input" type="name" placeholder="이름을 입력하세요." name="name" required ><br><br>
+            <input class="find_input" type="name" placeholder="이름을 입력하세요." name="name"><br><br>
             <div class="ip_name">전화번호</div>
-            <input class="find_input" type="tell" placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000">
+            <input class="find_input" type="tell" placeholder="전화번호를 입력하세요" name="tell" title="000-0000-0000">
             <input type="submit" value="인증"><br><br>
-            <input class="find_input" type="name" placeholder="인증번호" name="name" required >
+            <input class="find_input" type="name" placeholder="인증번호" name="name">
             <input type="submit" value="확인"><br><br>
           </div>
         </div>
 
         <div class="under">
-          <input class="lg_bt" type="submit" value="다음">
+          <input class="lg_bt" type="submit" onclick="location.href = '/find_pw_reset'" value="다음">
         </div>
       </form>
     </div>
