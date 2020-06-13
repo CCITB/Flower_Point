@@ -67,10 +67,7 @@
                     <th>이메일</th>
                     <td><input type="email" name="s_email" placeholder="이메일"></td>
                 </tr>
-                <tr>
-                    <th>주소</th>
-                    <td><input type="text" placeholder="주소"></td>
-                </tr>
+
             </table>
         </table>
       @endif

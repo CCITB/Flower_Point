@@ -49,16 +49,17 @@
 
           @elseif ($customer = auth()->guard('customer')->user())
               <table class="table1">
+                <tr>
+                  <td>기간별조회</td>
+                  <td><button class="period">1주일</button></td>
+                  <td><button class="period">1개월</button></td>
+                  <td><button class="period">3개월</button></td>
+                  <td><input type="date"></td>
+                  <td><button>조회</button></td>
+                </tr>
                   <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
 
-                    <tr>
-                      <td>기간별조회</td>
-                      <td><button class="period">1주일</button></td>
-                      <td><button class="period">1개월</button></td>
-                      <td><button class="period">3개월</button></td>
-                      <td><input type="date"></td>
-                      <td><button>조회</button></td>
-                    </tr>
+
                       <tr>
                           <th>ID</th>
                           <td >{{$customer->c_id}}</td>
@@ -97,19 +98,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="quickgroup"><a href="/order1">
+                <div class="quickgroup"><a href="/sellermyorderlist">
                     <div class="quickbutton">
                         <img src="imglib/rose.jpg" alt="" height="200px" width="300px;">
                         <div class="innerbutton">
                             <h1>내 주문관리</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="quickgroup"><a href="#">
-                    <div class="quickbutton">
-                        <img src="imglib/pink.jpg" alt="" height="200px" width="300px;">
-                        <div class="innerbutton">
-                            <h1>물품관리</h1>
                         </div>
                     </div>
                 </div>
@@ -171,7 +164,16 @@
 </div>
 <div class="tablespace3">
 <h4 align="left">나의 주문 현황</h4>
+
 <table class="myorder">
+  <tr>
+    <td>기간별조회</td>
+    <td><button class="period">1주일</button></td>
+    <td><button class="period">1개월</button></td>
+    <td><button class="period">3개월</button></td>
+    <td><input type="date"></td>
+    <td><button>조회</button></td>
+  </tr>
   <table border="1" width="100%">
     <tr>
     <th>주문번호</th>

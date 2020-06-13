@@ -78,6 +78,7 @@
           <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
         </ul>
       </li>
+      @if(auth()->guard('seller')->user())
       <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
         <a href="/faq">고객센터</a>
         <ul class="submenu_list">
@@ -90,6 +91,17 @@
           <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
         </ul>
       </li>
+    @elseif(auth()->guard('customer')->user())
+      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+        <a href="/faq">고객센터</a>
+        <ul class="submenu_list">
+          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+        </ul>
+        <ul class="submenu_list">
+          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+        </ul>
+      </li>
+@endif
       @if(auth()->guard('seller')->user())
       <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
         <a href="#">마이페이지</a>
