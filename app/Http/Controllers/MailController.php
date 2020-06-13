@@ -11,15 +11,16 @@ class MailController extends Controller
 {
   public function sends(Request $request)
   {
+    $randomNum = mt_rand(1000, 9999);
 
     $inputmail =  $request->input('email');
     //input대신 get도 가능
     // return response()->json($user);
 
-    $random =  $request->get('random');
+    //$random =  $request->get('random');
 
-    Mail::to($inputmail)->send(new RegisterMail($random));
-
-     return response()->json($random);
+    Mail::to($inputmail)->send(new RegisterMail($randomNum));
+    return response()->json($randomNum);
   }
+
 }
