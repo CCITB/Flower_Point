@@ -155,3 +155,9 @@ textarea{
   margin-top:30px;
   text-align: center;
 }
+
+input.seller_tel2,input.seller_tel3{
+  height: 28px;
+  width : 54px;
+  padding : 5px;
+}
