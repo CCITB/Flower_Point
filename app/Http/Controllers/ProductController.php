@@ -8,7 +8,21 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 class ProductController extends Controller
 {
+
   //
+  public function seller_shoppost(){
+    if(auth()->guard('seller')->check()){
+      return view('seller.seller_shoppost');
+    }
+    if(auth()->guard('customer')->check()){
+      echo "<script>alert('잘못된요청입니다.')</script>";
+      return redirect('/');
+    }
+    else
+    return view('login.login_seller');
+
+  }
+
   public function seller_product_register(Request $request)
   {
     // $picturerow = DB::table('product_image')->where('i_no','=',5)->first();
@@ -55,9 +69,17 @@ class ProductController extends Controller
   }
   public function basket(){
 
-    if($userinfo = auth()->guard('customer')->user()->c_no){
+    if(auth()->guard('customer')->user()){
+      $userinfo = auth()->guard('customer')->user()->c_no;
       $data = DB::table('basket')->where('customer_no',$userinfo)->get();
       return view('flowercart',compact('data'));
+    }
+    if(auth()->guard('seller')->user()){
+      return redirect('/');
+    }
+    else{
+      // echo '<script>alert("구매자만 이용가능한 서비스입니다.");</script>';
+      return view('login.login_customer');
     }
 
 
@@ -113,8 +135,15 @@ class ProductController extends Controller
         'b_delivery' => $pt->p_title,
         'b_picture' => $pt->p_filename
       ]);
+      return response()->json($data);
     }
-    return response()->json($data);
+    if($seller = auth()->guard('seller')->user()){
+      return response()->json(1);
+    }
+    else{
+      return response()->json(0);
+    }
+
 
   }
 }

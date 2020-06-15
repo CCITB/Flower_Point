@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/flowercart.css">
   <title>장바구니</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body>
   @include('lib.header')
@@ -136,7 +137,7 @@
         </div>
 
         <div class="imgwrap-section">
-          <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon"alt="">
+          <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
         </div>
         <div class="text-section-wrap">
           <div class="text-section">
@@ -147,7 +148,7 @@
           </div>
         </div>
         <div class="imgwrap-section">
-          <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon"alt="">
+          <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
         </div>
         <div class="text-section-wrap">
           <div class="text-section">
@@ -158,14 +159,14 @@
           </div>
         </div>
         <div class="imgwrap-section">
-          <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon"alt="">
+          <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
         </div>
         <div class="text-section-wrap">
           <div class="text-section">
             주문금액
           </div>
           <div class="price-section">
-            <strong class="text-option">0</strong>원
+            <strong class="text-option">{{$list->b_price+$list->b_delivery}}</strong>원
           </div>
         </div>
       </div>
@@ -203,7 +204,9 @@
 
     </div>
     <div class="allorderprice-section">
-      <span class="allorderprice-right"> <span>0</span>원 </span>
+      <span class="allorderprice-right"> <span>
+0
+        </span>원 </span>
     </div>
 
     <div class="basketorder">
@@ -213,7 +216,84 @@
 </div>
 </div>
 </div>
-<style media="screen">
+
+@include('lib.footer')
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+$(function() {
+
+  $(document).ready(function() {
+
+    var scrollOffset = $('.flowercart-allprice').offset();
+
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > scrollOffset.top) {
+        $('.flowercart-allprice').addClass('scroll-fixed');
+      }
+      else {
+        $('.flowercart-allprice').removeClass('scroll-fixed');
+      }
+    });
+  } );
+
+});
+</script>
+<script type="text/javascript">
+var selectAll = document.querySelector("#th_checkAll");
+selectAll.addEventListener('click', function(){
+  var objs = document.querySelectorAll(".checkf");
+  for (var i = 0; i < objs.length; i++) {
+    objs[i].checked = selectAll.checked;
+  };
+}, false);
+
+var objs = document.querySelectorAll(".checkf");
+for(var i=0; i<objs.length ; i++){
+  objs[i].addEventListener('click', function(){
+    var selectAll = document.querySelector("#th_checkAll");
+    for (var j = 0; j < objs.length; j++) {
+      if (objs[j].checked === false) {
+        selectAll.checked = false;
+        return;
+      };
+    };
+    selectAll.checked = true;
+  }, false);
+}
+</script>
+<script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+function del(e){
+  console.log(e);
+
+  $.ajax({
+    type: 'post',
+    url: '/delete',
+    dataType: 'json',
+    data: { "id" : e },
+    // console.log(jjim);
+    success: function(data) {
+      console.log(data);
+      if(data=e){
+        $("#remove"+e).remove();
+        console.log('삭제');
+      }
+    },
+    error: function(data) {
+      console.log("error" +data);
+    }
+  });
+}
+
+</script>
+<style>
 .plus img{
   height: 21px;
   width: 21px;
@@ -281,80 +361,22 @@ button.minus{
   /* height: 10px; */
 }
 </style>
-@include('lib.footer')
-</body>
-</html>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-$(function() {
 
-  $(document).ready(function() {
+var num = new Array();
+console.log(num);
+// document.write('합계: ' , sum(num), '<br />');
 
-    var scrollOffset = $('.flowercart-allprice').offset();
 
-    $(window).scroll(function() {
-      if ($(document).scrollTop() > scrollOffset.top) {
-        $('.flowercart-allprice').addClass('scroll-fixed');
-      }
-      else {
-        $('.flowercart-allprice').removeClass('scroll-fixed');
-      }
-    });
-  } );
 
-});
-</script>
-<script type="text/javascript">
-var selectAll = document.querySelector("#th_checkAll");
-selectAll.addEventListener('click', function(){
-  var objs = document.querySelectorAll(".checkf");
-  for (var i = 0; i < objs.length; i++) {
-    objs[i].checked = selectAll.checked;
-  };
-}, false);
+// 배열 합계 구하기 함수
+function sum(array) {
+  var result = 0.0;
 
-var objs = document.querySelectorAll(".checkf");
-for(var i=0; i<objs.length ; i++){
-  objs[i].addEventListener('click', function(){
-    var selectAll = document.querySelector("#th_checkAll");
-    for (var j = 0; j < objs.length; j++) {
-      if (objs[j].checked === false) {
-        selectAll.checked = false;
-        return;
-      };
-    };
-    selectAll.checked = true;
-  }, false);
-}
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
+  for (var i = 0; i < array.length; i++)
+    result += array[i];
 
-function del(e){
-  console.log(e);
-
-  $.ajax({
-    type: 'post',
-    url: '/delete',
-    dataType: 'json',
-    data: { "id" : e },
-    // console.log(jjim);
-    success: function(data) {
-      console.log(data);
-      if(data=e){
-        $("#remove"+e).remove();
-        console.log('삭제');
-      }
-    },
-    error: function(data) {
-      console.log("error" +data);
-    }
-  });
+  return result;
 }
 
 </script>
