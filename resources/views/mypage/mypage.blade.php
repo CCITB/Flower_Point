@@ -18,45 +18,92 @@
     </div>
     <div class="myinfo">
         <h4>내 정보</h4>
+        <style media="screen">
+          div.tdcell{
+            padding: 32px 0 32px 30px;
+            margin: 0;
+            text-align: left;
+          }
+          div.thcell{
+            padding: 32px 31px 32px;
+            border-right: 1px solid #e5e5e5;
+            background: #f9f9f9;
+            text-align: left;
+            letter-spacing: -1px;
+          }
+        </style>
         <div class="privacy">
           <form action="/modify">
-            <table class="table1">
-                <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
+                <table border="0" table class="table1">
                   @if($seller = auth()->guard('seller')->user())
+                    <tbody>
                     <tr>
-                        <th>ID</th>
-                        <td>{{$seller->s_id}}</td>
+                        <th scope="row">
+                        <div class="thcell">아이디</div>
+                      </th>
+                        <td>
+                          <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
+                          </td>
                     </tr>
 
                     <tr>
-                        <th>이름</th>
-                        <td>{{$seller->s_name}}</td>
+                      <th scope="row">
+                      <div class="thcell">이름</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
+                        </td>
                     </tr>
                     <tr>
-                        <th>연락처</th>
-                        <td>{{$seller->s_phonenum}}</td>
+                      <th scope="row">
+                      <div class="thcell">연락처</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}</p></div>
+                          <div id="show" style="display:none;">
+                            <form class="" action="{{url('/information_controller')}}" method="post">
+                        <input type="text" name=""  placeholder="새 연락처">
+                          </form>
+                        <button type="submit" name="button">수정완료</button>
+                        </div>
+
+                        <input type="button" value="Y" display="block" onclick="info_modification(this.value,'show' );">수정</button>
+
+                        <script type="text/javascript">
+                        function info_modification(s,ss){
+                          if(s == "Y"){
+                            document.getElementById(ss).style.display="block";
+                        }else {
+                          document.getElementById(ss).style.display="none";
+                        }
+                      }
+                        </script>
+
+                        </td>
                     </tr>
                     <tr>
-                        <th>이메일</th>
-                        <td>{{$seller->s_email}}</td>
+                      <th scope="row">
+                      <div class="thcell">이메일</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}</p></div>
+                        </td>
                     </tr>
                     <tr>
-                        <th>주소</th>
-                        <td>{{$seller->s_address}}</td>
+                      <th scope="row">
+                      <div class="thcell">주소</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->st_address}}</p></div>
+                        </td>
                     </tr>
+                    </tbody>
                 </table>
             </table>
 
           @elseif ($customer = auth()->guard('customer')->user())
               <table class="table1">
-                <tr>
-                  <td>기간별조회</td>
-                  <td><button class="period">1주일</button></td>
-                  <td><button class="period">1개월</button></td>
-                  <td><button class="period">3개월</button></td>
-                  <td><input type="date"></td>
-                  <td><button>조회</button></td>
-                </tr>
+
                   <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
 
 
@@ -76,15 +123,9 @@
                           <th>이메일</th>
                           <td >{{$customer->c_email}}</td>
                       </tr>
-                      <tr>
-                          <th>주소</th>
-                          <td >{{$customer->c_address}}</td>
-                      </tr>
                   </table>
               </table>
           @endif
-            <button class="btn btn-primary"type="submit">수정
-            </button>
           </form>
 
 
