@@ -20,7 +20,7 @@
     </div>
 
     <div class ="find_pw_way">
-      <form  method='POST'>
+      <form action = '/find_pw_reset' method='POST'>
         <div class="fd_id">
           <div class="character">
 

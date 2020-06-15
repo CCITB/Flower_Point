@@ -353,11 +353,11 @@
         var check2=document.terms_agree.chk2.checked;
 
         if(!check1){
-          alert('약관1에 동의해 주세요');
+          alert('전자상거래 이용에 대한 안내에 대한 약관에 동의해주세요.');
           return false;
         }
         if(!check2) {
-          alert('약관2에 동의해 주세요');
+          alert('개인정보 취급방침 약관 안내에 대한 약관에 동의해주세요.');
           return false;
         }
       }
