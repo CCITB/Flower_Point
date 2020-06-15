@@ -156,6 +156,7 @@ Route::post('/delete', 'ProductController@basketdelete');
 
 Route::post('/basketstore', 'ProductController@basketstore');
 
+Route::post('/basketcount', 'ProductController@basketcount');
 
 // });
 //mail

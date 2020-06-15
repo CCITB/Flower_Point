@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 class ProductController extends Controller
 {
+  // protected $a;
+  // public function __construct(){
+  //
+  //   $this->a = DB::table('basket')
+  //
+  //
+  // }
 
   //
   public function seller_shoppost(){
@@ -69,10 +76,15 @@ class ProductController extends Controller
   }
   public function basket(){
 
+
     if(auth()->guard('customer')->user()){
       $userinfo = auth()->guard('customer')->user()->c_no;
       $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-      return view('flowercart',compact('data'));
+      $price_sum = $data->sum('b_price');
+      $delivery_sum = $data->sum('b_delivery');
+      $count_sum = $data->sum('b_count');
+      $data_sum = $price_sum + $delivery_sum;
+      return view('flowercart',compact('data','price_sum','delivery_sum','count_sum','data_sum'));
     }
     if(auth()->guard('seller')->user()){
       return redirect('/');
@@ -115,11 +127,16 @@ class ProductController extends Controller
   // }
   public function basketdelete(Request $request){
     $data =  $request->input('id');
-    if($userinfo = auth()->guard('customer')->user()->c_no){
+    if(auth()->guard('customer')->user()){
       DB::table('basket')->where('b_no',$data)->delete();
-
+      $userinfo = auth()->guard('customer')->user()->c_no;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $price_sum = $data1->sum('b_price');
+      $delivery_sum = $data1->sum('b_delivery');
+      $count_sum = $data1->sum('b_count');
+      $data_sum = $price_sum + $delivery_sum;
     }
-      return response()->json($data);
+    return response()->json([$data,$price_sum,$delivery_sum,$count_sum,$data_sum]);
   }
   public function basketstore(Request $request){
     $data =  $request->input('id');
@@ -145,5 +162,16 @@ class ProductController extends Controller
     }
 
 
+  }
+  public function basketcount(Request $request){
+    $add = $request->input('add');
+    $no = $request->input('e');
+    $remove = $request->input('remove');
+    if(isset($add)){
+     $b_no = DB::table('basket')->where('b_no', $no);
+
+      return response()->json($b_no);
+    }
+      return response()->json(0);
   }
 }
