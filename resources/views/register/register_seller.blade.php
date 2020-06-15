@@ -18,7 +18,7 @@
   <div id="all">
     <div class="text">
       <div class="text">
-        <span class="id_title"><i>이용약관 동의</i></span>
+        <span class="id_title"><i>판매자 - 회원가입</i></span>
         <div class="page-sorting">
           <span >step1</span>
           <span>&gt;</span>

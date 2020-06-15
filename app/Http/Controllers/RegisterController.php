@@ -38,17 +38,16 @@ class RegisterController extends Controller
 
       //database insert
       if($sellers<1){
-        $s_tel1 = $request->input('seller_tel1');
-        $s_tel2 = $request->input('seller_tel2');
-        $s_tel3 = $request->input('seller_tel3');
+        $s_tel1 = $request->input('s_tel1');
+        $s_tel2 = $request->input('s_tel2');
 
-        $s_tel = $s_tel1.'-'.$s_tel2.'-'.$s_tel3;
+        $s_tel = $s_tel1.$s_tel2;
 
         DB::table('seller')->insert([
           's_id'=>$request->input('s_id'),
           's_password' => bcrypt($request->input('s_password')),
           's_name' => $request->input('s_name'),
-          's_phonenum' => $request->$s_tel,
+          's_phonenum' => $s_tel,
           's_email' => $request->input('s_email'),
           's_gender' => $request->input('s_gender'),
           's_birth' => $request->input('s_birth_y').$request->input('s_birth_m').$request->input('s_birth_d')

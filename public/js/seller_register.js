@@ -191,18 +191,18 @@ $(document).ready(function(){
 
   function check_phonenum(){
     //seller register의 id input
-    var s_phonenum_val1 = $('#seller_tel1').val();
-    var s_phonenum_val2 = $('#seller_tel2').val();
-    var s_phonenum_val3 = $('#seller_tel3').val();
+    var s_phonenum_val1 = $('#s_tel1').val();
+    var s_phonenum_val2 = $('#s_tel1').val();
+    var s_phonenum_val3 = $('#s_tel1').val();
     var phone= /^[0-9]+$/;
 
     //1. 정규식 일치 O
-    if(s_phonenum_val1==""||s_phonenum_val2==""||s_phonenum_val3==""){
+    if(s_phonenum_val1==""||s_phonenum_val2==""){
       $("#phonenum_check").text("필수 정보입니다.");
       $('#phonenum_check').css('color', 'red');
     }
     //2. 공백
-    else if(phone.test(s_phonenum_val1=="")||phone.test(s_phonenum_val2=="")||phone.test(s_phonenum_val3=="")){
+    else if(phone.test(s_phonenum_val1=="")||phone.test(s_phonenum_val2=="")){
       $('#phonenum_check').text('');
     }
     //3. 정규식 일치 X
@@ -406,38 +406,20 @@ function checkIt(){
     $("#name").focus();
     return false;
   }
-  //-------------------성별
-  if($('#s_gender').val() == ""){
-    $('#gender_check').text("필수 정보입니다.");
-    $('#gender_check').css('color', 'red');
-    $("#s_gender").focus();
-    return false;
-  }
+
   //-------------------핸드폰
   //1. 정규식 일치 O
-  if($('#seller_tel1').val()==""||$('#seller_tel2').val()==""){
+  if($('#s_tel1').val()==""||$('#s_tel2').val()==""){
     $("#phonenum_check").text("필수 정보입니다.");
     $('#phonenum_check').css('color', 'red');
     $("#seller_tel2").focus();
-    return false;
-  }
-  if($('#seller_tel3').val()==""){
-    $("#phonenum_check").text("필수 정보입니다.");
-    $('#phonenum_check').css('color', 'red');
-    $("#seller_tel3").focus();
     return false;
   }
   //3. 정규식 일치 X
-  if(!phone.test($('#seller_tel1').val())||!phone.test($('#seller_tel2').val())){
+  if(!phone.test($('#s_tel1').val())||!phone.test($('#s_tel2').val())){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');
-    $("#seller_tel2").focus();
-    return false;
-  }
-  if(!phone.test($('#seller_tel3').val())){
-    $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
-    $('#phonenum_check').css('color', 'red');
-    $("#seller_tel3").focus();
+    $("#s_tel2").focus();
     return false;
   }
   //-------------------이메일
@@ -463,13 +445,10 @@ function checkIt(){
     $("#verify_num").focus();
     return false;
   }
-  else if(global_random != $('#verify_num').val()){
+  if(global_random != $('#verify_num').val()){
     $('#email_check').text("인증번호를 다시 확인해주세요.");
     $('#email_check').css('color', 'red');
     $("#verify_num").focus();
     return false;
-  }
-  else{
-    return true;
   }
 }
