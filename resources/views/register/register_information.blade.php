@@ -29,10 +29,10 @@
           <span >step1</span>
           <span>&gt;</span>
           <span >step2</span>
-            <span>&gt;</span>
-            <span class="current-page">step3</span>
-          </div>
+          <span>&gt;</span>
+          <span class="current-page">step3</span>
         </div>
+      </div>
       <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
 
@@ -70,19 +70,18 @@
 
         <div class="paragraph">
           <div class="sign_name">매장 주소</div>
-          {{-- <input class="shop_info" type="text" placeholder="Shop Address" id="st_address" name="st_address"> --}}
           <!-- 우편번호 -->
-          <input type="text" id="postcode" name="Postcode" placeholder="우편번호" disabled="false">
+          <input type="text" id="postcode" name="postcode" placeholder="우편번호">
           <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-        <!--주소 -->
-        <div class="delivery_wrap2">
-          <input type="text"  id="address" name="address" placeholder="주소">
+          <!--주소 -->
+          <div class="delivery_wrap2">
+            <input type="text"  id="address" name="address" placeholder="주소">
 
-          <div class="delivery_address_detail">
-            <input type="text" class="delivery_address_list" id="detailAddress" name="address" placeholder="상세주소">
-            <input type="text" class="delivery_address_list" id="extraAddress" name="extraAddress" placeholder="참고항목">
+            <div class="delivery_address_detail">
+              <input type="text" class="delivery_address_list" id="detailAddress" name="detailAddress" placeholder="상세주소">
+              <input type="text" class="delivery_address_list" id="extraAddress" name="extraAddress" placeholder="참고항목">
+            </div>
           </div>
-        </div>
           <div class="check_div" id="staddress_check" value=""></div>
         </div>
 

@@ -98,7 +98,7 @@ $(document).ready(function(){
       $('#staddress_num').text('필수 정보입니다.');
       $('#staddress_num').css('color', 'red');
     }
-    else if(numJ.test(st_tel)){
+    else if(!numJ.test(st_tel)){
       $('#staddress_num').text('숫자만 입력해주세요.');
       $('#staddress_num').css('color', 'red');
     }
@@ -156,7 +156,7 @@ function checkIt(){
     $("#st_tel").focus();
     return false;
   }
-  if(numJ.test($('#st_tel').val())){
+  if(!numJ.test($('#st_tel').val())){
     $('#staddress_num').text("숫자만 입력해주세요.");
     $('#staddress_num').css('color', 'red');
     $("#st_tel").focus();

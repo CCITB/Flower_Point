@@ -55,18 +55,26 @@ class RegisterController extends Controller
         $datas =  $request->input('s_id');
         $sid = DB::table('seller')->where('s_id','=',$datas )->first();
 
-        $s_num1 = $request->input('registeration_num1');
-        $s_num2 = $request->input('registeration_num2');
-        $s_num3 = $request->input('registeration_num3');
-        $s_num = $s_num1.'-'.$s_num2.'-'.$s_num3;
+        //사업자등록번호
+        $st_num1 = $request->input('registeration_num1');
+        $st_num2 = $request->input('registeration_num2');
+        $st_num3 = $request->input('registeration_num3');
+        $st_num = $st_num1.'-'.$st_num2.'-'.$st_num3;
+
+        //주소
+        $st_post = $request->input('postcode');
+        $st_add = $request->input('address');
+        $st_detail = $request->input('detailAddress');
+        $st_extra = $request->input('extraAddress');
+        $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra;
 
         DB::table('store')->insert([
           'st_name'=>$request->input('st_name'),
           'st_tel' => $request->input('st_tel'),
-          'st_address' => $request->input('st_address'),
-          'st_registeration_num' => $s_num,
+          'st_address' => $st_address,
+          'st_registeration_num' => $st_num,
           'st_introduce' => $request->input('st_introduce'),
-            'seller_no' =>  $sid->s_no
+          'seller_no' =>  $sid->s_no
         ]);
         // return $sid->s_no;
         return redirect('/login_seller');
