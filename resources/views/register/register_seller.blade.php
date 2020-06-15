@@ -17,7 +17,17 @@
 <body>
   <div id="all">
     <div class="text">
-      <div class="id_title">Seller Register</div> <hr>
+      <div class="text">
+        <span class="id_title"><i>이용약관 동의</i></span>
+        <div class="page-sorting">
+          <span >step1</span>
+          <span>&gt;</span>
+          <span class="current-page">step2</span>
+            <span>&gt;</span>
+            <span >step3</span>
+          </div>
+        </div>
+      <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
     <div class="signup">
       <form action = '/sto_info' method="post" name="f" onsubmit='return checkIt();'>
@@ -69,7 +79,7 @@
         <div class="check_div" id="gender_check" value=""></div>
 
         <div class="inf2">연락처</div>
-        <select name="phone_no1"  id="seller_tel1" name="seller_tel1" class="seller_tel1">
+        <select class="inf2" id="s_tel1" name="s_tel1" >
           <option value="010" selected>010</option>
           <option value="011">011</option>
           <option value="016">016</option>
@@ -97,9 +107,7 @@
           <option value="080">080</option>
         </select>
         -
-        <input type="text" title="휴대폰 중간번호" id="seller_tel2" name="seller_tel2" class="seller_tel2" maxlength="6">
-        -
-        <input type="text" title="휴대폰 뒷자리" id="seller_tel3" name="seller_tel3" class="seller_tel3" maxlength="6">
+        <input type="text" class="inf_tel" id="s_tel2" name="s_tel2"  maxlength="12">
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="verify">

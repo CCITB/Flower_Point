@@ -16,7 +16,17 @@
 <body>
   <div id="all">
     <div class="text">
-      <div class="id_title">Store Information</div> <hr>
+      <div class="text">
+        <span class="id_title"><i>이용약관 동의</i></span>
+        <div class="page-sorting">
+          <span >step1</span>
+          <span>&gt;</span>
+          <span >step2</span>
+            <span>&gt;</span>
+            <span class="current-page">step3</span>
+          </div>
+        </div>
+      <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
 
     <div class="st_if">
@@ -27,14 +37,13 @@
         <input type="hidden" name="s_name" value="<?php echo $_POST['s_name']?>">
         <input type="hidden" name="s_email" value="<?php echo $_POST['s_email']?>">
         <input type="hidden" name="s_gender" value="<?php echo $_POST['s_gender']?>">
-        
+
         <input type="hidden" name="s_birth_y" value="<?php echo $_POST['s_birth_y']?>">
         <input type="hidden" name="s_birth_m" value="<?php echo $_POST['s_birth_m']?>">
         <input type="hidden" name="s_birth_d" value="<?php echo $_POST['s_birth_d']?>">
 
-        <input type="hidden" name="seller_tel1" value="<?php echo $_POST['seller_tel1']?>">
-        <input type="hidden" name="seller_tel2" value="<?php echo $_POST['seller_tel2']?>">
-        <input type="hidden" name="seller_tel3" value="<?php echo $_POST['seller_tel3']?>">
+        <input type="hidden" name="s_tel1" value="<?php echo $_POST['s_tel1']?>">
+        <input type="hidden" name="s_tel2" value="<?php echo $_POST['s_tel2']?>">
 
         <div class="paragraph">
           <div class="sign_name">매장 이름</div>
