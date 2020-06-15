@@ -1,5 +1,5 @@
 //전역변수 random
-var random;
+var global_random;
 // jQuery -- 어지수
 $.ajaxSetup({
   headers: {
@@ -264,20 +264,17 @@ function verify_email(){
       $('#email_check').css('color', 'green');
       $('#verify_num').attr('disabled', false);
 
-      //난수
-      random = Math.floor(Math.random() * 10000)+1;
-
       $.ajax({
 
         type: 'post',
         url: 'mail',
         dataType: 'json',
-        data: { "email": customer_val,
-        "random": random },
+        data: { "email": customer_val },
 
-        success : function(data) {
+        success : function(randomNum) {
+            global_random = randomNum;
           //공백
-          console.log(data);
+          console.log(randomNum);
         }//success
         ,error : function() { }
       });
@@ -310,7 +307,7 @@ if(verify == ""){
 }
 //2. 빈칸 X
 //랜덤값과 맞을 때
-else if(random==verify){
+else if(global_random==verify){
   $('#email_check').text("");
 }
 else{
@@ -321,7 +318,7 @@ else{
 
 
 function checkIt(){
-  random;
+  global_random;
   //공백 alert
   if(document.f.c_id.value==""){
     document.f.c_id.focus();
@@ -359,7 +356,7 @@ function checkIt(){
     document.f.verify_num.focus();
     return false;
   }
-  if(document.f.verify_num.value!=random){
+  if(document.f.verify_num.value!=global_random){
     document.f.verify_num.focus();
     return false;
   }

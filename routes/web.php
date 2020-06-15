@@ -142,7 +142,10 @@ Route::get('/customer', function(){
   return view('mypage/customer');
 });
 
+//메일
 Route::post('/mail', 'MailController@sends');
+//Route::post('/mail', 'MailController@sends');
+
 //검색
 Route::get('/search', 'SearchController@result');
 

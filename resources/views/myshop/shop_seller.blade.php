@@ -11,15 +11,11 @@
     @include('lib.header')
     <div class="allwrap">
       <div class="wrap0">
-      <div class="wrap1">
       <h3 class="shopname">CCIT flower</h3>
-      <button class="btn1" type="button" name="button" onclick="location.href=''">문의하기</button>
-      <button class="btn1" type="button" name="button" onclick="location.href=''">물품관리</button>
-    </div>
     <hr>
     <div class="wrap2">
       <div class="imgbox">
-    <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" width="100px" height="100px">
+    <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
   </div>
 @if( auth()->guard('seller')->user())
   @foreach ($data as $data1)
@@ -54,7 +50,7 @@
     <div class="wrap6-1">
       <img src="\imglib\" alt="" width="100px" height="100px">
     </div>
-    @foreach ($proro as $data3)
+
       <div class="productlist">
         <div class="productlist-item">
           <div class="">
@@ -71,21 +67,6 @@
             <input type="text" name="" value="">
             <button type="submit" name="button" >검색</button>
           </div>
-          <style>
-          td.upload-date{
-            text-align: center;
-          }
-          td.upload-price{
-            text-align: right;
-            padding-right: 10px;
-            padding-left: 10px;
-          }
-          td.upload-name{
-            text-align: left;
-            padding-left: 15px;
-
-          }
-          </style>
           <table id="myTable">
               <tr>
                 <th class="registration-date">날짜</th>
@@ -93,21 +74,36 @@
                 <th class="product-price">가격</th>
                 <th class="product-amount">주문량</th>
               </tr>
-            </tr>
-            </tr>
+
             {{-- <tr>
               <td class="upload-date">2020.05.14</td>
               <td class="upload-name">sefasd</td>
               <td class="upload-price">20000원</td>
               <td></td>
             </tr> --}}
+                @foreach ($proro as $data3)
             <tr>
               <td class="upload-date">{{$data3->p_date}}</td>
-              <td class="upload-name"{{$data3->p_name}}</td>
+              <td class="upload-name">{{$data3->p_name}}</td>
               <td class="upload-price">{{$data3->p_price}}</td>
             </tr>
-
+                @endforeach
           </table>
+          <style>
+          td.upload-date{
+            text-align: center;
+          }
+          td.upload-price{
+            text-align: center;
+            padding-right: 10px;
+            padding-left: 10px;
+          }
+          td.upload-name{
+            text-align: center;
+            padding-left: 15px;
+
+          }
+          </style>
           <div class="nav-page">
             <nav>
               <a href="#" class="active">1</a>
@@ -127,7 +123,7 @@
           </div>
         </div>
       </div>
-    @endforeach
+
   @endif
   </div>
 
