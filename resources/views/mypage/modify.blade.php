@@ -37,10 +37,13 @@
                       <th>연락처</th>
                       <td><input type="text" name="s_phonenum" placeholder="연락처"></td>
                   </tr>
+                  </form>
+                  <form action="/modiemail" method="post">
                   <tr>
                       <th>이메일</th>
                       <td><input type="email" name="s_email" placeholder="이메일"></td>
                   </tr>
+                </form>
                   <tr>
                       <th>주소</th>
                       <td><input type="text" placeholder="주소"></td>
@@ -73,7 +76,7 @@
       @endif
             <button class="btn btn-primary" type="submit">수정
             </button>
-          </form>
+
     </div>
   </div>
     @include('lib.footer')

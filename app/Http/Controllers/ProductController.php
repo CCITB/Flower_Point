@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 class ProductController extends Controller
 {
+  // protected $a;
+  // public function __construct(){
+  //
+  //   $this->a = DB::table('basket')
+  //
+  //
+  // }
 
   //
   public function seller_shoppost(){
@@ -69,10 +76,23 @@ class ProductController extends Controller
   }
   public function basket(){
 
+
     if(auth()->guard('customer')->user()){
       $userinfo = auth()->guard('customer')->user()->c_no;
       $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-      return view('flowercart',compact('data'));
+      // return $data;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $price_sum = $data1->sum('b_price');
+      $dz = 0;
+      for($i=0; $i<count($data1); $i++){
+
+        $dz+=($data[$i]->b_price+$data[$i]->b_delivery)*$data[$i]->b_count;
+
+      }
+      $delivery_sum = $data1->sum('b_delivery');
+      $count_sum = $data1->sum('b_count');
+      $data_sum = ($price_sum + $delivery_sum);
+      return view('flowercart',compact('data','dz'));
     }
     if(auth()->guard('seller')->user()){
       return redirect('/');
@@ -115,11 +135,22 @@ class ProductController extends Controller
   // }
   public function basketdelete(Request $request){
     $data =  $request->input('id');
-    if($userinfo = auth()->guard('customer')->user()->c_no){
+    if(auth()->guard('customer')->user()){
       DB::table('basket')->where('b_no',$data)->delete();
+      $userinfo = auth()->guard('customer')->user()->c_no;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $price_sum = $data1->sum('b_price');
+      $delivery_sum = $data1->sum('b_delivery');
+      $count_sum = $data1->sum('b_count');
+      $data_sum = ($price_sum + $delivery_sum);
+      $dz = 0;
+      for($i=0; $i<count($data1); $i++){
 
+        $dz+=($data1[$i]->b_price+$data1[$i]->b_delivery)*$data1[$i]->b_count;
+
+      }
     }
-      return response()->json($data);
+    return response()->json([$data,$price_sum,$delivery_sum,$count_sum,$data_sum,$dz]);
   }
   public function basketstore(Request $request){
     $data =  $request->input('id');
@@ -144,6 +175,49 @@ class ProductController extends Controller
       return response()->json(0);
     }
 
+
+  }
+  public function basketcount(Request $request){
+    $add = $request->input('add');
+    $no = $request->input('no');
+    $remove = $request->input('remove');
+    $userinfo = auth()->guard('customer')->user()->c_no;
+
+    if(isset($add)){
+      // $b_no = DB::table('basket')->where('b_no', $no)->get();
+      $b_no = DB::table('basket')->where('b_no',$no)->update([
+        'b_count' => $add
+      ]);
+      $basket = DB::table('basket')->where('b_no',$no)->first();
+      $price = $basket->b_price * $basket->b_count;
+      $delivery = $basket->b_delivery* $basket->b_count;
+      $sum = $price + $delivery;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $dz = 0;
+      for($i=0; $i<count($data1); $i++){
+
+        $dz+=($data1[$i]->b_price+$data1[$i]->b_delivery)*$data1[$i]->b_count;
+
+      }
+      return response()->json([$price,$delivery,$sum,$dz]);
+    }
+    else {
+      DB::table('basket')->where('b_no',$no)->update([
+        'b_count' => $remove
+      ]);
+      $basket = DB::table('basket')->where('b_no',$no)->first();
+      $price = $basket->b_price * $basket->b_count;
+      $delivery = $basket->b_delivery* $basket->b_count;
+      $sum = $price + $delivery;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $dz = 0;
+      for($i=0; $i<count($data1); $i++){
+
+        $dz+=($data1[$i]->b_price+$data1[$i]->b_delivery)*$data1[$i]->b_count;
+
+      }
+      return response()->json([$price,$delivery,$sum,$dz]);
+    }
 
   }
 }

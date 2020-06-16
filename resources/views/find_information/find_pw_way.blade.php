@@ -20,18 +20,19 @@
     </div>
 
     <div class ="find_pw_way">
-      <form action = '/find_pw_reset' method='POST'>
+      <form action = '/f_reset' method='post'>
+        @csrf
         <div class="fd_id">
           <div class="character">
 
           </div>
           <div class="window">
             <div class="ip_name">이름</div>
-            <input class="find_input" type="name" placeholder="이름을 입력하세요." name="name"><br><br>
+            <input class="find_input" placeholder="이름을 입력하세요." name="pw_name"><br><br>
             <div class="ip_name">전화번호</div>
-            <input class="find_input" type="tell" placeholder="전화번호를 입력하세요" name="tell" title="000-0000-0000">
+            <input class="find_input" placeholder="전화번호를 입력하세요" name="pw_tell">
             <input type="submit" value="인증"><br><br>
-            <input class="find_input" type="name" placeholder="인증번호" name="name">
+            <input class="find_input" placeholder="인증번호">
             <input type="submit" value="확인"><br><br>
           </div>
         </div>

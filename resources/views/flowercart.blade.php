@@ -106,7 +106,7 @@
         <div class="flowercart-section">
           <div class="product-name">{{$list->b_name}}</div>
           <div class="product-price"> {{$list->b_price}}
-            <a class="btn{{$list->b_no}}" href="#" >x</a>
+            <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a>
             <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
           </div>
           {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
@@ -114,28 +114,32 @@
             쿠폰
           </div>
           <div class="product-count">
-            <button class="plus" type="button" name="button">
-              <img src="/imglib/add.png" alt="">
-            </button>
-            <input class="count-plmi" type="text" name="" value="{{$list->b_count}}">
-            <button type="button" class="minus" name="button">
-              <img src="/imglib/remove.png" alt="">
-            </button>
+            {{-- 수량증가-------------------- --}}
+            <form class="" action="" method="post" name="form">
+              <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
+                <img src="/imglib/add.png" alt="">
+              </button>
+              <input class="count-plmi" type="text" name="amount{{$list->b_no}}" id="count{{$list->b_no}}" value="{{$list->b_count}}">
+              <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
+                <img src="/imglib/remove.png" alt="">
+              </button>
+
+              {{-- 수량증가-------------------- --}}
+            </div>
           </div>
+
+
         </div>
-
-
-      </div>
-      <div class="flowercart-bottom">
-        <div class="text-section-wrap">
-          <div class="text-section">
-            상품금액
+        <div class="flowercart-bottom">
+          <div class="text-section-wrap">
+            <div class="text-section">
+              상품금액
+            </div>
+            <div class="price-section">
+              <strong class="text-option" id="productprice{{$list->b_no}}">{{$list->b_price*$list->b_count}}</strong>원
+            </div>
           </div>
-          <div class="price-section">
-            <strong class="text-option">{{$list->b_price}}</strong>원
-          </div>
-        </div>
-
+        </form>
         <div class="imgwrap-section">
           <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
         </div>
@@ -155,7 +159,7 @@
             배송비
           </div>
           <div class="price-section">
-            <strong class="text-option">{{$list->b_delivery}}</strong>원
+            <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{$list->b_delivery*$list->b_count}}</strong>원
           </div>
         </div>
         <div class="imgwrap-section">
@@ -166,7 +170,7 @@
             주문금액
           </div>
           <div class="price-section">
-            <strong class="text-option">{{$list->b_price+$list->b_delivery}}</strong>원
+            <strong class="text-option1" id="allsum{{$list->b_no}}">{{($list->b_price+$list->b_delivery)*$list->b_count}}</strong>원
           </div>
         </div>
       </div>
@@ -182,11 +186,11 @@
   <div class="flowercart-right-middle">
     <div class="label-container">
       <span class="label-left">상품수</span>
-      <span class="label-right"> <strong>0</strong> 개</span>
+      <span class="label-right"> <strong id="i_result3">0</strong> 개</span>
     </div>
     <div class="label-container">
       <span class="label-left">상품금액</span>
-      <span class="label-right"> <strong>0</strong> 원</span>
+      <span class="label-right"> <strong id="i_result1">0</strong> 원</span>
     </div>
     <div class="label-container">
       <span class="label-left">할인금액</span>
@@ -194,7 +198,7 @@
     </div>
     <div class="label-container">
       <span class="label-left">배송비</span>
-      <span class="label-right"> <strong>0</strong> 원</span>
+      <span class="label-right"> <strong id="i_result2">0</strong> 원</span>
     </div>
   </div>
   <div class="flowercart-right-bottom">
@@ -204,9 +208,9 @@
 
     </div>
     <div class="allorderprice-section">
-      <span class="allorderprice-right"> <span>
-0
-        </span>원 </span>
+      <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">
+        {{$dz}}
+      </span>원 </span>
     </div>
 
     <div class="basketorder">
@@ -264,13 +268,81 @@ for(var i=0; i<objs.length ; i++){
 }
 </script>
 <script type="text/javascript">
+function changesum(para){
+  console.log($('#allsum'+para).text());
+  productprice = $('#productprice'+para).text();
+  deliveryprice = $('#deliveryprice'+para).text();
+  allsum = $('#allsum'+para).text();
+
+  document.getElementById("i_result1").innerHTML = productprice;
+  document.getElementById("i_result2").innerHTML = deliveryprice;
+  // document.getElementById("i_result4").innerHTML = allsum;
+
+}
+function increase(a) {
+  var textbox = document.getElementById('count'+a);
+  textbox.value = parseInt(textbox.value) + 1;
+  console.log(textbox.value);
+  n2 = textbox.value;
+  $.ajax({
+    type: 'post',
+    url: '/basketcount',
+    dataType: 'json',
+    data: { "add" : n2,
+    "no" : a
+  },
+  success: function(data) {
+    console.log(data);
+    document.getElementById("productprice"+a).innerHTML=data[0];
+    document.getElementById("deliveryprice"+a).innerHTML=data[1];
+    document.getElementById("allsum"+a).innerHTML=data[2];
+    document.getElementById("i_result4").innerHTML=data[3];
+    // changesum(a);
+  },
+  error: function(data) {
+    console.log("error" +data);
+  }
+});
+}
+function decrease(d) {
+  var textbox = document.getElementById('count'+d);
+  if(textbox.value <=1){
+    alert('수량이 1보단 작을수 없습니다.');
+    console.log(textbox.value);
+    return false;
+  }
+  else textbox.value = parseInt(textbox.value) - 1;
+  console.log(textbox.value);
+  n2 = textbox.value;
+  $.ajax({
+    type: 'post',
+    url: '/basketcount',
+    dataType: 'json',
+    data: { "remove" : n2,
+    "no" : d
+  },
+  success: function(data) {
+    console.log(data);
+    document.getElementById("productprice"+d).innerHTML=data[0];
+    document.getElementById("deliveryprice"+d).innerHTML=data[1];
+    document.getElementById("allsum"+d).innerHTML=data[2];
+    document.getElementById("i_result4").innerHTML=data[3];
+    // changesum(d);
+  },
+  error: function(data) {
+    console.log("error" +data);
+  }
+});
+}
+
+
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-
 function del(e){
+
   console.log(e);
 
   $.ajax({
@@ -281,7 +353,12 @@ function del(e){
     // console.log(jjim);
     success: function(data) {
       console.log(data);
-      if(data=e){
+      if(data[0]=e){
+        document.getElementById("i_result1").innerHTML=data[1];
+        document.getElementById("i_result2").innerHTML=data[2];
+        document.getElementById("i_result3").innerHTML=data[3];
+        document.getElementById("i_result4").innerHTML=data[4];
+
         $("#remove"+e).remove();
         console.log('삭제');
       }
@@ -291,7 +368,6 @@ function del(e){
     }
   });
 }
-
 </script>
 <style>
 .plus img{
@@ -362,21 +438,5 @@ button.minus{
 }
 </style>
 <script type="text/javascript">
-
-var num = new Array();
-console.log(num);
-// document.write('합계: ' , sum(num), '<br />');
-
-
-
-// 배열 합계 구하기 함수
-function sum(array) {
-  var result = 0.0;
-
-  for (var i = 0; i < array.length; i++)
-    result += array[i];
-
-  return result;
-}
 
 </script>

@@ -58,11 +58,15 @@ Route::get('/mailview', function () {
 //ID, PW 찾기
 Route::get('/find_id', 'FindController@find_id');
 
+Route::post('/f_id', 'FindController@f_id');
+
 Route::get('/find_pw', 'FindController@find_pw');
 
 Route::get('/find_pw_way', 'FindController@find_pw_way');
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+
+Route::post('/f_reset', 'FindController@f_reset');
 
 Route::get('/find_chk', 'FindController@find_check');
 
@@ -77,13 +81,18 @@ Route::post('/information_controller', 'InformationController@information');
 Route::get('/locate1', function () {
   return view('locate');
 });
-Route::get('/mypage', function () {
-  return view('mypage/mypage');
-});
+
 
 Route::get('/faq', function () {
   return view('FAQ');
+});Route::post('/modiemail', 'InformationController@modifyemail');
+
+Route::post('/modiaddress', 'InformationController@modifyaddress');
+
+Route::get('/locate1', function () {
+  return view('locate');
 });
+
 // Route::get('/myqna', function () {
 //   return view('myQnA');
 // });
@@ -133,7 +142,17 @@ Route::get('/customer', function(){
 Route::get('/all', 'MainController@showall');
 
 Route::get('/mypage', function(){
-  return view('mypage/mypage');
+    return view('mypage/mypage');
+    if($sellerinfo = auth()->guard('seller')->user()){
+      // return 0;
+      $sellerprimary = $sellerinfo->s_no;
+          $sellerstore = DB::table('seller')
+          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+          ->where('s_no','=', $sellerprimary )->get();
+          return $sellerstore;
+          $sellerstore = DB::table('product')->select('*')->where('seller' ,'=', $sellerstore[0]->st_no)->get();
+            return view('mypage/mypage', compact('sellerstore'));
+          }
 });
 Route::get('/modify', function(){
   return view('mypage/modify');
@@ -156,6 +175,7 @@ Route::post('/delete', 'ProductController@basketdelete');
 
 Route::post('/basketstore', 'ProductController@basketstore');
 
+Route::post('/basketcount', 'ProductController@basketcount');
 
 // });
 //mail
