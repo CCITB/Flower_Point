@@ -44,11 +44,12 @@ $(document).ready(function(){
     }
   });//blur
 
-  $("#st_address").blur(function() {
+  // 주소
+  $("#address").blur(function() {
     //input data
-    var st_address = $("#st_address").val();
+    var address = $("#address").val();
     //예외처리 -- 공백
-    if(st_address==''){
+    if(address==''){
       $('#staddress_check').text('필수 정보입니다.');
       $('#staddress_check').css('color', 'red');
     }
@@ -58,12 +59,47 @@ $(document).ready(function(){
     }
   });//blur
 
+  $("#detailAddress").blur(function() {
+    //input data
+    var detailAddress = $("#detailAddress").val();
+    //예외처리 -- 공백
+    if(detailAddress==''){
+      $('#staddress_check').text('필수 정보입니다.');
+      $('#staddress_check').css('color', 'red');
+    }
+    else{
+      $('#staddress_check').text('');
+      $('#staddress_check').css('color', 'red');
+    }
+  });//blur
+
+  $("#extraAddress").blur(function() {
+    //input data
+    var extraAddress = $("#extraAddress").val();
+    //예외처리 -- 공백
+    if(extraAddress==''){
+      $('#staddress_check').text('필수 정보입니다.');
+      $('#staddress_check').css('color', 'red');
+    }
+    else{
+      $('#staddress_check').text('');
+      $('#staddress_check').css('color', 'red');
+    }
+  });//blur
+
+  //전화번호
   $("#st_tel").blur(function() {
     //input data
     var st_tel = $("#st_tel").val();
+
+    var numJ = /^[0-9]*$/;
     //예외처리 -- 공백
     if(st_tel==''){
       $('#staddress_num').text('필수 정보입니다.');
+      $('#staddress_num').css('color', 'red');
+    }
+    else if(!numJ.test(st_tel)){
+      $('#staddress_num').text('숫자만 입력해주세요.');
       $('#staddress_num').css('color', 'red');
     }
     else{
@@ -72,36 +108,62 @@ $(document).ready(function(){
     }
   });//blur
 });
-//onsubmit -- 어지수
-function validatate(){
-  var st_name = document.getElementById("st_name");
-  var registeration_num = document.getElementById("registeration_num");
-  var st_address = document.getElementById("st_address");
-  var st_tel = document.getElementById("st_tel");
-  var st_introduce = document.getElementById("st_introduce");
 
-  if((st_name.value)==""){
-    alert('매장명을 입력해주세요.');
+//******************onsubmit -- 어지수
+function checkIt(){
+  var numJ = /^[0-9]*$/;
+
+  //--------------------매장 이름
+  if($('#st_name').val() == ""){
+    $('#stname_check').text("필수 정보입니다.");
+    $('#stname_check').css('color', 'red');
+    $("#st_name").focus();
     return false;
   }
-  if((registeration_num.value)==""){
-    alert('사업자등록번호를 입력해주세요.');
-    return false;
-  }
-  if((st_address.value)==""){
-    alert('매장주소를 입력해주세요.');
-    return false;
-  }
-  if((st_tel.value)==""){
-    alert('고객센터 번호를 입력해주세요.');
-    return false;
-  }
-  if((st_introduce.value)==""){
-    alert('매장소개를 입력해주세요.');
+  //--------------------매장 주소
+  if($('#postcode').val() == ""){
+    $('#staddress_check').text("우편번호가 비어있습니다.");
+    $('#staddress_check').css('color', 'red');
+    $("#postcode").focus();
     return false;
   }
 
-  else {
+  if($('#address').val() == ""){
+    $('#staddress_check').text("필수 정보입니다.");
+    $('#staddress_check').css('color', 'red');
+    $("#address").focus();
+    return false;
+  }
+
+  if($('#detailAddress').val() == ""){
+    $('#staddress_check').text("필수 정보입니다.");
+    $('#staddress_check').css('color', 'red');
+    $("#detailAddress").focus();
+    return false;
+  }
+
+  if($('#extraAddress').val() == ""){
+    $('#staddress_check').text("필수 정보입니다.");
+    $('#staddress_check').css('color', 'red');
+    $("#extraAddress").focus();
+    return false;
+  }
+
+  //--------------------매장 전화번호
+  if($('#st_tel').val() == ""){
+    $('#staddress_num').text("필수 정보입니다.");
+    $('#staddress_num').css('color', 'red');
+    $("#st_tel").focus();
+    return false;
+  }
+  if(!numJ.test($('#st_tel').val())){
+    $('#staddress_num').text("숫자만 입력해주세요.");
+    $('#staddress_num').css('color', 'red');
+    $("#st_tel").focus();
+    return false;
+  }
+
+  else{
     return true;
   }
 }

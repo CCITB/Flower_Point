@@ -12,7 +12,7 @@
         @elseif($seller = auth()->guard('seller')->user())
           <div class="login">
             <span style="cursor:default;">안녕하세요 {{$seller -> s_name}} 님</span>
-            <span><a href="/logout">로그아웃</a></span>
+            <span><a href="/logout" style="color:black;">로그아웃</a></span>
           </div>
         @else
           <div class="login">
@@ -29,196 +29,198 @@
               <a href="/terms_sellers" class="login_right">판매자</a>
             </div>
           </div>
-        @endif
-</div>
-</div>
 
-<div id="block_container">
-  <div id="header">
-    <div id="block1">
-      <h1><a href="/">꽃갈피</a></h1>
+        @endif
+        <div class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></div>
+      </div>
     </div>
-    <div id="block2">
-      <form method="get" action="/search" class="headersearch">
-        @csrf
-        <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
-        autocomplete="off" >
-        <label for="headersearch">
-          <button type="submit"class="search-button">검색</button>
-        </label>
-      </form>
+
+    <div id="block_container">
+      <div id="header">
+        <div id="block1">
+          <h1><a href="/">꽃갈피</a></h1>
+        </div>
+        <div id="block2">
+          <form method="get" action="/search" class="headersearch">
+            @csrf
+            <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
+            autocomplete="off" >
+            <label for="headersearch">
+              <button type="submit"class="search-button">검색</button>
+            </label>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<div class="dropdown-wrap" id=dropdown_hover>
-  <div id="dropdown-menu">
-    <ul class="mainmenu-wrap">
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-        <a href="/locate1">내 주변 꽃집</a>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-      </li>
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-        <a href="/all">전체 상품 보기</a>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-        <ul class="submenu_list" >
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
-        </ul>
-      </li>
-      @if(auth()->guard('seller')->user())
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-        <a href="/faq">고객센터</a>
-        <ul class="submenu_list">
-          <li class="submenu"><a href="/myqna">문의관리</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-        </ul>
-      </li>
-    @elseif(auth()->guard('customer')->user())
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-        <a href="/faq">고객센터</a>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-        </ul>
-        <ul class="submenu_list">
-          <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-        </ul>
-      </li>
-@endif
-      @if(auth()->guard('seller')->user())
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-        <a href="#">마이페이지</a>
-        <ul class="submenu_list">
-          <li class="submenu"><a href="/mypage">내 정보</a></li>
-            <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
-          <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
-        </ul>
-      </li>
-    @elseif(auth()->guard('customer')->user())
-        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-          <a href="#">마이페이지</a>
+  <div class="dropdown-wrap" id=dropdown_hover>
+    <div id="dropdown-menu">
+      <ul class="mainmenu-wrap">
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/locate1">내 주변 꽃집</a>
           <ul class="submenu_list">
-            <li class="submenu"><a href="/mypage">내 정보</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
           </ul>
         </li>
-    @else
-      <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-        <a href="/login_customer">마이페이지</a>
-        <ul class="submenu_list">
-          <li class="submenu"><a href="/login_customer">내 정보</a></li>
-            <li class="submenu"><a href="/login_customer">내 꽃집 가기</a></li>
-          <li class="submenu"><a href="/login_customer">나의 주문 관리</a></li>
-        </ul>
-      </li>
-    @endif
-    </ul>
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/all">전체 상품 보기</a>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+          <ul class="submenu_list" >
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
+          </ul>
+        </li>
+        @if(auth()->guard('seller')->user())
+          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+            <a href="/faq">고객센터</a>
+            <ul class="submenu_list">
+              <li class="submenu"><a href="/myqna">문의관리</a></li>
+            </ul>
+            <ul class="submenu_list">
+              <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+            </ul>
+            <ul class="submenu_list">
+              <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+            </ul>
+          </li>
+        @elseif(auth()->guard('customer')->user())
+          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+            <a href="/faq">고객센터</a>
+            <ul class="submenu_list">
+              <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+            </ul>
+            <ul class="submenu_list">
+              <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+            </ul>
+          </li>
+        @endif
+        @if(auth()->guard('seller')->user())
+          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+            <a href="#">마이페이지</a>
+            <ul class="submenu_list">
+              <li class="submenu"><a href="/mypage">내 정보</a></li>
+              <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
+              <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
+            </ul>
+          </li>
+        @elseif(auth()->guard('customer')->user())
+          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+            <a href="#">마이페이지</a>
+            <ul class="submenu_list">
+              <li class="submenu"><a href="/mypage">내 정보</a></li>
+            </ul>
+          </li>
+        @else
+          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+            <a href="/login_customer">마이페이지</a>
+            <ul class="submenu_list">
+              <li class="submenu"><a href="/login_customer">내 정보</a></li>
+              <li class="submenu"><a href="/login_customer">내 꽃집 가기</a></li>
+              <li class="submenu"><a href="/login_customer">나의 주문 관리</a></li>
+            </ul>
+          </li>
+        @endif
+      </ul>
+    </div>
   </div>
-</div>
-<div class="topmenu-list">
+  <div class="topmenu-list">
 
-</div>
-<style>
-.dropdown-wrap{
-  margin-bottom: 30px;
-  transition: all 0.3s ease-in-out;
-}
-ul.submenu_list{
-  padding: 0px;
-}
-ul{
-  list-style: none;
-}
-ul.mainmenu-wrap{
-  padding-left: 150px;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  margin: 0;
-}
-li.submenu{
-  /* color: #a7acbc; */
-  font-size: 13px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-decoration: none;
-  visibility:hidden;
-  opacity: 0; /*찾아라*/
-  transition: all 0.3s ease-in-out;
-  display: none;
-}
-li.submenu:hover>a{
-  color: #f68500;
-  text-decoration: none;
-  /*찾아라*/
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.3,1.3);
-}
-li.mainmenu:hover>a{
-  color: #f68500;
+  </div>
+  <style>
+  .dropdown-wrap{
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  ul.submenu_list{
+    padding: 0px;
+  }
+  ul{
+    list-style: none;
+  }
+  ul.mainmenu-wrap{
+    padding-left: 150px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin: 0;
+  }
+  li.submenu{
+    /* color: #a7acbc; */
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    visibility:hidden;
+    opacity: 0; /*찾아라*/
+    transition: all 0.3s ease-in-out;
+    display: none;
+  }
+  li.submenu:hover>a{
+    color: #f68500;
+    text-decoration: none;
+    /*찾아라*/
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3,1.3);
+  }
+  li.mainmenu:hover>a{
+    color: #f68500;
 
-}
-li.mainmenu{
-  float: left;
-  display: block;
-  width: 20%;
-  font-size: 22px;
-  transition: all 0.3s ease-in-out;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-right:1px solid white;
-  box-sizing: border-box;
-  border-collapse: collapse;
+  }
+  li.mainmenu{
+    float: left;
+    display: block;
+    width: 20%;
+    font-size: 22px;
+    transition: all 0.3s ease-in-out;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-right:1px solid white;
+    box-sizing: border-box;
+    border-collapse: collapse;
 
-}
-.dropdown-back{
-  background-color: #B2D0EB;
-  z-index: 10;
-  transition: all 0.3s ease-in-out;
-  margin-bottom: 30px;
-  border-radius: 0px 0px 50px 50px;
-  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
-  position: relative;
-}
-.dropdown-back li.submenu{
-  display: block;
-  /* margin-top: 2px;
-  margin-bottom: 2px; */
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-  opacity: 1;
-  visibility:visible;
-}
-.dropdown-back li.mainmenu>a{
-  /* margin-bottom: 15px;
-  margin-top : 15px; */
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-  padding-bottom: 16px;
+  }
+  .dropdown-back{
+    background-color: #B2D0EB;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 30px;
+    border-radius: 0px 0px 50px 50px;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    position: relative;
+  }
+  .dropdown-back li.submenu{
+    display: block;
+    /* margin-top: 2px;
+    margin-bottom: 2px; */
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    opacity: 1;
+    visibility:visible;
+  }
+  .dropdown-back li.mainmenu>a{
+    /* margin-bottom: 15px;
+    margin-top : 15px; */
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    padding-bottom: 16px;
 
-}
-.dropdown-back li.submenu:hover{
-  transform: scale(1.3,1.3);
-}
-li.mainmenu:hover{
+  }
+  .dropdown-back li.submenu:hover{
+    transform: scale(1.3,1.3);
+  }
+  li.mainmenu:hover{
 
-}
+  }
 
 </style>
 <!-- 사이드네비바 시작입니다 -->

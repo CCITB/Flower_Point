@@ -8,7 +8,28 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 class ProductController extends Controller
 {
+  // protected $a;
+  // public function __construct(){
   //
+  //   $this->a = DB::table('basket')
+  //
+  //
+  // }
+
+  //
+  public function seller_shoppost(){
+    if(auth()->guard('seller')->check()){
+      return view('seller.seller_shoppost');
+    }
+    if(auth()->guard('customer')->check()){
+      echo "<script>alert('잘못된요청입니다.')</script>";
+      return redirect('/');
+    }
+    else
+    return view('login.login_seller');
+
+  }
+
   public function seller_product_register(Request $request)
   {
     // $picturerow = DB::table('product_image')->where('i_no','=',5)->first();
@@ -55,9 +76,22 @@ class ProductController extends Controller
   }
   public function basket(){
 
-    if($userinfo = auth()->guard('customer')->user()->c_no){
+
+    if(auth()->guard('customer')->user()){
+      $userinfo = auth()->guard('customer')->user()->c_no;
       $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-      return view('flowercart',compact('data'));
+      $price_sum = $data->sum('b_price');
+      $delivery_sum = $data->sum('b_delivery');
+      $count_sum = $data->sum('b_count');
+      $data_sum = $price_sum + $delivery_sum;
+      return view('flowercart',compact('data','price_sum','delivery_sum','count_sum','data_sum'));
+    }
+    if(auth()->guard('seller')->user()){
+      return redirect('/');
+    }
+    else{
+      // echo '<script>alert("구매자만 이용가능한 서비스입니다.");</script>';
+      return view('login.login_customer');
     }
 
 
@@ -93,11 +127,16 @@ class ProductController extends Controller
   // }
   public function basketdelete(Request $request){
     $data =  $request->input('id');
-    if($userinfo = auth()->guard('customer')->user()->c_no){
+    if(auth()->guard('customer')->user()){
       DB::table('basket')->where('b_no',$data)->delete();
-
+      $userinfo = auth()->guard('customer')->user()->c_no;
+      $data1 = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $price_sum = $data1->sum('b_price');
+      $delivery_sum = $data1->sum('b_delivery');
+      $count_sum = $data1->sum('b_count');
+      $data_sum = $price_sum + $delivery_sum;
     }
-      return response()->json($data);
+    return response()->json([$data,$price_sum,$delivery_sum,$count_sum,$data_sum]);
   }
   public function basketstore(Request $request){
     $data =  $request->input('id');
@@ -113,8 +152,26 @@ class ProductController extends Controller
         'b_delivery' => $pt->p_title,
         'b_picture' => $pt->p_filename
       ]);
+      return response()->json($data);
     }
-    return response()->json($data);
+    if($seller = auth()->guard('seller')->user()){
+      return response()->json(1);
+    }
+    else{
+      return response()->json(0);
+    }
 
+
+  }
+  public function basketcount(Request $request){
+    $add = $request->input('add');
+    $no = $request->input('e');
+    $remove = $request->input('remove');
+    if(isset($add)){
+     $b_no = DB::table('basket')->where('b_no', $no);
+
+      return response()->json($b_no);
+    }
+      return response()->json(0);
   }
 }

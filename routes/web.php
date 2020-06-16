@@ -96,9 +96,10 @@ Route::get('/myqna','pagination@pages');
 Route::get('/postlist', function () {
   return view('post_list');
 });
-Route::get('/sellershoppost', function () {
-  return view('seller.seller_shoppost');
-})->middleware('auth:seller');
+Route::group(['middleware' => 'preventBackHistory'],function(){
+  Route::get('/sellershoppost', 'ProductController@seller_shoppost');
+});
+
 
 Route::get('/product/{id}', 'ProductController@productpage');
 
@@ -152,13 +153,14 @@ Route::post('/mail', 'MailController@sends');
 
 //검색
 Route::get('/search', 'SearchController@result');
-
+Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/flowercart', 'ProductController@basket');
-
+});
 Route::post('/delete', 'ProductController@basketdelete');
 
 Route::post('/basketstore', 'ProductController@basketstore');
 
+Route::post('/basketcount', 'ProductController@basketcount');
 
 // });
 //mail
