@@ -111,7 +111,7 @@
                   </div>
                 </div>
                 <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
-              </table>
+              
 
               <!--결제창-->
               <div class="pay_data">

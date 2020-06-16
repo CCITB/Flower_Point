@@ -99,7 +99,7 @@
             padding-left: 10px;
           }
           td.upload-name{
-            text-align: center;
+            text-align: cne;
             padding-left: 15px;
 
           }

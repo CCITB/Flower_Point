@@ -20,7 +20,7 @@
         <h4>내 정보</h4>
         <style media="screen">
           div.tdcell{
-            padding: 32px 0 32px 30px;
+            padding: 10px 0 10px 30px;
             margin: 0;
             text-align: left;
           }
@@ -31,11 +31,16 @@
             text-align: left;
             letter-spacing: -1px;
           }
+          div#show{
+            padding-left: 32px;
+          }
         </style>
         <div class="privacy">
-          <form action="/modify">
                 <table border="0" table class="table1">
+                  <form action="/information_controller" method="post">
+                    @csrf
                   @if($seller = auth()->guard('seller')->user())
+
                     <tbody>
                     <tr>
                         <th scope="row">
@@ -59,47 +64,73 @@
                       <div class="thcell">연락처</div>
                     </th>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}</p></div>
-                          <div id="show" style="display:none;">
-                            <form class="" action="{{url('/information_controller')}}" method="post">
-                        <input type="text" name=""  placeholder="새 연락처">
-                          </form>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+
+                        <div id="p_num" style="display:none;">
+                        <input type="text" name="s_phonenum"  placeholder="새 연락처">
                         <button type="submit" name="button">수정완료</button>
                         </div>
 
-                        <input type="button" value="Y" display="block" onclick="info_modification(this.value,'show' );">수정</button>
+
 
                         <script type="text/javascript">
+
                         function info_modification(s,ss){
-                          if(s == "Y"){
-                            document.getElementById(ss).style.display="block";
-                        }else {
-                          document.getElementById(ss).style.display="none";
+                          if(s == "연락처수정"){
+                            document.getElementById(ss).style.display="block"
+                            modinum.style.display="none";
                         }
+                        else if(s == "이메일수정"){
+                          document.getElementById(ss).style.display="block"
+                          modiemail.style.display="none";
+                      }
+                      else if(s == "주소수정"){
+                        document.getElementById(ss).style.display="block"
+                        modiaddress.style.display="none";
+                    }
                       }
                         </script>
 
                         </td>
                     </tr>
+                    </form>
+                    <form action="/modiemail" method="post">
+                      @csrf
+
                     <tr>
                       <th scope="row">
                       <div class="thcell">이메일</div>
                     </th>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}</p></div>
+                        <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
+                        <div id="email" style="display:none;">
+                        <input type="text" name="s_email"  placeholder="새 이메일">
+                        <button type="submit" name="button">수정완료</button>
+                        </div>
+
                         </td>
                     </tr>
+                  </form>
+                  <form action="/modiaddress" method="post">
+                    @csrf
+                    @foreach ($sellerstore as $sellershop)
                     <tr>
                       <th scope="row">
                       <div class="thcell">주소</div>
                     </th>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$seller->st_address}}</p></div>
+                        <div class="tdcell"><p class="contxt.tit">{{$sellershop->st_address}}<input type="button" id=modiaddress value="주소수정" name="modi" display="block" onclick="info_modification(this.value,'address' );"></p></div>
+                        <div id="address" style="display:none;">
+                        <input type="text" name="st_address"  placeholder="새 주소">
+                        <button type="submit" name="button">수정완료</button>
+                        </div>
                         </td>
                     </tr>
+                  </form>
+                @endforeach
                     </tbody>
                 </table>
-            </table>
+
 
           @elseif ($customer = auth()->guard('customer')->user())
               <table class="table1">
@@ -126,7 +157,7 @@
                   </table>
               </table>
           @endif
-          </form>
+
 
 
             @if(auth()->guard('seller')->user())
