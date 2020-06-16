@@ -114,30 +114,32 @@
             쿠폰
           </div>
           <div class="product-count">
-            <form class="" action="" method="post" name="frm">
-              <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="add({{$list->b_no}})">
+            {{-- 수량증가-------------------- --}}
+            <form class="" action="" method="post" name="form">
+              <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
                 <img src="/imglib/add.png" alt="">
               </button>
-              <input class="count-plmi" type="text" name="num" id="count{{$list->b_no}}" value="{{$list->b_count}}">
-              <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="remove({{$list->b_no}})">
+              <input class="count-plmi" type="text" name="amount{{$list->b_no}}" id="count{{$list->b_no}}" value="{{$list->b_count}}">
+              <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
                 <img src="/imglib/remove.png" alt="">
               </button>
-            </form>
+
+              {{-- 수량증가-------------------- --}}
+            </div>
           </div>
+
+
         </div>
-
-
-      </div>
-      <div class="flowercart-bottom">
-        <div class="text-section-wrap">
-          <div class="text-section">
-            상품금액
+        <div class="flowercart-bottom">
+          <div class="text-section-wrap">
+            <div class="text-section">
+              상품금액
+            </div>
+            <div class="price-section">
+              <strong class="text-option" id="productprice{{$list->b_no}}">{{$list->b_price*$list->b_count}}</strong>원
+            </div>
           </div>
-          <div class="price-section">
-            <strong class="text-option">{{$list->b_price}}</strong>원
-          </div>
-        </div>
-
+        </form>
         <div class="imgwrap-section">
           <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
         </div>
@@ -157,7 +159,7 @@
             배송비
           </div>
           <div class="price-section">
-            <strong class="text-option">{{$list->b_delivery}}</strong>원
+            <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{$list->b_delivery*$list->b_count}}</strong>원
           </div>
         </div>
         <div class="imgwrap-section">
@@ -168,7 +170,7 @@
             주문금액
           </div>
           <div class="price-section">
-            <strong class="text-option">{{$list->b_price+$list->b_delivery}}</strong>원
+            <strong class="text-option1" id="allsum{{$list->b_no}}">{{($list->b_price+$list->b_delivery)*$list->b_count}}</strong>원
           </div>
         </div>
       </div>
@@ -184,11 +186,11 @@
   <div class="flowercart-right-middle">
     <div class="label-container">
       <span class="label-left">상품수</span>
-      <span class="label-right"> <strong id="i_result3">{{$count_sum}}</strong> 개</span>
+      <span class="label-right"> <strong id="i_result3">0</strong> 개</span>
     </div>
     <div class="label-container">
       <span class="label-left">상품금액</span>
-      <span class="label-right"> <strong id="i_result1">{{$price_sum}}</strong> 원</span>
+      <span class="label-right"> <strong id="i_result1">0</strong> 원</span>
     </div>
     <div class="label-container">
       <span class="label-left">할인금액</span>
@@ -196,7 +198,7 @@
     </div>
     <div class="label-container">
       <span class="label-left">배송비</span>
-      <span class="label-right"> <strong id="i_result2">{{$delivery_sum}}</strong> 원</span>
+      <span class="label-right"> <strong id="i_result2">0</strong> 원</span>
     </div>
   </div>
   <div class="flowercart-right-bottom">
@@ -206,7 +208,9 @@
 
     </div>
     <div class="allorderprice-section">
-      <span class="allorderprice-right"> <span id="i_result4">{{$data_sum}}</span>원 </span>
+      <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">
+        {{$dz}}
+      </span>원 </span>
     </div>
 
     <div class="basketorder">
@@ -220,20 +224,6 @@
 @include('lib.footer')
 </body>
 </html>
-<script type="text/javascript">
-function add_count(a){
-  console.log(a);
-
-   cnt=frm.num.value;
-   frm.num.value=cnt+1;
-}
-
-function del_count(d){
-  console.log(d);
-   cnt=frm.num.value;
-   frm.num.value=cnt-1;
-}
-</script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -278,26 +268,22 @@ for(var i=0; i<objs.length ; i++){
 }
 </script>
 <script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-var n2;
+function changesum(para){
+  console.log($('#allsum'+para).text());
+  productprice = $('#productprice'+para).text();
+  deliveryprice = $('#deliveryprice'+para).text();
+  allsum = $('#allsum'+para).text();
 
+  document.getElementById("i_result1").innerHTML = productprice;
+  document.getElementById("i_result2").innerHTML = deliveryprice;
+  // document.getElementById("i_result4").innerHTML = allsum;
 
-function add(a){
-
-
-  console.log('성공');
-  var n = $('#plus'+a).index(this);
-  // console.log(n);
-  var num = $("#count{{$list->b_no}}:eq("+n+")").val();
-  num = $("#count{{$list->b_no}}:eq("+n+")").val(num*1+1);
-  var n2 = $('#count{{$list->b_no}}').val();
-  // document.getElementById("#plus"+a).innerHTML=n2;
-  console.log(n2);
-  console.log(a);
+}
+function increase(a) {
+  var textbox = document.getElementById('count'+a);
+  textbox.value = parseInt(textbox.value) + 1;
+  console.log(textbox.value);
+  n2 = textbox.value;
   $.ajax({
     type: 'post',
     url: '/basketcount',
@@ -307,32 +293,41 @@ function add(a){
   },
   success: function(data) {
     console.log(data);
-
+    document.getElementById("productprice"+a).innerHTML=data[0];
+    document.getElementById("deliveryprice"+a).innerHTML=data[1];
+    document.getElementById("allsum"+a).innerHTML=data[2];
+    document.getElementById("i_result4").innerHTML=data[3];
+    // changesum(a);
   },
   error: function(data) {
     console.log("error" +data);
   }
 });
-
 }
-function remove(r){
-  console.log('성공');
-  var n = $('#minus'+r).index(this);
-  var num = $("#count+r:eq("+n+")").val();
-  num = $("#count+r:eq("+n+")").val(num*1-1);
-  var n2 = $('#count'+r).val();
-  console.log(num);
-  console.log(r);
+function decrease(d) {
+  var textbox = document.getElementById('count'+d);
+  if(textbox.value <=1){
+    alert('수량이 1보단 작을수 없습니다.');
+    console.log(textbox.value);
+    return false;
+  }
+  else textbox.value = parseInt(textbox.value) - 1;
+  console.log(textbox.value);
+  n2 = textbox.value;
   $.ajax({
     type: 'post',
     url: '/basketcount',
     dataType: 'json',
     data: { "remove" : n2,
-    "no" : r
+    "no" : d
   },
   success: function(data) {
-    // console.log(data);
-
+    console.log(data);
+    document.getElementById("productprice"+d).innerHTML=data[0];
+    document.getElementById("deliveryprice"+d).innerHTML=data[1];
+    document.getElementById("allsum"+d).innerHTML=data[2];
+    document.getElementById("i_result4").innerHTML=data[3];
+    // changesum(d);
   },
   error: function(data) {
     console.log("error" +data);
@@ -340,6 +335,12 @@ function remove(r){
 });
 }
 
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 function del(e){
 
   console.log(e);
