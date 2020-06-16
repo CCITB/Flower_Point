@@ -8,12 +8,8 @@
   <link rel="stylesheet" type="text/css" href="/css/find.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
-  <script>
-
-
-  </script>
-
 </head>
+
 <body>
 
   <div id="all">
@@ -23,23 +19,22 @@
     </div>
 
     <div class ="find_id">
-      <form action = 'url' method='POST'>
+      <form action = '/f_id' method='post' name="fin_id">
+        @csrf
         <div class="fd_id">
-          <div class="character">
-
-          </div>
+          <div class="character"> </div>
           <div class="window">
             <div class="ip_name">이름</div>
-            <input class="find_input" type="name" placeholder="이름을 입력하세요." name="name" required ><br><br>
+            <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name'><br><br>
             <div class="ip_name">전화번호</div>
-            <input class="find_input" type="tell" placeholder="전화번호를 입력하세요" name="tell" required title="000-0000-0000">
+            <input class="find_input" placeholder="전화번호를 입력하세요" name="tell">
             <input type="submit" value="인증"><br><br>
-            <input class="find_input" type="name" placeholder="인증번호" name="name" required >
+            <input class="find_input" placeholder="인증번호">
             <input type="submit" value="확인"><br><br>
           </div>
         </div>
         <div class="under">
-            <input class="lg_bt" type="submit" value="찾기">
+          <input class="lg_bt" id='id_bt' type="submit" value="찾기">
         </div>
       </form>
     </div>
@@ -50,5 +45,17 @@
       <a href = "/">홈으로</a>
     </div>
   </div>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+  //  $(document).ready(funtion(){
+  //    $('#id_bt').click(funtion(){
+  //    if($('#name').val()==''){
+  //      alert('이름을 입력해주세요.');
+  //      $('#name').focus();
+  //      return false;
+  //    }
+  //  });
+  // });
+  </script>
 </body>
 </html>

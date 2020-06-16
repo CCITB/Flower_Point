@@ -58,11 +58,15 @@ Route::get('/mailview', function () {
 //ID, PW 찾기
 Route::get('/find_id', 'FindController@find_id');
 
+Route::post('/f_id', 'FindController@f_id');
+
 Route::get('/find_pw', 'FindController@find_pw');
 
 Route::get('/find_pw_way', 'FindController@find_pw_way');
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+
+Route::post('/f_reset', 'FindController@f_reset');
 
 Route::get('/find_chk', 'FindController@find_check');
 

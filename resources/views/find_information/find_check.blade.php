@@ -18,14 +18,13 @@
     </div>
 
     <div class ="my_id">
-        <form action = '처리할 주소'>
-          <div class="intervel"></div>
-          <div class="id_db"> ID : </div>
-          <div class="under_pw">
-            <button class="lg_bt" type="button" onclick="location.href = '/login_customer'" >구매자 로그인</button>
-            <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
-          </div>
-        </form>
+      @csrf
+      <div class="intervel"></div>
+      <div class="id_db"> ID : </div>
+      <div class="under_pw">
+        <button class="lg_bt" type="button" onclick="location.href = '/login_customer'" >구매자 로그인</button>
+        <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
+      </div>
     </div>
     <div class="home">
       <a href = "/">홈으로</a>
