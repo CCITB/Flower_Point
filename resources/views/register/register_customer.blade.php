@@ -11,6 +11,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+    style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 <body>
@@ -79,6 +86,23 @@
         </div>
         <div class="check_div" id="gender_check" value=""></div>
 
+        <div class="paragraph">
+          <div class="sign_name">주소</div>
+          <!-- 우편번호 -->
+          <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+          <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+          <!--주소 -->
+          <div class="delivery_wrap2">
+            <input type="text"  id="address" name="address" placeholder="주소">
+
+            <div class="delivery_address_detail">
+              <input type="text" class="delivery_address_list" id="detailAddress" name="detailAddress" placeholder="상세주소">
+              <input type="text" class="delivery_address_list" id="extraAddress" name="extraAddress" placeholder="참고항목">
+            </div>
+          </div>
+          <div class="check_div" id="staddress_check" value=""></div>
+        </div>
+
         <div class="sign_name">이메일</div>
         <input class="inf3" type="email" placeholder="email "id="c_email" name="c_email"  >
         <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
@@ -98,3 +122,5 @@
 
 <!--script Link -->
 <script type="text/javascript" src="/js/customer_register.js" charset="utf-8"></script>
+<!--POST API Link -->
+<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
