@@ -10,218 +10,144 @@
 </head>
 <body>
   @include('lib.header')
-  <div class="flowercart-wrap">
-    장바구니
-    <div class="flowercart-table-wrap">
-      {{-- <table class="flowercart-table">
-      <tr class="table-head">
-      <th>상품 / 옵션정보</th>
-      <th> 수량 </th>
-      <th> 상품금액 </th>
-      <th> 할인금액 </th>
-      <th> 할인적용금액 </th>
-      <th> 배송비 </th>
-      <th> 주문 </th>
-    </tr>
-    <tr>
-    <td>상품 정보 </td>
-    <td> 2 </td>
-    <td> 30000 원</td>
-    <td> 1000 원</td>
-    <td> 29000 원</td>
-    <td> 3000원 </td>
-    <td>
-    <div class="">
-    <a href="#">주문하기</a>
+  <div class="hr-line">
+    <h2>장바구니</h2>
+    <hr>
   </div>
-  <div class="">
-  <a href="#">삭제하기</a>
-</div>
-</td>
-</tr>
-<tr>
-<td>상품 정보 </td>
-<td> 2 </td>
-<td> 30000 원</td>
-<td> 1000 원</td>
-<td> 29000 원</td>
-<td> 3000원 </td>
-<td>
-<div class="">
-<a href="#">주문하기</a>
-</div>
-<div class="">
-<a href="#">삭제하기</a>
-</div>
-</td>
-</tr>
-<tr>
-<td>상품 정보 </td>
-<td> 2 </td>
-<td> 30000 원</td>
-<td> 1000 원</td>
-<td> 29000 원</td>
-<td> 3000원 </td>
-<td>
-<div class="">
-<a href="#">주문하기</a>
-</div>
-<div class="">
-<a href="#">삭제하기</a>
-</div>
-</td>
-</tr>
-<tr>
-<td>상품 정보 </td>
-<td> 2 </td>
-<td> 30000 원</td>
-<td> 1000 원</td>
-<td> 29000 원</td>
-<td> 3000원 </td>
-<td>
-<div class="">
-<a href="#">주문하기</a>
-</div>
-<div class="">
-<a href="#">삭제하기</a>
-</div>
-</td>
-</tr>
-<tr>
-<td>아무것도없을때 공간</td>
-</tr>
-</table> --}}
-<div class="flowercart-select">
-  <input type="checkbox" name="checkAll" id="th_checkAll" value="">전체선택
-</div>
-@if(auth()->guard('customer')->user())
-  @foreach ($data as $list)
-    <div class="flowercart-infor" id="remove{{$list->b_no}}">
-      <div class="flowercart-top">
-        <input type="checkbox" name="checkRow" class="checkf" value="">
-        <strong class="flowercart-tradename">가게명</strong>
+  <div class="flowercart-wrap" id="flowercart-wrap">
+    @if(count($data))
+      <div class="flowercart-select">
+        <input type="checkbox" name="checkAll" id="th_checkAll" value="">전체선택
       </div>
-      <div class="flowercart-middle">
-        <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
-        <div class="flowercart-section">
-          <div class="product-name">{{$list->b_name}}</div>
-          <div class="product-price"> {{$list->b_price}}
-            <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a>
-            <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
+      @foreach ($data as $list)
+        <div class="flowercart-infor" id="remove{{$list->b_no}}">
+          <div class="flowercart-top">
+            <input type="checkbox" name="checkRow" class="checkf" value="">
+            <strong class="flowercart-tradename">가게명</strong>
           </div>
-          {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
-          <div class="product-coupon">
-            쿠폰
-          </div>
-          <div class="product-count">
-            {{-- 수량증가-------------------- --}}
-            <form class="" action="" method="post" name="form">
-              <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
-                <img src="/imglib/add.png" alt="">
-              </button>
-              <input class="count-plmi" type="text" name="amount{{$list->b_no}}" id="count{{$list->b_no}}" value="{{$list->b_count}}">
-              <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
-                <img src="/imglib/remove.png" alt="">
-              </button>
+          <div class="flowercart-middle">
+            <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
+            <div class="flowercart-section">
+              <div class="product-name">{{$list->b_name}}</div>
+              <div class="product-price"> {{$list->b_price}}
+                <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a>
+                <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
+              </div>
+              {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
+              <div class="product-coupon">
+                쿠폰
+              </div>
+              <div class="product-count">
+                {{-- 수량증가-------------------- --}}
+                <form class="" action="" method="post" name="form">
+                  <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
+                    <img src="/imglib/add.png" alt="">
+                  </button>
+                  <input class="count-plmi" type="text" name="amount{{$list->b_no}}" id="count{{$list->b_no}}" value="{{$list->b_count}}">
+                  <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
+                    <img src="/imglib/remove.png" alt="">
+                  </button>
 
-              {{-- 수량증가-------------------- --}}
+                  {{-- 수량증가-------------------- --}}
+                </div>
+              </div>
+
+
+            </div>
+            <div class="flowercart-bottom">
+              <div class="text-section-wrap">
+                <div class="text-section">
+                  상품금액
+                </div>
+                <div class="price-section">
+                  <strong class="text-option" id="productprice{{$list->b_no}}">{{$list->b_price*$list->b_count}}</strong>원
+                </div>
+              </div>
+            </form>
+            <div class="imgwrap-section">
+              <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
+            </div>
+            <div class="text-section-wrap">
+              <div class="text-section">
+                할인금액
+              </div>
+              <div class="price-section">
+                <strong class="text-option">0</strong>원
+              </div>
+            </div>
+            <div class="imgwrap-section">
+              <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
+            </div>
+            <div class="text-section-wrap">
+              <div class="text-section">
+                배송비
+              </div>
+              <div class="price-section">
+                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{$list->b_delivery*$list->b_count}}</strong>원
+              </div>
+            </div>
+            <div class="imgwrap-section">
+              <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
+            </div>
+            <div class="text-section-wrap">
+              <div class="text-section">
+                주문금액
+              </div>
+              <div class="price-section">
+                <strong class="text-option1" id="allsum{{$list->b_no}}">{{($list->b_price+$list->b_delivery)*$list->b_count}}</strong>원
+              </div>
             </div>
           </div>
+        </div>
+      @endforeach
+    @else
+      <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+        <div class="" style="top:180px; position:absolute; left:260px; ">
+          장바구니가 비어있습니다.
+        </div>
+      </div>
+    @endif
 
+    <div class="flowercart-allprice">
+      <div class="flowercart-right-top">
+        <strong>전체 합계</strong>
+      </div>
+      <div class="flowercart-right-middle">
+        <div class="label-container">
+          <span class="label-left">상품수</span>
+          <span class="label-right"> <strong id="i_result3">{{$count_sum1}}</strong> 개</span>
+        </div>
+        <div class="label-container">
+          <span class="label-left">상품금액</span>
+          <span class="label-right"> <strong id="i_result1">{{$price_sum1}}</strong> 원</span>
+        </div>
+        <div class="label-container">
+          <span class="label-left">할인금액</span>
+          <span class="label-right"> <strong>0</strong> 원</span>
+        </div>
+        <div class="label-container">
+          <span class="label-left">배송비</span>
+          <span class="label-right"> <strong id="i_result2">{{$delivery_sum1}}</strong> 원</span>
+        </div>
+      </div>
+      <div class="flowercart-right-bottom">
+
+        <div class="allorderprice">
+          전체 주문금액
 
         </div>
-        <div class="flowercart-bottom">
-          <div class="text-section-wrap">
-            <div class="text-section">
-              상품금액
-            </div>
-            <div class="price-section">
-              <strong class="text-option" id="productprice{{$list->b_no}}">{{$list->b_price*$list->b_count}}</strong>원
-            </div>
-          </div>
-        </form>
-        <div class="imgwrap-section">
-          <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
+        <div class="allorderprice-section">
+          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">{{$dz}}</span>원 </span>
         </div>
-        <div class="text-section-wrap">
-          <div class="text-section">
-            할인금액
-          </div>
-          <div class="price-section">
-            <strong class="text-option">0</strong>원
-          </div>
-        </div>
-        <div class="imgwrap-section">
-          <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
-        </div>
-        <div class="text-section-wrap">
-          <div class="text-section">
-            배송비
-          </div>
-          <div class="price-section">
-            <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{$list->b_delivery*$list->b_count}}</strong>원
-          </div>
-        </div>
-        <div class="imgwrap-section">
-          <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
-        </div>
-        <div class="text-section-wrap">
-          <div class="text-section">
-            주문금액
-          </div>
-          <div class="price-section">
-            <strong class="text-option1" id="allsum{{$list->b_no}}">{{($list->b_price+$list->b_delivery)*$list->b_count}}</strong>원
-          </div>
+
+        <div class="basketorder">
+          <a href="#">주문하기</a>
         </div>
       </div>
     </div>
-
-
-  @endforeach
-@endif
-<div class="flowercart-allprice">
-  <div class="flowercart-right-top">
-    <strong>전체 합계</strong>
   </div>
-  <div class="flowercart-right-middle">
-    <div class="label-container">
-      <span class="label-left">상품수</span>
-      <span class="label-right"> <strong id="i_result3">0</strong> 개</span>
-    </div>
-    <div class="label-container">
-      <span class="label-left">상품금액</span>
-      <span class="label-right"> <strong id="i_result1">0</strong> 원</span>
-    </div>
-    <div class="label-container">
-      <span class="label-left">할인금액</span>
-      <span class="label-right"> <strong>0</strong> 원</span>
-    </div>
-    <div class="label-container">
-      <span class="label-left">배송비</span>
-      <span class="label-right"> <strong id="i_result2">0</strong> 원</span>
-    </div>
-  </div>
-  <div class="flowercart-right-bottom">
 
-    <div class="allorderprice">
-      전체 주문금액
-
-    </div>
-    <div class="allorderprice-section">
-      <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">
-        {{$dz}}
-      </span>원 </span>
-    </div>
-
-    <div class="basketorder">
-      <a href="#">주문하기</a>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-
-@include('lib.footer')
+  @include('lib.footer')
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -268,17 +194,6 @@ for(var i=0; i<objs.length ; i++){
 }
 </script>
 <script type="text/javascript">
-function changesum(para){
-  console.log($('#allsum'+para).text());
-  productprice = $('#productprice'+para).text();
-  deliveryprice = $('#deliveryprice'+para).text();
-  allsum = $('#allsum'+para).text();
-
-  document.getElementById("i_result1").innerHTML = productprice;
-  document.getElementById("i_result2").innerHTML = deliveryprice;
-  // document.getElementById("i_result4").innerHTML = allsum;
-
-}
 function increase(a) {
   var textbox = document.getElementById('count'+a);
   textbox.value = parseInt(textbox.value) + 1;
@@ -297,7 +212,10 @@ function increase(a) {
     document.getElementById("deliveryprice"+a).innerHTML=data[1];
     document.getElementById("allsum"+a).innerHTML=data[2];
     document.getElementById("i_result4").innerHTML=data[3];
-    // changesum(a);
+    document.getElementById("i_result3").innerHTML=data[5];
+    document.getElementById("i_result1").innerHTML=data[4];
+    document.getElementById("i_result2").innerHTML=data[6];
+
   },
   error: function(data) {
     console.log("error" +data);
@@ -327,7 +245,10 @@ function decrease(d) {
     document.getElementById("deliveryprice"+d).innerHTML=data[1];
     document.getElementById("allsum"+d).innerHTML=data[2];
     document.getElementById("i_result4").innerHTML=data[3];
-    // changesum(d);
+    document.getElementById("i_result3").innerHTML=data[5];
+    document.getElementById("i_result1").innerHTML=data[4];
+    document.getElementById("i_result2").innerHTML=data[6];
+
   },
   error: function(data) {
     console.log("error" +data);
@@ -354,89 +275,30 @@ function del(e){
     success: function(data) {
       console.log(data);
       if(data[0]=e){
-        document.getElementById("i_result1").innerHTML=data[1];
-        document.getElementById("i_result2").innerHTML=data[2];
-        document.getElementById("i_result3").innerHTML=data[3];
-        document.getElementById("i_result4").innerHTML=data[4];
+        document.getElementById("i_result4").innerHTML=data[5];
+        document.getElementById("i_result3").innerHTML=data[7];
+        document.getElementById("i_result1").innerHTML=data[6];
+        document.getElementById("i_result2").innerHTML=data[8];
 
         $("#remove"+e).remove();
+        if($(".flowercart-infor").is(".flowercart-infor")){
+          // ($("#div_test").hasClass("apple") === true)
+          console.log('존재');
+        }
+        else{
+          console.log('존재x');
+          var $div = $('<div class="flowercart-infor" id="remove" style="height:400px; position:relative;"><div class="" style="top:180px; position:absolute; left:260px; ">장바구니가 비어있습니다.</div></div>');
+          console.log($div);
+          $(".flowercart-select").remove();
+          $(".flowercart-wrap").prepend($div);
+        }
         console.log('삭제');
       }
+
     },
     error: function(data) {
       console.log("error" +data);
     }
   });
 }
-</script>
-<style>
-.plus img{
-  height: 21px;
-  width: 21px;
-  bottom: 3px;
-  left: 1px;
-  position: absolute;
-}
-.minus img{
-  height: 21px;
-  width: 21px;
-  right: 30px;
-  bottom: 3px;
-  position: absolute;
-}
-button.plus{
-  cursor: pointer;
-  border: none;
-  height: 21px;
-  width: 21px;
-  padding: 0px;
-  outline: 0;
-  border-radius: 10px;
-
-
-}
-button.minus{
-  cursor: pointer;
-  border: none;
-  height: 21px;
-  width: 21px;
-  padding: 0px;
-  outline: 0;
-  border-radius: 10px;
-}
-.text-option{
-  font-size: 18px;
-}
-.text-section-wrap{
-  display: inline-block;
-  text-align: center;
-}
-.imgwrap-section{
-  width: 21px;
-  height: 21px;
-  display: inline-block;
-}
-.plmieq-icon{
-  width: 100%;
-  height: 100%;
-  -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;
-
-}
-.text-section{
-  display: inline-block;
-  font-size: 12px;
-  vertical-align: top;
-  width: 127px;
-  color: #A4A9B0;
-}
-.count-plmi{
-  width: 20px;
-  position: absolute;
-  bottom: 3px;
-  text-align: center;
-  /* height: 10px; */
-}
-</style>
-<script type="text/javascript">
-
 </script>
