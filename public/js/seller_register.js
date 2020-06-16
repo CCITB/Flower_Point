@@ -451,4 +451,7 @@ function checkIt(){
     $("#verify_num").focus();
     return false;
   }
+  else{
+    return true;
+  }
 }

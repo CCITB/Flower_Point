@@ -16,7 +16,15 @@
 <body>
   <div id="all">
     <div class="text">
-      <div class="id_title">Customer Register</div> <hr>
+      <div class="text">
+        <span class="id_title"><i>판매자 - 회원가입</i></span>
+        <div>
+          <span >step1</span>
+          <span>&gt;</span>
+          <span class="current-page">step2</span>
+          </div>
+        </div>
+      <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
     <div class="signup">
       <form action = '/RegisterControllerCustomer' method="post" name="f" onsubmit='return checkIt();'>

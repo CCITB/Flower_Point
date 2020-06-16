@@ -13,7 +13,15 @@
 <body>
   <div id="all">
     <div class="text">
-      <div class="id_title">Agreement on Terms and Conditions</div> <hr>
+      <div class="text">
+        <span class="id_title"><i>구매자 - 이용약관 동의</i></span>
+        <div class="page-sorting">
+          <span class="current-page">step1</span>
+          <span>&gt;</span>
+          <span >step2</span>
+          </div>
+        </div>
+      <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
 
     <div class="agree_terms">

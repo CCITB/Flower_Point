@@ -319,45 +319,113 @@ else{
 
 function checkIt(){
   global_random;
-  //공백 alert
-  if(document.f.c_id.value==""){
-    document.f.c_id.focus();
+
+  //-------------------ID 예외처리
+  //정규식
+  var idJ = /^[a-z0-9_\-]{5,20}$/;
+  var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+  var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var phone= /^[0-9]+$/;
+  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
+
+  if($('#id').val()==''){
+    $('#id_check').text('필수 정보입니다.');
+    $('#id_check').css('color', 'red');
+    $("#id").focus();
     return false;
   }
-  if(document.f.c_password.value==""){
-    document.f.c_password.focus();
+  if(!idJ.test($('#id').val())){
+    //2. 정규식 일치X
+    $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
+    $('#id_check').css('color', 'red');
+    $("#id").focus();
     return false;
   }
-  if(document.f.c_re_password.value==""){
-    document.f.c_re_password.focus();
+  //id중복
+  if(global_id_check>0){
+    $('#id_check').text('이미 사용중인 아이디입니다.');
+    $('#id_check').css('color', 'red');
+    $("#id").focus();
     return false;
   }
-  if(document.f.c_name.value==""){
-    document.f.c_name.focus();
+  //-------------------PW 예외처리
+  //2. 공백
+  if($("#pw").val()==''){
+    $('#pw_check').text('비밀번호를 입력해주세요.');
+    $('#pw_check').css('color', 'red');
+    $("#pw").focus();
     return false;
   }
-  if(document.f.c_birth_y.value==""){
-    document.f.c_birth_y.focus();
+  //3. 정규식 일치 X
+  if(!pwJ.test($("#pw").val())){
+    $('#pw_check').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
+    $('#pw_check').css('color', 'red');
+    $("#pw").focus();
     return false;
   }
-  if(document.f.c_gender.value==""){
-    document.f.c_gender.focus();
+  //-------------------PW 확인 예외처리
+  //1. 공백이 아닐 경우
+  if($("#pw").val() != "" || $("#check").val() != "")
+  {
+    if($("#pw").val() != $("#check").val()){
+      $('#re_pw_check').text('비밀번호가 일치하지 않습니다.');
+      $('#re_pw_check').css('color', 'red');
+      $("#check").focus();
+      return false;
+    }
+  }
+  //2. 공백일 경우
+  if($("#pw").val() == "" || $("#check").val() == ""){
+    $('#re_pw_check').text('필수 정보입니다.');
+    $('#re_pw_check').css('color', 'red');
+    $("#check").focus();
     return false;
   }
-  if(document.f.c_phonenum.value==""){
-    document.f.c_phonenum.focus();
+  //-------------------이름
+  //1. 공백 -- 빈칸
+  if($('#name').val() == ""){
+    $('#name_check').text("필수 정보입니다.");
+    $('#name_check').css('color', 'red');
+    $("#name").focus();
     return false;
   }
-  if(document.f.c_email.value==""){
-    document.f.c_email.focus();
+  //2. 공백X 특수기호, 스페이스바 사용
+  if(markJ.test($('#name').val())){
+    $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
+    $('#name_check').css('color', 'red');
+    $("#name").focus();
     return false;
   }
-  if(document.f.verify_num.value==""){
-    document.f.verify_num.focus();
+
+  //-------------------핸드폰
+
+  //-------------------이메일
+  //공백
+  if($('#s_email').val()==""){
+    $('#email_check').text("필수 정보입니다.");
+    $('#email_check').css('color', 'red');
+    $("#s_email").focus();
     return false;
   }
-  if(document.f.verify_num.value!=global_random){
-    document.f.verify_num.focus();
+  //정규식 일치xx
+  if(!verifyJ.test($('#s_email').val())){
+    $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
+    $('#email_check').css('color', 'red');
+    $("#s_email").focus();
+    return false;
+  }
+  //-------------------이메일 인증
+  //인증 칸 공백
+  if($('#verify_num').val() == ""){
+    $('#email_check').text("인증이 필요합니다.");
+    $('#email_check').css('color', 'red');
+    $("#verify_num").focus();
+    return false;
+  }
+  if(global_random != $('#verify_num').val()){
+    $('#email_check').text("인증번호를 다시 확인해주세요.");
+    $('#email_check').css('color', 'red');
+    $("#verify_num").focus();
     return false;
   }
   else{
