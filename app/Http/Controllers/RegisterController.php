@@ -24,11 +24,16 @@ class RegisterController extends Controller
 
     //database insert
     if($customers<1){
+      $c_tel1 = $request->input('c_tel1');
+      $c_tel2 = $request->input('c_tel2');
+
+      $c_tel = $c_tel1.$c_tel2;
+
     DB::table('customer')->insert([
       'c_id'=>$request->input('c_id'),
       'c_password' => bcrypt($request->input('c_password')),
       'c_name' => $request->input('c_name'),
-      'c_phonenum' => $request->input('c_phonenum'),
+      'c_phonenum' => $c_tel,
       'c_email' => $request->input('c_email'),
       'c_gender' => $request->input('c_gender'),
       'c_birth' => $request->input('c_birth_y').$request->input('c_birth_m').$request->input('c_birth_d')

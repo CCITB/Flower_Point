@@ -192,18 +192,17 @@ $(document).ready(function(){
   function check_phonenum(){
     //seller register의 id input
     var s_phonenum_val1 = $('#s_tel1').val();
-    var s_phonenum_val2 = $('#s_tel1').val();
-    var s_phonenum_val3 = $('#s_tel1').val();
+    var s_phonenum_val2 = $('#s_tel2').val();
     var phone= /^[0-9]+$/;
 
     //1. 정규식 일치 O
-    if(s_phonenum_val1==""||s_phonenum_val2==""){
-      $("#phonenum_check").text("필수 정보입니다.");
-      $('#phonenum_check').css('color', 'red');
+    if(phone.test(s_phonenum_val1)||phone.test(s_phonenum_val2)){
+      $('#phonenum_check').text('');
     }
     //2. 공백
-    else if(phone.test(s_phonenum_val1=="")||phone.test(s_phonenum_val2=="")){
-      $('#phonenum_check').text('');
+    else if(s_phonenum_val1==""||s_phonenum_val2==""){
+      $("#phonenum_check").text("필수 정보입니다.");
+      $('#phonenum_check').css('color', 'red');
     }
     //3. 정규식 일치 X
     else{

@@ -24,7 +24,7 @@
   <div id="all">
     <div class="text">
       <div class="text">
-        <span class="id_title"><i>판매자 - 회원가입</i></span>
+        <span class="id_title"><i>구매자 - 회원가입</i></span>
         <div>
           <span >step1</span>
           <span>&gt;</span>
@@ -52,8 +52,36 @@
         <input class="inf1" type="name" placeholder="Name" id="name" name="c_name" >
         <div class="check_div" id="name_check" value=""></div>
 
-        <div class="sign_name">연락처</div>
-        <input class="inf1" type="text" placeholder="Phone Number" id="c_phonenum" name="c_phonenum" >
+        <div class="inf2">연락처</div>
+        <select class="inf2" id="c_tel1" name="c_tel1" >
+          <option value="010" selected>010</option>
+          <option value="011">011</option>
+          <option value="016">016</option>
+          <option value="017">017</option>
+          <option value="018">018</option>
+          <option value="019">019</option>
+          <option value="02">02</option>
+          <option value="031">031</option>
+          <option value="032">032</option>
+          <option value="033">033</option>
+          <option value="041">041</option>
+          <option value="042">042</option>
+          <option value="043">043</option>
+          <option value="044">044</option>
+          <option value="051">051</option>
+          <option value="052">052</option>
+          <option value="053">053</option>
+          <option value="054">054</option>
+          <option value="055">055</option>
+          <option value="061">061</option>
+          <option value="062">062</option>
+          <option value="063">063</option>
+          <option value="064">064</option>
+          <option value="070">070</option>
+          <option value="080">080</option>
+        </select>
+        -
+        <input type="text" class="inf_tel" id="c_tel2" name="c_tel2"  maxlength="12">
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">생년월일</div>
