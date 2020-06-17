@@ -24,21 +24,6 @@ class InformationController extends Controller
         return redirect('/mypage');
       }
 
-      publiC function modifyaddress(Request $request){
-
-        if($sellerinfo = auth()->guard('seller')->user()){
-          $sellerprimary = $sellerinfo->s_no;
-              $sellerstore = DB::table('seller')
-              ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-              ->where('s_no','=', $sellerprimary )->get();
-              // return $sellerstore;
-              // $sellerstore = DB::table('product')->select('*')->where('seller' ,'=', $sellerstore[0]->st_no)->get();
-
-
-                return view('mypage/mypage', compact('sellerstore'));
-
-            }
-          }
 
   publiC function storeinfo(Request $request){
 
