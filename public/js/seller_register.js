@@ -217,6 +217,25 @@ $(document).ready(function(){
     var s_birth_y = $('#s_birth_y').val();
     var s_birth_m = $('#s_birth_m').val();
     var s_birth_d = $('#s_birth_d').val();
+    //
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = today.getMonth()+1;
+    var dd = today.getDate();
+
+    if((mm+"").length < 2){
+      var date = yyyy+'0'+mm+''+dd;
+    }
+    else{
+      var date = yyyy+''+mm+''+dd;
+    }
+
+
+
+    var s_birth = s_birth_y+s_birth_m+s_birth_d;
+    console.log(date);
+    console.log(s_birth);
+
     //정규식
     var birthJ =  /^[0-9]+$/
     //(년) - 정규식 O , 4자리
@@ -329,8 +348,20 @@ function checkIt(){
   var idJ = /^[a-z0-9_\-]{5,20}$/;
   var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
   var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-  var phone= /^[0-9]+$/;
+  var num= /^[0-9]+$/;
   var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
+  //현재 날짜
+  var today = new Date();
+  var yyyy = today.getFullYear();
+  var mm = today.getMonth()+1;
+  var dd = today.getDate();
+  var date = yyyy+mm+dd;
+  //입력된 날짜
+  var input_y= $('#s_birth_y').val();
+  var input_m= $('#s_birth_m').val();
+  var input_d= $('#s_birth_d').val();
+  var input_data = input_y+input_m+input_d;
+
 
   // if(document.f.s_id.value==""){
   //   document.f.s_id.focus();
@@ -405,6 +436,29 @@ function checkIt(){
     $("#name").focus();
     return false;
   }
+  //-------------------생년월일(필수는 data는 아니지만 잘못된 값 넣는 것을 방지)
+  if(!num.test($('#s_birth_y').val())){
+    $("#birth_check").text('올바른 형식이 아닙니다.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_y").focus();
+    return false;
+  }
+
+  //입력한 년도가 현재 년도보다 클 경우
+  // if(yyyy<input_y){
+  //   $("#birth_check").text('미래에서 오셨군ㅇ요...^^ㅎㅎ');
+  //   $('#birth_check').css('color', 'red');
+  //   $("#s_birth_y").focus();
+  //   return false;
+  // }
+
+  if(parseInt(date)<parseInt(input_y)){
+    $("#birth_check").text('미래에서 오셨나요?');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_y").focus();
+    return false;
+  }
+
 
   //-------------------핸드폰
   //1. 정규식 일치 O
@@ -415,7 +469,7 @@ function checkIt(){
     return false;
   }
   //3. 정규식 일치 X
-  if(!phone.test($('#s_tel1').val())||!phone.test($('#s_tel2').val())){
+  if(!num.test($('#s_tel1').val())||!num.test($('#s_tel2').val())){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');
     $("#s_tel2").focus();

@@ -89,7 +89,6 @@ Route::get('/faq', function () {
   return view('FAQ');
 });Route::post('/modiemail', 'InformationController@modifyemail');
 
-Route::post('/modiaddress', 'InformationController@modifyaddress');
 
 Route::get('/locate1', function () {
   return view('locate');
@@ -144,16 +143,14 @@ Route::get('/customer', function(){
 Route::get('/all', 'MainController@showall');
 
 Route::get('/mypage', function(){
-    return view('mypage/mypage');
     if($sellerinfo = auth()->guard('seller')->user()){
       // return 0;
       $sellerprimary = $sellerinfo->s_no;
           $sellerstore = DB::table('seller')
           ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
           ->where('s_no','=', $sellerprimary )->get();
-          return $sellerstore;
-          $sellerstore = DB::table('product')->select('*')->where('seller' ,'=', $sellerstore[0]->st_no)->get();
-            return view('mypage/mypage', compact('sellerstore'));
+          return view('mypage/mypage', compact('sellerstore'));
+
           }
 });
 Route::get('/modify', function(){
