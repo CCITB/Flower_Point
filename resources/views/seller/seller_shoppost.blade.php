@@ -176,7 +176,7 @@ nhn.husky.EZCreator.createInIFrame({
   fCreator: "createSEditor2"
 });
 $("#save").click(function(){ oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
-$("#send-text").submit(); }) //?? 이코드 뭐냐;;//
+$("#send-text").submit(); }); //?? 이코드 뭐냐;;//
 
 
 

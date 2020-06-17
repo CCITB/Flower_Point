@@ -43,7 +43,7 @@
                   <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
                     <img src="/imglib/add.png" alt="">
                   </button>
-                  <input class="count-plmi" type="text" name="amount{{$list->b_no}}" id="count{{$list->b_no}}" value="{{$list->b_count}}">
+                  <input class="count-plmi" type="text" name="amount{{$list->b_no}}" onkeydown="onKeyDown()"readonly id="count{{$list->b_no}}" value="{{$list->b_count}}">
                   <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
                     <img src="/imglib/remove.png" alt="">
                   </button>
@@ -60,7 +60,7 @@
                   상품금액
                 </div>
                 <div class="price-section">
-                  <strong class="text-option" id="productprice{{$list->b_no}}">{{$list->b_price*$list->b_count}}</strong>원
+                  <strong class="text-option" id="productprice{{$list->b_no}}">{{number_format($list->b_price*$list->b_count)}}</strong>원
                 </div>
               </div>
             </form>
@@ -83,7 +83,7 @@
                 배송비
               </div>
               <div class="price-section">
-                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{$list->b_delivery*$list->b_count}}</strong>원
+                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
               </div>
             </div>
             <div class="imgwrap-section">
@@ -94,7 +94,7 @@
                 주문금액
               </div>
               <div class="price-section">
-                <strong class="text-option1" id="allsum{{$list->b_no}}">{{($list->b_price+$list->b_delivery)*$list->b_count}}</strong>원
+                <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
               </div>
             </div>
           </div>
@@ -115,11 +115,11 @@
       <div class="flowercart-right-middle">
         <div class="label-container">
           <span class="label-left">상품수</span>
-          <span class="label-right"> <strong id="i_result3">{{$count_sum1}}</strong> 개</span>
+          <span class="label-right"> <strong id="i_result3">{{number_format($count_sum1)}}</strong> 개</span>
         </div>
         <div class="label-container">
           <span class="label-left">상품금액</span>
-          <span class="label-right"> <strong id="i_result1">{{$price_sum1}}</strong> 원</span>
+          <span class="label-right"> <strong id="i_result1">{{number_format($price_sum1)}}</strong> 원</span>
         </div>
         <div class="label-container">
           <span class="label-left">할인금액</span>
@@ -127,7 +127,7 @@
         </div>
         <div class="label-container">
           <span class="label-left">배송비</span>
-          <span class="label-right"> <strong id="i_result2">{{$delivery_sum1}}</strong> 원</span>
+          <span class="label-right"> <strong id="i_result2">{{number_format($delivery_sum1)}}</strong> 원</span>
         </div>
       </div>
       <div class="flowercart-right-bottom">
@@ -137,7 +137,7 @@
 
         </div>
         <div class="allorderprice-section">
-          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">{{$dz}}</span>원 </span>
+          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">{{number_format($dz)}}</span>원 </span>
         </div>
 
         <div class="basketorder">
@@ -196,6 +196,10 @@ for(var i=0; i<objs.length ; i++){
 <script type="text/javascript">
 function increase(a) {
   var textbox = document.getElementById('count'+a);
+  if(textbox.value>=999){
+    alert('선택하신 상품의 주문 가능한 수량은 999개 입니다. 999개 이하로 주문해 주세요.')
+    return false;
+  }
   textbox.value = parseInt(textbox.value) + 1;
   console.log(textbox.value);
   n2 = textbox.value;
@@ -208,13 +212,13 @@ function increase(a) {
   },
   success: function(data) {
     console.log(data);
-    document.getElementById("productprice"+a).innerHTML=data[0];
-    document.getElementById("deliveryprice"+a).innerHTML=data[1];
-    document.getElementById("allsum"+a).innerHTML=data[2];
-    document.getElementById("i_result4").innerHTML=data[3];
-    document.getElementById("i_result3").innerHTML=data[5];
-    document.getElementById("i_result1").innerHTML=data[4];
-    document.getElementById("i_result2").innerHTML=data[6];
+    document.getElementById("productprice"+a).innerHTML=AddComma(data[0]);
+    document.getElementById("deliveryprice"+a).innerHTML=AddComma(data[1]);
+    document.getElementById("allsum"+a).innerHTML=AddComma(data[2]);
+    document.getElementById("i_result4").innerHTML=AddComma(data[3]);
+    document.getElementById("i_result3").innerHTML=AddComma(data[5]);
+    document.getElementById("i_result1").innerHTML=AddComma(data[4]);
+    document.getElementById("i_result2").innerHTML=AddComma(data[6]);
 
   },
   error: function(data) {
@@ -241,13 +245,13 @@ function decrease(d) {
   },
   success: function(data) {
     console.log(data);
-    document.getElementById("productprice"+d).innerHTML=data[0];
-    document.getElementById("deliveryprice"+d).innerHTML=data[1];
-    document.getElementById("allsum"+d).innerHTML=data[2];
-    document.getElementById("i_result4").innerHTML=data[3];
-    document.getElementById("i_result3").innerHTML=data[5];
-    document.getElementById("i_result1").innerHTML=data[4];
-    document.getElementById("i_result2").innerHTML=data[6];
+    document.getElementById("productprice"+d).innerHTML=AddComma(data[0]);
+    document.getElementById("deliveryprice"+d).innerHTML=AddComma(data[1]);
+    document.getElementById("allsum"+d).innerHTML=AddComma(data[2]);
+    document.getElementById("i_result4").innerHTML=AddComma(data[3]);
+    document.getElementById("i_result3").innerHTML=AddComma(data[5]);
+    document.getElementById("i_result1").innerHTML=AddComma(data[4]);
+    document.getElementById("i_result2").innerHTML=AddComma(data[6]);
 
   },
   error: function(data) {
@@ -275,10 +279,10 @@ function del(e){
     success: function(data) {
       console.log(data);
       if(data[0]=e){
-        document.getElementById("i_result4").innerHTML=data[5];
-        document.getElementById("i_result3").innerHTML=data[7];
-        document.getElementById("i_result1").innerHTML=data[6];
-        document.getElementById("i_result2").innerHTML=data[8];
+        document.getElementById("i_result4").innerHTML=AddComma(data[5]);
+        document.getElementById("i_result3").innerHTML=AddComma(data[7]);
+        document.getElementById("i_result1").innerHTML=AddComma(data[6]);
+        document.getElementById("i_result2").innerHTML=AddComma(data[8]);
 
         $("#remove"+e).remove();
         if($(".flowercart-infor").is(".flowercart-infor")){
@@ -301,4 +305,18 @@ function del(e){
     }
   });
 }
+function AddComma(num)
+{
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+function onKeyDown()
+{
+     if(event.keyCode == 13)
+     {
+      alert('엔터키는 입력하실수 없습니다.');
+      return false;
+     }
+}
+
 </script>

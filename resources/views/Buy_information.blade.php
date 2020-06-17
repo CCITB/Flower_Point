@@ -40,7 +40,7 @@
               서울시 종로구
             </div>
             <div class="pd_price"> <!-- 상품 가격 불러오기 -->
-              <strong> <span>{{$protb->p_price}}</span>  <span>원</span> </strong>
+              <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
             </div>
           </div>
 
