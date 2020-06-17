@@ -47,34 +47,74 @@ class FindController extends Controller
 
 
 
-  public function f_reset(Request $pw_r)//seller 비밀번호
+  public function f_pw(Request $pw)//seller 비밀번호
   {
-    $input_id = $pw_r->get('myid');
-    $myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
-    if (count($myid) > 0) {
+    $input_id = $pw->get('myid');
+    // return $input_id;
+    //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
+    $myid = DB::table('seller')->select('s_id')->where('s_id','=',$input_id)->first();
+    // return $myid[0]->s_name;
+
+    if (isset($myid)) {
       return redirect('/find_pw_way');
     }
     else{
-      return redirect('/find_pw');
+      // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
+      return view('find_information.find_pw');
     }
-
-    $input_name = $pw_r->get('pw_name');
-    $myname = DB::table('seller')->where(['s_name'=>$input_name])->get();
-    if (count($myname) > 0) {
-      return redirect('/find_pw_reset');
-    }
-    else{
-      return redirect('/find_pw_way');
-    }
-
-    //
-    // $fw_reset = $pw_r->get('name');
-    //
-    // $hi = DB::table('product')->update([
-    //   'p_name'=>$fw_reset->input('new_pw'),
-    // ]);
-    //
-    // return ($hi);
   }
 
-}
+  public function f_way(Request $pw)//seller 비밀번호
+  {
+    $input_name = $pw->get('pw_name');
+    $input_tell = $pw->get('pw_tell');
+    // return $input_tell;
+    //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
+    $myid = DB::table('seller')->where([
+      's_name','=',$input_name &&
+      's_phonenum','=',$input_tell
+      ])->first();
+      // return $myid;
+
+
+
+
+      // if (count($myid)>0) {
+      //   return redirect('/find_pw_reset');
+      // }
+      // else{
+      //   // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
+      //   return view('find_information.find_pw_way');
+      // }
+    }
+
+
+
+
+
+  }
+
+
+
+  // public function f_rese(Request $pw_r)//seller 비밀번호
+  // {
+  //   $input_id = $pw_r->get('myid');
+  //   $input_name = $pw_r->get('pw_name');
+  //   // return $input_id;
+  //   //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
+  //   $myid = DB::table('seller')->where('s_id','=',$input_id)->get();
+  //   // return $myid[0]->s_name;
+  //   //  $myname = DB::table('seller')->where(['s_name'=>$input_name]);
+  //   // $myid->s_name;
+  //   // $myid->
+  //   // return 0;
+  //   if (isset($myid)) {
+  //     return redirect('/find_pw_way');
+  //   }
+  //   if (count($myname) > 0) {
+  //     return redirect('/find_pw_reset');
+  //   }
+  //   else{
+  //     return redirect('/find_pw_way');
+  //   }
+  // }

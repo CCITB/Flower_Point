@@ -19,7 +19,7 @@
     </div>
 
     <div class ="find_pw">
-        <form action = '/f_reset' method='post'>
+        <form action = '/f_pw' method='post'>
           @csrf
           <div class="intervel"></div>
           <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid"><br>
