@@ -455,21 +455,6 @@ function checkIt(){
     $("#c_tel2").focus();
     return false;
   }
-  //-------------------이메일
-  //공백
-  if($('#c_email').val()==""){
-    $('#email_check').text("필수 정보입니다.");
-    $('#email_check').css('color', 'red');
-    $("#c_email").focus();
-    return false;
-  }
-  //정규식 일치xx
-  if(!verifyJ.test($('#c_email').val())){
-    $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
-    $('#email_check').css('color', 'red');
-    $("#c_email").focus();
-    return false;
-  }
   //------------------주소
   if($('#postcode').val() == ""){
     $('#staddress_check').text("필수 정보입니다.");
@@ -495,6 +480,22 @@ function checkIt(){
     $("#detailAddress").focus();
     return false;
   }
+  //-------------------이메일
+  //공백
+  if($('#c_email').val()==""){
+    $('#email_check').text("필수 정보입니다.");
+    $('#email_check').css('color', 'red');
+    $("#c_email").focus();
+    return false;
+  }
+  //정규식 일치xx
+  if(!verifyJ.test($('#c_email').val())){
+    $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
+    $('#email_check').css('color', 'red');
+    $("#c_email").focus();
+    return false;
+  }
+
   //-------------------이메일 인증
   //인증 칸 공백
   if($('#verify_num').val() == ""){

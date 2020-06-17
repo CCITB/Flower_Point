@@ -61,11 +61,11 @@
         <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
           <input class="shop_info2" type="text" id="registeration_num1" name="registeration_num1">
-          -
+          {{-- -
           <input class="shop_info2" type="text" id="registeration_num2" name="registeration_num2">
           -
           <input class="shop_info2" type="text" id="registeration_num3" name="registeration_num3">
-          <div class="check_div" id="stnum_check" value=""></div>
+          <div class="check_div" id="stnum_check" value=""></div> --}}
         </div>
 
         <div class="paragraph">
