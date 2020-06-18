@@ -7,6 +7,13 @@
     <title>꽃갈피</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/locate.css">
+    <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+    <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+      <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+      style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+    </div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 
 <body>
@@ -111,7 +118,7 @@
                         </td>
                     </tr>
                   </form>
-                  <form action="/modiaddress" method="post">
+                  {{-- <form action="/modiaddress" method="post">
                     @csrf
                     @foreach ($sellerstore as $sellershop)
                     <tr>
@@ -119,15 +126,30 @@
                       <div class="thcell">주소</div>
                     </th>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$sellershop->st_address}}<input type="button" id=modiaddress value="주소수정" name="modi" display="block" onclick="info_modification(this.value,'address' );"></p></div>
-                        <div id="address" style="display:none;">
-                        <input type="text" name="st_address"  placeholder="새 주소">
-                        <button type="submit" name="button">수정완료</button>
+                        <div class="tdcell"><p class="contxt.tit">{{$sellershop->st_address}}<input type="button" id=modiaddress value="주소수정" name="modi" display="block" onclick="info_modification(this.value,'address1' );"></p>
+                        <div id="address1" style="display:none;">
+                          <div class="delivery_wrap">
+                            <strong class="info">주 소</strong>
+                            <!-- 우편번호 -->
+                            <input type="text" id="postcode" placeholder="우편번호">
+                            <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+                          </div>
+                          <!--주소 -->
+                          <div class="delivery_wrap2">
+                            <input type="text"  id="address" placeholder="주소">
+                            <div class="delivery_address_detail">
+                              <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
+                              <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
+                              <button type="submit" name="button">수정완료</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                         </div>
                         </td>
                     </tr>
                   </form>
-                @endforeach
+                @endforeach --}}
                     </tbody>
                 </table>
 
@@ -342,3 +364,6 @@ var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680
     </script>
 
 </html>
+<!--POST API Link -->
+<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>

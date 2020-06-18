@@ -42,7 +42,7 @@ class InformationController extends Controller
 
            // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
           // return $proro;
-          return view('myshop/shop_seller' , compact('data', 'proro'));
+          return redirect('/shop');
     }
     else return view('myshop/shop_seller');
 

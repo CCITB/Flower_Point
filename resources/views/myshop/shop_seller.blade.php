@@ -6,19 +6,26 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/shop.css">
     <link rel="stylesheet" href="/css/postlist.css">
+    <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+      <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+      style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+    </div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
   </head>
   <body>
     @include('lib.header')
     <div class="allwrap">
       <div class="wrap0">
-      <h3 class="shopname">CCIT flower</h3>
+        @if( auth()->guard('seller')->user())
+          @foreach ($data as $data1)
+      <h3 class="shopname">{{$data1->st_name}}</h3>
     <hr>
     <div class="wrap2">
       <div class="imgbox">
     <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
   </div>
-@if( auth()->guard('seller')->user())
-  @foreach ($data as $data1)
+
     <table class="shopinfo">
       <tr>
         <th>대표</th>
@@ -31,18 +38,36 @@
       <tr>
         <th>주소</th>
         <td>{{$data1->st_address}}</td>
+        <div id="addressapi" style="display:none;">
+          <div class="delivery_wrap">
+            <strong class="info">주 소</strong>
+            <!-- 우편번호 -->
+            <input type="text" id="postcode" placeholder="우편번호">
+            <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+          </div>
+          <!--주소 -->
+          <div class="delivery_wrap2">
+            <input type="text"  id="address" placeholder="주소">
+
+            <div class="delivery_address_detail">
+              <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
+              <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
+            </div>
+          </div>
+        </div>
+        <div class="tdcell"><input type="button" id=modinum value="주소수정" name="modiaddress" display="block" onclick="div_show(this.value,'addressapi');"></div>
       </tr>
     </table>
     <div class="shopintro">
-      <span>{{$data1->st_introduce}}</span>
+      <div>{{$data1->st_introduce}}</div>
+      <input type="button" id=modinum value="소개수정" name="introduce" display="block" onclick="(this.value,'p_num' );">
     </div>
 @endforeach
     @endif
   </div>
-  <button class="btn2" type="button" name="button" onclick="location.href=''">수정하기</button>
+
       <div class="wrap4">
       <h3 class="productname">판매물품</h3>
-      <button class="btn1" type="button" name="button" onClick="location.href='all'">더보기</button>
     </div>
 <div class="wrap5">
   @if( auth()->guard('seller')->user())
@@ -168,6 +193,15 @@ while (switching) {
     }
   }
 }
+function div_show(s,ss){
+  if(s == "주소수정"){
+    document.getElementById(ss).style.display="block";
+  }
+}
 }
   </script>
+  <!--POST API Link -->
+  <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
+
 </html>
