@@ -19,12 +19,13 @@
     </div>
 
     <div class ="find_pw">
-        <form action = '/f_pw' method='post'>
+        <form action = "{{url('find')}}" method='post'>
           @csrf
           <div class="intervel"></div>
           <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid"><br>
+
           <div class="under_pw">
-            <input class="lg_bt" type="submit" onclick="location.href = '/find_pw_way'" value="다음">
+            <input class="lg_bt" type="submit" value="다음">
           </div>
         </form>
     </div>
