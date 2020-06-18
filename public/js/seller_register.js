@@ -270,7 +270,11 @@ $(document).ready(function(){
         }
         //3. 일 -공백 x
         else{
-          if(date<input_birth){
+          if(s_birth_d>31){
+            $("#birth_check").text('생년월일을 다시 확인해주세요.');
+            $('#birth_check').css('color', 'red');
+          }
+          else if(date<input_birth){
             $("#birth_check").text('미래에서 오셨나요?');
             $('#birth_check').css('color', 'red');
           }
@@ -365,7 +369,6 @@ function checkIt(){
   var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
   var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
   var num= /^[0-9]+$/;
-  var birthJ =  /^[0-9]+$/
   var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
   // if(document.f.s_id.value==""){
   //   document.f.s_id.focus();
@@ -441,7 +444,7 @@ function checkIt(){
     return false;
   }
   //-------------------생년월일(필수는 data는 아니지만 잘못된 값 넣는 것을 방지)
-  if(!birthJ.test($('#s_birth_y').val())){
+  if(!num.test($('#s_birth_y').val())){
     $("#birth_check").text(' 태어난 년도 4자리를 정확하게 입력하세요.');
     $('#birth_check').css('color', 'red');
     $("#s_birth_y").focus();
@@ -459,7 +462,13 @@ function checkIt(){
     $("#s_birth_d").focus();
     return false;
   }
-  if(!birthJ.test($('#s_birth_d').val())){
+  if(!num.test($('#s_birth_d').val())){
+    $("#birth_check").text('생년월일을 다시 확인해주세요.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_d").focus();
+    return false;
+  }
+  if(!num.test($('#s_birth_d').val())){
     $("#birth_check").text('생년월일을 다시 확인해주세요.');
     $('#birth_check').css('color', 'red');
     $("#s_birth_d").focus();
@@ -472,14 +481,18 @@ function checkIt(){
     return false;
   }
   //-------------------핸드폰
-  //1. 정규식 일치 O
-  if($('#s_tel1').val()==""||$('#s_tel2').val()==""){
+  if($('#s_tel1').val()==""){
     $("#phonenum_check").text("필수 정보입니다.");
     $('#phonenum_check').css('color', 'red');
-    $("#seller_tel2").focus();
+    $("#s_tel1").focus();
     return false;
   }
-  //3. 정규식 일치 X
+  if($('#s_tel2').val()==""){
+    $("#phonenum_check").text("필수 정보입니다.");
+    $('#phonenum_check').css('color', 'red');
+    $("#s_tel2").focus();
+    return false;
+  }
   if(!num.test($('#s_tel1').val())||!num.test($('#s_tel2').val())){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');

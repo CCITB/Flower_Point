@@ -89,14 +89,14 @@
 
         <select class="inf2" id="c_birth_m" name="c_birth_m">
           <option value="">월</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
+          <option value="01">1</option>
+          <option value="02">2</option>
+          <option value="03">3</option>
+          <option value="04">4</option>
+          <option value="05">6</option>
+          <option value="07">7</option>
+          <option value="08">8</option>
+          <option value="09">9</option>
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
@@ -106,7 +106,7 @@
 
         <div class="gender">
           <div class="sign_name">성별</div>
-          <select class="form_select" name="c_gender" id=c_gender >
+          <select class="form_select" name="c_gender" id="c_gender" >
             <option value="">성별</option>
             <option value="남성">남성</option>
             <option value="여성">여성</option>

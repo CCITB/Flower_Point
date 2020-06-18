@@ -35,13 +35,13 @@ $(document).ready(function(){
    check_phonenum();
   });
 
-  $("#s_birth_y").blur(function() {
+  $("#c_birth_y").blur(function() {
     checkBirthInput();
   });//blur
-  $("#s_birth_m").change(function() {
+  $("#c_birth_m").change(function() {
     checkBirthInput();
   });//blur
-  $("#s_birth_d").blur(function() {
+  $("#c_birth_d").blur(function() {
     checkBirthInput();
   });
 
@@ -241,13 +241,14 @@ $(document).ready(function(){
     var c_phonenum_val2 = $('#c_tel2').val();
     var phone= /^[0-9]+$/;
 
-    //1. 정규식 일치 O
-    if(phone.test(c_phonenum_val1)||phone.test(c_phonenum_val2)){
-      $('#phonenum_check').text('');
-    }
-    //2. 공백
-    else if(c_phonenum_val1==""||c_phonenum_val2==""){
+    //1. 공백
+    if(c_phonenum_val1==""||c_phonenum_val2==""){
       $("#phonenum_check").text("필수 정보입니다.");
+      $('#phonenum_check').css('color', 'red');
+    }
+    //2. 공백x 정규식o
+    else if(phone.test(c_phonenum_val1)||phone.test(c_phonenum_val2)){
+      $("#phonenum_check").text("");
       $('#phonenum_check').css('color', 'red');
     }
     //3. 정규식 일치 X
@@ -283,11 +284,11 @@ $(document).ready(function(){
     //input data --- day
     if(c_birth_d.length!=0&&c_birth_d.length < 2){
       var c_birth = c_birth_y+c_birth_m+'0'+c_birth_d;
-      input_birth = parseInt(s_birth);
+      input_birth = parseInt(c_birth);
     }
     else{
       var c_birth = c_birth_y+c_birth_m+c_birth_d;
-      input_birth = parseInt(s_birth);
+      input_birth = parseInt(c_birth);
     }
 
     console.log(typeof date, typeof input_birth);
@@ -311,7 +312,11 @@ $(document).ready(function(){
         }
         //3. 일 -공백 x
         else{
-          if(date<input_birth){
+          if(c_birth_d>31){
+            $("#birth_check").text('생년월일을 다시 확인해주세요.');
+            $('#birth_check').css('color', 'red');
+          }
+          else if(date<input_birth){
             $("#birth_check").text('미래에서 오셨나요?');
             $('#birth_check').css('color', 'red');
           }
@@ -477,16 +482,19 @@ function checkIt(){
     $("#name").focus();
     return false;
   }
-
   //-------------------핸드폰
-  //1. 정규식 일치 O
-  if($('#c_tel1').val()==""||$('#c_tel2').val()==""){
+  if($('#c_tel1').val()==""){
+    $("#phonenum_check").text("필수 정보입니다.");
+    $('#phonenum_check').css('color', 'red');
+    $("#c_tel1").focus();
+    return false;
+  }
+  if($('#c_tel2').val()==""){
     $("#phonenum_check").text("필수 정보입니다.");
     $('#phonenum_check').css('color', 'red');
     $("#c_tel2").focus();
     return false;
   }
-  //3. 정규식 일치 X
   if(!num.test($('#c_tel1').val())||!num.test($('#c_tel2').val())){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');
@@ -494,34 +502,40 @@ function checkIt(){
     return false;
   }
   //-------------------생년월일(필수는 data는 아니지만 잘못된 값 넣는 것을 방지)
-  if(!birthJ.test($('#s_birth_y').val())){
+  if(!num.test($('#c_birth_y').val())){
     $("#birth_check").text(' 태어난 년도 4자리를 정확하게 입력하세요.');
     $('#birth_check').css('color', 'red');
-    $("#s_birth_y").focus();
+    $("#c_birth_y").focus();
     return false;
   }
-  if($('#s_birth_m').val()==""){
+  if($('#c_birth_m').val()==""){
     $("#birth_check").text('태어난 월을 선택하세요.');
     $('#birth_check').css('color', 'red');
-    $("#s_birth_m").focus();
+    $("#c_birth_m").focus();
     return false;
   }
-  if($('#s_birth_d').val()==""){
+  if($('#c_birth_d').val()==""){
     $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
     $('#birth_check').css('color', 'red');
-    $("#s_birth_d").focus();
+    $("#c_birth_d").focus();
     return false;
   }
-  if(!birthJ.test($('#s_birth_d').val())){
+  if(!num.test($('#c_birth_d').val())){
     $("#birth_check").text('생년월일을 다시 확인해주세요.');
     $('#birth_check').css('color', 'red');
-    $("#s_birth_d").focus();
+    $("#c_birth_d").focus();
+    return false;
+  }
+  if($('#c_birth_d').val()>31){
+    $("#birth_check").text('생년월일을 다시 확인해주세요.');
+    $('#birth_check').css('color', 'red');
+    $("#c_birth_d").focus();
     return false;
   }
   if(date<input_birth){
     $("#birth_check").text('미래에서 오셨나요?');
     $('#birth_check').css('color', 'red');
-    $("#s_birth_y").focus();
+    $("#c_birth_y").focus();
     return false;
   }
   //------------------주소
