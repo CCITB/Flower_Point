@@ -7,7 +7,7 @@
         @if($customer = auth()->guard('customer')->user())
           <div class="login">
             <span style="cursor:default;">안녕하세요 {{$customer -> c_name}} 님</span>
-            <span><a href="/logout">로그아웃</a></span>
+            <span><a href="/logout" style="color:black;">로그아웃</a></span>
           </div>
         @elseif($seller = auth()->guard('seller')->user())
           <div class="login">

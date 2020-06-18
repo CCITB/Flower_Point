@@ -81,7 +81,7 @@
               총 금액
             </div>
             <div class="total_price">
-              <span>00000</span>
+              <span>{{number_format($protb->p_price)}}</span>
               <span>원</span>
             </div>
             <div class="order_bt">
