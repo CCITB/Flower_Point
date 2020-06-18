@@ -81,11 +81,11 @@ class RegisterController extends Controller
       $datas =  $request->input('s_id');
       $sid = DB::table('seller')->where('s_id','=',$datas )->first();
 
-      //사업자등록번호
-      $st_num1 = $request->input('registeration_num1');
-      $st_num2 = $request->input('registeration_num2');
-      $st_num3 = $request->input('registeration_num3');
-      $st_num = $st_num1.'-'.$st_num2.'-'.$st_num3;
+      // //사업자등록번호
+      // $st_num1 = $request->input('registeration_num1');
+      // $st_num2 = $request->input('registeration_num2');
+      // $st_num3 = $request->input('registeration_num3');
+      // $st_num = $st_num1.'-'.$st_num2.'-'.$st_num3;
 
       //주소
       $st_post = $request->input('postcode');
@@ -98,7 +98,7 @@ class RegisterController extends Controller
         'st_name'=>$request->input('st_name'),
         'st_tel' => $request->input('st_tel'),
         'st_address' => $st_address,
-        'st_registeration_num' => $st_num,
+        'st_registeration_num' => $request->input('registeration_num'),
         'st_introduce' => $request->input('st_introduce'),
         'seller_no' =>  $sid->s_no
       ]);
