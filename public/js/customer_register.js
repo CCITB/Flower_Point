@@ -1,6 +1,10 @@
 //전역변수 random
 var global_random;
 var global_id_check;
+//현재날짜
+var date;
+//input 날짜
+var input_birth;
 // jQuery -- 어지수
 $.ajaxSetup({
   headers: {
@@ -260,7 +264,35 @@ $(document).ready(function(){
     var c_birth_m = $('#c_birth_m').val();
     var c_birth_d = $('#c_birth_d').val();
     //정규식
-    var birthJ =  /^[0-9]+$/
+    var birthJ =  /^[0-9]+$/;
+
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = today.getMonth()+1;
+    var dd = today.getDate();
+
+    if((mm+"").length < 2){
+      var today = yyyy+'0'+mm+''+dd;
+      date = parseInt(today);
+    }
+    else{
+      var today = yyyy+''+mm+''+dd;
+      date = parseInt(today);
+    }
+
+    //input data --- day
+    if(c_birth_d.length!=0&&c_birth_d.length < 2){
+      var c_birth = c_birth_y+c_birth_m+'0'+c_birth_d;
+      input_birth = parseInt(s_birth);
+    }
+    else{
+      var c_birth = c_birth_y+c_birth_m+c_birth_d;
+      input_birth = parseInt(s_birth);
+    }
+
+    console.log(typeof date, typeof input_birth);
+    console.log(date, input_birth);
+
     //(년) - 정규식 O , 4자리
     if(birthJ.test(c_birth_y)&&c_birth_y.length==4){
       $("#birth_check").text("");
@@ -279,8 +311,14 @@ $(document).ready(function(){
         }
         //3. 일 -공백 x
         else{
+          if(date<input_birth){
+            $("#birth_check").text('미래에서 오셨나요?');
+            $('#birth_check').css('color', 'red');
+          }
+          else{
           $('#birth_check').text('');
           $('#birth_check').css('color', 'red');
+          }
         }
       }
     }
@@ -453,6 +491,37 @@ function checkIt(){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');
     $("#c_tel2").focus();
+    return false;
+  }
+  //-------------------생년월일(필수는 data는 아니지만 잘못된 값 넣는 것을 방지)
+  if(!birthJ.test($('#s_birth_y').val())){
+    $("#birth_check").text(' 태어난 년도 4자리를 정확하게 입력하세요.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_y").focus();
+    return false;
+  }
+  if($('#s_birth_m').val()==""){
+    $("#birth_check").text('태어난 월을 선택하세요.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_m").focus();
+    return false;
+  }
+  if($('#s_birth_d').val()==""){
+    $("#birth_check").text('태어난 일(날짜) 2자리를 정확하게 입력하세요.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_d").focus();
+    return false;
+  }
+  if(!birthJ.test($('#s_birth_d').val())){
+    $("#birth_check").text('생년월일을 다시 확인해주세요.');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_d").focus();
+    return false;
+  }
+  if(date<input_birth){
+    $("#birth_check").text('미래에서 오셨나요?');
+    $('#birth_check').css('color', 'red');
+    $("#s_birth_y").focus();
     return false;
   }
   //------------------주소
