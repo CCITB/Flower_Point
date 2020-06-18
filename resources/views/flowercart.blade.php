@@ -176,7 +176,18 @@ selectAll.addEventListener('click', function(){
   var objs = document.querySelectorAll(".checkf");
   for (var i = 0; i < objs.length; i++) {
     objs[i].checked = selectAll.checked;
+    if(selectAll.checked){
+      console.log('하위 태그 모두 선택');
+      console.log(selectAll);
+      td = selectAll.parentNode.parentNode;
+      tr = td.children;
+      // console.log(tr);
+      // tr[1].remove('flowercart-infor');
+      // dd = delete tr[0];
+      console.log(tr[i]);
+    }
   };
+
 }, false);
 
 var objs = document.querySelectorAll(".checkf");
@@ -186,8 +197,10 @@ for(var i=0; i<objs.length ; i++){
     for (var j = 0; j < objs.length; j++) {
       if (objs[j].checked === false) {
         selectAll.checked = false;
+
         return;
       };
+
     };
     selectAll.checked = true;
   }, false);
@@ -318,5 +331,6 @@ function onKeyDown()
       return false;
      }
 }
+
 
 </script>
