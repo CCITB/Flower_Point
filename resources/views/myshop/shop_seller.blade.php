@@ -29,16 +29,19 @@
     <table class="shopinfo">
       <tr>
         <th>대표</th>
-        <td>{{$data1->s_name}}</td>
+          <td><div class="thcell">{{$data1->s_name}}</div></td>
       </tr>
+
       <tr>
         <th>상호명</th>
-        <td>{{$data1->st_name}}</td>
+        <td><div class="thcell">{{$data1->st_name}}</div></td>
       </tr>
+
       <tr>
         <th>주소</th>
-        <td>{{$data1->st_address}}</td>
-        <div id="addressapi" style="display:none;">
+          <td><div id="ad">{{$data1->st_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addressmodi' );"></div>
+
+            <div id="addressmodi" style="display:none;">
           <div class="delivery_wrap">
             <strong class="info">주 소</strong>
             <!-- 우편번호 -->
@@ -48,22 +51,42 @@
           <!--주소 -->
           <div class="delivery_wrap2">
             <input type="text"  id="address" placeholder="주소">
-
             <div class="delivery_address_detail">
               <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
               <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
             </div>
           </div>
         </div>
-        <div class="tdcell"><input type="button" id=modinum value="주소수정" name="modiaddress" display="block" onclick="div_show(this.value,'addressapi');"></div>
+      </td>
+
+
+      </div>
       </tr>
     </table>
     <div class="shopintro">
-      <div>{{$data1->st_introduce}}</div>
-      <input type="button" id=modinum value="소개수정" name="introduce" display="block" onclick="(this.value,'p_num' );">
+      <div id="introducemodi">{{$data1->st_introduce}}</div>
+      <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
+      <div id="addressapi" style="display:none;">
+      <input type="text" id="content" name="" placeholder="가게소개를 적으세요.">
+      <button type="submit" id="complete" name="button">수정완료</button>
+      </div>
     </div>
+
 @endforeach
     @endif
+    <script type="text/javascript">
+    function div_show(s,ss){
+      if(s == "주소수정"){
+        document.getElementById(ss).style.display="block";
+        ad.style.display="none";
+      }
+      else if(s== "소개수정"){
+        document.getElementById(ss).style.display="block";
+        modiinfo.style.display="none";
+        introducemodi.style.display="none";
+      }
+    }
+    </script>
   </div>
 
       <div class="wrap4">
@@ -193,11 +216,7 @@ while (switching) {
     }
   }
 }
-function div_show(s,ss){
-  if(s == "주소수정"){
-    document.getElementById(ss).style.display="block";
-  }
-}
+
 }
   </script>
   <!--POST API Link -->

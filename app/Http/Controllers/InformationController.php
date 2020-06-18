@@ -44,9 +44,5 @@ class InformationController extends Controller
           // return $proro;
           return redirect('/shop');
     }
-    else return view('myshop/shop_seller');
-
-    // return view('myshop/shop_seller');
-
   }
 }
