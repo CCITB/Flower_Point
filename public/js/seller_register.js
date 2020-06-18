@@ -201,7 +201,7 @@ $(document).ready(function(){
     var phone= /^[0-9]+$/;
 
     //1. 정규식 일치 O
-    if(phone.test(s_phonenum_val1)||phone.test(s_phonenum_val2)){
+    if(s_phonenum_val1==""&&phone.test(s_phonenum_val2)){
       $('#phonenum_check').text('');
     }
     //2. 공백
@@ -251,7 +251,7 @@ $(document).ready(function(){
     console.log(date, input_birth);
 
     //정규식
-    var birthJ =  /^[0-9]+$/
+    var birthJ =  /^[0-9]+$/;
     //(년) - 정규식 O , 4자리
     if(birthJ.test(s_birth_y)){
       $("#birth_check").text("");
