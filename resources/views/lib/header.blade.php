@@ -80,9 +80,9 @@
             <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">#</a></li>
           </ul>
         </li>
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
+          <a href="/faq">고객센터</a>
         @if(auth()->guard('seller')->user())
-          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-            <a href="/faq">고객센터</a>
             <ul class="submenu_list">
               <li class="submenu"><a href="/myqna">문의관리</a></li>
             </ul>
@@ -94,8 +94,7 @@
             </ul>
           </li>
         @elseif(auth()->guard('customer')->user())
-          <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
-            <a href="/faq">고객센터</a>
+
             <ul class="submenu_list">
               <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
             </ul>
@@ -120,7 +119,6 @@
               <li class="submenu"><a href="/mypage">내 정보</a></li>
             </ul>
           </li>
-        @else
           <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
             <a href="/login_customer">마이페이지</a>
             <ul class="submenu_list">

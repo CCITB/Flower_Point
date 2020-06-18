@@ -43,14 +43,14 @@
           }
         </style>
         <div class="privacy">
-                <table border="0" table class="table1">
+                <table border="0" table class="table1" >
                   <form action="/information_controller" method="post">
                     @csrf
                   @if($seller = auth()->guard('seller')->user())
 
                     <tbody>
-                    <tr>
-                        <th scope="row">
+                    <tr class="tr1">
+                        <th class="th1">
                         <div class="thcell">아이디</div>
                       </th>
                         <td>
@@ -58,16 +58,16 @@
                           </td>
                     </tr>
 
-                    <tr>
-                      <th scope="row">
+                    <tr class="tr1">
+                      <th class="th1">
                       <div class="thcell">이름</div>
                     </th>
                       <td>
                         <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
                         </td>
                     </tr>
-                    <tr>
-                      <th scope="row">
+                    <tr class="tr1">
+                      <th class="th1">
                       <div class="thcell">연락처</div>
                     </th>
                       <td>
@@ -104,8 +104,8 @@
                     <form action="/modiemail" method="post">
                       @csrf
 
-                    <tr>
-                      <th scope="row">
+                    <tr class="tr1">
+                      <th class="th1">
                       <div class="thcell">이메일</div>
                     </th>
                       <td>
@@ -118,38 +118,6 @@
                         </td>
                     </tr>
                   </form>
-                  {{-- <form action="/modiaddress" method="post">
-                    @csrf
-                    @foreach ($sellerstore as $sellershop)
-                    <tr>
-                      <th scope="row">
-                      <div class="thcell">주소</div>
-                    </th>
-                      <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$sellershop->st_address}}<input type="button" id=modiaddress value="주소수정" name="modi" display="block" onclick="info_modification(this.value,'address1' );"></p>
-                        <div id="address1" style="display:none;">
-                          <div class="delivery_wrap">
-                            <strong class="info">주 소</strong>
-                            <!-- 우편번호 -->
-                            <input type="text" id="postcode" placeholder="우편번호">
-                            <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                          </div>
-                          <!--주소 -->
-                          <div class="delivery_wrap2">
-                            <input type="text"  id="address" placeholder="주소">
-                            <div class="delivery_address_detail">
-                              <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
-                              <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
-                              <button type="submit" name="button">수정완료</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        </div>
-                        </td>
-                    </tr>
-                  </form>
-                @endforeach --}}
                     </tbody>
                 </table>
 
@@ -159,25 +127,79 @@
 
                   <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
 
+                    <tbody>
+                    <tr class="tr1">
+                        <th class="th1">
+                        <div class="thcell">아이디</div>
+                      </th>
+                        <td>
+                          <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
+                          </td>
+                    </tr>
 
-                      <tr>
-                          <th>ID</th>
-                          <td >{{$customer->c_id}}</td>
-                      </tr>
-                      <tr>
-                          <th>이름</th>
-                          <td >{{$customer->c_name}}</td>
-                      </tr>
-                      <tr>
-                          <th>연락처</th>
-                          <td >{{$customer->c_phonenum}}</td>
-                      </tr>
-                      <tr>
-                          <th>이메일</th>
-                          <td >{{$customer->c_email}}</td>
-                      </tr>
+                  <tr class="tr1">
+                      <th class="th1">
+                      <div class="thcell">이름</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
+                        </td>
+                    </tr>
+                    <tr class="tr1">
+                      <th class="th1">
+                      <div class="thcell">연락처</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+
+                        <div id="p_num" style="display:none;">
+                        <input type="text" name="s_phonenum"  placeholder="새 연락처">
+                        <button type="submit" name="button">수정완료</button>
+                        </div>
+
+
+
+                        <script type="text/javascript">
+
+                        function info_modification(s,ss){
+                          if(s == "연락처수정"){
+                            document.getElementById(ss).style.display="block"
+                            modinum.style.display="none";
+                        }
+                        else if(s == "이메일수정"){
+                          document.getElementById(ss).style.display="block"
+                          modiemail.style.display="none";
+                      }
+                      else if(s == "주소수정"){
+                        document.getElementById(ss).style.display="block"
+                        modiaddress.style.display="none";
+                    }
+                      }
+                        </script>
+
+                        </td>
+                    </tr>
+                    </form>
+                    <form action="/modiemail" method="post">
+                      @csrf
+
+                    <tr class="tr1">
+                      <th class="th1">
+                      <div class="thcell">이메일</div>
+                    </th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
+                        <div id="email" style="display:none;">
+                        <input type="text" name="s_email"  placeholder="새 이메일">
+                        <button type="submit" name="button">수정완료</button>
+                        </div>
+
+                        </td>
+                    </tr>
+                  </form>
+                    </tbody>
                   </table>
-              </table>
+                @else
           @endif
 
 

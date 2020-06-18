@@ -45,7 +45,7 @@ img{
     width: 100%;
     position: relative;
     margin: 0 auto;
-    height: 500px;
+    height: 300px;
     display: inline-block;
 }
 
@@ -143,6 +143,27 @@ margin-bottom: 50px;
   position:relative;
   width: auto;
 }
-.paytable{
 
+th.th1{
+  width:  20%;
+}
+
+table.table1{
+  width: 100%;
+  margin-bottom: 20%;
+}
+
+#modinum{
+ margin-right: 80%;
+ margin-top: 2%;
+}
+ #modiemail{
+  margin-right: 80%;
+  margin-top: 2%;
+}
+#email{
+  margin-right: 60%;
+}
+#p_num{
+  margin-right: 60%;
 }

@@ -25,7 +25,6 @@
       <div class="imgbox">
     <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
   </div>
-
     <table class="shopinfo">
       <tr>
         <th>대표</th>
@@ -36,6 +35,7 @@
         <th>상호명</th>
         <td><div class="thcell">{{$data1->st_name}}</div></td>
       </tr>
+<form class="addressgroup" action="/shopinfo" method="get">
 
       <tr>
         <th>주소</th>
@@ -53,25 +53,29 @@
             <input type="text"  id="address" placeholder="주소">
             <div class="delivery_address_detail">
               <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
+              <div class="detail">
               <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
             </div>
           </div>
+          </div>
         </div>
+        <button type="submit" id="complete1" name="button" style="display:none;">수정완료</button>
       </td>
-
-
+      </form>
       </div>
+
       </tr>
     </table>
+    <form class="shop" action="/shopinfo" method="get">
     <div class="shopintro">
       <div id="introducemodi">{{$data1->st_introduce}}</div>
       <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
       <div id="addressapi" style="display:none;">
-      <input type="text" id="content" name="" placeholder="가게소개를 적으세요.">
-      <button type="submit" id="complete" name="button">수정완료</button>
+      <input type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요.">
+      <button type="submit" id="complete2" name="button">수정완료</button>
       </div>
     </div>
-
+</form>
 @endforeach
     @endif
     <script type="text/javascript">
@@ -79,6 +83,7 @@
       if(s == "주소수정"){
         document.getElementById(ss).style.display="block";
         ad.style.display="none";
+        complete1.style.display="block";
       }
       else if(s== "소개수정"){
         document.getElementById(ss).style.display="block";
@@ -147,7 +152,7 @@
             padding-left: 10px;
           }
           td.upload-name{
-            text-align: cne;
+            text-align: center;
             padding-left: 15px;
 
           }
