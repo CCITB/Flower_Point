@@ -24,6 +24,22 @@ class InformationController extends Controller
         return redirect('/mypage');
       }
 
+      publiC function information(Request $request){
+        DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
+          'c_phonenum'=>$request->input('c_phonenum'),
+        ]);
+
+          return redirect('/mypage');
+        }
+
+        publiC function modifyemail(Request $request){
+          DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+            's_email'=>$request->input('s_email'),
+          ]);
+
+            return redirect('/mypage');
+          }
+
 
   publiC function storeinfo(Request $request){
 
@@ -45,5 +61,6 @@ class InformationController extends Controller
           $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra;
     }
     return redirect('/shop');
+
   }
 }
