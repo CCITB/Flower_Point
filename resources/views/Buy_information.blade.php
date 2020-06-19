@@ -39,7 +39,7 @@
             <div class="shop_lo">
               서울시 종로구
             </div>
-            <div class="pd_price"> <!-- 상품 가격 불러오기 -->
+            <div class="pd_price">
               <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
             </div>
           </div>
@@ -239,6 +239,7 @@
             문의하기
           </h3>
         </div>
+
         <table class="qna-table">
           <tr>
             <th>번호</th>
@@ -263,14 +264,15 @@
           </tr>
         </table>
         <div class="qna-product-btn">
-          <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+          <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
         </div>
         <div id="qna-inquiry1" class="faq_an">
           문의하기
-          <form class="" action="index.html" method="post">
+          <form class="" action="" method="post">
+            @csrf
             <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
             <div class="bottom-btn">
-              <button type="button" name="button" class="qna-submit-btn">저장</button>
+              <button type="submit" name="button" class="qna-submit-btn">저장</button>
               <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
             </div>
           </form>
