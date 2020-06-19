@@ -82,6 +82,8 @@
         </li>
         <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();">
           <a href="/faq">고객센터</a>
+
+
         @if(auth()->guard('seller')->user())
             <ul class="submenu_list">
               <li class="submenu"><a href="/myqna">문의관리</a></li>
@@ -119,7 +121,7 @@
               <li class="submenu"><a href="/mypage">내 정보</a></li>
             </ul>
           </li>
-          
+
         @endif
       </ul>
     </div>

@@ -171,10 +171,19 @@ Route::get('/mypage', function(){
           return view('mypage/mypage', compact('sellerstore'));
 
           }
+
+          else if(auth()->guard('customer')->user()){
+
+
+          return view('mypage/mypage');
+        }
+          else{
+
+          }
+          return redirect('/main');
+
 });
-Route::get('/modify', function(){
-  return view('mypage/modify');
-});
+
 
 Route::get('/customer', function(){
   return view('mypage/customer');
