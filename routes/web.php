@@ -112,9 +112,9 @@ Route::get('/locate1', function () {
 // });
 Route::get('/myqna','pagination@pages');
 
-Route::get('/postlist', function () {
-  return view('post_list');
-});
+// Route::get('/postlist', function () {
+//   return view('post_list');
+// });
 Route::group(['middleware' => 'preventBackHistory'],function(){
   Route::get('/sellershoppost', 'ProductController@seller_shoppost');
 });
@@ -188,13 +188,36 @@ Route::get('/shop', function(){
         ->where('s_no','=', $sellerprimary )->get();
 
 
-        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
+        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(2);
         // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
 
          // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
         // return $proro;
 
         return view('myshop/shop_seller' , compact('data', 'proro',));
+  }
+  else{
+
+  }
+  return view('login/login_seller');
+});
+
+Route::get('/postlist', function(){
+  if($sellerinfo = auth()->guard('seller')->user()){
+    $sellerprimary = $sellerinfo->s_no;
+    // return $sellerprimary;
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+
+
+        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(1);
+        // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
+
+         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
+        // return $proro;
+
+        return view('post_list' , compact('data', 'proro',));
   }
   else{
 
