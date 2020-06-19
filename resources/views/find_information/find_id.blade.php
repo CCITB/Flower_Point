@@ -28,9 +28,9 @@
             <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name'><br><br>
             <div class="ip_name">전화번호</div>
             <input class="find_input" placeholder="전화번호를 입력하세요" name="tell">
-            <input type="submit" value="인증"><br><br>
+            {{-- <input type="submit" value="인증"><br><br>
             <input class="find_input" placeholder="인증번호">
-            <input type="submit" value="확인"><br><br>
+            <input type="submit" value="확인"><br><br> --}}
           </div>
         </div>
         <div class="under">

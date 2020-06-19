@@ -114,6 +114,13 @@ Route::get('/myqna','pagination@pages');
 Route::get('/postlist', function () {
   return view('post_list');
 });
+
+// Route::get('/postlist', 'pagination@postlist');
+//
+// // Route::group(['middleware' => 'preventBackHistory'],function(){
+// //   Route::get('/postlist', 'pagination@postlist');
+// // });
+
 Route::group(['middleware' => 'preventBackHistory'],function(){
   Route::get('/sellershoppost', 'ProductController@seller_shoppost');
 });
@@ -141,7 +148,7 @@ Route::get('/complete', function(){
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });
-Route::get('/shopinfo','InformationController@storeinfo');
+Route::get('/shop','InformationController@storeinfo');
 
 //       return view('myshop/shop_seller');
 
@@ -161,44 +168,16 @@ Route::get('/mypage', function(){
           $sellerstore = DB::table('seller')
           ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
           ->where('s_no','=', $sellerprimary )->get();
-
           return view('mypage/mypage', compact('sellerstore'));
 
           }
-
-          else if(auth()->guard('customer')->user()){
-
-
-          return view('mypage/mypage');
-        }
-          else{
-
-          }
-          return view('login/login_customer');
-
+});
+Route::get('/modify', function(){
+  return view('mypage/modify');
 });
 
-Route::get('/shop', function(){
-  if($sellerinfo = auth()->guard('seller')->user()){
-    $sellerprimary = $sellerinfo->s_no;
-    // return $sellerprimary;
-        $data = DB::table('seller')
-        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-        ->where('s_no','=', $sellerprimary )->get();
-
-
-        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
-        // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
-
-         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
-        // return $proro;
-
-        return view('myshop/shop_seller' , compact('data', 'proro',));
-  }
-  else{
-
-  }
-  return view('login/login_seller');
+Route::get('/customer', function(){
+  return view('mypage/customer');
 });
 
 //메일
