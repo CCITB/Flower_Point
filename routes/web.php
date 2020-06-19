@@ -54,8 +54,9 @@ Route::get('/mailsend', 'MailController@send');
 Route::get('/mailview', function () {
   return view('emails/mail');
 });
+Route::post('/mail', 'MailController@sends');
 
-//ID, PW 찾기
+//ID, PW 찾기 ******박소현
 Route::get('/find_id', 'FindController@find_id');
 
 Route::post('/f_id', 'FindController@f_id');
@@ -200,10 +201,6 @@ Route::get('/shop', function(){
   }
   return view('login/login_seller');
 });
-
-//메일
-Route::post('/mail', 'MailController@sends');
-//Route::post('/mail', 'MailController@sends');
 
 //검색
 Route::get('/search', 'SearchController@result');
