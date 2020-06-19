@@ -33,12 +33,15 @@ class FindController extends Controller
 
   public function f_id(Request $myid)//seller 아이디 찾기
   {
-    $fd_id = $myid->get('name');
+    //input한 name값
+    $input_name = $myid->get('name');
 
-    $fd_name = DB::table('seller')->where('s_name','=',$fd_id)->get();
-    // $myfname = $fd_name->s_id;
-    if (count($fd_name)>0) {
-        return view('find_information.find_check', compact('fd_name'));
+    //input한 name값과 일치하는 DB name 행
+    $fd_name = DB::table('seller')->where('s_name','=',$input_name)->get();
+    $query_name = $fd_name[0]->s_name;
+
+    if ( $input_name  == $query_name) {
+      return view('find_information.find_check', compact('fd_name'));
     }
     else{
       return redirect('/find_id');
@@ -56,13 +59,13 @@ class FindController extends Controller
     $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
     $myid = $myinfo[0]->s_no;
 
-    if (count($myinfo)>0) {
-      return redirect('/find_pw_way');
-    }
-    else{
-      // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
-      return view('find_information.find_pw');
-    }
+    // if (count($myinfo)>0) {
+    //   return redirect('/find_pw_way');
+    // }
+    // else{
+    //   // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
+    //   return view('find_information.find_pw');
+    // }
   }
 
 
@@ -110,15 +113,15 @@ class FindController extends Controller
 
 
 
-    // public function f_way($id){
-    //
-    //   $productinfor = DB::table('seller')->where('s_no','=',$id)->get();
-    //   // return $productinfor;
-    //
-    //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-    //   // return $productdata;
-    //   return view('find_information.find_pw_way', compact('productinfor'));
-    // }
+  // public function f_way($id){
+  //
+  //   $productinfor = DB::table('seller')->where('s_no','=',$id)->get();
+  //   // return $productinfor;
+  //
+  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
+  //   // return $productdata;
+  //   return view('find_information.find_pw_way', compact('productinfor'));
+  // }
 
 
 

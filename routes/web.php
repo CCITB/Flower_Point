@@ -50,7 +50,7 @@ Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
 Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
 //MAIL_HOST ****** 어지수
-Route::get('/mailsend', 'MailController@send');
+//Route::get('/mailsend', 'MailController@send');
 Route::get('/mailview', function () {
   return view('emails/mail');
 });
