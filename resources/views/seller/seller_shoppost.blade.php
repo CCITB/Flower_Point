@@ -163,7 +163,7 @@ function readURL(el) {
 $(document).on("keyup", "input:text[numberonly]", function() {
   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
-  $(this).val( $(this).val().toString().replace(regexp, ',') );
+  // $(this).val( $(this).val().toString().replace(regexp, ',') );
 });
 </script>
 @include('lib.footer')
