@@ -26,11 +26,20 @@
           <div class="window">
             <div class="ip_name">이름</div>
             <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name'><br><br>
-            <div class="ip_name">전화번호</div>
-            <input class="find_input" placeholder="전화번호를 입력하세요" name="tell">
+            {{-- <div class="ip_name">전화번호</div>
+            <input class="find_input" placeholder="전화번호를 입력하세요" name="tell"> --}}
             {{-- <input type="submit" value="인증"><br><br>
             <input class="find_input" placeholder="인증번호">
             <input type="submit" value="확인"><br><br> --}}
+            <div class="verify">
+              <div class="sign_name">이메일</div>
+              <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
+              <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email"  >
+              <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
+              <!--인증번호 기입란-->
+              <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
+              <div class="check_div" id="email_check" value=""></div>
+            </div>
           </div>
         </div>
         <div class="under">
