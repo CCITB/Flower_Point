@@ -180,7 +180,7 @@
                         </td>
                     </tr>
                     </form>
-                    <form action="/modiemail_customer" method="post">
+                    <form action="/modiemail" method="post">
                       @csrf
 
                     <tr class="tr1">

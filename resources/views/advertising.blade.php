@@ -16,7 +16,7 @@
 
       <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
-        <img class="ad_img" src="https://www.thechristy.com/wp-content/uploads/2014/09/The-Christy-logo-300x100.png" >
+        <img class="ad_img" src="https://freshdon.com/wp-content/uploads/2018/12/%EC%83%9D%EC%83%9D-%EB%A1%9C%EA%B3%A0-300x100.png" >
         <div class="text"></div>
       </div>
 
