@@ -8,7 +8,7 @@ use DB;
 
 class InformationController extends Controller
 {
-  publiC function information(Request $request){
+  public function information(Request $request){
     DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
       's_phonenum'=>$request->input('s_phonenum'),
     ]);
@@ -16,7 +16,7 @@ class InformationController extends Controller
       return redirect('/mypage');
     }
 
-    publiC function modifyemail(Request $request){
+    public function modifyemail(Request $request){
       DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
         's_email'=>$request->input('s_email'),
       ]);
@@ -32,7 +32,7 @@ class InformationController extends Controller
           return redirect('/mypage');
         }
 
-        publiC function modifyemail(Request $request){
+        public function modifyemail(Request $request){
           DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
             's_email'=>$request->input('s_email'),
           ]);
@@ -41,7 +41,19 @@ class InformationController extends Controller
           }
 
 
-  publiC function storeinfo(Request $request){
+          return redirect('/mypage');
+        }
+
+        public function modifyemail(Request $request){
+          DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+            's_email'=>$request->input('s_email'),
+          ]);
+
+            return redirect('/mypage');
+          }
+
+
+  public function storeinfo(Request $request){
 
     if($sellerinfo = auth()->guard('seller')->user()){
       $sellerprimary = $sellerinfo->s_no;
