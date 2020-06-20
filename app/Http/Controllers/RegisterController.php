@@ -43,9 +43,9 @@ class RegisterController extends Controller
     $customer =  $request->input('c_id');
     $cid = DB::table('customer')->where('c_id','=',$customer )->first();
 
-    DB::table('address')->insert([
+    DB::table('customer_address')->insert([
       'c_no'=> $cid->c_no,
-      'a_post' => ($request->input('postcode')),
+      'a_post' => $request->input('postcode'),
       'a_address' => $request->input('address'),
       'a_detail' => $request->input('detailAddress'),
       'a_extra' => $request->input('extraAddress')
@@ -81,6 +81,25 @@ class RegisterController extends Controller
       $datas =  $request->input('s_id');
       $sid = DB::table('seller')->where('s_id','=',$datas )->first();
 
+      DB::table('store')->insert([
+        'st_name'=>$request->input('st_name'),
+        'st_tel' => $request->input('st_tel'),
+        'st_registeration_num' => $request->input('registeration_num'),
+        'st_introduce' => $request->input('st_introduce'),
+        'seller_no' =>  $sid->s_no
+      ]);
+
+      //입력된 c_id를 통해 현재 c_id의 칼럼 전체를 받아옴.
+      $stdata =  $request->input('st_name');
+      $stno = DB::table('store')->where('st_name','=',$stdata )->first();
+
+      DB::table('store_address')->insert([
+        'st_no'=> $stno->st_no,
+        'a_post' => $request->input('postcode'),
+        'a_address' => $request->input('address'),
+        'a_detail' => $request->input('detailAddress'),
+        'a_extra' => $request->input('extraAddress')
+      ]);
       // //사업자등록번호
       // $st_num1 = $request->input('registeration_num1');
       // $st_num2 = $request->input('registeration_num2');
@@ -88,30 +107,16 @@ class RegisterController extends Controller
       // $st_num = $st_num1.'-'.$st_num2.'-'.$st_num3;
 
       //주소
-      $st_post = $request->input('postcode');
-      $st_add = $request->input('address');
-      $st_detail = $request->input('detailAddress');
-      $st_extra = $request->input('extraAddress');
-      $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra;
-
-      DB::table('store')->insert([
-        'st_name'=>$request->input('st_name'),
-        'st_tel' => $request->input('st_tel'),
-        'st_address' => $st_address,
-        'st_registeration_num' => $request->input('registeration_num'),
-        'st_introduce' => $request->input('st_introduce'),
-        'seller_no' =>  $sid->s_no
-      ]);
+      // $st_post = $request->input('postcode');
+      // $st_add = $request->input('address');
+      // $st_detail = $request->input('detailAddress');
+      // $st_extra = $request->input('extraAddress');
+      // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra;
       // return $sid->s_no;
       return redirect('/login_seller');
     }
   }
   //register jquery -- 어지수
-  // public function s_overlapID(Request $request){
-  //   $input = $request->input('id');
-  //   $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
-  //   return response()->json($sellers);
-  // }
   public function s_overlap(Request $request)
   {
     $input = $request->input('id');
