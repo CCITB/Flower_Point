@@ -67,7 +67,7 @@
         <div class="paragraph">
           <div class="sign_name">매장 주소</div>
           <!-- 우편번호 -->
-          <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+          <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
           <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
           <!--주소 -->
           <div class="delivery_wrap2">
