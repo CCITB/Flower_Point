@@ -122,10 +122,7 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
   Route::get('/sellershoppost', 'ProductController@seller_shoppost');
 });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 8ad6be36a2034a4b241f0df9ec468671ad8d5984
 Route::get('/product/{id}', 'ProductController@productpage');
 
 
