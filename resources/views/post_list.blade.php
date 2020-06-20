@@ -1,51 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/postlist.css">
-    <script>
-    function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc";
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/postlist.css">
+  <style>
+  td.upload-date{
+    text-align: center;
   }
-}
-    </script>
-  </head>
-  <body>
-    @include('lib.header')
+  td.upload-price{
+    text-align: right;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  td.upload-name{
+    text-align: left;
+    padding-left: 15px;
+
+  }
+  </style>
+</head>
+<body>
+  @include('lib.header')
+  @if( auth()->guard('seller')->user())
     <div class="hr-line">
       <div id="line">
         <h2>물품관리</h2>
@@ -69,73 +47,78 @@
           <input type="text" name="" value="">
           <button type="submit" name="button" >검색</button>
         </div>
-        <style>
-        td.upload-date{
-          text-align: center;
-        }
-        td.upload-price{
-          text-align: right;
-          padding-right: 10px;
-          padding-left: 10px;
-        }
-        td.upload-name{
-          text-align: left;
-          padding-left: 15px;
 
-        }
-        </style>
         <table id="myTable">
+          <thead>
             <tr>
-              <th class="registration-date">날짜</th>
-              <th class="product-name">품목명</th>
+              <th class="registration-date">상품번호</th>
+              <th class="product-name">상품명</th>
               <th class="product-price">가격</th>
               <th class="product-amount">주문량</th>
             </tr>
-          <tr>
-            <td class="upload-date">2020.05.16</td>
-            <td class="upload-name">asdf</td>
-            <td class="upload-price">0원</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="upload-date">2020.05.18</td>
-            <td class="upload-name">sdf</td>
-            <td class="upload-price">10000원</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="upload-date">2020.05.14</td>
-            <td class="upload-name">sefasd</td>
-            <td class="upload-price">20000원</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="upload-date">2022.03.25</td>
-            <td class="upload-name">asdf</td>
-            <td class="upload-price">30000원</td>
-            <td></td>
-          </tr>
-
+          </thead>
+          <tbody>
+            @foreach ($proro as $data)
+              <tr>
+                <td class="upload-date">{{$data->p_no}}</td>
+                <td class="upload-name">{{$data->p_name}}</td>
+                <td class="upload-price">{{$data->p_price}}</td>
+                <td></td>
+              </tr>
+            @endforeach
+          </tbody>
         </table>
-        <div class="nav-page">
-          <nav>
-            <a href="#" class="active">1</a>
-          </nav>
-          <nav>
-            2
-          </nav>
-          <nav>
-            3
-          </nav>
-          <nav>
-            4
-          </nav>
-          <nav>
-            5
-          </nav>
+
+        <div>
+          {{ $proro->links()}}
         </div>
+
       </div>
     </div>
-    @include('lib.footer')
-  </body>
+  @endif
+
+  @include('lib.footer')
+
+
+
+  <script>
+  function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("myTable");
+    switching = true;
+    dir = "asc";
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+        if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch= true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount ++;
+      } else {
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  }
+</script>
+
+</body>
 </html>

@@ -50,17 +50,39 @@ Route::post('/RegisterControllerSeller', 'RegisterController@seller_store');
 Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
 //MAIL_HOST ****** 어지수
-Route::get('/mailsend', 'MailController@send');
+//Route::get('/mailsend', 'MailController@send');
 Route::get('/mailview', function () {
   return view('emails/mail');
 });
+Route::post('/mail', 'MailController@sends');
 
-//ID, PW 찾기
+//ID, PW 찾기 ******박소현
 Route::get('/find_id', 'FindController@find_id');
+
+Route::post('/f_id', 'FindController@f_id');
+
+Route::post('/check_query', 'FindController@check_query');
+
+
+// Route::get('/find_pw', 'FindController@find_pw');
+//
+// Route::post('/f_pw', 'FindController@f_pw');
+//
+// Route::get('/find_pw_way', 'FindController@find_pw_way');
+//
+// Route::post('/f_way', 'FindController@f_way');
 
 Route::get('/find_pw', 'FindController@find_pw');
 
-Route::get('/find_pw_way', 'FindController@find_pw_way');
+
+Route::get('/find_pw_way/{id}', 'FindController@f_way');
+
+Route::post('/f_way', 'FindController@f_way');
+
+Route::post('find', 'FindController@f_pw');
+
+
+
 
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
 
@@ -77,25 +99,33 @@ Route::post('/information_controller', 'InformationController@information');
 Route::get('/locate1', function () {
   return view('locate');
 });
-Route::get('/mypage', function () {
-  return view('mypage/mypage');
-});
+
 
 Route::get('/faq', function () {
   return view('FAQ');
+});Route::post('/modiemail', 'InformationController@modifyemail');
+
+
+Route::get('/locate1', function () {
+  return view('locate');
 });
+
 // Route::get('/myqna', function () {
 //   return view('myQnA');
 // });
 Route::get('/myqna','pagination@pages');
 
-Route::get('/postlist', function () {
-  return view('post_list');
+// Route::get('/postlist', function () {
+//   return view('post_list');
+// });
+Route::group(['middleware' => 'preventBackHistory'],function(){
+  Route::get('/sellershoppost', 'ProductController@seller_shoppost');
 });
-Route::get('/sellershoppost', function () {
-  return view('seller.seller_shoppost');
-})->middleware('auth:seller');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8ad6be36a2034a4b241f0df9ec468671ad8d5984
 Route::get('/product/{id}', 'ProductController@productpage');
 
 
@@ -118,7 +148,7 @@ Route::get('/complete', function(){
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });
-Route::get('/shop','InformationController@storeinfo');
+Route::get('/shopinfo','InformationController@storeinfo');
 
 //       return view('myshop/shop_seller');
 
@@ -132,26 +162,85 @@ Route::get('/customer', function(){
 Route::get('/all', 'MainController@showall');
 
 Route::get('/mypage', function(){
-  return view('mypage/mypage');
-});
-Route::get('/modify', function(){
-  return view('mypage/modify');
+    if($sellerinfo = auth()->guard('seller')->user()){
+      // return 0;
+      $sellerprimary = $sellerinfo->s_no;
+          $sellerstore = DB::table('seller')
+          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+          ->where('s_no','=', $sellerprimary )->get();
+
+          return view('mypage/mypage', compact('sellerstore'));
+
+          }
+
+          else if(auth()->guard('customer')->user()){
+
+
+          return view('mypage/mypage');
+        }
+          else{
+
+          }
+          return view('login/login_customer');
+
 });
 
-Route::get('/customer', function(){
-  return view('mypage/customer');
+Route::get('/shop', function(){
+  if($sellerinfo = auth()->guard('seller')->user()){
+    $sellerprimary = $sellerinfo->s_no;
+    // return $sellerprimary;
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+
+
+        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(2);
+        // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
+
+         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
+        // return $proro;
+
+        return view('myshop/shop_seller' , compact('data', 'proro',));
+  }
+  else{
+
+  }
+  return view('login/login_seller');
 });
 
-Route::post('/mail', 'MailController@sends');
+Route::get('/postlist', function(){
+  if($sellerinfo = auth()->guard('seller')->user()){
+    $sellerprimary = $sellerinfo->s_no;
+    // return $sellerprimary;
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+
+
+        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(1);
+        // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
+
+         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
+        // return $proro;
+
+        return view('post_list' , compact('data', 'proro',));
+  }
+  else{
+
+  }
+  return view('login/login_seller');
+});
+
 //검색
 Route::get('/search', 'SearchController@result');
-
+Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/flowercart', 'ProductController@basket');
-
+});
 Route::post('/delete', 'ProductController@basketdelete');
 
 Route::post('/basketstore', 'ProductController@basketstore');
 
+Route::post('/basketcount', 'ProductController@basketcount');
 
 // });
 //mail

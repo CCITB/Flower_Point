@@ -73,9 +73,9 @@ a:hover{
   font-size: 1em;
   color: #747474;
 }
-.shop_info2{
+/* .shop_info2{
   width : 25%;
-}
+} */
 
 textarea{
   width: 100%;
@@ -154,4 +154,13 @@ textarea{
 .under{
   margin-top:30px;
   text-align: center;
+}
+
+input.inf_tel{
+  width : 50%;
+  height:38px;
+}
+
+span.current-page{
+  color: red;
 }

@@ -39,8 +39,8 @@
             <div class="shop_lo">
               서울시 종로구
             </div>
-            <div class="pd_price"> <!-- 상품 가격 불러오기 -->
-              <strong> <span>{{$protb->p_price}}</span>  <span>원</span> </strong>
+            <div class="pd_price">
+              <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
             </div>
           </div>
 
@@ -81,7 +81,7 @@
               총 금액
             </div>
             <div class="total_price">
-              <span>00000</span>
+              <span>{{number_format($protb->p_price)}}</span>
               <span>원</span>
             </div>
             <div class="order_bt">
@@ -239,6 +239,7 @@
             문의하기
           </h3>
         </div>
+
         <table class="qna-table">
           <tr>
             <th>번호</th>
@@ -263,14 +264,15 @@
           </tr>
         </table>
         <div class="qna-product-btn">
-          <button type="button" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+          <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
         </div>
         <div id="qna-inquiry1" class="faq_an">
           문의하기
-          <form class="" action="index.html" method="post">
+          <form class="" action="" method="post">
+            @csrf
             <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
             <div class="bottom-btn">
-              <button type="button" name="button" class="qna-submit-btn">저장</button>
+              <button type="submit" name="button" class="qna-submit-btn">저장</button>
               <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
             </div>
           </form>
@@ -328,17 +330,35 @@ $('#btn1').click(function() {
     data: { "id" : jjim },
     // console.log(jjim);
     success: function(data) {
-    var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-   if (basketalert) {
-     location.href = "/flowercart"
-   }
-   else {
+      console.log(data);
+      if(data==1){
+        alert("구매자는 이용할 수 없습니다.");
+        return false;
+      }
+      if(data==0){
+        var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+        if(logincheck){
+          location.href = "/login_customer"
+        }
+        else{
+          return false;
+        }
+      }
+      else {
+        var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+       if (basketalert) {
+         location.href = "/flowercart"
+       }
+       else {
 
-   }
+       }
+      }
+
       console.log(data);
     },
     error: function(data) {
       console.log("error" +data);
+      alert("잘못된 요청입니다.")
     }
   });
 });

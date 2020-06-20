@@ -19,7 +19,8 @@
     </div>
 
     <div class ="pw_reset">
-      <form id="pw_ckform" action = '/find_chk' onsubmit='return pw_check()'>
+      <form id="pw_ckform" action = '/f_reset' method='post'onsubmit='return pw_check()'>
+        @csrf
         <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
 
         <input class="find_input" type="password" placeholder="새 비밀번호" id="new_pw" name="new_pw"><br>

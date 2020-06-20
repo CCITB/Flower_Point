@@ -83,20 +83,21 @@ a:hover{
 }
 
 .hr-line{
-  border: 5px solid pink;
   /* width: 955px; */
   padding: 0 30px;
   position: relative;
   width: 1130px;
   margin: 0 auto;
-  margin-top: 130px;
+  margin-top: 90px;
   margin-bottom: 8px;
 }
 #line{
   width: 90%;
   margin: 0 auto;
 }
-
+hr{
+  margin-bottom: 20px;
+}
 
 body{
   min-width: 1260px;

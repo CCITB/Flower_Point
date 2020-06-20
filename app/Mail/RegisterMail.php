@@ -25,7 +25,7 @@ class RegisterMail extends Mailable
     /**
      * Build the message.
      *
-     * @return $this
+     * @return $t his
      **/
     public function build()
     {

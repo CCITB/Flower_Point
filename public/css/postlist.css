@@ -23,14 +23,6 @@ margin: 0 auto;
   vertical-align: middle;
     display: block;
 }
-nav{
-  border: solid 1px gray;
-display: inline-block;
-width: 24px;
-height: 24px;
-border-radius: 2px;
-color: gray;
-}
 .active{
   color: red;
   text-decoration: none;
@@ -84,3 +76,20 @@ display: inline-block;
   display: inline-block;
 }
 /* postlist.css 끝나는곳 */
+
+ul li{
+  list-style-type: none;
+  display: inline;
+  margin-left: 20px;
+}
+.page-item{
+display: inline-block;
+}
+.pagination{
+  text-align: center;
+}
+/* @media (max-width: /* write what you need, for me it's 560px */) {
+    ul.pagination li:not(.show-mobile) {
+        display: none;
+    }
+} */

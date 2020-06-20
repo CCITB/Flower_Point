@@ -43,7 +43,7 @@
           <tr>
             <th>상품명</th>
             <td>
-              <input type="text" name="productname" value=""placeholder="상품명..." class="post-title">
+              <input type="text" name="productname" value=""placeholder="상품명..." maxlength="180" class="post-title">
             </td>
           </tr>
         </table>
@@ -76,7 +76,7 @@
         <table>
           <tr>
             <th>배송비</th>
-            <td><input type="text" numberonly="true" name="deliverycharge" value="" placeholder="0" style="text-align:right;">원</td>
+            <td><input type="text" numberonly="true" name="deliverycharge" value="" maxlength="15" placeholder="0" style="text-align:right;">원</td>
           </tr>
           <tr>
             <th>판매금액</th>
@@ -107,7 +107,7 @@
 //     console.log(image); reader.readAsDataURL(image); } }
 // 파일용량제한 스크립트
 function checkFile(el){
-   $('#image-session').attr('src', '#');
+  $('#image-session').attr('src', '#');
   var file = el.files;
   if(file[0].size > 1024 * 1024 * 2){
     alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
@@ -162,6 +162,8 @@ function readURL(el) {
 // 숫자만
 $(document).on("keyup", "input:text[numberonly]", function() {
   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  // $(this).val( $(this).val().toString().replace(regexp, ',') );
 });
 </script>
 @include('lib.footer')
@@ -176,9 +178,7 @@ nhn.husky.EZCreator.createInIFrame({
   fCreator: "createSEditor2"
 });
 $("#save").click(function(){ oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
-$("#send-text").submit(); }) //?? 이코드 뭐냐;;//
-
-
+$("#send-text").submit(); }); //?? 이코드 뭐냐;;//
 
 
 

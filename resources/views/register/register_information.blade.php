@@ -10,27 +10,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+    style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <title>매장 정보 기입</title>
 </head>
 
 <body>
   <div id="all">
     <div class="text">
-      <div class="id_title">Store Information</div> <hr>
+      <div class="text">
+        <span class="id_title"><i>판매자 - 가게정보</i></span>
+        <div class="page-sorting">
+          <span >step1</span>
+          <span>&gt;</span>
+          <span >step2</span>
+          <span>&gt;</span>
+          <span class="current-page">step3</span>
+        </div>
+      </div>
+      <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
 
     <div class="st_if">
-      <form action = '/RegisterControllerSeller' method='post' name="insertstore" >
+      <form action = '/RegisterControllerSeller' method='post' name="insertstore" onsubmit='return checkIt();'>
         @csrf
         <input type="hidden" name="s_id" value="<?php echo $_POST['s_id']?>">
         <input type="hidden" name="s_password" value="<?php echo $_POST['s_password']?>">
         <input type="hidden" name="s_name" value="<?php echo $_POST['s_name']?>">
-        <input type="hidden" name="s_phonenum" value="<?php echo $_POST['s_phonenum']?>">
         <input type="hidden" name="s_email" value="<?php echo $_POST['s_email']?>">
         <input type="hidden" name="s_gender" value="<?php echo $_POST['s_gender']?>">
+
         <input type="hidden" name="s_birth_y" value="<?php echo $_POST['s_birth_y']?>">
         <input type="hidden" name="s_birth_m" value="<?php echo $_POST['s_birth_m']?>">
         <input type="hidden" name="s_birth_d" value="<?php echo $_POST['s_birth_d']?>">
+
+        <input type="hidden" name="s_tel1" value="<?php echo $_POST['s_tel1']?>">
+        <input type="hidden" name="s_tel2" value="<?php echo $_POST['s_tel2']?>">
 
         <div class="paragraph">
           <div class="sign_name">매장 이름</div>
@@ -40,17 +60,24 @@
 
         <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
-          <input class="shop_info2" type="text" id="registeration_num1" name="registeration_num1">
-          -
-          <input class="shop_info2" type="text" id="registeration_num2" name="registeration_num2">
-          -
-          <input class="shop_info2" type="text" id="registeration_num3" name="registeration_num3">
+          <input class="shop_info" type="text" id="registeration_num" name="registeration_num">
           <div class="check_div" id="stnum_check" value=""></div>
         </div>
 
         <div class="paragraph">
           <div class="sign_name">매장 주소</div>
-          <input class="shop_info" type="text" placeholder="Shop Address" id="st_address" name="st_address">
+          <!-- 우편번호 -->
+          <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+          <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+          <!--주소 -->
+          <div class="delivery_wrap2">
+            <input type="text"  id="address" name="address" placeholder="주소">
+
+            <div class="delivery_address_detail">
+              <input type="text" class="delivery_address_list" id="detailAddress" name="detailAddress" placeholder="상세주소">
+              <input type="text" class="delivery_address_list" id="extraAddress" name="extraAddress" placeholder="참고항목">
+            </div>
+          </div>
           <div class="check_div" id="staddress_check" value=""></div>
         </div>
 
@@ -73,111 +100,7 @@
 </body>
 </html>
 
-<script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
-$(document).ready(function(){
-
-  $("#st_name").blur(function() {
-    //input data
-    var st_name = $("#st_name").val();
-    //예외처리 -- 공백
-    if(st_name==''){
-      $('#stname_check').text('필수 정보입니다.');
-      $('#stname_check').css('color', 'red');
-    }
-    else{
-      $('#stname_check').text('');
-      $('#stname_check').css('color', 'red');
-    }
-  });//blur
-
-  $("#registeration_num1").blur(function() {
-    // input
-    var registeration_num1 = $('registeration_num1').val();
-    var registeration_num2 = $('registeration_num2').val();
-    var registeration_num3 = $('registeration_num3').val();
-    //숫자 정규식
-    var numJ = /^[0-9]*$/;
-    //예외처리 -- 공백
-    if(registeration_num1==''){
-      $('#stnum_check').text("필수항목 입니다.");
-      $('#stnum_check').css('color', 'red');
-    }
-    //공백X
-    else{
-      if(numJ.test(registeration_num1)){
-        $('#stnum_check').text("");
-      }
-      else {
-        $('#stnum_check').text("숫자만 입력해주세요.");
-        $('#stnum_check').css('color', 'red');
-      }
-    }
-  });//blur
-
-  $("#st_address").blur(function() {
-    //input data
-    var st_address = $('st_address').val();
-    //공백
-    if(st_address=''){
-      $('#staddress_check').text("필수항목 입니다.");
-      $('#staddress_check').css('color', 'red');
-    }
-    else{
-      $('#staddress_check').text("");
-    }
-  });//blur
-
-  $("#st_tel").blur(function() {
-    //Input
-    var st_tel = $('st_tel').val();
-    //공백
-    if(st_tel=''){
-      $('#staddress_num').text("필수항목 입니다.");
-      $('#staddress_num').css('color', 'red');
-    }
-    else{
-      $('#staddress_num').text("");
-    }
-  });//blur
-});
-
-//onsubmit -- 어지수
-function validatate(){
-  var st_name = document.getElementById("st_name");
-  var registeration_num = document.getElementById("registeration_num");
-  var st_address = document.getElementById("st_address");
-  var st_tel = document.getElementById("st_tel");
-  var st_introduce = document.getElementById("st_introduce");
-
-  if((st_name.value)==""){
-    alert('매장명을 입력해주세요.');
-    return false;
-  }
-  if((registeration_num.value)==""){
-    alert('사업자등록번호를 입력해주세요.');
-    return false;
-  }
-  if((st_address.value)==""){
-    alert('매장주소를 입력해주세요.');
-    return false;
-  }
-  if((st_tel.value)==""){
-    alert('고객센터 번호를 입력해주세요.');
-    return false;
-  }
-  if((st_introduce.value)==""){
-    alert('매장소개를 입력해주세요.');
-    return false;
-  }
-
-  else {
-    return true;
-  }
-}
-</script>
+<!--script Link -->
+<script type="text/javascript" src="/js/information_register.js" charset="utf-8"></script>
+<!--POST API Link -->
+<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

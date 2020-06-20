@@ -16,17 +16,17 @@
     <div class="text">
       <div class="id_title">My Information</div> <hr>
     </div>
-
-    <div class ="my_id">
-        <form action = '처리할 주소'>
-          <div class="intervel"></div>
-          <div class="id_db"> ID : </div>
-          <div class="under_pw">
-            <button class="lg_bt" type="button" onclick="location.href = '/login_customer'" >구매자 로그인</button>
-            <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
-          </div>
-        </form>
-    </div>
+    @foreach ($fd_name as $myfindid)
+      <div class ="my_id">
+        @csrf
+        <div class="intervel"></div>
+        <div class="id_db"> ID :{{$myfindid->s_id}} </div>
+        <div class="under_pw">
+          <button class="lg_bt" type="button" onclick="location.href = '/login_customer'" >구매자 로그인</button>
+          <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
+        </div>
+      </div>
+    @endforeach
     <div class="home">
       <a href = "/">홈으로</a>
     </div>
