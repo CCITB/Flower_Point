@@ -96,7 +96,7 @@ Route::get('/sellershoppost', function () {
   return view('seller.seller_shoppost');
 })->middleware('auth:seller');
 
-Route::get('/bi/{id}', 'ProductController@productpage');
+Route::get('/product/{id}', 'ProductController@productpage');
 
 
 Route::post('index', 'ProductController@seller_product_register');
