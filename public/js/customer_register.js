@@ -221,17 +221,14 @@ $(document).ready(function(){
       $('#name_check').css('color', 'red');
 
     }
+    //2.
+    else if(!markJ.test(customer_name)){
+      $("#name_check").text("");
+    }
     //2. 공백X 특수기호, 스페이스바 사용
-    else if(markJ.test(customer_name)){
+    else{
       $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
       $('#name_check').css('color', 'red');
-    }
-    //3. 공백X
-    else{
-      //4. 특수문자, 공백 미포함시
-      if(!markJ.test(customer_name)){
-        $("#name_check").text("");
-      }
     }
   }
 
