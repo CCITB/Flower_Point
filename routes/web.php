@@ -61,6 +61,9 @@ Route::get('/find_id', 'FindController@find_id');
 
 Route::post('/f_id', 'FindController@f_id');
 
+Route::post('/check_query', 'FindController@check_query');
+
+
 // Route::get('/find_pw', 'FindController@find_pw');
 //
 // Route::post('/f_pw', 'FindController@f_pw');
