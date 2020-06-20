@@ -23,7 +23,7 @@
     </div>
 
     <div class ="find_id">
-      <form action = '/f_id' method='post' name="fin_id" onsubmit="return checfunction()">
+      <form action = '/seller_find_id' method='post' name="fin_id" onsubmit="return checfunction()">
         @csrf
         <div class="fd_id">
           <div class="character"> </div>
@@ -31,11 +31,7 @@
             <div class="ip_name">이름</div>
             <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name'>
             <div class="check_div" id="name_check" value=""></div>
-            <!-- {{-- <div class="ip_name">전화번호</div>
-            <input class="find_input" placeholder="전화번호를 입력하세요" name="tell"> --}}
-            {{-- <input type="submit" value="인증"><br><br>
-            <input class="find_input" placeholder="인증번호">
-            <input type="submit" value="확인"><br><br> --}} -->
+
             <br>
             <div class="verify">
               <!--이메일 : 어지수-->
@@ -65,7 +61,7 @@
 </body>
 </html>
 
-<!--예외처리 및 클릭 이벤트 : 어지수-->
+<!--******************************예외처리 및 클릭 이벤트 : 어지수*****************************************-->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 var global_random;

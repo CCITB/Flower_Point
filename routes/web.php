@@ -51,29 +51,23 @@ Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 
 //MAIL_HOST ****** 어지수
 //Route::get('/mailsend', 'MailController@send');
-Route::get('/mailview', function () {
+Route::get('/mailview', function(){
   return view('emails/mail');
 });
 Route::post('/mail', 'MailController@sends');
 
-//ID, PW 찾기 ******박소현
-Route::get('/find_id', 'FindController@find_id');
-
-Route::post('/f_id', 'FindController@f_id');
-
+//seller ID 찾기
+Route::get('/seller_find_id', function(){
+  return view('find_information_seller/find_id');
+});
 Route::post('/check_query', 'FindController@check_query');
 
+Route::post('/seller_find_id', 'FindController@seller_find_id');
 
-// Route::get('/find_pw', 'FindController@find_pw');
-//
-// Route::post('/f_pw', 'FindController@f_pw');
-//
-// Route::get('/find_pw_way', 'FindController@find_pw_way');
-//
-// Route::post('/f_way', 'FindController@f_way');
-
-Route::get('/find_pw', 'FindController@find_pw');
-
+//seller PW 찾기
+Route::get('/seller_find_pw', function(){
+  return view('find_information_seller/find_pw');
+});
 
 Route::get('/find_pw_way/{id}', 'FindController@f_way');
 
@@ -81,10 +75,8 @@ Route::post('/f_way', 'FindController@f_way');
 
 Route::post('find', 'FindController@f_pw');
 
-
-
-
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+
 
 Route::get('/find_chk', 'FindController@find_check');
 

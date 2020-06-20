@@ -9,26 +9,26 @@ use Illuminate\Support\Facades\Auth;
 
 class FindController extends Controller
 {
-  public function find_id(){
-    return view('find_information.find_id');
-  }
+  // public function find_id(){
+  //   return view('find_information.find_id');
+  // }
+  //
+  // public function find_pw(){
+  //   return view('find_information.find_pw');
+  // }
+  // public function find_pw_way(){
+  //   return view('find_information.find_pw_way');
+  // }
+  //
+  // public function find_pw_reset(){
+  //   return view('find_information.find_pw_reset');
+  // }
+  //
+  // public function find_check(){
+  //   return view('find_information.find_check');
+  // }
 
-  public function find_pw(){
-    return view('find_information.find_pw');
-  }
-  public function find_pw_way(){
-    return view('find_information.find_pw_way');
-  }
-
-  public function find_pw_reset(){
-    return view('find_information.find_pw_reset');
-  }
-
-  public function find_check(){
-    return view('find_information.find_check');
-  }
-
-  //어지수
+  //**************INPUT값(name,email)이 DB에 있는지 : 어지수**************
   public function check_query(Request $request){
     //name 입력 값
     $input_name = $request->get('input_name');
@@ -44,7 +44,7 @@ class FindController extends Controller
   }
 
   //박소현
-  public function f_id(Request $myid)//seller 아이디 찾기
+  public function seller_find_id(Request $myid)//seller 아이디 찾기
   {
     //input한 name값
     $input_name = $myid->get('name');
@@ -54,7 +54,7 @@ class FindController extends Controller
     $query_name = $fd_name[0]->s_name;
 
     if ( $input_name  == $query_name) {
-      return view('find_information.find_check', compact('fd_name'));
+      return view('find_information_seller.find_check', compact('fd_name'));
     }
     else{
       return redirect('/find_id');
