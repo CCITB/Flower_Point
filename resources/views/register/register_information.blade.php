@@ -1,7 +1,7 @@
-<!--어지수-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <!--어지수-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
