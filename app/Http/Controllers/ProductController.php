@@ -288,34 +288,6 @@ class ProductController extends Controller
 
   }
 
-<<<<<<< HEAD
-
-  // 박소현
-  public function pd_qna (Request $qna){
-
-    $today = date("Ymd"); //현재날짜 받아옴
-
-    DB::table('question')->insert([
-      'q_title'=>$qna->input('qna_title'),
-      'q_contents' => $qna->input('name'),
-      'q_date' =>$today
-    ]);
-
-
-    return redirect('/');
-  }
-
-
-
-
-
-
-
-
-
-
-
-=======
   public function basketcondition(Request $request){
     // return response()->json(1);
     $checkdata = $request->input('check');
@@ -345,7 +317,7 @@ class ProductController extends Controller
       }
       $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택해제')->get();
       for($i = 0; $i<count($result); $i++){
-        
+
       }
       // return response()->json($result);
       // return response()->json(2);
@@ -375,5 +347,4 @@ class ProductController extends Controller
     // }
     return response()->json(0);
   }
->>>>>>> adfa78d602778d62a874dc7ed1334613b186f7cb
 }
