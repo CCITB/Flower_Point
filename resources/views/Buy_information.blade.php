@@ -15,282 +15,287 @@
     <div class = "pd_image">
       <!--이미지 틀 -->
       @foreach ($productinfor as $protb)
-        <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
+      <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
 
 
+    </div>
+
+    <!-- 상품정보와 옵션선택 -->
+    <div class= "pd_option">
+
+      <form action = '/order' method=''>
+
+        <div class="pd_basic">
+          <div class="pd_name">{{$protb->p_name}}</div>
+          <div class="star">
+            <button class="convenience" type="button">관심매장등록</button>
+            <button class="convenience" type="button">내 상품</button>
+          </div>
+        </div>
+        <hr class="option_line">
+
+        <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
+          <div class="shop_name"><a href="/해당매장">ccit 1</a></div>
+          <div class="shop_lo">
+            서울시 종로구
+          </div>
+          <div class="pd_price">
+            <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
+          </div>
+        </div>
+
+        <div class="pd_deliver">
+          <div class="pd_deliver1">
+            <span class="del_text">배송비</span><br>
+            <span>{{$protb->p_title}}</span>
+            <span>원</span>
+          </div>
+          <div class="pd_deliver2">
+            <span class="del_text">배송기간</span><br>
+            2일 이내
+          </div>
+          <div class="pd_deliver3">
+            <span class="del_text">적립금</span><br>
+            최대 2%
+          </div>
+        </div>
+
+
+        <div class="options">
+          <select class="select_option" name="select_option">
+            <option value="option 1">옵션 없음</option>
+            <option value="option 1">옵션 1</option>
+            <option value="option 2">옵션 2</option>
+          </select>
+
+          <select class="select_option" name="select_pack">
+            <option value="pack 1">포장 없음</option>
+            <option value="pack 1">포장 1</option>
+            <option value="pack 2">포장 2</option>
+          </select>
+        </div>
+
+
+        <div class="pd_pay">
+          <div class="total_price_text">
+            총 금액
+          </div>
+          <div class="total_price">
+            <span>{{number_format($protb->p_price)}}</span>
+            <span>원</span>
+          </div>
+          <div class="order_bt">
+            <button class="order" type="button" id="btn1">담기</button>
+            <button class="order" type="submit">주문</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+
+
+
+
+    <div class="detail_tabs">
+      <ul class="tab_table" role="tablist">
+        <li class="detail_tab" role="presentation">
+          <a class="detail_tab_link" role="tab" aria-selected="false" href="#dtil">상세정보</a>
+        </li>
+        <li class="purchase_review_tab" role="presentation">
+          <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#revw">리뷰</a>
+        </li>
+        <li class="qna_tab" role="presentation">
+          <a class="qna_tab_link" role="tab" aria-selected="false" href="#que">문의하기</a>
+        </li>
+        <li class="claim_info_tab" role="presentation">
+          <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#clm">반품/교환정보</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class = "pd_detail"> <!-- 상품설명 디테일 -->
+      <div class="pd_detail_title">
+        <h3 class="blind" id="dtil">상품리뷰</h3>
       </div>
 
-      <!-- 상품정보와 옵션선택 -->
-      <div class= "pd_option">
+      {!!$protb->p_contents!!}
 
-        <form action = '/order' method=''>
+    </div>
 
-          <div class="pd_basic">
-            <div class="pd_name">{{$protb->p_name}}</div>
-            <div class="star">
-              <button class="convenience" type="button">관심매장등록</button>
-              <button class="convenience" type="button">내 상품</button>
-            </div>
-          </div>
-          <hr class="option_line">
-
-          <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
-            <div class="shop_name"><a href="/해당매장">ccit 1</a></div>
-            <div class="shop_lo">
-              서울시 종로구
-            </div>
-            <div class="pd_price">
-              <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
-            </div>
-          </div>
-
-          <div class="pd_deliver">
-            <div class="pd_deliver1">
-              <span class="del_text">배송비</span><br>
-              <span>{{$protb->p_title}}</span>
-              <span>원</span>
-            </div>
-            <div class="pd_deliver2">
-              <span class="del_text">배송기간</span><br>
-              2일 이내
-            </div>
-            <div class="pd_deliver3">
-              <span class="del_text">적립금</span><br>
-              최대 2%
-            </div>
-          </div>
-
-
-          <div class="options">
-            <select class="select_option" name="select_option">
-              <option value="option 1">옵션 없음</option>
-              <option value="option 1">옵션 1</option>
-              <option value="option 2">옵션 2</option>
-            </select>
-
-            <select class="select_option" name="select_pack">
-              <option value="pack 1">포장 없음</option>
-              <option value="pack 1">포장 1</option>
-              <option value="pack 2">포장 2</option>
-            </select>
-          </div>
-
-
-          <div class="pd_pay">
-            <div class="total_price_text">
-              총 금액
-            </div>
-            <div class="total_price">
-              <span>{{number_format($protb->p_price)}}</span>
-              <span>원</span>
-            </div>
-            <div class="order_bt">
-              <button class="order" type="button" id="btn1">담기</button>
-              <button class="order" type="submit">주문</button>
-            </div>
-          </div>
-
-        </form>
+    <div class="reviews">
+      <div class="review_title">
+        <h3 class="title_detail">
+          <em class="anchor" id="revw"></em>
+          상품 리뷰
+        </h3>
+        <p class ="revw_introduction">
+          상품을 구매하신 분들이 작성한 리뷰입니다.
+        </p>
       </div>
+      <div class="review_list">
+        <ul>
+          <li class="user_review">
+            <div class="review_one">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
 
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
+              </div>
 
-
-
-      <div class="detail_tabs">
-        <ul class="tab_table" role="tablist">
-          <li class="detail_tab" role="presentation">
-            <a class="detail_tab_link" role="tab" aria-selected="false" href="#dtil">상세정보</a>
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
+              </div>
+            </div>
           </li>
-          <li class="purchase_review_tab" role="presentation">
-            <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#revw">리뷰</a>
+
+          <li class="user_review">
+            <div class="review_one">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
+              </div>
+
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
+              </div>
+            </div>
           </li>
-          <li class="qna_tab" role="presentation">
-            <a class="qna_tab_link" role="tab" aria-selected="false" href="#que">문의하기</a>
-          </li>
-          <li class="claim_info_tab" role="presentation">
-            <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#clm">반품/교환정보</a>
+
+          <li class="user_review">
+            <div class="review_one">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+                </div>
+                <div class="review_text">
+                  <div class="star_small">
+                    <span class="stars">★★★★★</span>
+                  </div>
+                  <div class="status_user">
+                    <span class="text_info">ID</span>
+                    <span class="text_info">20.05.23</span>
+                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                  </div>
+                  <div class="user_write">
+                    <span class="writing">꽃이 너무 마음에 들어요</span>
+                  </div>
+                  <a href="#">더보기</a>
+                </div>
+              </div>
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                좋아요
+              </div>
+            </div>
           </li>
         </ul>
       </div>
-
-
-      <div class = "pd_detail"> <!-- 상품설명 디테일 -->
-        <div class="pd_detail_title">
-          <h3 class="blind" id="dtil">상품리뷰</h3>
-        </div>
-
-        {!!$protb->p_contents!!}
-
-      </div>
-
-      <div class="reviews">
-        <div class="review_title">
-          <h3 class="title_detail">
-            <em class="anchor" id="revw"></em>
-            상품 리뷰
-          </h3>
-          <p class ="revw_introduction">
-            상품을 구매하신 분들이 작성한 리뷰입니다.
-          </p>
-        </div>
-        <div class="review_list">
-          <ul>
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-
-                  </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
-                  </div>
-                </div>
-
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
-
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-                  </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
-                  </div>
-                </div>
-
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
-
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-                  </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
-                  </div>
-                </div>
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="pd_qna">
-        <div class="qna_title">
-          <h3 class="qna_title_detail">
-            <em class="anchor" id="que"></em>
-            문의하기
-          </h3>
-        </div>
-
-        <table class="qna-table">
-          <tr>
-            <th>번호</th>
-            <th>문의/답변</th>
-            <th>답변상태</th>
-            <th>작성자</th>
-            <th>작성일</th>
-          </tr>
-          <tr>
-            <td class="qna-index">1</td>
-            <td class="qna-content">내용</td>
-            <td class="qna-condition">답변완료</td>
-            <td class="qna-writer">ccit1</td>
-            <td class="qna-date">2020.01.01</td>
-          </tr>
-          <tr>
-            <td class="qna-index">2</td>
-            <td class="qna-content">내용</td>
-            <td class="qna-condition">답변완료</td>
-            <td class="qna-writer">ccit1</td>
-            <td class="qna-date">2020.01.01</td>
-          </tr>
-        </table>
-        <div class="qna-product-btn">
-          <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
-        </div>
-        <div id="qna-inquiry1" class="faq_an">
-          문의하기
-          <form class="" action="" method="post">
-            @csrf
-            <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
-            <div class="bottom-btn">
-              <button type="submit" name="button" class="qna-submit-btn">저장</button>
-              <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-
-      <div class="pd_component">
-        <div class="comp_title">
-          <h3 class="comp_title_detail">
-            <em class="anchor" id="clm"></em>
-            반품/교환정보
-          </h3>
-        </div>
-        내용
-      </div>
-
     </div>
+
+
+    <div class="pd_qna">
+      <div class="qna_title">
+        <h3 class="qna_title_detail">
+          <em class="anchor" id="que"></em>
+          문의하기
+        </h3>
+      </div>
+      <table class="qna-table">
+        <tr>
+          <th>번호</th>
+          <th>문의/답변</th>
+          <th>답변상태</th>
+          <th>작성자</th>
+          <th>작성일</th>
+        </tr>
+        @foreach ($qnaq as $qna)
+        <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+          <td class="qna-index">{{$qna->q_no}}</td>
+          <td class="qna-content">{{$qna->q_title}}</td>
+          <td class="qna-condition">답변완료</td>
+          <td class="qna-writer">ccit1</td>
+          <td class="qna-date">{{$qna->q_date}}</td>
+        </tr>
+        <tr id="answer{{$qna->q_no}}" class="qna_an">
+          <td class="qna-block"></td>
+          <td>{{$qna->q_contents}}</td>
+        </tr>
+        @endforeach
+      </table>
+      {{ $qnaq ->links()}}
+      <div class="qna-product-btn">
+        <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+      </div>
+      <div id="qna-inquiry1" class="faq_an">
+        문의하기
+        <form class="" action="/pd_qna" >
+
+          <div>
+            <input class="qna_title" name="qna_title" placeholder="제목">
+            <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
+          </div>
+          <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
+          <div class="bottom-btn">
+            <button type="submit" name="button" class="qna-submit-btn">저장</button>
+            <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+    <div class="pd_component">
+      <div class="comp_title">
+        <h3 class="comp_title_detail">
+          <em class="anchor" id="clm"></em>
+          반품/교환정보
+        </h3>
+      </div>
+      내용
+    </div>
+
+  </div>
   @endforeach
   @include('advertising')
   @include('lib.footer')
@@ -309,6 +314,19 @@ function qna_new(num) {
   }
 }
 
+//문의하기 클릭
+function pd_qna(num) {
+
+  if($("#answer"+num).hasClass("qna_an_show"))
+  {
+    $("#answer"+num).removeClass("qna_an_show");
+  }
+  else
+  {
+    $(".qna_an").removeClass("qna_an_show");
+    $("#answer"+num).addClass("qna_an_show");
+  }
+}
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -346,12 +364,12 @@ $('#btn1').click(function() {
       }
       else {
         var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-       if (basketalert) {
-         location.href = "/flowercart"
-       }
-       else {
+        if (basketalert) {
+          location.href = "/flowercart"
+        }
+        else {
 
-       }
+        }
       }
 
       console.log(data);

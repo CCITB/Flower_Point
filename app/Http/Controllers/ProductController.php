@@ -88,11 +88,12 @@ class ProductController extends Controller
   public function productpage($id){
 
     $productinfor = DB::table('product')->where('p_no','=',$id)->get();
+    $qnaq = DB::table('question')->paginate(5);
     // return $productinfor;
 
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;
-    return view('Buy_information', compact('productinfor'));
+    return view('Buy_information', compact('productinfor','qnaq'));
   }
   public function basket(){
 
@@ -255,4 +256,31 @@ class ProductController extends Controller
     }
 
   }
+
+
+  // 박소현
+  public function pd_qna (Request $qna){
+
+    $today = date("Ymd"); //현재날짜 받아옴
+
+    DB::table('question')->insert([
+      'q_title'=>$qna->input('qna_title'),
+      'q_contents' => $qna->input('name'),
+      'q_date' =>$today
+    ]);
+
+
+    return redirect('/');
+  }
+
+
+
+
+
+
+
+
+
+
+
 }
