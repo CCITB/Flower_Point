@@ -159,26 +159,57 @@ class ProductController extends Controller
   // }
   public function basketdelete(Request $request){
     $data1 =  $request->input('id');
+    $checkdata = $request->input('check');
     if(auth()->guard('customer')->user()){
-      DB::table('basket')->where('b_no',$data1)->delete();
-      $userinfo = auth()->guard('customer')->user()->c_no;
-      $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-      $price_sum = $data->sum('b_price');
-      $delivery_sum = $data->sum('b_delivery');
-      $count_sum = $data->sum('b_count');
-      $data_sum = ($price_sum + $delivery_sum);
       $dz = 0;
       $price_sum1 = 0;
       $count_sum1 = 0;
       $delivery_sum1 = 0;
-      for($i=0; $i<count($data); $i++){
-        $dz+=($data[$i]->b_price+$data[$i]->b_delivery)*$data[$i]->b_count;
-        $price_sum1+=$data[$i]->b_price*$data[$i]->b_count;
-        $count_sum1+=$data[$i]->b_count;
-        $delivery_sum1+=$data[$i]->b_delivery*$data[$i]->b_count;
+      if(!isset($data1)){
+
       }
+      else{
+        DB::table('basket')->where('b_no',$data1)->delete();
+        $userinfo = auth()->guard('customer')->user()->c_no;
+        $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+        $price_sum = $data->sum('b_price');
+        $delivery_sum = $data->sum('b_delivery');
+        $count_sum = $data->sum('b_count');
+        $data_sum = ($price_sum + $delivery_sum);
+        for($i=0; $i<count($data); $i++){
+          $dz+=($data[$i]->b_price+$data[$i]->b_delivery)*$data[$i]->b_count;
+          $price_sum1+=$data[$i]->b_price*$data[$i]->b_count;
+          $count_sum1+=$data[$i]->b_count;
+          $delivery_sum1+=$data[$i]->b_delivery*$data[$i]->b_count;
+        }
+      }
+      if(!isset($checkdata)){
+
+      }
+      else{
+        for($i=0; $i<count($checkdata); $i++){
+          DB::table('basket')->where('b_no',$checkdata[$i])->delete();
+          // $dz+=($data[$i]->b_price+$data[$i]->b_delivery)*$data[$i]->b_count;
+          // $price_sum1+=$data[$i]->b_price*$data[$i]->b_count;
+          // $count_sum1+=$data[$i]->b_count;
+          // $delivery_sum1+=$data[$i]->b_delivery*$data[$i]->b_count;
+        }
+        $userinfo = auth()->guard('customer')->user()->c_no;
+        $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+        $price_sum = $data->sum('b_price');
+        $delivery_sum = $data->sum('b_delivery');
+        $count_sum = $data->sum('b_count');
+        $data_sum = ($price_sum + $delivery_sum);
+        for($i=0; $i<count($data); $i++){
+          $dz+=($data[$i]->b_price+$data[$i]->b_delivery)*$data[$i]->b_count;
+          $price_sum1+=$data[$i]->b_price*$data[$i]->b_count;
+          $count_sum1+=$data[$i]->b_count;
+          $delivery_sum1+=$data[$i]->b_delivery*$data[$i]->b_count;
+        }
+      }
+
     }
-    return response()->json([$data,$price_sum,$delivery_sum,$count_sum,$data_sum,$dz,$price_sum1,$count_sum1,$delivery_sum1]);
+    return response()->json([$data,$price_sum,$delivery_sum,$count_sum,$data_sum,$dz,$price_sum1,$count_sum1,$delivery_sum1,$checkdata]);
   }
   public function basketstore(Request $request){
     $data =  $request->input('id');
@@ -257,6 +288,7 @@ class ProductController extends Controller
 
   }
 
+<<<<<<< HEAD
 
   // 박소현
   public function pd_qna (Request $qna){
@@ -283,4 +315,65 @@ class ProductController extends Controller
 
 
 
+=======
+  public function basketcondition(Request $request){
+    // return response()->json(1);
+    $checkdata = $request->input('check');
+    $checkcondition = $request->input('checkcondition');
+    $uncheckcondition = $request->input('uncheckcondition');
+    $individualcheck = $request->input('individualcheck');
+    $b_no = $request->input('no');
+    $userinfo = auth()->guard('customer')->user()->c_no;
+    // $basket = DB::table('basket')->where('b_no',$no)->first();
+    if(isset($checkcondition)){
+      for($i=0; $i<count($checkdata); $i++){
+        DB::table('basket')->where('b_no',$checkdata[$i])->update([
+          'b_condition' => '선택'
+        ]);
+      }
+      $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택')->get();
+      // return response()->json($result);
+    }
+    else{
+
+    }
+    if(isset($uncheckcondition)){
+      for($i=0; $i<count($checkdata); $i++){
+        DB::table('basket')->where('b_no',$checkdata[$i])->update([
+          'b_condition' => '선택해제'
+        ]);
+      }
+      $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택해제')->get();
+      for($i = 0; $i<count($result); $i++){
+        
+      }
+      // return response()->json($result);
+      // return response()->json(2);
+    }
+    else{
+
+    }
+    if(isset($individualcheck)){
+      if(filter_var($individualcheck,FILTER_VALIDATE_BOOLEAN)){
+        DB::table('basket')->where('b_no',$b_no)->update([
+          'b_condition' => '선택'
+        ]);
+        return response()->json(1);
+      }
+      else{
+        DB::table('basket')->where('b_no',$b_no)->update([
+          'b_condition' => '선택해제'
+        ]);
+        return response()->json(0);
+      }
+    }
+    // if($individualcheck == '1'){
+    //   return response()->json($b_no);
+    // }
+    // elseif($individualcheck == 0){
+    //   return response()->json();
+    // }
+    return response()->json(0);
+  }
+>>>>>>> adfa78d602778d62a874dc7ed1334613b186f7cb
 }

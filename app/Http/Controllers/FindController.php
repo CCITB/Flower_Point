@@ -9,29 +9,42 @@ use Illuminate\Support\Facades\Auth;
 
 class FindController extends Controller
 {
-  public function find_id(){
-    return view('find_information.find_id');
+  // public function find_id(){
+  //   return view('find_information.find_id');
+  // }
+  //
+  // public function find_pw(){
+  //   return view('find_information.find_pw');
+  // }
+  // public function find_pw_way(){
+  //   return view('find_information.find_pw_way');
+  // }
+  //
+  // public function find_pw_reset(){
+  //   return view('find_information.find_pw_reset');
+  // }
+  //
+  // public function find_check(){
+  //   return view('find_information.find_check');
+  // }
+
+  //**************INPUT값(name,email)이 DB에 있는지 : 어지수**************
+  public function check_query(Request $request){
+    //name 입력 값
+    $input_name = $request->get('input_name');
+    $input_email = $request->get('input_email');
+
+    //input한 name값과 동일한 s_name(이름)을 가진 rows
+    $query_name = DB::table('seller')->where('s_name',$input_name)->get();
+    //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
+    $query_email = $query_name->where('s_email',$input_email)->pluck('s_email')->count();
+    //echo $query_email;
+    //(있으면 1 / 없으면 0)
+    return response()->json($query_email);
   }
 
-  public function find_pw(){
-    return view('find_information.find_pw');
-  }
-  public function find_pw_way(){
-    return view('find_information.find_pw_way');
-  }
-
-  public function find_pw_reset(){
-    return view('find_information.find_pw_reset');
-  }
-
-  public function find_check(){
-    return view('find_information.find_check');
-  }
-
-
-
-
-  public function f_id(Request $myid)//seller 아이디 찾기
+  //박소현
+  public function seller_find_id(Request $myid)//seller 아이디 찾기
   {
     //input한 name값
     $input_name = $myid->get('name');
@@ -41,7 +54,7 @@ class FindController extends Controller
     $query_name = $fd_name[0]->s_name;
 
     if ( $input_name  == $query_name) {
-      return view('find_information.find_check', compact('fd_name'));
+      return view('find_information_seller.find_check', compact('fd_name'));
     }
     else{
       return redirect('/find_id');

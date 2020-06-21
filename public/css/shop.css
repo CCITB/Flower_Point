@@ -54,14 +54,14 @@ img.shopimg{
   display: inline-block;
 }
 table.shopinfo{
-  width: 45%;
+  width: 100%;
   position: relative;
   text-align: left;
   margin-left: 5%;
 }
 div.shopintro{
   width: 100%;
-  height: 100%;
+  height: 85%;
   position: relative;
 }
 
@@ -174,7 +174,7 @@ div.complete{
 
 form.shop{
   margin-left: 5%;
-  width: 25%;
+  width: 30%;
 }
 
 #postcode{
@@ -192,4 +192,14 @@ form.shop{
 
 #modiinfo{
   margin-top: 1%;
+}
+#tablewrap{
+  width: 50%;
+}
+
+#ad{
+  width: 100%;
+}
+table.adtable{
+  width: 100%;
 }
