@@ -231,6 +231,8 @@ Route::post('/basketstore', 'ProductController@basketstore');
 
 Route::post('/basketcount', 'ProductController@basketcount');
 
+Route::post('/basketcondition', 'ProductController@basketcondition');
+
 // });
 //mail
 // Route::get('/', function() {
