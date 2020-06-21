@@ -24,7 +24,7 @@
       @foreach ($data as $list)
         <div class="flowercart-infor" id="remove{{$list->b_no}}">
           <div class="flowercart-top">
-            <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" value="" checked="checked">
+            <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}});" value="" checked="checked">
             <strong class="flowercart-tradename">가게명</strong>
           </div>
           <div class="flowercart-middle">
@@ -503,8 +503,38 @@ function condition(){
     url: '/basketcondition',
     dataType: 'json',
     data: { "check" : idindex,
-      "checkcondition" : checking,
-      "uncheckcondition" : unchecked,
+    "checkcondition" : checking,
+    "uncheckcondition" : unchecked,
+  },
+  success: function(data) {
+    console.log(data);
+
+    // document.getElementById("productprice"+a).innerHTML=AddComma(data[0]);
+    // document.getElementById("deliveryprice"+a).innerHTML=AddComma(data[1]);
+    // document.getElementById("allsum"+a).innerHTML=AddComma(data[2]);
+    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
+    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
+    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
+    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
+
+  },
+  error: function(data) {
+    console.log("error" +data);
+  }
+});
+}
+function selectcondition(a){
+  // var ada = $('input:checkbox[id="checkf"+'a']').is(":checked") == true;
+  // console.log(ada);
+  // console.log(1);
+  var cc = $('#checkf'+a).is(":checked");
+  console.log(cc);
+  $.ajax({
+    type: 'post',
+    url: '/basketcondition',
+    dataType: 'json',
+    data: { "individualcheck" : cc ,
+    "no" : a,
   },
   success: function(data) {
     console.log(data);

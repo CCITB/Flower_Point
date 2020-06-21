@@ -292,14 +292,18 @@ class ProductController extends Controller
     $checkdata = $request->input('check');
     $checkcondition = $request->input('checkcondition');
     $uncheckcondition = $request->input('uncheckcondition');
-
+    $individualcheck = $request->input('individualcheck');
+    $b_no = $request->input('no');
     $userinfo = auth()->guard('customer')->user()->c_no;
+    // $basket = DB::table('basket')->where('b_no',$no)->first();
     if(isset($checkcondition)){
       for($i=0; $i<count($checkdata); $i++){
         DB::table('basket')->where('b_no',$checkdata[$i])->update([
           'b_condition' => '선택'
         ]);
       }
+      $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택')->get();
+      // return response()->json($result);
     }
     else{
 
@@ -310,8 +314,36 @@ class ProductController extends Controller
           'b_condition' => '선택해제'
         ]);
       }
+      $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택해제')->get();
+      for($i = 0; $i<count($result); $i++){
+        
+      }
+      // return response()->json($result);
+      // return response()->json(2);
     }
+    else{
 
-    return response()->json($checkdata);
+    }
+    if(isset($individualcheck)){
+      if(filter_var($individualcheck,FILTER_VALIDATE_BOOLEAN)){
+        DB::table('basket')->where('b_no',$b_no)->update([
+          'b_condition' => '선택'
+        ]);
+        return response()->json(1);
+      }
+      else{
+        DB::table('basket')->where('b_no',$b_no)->update([
+          'b_condition' => '선택해제'
+        ]);
+        return response()->json(0);
+      }
+    }
+    // if($individualcheck == '1'){
+    //   return response()->json($b_no);
+    // }
+    // elseif($individualcheck == 0){
+    //   return response()->json();
+    // }
+    return response()->json(0);
   }
 }
