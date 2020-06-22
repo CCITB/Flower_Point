@@ -347,4 +347,20 @@ class ProductController extends Controller
     // }
     return response()->json(0);
   }
+
+
+  // 박소현
+  public function pd_qna (Request $qna){
+
+    $today = date("Ymd"); //현재날짜 받아옴
+
+    DB::table('question')->insert([
+      'q_title'=>$qna->input('qna_title'),
+      'q_contents' => $qna->input('name'),
+      'q_date' =>$today
+    ]);
+
+
+    return redirect('/');
+  }
 }
