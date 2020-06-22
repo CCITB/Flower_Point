@@ -57,7 +57,6 @@
                 <tr>
                   <th>주소</th>
                     @foreach ($store_address as $a)
-                      <div id="ad">
                   <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addressmodi' );"></td>
 
 
@@ -76,27 +75,26 @@
                     <td>{{$b->a_detail}}</td>
                     </tr>
                   @endforeach
-                  </div>
-                                  </form>
+                  </form>
                   <form action="/newaddress" method="get">
                   <div id="addressmodi" style="display:none;">
                     <div class="delivery_wrap">
                       <strong class="info">주 소</strong>
                       <!-- 우편번호 -->
-                      <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+                      <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
                       <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
                     </div>
                     <!--주소 -->
                     <div class="delivery_wrap2">
-                      <input type="text"  id="address" name="address" placeholder="주소">
+                      <input type="text"  id="address" name="address" placeholder="주소" readonly>
                         <div class="detail">
-                          <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목">
+                          <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
                         </div>
 
 
 
                             <div class="delivery_address_detail">
-                        <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소">
+                        <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" readonly>
                       </div>
 
 

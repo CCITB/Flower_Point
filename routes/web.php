@@ -20,7 +20,6 @@ Route::get('/login_customer', 'MainController@login_customer');
 
 Route::get('/login_seller', 'MainController@login_seller');
 
-
 Route::get('/register_customer','MainController@register_costomer');
 
 Route::get('/register_seller','MainController@register_seller');
@@ -30,11 +29,9 @@ Route::post('/seller_Overlap', 'RegisterController@s_overlap');
 
 Route::post('/customer_Overlap', 'RegisterController@c_overlap');
 
-//
 Route::post('/register_InsertStore', 'RegisterController@store_information');
 
 Route::get('/register', 'RegisterController@registerview');
-
 
 Route::get('/terms_customers', 'MainController@register_terms_customers');
 
@@ -102,6 +99,9 @@ Route::get('/locate1', function () {
   return view('locate');
 });
 
+Route::get('/customer_shop', function () {
+  return view('myshop/shop_customer');
+});
 // Route::get('/myqna', function () {
 //   return view('myQnA');
 // });
@@ -178,7 +178,7 @@ Route::get('/mypage', function(){
 
 });
 
-Route::get('/shop', function(){
+Route::get('/{{$key->st_name}}', function(){
   if($sellerinfo = auth()->guard('seller')->user()){
     $sellerprimary = $sellerinfo->s_no;
     // return $sellerprimary;
@@ -189,10 +189,6 @@ Route::get('/shop', function(){
         $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
         $store_address = DB::table('store_address')->select('a_post','a_address','a_extra')->where('st_no' ,'=', $data[0]->st_no)->get();
         $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
-        // $sum_address = '['.$a_post.']'.$a_address.','.$a_detail.$a_extra->get();
-
-         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
-        // return $proro;
 
         return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
   }
@@ -200,7 +196,6 @@ Route::get('/shop', function(){
 
   }
   return view('myshop/shop_seller');
-
 });
 
 Route::get('/postlist', function(){

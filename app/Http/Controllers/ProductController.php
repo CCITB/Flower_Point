@@ -47,7 +47,6 @@ class ProductController extends Controller
     }
     else
     return view('login.login_seller');
-
   }
 
   public function seller_product_register(Request $request)
@@ -89,15 +88,16 @@ class ProductController extends Controller
 
     $productinfor = DB::table('product')->where('p_no','=',$id)->get();
     $qnaq = DB::table('question')->paginate(5);
+    $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
+
     // return $productinfor;
 
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;
-    return view('Buy_information', compact('productinfor','qnaq'));
+    return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
+
   public function basket(){
-
-
     if(auth()->guard('customer')->user()){
       $userinfo = auth()->guard('customer')->user()->c_no;
       $data = DB::table('basket')->where('customer_no',$userinfo)->get();

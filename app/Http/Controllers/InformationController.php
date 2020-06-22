@@ -41,6 +41,8 @@ class InformationController extends Controller
     return redirect('/shop');
   }
 }
+
+
 publiC function newaddress(Request $request){
 
   if($sellerinfo = auth()->guard('seller')->user()){
@@ -53,6 +55,8 @@ publiC function newaddress(Request $request){
 return redirect('/shop');
 }
 }
+
+
 publiC function detailaddress(Request $request){
 
   if($sellerinfo = auth()->guard('seller')->user()){
@@ -65,4 +69,7 @@ publiC function detailaddress(Request $request){
   return redirect('/shop');
 }
 }
+
+
+
 }

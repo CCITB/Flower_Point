@@ -16,10 +16,7 @@
       <!--이미지 틀 -->
       @foreach ($productinfor as $protb)
       <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
-
-
     </div>
-
     <!-- 상품정보와 옵션선택 -->
     <div class= "pd_option">
 
@@ -32,18 +29,20 @@
             <button class="convenience" type="button">내 상품</button>
           </div>
         </div>
+      @endforeach
         <hr class="option_line">
 
         <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
-          <div class="shop_name"><a href="/해당매장">ccit 1</a></div>
+          @foreach ($store as $key)
+          <div class="shop_name"><a href="store/{{$key->st_name}}">{{$key->st_name}}</a></div>
           <div class="shop_lo">
-            서울시 종로구
           </div>
+                  @endforeach
           <div class="pd_price">
             <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
           </div>
         </div>
-
+        @foreach ($productinfor as $protb)
         <div class="pd_deliver">
           <div class="pd_deliver1">
             <span class="del_text">배송비</span><br>
@@ -123,7 +122,7 @@
       {!!$protb->p_contents!!}
 
     </div>
-
+        @endforeach
     <div class="reviews">
       <div class="review_title">
         <h3 class="title_detail">
@@ -296,7 +295,7 @@
     </div>
 
   </div>
-  @endforeach
+
   @include('advertising')
   @include('lib.footer')
 </body>
