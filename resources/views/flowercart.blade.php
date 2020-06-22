@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
-  <body>
+<body>
   @include('lib.header')
   <div class="hr-line">
     <h2>장바구니</h2>
@@ -508,9 +508,11 @@ function selectdel(){
 function condition(){
   if(selectAll.checked){
     for (var i = 0; i < holy.length; i++) {
-      $('#productprice'+holy[i]).text(first1[i]);
-      $('#deliveryprice'+holy[i]).text(first2[i]);
-      $('#allsum'+holy[i]).text(first3[i]);
+      $('#productprice'+holy[i]).text(test1[i]);
+      $('#deliveryprice'+holy[i]).text(test2[i]);
+      $('#allsum'+holy[i]).text(test3[i]);
+      console.log($('#productprice'+holy[i]).text());
+      console.log(test1);
       // $('#productprice'+holy[i]).text();
       // $('#deliveryprice'+holy[i]).text();
       // $('#allsum'+holy[i]).text();
@@ -542,6 +544,28 @@ function condition(){
     loadprice();
   }
   else {
+    // var test1 = [];
+    // delete test1[];
+    test1.length=0;
+    test2.length=0;
+    test3.length=0;
+    for (var i = 0; i < holy.length; i++) {
+      no1 = $('#productprice'+holy[i]).text();
+      no2 = $('#deliveryprice'+holy[i]).text();
+      no3 = $('#allsum'+holy[i]).text();
+      console.log(no1);
+      console.log(no2);
+      console.log(no3);
+      test1.push(no1);
+      test2.push(no2);
+      test3.push(no3);
+
+      // test1.splice(0, 3,test[i]);
+      console.log('-절취선-');
+      console.log(test1);
+    }
+    // delete test1[];
+    // test1.splice(0, 3,test[0],test[1],test[2]);
     var unchecked = 1;
     autoprice();
     // console.log('전체선택 되지않음');
@@ -590,6 +614,9 @@ function condition(){
   }
 });
 }
+var test1 = [];
+var test2 = [];
+var test3 = [];
 function selectcondition(a){
   // var ada = $('input:checkbox[id="checkf"+'a']').is(":checked") == true;
   // console.log(ada);
