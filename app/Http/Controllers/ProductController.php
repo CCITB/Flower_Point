@@ -88,13 +88,74 @@ class ProductController extends Controller
   public function productpage($id){
 
     $productinfor = DB::table('product')->where('p_no','=',$id)->get();
-    $qnaq = DB::table('question')->paginate(5);
+    $pro_no = $productinfor[0]->p_no;
+    // return $pro_no;
+
+    // DB::table('question')->insert([
+    //   'product_no'=>$pro_no
+    // ]);
+
+    $qnaq = DB::table('question')->where('product_no', $pro_no)->paginate(5);
+
+    // return $qnaq;
+
+
+
+    // if($cinfo = auth()->guard('customer')->user()){
+    //   // return 0;
+    //   $cprimary = $cinfo->c_no;
+    //   $customer = DB::table('customer')
+    //   ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
+    //   ->where('customer_no', $cprimary)->get();
+    //
+    //   // return view('mypage/mypage', compact('sellerstore'));
+    //
+    // }
+
+
     // return $productinfor;
 
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;
     return view('Buy_information', compact('productinfor','qnaq'));
   }
+
+  // 박소현
+  public function pd_qna (Request $qna,$id){
+    // return $id;
+    $productinfor = DB::table('product')->where('p_no',$id)->get();
+    $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
+
+    $today = date("Ymd"); //현재날짜 받아옴
+
+    if($cinfo = auth()->guard('customer')->user()){
+      // return 0;
+      $cprimary = $cinfo->c_no; //사용자의 c_no
+      $customer = DB::table('customer')
+      ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
+      ->where('customer_no','=', $cprimary)->get();
+
+      // return view('mypage/mypage', compact('sellerstore'));
+
+    }
+
+
+    // $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['/product/{id}'];
+    // return $url;
+
+    DB::table('question')->insert([
+      'q_title'=>$qna->input('qna_title'),
+      'q_contents' => $qna->input('name'),
+      'q_date' =>$today,
+      'product_no'=>$pro_no,
+      'customer_no'=>$cprimary
+    ]);
+
+
+    return redirect('/');
+  }
+
+
   public function basket(){
 
 
@@ -348,19 +409,4 @@ class ProductController extends Controller
     return response()->json(0);
   }
 
-
-  // 박소현
-  public function pd_qna (Request $qna){
-
-    $today = date("Ymd"); //현재날짜 받아옴
-
-    DB::table('question')->insert([
-      'q_title'=>$qna->input('qna_title'),
-      'q_contents' => $qna->input('name'),
-      'q_date' =>$today
-    ]);
-
-
-    return redirect('/');
-  }
 }

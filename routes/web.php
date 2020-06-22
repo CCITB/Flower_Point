@@ -117,7 +117,7 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
 
 Route::get('/product/{id}', 'ProductController@productpage');
 
-Route::get('/pd_qna','ProductController@pd_qna');
+Route::get('/pd_qna{id}','ProductController@pd_qna');
 
 
 Route::post('index', 'ProductController@seller_product_register');
