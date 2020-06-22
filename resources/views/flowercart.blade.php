@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
-<body>
+<body onload="autoprice()">
   @include('lib.header')
   <div class="hr-line">
     <h2>장바구니</h2>
@@ -117,11 +117,13 @@
       <div class="flowercart-right-middle">
         <div class="label-container">
           <span class="label-left">상품수</span>
-          <span class="label-right"> <strong id="i_result3">{{number_format($count_sum1)}}</strong> 개</span>
+          <span class="label-right"> <strong id="i_result3"></strong> 개</span>
+          {{-- <span class="label-right"> <strong id="i_result3">{{number_format($count_sum1)}}</strong> 개</span> --}}
         </div>
         <div class="label-container">
           <span class="label-left">상품금액</span>
-          <span class="label-right"> <strong id="i_result1">{{number_format($price_sum1)}}</strong> 원</span>
+          <span class="label-right"> <strong id="i_result1"></strong> 원</span>
+          {{-- <span class="label-right"> <strong id="i_result1">{{number_format($price_sum1)}}</strong> 원</span> --}}
         </div>
         <div class="label-container">
           <span class="label-left">할인금액</span>
@@ -129,7 +131,8 @@
         </div>
         <div class="label-container">
           <span class="label-left">배송비</span>
-          <span class="label-right"> <strong id="i_result2">{{number_format($delivery_sum1)}}</strong> 원</span>
+          <span class="label-right"> <strong id="i_result2"></strong> 원</span>
+          {{-- <span class="label-right"> <strong id="i_result2">{{number_format($delivery_sum1)}}</strong> 원</span> --}}
         </div>
       </div>
       <div class="flowercart-right-bottom">
@@ -139,7 +142,7 @@
 
         </div>
         <div class="allorderprice-section">
-          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();">{{number_format($dz)}}</span>원 </span>
+          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();"></span>원 </span>
         </div>
 
         <div class="basketorder">
@@ -222,13 +225,20 @@ function increase(a) {
   },
   success: function(data) {
     console.log(data);
-    document.getElementById("productprice"+a).innerHTML=AddComma(data[0]);
-    document.getElementById("deliveryprice"+a).innerHTML=AddComma(data[1]);
-    document.getElementById("allsum"+a).innerHTML=AddComma(data[2]);
-    document.getElementById("i_result4").innerHTML=AddComma(data[3]);
-    document.getElementById("i_result3").innerHTML=AddComma(data[5]);
-    document.getElementById("i_result1").innerHTML=AddComma(data[4]);
-    document.getElementById("i_result2").innerHTML=AddComma(data[6]);
+    orderprice = data[0]*(data[1]+data[2]);
+    productprice = data[0]*data[1];
+    deliveryprice = data[0]*data[2];
+    console.log(orderprice);
+    console.log(productprice);
+    console.log(deliveryprice);
+    document.getElementById("productprice"+a).innerHTML=AddComma(productprice);
+    document.getElementById("deliveryprice"+a).innerHTML=AddComma(deliveryprice);
+    document.getElementById("allsum"+a).innerHTML=AddComma(orderprice);
+    autoprice();
+    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
+    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
+    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
+    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
 
   },
   error: function(data) {
@@ -255,13 +265,20 @@ function decrease(d) {
   },
   success: function(data) {
     console.log(data);
-    document.getElementById("productprice"+d).innerHTML=AddComma(data[0]);
-    document.getElementById("deliveryprice"+d).innerHTML=AddComma(data[1]);
-    document.getElementById("allsum"+d).innerHTML=AddComma(data[2]);
-    document.getElementById("i_result4").innerHTML=AddComma(data[3]);
-    document.getElementById("i_result3").innerHTML=AddComma(data[5]);
-    document.getElementById("i_result1").innerHTML=AddComma(data[4]);
-    document.getElementById("i_result2").innerHTML=AddComma(data[6]);
+    orderprice = data[0]*(data[1]+data[2]);
+    productprice = data[0]*data[1];
+    deliveryprice = data[0]*data[2];
+    console.log(orderprice);
+    console.log(productprice);
+    console.log(deliveryprice);
+    document.getElementById("productprice"+d).innerHTML=AddComma(productprice);
+    document.getElementById("deliveryprice"+d).innerHTML=AddComma(deliveryprice);
+    document.getElementById("allsum"+d).innerHTML=AddComma(orderprice);
+    autoprice();
+    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
+    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
+    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
+    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
 
   },
   error: function(data) {
@@ -296,22 +313,10 @@ function del(e){
   // console.log(jjim);
   success: function(data) {
     console.log(data);
-    // var a = data[9];
-    // console.log(a);
-    // for(i=0; i<a.length;i++){
-    //   $("#remove"+a[i]).remove();
-    //   console.log($("#remove"+a[i]));
-    //   // console.log(data[9].length);
-    // }
     if(data[0]=e){
-      document.getElementById("i_result4").innerHTML=AddComma(data[5]);
-      document.getElementById("i_result3").innerHTML=AddComma(data[7]);
-      document.getElementById("i_result1").innerHTML=AddComma(data[6]);
-      document.getElementById("i_result2").innerHTML=AddComma(data[8]);
-      // console.log(data[9].length);
-
+      // autoprice();
       $("#remove"+e).remove();
-
+      autoprice();
       if($(".flowercart-infor").is(".flowercart-infor")){
         // ($("#div_test").hasClass("apple") === true)
         console.log('존재');
@@ -347,6 +352,10 @@ function onKeyDown()
 }
 function selectdel(){
   // var idindex;
+  if(!$("input:checkbox[name='checkRow']").is(":checked")){
+    alert("선택하신 상품이 없습니다. 삭제를 원하시는 상품을 선택 해 주세요.");
+    return false;
+  }
   var deleted = confirm("정말 상품을 삭제하시겠습니까?");
   if(deleted){
     // 여기는 체크한 상품 지우는 구간 코드
@@ -400,8 +409,6 @@ function selectdel(){
   else{
     return false;
   }
-
-
   $.ajax({
     type: 'post',
     url: '/delete',
@@ -412,18 +419,20 @@ function selectdel(){
     // console.log(jjim);
     success: function(data) {
       console.log(data);
-      var a = data[9];
+      var a = [];
       console.log(a);
-      for(i=0; i<a.length;i++){
-        $("#remove"+a[i]).remove();
-        console.log($("#remove"+a[i]));
+      for(i=0; i<data.length;i++){
+        $("#remove"+data[i]).remove();
+        // console.log($("#remove"+data[i]));
         // console.log(data[9].length);
       }
-      if(data[9]=idindex){
-        document.getElementById("i_result4").innerHTML=AddComma(data[5]);
-        document.getElementById("i_result3").innerHTML=AddComma(data[7]);
-        document.getElementById("i_result1").innerHTML=AddComma(data[6]);
-        document.getElementById("i_result2").innerHTML=AddComma(data[8]);
+      // return console.log('끝');
+      if(data=idindex){
+
+        // document.getElementById("i_result4").innerHTML=AddComma(data[5]);
+        // document.getElementById("i_result3").innerHTML=AddComma(data[7]);
+        // document.getElementById("i_result1").innerHTML=AddComma(data[6]);
+        // document.getElementById("i_result2").innerHTML=AddComma(data[8]);
         // console.log(data[9].length);
         if($(".flowercart-infor").is(".flowercart-infor")){
           // ($("#div_test").hasClass("apple") === true)
@@ -451,6 +460,7 @@ function selectdel(){
 <script type="text/javascript">
 function condition(){
   if(selectAll.checked){
+    autoprice();
     var checking = 1;
     console.log('전체선택 체크됨');
     // $('.checkf')
@@ -477,7 +487,8 @@ function condition(){
   }
   else {
     var unchecked = 1;
-    console.log('전체선택 되지않음');
+    autoprice();
+    // console.log('전체선택 되지않음');
     // console.log($('.checkf').is(":checked"));
     checkvalue = $('.checkf').is(":checked");
 
@@ -495,7 +506,7 @@ function condition(){
       //해당 index에 해당하는 체크박스의 값을 가져옵니다.
       // alert($("input:checkbox[name=checkRow]").eq(index),val());
     });
-    console.log(idindex);
+    // console.log(idindex);
   }
 
   $.ajax({
@@ -553,4 +564,134 @@ function selectcondition(a){
   }
 });
 }
+
+
+function autoprice(){
+  if(selectAll.checked){
+    console.log('전체선택 체크됨');
+    Calculation();
+    // $("input:checkbox[name='checkRow']").is(":checked")
+    // 위에는 필요한주석
+
+    // tt = $('#productprice335').text();
+    // aa = $('#deliveryprice335').text();
+    // dd = $('#allsum335').text();
+    // alert(dd);
+
+  }
+  if(!$("input:checkbox[name='checkRow']").is(":checked")){
+    console.log('아무것도 체크되지 않음');
+    Calculation();
+  }
+  else {
+    Calculation();
+    console.log('전체선택 되지않음');
+    checkvalue = $('.checkf').is(":checked");
+
+    var idindex = [];
+
+    $("input:checkbox[name=checkRow]:checked").each(function(i,elements){
+      //해당 index(순서)값을 가져옵니다.
+      index = $(elements).index("input:checkbox[name=checkRow]");
+      //해당 index에 해당하는 체크박스의 ID 속성을 가져옵니다.
+      string =  $("input:checkbox[name=checkRow]").eq(index).attr("id");
+      var no=string.replace(/[^0-9]/g,'');
+      // console.log(no);
+      idindex.push(no);
+      //해당 index에 해당하는 체크박스의 값을 가져옵니다.
+    });
+    console.log(idindex);;
+  }
+}
+function test(){
+  var arr = [1,2,3,4,5];
+  var sum = arr.reduce((a, b) => a + b);
+  console.log(arr);
+  console.log(sum);
+}
+function Calculation(){
+  if(!$("input:checkbox[name='checkRow']").is(":checked")){
+    console.log('계산 불가상태');
+    var idindex = [];
+    $("input:checkbox[name=checkRow]").each(function(i,elements)
+    {
+      //해당 index(순서)값을 가져옵니다.
+      index = $(elements).index("input:checkbox[name=checkRow]");
+      //해당 index에 해당하는 체크박스의 ID 속성을 가져옵니다.
+      string =  $("input:checkbox[name=checkRow]").eq(index).attr("id");
+      console.log(string);
+      console.log('위에 string변수값');
+      var no=string.replace(/[^0-9]/g,'');
+      idindex.push(no);
+      //해당 index에 해당하는 체크박스의 값을 가져옵니다.
+    });
+    console.log(idindex);
+    console.log('위에는 idindex 값');
+    for (var i = 0; i < idindex.length; i++) {
+      // $('#productprice'+idindex[i]).text("0");
+      // $('#deliveryprice'+idindex[i]).text("0");
+      // $('#allsum'+idindex[i]).text("0");
+      // productprice = $('#productprice'+idindex[i]).text().replace(/[^0-9]/g,'');
+      // deliveryprice = $('#deliveryprice'+idindex[i]).text().replace(/[^0-9]/g,'');
+      // allsum = $('#allsum'+idindex[i]).text().replace(/[^0-9]/g,'');
+      // count = $('#count'+idindex[i]).val();
+    }
+    document.getElementById("i_result4").innerHTML=AddComma(0);
+    document.getElementById("i_result3").innerHTML=AddComma(0);
+    document.getElementById("i_result1").innerHTML=AddComma(0);
+    document.getElementById("i_result2").innerHTML=AddComma(0);
+  }
+  else{
+
+
+    var idindex = [];
+    // $("input:checkbox[name=checkRow]:checked").each(function(i,elements)
+    $("input:checkbox[name=checkRow]").each(function(i,elements)
+    {
+      //해당 index(순서)값을 가져옵니다.
+      index = $(elements).index("input:checkbox[name=checkRow]");
+      //해당 index에 해당하는 체크박스의 ID 속성을 가져옵니다.
+      string =  $("input:checkbox[name=checkRow]").eq(index).attr("id");
+      var no=string.replace(/[^0-9]/g,'');
+      idindex.push(no);
+      //해당 index에 해당하는 체크박스의 값을 가져옵니다.
+    });
+    console.log(idindex);
+    var gettag1 = [];
+    var gettag2 = [];
+    var gettag3 = [];
+    var gettag4 = [];
+    // console.log(gettag);
+    for (var i = 0; i < idindex.length; i++) {
+      productprice = $('#productprice'+idindex[i]).text().replace(/[^0-9]/g,'');
+      deliveryprice = $('#deliveryprice'+idindex[i]).text().replace(/[^0-9]/g,'');
+      allsum = $('#allsum'+idindex[i]).text().replace(/[^0-9]/g,'');
+      count = $('#count'+idindex[i]).val();
+      // console.log(indexno);
+      gettag1.push(Number(productprice));
+      gettag2.push(Number(deliveryprice));
+      gettag3.push(Number(allsum));
+      gettag4.push(Number(count));
+    }
+    console.log(gettag1);
+    console.log(gettag2);
+    console.log(gettag3);
+    console.log(gettag4);
+    // var arr = [1,2,3,4,5];
+    var sum1 = gettag1.reduce((a, b) => a + b);
+    var sum2 = gettag2.reduce((a, b) => a + b);
+    var sum3 = gettag3.reduce((a, b) => a + b);
+    var sum4 = gettag4.reduce((a, b) => a + b);
+    console.log(sum1);
+    console.log(sum2);
+    console.log(sum3);
+    console.log(sum4);
+    document.getElementById("i_result4").innerHTML=AddComma(sum3);
+    document.getElementById("i_result3").innerHTML=AddComma(sum4);
+    document.getElementById("i_result1").innerHTML=AddComma(sum1);
+    document.getElementById("i_result2").innerHTML=AddComma(sum2);
+  }
+}
 </script>
+<button type="button" name="button" onclick="autoprice()">확인용</button>
+<button type="button" name="button" onclick="test()">확인용</button>
