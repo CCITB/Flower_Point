@@ -35,9 +35,10 @@
 
         <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
           @foreach ($store as $key)
-          <div class="shop_name"><a href="store/{{$key->st_name}}">{{$key->st_name}}</a></div>
+          <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</div>
           <div class="shop_lo">
           </div>
+
                   @endforeach
           <div class="pd_price">
             <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>

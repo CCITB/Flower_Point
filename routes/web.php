@@ -123,6 +123,7 @@ Route::get('/product/{id}', 'ProductController@productpage');
 
 Route::get('/pd_qna{id}','ProductController@pd_qna');
 
+Route::get('product/store/{id}', 'InformationController@storepage');
 
 Route::post('index', 'ProductController@seller_product_register');
 
@@ -151,6 +152,7 @@ Route::get('/customer', function(){
   return view('mypage/customer');
 });
 
+Route::get('/shoppage', 'InformationController@shoppage');
 
 Route::get('/all', 'MainController@showall');
 
@@ -181,6 +183,8 @@ Route::get('/mypage', function(){
           return view('login/login_customer');
 
 });
+
+
 
 Route::get('/shop', function(){
   if($sellerinfo = auth()->guard('seller')->user()){

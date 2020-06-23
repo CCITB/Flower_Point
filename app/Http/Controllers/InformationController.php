@@ -41,8 +41,6 @@ class InformationController extends Controller
     return redirect('/shop');
   }
 }
-
-
 publiC function newaddress(Request $request){
 
   if($sellerinfo = auth()->guard('seller')->user()){
@@ -55,8 +53,6 @@ publiC function newaddress(Request $request){
 return redirect('/shop');
 }
 }
-
-
 publiC function detailaddress(Request $request){
 
   if($sellerinfo = auth()->guard('seller')->user()){
@@ -69,7 +65,10 @@ publiC function detailaddress(Request $request){
   return redirect('/shop');
 }
 }
-
-
+publiC function storepage($id){
+  $productinfor = DB::table('product')->where('p_no','=',$id)->get();
+  $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
+  return view('myshop/shop_seller');
+}
 
 }
