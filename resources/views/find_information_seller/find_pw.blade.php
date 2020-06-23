@@ -57,7 +57,9 @@ $(document).ready(function(){
       $('#id_check').css('color', 'red');
       $("#s_id").focus();
     }
-    else if(!mark.test($("#s_id").val))
+    else if(!mark.test($("#s_id").val)){
+      $('#id_check').text("필수 정보입니다.");
+    }
   });
 
 });
