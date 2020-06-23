@@ -57,23 +57,27 @@ Route::post('/mail', 'MailController@sends');
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
 });
-Route::post('/check_query', 'FindController@check_query');
-
+//seller ID From값 전송
 Route::post('/seller_find_id', 'FindController@seller_find_id');
+
+Route::post('/check_query', 'FindController@check_query');
 
 //seller PW 찾기
 Route::get('/seller_find_pw', function(){
   return view('find_information_seller/find_pw');
+});
+Route::post('seller_find_pw', 'FindController@seller_find_pw');
+
+
+Route::get('/find_pw_way', function(){
+  return view('find_information_seller/find_pw_way');
 });
 
 Route::get('/find_pw_way/{id}', 'FindController@f_way');
 
 Route::post('/f_way', 'FindController@f_way');
 
-Route::post('find', 'FindController@f_pw');
-
 Route::get('/find_pw_reset', 'FindController@find_pw_reset');
-
 
 Route::get('/find_chk', 'FindController@find_check');
 
