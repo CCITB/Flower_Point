@@ -19,11 +19,12 @@
     </div>
 
     <div class ="find_pw">
-        <form action = "{{url('find')}}" method='post'>
+        {{-- <form action = "{{url('find')}}" method='post'> --}}
+        <form action="/seller_find_pw" method="post">
           @csrf
           <div class="intervel"></div>
-          <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid"><br>
-
+          <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="s_id"><br>
+          <div class="check_div" id="id_check" value=""></div>
           <div class="under_pw">
             <input class="lg_bt" type="submit" value="다음">
           </div>
@@ -35,3 +36,37 @@
   </div>
 </body>
 </html>
+
+<!--******************************<<예외처리 및 클릭 이벤트 : 어지수>>*****************************************-->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+var markJ;
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$(document).ready(function(){
+  $("#s_id").blur(function() {
+    //정규식
+    mark = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+
+    if($("#s_id").val != ""){
+      $('#id_check').text("필수 정보입니다.");
+      $('#id_check').css('color', 'red');
+      $("#s_id").focus();
+    }
+    else if(!mark.test($("#s_id").val))
+  });
+
+});
+
+function checkfunction(){
+  if($("#s_id").val != ""){
+    $('#id_check').text("필수 정보입니다.");
+    $('#id_check').css('color', 'red');
+    $("#s_id").focus();
+  }
+}
+</script>

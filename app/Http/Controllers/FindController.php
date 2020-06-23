@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FindController extends Controller
 {
-  // public function find_id(){
-  //   return view('find_information.find_id');
-  // }
-  //
+
   // public function find_pw(){
   //   return view('find_information.find_pw');
   // }
@@ -46,25 +43,30 @@ class FindController extends Controller
   //박소현
   public function seller_find_id(Request $myid)//seller 아이디 찾기
   {
-    //input한 name값
-    $input_name = $myid->get('name');
+    // //input한 name값
+    // $input_name = $myid->get('name');
+    //
+    // //input한 name값과 일치하는 DB name 행
+    // $fd_name = DB::table('seller')->where('s_name','=',$input_name)->get();
+    // $query_name = $fd_name[0]->s_name;
+
+    //input한 email값
+    $input_mail = $myid->get('s_email');
 
     //input한 name값과 일치하는 DB name 행
-    $fd_name = DB::table('seller')->where('s_name','=',$input_name)->get();
-    $query_name = $fd_name[0]->s_name;
+    $fd_mail = DB::table('seller')->where('s_email','=',$input_mail)->get();
+    $query_mail = $fd_mail[0]->s_email;
 
-    if ( $input_name  == $query_name) {
-      return view('find_information_seller.find_check', compact('fd_name'));
+
+    if ( $input_mail  == $query_mail) {
+      return view('find_information_seller.find_check', compact('fd_mail'));
     }
     else{
       return redirect('/find_id');
     }
   }
 
-
-
-
-  public function f_pw(Request $pw)//seller 비밀번호
+  public function seller_find_pw(Request $pw)//seller 비밀번호
   {
     $input_id = $pw->get('myid');
     // return $input_id;
@@ -72,16 +74,14 @@ class FindController extends Controller
     $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
     $myid = $myinfo[0]->s_no;
 
-    // if (count($myinfo)>0) {
-    //   return redirect('/find_pw_way');
-    // }
-    // else{
-    //   // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
-    //   return view('find_information.find_pw');
-    // }
+    if (count($myinfo)>0) {
+      return redirect('/find_pw_way');
+    }
+    else{
+      // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
+      return view('find_information.find_pw');
+    }
   }
-
-
 
   public function f_way($id){
 
