@@ -266,6 +266,7 @@ function increase(a) {
   },
   success: function(data) {
     console.log(data);
+    // $('#checkf'+a).is(":checked");06.24사용할코드
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
@@ -617,6 +618,9 @@ function condition(){
 var test1 = [];
 var test2 = [];
 var test3 = [];
+var now_productprice = [];
+var now_deliveryprice = [];
+var now_allsum = [];
 function selectcondition(a){
   // var ada = $('input:checkbox[id="checkf"+'a']').is(":checked") == true;
   // console.log(ada);
@@ -629,9 +633,17 @@ function selectcondition(a){
   }
   else {
     console.log(' no check');
+    // $('#productprice'+a).text();
+    now_productprice.length = 0;
+    now_deliveryprice.length = 0;
+    now_allsum.length = 0;
+    now_productprice.push($('#productprice'+a).text());
+    now_deliveryprice.push($('#deliveryprice'+a).text());
+    now_allsum.push($('#allsum'+a).text());
     document.getElementById("productprice"+a).innerHTML=0;
     document.getElementById("deliveryprice"+a).innerHTML=0;
     document.getElementById("allsum"+a).innerHTML=0;
+    console.log(now_productprice);
   }
   $.ajax({
     type: 'post',
@@ -838,10 +850,11 @@ $(document).ready(function (){
 function loadprice(a){
   if(a>0)
   {
-    document.getElementById("productprice"+a).innerHTML= 1;
-    document.getElementById("deliveryprice"+a).innerHTML= 1;
-    document.getElementById("allsum"+a).innerHTML= 1;
-    console.log(a);
+
+    $('#productprice'+a).text(now_productprice);
+    $('#deliveryprice'+a).text(now_deliveryprice);
+    $('#allsum'+a).text(now_allsum);
+    // console.log(now_productprice);
     console.log('찍히냐?');
     return false;
   }
