@@ -178,7 +178,7 @@ Route::get('/mypage', function(){
 
 });
 
-Route::get('/{{$key->st_name}}', function(){
+Route::get('/shop', function(){
   if($sellerinfo = auth()->guard('seller')->user()){
     $sellerprimary = $sellerinfo->s_no;
     // return $sellerprimary;

@@ -94,7 +94,7 @@ class ProductController extends Controller
     // DB::table('question')->insert([
     //   'product_no'=>$pro_no
     // ]);
-
+    $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
     $qnaq = DB::table('question')->where('product_no', $pro_no)->paginate(5);
 
     // return $qnaq;
