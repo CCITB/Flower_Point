@@ -16,7 +16,7 @@
     <div class="text">
       <div class="id_title">My Information</div> <hr>
     </div>
-    @foreach ($fd_name as $myfindid)
+    @foreach ($fd_mail as $myfindid)
       <div class ="my_id">
         @csrf
         <div class="intervel"></div>

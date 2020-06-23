@@ -32,7 +32,6 @@
             <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name'>
             <div class="check_div" id="name_check" value=""></div>
 
-            <br>
             <div class="verify">
               <!--이메일 : 어지수-->
               <div class="sign_name">이메일</div>
@@ -52,7 +51,7 @@
       </form>
     </div>
     <div class="bottom">
-      <a href = "/find_pw">비밀번호 찾기</a>
+      <a href = "/seller_find_pw">비밀번호 찾기</a>
     </div>
     <div class="home">
       <a href = "/">홈으로</a>
@@ -61,7 +60,7 @@
 </body>
 </html>
 
-<!--******************************예외처리 및 클릭 이벤트 : 어지수*****************************************-->
+<!--******************************<<예외처리 및 클릭 이벤트 : 어지수>>*****************************************-->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 var global_random;
