@@ -25,7 +25,7 @@ class FindController extends Controller
   //   return view('find_information.find_check');
   // }
 
-  //**************INPUT값(name,email)이 DB에 있는지 : 어지수**************
+  //**************INPUT값(name,email)이 DB에 있는지 -- 어지수**************
   public function check_query(Request $request){
     //name 입력 값
     $input_name = $request->get('input_name');
@@ -39,7 +39,6 @@ class FindController extends Controller
     //(있으면 1 / 없으면 0)
     return response()->json($query_email);
   }
-
   //박소현
   public function seller_find_id(Request $myid)//seller 아이디 찾기
   {
@@ -65,21 +64,33 @@ class FindController extends Controller
       return redirect('/find_id');
     }
   }
+  //**************pw -- 어지수**************
+  //find_pw - jquery
+  public function seller_id_check(Request $request)
+  {
+    //find_pw - jquery
+    $input = $request->input('id');
+    $sellers = DB::table('seller')-> where('s_id','=',$input)->get()->count();
+    return response()->json($sellers);
+  }
 
   public function seller_find_pw(Request $pw)//seller 비밀번호
   {
-    $input_id = $pw->get('myid');
-    // return $input_id;
-    //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
+    //동일 아이디 확인
+    $input_id = trim($_POST['myid']);
+
     $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
     $myid = $myinfo[0]->s_no;
 
-    if (count($myinfo)>0) {
-      return redirect('/find_pw_way');
+    $mymail = $myinfo[0]->s_email;
+    // $mymail_a = substr_replace($mymail,'*');
+    //
+    if (($myinfo->count())>0) {
+      return view('find_information_seller.find_pw_way', compact('mymail'));
     }
     else{
       // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
-      return view('find_information.find_pw');
+      return view('find_information_seller.find_pw');
     }
   }
 

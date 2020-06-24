@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>비밀번호 찾기</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>꽃갈피 : 비밀번호 찾기</title>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/css/find.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
@@ -19,16 +20,16 @@
     </div>
 
     <div class ="find_pw">
-        {{-- <form action = "{{url('find')}}" method='post'> --}}
-        <form action="/seller_find_pw" method="post">
-          @csrf
-          <div class="intervel"></div>
-          <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="s_id"><br>
-          <div class="check_div" id="id_check" value=""></div>
-          <div class="under_pw">
-            <input class="lg_bt" type="submit" value="다음">
-          </div>
-        </form>
+      {{-- <form action = "{{url('find')}}" method='post'> --}}
+      <form action="/seller_find_pw_controller" method="post" onsubmit="return checkfunction()">
+        @csrf
+        <div class="intervel"></div>
+        <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="s_id"><br>
+        <div class="check_div" id="id_check" value=""></div>
+        <div class="under_pw">
+          <input class="lg_bt" type="submit" id="btn_submit" value="다음">
+        </div>
+      </form>
     </div>
     <div class="home">
       <a href = "/">홈으로</a>
@@ -40,7 +41,7 @@
 <!--******************************<<예외처리 및 클릭 이벤트 : 어지수>>*****************************************-->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-var markJ;
+var check;
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -48,27 +49,65 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
+  var idJ= /^[a-z0-9_\-]{5,20}$/;
   $("#s_id").blur(function() {
-    //정규식
-    mark = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-
-    if($("#s_id").val != ""){
+    if(!idJ.test($("#s_id").val)){
+      $('#id_check').text("");
+    }
+    else if($("#s_id").val==""){
       $('#id_check').text("필수 정보입니다.");
       $('#id_check').css('color', 'red');
       $("#s_id").focus();
     }
-    else if(!mark.test($("#s_id").val)){
-      $('#id_check').text("필수 정보입니다.");
+    else{
+      $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
+      $('#id_check').css('color', 'red');
+      $("#s_id").focus();
     }
   });
-
 });
-
 function checkfunction(){
-  if($("#s_id").val != ""){
-    $('#id_check').text("필수 정보입니다.");
+  var idJ= /^[a-z0-9_\-]{5,20}$/;
+  check;
+
+  if($('#s_id').val()==''){
+    $('#id_check').text("필수 정보입니다.1");
     $('#id_check').css('color', 'red');
     $("#s_id").focus();
+    return false;
   }
-}
+  if(!idJ.test($('#s_id').val())){
+    //2. 정규식 일치X
+    $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능.');
+    $('#id_check').css('color', 'red');
+    $("#s_id").focus();
+    return false;
+  }
+
+  else{
+    input_id = $('#s_id').val();
+    $.ajax({
+
+      type: 'post',
+      url: 'seller_id_check',
+      dataType: 'json',
+      data: { "id": input_id },
+
+      success : function(data) {
+        //console.log(data);
+        if(data<1){
+          alert("입력하신 아이디를 찾을 수 없습니다.");
+          location.reload();
+          return false;
+        }
+        if(data>0){
+          console.log(check);
+          alert("성공 check");
+          return true;
+        }
+      }//success
+      ,error : function() {   console.log("실패");  }
+    }) //ajax
+  }
+};
 </script>
