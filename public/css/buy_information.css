@@ -142,7 +142,7 @@ li{
 /* ------ 상품설명 디테일 시작 ------*/
 .pd_detail{
   width: 100%;
-  background-color: #E8D9FF;
+  /* background-color: #E8D9FF; */
   padding: 20px;
 }
 .blind{

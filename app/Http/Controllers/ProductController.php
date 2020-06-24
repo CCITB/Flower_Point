@@ -95,23 +95,14 @@ class ProductController extends Controller
     //   'product_no'=>$pro_no
     // ]);
     $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
-    $qnaq = DB::table('question')->where('product_no', $pro_no)->paginate(5);
+    // $qnaq = DB::table('question')->where('product_no', $pro_no)->paginate(5);
 
-    // return $qnaq;
-
-
-
-    // if($cinfo = auth()->guard('customer')->user()){
-    //   // return 0;
-    //   $cprimary = $cinfo->c_no;
-    //   $customer = DB::table('customer')
-    //   ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
-    //   ->where('customer_no', $cprimary)->get();
-    //
-    //   // return view('mypage/mypage', compact('sellerstore'));
-    //
-    // }
-
+    // $c_n = $qnaq[0]->customer_no;
+    // return $c_n;
+    $qnaq = DB::table('customer')
+     ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
+     ->where('product_no', $pro_no)->paginate(5);
+     // return $customer;
 
     // return $productinfor;
 
@@ -282,7 +273,7 @@ class ProductController extends Controller
       return response()->json([$basket->b_count,$basket->b_price,$basket->b_delivery]);
     }
 
-}
+  }
   public function basketcondition(Request $request){
     // return response()->json(1);
     $checkdata = $request->input('check');
