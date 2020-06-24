@@ -1,4 +1,4 @@
-<!DOCTYPE html>  <!--박소현 (문의 파트 - 곽승지) -->
+<!DOCTYPE html>  <!--박소현 -->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -15,10 +15,11 @@
     <div class = "pd_image">
       <!--이미지 틀 -->
       @foreach ($productinfor as $protb)
-      <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
-    </div>
-    <!-- 상품정보와 옵션선택 -->
-    <div class= "pd_option">
+        <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
+      </div>
+
+      <!-- 상품정보와 옵션선택 -->
+      <div class= "pd_option">
 
         <form action = '/order' method=''>
 
@@ -29,35 +30,35 @@
               <button class="convenience" type="button">내 상품</button>
             </div>
           </div>
-        </div>
-      @endforeach
-        <hr class="option_line">
 
-        <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
-          @foreach ($store as $key)
-          <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</div>
-          <div class="shop_lo">
+
+          <hr class="option_line">
+
+          <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
+            @foreach ($store as $key)
+              <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</a></div>
+              <div class="shop_lo"> 가게 주소</div>
+            @endforeach
+            <div class="pd_price">
+              <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
+            </div>
           </div>
 
-                  @endforeach
-          <div class="pd_price">
-            <strong> <span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
-          </div>
-        </div>
-        @foreach ($productinfor as $protb)
-        <div class="pd_deliver">
-          <div class="pd_deliver1">
-            <span class="del_text">배송비</span><br>
-            <span>{{$protb->p_title}}</span>
-            <span>원</span>
-          </div>
-          <div class="pd_deliver2">
-            <span class="del_text">배송기간</span><br>
-            2일 이내
-          </div>
-          <div class="pd_deliver3">
-            <span class="del_text">적립금</span><br>
-            최대 2%
+
+          <div class="pd_deliver">
+            <div class="pd_deliver1">
+              <span class="del_text">배송비</span><br>
+              <span>{{$protb->p_title}}</span>
+              <span>원</span>
+            </div>
+            <div class="pd_deliver2">
+              <span class="del_text">배송기간</span><br>
+              2일 이내
+            </div>
+            <div class="pd_deliver3">
+              <span class="del_text">적립금</span><br>
+              최대 2%
+            </div>
           </div>
 
 
