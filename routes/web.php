@@ -74,13 +74,11 @@ Route::post('/seller_id_check', 'FindController@seller_id_check');
 Route::get('/find_pw_way', function(){
   return view('find_information_seller/find_pw_way');
 });
-
-//Route::get('/find_pw_way/{id}', 'FindController@f_way');
-
-
 Route::post('/f_way', 'FindController@f_way');
 
-Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+Route::get('/find_pw_reset',  function () {
+  return view('find_information_seller.find_pw_reset');
+});
 
 Route::get('/find_chk', 'FindController@find_check');
 

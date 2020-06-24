@@ -97,24 +97,21 @@ class FindController extends Controller
 
   public function f_way(Request $request)//seller 비밀번호
   {
-    // $input_id = $pw->get('myid');
-    // $input_name = $pw->get('pw_name');
+    //인증된 이메일(가입된 이메일)
     $input_email = $request->get('hidden');
-    // $input_tell = $pw->get('pw_tell');
-    echo $input_email;
-    // return $input_name;
+    $input_name = $request->input('name');
 
-    // $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
-    // $myid = $myinfo[0]->s_id;
-    // $myname = $myinfo[0]->s_name;
-    // // $mytell = $myinfo[0]->s_phonenum;
-    //
-    // if($input_name == $myname){
-    //   return redirect('/find_pw_reset');
-    // }
-    // else{
-    //   return redirect('/find_pw_way');
-    // }
+    $email = DB::table('seller')->where('s_email','=',$input_email)->get();
+    $email_cnt = $email->count();
+    $name = $email[0]->s_name;
+
+    //input name과 Table상에 name이 동일하고, input email과 Table상 email이 존재할 경우
+      if($input_name == $name && $email_cnt>0){
+      return redirect('/find_pw_reset');
+    }
+    else{
+      return redirect('/find_pw_way');
+    }
 }
 
 
