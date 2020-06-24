@@ -76,9 +76,10 @@
                 <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
 
                 <div id="p_num" style="display:none;">
-                  <input type="text" name="c_phonenum"  placeholder="새 연락처">
-                  <button type="submit" name="button">수정완료</button>
+                  <input type="text" id="new_num" name="c_phonenum"  placeholder="새 연락처">
+                  <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
                 </div>
+
 
 
 
