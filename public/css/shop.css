@@ -54,7 +54,7 @@ img.shopimg{
   position: relative;
   display: inline-block;
 }
-table.shopinfo{
+#shopinfo{
   width: 100%;
   position: relative;
   text-align: left;
@@ -147,7 +147,7 @@ input.introduce{
 }
 
 div.delivery_wrap2{
-  margin-left: 57px;
+  margin-left: 62px;
 }
 
 div.btn{
@@ -184,7 +184,7 @@ form.shop{
 
 #complete1{
   margin-top: 1%;
-  margin-left: 55px;
+  margin-left: 62px;
 }
 
 #modiaddress{

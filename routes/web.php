@@ -123,7 +123,7 @@ Route::get('/product/{id}', 'ProductController@productpage');
 
 Route::get('/pd_qna{id}','ProductController@pd_qna');
 
-Route::get('product/store/{id}', 'InformationController@storepage');
+Route::get('/product/store/{id}', 'InformationController@storepage');
 
 Route::post('index', 'ProductController@seller_product_register');
 
@@ -228,7 +228,19 @@ Route::get('/postlist', function(){
   }
   return view('login/login_seller');
 });
+Route::get('/newshop', function($id){
+  // $productinfor = DB::table('product')->where('p_name','=',$id)->get();
+  // $pro_no = $productinfor[0]->p_no;
+  // return $pro_no;
 
+  // DB::table('question')->insert([
+  //   'product_no'=>$pro_no
+  // ]);
+  // $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
+  $shop = DB::table('store')->select('st_name')->get();
+  $shop_address = DB::table('store_address')->get();
+   return view('myshop/shop_customer' , compact('shop','shop_address'));
+});
 //검색
 Route::get('/search', 'SearchController@result');
 Route::group(['middleware' => 'preventBackHistory'],function(){
