@@ -54,7 +54,7 @@ img.shopimg{
   position: relative;
   display: inline-block;
 }
-table.shopinfo{
+#shopinfo{
   width: 100%;
   position: relative;
   text-align: left;
@@ -147,7 +147,7 @@ input.introduce{
 }
 
 div.delivery_wrap2{
-  margin-left: 57px;
+  margin-left: 62px;
 }
 
 div.btn{
@@ -184,7 +184,7 @@ form.shop{
 
 #complete1{
   margin-top: 1%;
-  margin-left: 55px;
+  margin-left: 62px;
 }
 
 #modiaddress{
@@ -201,6 +201,104 @@ form.shop{
 #ad{
   width: 100%;
 }
+
 table.adtable{
   width: 100%;
 }
+
+.image-in-container{
+  border-top: 1px solid #d9d9d9;
+}
+.container-wrap{
+width: 900px;
+   position: relative;
+   margin: auto;
+   overflow: hidden;
+}
+.container-wrapping{
+position: relative;
+  width: 100%;
+  margin: 0px auto;
+  height: 600px;
+}
+
+.container-image{
+  float: left;
+  width: 33.3%;
+  height: 50%;
+  position: relative;
+  overflow: hidden;
+
+}
+.image{
+width: 90%;
+height: 90%;
+float: left;
+position: absolute;
+border: 1px solid #d9d9d9;
+border-radius: 10px;
+box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
+background-color: #f8f9fb;
+}
+.image-in{
+ width: 100%;
+ height: 100%;
+-webkit-filter: brightness(100%);
+cursor: pointer;
+}
+.image-in:hover{
+  -webkit-filter: brightness(70%);
+     -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+     -o-transition: all 1s ease;
+     -ms-transition: all 1s ease;
+     transition: all 1s ease;
+}
+.imagewrap{
+  width: 100%;
+  height: 150px;
+}
+.imagewrap img{
+border-top-right-radius:10px;
+border-top-left-radius:10px;
+width: 100%;
+height: 100%;
+}
+.image-in-post{
+width: 90%;
+padding-top: 5px;
+margin: 0 auto;
+padding-bottom: 5px;
+}
+.image-in-bottom{
+  position: relative;
+width: 90%;
+margin: 0 auto;
+display: -webkit-box;
+-webkit-line-clamp:1;
+-webkit-box-orient: vertical;
+height: 14px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.image-in-star{
+width: 90%;
+margin: 0 auto;
+padding: 6px 0px;
+}
+
+.image-in-font{
+font-size: 12px;
+overflow: hidden;
+}
+/* jQuery 평점 구문 */
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating a {
+ font-size:16px;
+ letter-spacing:0;
+ display:inline-block;
+ color:#ccc;
+ text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#ffc801;}

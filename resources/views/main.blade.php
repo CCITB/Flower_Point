@@ -256,7 +256,6 @@
     $(this).addClass("on").prevAll("a").addClass("on");
     return false;
   });
-
   </script>
   @include('lib.footer')
 </body>

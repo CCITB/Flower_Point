@@ -66,14 +66,25 @@ Route::post('/check_query', 'FindController@check_query');
 Route::get('/seller_find_pw', function(){
   return view('find_information_seller/find_pw');
 });
-Route::post('seller_find_pw', 'FindController@seller_find_pw');
+// Route::post('seller_find_pw', 'FindController@seller_find_pw');
+//
+//
+// Route::get('/find_pw_way', function(){
+//   return view('find_information_seller/find_pw_way');
+// });
+//
+// Route::get('/find_pw_way/{id}', 'FindController@f_way');
+Route::post('/seller_find_pw_controller', 'FindController@seller_find_pw');
+//pw에서 id존재유무를 확인하는 jquery
+Route::post('/seller_id_check', 'FindController@seller_id_check');
 
 
 Route::get('/find_pw_way', function(){
   return view('find_information_seller/find_pw_way');
 });
 
-Route::get('/find_pw_way/{id}', 'FindController@f_way');
+//Route::get('/find_pw_way/{id}', 'FindController@f_way');
+
 
 Route::post('/f_way', 'FindController@f_way');
 

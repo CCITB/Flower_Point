@@ -40,84 +40,58 @@
               <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
             </div>
             <div id="tablewrap">
-            <table class="shopinfo">
-              <tr>
-                <th>대표</th>
-                <td><div class="thcell">{{$data1->s_name}}</div></td>
-              </tr>
+              <table id="shopinfo">
+                <tr>
+                  <th>대표</th>
+                  <td><div class="thcell">{{$data1->s_name}}</div></td>
+                </tr>
 
-              <tr>
-                <th>상호명</th>
-                <td><div class="thcell">{{$data1->st_name}}</div></td>
-              </tr>
-                      @endforeach
+                <tr>
+                  <th>상호명</th>
+                  <td><div class="thcell">{{$data1->st_name}}</div></td>
+                </tr>
+              @endforeach
 
               <form class="addressgroup" action="/shopinfo" method="get">
 
                 <tr>
                   <th>주소</th>
-                    @foreach ($store_address as $a)
-                  <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addressmodi' );"></td>
+                  @foreach ($store_address as $a)
+                    <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
 
 
                     <tr>
-                    <th>우편번호</th>
-                    <td>{{$a->a_post}}</td>
+                      <th>우편번호</th>
+                      <td>{{$a->a_post}}</td>
                     </tr>
                     <tr>
-                    <th>참고항목</th>
-                    <td>{{$a->a_extra}}</td>
-                    </tr>
-                      @endforeach
-                      @foreach ($detail_address as $b)
-                    <tr>
-                    <th>상세주소</th>
-                    <td>{{$b->a_detail}}</td>
+                      <th>참고항목</th>
+                      <td>{{$a->a_extra}}</td>
                     </tr>
                   @endforeach
-                  </form>
-                  <form action="/newaddress" method="get">
-                  <div id="addressmodi" style="display:none;">
-                    <div class="delivery_wrap">
-                      <strong class="info">주 소</strong>
-                      <!-- 우편번호 -->
-                      <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
-                      <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                    </div>
-                    <!--주소 -->
-                    <div class="delivery_wrap2">
-                      <input type="text"  id="address" name="address" placeholder="주소" readonly>
-                        <div class="detail">
-                          <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
-                        </div>
+                  @foreach ($detail_address as $b)
+                    <tr>
+                      <th>상세주소</th>
+                      <td>{{$b->a_detail}}</td>
+                    </tr>
+                  @endforeach
 
-
-
-                            <div class="delivery_address_detail">
-                        <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" readonly>
-                      </div>
-
-
-                    </div>
-                  </div>
-                  <button type="submit" id="complete1" name="button" style="display:none;">수정완료</button>
-                                      </form>
-
+                </form>
 
               </div>
             </tr>
           </table>
         </div>
-          <form class="shop" action="/shopinfo" method="get">
-            <div class="shopintro">
-              <div id="introducemodi">{{$data1->st_introduce}}</div>
-              <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
-              <div id="addressapi" style="display:none;">
-                <input type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요.">
-                <button type="submit" id="complete2" name="button">수정완료</button>
-              </div>
+        <form class="shop" action="/shopinfo" method="get">
+          <div class="shopintro">
+            <div id="introducemodi">{{$data1->st_introduce}}</div>
+            <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
+            <div id="addressapi" style="display:none;">
+              <input type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요.">
+              <button type="submit" id="complete2" name="button">수정완료</button>
             </div>
-          </form>
+          </div>
+        </form>
 
 
       @endif
@@ -127,6 +101,7 @@
           document.getElementById(ss).style.display="block";
           ad.style.display="none";
           complete1.style.display="block";
+          addresswrap.style.display="block";
         }
         else if(s== "소개수정"){
           document.getElementById(ss).style.display="block";
@@ -137,6 +112,29 @@
       </script>
     </div>
 
+    <form action="/newaddress" method="get">
+      <div id="addresswrap" style="display:none;">
+      <div id="addressmodi">
+        <div class="delivery_wrap">
+          <strong class="info">주 소</strong>
+          <!-- 우편번호 -->
+          <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
+          <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+        </div>
+        <!--주소 -->
+        <div class="delivery_wrap2">
+          <input type="text"  id="address" name="address" placeholder="주소" readonly>
+          <div class="detail">
+            <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
+          </div>
+          <div class="delivery_address_detail">
+            <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+          </div>
+        </div>
+      </div>
+        <button type="submit" id="complete1" name="button" >수정완료</button>
+    </div>
+    </form>
     <div class="wrap4">
       <h3 class="productname">판매물품</h3>
     </div>
@@ -194,28 +192,28 @@
               {{ $proro->links()}}
             </div>
 
-          {{-- <div class="nav-page">
+            {{-- <div class="nav-page">
             <nav>
-              <a href="#" class="active">1</a>
-            </nav>
-            <nav>
-              2
-            </nav>
-            <nav>
-              3
-            </nav>
-            <nav>
-              4
-            </nav>
-            <nav>
-              5
-            </nav>
-          </div> --}}
-        </div>
-      </div>
+            <a href="#" class="active">1</a>
+          </nav>
+          <nav>
+          2
+        </nav>
+        <nav>
+        3
+      </nav>
+      <nav>
+      4
+    </nav>
+    <nav>
+    5
+  </nav>
+</div> --}}
+</div>
+</div>
 
-    @endif
-  </div>
+@endif
+</div>
 
 </div>
 </div>
