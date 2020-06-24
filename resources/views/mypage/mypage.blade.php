@@ -120,86 +120,6 @@
                   </form>
                     </tbody>
                 </table>
-
-
-          @elseif ($customer = auth()->guard('customer')->user())
-              <table class="table1">
-
-                  <table border="1" cellpadding="10" cellspacing="10" width="100%" border-collapse="collapse">
-
-                    <tbody>
-                    <tr class="tr1">
-                        <th class="th1">
-                        <div class="thcell">아이디</div>
-                      </th>
-                        <td>
-                          <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
-                          </td>
-                    </tr>
-
-                  <tr class="tr1">
-                      <th class="th1">
-                      <div class="thcell">이름</div>
-                    </th>
-                      <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
-                        </td>
-                    </tr>
-                    <tr class="tr1">
-                      <th class="th1">
-                      <div class="thcell">연락처</div>
-                    </th>
-                      <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
-
-                        <div id="p_num" style="display:none;">
-                        <input type="text" name="s_phonenum"  placeholder="새 연락처">
-                        <button type="submit" name="button">수정완료</button>
-                        </div>
-
-
-
-                        <script type="text/javascript">
-
-                        function info_modification(s,ss){
-                          if(s == "연락처수정"){
-                            document.getElementById(ss).style.display="block"
-                            modinum.style.display="none";
-                        }
-                        else if(s == "이메일수정"){
-                          document.getElementById(ss).style.display="block"
-                          modiemail.style.display="none";
-                      }
-                      else if(s == "주소수정"){
-                        document.getElementById(ss).style.display="block"
-                        modiaddress.style.display="none";
-                    }
-                      }
-                        </script>
-
-                        </td>
-                    </tr>
-                    </form>
-                    <form action="/modiemail" method="post">
-                      @csrf
-
-                    <tr class="tr1">
-                      <th class="th1">
-                      <div class="thcell">이메일</div>
-                    </th>
-                      <td>
-                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
-                        <div id="email" style="display:none;">
-                        <input type="text" name="s_email"  placeholder="새 이메일">
-                        <button type="submit" name="button">수정완료</button>
-                        </div>
-
-                        </td>
-                    </tr>
-                  </form>
-                    </tbody>
-                  </table>
-                @else
           @endif
 
 
@@ -360,6 +280,7 @@
 @endif
         </div>
     </div>
+  </div>
     @include('lib.footer')
 </body>
 <script type="text/javascript">

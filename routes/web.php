@@ -160,6 +160,7 @@ Route::get('/sellermyorderlist', function(){
 });
 Route::get('/shopinfo','InformationController@storeinfo');
 
+Route::get('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
 
 Route::get('/customer', function(){
@@ -174,6 +175,11 @@ Route::get('/newaddress', 'InformationController@newaddress');
 
 Route::get('/detail', 'InformationController@detailaddress');
 
+Route::get('/c_information_controller', 'InformationController@c_information');
+
+Route::get('/c_modiemail', 'InformationController@c_modifyemail');
+
+
 Route::get('/mypage', function(){
     if($sellerinfo = auth()->guard('seller')->user()){
       // return 0;
@@ -184,19 +190,21 @@ Route::get('/mypage', function(){
 
           return view('mypage/mypage', compact('sellerstore'));
 
-          }
-
-          else if(auth()->guard('customer')->user()){
-
-
-          return view('mypage/mypage');
-        }
-          else{
-
-          }
-          return view('login/login_customer');
+}
 
 });
+
+Route::get('/c_mypage', function (){
+  if($customerinfo = auth()->guard('customer')->user()){
+    $customerprimary = $customerinfo->c_no;
+    // return $sellerprimary;
+        $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
+        ->where('c_no','=',$customerprimary)->get();
+
+        return view('mypage/c_mypage',compact('data'));
+}
+});
+
 
 
 

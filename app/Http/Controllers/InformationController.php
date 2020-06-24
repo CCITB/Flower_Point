@@ -15,6 +15,14 @@ class InformationController extends Controller
 
       return redirect('/mypage');
     }
+    publiC function c_information(Request $request){
+      DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
+        'c_phonenum'=>$request->input('c_phonenum'),
+      ]);
+
+        return redirect('/c_mypage');
+      }
+
 
     publiC function modifyemail(Request $request){
       DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
@@ -23,6 +31,14 @@ class InformationController extends Controller
 
         return redirect('/mypage');
       }
+
+      publiC function c_modifyemail(Request $request){
+        DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
+          'c_email'=>$request->input('c_email'),
+        ]);
+
+          return redirect('/c_mypage');
+        }
 
 
   publiC function storeinfo(Request $request){
@@ -41,6 +57,9 @@ class InformationController extends Controller
     return redirect('/shop');
   }
 }
+
+
+
 publiC function newaddress(Request $request){
 
   if($sellerinfo = auth()->guard('seller')->user()){
@@ -53,6 +72,20 @@ publiC function newaddress(Request $request){
         return redirect('/shop');
 }
 }
+
+
+publiC function c_storeinfo(Request $request){
+
+  if($customerinfo = auth()->guard('customer')->user()){
+    $customerprimary = $customerinfo->c_no;
+    // return $sellerprimary;
+    $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
+    ->where('c_no','=',$customerprimary)->get();
+    $customer_address = DB::table('customer_address')->where('c_no' ,'=', $customerprimary)->update(['a_post'=>$request->input('postcode'), 'a_address'=>$request->input('address'), 'a_extra'=>$request->input('extraAddress'), 'a_detail'=>$request->input('detailAddress')]);
+        return redirect('/c_mypage');
+}
+}
+
 
 publiC function storepage($id){
   // return $id;
