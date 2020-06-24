@@ -19,44 +19,72 @@
       </div>
     </div>
 
-    <div class="rev_detail">
-      <div class="pd_satis">
-        <strong class="satis_que">상품은 만족하셨나요?</strong>
-        <div class="star_total">
-          <div class="choice_star">
-            <a href="#" class="on" id="st1" onclick="star_text(1)">★</a>
-            <a href="#" class="on" id="st2" onclick="star_text(2)">★</a>
-            <a href="#" class="on" id="st3" onclick="star_text(3)">★</a>
-            <a href="#" class="on" id="st4" onclick="star_text(4)">★</a>
-            <a href="#" class="on" id="st5" onclick="star_text(5)">★</a>
+    <form action = "{{url('rev')}}" method="post" name="file_up" id="create_form">
+      @csrf
+      <div class="rev_detail">
+        <div class="pd_satis">
+          <strong class="satis_que">상품은 만족하셨나요?</strong>
+          <div class="star_total">
+            <div class="choice_star">
+              <a href="#" class="on" id="st1" onclick="star_text(1)" value=1>★</a>
+              <a href="#" class="on" id="st2" onclick="star_text(2)" value=1>★</a>
+              <a href="#" class="on" id="st3" onclick="star_text(3)" value=1>★</a>
+              <a href="#" class="on" id="st4" onclick="star_text(4)" value=1>★</a>
+              <a href="#" class="on" id="st5" onclick="star_text(5)" value=1>★</a>
+            </div>
+            <div class="star_detail" id="st_detail">5점 (최고예요)</div>
           </div>
-          <div class="star_detail" id="st_detail">5점 (최고예요)</div>
+        </div>
+
+        <div class="satis_text">
+          <div class="satis_how">
+            만족도 <span id="satis_nu">5</span>점을 주셨네요.<br>
+            어떤 점이 <span id="satis_nu2">좋았나요?</span>
+          </div>
+          <div class="satis_detail">
+            <textarea class="satis_detail_window" name="text" placeholder="후기를 입력해주세요."></textarea>
+          </div>
+          <div class="satis_img">
+            <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
+          </div>
         </div>
       </div>
 
-      <div class="satis_text">
-        <div class="satis_how">
-          만족도 <span id="satis_nu">5</span>점을 주셨네요.<br>
-          어떤 점이 <span id="satis_nu2">좋았나요?</span>
+      <div class="rev_img">
+        <div class="file_upload">
+          {{-- <label for="real-input" class="hid">업로드</label> --}}
+          <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="my_img" accept="image/*" >
+          {{-- <input class="file_up" type="file" id="upImgFiles" onChange="uploadImgPreview();" accept="image/*" multiple> --}}
         </div>
-        <div class="satis_detail">
-          <textarea class="satis_detail_window" placeholder="후기를 입력해주세요."></textarea>
+        <div class="preview">
+          <img src="#" alt="" id="image-session">
+          <div class="preview-image">
+            <!-- 이미지 미리보기 -->
+          </div>
         </div>
-        <div class="satis_img">
-          <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
-        </div>
+        {{-- <div class="thumimg" id="thumbnailImgs"></div> --}}
+        {{-- <input name="files" id="fileupload" type="file" multiple />
+        <div id="fileList"></div> --}}
       </div>
-    </div>
 
-    <div class="under">
-      <input class="rev_bt" type="button" value="취소" onclick="self.close();" />
-      <input class="rev_bt" type='submit' value="확인">
-    </div>
+
+      <div class="under">
+        <input class="rev_bt" type="button" value="취소" onclick="self.close();" />
+        <input class="rev_bt" type='submit' value="확인">
+      </div>
+    </form>
   </div>
 
 
-  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js">
+
+  $(document).on("keyup", "input:text[numberonly]", function() {
+    $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+  });
+
+  </script>
   <script>
+
   $( ".choice_star a" ).click(function() {
     $(this).parent().children("a").removeClass("on");
     $(this).addClass("on").prevAll("a").addClass("on");
@@ -122,6 +150,53 @@
     // }
   }
 
+
+  function checkFile(el){
+    $('#image-session').attr('src', '#');
+    var file = el.files;
+    if(file[0].size > 1024 * 1024 * 2){
+      alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
+      '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
+      el.outerHTML = el.outerHTML;
+    }
+    else chk_file_type(el);
+
+  }
+  function chk_file_type(el) {
+    var file_kind = el.value.lastIndexOf('.');
+    var file_name = el.value.substring(file_kind+1,el.length);
+    var file_type = file_name.toLowerCase();
+    // console.log(file_name)
+    // console.log(file_kind)
+
+    var check_file_type=new Array();
+    check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
+    if(check_file_type.indexOf(file_type)==-1) {
+      alert('이미지 파일만 업로드 가능합니다.');
+      var parent_Obj=el.parentNode;
+      console.log(parent_Obj);
+      var node=parent_Obj.replaceChild(el.cloneNode(true),el);
+      document.getElementById("real-input").value = "";    //초기화를 위한 추가 코드
+      document.getElementById("real-input").select();        //초기화를 위한 추가 코드                                               //일부 브라우저 미지원
+    }
+    else{readURL(el);
+      $("#real-input").change(function(){
+        readURL(this);
+      });
+    }
+  }
+  // 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
+  function readURL(el) {
+    if (el.files && el.files[0]) {
+      var reader = new FileReader();
+      // 이미지 미리보기해주는 jquery
+      reader.onload = function (e) {
+        $('#image-session').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(el.files[0]);
+    }
+  }
 
   </script>
 

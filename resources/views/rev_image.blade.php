@@ -18,7 +18,8 @@
       </div>
     </div>
     <form name="file_up" id="create_form" action = '/review'>
-      <div class="file_upload">
+      <div class="filebox">
+        <label for="real-input" class="hid">업로드</label>
         <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
         {{-- <input class="file_up" type="file" id="upImgFiles" onChange="uploadImgPreview();" accept="image/*" multiple> --}}
       </div>

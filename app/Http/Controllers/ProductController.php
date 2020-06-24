@@ -146,7 +146,39 @@ class ProductController extends Controller
     return redirect('/');
   }
 
+  public function my_review(Request $myv){
 
+    $custo = auth()->guard('customer')->user()->get();
+    $cu1 = $custo[0]->c_no;
+    $cu2 = $custo[0]->c_name;
+    $today = date("Ymd");
+    // echo $comparison->st_no;
+    // return $comparison->st_no;
+
+    // 아래코드는 product table 에서 store테이블에 있는 st_no를 store_no와 비교해서  product-image table에 있는 기본값을 찾음
+
+    // $productimage = DB::table('product')->where('store_no','=',$comparison->st_no)-first();
+    // return $productimage->p_no;
+
+    // $path=$myv->file('picture')->store('/','public');
+    DB::table('review')->insert([
+      'r_title' => $cu2,
+      'r_contents' => $myv->input('text'),
+      'r_score' => $cu1,
+      'created_at' => $today,
+      'customer_no' => $cu1
+    ]);
+
+
+    // 이미지 저장경로 public\storage\
+
+    // return $path;
+    // 이미지 product 테이블과 연결해서 저장
+
+    return redirect('/mypage');
+
+
+  }
 
 
 

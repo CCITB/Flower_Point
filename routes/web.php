@@ -130,6 +130,9 @@ Route::post('index', 'ProductController@seller_product_register');
 Route::get('/review', function () {
   return view('review');
 });
+
+Route::post('rev', 'ProductController@my_review');
+
 Route::get('/rev2', function () {
   return view('rev_image');
 });
