@@ -23,7 +23,6 @@
   td.upload-name{
     text-align: center;
     padding-left: 15px;
-
   }
   </style>
 </head>
@@ -40,7 +39,7 @@
             <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
           </div>
           <div id="tablewrap">
-            <table class="shopinfo">
+            <table id="shopinfo">
               <tr>
                 <th>대표</th>
                 <td><div class="thcell">{{$shop->s_name}}</div></td>
@@ -76,15 +75,9 @@
       <form class="shop" action="/shopinfo" method="get">
         <div class="shopintro">
           <div id="introducemodi">{{$shop->st_introduce}}</div>
-
         </div>
       </form>
-
-
-
     </div>
-  </div>
-
   <div class="wrap4">
     <h3 class="productname">판매물품</h3>
   </div>
@@ -95,15 +88,48 @@
       </div>
 
       <div class="productlist">
-        <div class="productlist-item">
 
+          <div class="container-wrapping">
+            @foreach ($product as $productlist)
+            <div class="container-image">
+              <div class="image">
+                <div class="image-in" url="/product/{{$productlist->p_no}}">
+                  <div class="imagewrap" >
+                    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" width="100px" height="100px">
+                  </div>
+                  <div class="image-in-font">
+                    <div class="image-in-post">
+                      <!--게시글 제목-->
+                      {{$productlist->p_name}}
+                    </div>
+                    <div class="image-in-container">
+                      <div class="image-in-star">
+                        <p class="star_rating">
+                          <a href="#" class="on">★</a>
+                          <a href="#" class="on">★</a>
+                          <a href="#" class="on">★</a>
+                          <a href="#" class="on">★</a>
+                          <a href="#" class="on">★</a>
+                        </p>
+                      </div>
+                      <div class="image-in-bottom">
+                        <!--물품 내용-->
+                      {{strip_tags($productlist->p_contents)}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
 
-        </div>
       </div>
     </div>
 
   </div>
 </div>
+  </div>
 @include('lib.footer')
 </body>
 

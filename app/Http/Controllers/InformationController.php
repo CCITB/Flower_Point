@@ -73,7 +73,9 @@ publiC function storepage($id){
             select('*')->where('st_name', '=', $id)->get();
             $shop_address = DB::table('store_address')->join('store', 'store_address.st_no', '=', 'store.st_no')
             ->select('*')->where('st_name', '=', $id)->get();
-            return view('myshop/shop_customer', compact('shop','shop_address'));
+            $product = DB::table('product')->join('store','product.store_no','=','store.st_no')
+            ->select('*')->where('st_name', '=', $id)->get();
+            return view('myshop/shop_customer', compact('shop','shop_address','product'));
 }
 
 }
