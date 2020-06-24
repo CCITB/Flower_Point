@@ -42,13 +42,6 @@ class FindController extends Controller
   //박소현
   public function seller_find_id(Request $myid)//seller 아이디 찾기
   {
-    // //input한 name값
-    // $input_name = $myid->get('name');
-    //
-    // //input한 name값과 일치하는 DB name 행
-    // $fd_name = DB::table('seller')->where('s_name','=',$input_name)->get();
-    // $query_name = $fd_name[0]->s_name;
-
     //input한 email값
     $input_mail = $myid->get('s_email');
 
@@ -74,7 +67,7 @@ class FindController extends Controller
     return response()->json($sellers);
   }
 
-  public function seller_find_pw(Request $pw)//seller 비밀번호
+  public function seller_find_pw(Request $request)//seller 비밀번호
   {
     //동일 아이디 확인
     $input_id = trim($_POST['myid']);
@@ -84,46 +77,45 @@ class FindController extends Controller
 
     $mymail = $myinfo[0]->s_email;
     // $mymail_a = substr_replace($mymail,'*');
-    //
     if (($myinfo->count())>0) {
       return view('find_information_seller.find_pw_way', compact('mymail'));
     }
     else{
-      // echo "<script>alert('존재하지 않는 아이디입니다.')</script>";
       return view('find_information_seller.find_pw');
     }
   }
 
-  public function f_way($id){
-
-    $myno = DB::table('seller')->where('s_no','=',$id)->get();
-    // return $productinfor;
-
-    // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-    // return $productdata;
-    return view('find_information.find_pw_way', compact('myno'));
-  }
-
-  // public function f_way(Request $pw)//seller 비밀번호
-  // {
-  //   $input_id = $pw->get('myid');
-  //   $input_name = $pw->get('pw_name');
-  //   // $input_tell = $pw->get('pw_tell');
+  // public function f_way(Request $request){
   //
-  //   // return $input_name;
+  //   $myno = DB::table('seller')->where('s_no','=',$request)->get();
+  //   // return $productinfor;
   //
-  //   $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
-  //   $myid = $myinfo[0]->s_id;
-  //   $myname = $myinfo[0]->s_name;
-  //   // $mytell = $myinfo[0]->s_phonenum;
-  //
-  //   if($input_name == $myname){
-  //     return redirect('/find_pw_reset');
-  //   }
-  //   else{
-  //     return redirect('/find_pw_way');
-  //   }
+  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
+  //   // return $productdata;
+  //   return view('find_information_seller.find_pw_way', compact('myno'));
+  // }
 
+  public function f_way(Request $request)//seller 비밀번호
+  {
+    // $input_id = $pw->get('myid');
+    // $input_name = $pw->get('pw_name');
+    $input_email = $request->get('hidden');
+    // $input_tell = $pw->get('pw_tell');
+    echo $input_email;
+    // return $input_name;
+
+    // $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
+    // $myid = $myinfo[0]->s_id;
+    // $myname = $myinfo[0]->s_name;
+    // // $mytell = $myinfo[0]->s_phonenum;
+    //
+    // if($input_name == $myname){
+    //   return redirect('/find_pw_reset');
+    // }
+    // else{
+    //   return redirect('/find_pw_way');
+    // }
+}
 
 
   public function find(Request $request)
