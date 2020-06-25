@@ -114,6 +114,9 @@ Route::post('/information_controller', 'InformationController@information');
 
 Route::get('/locate1', 'InformationController@locate');
 
+Route::post('/modipw', 'InformationController@modipw');
+
+Route::post('/c_modipw', 'InformationController@c_modipw');
 
 
 Route::get('/faq', function () {
