@@ -269,13 +269,9 @@
               <tr id="answer{{$qna->q_no}}" class="qna_an">
                 <td class="qna-block"></td>
                 <td>{{$qna->q_contents}}</td>
-                @if(isset($answer))
-                  @foreach ($answer as $answer1)
-                    <tr>
-                      <td>{{$answer1->a_answer}}</td>
-                    </tr>
-                  @endforeach
-                @endif
+              </tr>
+              <tr id="reply{{$qna->q_no}}" class="qna_an">
+                <td>{{$qna->a_answer}}</td>
               </tr>
             @endforeach
           </table>
@@ -302,43 +298,94 @@
                     <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
                   </div>
                 </form>
-                </div>
+              </div>
             @endforeach
           @else
-          <div id="qna-inquiry1" class="faq_an">
-            문의하기
-            <form class="" action="/pd_qna{{$protb->p_no}}" >
-              <div>
-                <input class="qna_title" name="qna_title" placeholder="제목">
-                <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
-              </div>
-              <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
-              <div class="bottom-btn">
-                <button type="submit" name="button" class="qna-submit-btn">저장</button>
-                <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
-              </div>
-            </form>
+            <div id="qna-inquiry1" class="faq_an">
+              문의하기
+              <form class="" action="/pd_qna{{$protb->p_no}}" >
+                <div>
+                  <input class="qna_title" name="qna_title" placeholder="제목">
+                  <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
+                </div>
+                <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
+                <div class="bottom-btn">
+                  <button type="submit" name="button" class="qna-submit-btn">저장</button>
+                  <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+                </div>
+              </form>
             </div>
-            @endif
-
-          </div>
-          <div class="pd_component">
-            <div class="comp_title">
-              <h3 class="comp_title_detail">
-                <em class="anchor" id="clm"></em>
-                반품/교환정보
-              </h3>
-            </div>
-            내용
-          </div>
+          @endif
 
         </div>
-      @endforeach
-      @include('lib.footer')
-    </body>
-    <script>
-    // 상품문의하기 클릭시에 나타나는 input 공간
-    function qna_new(num) {
+        <div class="pd_component">
+          <div class="comp_title">
+            <h3 class="comp_title_detail">
+              <em class="anchor" id="clm"></em>
+              반품/교환정보
+            </h3>
+          </div>
+          내용
+        </div>
+
+      </div>
+    @endforeach
+    @include('lib.footer')
+  </body>
+  <script>
+  // 상품문의하기 클릭시에 나타나는 input 공간
+  function qna_new(num) {
+    if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+    {
+
+      $("#qna-inquiry"+num).removeClass("faq_an_show");
+    }
+    else
+    {
+      $(".faq_an").removeClass("faq_an_show");
+      $("#qna-inquiry"+num).addClass("faq_an_show");
+
+    }
+  }
+
+  //문의하기 클릭
+  function pd_qna(num) {
+
+    if($("#answer"+num).hasClass("qna_an_show"))
+    {
+      $('#reply'+num).removeClass("qna_an_show");
+      $("#answer"+num).removeClass("qna_an_show");
+    }
+    else
+    {
+      $(".qna_an").removeClass("qna_an_show");
+      $("#answer"+num).addClass("qna_an_show");
+      $('#reply'+num).addClass("qna_an_show");
+    }
+  }
+
+  function fake(){
+    alert('로그인이 필요한 서비스입니다.');
+  }
+  function qna_answer(num) {
+    // qna_new(1);
+    if($("#answer"+num).hasClass("qna_an_show"))
+    {
+      $("#answer"+num).removeClass("qna_an_show");
+      if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+      {
+        $("#qna-inquiry"+num).removeClass("faq_an_show");
+      }
+      else
+      {
+        $(".faq_an").removeClass("faq_an_show");
+        $("#qna-inquiry"+num).addClass("faq_an_show");
+      }
+    }
+    else
+    {
+      $(".qna_an").removeClass("qna_an_show");
+      $("#answer"+num).addClass("qna_an_show");
       if($("#qna-inquiry"+num).hasClass("faq_an_show"))
       {
         $("#qna-inquiry"+num).removeClass("faq_an_show");
@@ -350,55 +397,8 @@
       }
     }
 
-    //문의하기 클릭
-    function pd_qna(num) {
 
-      if($("#answer"+num).hasClass("qna_an_show"))
-      {
-        $("#answer"+num).removeClass("qna_an_show");
-      }
-      else
-      {
-        $(".qna_an").removeClass("qna_an_show");
-        $("#answer"+num).addClass("qna_an_show");
-      }
-    }
-
-    function fake(){
-      alert('로그인이 필요한 서비스입니다.');
-    }
-    function qna_answer(num) {
-  // qna_new(1);
-  if($("#answer"+num).hasClass("qna_an_show"))
-  {
-    $("#answer"+num).removeClass("qna_an_show");
-    if($("#qna-inquiry"+num).hasClass("faq_an_show"))
-    {
-      $("#qna-inquiry"+num).removeClass("faq_an_show");
-    }
-    else
-    {
-      $(".faq_an").removeClass("faq_an_show");
-      $("#qna-inquiry"+num).addClass("faq_an_show");
-    }
   }
-  else
-  {
-    $(".qna_an").removeClass("qna_an_show");
-    $("#answer"+num).addClass("qna_an_show");
-    if($("#qna-inquiry"+num).hasClass("faq_an_show"))
-    {
-      $("#qna-inquiry"+num).removeClass("faq_an_show");
-    }
-    else
-    {
-      $(".faq_an").removeClass("faq_an_show");
-      $("#qna-inquiry"+num).addClass("faq_an_show");
-    }
-  }
-
-
-}
 
 
   </script>
