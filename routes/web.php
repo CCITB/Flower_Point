@@ -57,6 +57,7 @@ Route::post('/mail', 'MailController@sends');
 Route::get('/customer_find_id', function(){
   return view('find_information_customer/find_id');
 });
+Route::post('/customer_find_id', 'FindController@customer_find_id');
 //find_id에서 id의 존재유무를 확인하는 ajax
 Route::post('/check_customer_query', 'FindController@check_customer_query');
 
@@ -64,8 +65,20 @@ Route::post('/check_customer_query', 'FindController@check_customer_query');
 Route::get('/customer_find_pw', function(){
   return view('find_information_customer/find_pw');
 });
+Route::post('/customer_find_pw_controller', 'FindController@customer_find_pw');
+//pw에서 id존재유무를 확인하는 jquery
+Route::post('/customer_id_check', 'FindController@customer_id_check');
 
-//seller ID 찾기
+Route::get('/find_pw_way_customer', function(){
+  return view('find_information_customer/find_pw_way');
+});
+
+Route::post('/f_way_customer', 'FindController@customer_f_way');
+
+Route::post('/f_reset_customer', 'FindController@customer_f_reset');
+
+
+//----seller ID 찾기-----
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
 });
@@ -82,15 +95,14 @@ Route::post('/seller_find_pw_controller', 'FindController@seller_find_pw');
 //pw에서 id존재유무를 확인하는 jquery
 Route::post('/seller_id_check', 'FindController@seller_id_check');
 
-
-Route::get('/find_pw_way', function(){
+Route::get('/find_pw_way_seller', function(){
   return view('find_information_seller/find_pw_way');
 });
-Route::post('/f_way', 'FindController@f_way');
+Route::post('/f_way_seller', 'FindController@seller_f_way');
 
-Route::post('/f_reset', 'FindController@f_reset');
+Route::post('/f_reset_seller', 'FindController@seller_f_reset');
 
-Route::get('/find_chk', 'FindController@find_check');
+// Route::get('/find_chk', 'FindController@find_check');
 
 Route::post('/login_s', 'LoginController@login_s');
 

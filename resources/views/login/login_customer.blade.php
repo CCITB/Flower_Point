@@ -29,7 +29,7 @@
         </p>
         <div class="go">
           <a href="/customer_find_id">아이디</a> ·
-          <a href="/find_pw">비밀번호 찾기</a>
+          <a href="/customer_find_pw">비밀번호 찾기</a>
         </div><br>
         <br>
         <input class="lg_bt" type="submit" value="로그인 ">

@@ -19,7 +19,7 @@
     </div>
 
     <div class ="pw_reset">
-      <form id="pw_ckform" name="repassword" action = '/f_reset_seller' method='post'onsubmit='return check_find_reset()'>
+      <form id="pw_ckform" name="repassword" action = '/f_reset_customer' method='post'onsubmit='return check_find_reset()'>
         @csrf
         <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
         <input type="hidden" name="hidden_no" id="hidden_no" value="">

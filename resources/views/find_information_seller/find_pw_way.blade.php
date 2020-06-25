@@ -19,7 +19,7 @@
       <div class="text_des">본인확인 이메일로 인증({{$mymail}})</div>
     </div>
     <div class ="find_pw_way">
-      <form action = '/f_way' name='emailform' method='post' onsubmit="return check_pw_way()">
+      <form action = '/f_way_seller' name='emailform' method='post' onsubmit="return check_pw_way_seller()">
         @csrf
         <div class="fd_id">
           <input type="hidden" name="hidden_email" id="hidden_email" value="">
@@ -36,7 +36,7 @@
               <div class="sign_name">이메일</div>
               <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
               <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email"  >
-              <input class="btn_e" id="btn_email_way" type="button" value="인증번호 전송">
+              <input class="btn_e" id="btn_email_way_s" type="button" value="인증번호 전송">
               <!--인증번호 기입란-->
               <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
               <div class="check_div" id="email_check" value=""></div>
