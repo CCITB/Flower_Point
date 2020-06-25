@@ -36,7 +36,10 @@
                 <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
               </div>
               {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
-              <div class="product-coupon{{$list->b_no}}">
+              {{-- <div class="product-coupon{{$list->b_no}}">
+                쿠폰
+              </div> --}}
+              <div class="product-coupon">
                 쿠폰
               </div>
               <div class="product-count">
@@ -271,13 +274,13 @@ function increase(a) {
   success: function(data) {
     console.log(data);
     // $('#checkf'+a).is(":checked");06.24사용할코드
-    eval("orderprice"+a+"="+data[0]*(data[1]+data[2]));
-    eval("productprice"+a+"="+data[0]*data[1]);
-    eval("deliveryprice"+a+"="+data[0]*data[2]);
+    window["orderprice"+a]=AddComma(data[0]*(data[1]+data[2]));
+    window["productprice"+a]=AddComma(data[0]*data[1]);
+    window["deliveryprice"+a]=AddComma(data[0]*data[2]);
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
-    $('.product-coupon'+a).text(eval("orderprice"+a));
+    // $('.product-coupon'+a).text(window["orderprice"+a]);
     if(!$('#checkf'+a).is(":checked")){
       console.log('notcheck');
       return false;
@@ -286,10 +289,17 @@ function increase(a) {
     console.log(orderprice);
     console.log(productprice);
     console.log(deliveryprice);
-    document.getElementById("productprice"+a).innerHTML=AddComma(productprice);
-    document.getElementById("deliveryprice"+a).innerHTML=AddComma(deliveryprice);
-    document.getElementById("allsum"+a).innerHTML=AddComma(orderprice);
-    autoprice();
+    console.log('---경계선---');
+    console.log(window["productprice"+a]);
+    document.getElementById("productprice"+a).innerHTML=AddComma(window["productprice"+a]);
+    document.getElementById("deliveryprice"+a).innerHTML=AddComma(window["deliveryprice"+a]);
+    document.getElementById("allsum"+a).innerHTML=AddComma(window["orderprice"+a]);
+    // console.log($('#productprice'+a).text());
+    dd=1;
+    autoprice(data[0],data[1],data[2],dd);
+    //data[0]=수량
+    //data[1]=상품가격
+    //data[2]=배송비
   },
   error: function(data) {
     console.log("error" +data);
@@ -314,9 +324,9 @@ console.log(getid);
 var please = [];
 for(i=0; i<getid.length; i++){
   // console.log(getid[i]);
-  console.log(eval("orderprice"+getid[i]+"="+"first3[i]"));
-  eval("var productprice"+getid[i]+"="+"first1[i]");
-  eval("var deliveryprice"+getid[i]+"="+"first2[i]");
+  console.log(window['orderprice'+getid[i]]=first3[i]);
+  window['productprice'+getid[i]]=first1[i];
+  window['deliveryprice'+getid[i]]=first2[i];
   // alert(productprice488);
 }
 // alert(orderprice488);
@@ -344,13 +354,13 @@ function decrease(d) {
   },
   success: function(data) {
     console.log(data);
-    eval("orderprice"+d+"="+data[0]*(data[1]+data[2]));
-    eval("productprice"+d+"="+data[0]*data[1]);
-    eval("deliveryprice"+d+"="+data[0]*data[2]);
+    window["orderprice"+d]=AddComma(data[0]*(data[1]+data[2]));
+    window["productprice"+d]=AddComma(data[0]*data[1]);
+    window["deliveryprice"+d]=AddComma(data[0]*data[2]);
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
-    $('.product-coupon'+d).text(eval("orderprice"+d));
+    // $('.product-coupon'+d).text(window["orderprice"+d]);
     if(!$('#checkf'+d).is(":checked")){
       console.log('notcheck');
       return false;
@@ -358,10 +368,11 @@ function decrease(d) {
     console.log(orderprice);
     console.log(productprice);
     console.log(deliveryprice);
-    document.getElementById("productprice"+d).innerHTML=AddComma(productprice);
-    document.getElementById("deliveryprice"+d).innerHTML=AddComma(deliveryprice);
-    document.getElementById("allsum"+d).innerHTML=AddComma(orderprice);
-    autoprice();
+    document.getElementById("productprice"+d).innerHTML=AddComma(window["productprice"+d]);
+    document.getElementById("deliveryprice"+d).innerHTML=AddComma(window["deliveryprice"+d]);
+    document.getElementById("allsum"+d).innerHTML=AddComma(window["orderprice"+d]);
+    dd=-1;
+    autoprice(data[0],data[1],data[2],dd);
     // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
     // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
     // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
@@ -402,11 +413,12 @@ function del(e){
     console.log(data);
     if(data[0]=e){
       // autoprice();
+      delcount = $('#count'+e).val();
       $("#remove"+e).remove();
       if($(".flowercart-infor").is(".flowercart-infor")){
         // ($("#div_test").hasClass("apple") === true)
         console.log('존재');
-        loadprice();
+        loadprice(delcount);
       }
       else{
         console.log('존재x');
@@ -511,9 +523,13 @@ function selectdel(){
     success: function(data) {
       console.log(data);
       var a = [];
-      console.log(a);
+      console.log(data.length);
+      var countarray = 0;
       for(i=0; i<data.length;i++){
+        countarray = countarray+Number($('#count'+data[i]).val());
+        console.log(Number($('#count'+data[i]).val()));
         $("#remove"+data[i]).remove();
+
         // loadprice();
         // console.log($("#remove"+data[i]));
         // console.log(data[9].length);
@@ -529,7 +545,9 @@ function selectdel(){
         if($(".flowercart-infor").is(".flowercart-infor")){
           // ($("#div_test").hasClass("apple") === true)
           console.log('존재');
-          loadprice();
+          console.log(countarray);
+          loadprice(countarray);
+
         }
         else{
           console.log('존재x');
@@ -559,9 +577,9 @@ function selectdel(){
 function condition(){
   if(selectAll.checked){
     for (var i = 0; i < holy.length; i++) {
-      $('#productprice'+holy[i]).text(eval("productprice"+holy[i]));
-      $('#deliveryprice'+holy[i]).text(eval("deliveryprice"+holy[i]));
-      $('#allsum'+holy[i]).text(eval("orderprice"+holy[i]));
+      $('#productprice'+holy[i]).text(window["productprice"+holy[i]]);
+      $('#deliveryprice'+holy[i]).text(window["deliveryprice"+holy[i]]);
+      $('#allsum'+holy[i]).text(window["orderprice"+holy[i]]);
       // console.log($('#productprice'+holy[i]).text());
       console.log(test1);
       // $('#productprice'+holy[i]).text();
@@ -680,19 +698,19 @@ function selectcondition(a){
 
     var hide = $('#i_result3').text()+$('#count'+a).val();
 
-    var hide1 = parseFloat($('#i_result4').text().replace(/,/gi, ""));
-    var hide2 = parseFloat($('#i_result4').text().replace(/,/gi, ""));
+    var hide1 = parseFloat($('#i_result1').text().replace(/,/gi, ""));
+    var hide2 = parseFloat($('#i_result2').text().replace(/,/gi, ""));
 
     var hide3 = $('#i_result3').text();
 
     var hide4 = parseFloat($('#i_result4').text().replace(/,/gi, ""));
 
     var hide5 = $('#count'+a).val();
-
-    var hide6 = eval("productprice"+a);
-    var hide7 = eval("deliveryprice"+a);
-    var hide8 = eval("orderprice"+a);
-    console.log(eval("productprice"+a));
+    console.log(window['productprice'+a]);
+    var hide6 = parseFloat(window['productprice'+a].replace(/,/gi, ""));
+    var hide7 = parseFloat(window["deliveryprice"+a].replace(/,/gi, ""));
+    var hide8 = parseFloat(window["orderprice"+a].replace(/,/gi, ""));
+    console.log(window["productprice"+a]);
     $('#i_result3').text(Number(hide5)+Number(hide3));
     //아래코드 아직 작동안함
     // $('#i_result4').text(Number(hide8)+Number(hide4));
@@ -706,7 +724,14 @@ function selectcondition(a){
 
     //여기부터 천천히 작동하게 만들어보자
     console.log('다시시작하자');
-    console.log($('#productprice'+a).text());
+    console.log(hide8);
+    // i_result1 i_result2 i_result4 상품 체크시마다 전체 주문합계에 반영시켜줌
+    $('#i_result1').text(AddComma(hide6+hide1));
+    $('#i_result2').text(AddComma(hide7+hide2));
+    $('#i_result4').text(AddComma(hide8+hide4));
+    // i_result1 i_result2 i_result4 상품 체크시마다 전체 주문합계에 반영시켜줌
+    // console.log(hide6+hide1);
+    // console.log(hide1);
 
     // 만약 input에 카운트를 실행시켯다면 전역변수에 담긴 수 들이다.
     if(!hide8==0){
@@ -719,12 +744,12 @@ function selectcondition(a){
     else{
       console.log('작동안한다.');
       console.log(hide8);
-      if(getid=a){
-        console.log(a);
-      }
-      $('#productprice'+a).text(AddComma(eval("productprice"+a)));
-      $('#deliveryprice'+a).text(eval("deliveryprice"+a));
-      $('#allsum'+a).text(eval("allsum"+a));
+      // if(getid==a){
+      //   console.log(a);
+      // }
+      // $('#productprice'+a).text(AddComma(window["productprice"+a]));
+      // $('#deliveryprice'+a).text(window["deliveryprice"+a]);
+      // $('#allsum'+a).text(window["allsum"+a]);
     }
     // 만약 input에 카운트를 실행시켯다면 전역변수에 담긴 수 들이다.
 
@@ -744,8 +769,17 @@ function selectcondition(a){
     document.getElementById("deliveryprice"+a).innerHTML=0;
     document.getElementById("allsum"+a).innerHTML=0;
     var hide = $('#i_result3').text()-$('#count'+a).val();
+    // console.log($('#i_result1').text()-window['productprice'+a]);
+    console.log(parseFloat($('#i_result1').text().replace(/,/gi, "")));
+    console.log(window['productprice'+a]);
+    abc = AddComma(parseFloat($('#i_result1').text().replace(/,/gi, ""))-parseFloat(window['productprice'+a].replace(/,/gi, "")));
+    def = AddComma(parseFloat($('#i_result2').text().replace(/,/gi, ""))-parseFloat(window['deliveryprice'+a].replace(/,/gi, "")));
+    ghi = AddComma(parseFloat($('#i_result4').text().replace(/,/gi, ""))-(parseFloat(window['deliveryprice'+a].replace(/,/gi, ""))+parseFloat(window['productprice'+a].replace(/,/gi, ""))));
+    $('#i_result1').text(abc);
+    $('#i_result2').text(def);
     $('#i_result3').text(hide);
-    console.log($('#i_result1').text());
+    $('#i_result4').text(ghi);
+    // console.log($('#i_result1').text());
     console.log('껄껄');
     // console.log(now_productprice);
   }
@@ -775,12 +809,13 @@ function selectcondition(a){
 }
 
 
-function autoprice(){
+function autoprice(a,b,c,dd){
   if(selectAll.checked){
     console.log('전체선택 체크됨');
     loadprice();
     // $("input:checkbox[name='checkRow']").is(":checked")
     // 위에는 필요한주석
+    return false;
   }
   if(!$("input:checkbox[name='checkRow']").is(":checked")){
     console.log('아무것도 체크되지 않음');
@@ -810,13 +845,46 @@ function autoprice(){
       // count = $('#count'+idindex[i]).val();
     }
 
-    document.getElementById("i_result4").innerHTML=AddComma(0);
     document.getElementById("i_result3").innerHTML=AddComma(0);
     document.getElementById("i_result1").innerHTML=AddComma(0);
     document.getElementById("i_result2").innerHTML=AddComma(0);
+    document.getElementById("i_result4").innerHTML=AddComma(0);
   }
   if($("input:checkbox[name='checkRow']").is(":checked")){
     console.log("몇개는 선택되어있음.");
+    // console.log($('#i_result3').text());
+    // console.log($('#i_result1').text());
+    // console.log($('#i_result2').text());
+    // console.log($('#i_result4').text());
+    console.log(a,b,c);
+    // console.log(parseFloat(a.replace(/,/gi, "")));
+    // console.log(parseFloat(b.replace(/,/gi, "")));
+    // console.log(parseFloat(c.replace(/,/gi, "")));
+
+    console.log(b);
+    $('#i_result3').text();
+    // console.log(parseFloat($('#i_result1').text().replace(/,/gi, "")));
+    // console.log(parseFloat($('#i_result2').text().replace(/,/gi, "")));
+    // console.log(parseFloat($('#i_result4').text().replace(/,/gi, "")));
+    allpriceformat1 = parseFloat($('#i_result1').text().replace(/,/gi, ""));
+    allpriceformat2 = parseFloat($('#i_result2').text().replace(/,/gi, ""));
+    allpriceformat3 = parseFloat($('#i_result4').text().replace(/,/gi, ""));
+    allpriceformat4 = parseFloat($('#i_result3').text().replace(/,/gi, ""));
+
+    console.log(allpriceformat1+b);
+    if(dd==1){
+      $('#i_result3').text(allpriceformat4+1);
+      $('#i_result1').text(AddComma(allpriceformat1+b));
+      $('#i_result2').text(AddComma(allpriceformat2+c));
+      $('#i_result4').text(AddComma(allpriceformat3+b+c));
+
+    }
+    if(dd==-1){
+      $('#i_result3').text(allpriceformat4-1);
+      $('#i_result1').text(AddComma(allpriceformat1-b));
+      $('#i_result2').text(AddComma(allpriceformat2-c));
+      $('#i_result4').text(AddComma(allpriceformat3-b-c));
+    }
   }
 }
 function test(){
@@ -953,28 +1021,28 @@ $(document).ready(function (){
   }
 
 });
-function loadprice(a,orderprice,deliveryprice,productprice){
-  if(a>0)
-  {
-    console.log(orderprice);
-    console.log('loadprice 함수안에 들어온 변수 값');
-    console.log(deliveryprice);
-    if(orderprice>0){
-      $('#productprice'+a).text(AddComma(eval("productprice"+a)));
-      $('#deliveryprice'+a).text(AddComma(eval("deliveryprice"+a)));
-      $('#allsum'+a).text(AddComma(eval("orderprice"+a)));
-
-    }
-    else{
-      $('#productprice'+a).text(now_productprice);
-      $('#deliveryprice'+a).text(now_deliveryprice);
-      $('#allsum'+a).text(now_allsum);
-      // console.log(now_productprice);
-      console.log('찍히냐?');
-      return false;
-    }
-
-  }
+function loadprice(a){
+  // if(a>0)
+  // {
+  //   console.log(orderprice);
+  //   console.log('loadprice 함수안에 들어온 변수 값');
+  //   console.log(deliveryprice);
+  //   if(orderprice>0){
+  //     $('#productprice'+a).text(AddComma(window["productprice"+a]));
+  //     $('#deliveryprice'+a).text(AddComma(window["deliveryprice"+a]));
+  //     $('#allsum'+a).text(AddComma(window["orderprice"+a]));
+  //
+  //   }
+  //   else{
+  //     $('#productprice'+a).text(now_productprice);
+  //     $('#deliveryprice'+a).text(now_deliveryprice);
+  //     $('#allsum'+a).text(now_allsum);
+  //     // console.log(now_productprice);
+  //     console.log('찍히냐?');
+  //     return false;
+  //   }
+  //
+  // }
 
   if($(".flowercart-infor").is(".flowercart-infor")){
     var idindex = [];
@@ -995,7 +1063,7 @@ function loadprice(a,orderprice,deliveryprice,productprice){
     var gettag3 = [];
     var gettag4 = [];
     for(i=0;i<getid.length;i++){
-      var asdf =+ eval("productprice"+getid[i]);
+      var asdf =+ window["productprice"+getid[i]];
 
       // console.log(eval("productprice"+getid[i]));
       // console.log('오후1시');
@@ -1021,10 +1089,21 @@ function loadprice(a,orderprice,deliveryprice,productprice){
     var sum3 = gettag3.reduce((a, b) => a + b);
     var sum4 = gettag4.reduce((a, b) => a + b);
     //전체 합계
+    console.log('밑에 sum4 변수');
+    console.log(sum4);
+    // console.log(Number(a));
+    // console.log(Number($('#i_result3').text()-Number(a)));
+
     document.getElementById("i_result4").innerHTML=AddComma(sum3);
-    document.getElementById("i_result3").innerHTML=AddComma(sum4);
+
     document.getElementById("i_result1").innerHTML=AddComma(sum1);
     document.getElementById("i_result2").innerHTML=AddComma(sum2);
+    if(selectAll.checked){
+      document.getElementById("i_result3").innerHTML=AddComma(sum4);
+    }
+    else{
+      $('#i_result3').text(Number($('#i_result3').text()-Number(a)));
+    }
 
   }
   else{
@@ -1034,6 +1113,10 @@ function loadprice(a,orderprice,deliveryprice,productprice){
     document.getElementById("i_result2").innerHTML="0";
   }
 
+}
+function replaceComma(pStr) {
+  var strCheck = /\,/g; pStr = pStr.replace(strCheck, '');
+  return pStr;
 }
 
 </script>

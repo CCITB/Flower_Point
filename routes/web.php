@@ -66,14 +66,6 @@ Route::post('/check_query', 'FindController@check_query');
 Route::get('/seller_find_pw', function(){
   return view('find_information_seller/find_pw');
 });
-// Route::post('seller_find_pw', 'FindController@seller_find_pw');
-//
-//
-// Route::get('/find_pw_way', function(){
-//   return view('find_information_seller/find_pw_way');
-// });
-//
-// Route::get('/find_pw_way/{id}', 'FindController@f_way');
 Route::post('/seller_find_pw_controller', 'FindController@seller_find_pw');
 //pw에서 id존재유무를 확인하는 jquery
 Route::post('/seller_id_check', 'FindController@seller_id_check');
@@ -82,13 +74,11 @@ Route::post('/seller_id_check', 'FindController@seller_id_check');
 Route::get('/find_pw_way', function(){
   return view('find_information_seller/find_pw_way');
 });
-
-//Route::get('/find_pw_way/{id}', 'FindController@f_way');
-
-
 Route::post('/f_way', 'FindController@f_way');
 
-Route::get('/find_pw_reset', 'FindController@find_pw_reset');
+Route::get('/find_pw_reset',  function () {
+  return view('find_information_seller.find_pw_reset');
+});
 
 Route::get('/find_chk', 'FindController@find_check');
 
@@ -160,6 +150,7 @@ Route::get('/sellermyorderlist', function(){
 });
 Route::get('/shopinfo','InformationController@storeinfo');
 
+Route::get('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
 
 Route::get('/customer', function(){
@@ -174,6 +165,11 @@ Route::get('/newaddress', 'InformationController@newaddress');
 
 Route::get('/detail', 'InformationController@detailaddress');
 
+Route::get('/c_information_controller', 'InformationController@c_information');
+
+Route::get('/c_modiemail', 'InformationController@c_modifyemail');
+
+
 Route::get('/mypage', function(){
     if($sellerinfo = auth()->guard('seller')->user()){
       // return 0;
@@ -184,19 +180,21 @@ Route::get('/mypage', function(){
 
           return view('mypage/mypage', compact('sellerstore'));
 
-          }
-
-          else if(auth()->guard('customer')->user()){
-
-
-          return view('mypage/mypage');
-        }
-          else{
-
-          }
-          return view('login/login_customer');
+}
 
 });
+
+Route::get('/c_mypage', function (){
+  if($customerinfo = auth()->guard('customer')->user()){
+    $customerprimary = $customerinfo->c_no;
+    // return $sellerprimary;
+        $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
+        ->where('c_no','=',$customerprimary)->get();
+
+        return view('mypage/c_mypage',compact('data'));
+}
+});
+
 
 
 
@@ -255,25 +253,3 @@ Route::post('/basketstore', 'ProductController@basketstore');
 Route::post('/basketcount', 'ProductController@basketcount');
 
 Route::post('/basketcondition', 'ProductController@basketcondition');
-
-
-// });
-//mail
-// Route::get('/', function() {
-//   $user = array(
-//     'email'=>'o1032002241@gmail.net',
-//     'name'=>'Kim, Se-Hee'
-//   );
-//
-//   $data = array(
-//     'detail'=>'Your awesome detail here',
-//     'name' => $user['name']
-//   );
-//
-//   Mail::send('emails.welcome', $data, function($message) use ($user)
-//   {
-//     $message->from('seheekim@netpas.net', 'Kim, Se-Hee');
-//     $message->to($user['email'], $user['name'])->subject('Welcome!');
-//   });
-//   return 'Done!';
-// });

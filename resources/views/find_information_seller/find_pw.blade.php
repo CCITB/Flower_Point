@@ -20,7 +20,6 @@
     </div>
 
     <div class ="find_pw">
-      {{-- <form action = "{{url('find')}}" method='post'> --}}
       <form action="/seller_find_pw_controller" method="post" onsubmit="return checkfunction()">
         @csrf
         <div class="intervel"></div>
