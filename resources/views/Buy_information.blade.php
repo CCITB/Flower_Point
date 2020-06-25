@@ -302,7 +302,6 @@
 
   </div>
   @endforeach
-  @include('advertising')
   @include('lib.footer')
 </body>
 <script>
