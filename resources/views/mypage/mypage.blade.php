@@ -59,6 +59,20 @@
                     </tr>
 
                     <tr class="tr1">
+                        <th class="th1">
+                        <div class="thcell">비밀번호</div>
+                      </th>
+                        <td>
+                          <div class="tdcell"><p class="contxt.tit"><input type="button" id=modinum value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
+                          <div id="p_pw" style="display:none;">
+                          <input type="text" name="s_phonenum"  placeholder="새 비밀번호">
+                          <button type="submit" name="button">수정완료</button>
+                          </div>
+                          </td>
+                    </tr>
+
+
+                    <tr class="tr1">
                       <th class="th1">
                       <div class="thcell">이름</div>
                     </th>
@@ -95,6 +109,10 @@
                         document.getElementById(ss).style.display="block"
                         modiaddress.style.display="none";
                     }
+                    else if(s == "비밀번호수정"){
+                      document.getElementById(ss).style.display="block"
+                      modiaddress.style.display="none";
+                  }
                       }
                         </script>
 

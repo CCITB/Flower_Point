@@ -88,9 +88,8 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::post('/information_controller', 'InformationController@information');
 
-Route::get('/locate1', function () {
-  return view('locate');
-});
+Route::get('/locate1', 'InformationController@locate');
+
 
 
 Route::get('/faq', function () {
