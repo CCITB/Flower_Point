@@ -19,7 +19,7 @@
   <div id="all">
     <div class="text">
       <div class="id_title">Find ID</div> <hr>
-      <div class="text_des">회원정보에 등록한 휴대전화로 인증</div>
+      <div class="text_des">회원정보에 등록한 이메일로 인증</div>
     </div>
 
     <div class ="find_id">
