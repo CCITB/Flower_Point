@@ -76,9 +76,7 @@ Route::get('/find_pw_way', function(){
 });
 Route::post('/f_way', 'FindController@f_way');
 
-Route::get('/find_pw_reset',  function () {
-  return view('find_information_seller.find_pw_reset');
-});
+Route::post('/f_reset', 'FindController@f_reset');
 
 Route::get('/find_chk', 'FindController@find_check');
 

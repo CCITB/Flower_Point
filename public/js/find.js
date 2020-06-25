@@ -195,7 +195,7 @@ function verify_email_way(){
       if($('#name').val() != "" && $('#s_email').val() != ""){
         input_name =$('#name').val();
         input_email =$('#s_email').val();
-        input_hidden =$('#hidden').val();
+        hidden_email =$('#hidden_email').val();
 
         $('#email_check').text("인증번호가 전송되었습니다.");
         $('#email_check').css('color', 'green');
@@ -215,7 +215,7 @@ function verify_email_way(){
           success : function(data) {
             check=data;
             console.log(data);
-            if(data>0&&input_hidden==input_email){
+            if(data>0 && hidden_email==input_email){
               $('#verify_num').attr('disabled', false);
 
               //존재할 경우 email로 인증번호 발송

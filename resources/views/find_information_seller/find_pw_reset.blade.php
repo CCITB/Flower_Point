@@ -19,10 +19,10 @@
     </div>
 
     <div class ="pw_reset">
-      <form id="pw_ckform" action = '/f_reset' method='post'onsubmit='return pw_check()'>
+      <form id="pw_ckform" name="repassword" action = '/f_reset' method='post'onsubmit='return pw_check()'>
         @csrf
         <div class="pw_requirement">영문, 숫자, 특수문자를 조합하여 8~16자로 만들어 주세요.</div>
-
+        <input type="hidden" name="hidden_no" id="hidden_no" value="">
         <input class="find_input" type="password" placeholder="새 비밀번호" id="new_pw" name="new_pw"><br>
         <div id="pw_re" class="pw_re" value=""></div>
 
@@ -38,46 +38,7 @@
 </body>
 </html>
 
-<script>
-
-window.onload=function(){
-  document.getElementById('pw_ckform').onsubmit=function(){
-    var pass=document.getElementById('new_pw').value;
-    var passCheck=document.getElementById('check').value;
-
-    if (pass != passCheck){
-      alert('비밀번호가 일치하지 않습니다.');
-      // document.getElementById("pw_re_ck").innerHTML = "비밀번호가 일치하지 않습니다.";
-      return false;
-    } if (pass == ''){
-      alert('비밀번호를 입력해주세요.')
-      // document.getElementById("pw_re").innerHTML = "비밀번호를 입력해주세요.";
-      return false;
-    }
-    var pw=$("#new_pw").val();
-    var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-    if (!check.test('pw')){
-      alert("8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.");
-      // document.getElementById("pw_re").innerHTML = "8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다.";
-      return false;
-    }
-  }
-}
-// window.addEventListener('load', function() {
-//   var signup = document.querySelector('#signup');
-//
-//   signup.addEventListener('click', function() {
-//     var new_pw = document.querySelector('#new_pw');
-//     var check = document.querySelector('#check');
-//
-//     if (new_pw.value != check.value) {
-//       alert('비밀번호가 일치하지 않습니다.');
-//       check.focus();
-//     } else if (new_pw.value == ''){
-//       alert('비밀번호를 입력해주세요.')
-//       new_pw.focus();
-//     }
-//   });
-// });
-//
+<script type="text/javascript">
+var no = '{{$myno}}';
+document.repassword.hidden_no.value = no;
 </script>

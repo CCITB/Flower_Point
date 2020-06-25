@@ -22,7 +22,8 @@
       <form action = '/f_way' name='emailform' method='post' onsubmit="return check_pw_way()">
         @csrf
         <div class="fd_id">
-          <input type="hidden" name="hidden" id="hidden" value="">
+          <input type="hidden" name="hidden_email" id="hidden_email" value="">
+          <input type="hidden" name="hidden_no" id="hidden_no" value="">
 
           <div class="character"></div>
           <div class="window">
@@ -53,8 +54,11 @@
 </html>
 
 <script type="text/javascript">
+//find_pw에서 입력한 ID가 가진 email값 (find_pw_way page에서 입력하는 email과 동일한지 검사를 위해 가져옴)
 var email = '{{$mymail}}';
-document.emailform.hidden.value = email;
+var no = '{{$myno}}';
+document.emailform.hidden_email.value = email;
+document.emailform.hidden_no.value = no;
 </script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/js/find.js" charset="utf-8"></script>

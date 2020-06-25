@@ -73,41 +73,41 @@ class FindController extends Controller
     $input_id = trim($_POST['myid']);
 
     $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
-    $myid = $myinfo[0]->s_no;
 
+    $myno = $myinfo[0]->s_no;
     $mymail = $myinfo[0]->s_email;
-    // $mymail_a = substr_replace($mymail,'*');
+
     if (($myinfo->count())>0) {
-      return view('find_information_seller.find_pw_way', compact('mymail'));
-    }
+      return view('find_information_seller.find_pw_way',
+      ['mymail'=>$mymail,
+      'myno'=>$myno]
+    );
+  }
     else{
       return view('find_information_seller.find_pw');
     }
   }
 
-  // public function f_way(Request $request){
-  //
-  //   $myno = DB::table('seller')->where('s_no','=',$request)->get();
-  //   // return $productinfor;
-  //
-  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-  //   // return $productdata;
-  //   return view('find_information_seller.find_pw_way', compact('myno'));
-  // }
-
   public function f_way(Request $request)//seller 비밀번호
   {
     //인증된 이메일(가입된 이메일)
-    $input_email = $request->get('hidden');
+    $certified_email = $request->get('hidden_email');
+    //find_pw 에서 입력한 id의 no값
+    $myno = $request->get('hidden_no');
+
+    //입력된 이름
     $input_name = $request->input('name');
+    //입력된 이메일
+    $input_email = $request->input('s_email');
 
-    $email = DB::table('seller')->where('s_email','=',$input_email)->get();
-    $email_cnt = $email->count();
-    $name = $email[0]->s_name;
+    //find_pw에서 입력된 email의 컬럼
+    $email = DB::table('seller')->where('s_email','=',$certified_email)->get();
 
-    //input name과 Table상에 name이 동일하고, input email과 Table상 email이 존재할 경우
-      if($input_name == $name && $email_cnt>0){
-      return redirect('/find_pw_reset');
+
+    //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
+      if($certified_email == $input_email ){
+      //return redirect('/find_pw_reset');
+      return view('find_information_seller.find_pw_reset', compact('myno'));
     }
     else{
       return redirect('/find_pw_way');
@@ -115,56 +115,14 @@ class FindController extends Controller
 }
 
 
-  public function find(Request $request)
+  public function f_reset(Request $request)
   {
-    // $picturerow = DB::table('product_image')->where('i_no','=',5)->first();
-    // $picture = $picturerow->i_filename;
-    // return $picture;
-    $sellerno =  DB::table('seller')->where('s_id','=',$input_id)->get();
-    $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
+    //find_pw 에서 입력한 id의 no값
+    $s_no = $request->get('hidden_no');
+
+    DB::table('seller')->where(['s_no'=>$s_no])->update([
+      's_password'=>bcrypt($request->input('new_pw'))]);
+
+      return redirect('/login_seller');
   }
-
-
-
-  // public function f_way($id){
-  //
-  //   $productinfor = DB::table('seller')->where('s_no','=',$id)->get();
-  //   // return $productinfor;
-  //
-  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-  //   // return $productdata;
-  //   return view('find_information.find_pw_way', compact('productinfor'));
-  // }
-
-
-
-
-
-
-
 }
-
-
-
-// public function f_rese(Request $pw_r)//seller 비밀번호
-// {
-//   $input_id = $pw_r->get('myid');
-//   $input_name = $pw_r->get('pw_name');
-//   // return $input_id;
-//   //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
-//   $myid = DB::table('seller')->where('s_id','=',$input_id)->get();
-//   // return $myid[0]->s_name;
-//   //  $myname = DB::table('seller')->where(['s_name'=>$input_name]);
-//   // $myid->s_name;
-//   // $myid->
-//   // return 0;
-//   if (isset($myid)) {
-//     return redirect('/find_pw_way');
-//   }
-//   if (count($myname) > 0) {
-//     return redirect('/find_pw_reset');
-//   }
-//   else{
-//     return redirect('/find_pw_way');
-//   }
-// }
