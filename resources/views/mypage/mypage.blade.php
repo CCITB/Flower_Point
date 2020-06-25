@@ -44,8 +44,7 @@
         </style>
         <div class="privacy">
                 <table border="0" table class="table1" >
-                  <form action="/information_controller" method="post">
-                    @csrf
+
                   @if($seller = auth()->guard('seller')->user())
 
                     <tbody>
@@ -57,20 +56,21 @@
                           <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
                           </td>
                     </tr>
-
+                    <form action="/modipw" method="post">
+                      @csrf
                     <tr class="tr1">
                         <th class="th1">
                         <div class="thcell">비밀번호</div>
                       </th>
                         <td>
-                          <div class="tdcell"><p class="contxt.tit"><input type="button" id=modinum value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
+                          <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
                           <div id="p_pw" style="display:none;">
-                          <input type="text" name="s_phonenum"  placeholder="새 비밀번호">
+                        <input type="password" name="s_password"  placeholder="새 비밀번호">
                           <button type="submit" name="button">수정완료</button>
                           </div>
                           </td>
                     </tr>
-
+                  </form>
 
                     <tr class="tr1">
                       <th class="th1">
@@ -79,6 +79,8 @@
                       <td>
                         <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
                         </td>
+                        <form action="/information_controller" method="post">
+                          @csrf
                     </tr>
                     <tr class="tr1">
                       <th class="th1">
@@ -138,6 +140,7 @@
                   </form>
                     </tbody>
                 </table>
+
           @endif
 
 
