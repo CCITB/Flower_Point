@@ -90,14 +90,6 @@ class ProductController extends Controller
     $pro_no = $productinfor[0]->p_no;
     // return $pro_no;
 
-    //나의 소중한 주석입니다 지우지 말아주세요
-
-    // $s_no =  auth()->guard('seller')->user()->s_no;
-    // $aa = DB::table('seller')->where('s_no',$s_no)->join('store','seller.s_no','=','store.seller_no')->join('product','store.st_no','=','product.store_no')->join('question','product.p_no','=','question.product_no')->join('answer','question.q_no','=','answer.question_no')->get();
-    // return $aa;
-
-    //나의 소중한 주석입니다 지우지 말아주세요
-
     // DB::table('question')->insert([
     //   'product_no'=>$pro_no
     // ]);
@@ -114,6 +106,19 @@ class ProductController extends Controller
     // return $productinfor;
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;
+
+    //나의 소중한 주석입니다 지우지 말아주세요
+    if(auth()->guard('seller')->user()){
+      $s_no =  auth()->guard('seller')->user()->s_no;
+      $SellerAllInfor = DB::table('seller')->where('s_no',$s_no)
+      ->join('store','seller.s_no','=','store.seller_no')
+      ->join('product','store.st_no','=','product.store_no')
+      ->join('question','product.p_no','=','question.product_no','left outer')
+      ->join('answer','question.q_no','=','answer.question_no','left outer')->get();
+      // return var_dump($aa);
+    }
+    // return $qnaq;
+    //나의 소중한 주석입니다 지우지 말아주세요
     return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
 
