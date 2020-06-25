@@ -88,7 +88,7 @@
             <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
             <div id="addressapi" style="display:none;">
               <input type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요.">
-              <button type="submit" id="complete2" name="button">수정완료</button>
+              <button type="submit" id="complete2" name="button" >수정완료</button>
             </div>
           </div>
         </form>

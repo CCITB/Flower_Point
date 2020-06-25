@@ -124,10 +124,6 @@ Route::get('/faq', function () {
 });Route::post('/modiemail', 'InformationController@modifyemail');
 
 
-Route::get('/locate1', function () {
-  return view('locate');
-});
-
 Route::get('/customer_shop', function () {
   return view('myshop/shop_customer');
 });
@@ -177,10 +173,6 @@ Route::get('/shopinfo','InformationController@storeinfo');
 Route::get('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
 
-Route::get('/customer', function(){
-  return view('mypage/customer');
-});
-
 Route::get('/shoppage', 'InformationController@shoppage');
 
 Route::get('/all', 'MainController@showall');
@@ -205,6 +197,9 @@ Route::get('/mypage', function(){
           return view('mypage/mypage', compact('sellerstore'));
 
 }
+else{
+return view('login/login_seller');
+}
 
 });
 
@@ -217,6 +212,10 @@ Route::get('/c_mypage', function (){
 
         return view('mypage/c_mypage',compact('data'));
 }
+else{
+return view('login/login_customer');
+}
+
 });
 
 
@@ -236,10 +235,10 @@ Route::get('/shop', function(){
 
         return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
   }
-  elseif(auth()->guard('customer')->user()){
-
+  else{
+return view('login/login_seller');
   }
-  return view('myshop/shop_seller');
+
 });
 
 Route::get('/postlist', function(){

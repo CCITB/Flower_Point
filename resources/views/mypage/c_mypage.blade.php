@@ -46,7 +46,7 @@
   <div class="privacy">
     <table border="0" table class="table1" >
 
-        @if ($customer = auth()->guard('customer')->user())
+    @if ($customer = auth()->guard('customer')->user())
           <div id="tablewrap">
             <table id="shopinfo">
               <tbody>
@@ -69,7 +69,7 @@
                       <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
                       <div id="p_pw" style="display:none;">
                         <input type="text" name="c_password"  placeholder="새 비밀번호">
-                        <button type="submit" name="button">수정완료</button>
+                        <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
                       </div>
                     </td>
                   </tr>
@@ -126,7 +126,7 @@
                   </td>
                 </tr>
               </form>
-              <form action="/c_modiemail" method="post">
+              <form action="/c_modiemail" onsubmit="return checkform()" method="post">
                 @csrf
 
                 <tr class="tr1">
@@ -137,7 +137,7 @@
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
                     <div id="email" style="display:none;">
                       <input type="text" name="c_email"  placeholder="새 이메일">
-                      <button type="submit" name="button">수정완료</button>
+                      <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
                     </div>
 
                   </td>
@@ -145,7 +145,7 @@
               </form>
 
 
-              <form action="/c_newaddress" method="post">
+              <form action="/c_newaddress"  onsubmit="return checkform()" method="post">
                 @foreach ($data as $a)
                   <tr>
                     <th>주소</th>
@@ -169,7 +169,7 @@
           </table>
 
 
-          <form action="/c_newaddress" method="post">
+          <form action="/c_newaddress" onsubmit="return checkform()" method="post">
             <div id="addresswrap" style="display:none;">
               <div id="addressmodi">
                 <div class="delivery_wrap">
@@ -339,9 +339,50 @@
         </table>
       </div>
     </div>
-@else
+  </div>
+
+        @include('lib.footer')
+
+    <script type="text/javascript">
+    function checkform(){
+      var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+      var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+      var regExp = /^\d{3}\d{3,4}\d{4}$/;
+      var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      var num =  /^[0-9]{3,4}$/;
+      var password = document.getElementById("p_pw");
+      var phonenum = document.getElementById("p_num");
+      var email = document.getElementById("email");
+
+      if((p_pw.value)==""){
+        alert('새 비밀번호를 입력해주세요');
+        return false;
+      }
+      if(!regex.test(p_pw.value)){
+        alert('특수문자 / 문자 / 숫자를 포함한 8~15자리 이내의 비밀번호를 입력해주세요');
+        return false;
+      }
+      if((phonenum.value)==""){
+        alert("전화번호를 입력해주세요");
+        return false;
+      }
+      if(!regExp.test(phonenum.value)){
+        alert("전화번호를 정확하게 입력해주세요");
+        return false;
+      }
+      if((email.value)==""){
+        alert('새 이메일을 입력해주세요');
+        return false;
+    }
+    if((!emailcheck.test(email.value))){
+      alert("올바른 형식의 이메일을 입력해주세요");
+      return false;
+    }
+    }
+    </script>
+
   @endif
-  @include('lib.footer')
+
 </body>
 <script type="text/javascript">
 var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");

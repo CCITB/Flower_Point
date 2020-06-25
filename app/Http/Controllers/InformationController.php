@@ -128,5 +128,8 @@ elseif($customerinfo = auth()->guard('customer')->user()){
       return view('/locate', compact('data1'));
 
 }
+else{
+  return view('login/login_customer');
+}
 }
 }
