@@ -53,6 +53,15 @@ Route::get('/mailview', function(){
 });
 Route::post('/mail', 'MailController@sends');
 
+//customer ID 찾기
+Route::get('/customer_find_id', function(){
+  return view('find_information_customer/find_id');
+});
+//customer PW 찾기
+Route::get('/customer_find_pw', function(){
+  return view('find_information_customer/find_pw');
+});
+
 //seller ID 찾기
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
