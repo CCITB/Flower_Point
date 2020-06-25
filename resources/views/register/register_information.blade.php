@@ -60,7 +60,7 @@
 
         <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
-          <input class="shop_info" type="text" id="registeration_num" name="registeration_num">
+          <input class="shop_info" type="text" id="registeration_num" name="registeration_num" maxlength="12">
           <div class="check_div" id="stnum_check" value=""></div>
         </div>
 
