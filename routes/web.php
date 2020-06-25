@@ -253,3 +253,5 @@ Route::post('/basketstore', 'ProductController@basketstore');
 Route::post('/basketcount', 'ProductController@basketcount');
 
 Route::post('/basketcondition', 'ProductController@basketcondition');
+
+Route::post('/questionans/{q_no}','QnAController@question_answer');

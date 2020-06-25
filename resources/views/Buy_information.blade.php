@@ -124,270 +124,335 @@
       </div>
 
 
-    <div class="reviews">
-      <div class="review_title">
-        <h3 class="title_detail">
-          <em class="anchor" id="revw"></em>
-          상품 리뷰
-        </h3>
-        <p class ="revw_introduction">
-          상품을 구매하신 분들이 작성한 리뷰입니다.
-        </p>
+      <div class="reviews">
+        <div class="review_title">
+          <h3 class="title_detail">
+            <em class="anchor" id="revw"></em>
+            상품 리뷰
+          </h3>
+          <p class ="revw_introduction">
+            상품을 구매하신 분들이 작성한 리뷰입니다.
+          </p>
+        </div>
+        <div class="review_list">
+          <ul>
+            <li class="user_review">
+              <div class="review_one">
+                <div class="review_cell">
+                  <div class="user_profile">
+                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+
+                  </div>
+                  <div class="review_text">
+                    <div class="star_small">
+                      <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="status_user">
+                      <span class="text_info">ID</span>
+                      <span class="text_info">20.05.23</span>
+                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                    </div>
+                    <div class="user_write">
+                      <span class="writing">꽃이 너무 마음에 들어요</span>
+                    </div>
+                    <a href="#">더보기</a>
+                  </div>
+                </div>
+
+                <div class="review_image">
+                  이미지
+                </div>
+                <div class="review_good">
+                  좋아요
+                </div>
+              </div>
+            </li>
+
+            <li class="user_review">
+              <div class="review_one">
+                <div class="review_cell">
+                  <div class="user_profile">
+                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+                  </div>
+                  <div class="review_text">
+                    <div class="star_small">
+                      <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="status_user">
+                      <span class="text_info">ID</span>
+                      <span class="text_info">20.05.23</span>
+                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                    </div>
+                    <div class="user_write">
+                      <span class="writing">꽃이 너무 마음에 들어요</span>
+                    </div>
+                    <a href="#">더보기</a>
+                  </div>
+                </div>
+
+                <div class="review_image">
+                  이미지
+                </div>
+                <div class="review_good">
+                  좋아요
+                </div>
+              </div>
+            </li>
+
+            <li class="user_review">
+              <div class="review_one">
+                <div class="review_cell">
+                  <div class="user_profile">
+                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+                  </div>
+                  <div class="review_text">
+                    <div class="star_small">
+                      <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="status_user">
+                      <span class="text_info">ID</span>
+                      <span class="text_info">20.05.23</span>
+                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                    </div>
+                    <div class="user_write">
+                      <span class="writing">꽃이 너무 마음에 들어요</span>
+                    </div>
+                    <a href="#">더보기</a>
+                  </div>
+                </div>
+                <div class="review_image">
+                  이미지
+                </div>
+                <div class="review_good">
+                  좋아요
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="review_list">
-        <ul>
-          <li class="user_review">
-            <div class="review_one">
-              <div class="review_cell">
-                <div class="user_profile">
-                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-
-                </div>
-                <div class="review_text">
-                  <div class="star_small">
-                    <span class="stars">★★★★★</span>
-                  </div>
-                  <div class="status_user">
-                    <span class="text_info">ID</span>
-                    <span class="text_info">20.05.23</span>
-                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                  </div>
-                  <div class="user_write">
-                    <span class="writing">꽃이 너무 마음에 들어요</span>
-                  </div>
-                  <a href="#">더보기</a>
-                </div>
-              </div>
-
-              <div class="review_image">
-                이미지
-              </div>
-              <div class="review_good">
-                좋아요
-              </div>
-            </div>
-          </li>
-
-          <li class="user_review">
-            <div class="review_one">
-              <div class="review_cell">
-                <div class="user_profile">
-                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-                </div>
-                <div class="review_text">
-                  <div class="star_small">
-                    <span class="stars">★★★★★</span>
-                  </div>
-                  <div class="status_user">
-                    <span class="text_info">ID</span>
-                    <span class="text_info">20.05.23</span>
-                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                  </div>
-                  <div class="user_write">
-                    <span class="writing">꽃이 너무 마음에 들어요</span>
-                  </div>
-                  <a href="#">더보기</a>
-                </div>
-              </div>
-
-              <div class="review_image">
-                이미지
-              </div>
-              <div class="review_good">
-                좋아요
-              </div>
-            </div>
-          </li>
-
-          <li class="user_review">
-            <div class="review_one">
-              <div class="review_cell">
-                <div class="user_profile">
-                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-                </div>
-                <div class="review_text">
-                  <div class="star_small">
-                    <span class="stars">★★★★★</span>
-                  </div>
-                  <div class="status_user">
-                    <span class="text_info">ID</span>
-                    <span class="text_info">20.05.23</span>
-                    <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                  </div>
-                  <div class="user_write">
-                    <span class="writing">꽃이 너무 마음에 들어요</span>
-                  </div>
-                  <a href="#">더보기</a>
-                </div>
-              </div>
-              <div class="review_image">
-                이미지
-              </div>
-              <div class="review_good">
-                좋아요
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
 
 
-    <div class="pd_qna">
-      <div class="qna_title">
-        <h3 class="qna_title_detail">
-          <em class="anchor" id="que"></em>
-          문의하기
-        </h3>
-      </div>
-      <table class="qna-table">
-        <tr>
-          <th>번호</th>
-          <th>문의/답변</th>
-          <th>답변상태</th>
-          <th>작성자</th>
-          <th>작성일</th>
-        </tr>
-        @foreach ($qnaq as $qna)
-          <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-            <td class="qna-index">{{$qna->q_no}}</td>
-            <td class="qna-content">{{$qna->q_title}}</td>
-            <td class="qna-condition">답변완료</td>
-            <td class="qna-writer">{{$qna->c_name}}</td>
-            <td class="qna-date">{{$qna->q_date}}</td>
+      <div class="pd_qna">
+        <div class="qna_title">
+          <h3 class="qna_title_detail">
+            <em class="anchor" id="que"></em>
+            문의하기
+          </h3>
+        </div>
+        <table class="qna-table">
+          <tr>
+            <th>번호</th>
+            <th>문의/답변</th>
+            <th>답변상태</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            @if(auth()->guard('seller')->user())
+              <th></th>
+            @endif
           </tr>
-          <tr id="answer{{$qna->q_no}}" class="qna_an">
-            <td class="qna-block"></td>
-            <td>{{$qna->q_contents}}</td>
-          </tr>
-        @endforeach
-      </table>
-      {{ $qnaq ->links()}}
+          @foreach ($qnaq as $qna)
+            @if(auth()->guard('seller')->user())
+              <tr class="qna_q">
+              @else
+                <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+                @endif
+                <td class="qna-index">{{$qna->q_no}}</td>
+                <td class="qna-content">{{$qna->q_title}}</td>
+                <td class="qna-condition">답변완료</td>
+                <td class="qna-writer">{{$qna->c_name}}</td>
+                <td class="qna-date">{{$qna->q_date}}</td>
+                @if(auth()->guard('seller')->user())
+                  <td> <a  style="font-size:10px;" onclick="qna_answer({{$qna->q_no}})">답변하기</a> </td>
+                @endif
+              </tr>
+              <tr id="answer{{$qna->q_no}}" class="qna_an">
+                <td class="qna-block"></td>
+                <td>{{$qna->q_contents}}</td>
+                @if(isset($answer))
+                  @foreach ($answer as $answer1)
+                    <tr>
+                      <td>{{$answer1->a_answer}}</td>
+                    </tr>
+                  @endforeach
+                @endif
+              </tr>
+            @endforeach
+          </table>
+          {{ $qnaq ->links()}}
 
-      <div class="qna-product-btn">
-        @if(auth()->guard('customer')->user())
-          <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
-        @else
-          <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
-        @endif
-      </div>
-      <div id="qna-inquiry1" class="faq_an">
-        문의하기
-        <form class="" action="/pd_qna{{$protb->p_no}}" >
+          <div class="qna-product-btn">
+            @if(auth()->guard('customer')->user())
+              <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+            @elseif(auth()->guard('seller')->user())
 
-          <div>
-            <input class="qna_title" name="qna_title" placeholder="제목">
-            <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
+            @else
+              <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
+            @endif
           </div>
-          <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
-          <div class="bottom-btn">
-            <button type="submit" name="button" class="qna-submit-btn">저장</button>
-            <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+          @if(auth()->guard('seller')->user())
+            @foreach ($qnaq as $qna)
+              <div id="qna-inquiry{{$qna->q_no}}" class="faq_an">
+                답변하기
+                <form class="" action="/questionans/{{$qna->q_no}}" method='post'>
+                  @csrf
+                  <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80" style="margin-top: 20px;"></textarea>
+                  <div class="bottom-btn">
+                    <button type="submit" name="button" class="qna-submit-btn">저장</button>
+                    <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+                  </div>
+                </form>
+                </div>
+            @endforeach
+          @else
+          <div id="qna-inquiry1" class="faq_an">
+            문의하기
+            <form class="" action="/pd_qna{{$protb->p_no}}" >
+              <div>
+                <input class="qna_title" name="qna_title" placeholder="제목">
+                <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
+              </div>
+              <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
+              <div class="bottom-btn">
+                <button type="submit" name="button" class="qna-submit-btn">저장</button>
+                <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
+              </div>
+            </form>
+            </div>
+            @endif
+
           </div>
-        </form>
+          <div class="pd_component">
+            <div class="comp_title">
+              <h3 class="comp_title_detail">
+                <em class="anchor" id="clm"></em>
+                반품/교환정보
+              </h3>
+            </div>
+            내용
+          </div>
 
-      </div>
-    </div>
+        </div>
+      @endforeach
+      @include('lib.footer')
+    </body>
+    <script>
+    // 상품문의하기 클릭시에 나타나는 input 공간
+    function qna_new(num) {
+      if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+      {
+        $("#qna-inquiry"+num).removeClass("faq_an_show");
+      }
+      else
+      {
+        $(".faq_an").removeClass("faq_an_show");
+        $("#qna-inquiry"+num).addClass("faq_an_show");
+      }
+    }
 
+    //문의하기 클릭
+    function pd_qna(num) {
 
-    <div class="pd_component">
-      <div class="comp_title">
-        <h3 class="comp_title_detail">
-          <em class="anchor" id="clm"></em>
-          반품/교환정보
-        </h3>
-      </div>
-      내용
-    </div>
+      if($("#answer"+num).hasClass("qna_an_show"))
+      {
+        $("#answer"+num).removeClass("qna_an_show");
+      }
+      else
+      {
+        $(".qna_an").removeClass("qna_an_show");
+        $("#answer"+num).addClass("qna_an_show");
+      }
+    }
 
-  </div>
-  @endforeach
-  @include('lib.footer')
-</body>
-<script>
-// 상품문의하기 클릭시에 나타나는 input 공간
-function qna_new(num) {
-  if($("#qna-inquiry"+num).hasClass("faq_an_show"))
-  {
-    $("#qna-inquiry"+num).removeClass("faq_an_show");
-  }
-  else
-  {
-    $(".faq_an").removeClass("faq_an_show");
-    $("#qna-inquiry"+num).addClass("faq_an_show");
-  }
-}
-
-//문의하기 클릭
-function pd_qna(num) {
-
+    function fake(){
+      alert('로그인이 필요한 서비스입니다.');
+    }
+    function qna_answer(num) {
+  // qna_new(1);
   if($("#answer"+num).hasClass("qna_an_show"))
   {
     $("#answer"+num).removeClass("qna_an_show");
+    if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+    {
+      $("#qna-inquiry"+num).removeClass("faq_an_show");
+    }
+    else
+    {
+      $(".faq_an").removeClass("faq_an_show");
+      $("#qna-inquiry"+num).addClass("faq_an_show");
+    }
   }
   else
   {
     $(".qna_an").removeClass("qna_an_show");
     $("#answer"+num).addClass("qna_an_show");
+    if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+    {
+      $("#qna-inquiry"+num).removeClass("faq_an_show");
+    }
+    else
+    {
+      $(".faq_an").removeClass("faq_an_show");
+      $("#qna-inquiry"+num).addClass("faq_an_show");
+    }
   }
+
+
 }
 
-function fake(){
-  alert('로그인이 필요한 서비스입니다.');
-}
 
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-var jjim =  {{$protb->p_no}};
-
-$('#btn1').click(function() {
-  // var id = $("#hidden1").val();
-  console.log(1);
-  $.ajax({
-    type: 'post',
-    url: '/basketstore',
-    dataType: 'json',
-    data: { "id" : jjim },
-    // console.log(jjim);
-    success: function(data) {
-      console.log(data);
-      if(data==1){
-        alert("구매자는 이용할 수 없습니다.");
-        return false;
-      }
-      if(data==0){
-        var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-        if(logincheck){
-          location.href = "/login_customer"
-        }
-        else{
-          return false;
-        }
-      }
-      else {
-        var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-        if (basketalert) {
-          location.href = "/flowercart"
-        }
-        else {
-
-        }
-      }
-
-      console.log(data);
-    },
-    error: function(data) {
-      console.log("error" +data);
-      alert("잘못된 요청입니다.")
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript">
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-});
+  var jjim =  {{$protb->p_no}};
+
+  $('#btn1').click(function() {
+    // var id = $("#hidden1").val();
+    console.log(1);
+    $.ajax({
+      type: 'post',
+      url: '/basketstore',
+      dataType: 'json',
+      data: { "id" : jjim },
+      // console.log(jjim);
+      success: function(data) {
+        console.log(data);
+        if(data==1){
+          alert("구매자는 이용할 수 없습니다.");
+          return false;
+        }
+        if(data==0){
+          var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+          if(logincheck){
+            location.href = "/login_customer"
+          }
+          else{
+            return false;
+          }
+        }
+        else {
+          var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+          if (basketalert) {
+            location.href = "/flowercart"
+          }
+          else {
+
+          }
+        }
+
+        console.log(data);
+      },
+      error: function(data) {
+        console.log("error" +data);
+        alert("잘못된 요청입니다.")
+      }
+    });
+  });
 
 </script>
 </html>

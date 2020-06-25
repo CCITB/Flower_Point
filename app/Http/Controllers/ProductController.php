@@ -86,7 +86,7 @@ class ProductController extends Controller
     return redirect('/');
   }
   public function productpage($id){
-
+    $answer = DB::table('answer')->get();
     $productinfor = DB::table('product')->where('p_no','=',$id)->get();
     $pro_no = $productinfor[0]->p_no;
     // return $pro_no;
@@ -108,7 +108,7 @@ class ProductController extends Controller
 
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;
-    return view('Buy_information', compact('productinfor','qnaq', 'store'));
+    return view('Buy_information', compact('productinfor','qnaq', 'store','answer'));
   }
 
   // 박소현
