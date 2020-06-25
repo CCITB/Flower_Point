@@ -18,10 +18,13 @@ $(document).ready(function(){
   $("#btn_email_way").click(function() {
     verify_email_way();
   });
-  // $("#id_bt").click(function() {
-  //   verify_check();
-  // });
 
+  $("#new_pw").blur(function() {
+    verify_new_pw();
+  });
+  $("#check").blur(function() {
+    verify_re_pw();
+  });
   //********************이름*****************
   function check_name(){
     //input data
@@ -125,8 +128,57 @@ $(document).ready(function(){
       $("#s_email").focus();
     }
   }
+
+  function verify_new_pw(){
+    //input data
+    var pw=$("#new_pw").val();
+    //정규식
+    var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+
+    //1. 정규식 일치 O
+    if(pwJ.test(pw)){
+      $("#pw_re").text("");
+    }
+    //2. 공백
+    else if(pw==''){
+      $('#pw_re').text('비밀번호를 입력해주세요.');
+      $('#pw_re').css('color', 'red');
+    }
+    //3. 정규식 일치 X
+    else{
+      $('#pw_re').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
+      $('#pw_re').css('color', 'red');
+    }
+  }
+
+  function verify_re_pw(){
+    //input data
+    var pw=$("#new_pw").val();
+    var check=$("#check").val();
+
+    //1. 공백이 아닐 경우
+    if(pw != "" || check != "")
+    {
+      if(pw == check)
+      {
+        $("#pw_re_ck").text('비밀번호가 일치합니다!');
+        $('#pw_re_ck').css('color', 'green');
+      }
+
+      else{
+        $('#pw_re_ck').text('비밀번호가 일치하지 않습니다.');
+        $('#pw_re_ck').css('color', 'red');
+      }
+    }
+    //2. 공백일 경우
+    else {
+      $('#pw_re_ck').text('필수 정보입니다.');
+      $('#pw_re_ck').css('color', 'red');
+    }
+  }
 });
 
+// find id onsubmit
 function checkfunction(){
   check;
   global_random;
@@ -262,6 +314,7 @@ function verify_email_way(){
   }
 }
 
+//find_pw_way onsubmit
 function check_pw_way(){
   check;
   global_random;
@@ -312,6 +365,47 @@ function check_pw_way(){
 
   else{
     alert('이동합니다.');
+    return true;
+  }
+}
+
+//find_pw_reset onsubmit
+function check_find_reset(){
+  var pwJ = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+  //-------------------PW 예외처리
+  //2. 공백
+  if($("#new_pw").val()==''){
+    $('#pw_re').text('비밀번호를 입력해주세요.');
+    $('#pw_re').css('color', 'red');
+    $("#new_pw").focus();
+    return false;
+  }
+  //3. 정규식 일치 X
+  if(!pwJ.test($("#new_pw").val())){
+    $('#pw_re').text('8~16자리의 영문 대소문자, 숫자와 특수기호만 사용가능합니다. ');
+    $('#pw_re').css('color', 'red');
+    $("#new_pw").focus();
+    return false;
+  }
+  //-------------------PW 확인 예외처리
+  //1. 공백이 아닐 경우
+  if($("#new_pw").val() != "" || $("#check").val() != "")
+  {
+    if($("#new_pw").val() != $("#check").val()){
+      $('#pw_re_ck').text('비밀번호가 일치하지 않습니다.');
+      $('#pw_re_ck').css('color', 'red');
+      $("#check").focus();
+      return false;
+    }
+  }
+  //2. 공백일 경우
+  if($("#new_pw").val() == "" || $("#check").val() == ""){
+    $('#pw_re_ck').text('필수 정보입니다.');
+    $('#pw_re_ck').css('color', 'red');
+    $("#check").focus();
+    return false;
+  }
+  else{
     return true;
   }
 }

@@ -20,7 +20,7 @@
     </div>
 
     <div class ="find_pw">
-      <form action="/seller_find_pw_controller" method="post" onsubmit="return checkfunction()">
+      <form action="/seller_find_pw_controller" method="post" onsubmit="return check_find_pw()">
         @csrf
         <div class="intervel"></div>
         <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="s_id"><br>
@@ -39,6 +39,8 @@
 
 <!--******************************<<예외처리 및 클릭 이벤트 : 어지수>>*****************************************-->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/find.js" charset="utf-8"></script>
+
 <script>
 var check;
 $.ajaxSetup({
@@ -65,7 +67,7 @@ $(document).ready(function(){
     }
   });
 });
-function checkfunction(){
+function check_find_pw(){
   var idJ= /^[a-z0-9_\-]{5,20}$/;
   check;
 
