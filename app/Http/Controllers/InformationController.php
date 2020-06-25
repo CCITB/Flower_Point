@@ -86,22 +86,7 @@ publiC function c_storeinfo(Request $request){
 }
 }
 
-
 publiC function storepage($id){
-  // return $id;
-
-      // if($sellerinfo = auth()->guard('seller')->user()){
-      //   $sellerprimary = $sellerinfo->s_no;
-      //   // return $sellerprimary;
-      //       $data = DB::table('seller')
-      //       ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-      //       ->where('s_no','=', $sellerprimary )->get();
-
-
-            // $sum_address = Arr::collapse([['a_post'], ['a_address'], ['a_detail'], ['a_extra']]);
-            // $productinfor = DB::table('product')->select('*')->where('p_name','=',$id)->get();
-            // $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
-
             $shop = DB::table('store')->join('seller', 'store.seller_no', '=', 'seller.s_no')->
             select('*')->where('st_name', '=', $id)->get();
             $shop_address = DB::table('store_address')->join('store', 'store_address.st_no', '=', 'store.st_no')
@@ -111,4 +96,22 @@ publiC function storepage($id){
             return view('myshop/shop_customer', compact('shop','shop_address','product'));
 }
 
+publiC function locate(Request $request){
+  if($sellerinfo = auth()->guard('seller')->user()){
+    $sellerprimary = $sellerinfo->s_no;
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+        $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->get();
+        return view('/locate', compact('store_address'));
+}
+elseif($customerinfo = auth()->guard('customer')->user()){
+  $customerprimary = $customerinfo->c_no;
+      $data1 = DB::table('customer_address')
+      ->select('*')->where('c_no','=', $customerprimary )->get();
+      // $customer_address = DB::table('customer_address')->where('c_no' ,'=', $data1[0]->c_no)->get();
+      return view('/locate', compact('data1'));
+
+}
+}
 }
