@@ -10,19 +10,19 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img class="ad_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaMR6IG-DroFbYHEuvqh95XDDU903t3tjHGgPwzG8oPNMugR9D&usqp=CAU" >
-        <div class="text">전문인재, 바른인재, 창의인재로의 학생성장을 지향하는 중부대학교!</div>
+        <img class="ad_img" src="https://lh3.googleusercontent.com/proxy/S7BaRUPKi75C4CY_YQEqRpF8_hgRTmYyNP4TJl2nYDOJ25ty-iNZivf-6sTdO_1iICXgKeu882MJXDjP8DLr4aFQvn6Quzme_y5MY8Iyxar-UgYRgIAjA-JVqFVAPm7HADdG8WIiLr3BGv8ESiWElndNlWiAHrAqOdHYskwyw_jtAcWSAadAfDepWa2IUOVaAy3NAC-PWpqY1MBS_Z0fPD-4x0h9ojR1qCcAZIGQ9qw3gtgExJ0XGOg4ABOQghqbUcMLzNiMzwbDfIwFep3EX9IPi3l4J6-Y" >
+        <div class="text"></div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
-        <img class="ad_img" src="https://freshdon.com/wp-content/uploads/2018/12/%EC%83%9D%EC%83%9D-%EB%A1%9C%EA%B3%A0-300x100.png" >
+        <img class="ad_img" src="https://t1.daumcdn.net/cfile/tistory/2245D43A571F2BE81C" >
         <div class="text"></div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">3 / 3</div>
-        <img class="ad_img" src="https://www.paxetv.com/news/thumbnail/202001/85227_56981_1928_v150.jpg">
+        <img class="ad_img" src="https://cdn.crowdpic.net/list-thumb/thumb_l_F8DAD781A80FA926DF5C7B86ADF0E0CF.jpeg">
         {{-- <img class="ad_img" src="http://placehold.it/300x100"> --}}
         <div class="text"></div>
       </div>
