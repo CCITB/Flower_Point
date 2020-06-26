@@ -397,7 +397,7 @@ function verify_email_way_s(){
         $.ajax({
 
           type: 'post',
-          url: 'check_query',
+          url: 'check_seller_query',
           async:false,
           dataType: 'json',
           data:{

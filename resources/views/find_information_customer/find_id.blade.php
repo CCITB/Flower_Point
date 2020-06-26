@@ -34,6 +34,7 @@
 
             <div class="verify">
               <div class="sign_name">이메일</div>
+              <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
               <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
               <input class="inf3" type="email" placeholder="email "id="c_email" name="c_email"  >
               <input class="btn_e" id="btn_email_c" type="button" value="인증번호 전송">
