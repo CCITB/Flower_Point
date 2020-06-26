@@ -312,12 +312,12 @@
                 문의하기
                 <form class="" action="/pd_qna{{$protb->p_no}}" >
                   <div>
-                    <input class="qna_title" name="qna_title" placeholder="제목">
+                    <input class="qna_title" name="qna_title" id="qna_title" placeholder="제목">
                     <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
                   </div>
-                  <textarea placeholder="문의하실 내용을 입력해주세요."name="name" rows="8" cols="80"></textarea>
+                  <textarea placeholder="문의하실 내용을 입력해주세요."name="name" id="content" rows="8" cols="80"></textarea>
                   <div class="bottom-btn">
-                    <button type="submit" name="button" class="qna-submit-btn">저장</button>
+                    <button type="submit" name="button" id="sub" class="qna-submit-btn">저장</button>
                     <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
                   </div>
                 </form>
@@ -410,9 +410,27 @@
     }
 
 
+
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript">
+
+    $(document).ready(function(){
+      $("#sub").click(function(){
+        if($("#qna_title").val().length==0){
+          alert("제목을 입력하세요.");
+          $("#qna_title").focus();
+          return false;
+        }
+        if($("#content").val().length==0){
+          alert("내용을 입력하세요.");
+          $("#content").focus();
+          return false;
+        }
+      })
+    })
+
+
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
