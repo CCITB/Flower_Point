@@ -183,7 +183,7 @@ Route::get('/detail', 'InformationController@detailaddress');
 
 Route::get('/c_information_controller', 'InformationController@c_information');
 
-Route::get('/c_modiemail', 'InformationController@c_modifyemail');
+Route::post('/c_modiemail', 'InformationController@c_modifyemail');
 
 
 Route::get('/mypage', function(){
