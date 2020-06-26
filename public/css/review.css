@@ -56,7 +56,8 @@ img
   text-align: center;
 }
 .hi{
-  border: none;
+  border: 0;
+  outline: 0;
   width: 60px;
   height:60px;
   cursor: pointer;

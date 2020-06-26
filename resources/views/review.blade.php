@@ -39,7 +39,7 @@
               <a href="#" class="on" id="st5" onclick="star_text(5)" value="5">★</a> --}}
               {{-- <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg"> --}}
             </div>
-            <br><br><div class="star_detail" id="st_detail">굴개</div>
+            <br><br><div class="star_detail" id="st_detail">별점을 눌러주세요.</div>
           </div>
         </div>
 
