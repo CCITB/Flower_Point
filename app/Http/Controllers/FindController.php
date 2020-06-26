@@ -7,26 +7,110 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+// << 어지수 >>
 class FindController extends Controller
 {
+  //--------------------------------customer-------------------------------
+  //find_id의 ajax에서 id 존재 유무 판단을 위한 함수
+  public function check_customer_query(Request $request){
+    //name 입력 값
+    $input_name = $request->get('input_name');
+    $input_email = $request->get('input_email');
 
-  // public function find_pw(){
-  //   return view('find_information.find_pw');
-  // }
-  // public function find_pw_way(){
-  //   return view('find_information.find_pw_way');
-  // }
-  //
-  // public function find_pw_reset(){
-  //   return view('find_information.find_pw_reset');
-  // }
-  //
-  // public function find_check(){
-  //   return view('find_information.find_check');
-  // }
+    //input한 name값과 동일한 s_name(이름)을 가진 rows
+    $query_name = DB::table('customer')->where('c_name',$input_name)->get();
+    //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
+    $query_email = $query_name->where('c_email',$input_email)->pluck('c_email')->count();
 
-  //**************INPUT값(name,email)이 DB에 있는지 -- 어지수**************
-  public function check_query(Request $request){
+    return response()->json($query_email);
+  }
+  //customer 아이디 찾기
+  public function customer_find_id(Request $myid)
+  {
+    //input 값
+    $input_mail = $myid->get('c_email');
+    $input_name = $myid->get('name');
+
+    //input한 email값과 일치하는 DB name 행
+    $fd_mail = DB::table('customer')->where('c_email','=',$input_mail)->get();
+    $query_mail = $fd_mail[0]->c_name;
+
+    //input name과 테이블 상의 email 행의 name이 일치할 경우
+    if ( $input_name  == $query_mail) {
+      return view('find_information_customer.find_check', compact('fd_mail'));
+    }
+    else{
+      return redirect('/find_id');
+    }
+  }
+  //find_pw - jquery
+  public function customer_id_check(Request $request)
+  {
+    //find_pw - jquery
+    $input = $request->input('id');
+    $sellers = DB::table('customer')-> where('c_id','=',$input)->get()->count();
+    return response()->json($sellers);
+  }
+
+  public function customer_find_pw(Request $request)//seller 비밀번호
+  {
+    //동일 아이디 확인
+    $input_id = trim($_POST['myid']);
+
+    $myinfo = DB::table('customer')->where('c_id','=',$input_id)->get();
+
+    $myno = $myinfo[0]->c_no;
+    $mymail = $myinfo[0]->c_email;
+
+    if (($myinfo->count())>0) {
+      return view('find_information_customer.find_pw_way',
+      ['mymail'=>$mymail,
+      'myno'=>$myno]
+    );
+  }
+  else{
+    return view('find_information_customer.find_pw');
+  }
+}
+public function customer_f_way(Request $request)//seller 비밀번호
+{
+  //인증된 이메일(가입된 이메일)
+  $certified_email = $request->get('hidden_email');
+  //find_pw 에서 입력한 id의 no값
+  $myno = $request->get('hidden_no');
+
+  //입력된 이름
+  $input_name = $request->input('name');
+  //입력된 이메일
+  $input_email = $request->input('c_email');
+
+  //find_pw에서 입력된 email의 컬럼
+  $email = DB::table('customer')->where('c_email','=',$certified_email)->get();
+
+
+  //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
+  if($certified_email == $input_email ){
+    //return redirect('/find_pw_reset');
+    return view('find_information_customer.find_pw_reset', compact('myno'));
+  }
+  else{
+    return redirect('/find_pw_way_customer');
+  }
+}
+
+public function customer_f_reset(Request $request)
+{
+  //find_pw 에서 입력한 id의 no값
+  $c_no = $request->get('hidden_no');
+
+  DB::table('customer')->where(['c_no'=>$c_no])->update([
+    'c_password'=>bcrypt($request->input('new_pw'))]);
+
+    return redirect('/login_customer');
+  }
+  //---------------------------------seller--------------------------------
+  //find_id의 ajax에서 id 존재 유무 판단을 위한 함수
+  public function check_seller_query(Request $request){
     //name 입력 값
     $input_name = $request->get('input_name');
     $input_email = $request->get('input_email');
@@ -35,12 +119,11 @@ class FindController extends Controller
     $query_name = DB::table('seller')->where('s_name',$input_name)->get();
     //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
     $query_email = $query_name->where('s_email',$input_email)->pluck('s_email')->count();
-    //echo $query_email;
-    //(있으면 1 / 없으면 0)
+
     return response()->json($query_email);
   }
-  //박소현
-  public function seller_find_id(Request $myid)//seller 아이디 찾기
+  //seller 아이디 찾기
+  public function seller_find_id(Request $myid)
   {
     //input한 email값
     $input_mail = $myid->get('s_email');
@@ -73,98 +156,56 @@ class FindController extends Controller
     $input_id = trim($_POST['myid']);
 
     $myinfo = DB::table('seller')->where('s_id','=',$input_id)->get();
-    $myid = $myinfo[0]->s_no;
 
+    $myno = $myinfo[0]->s_no;
     $mymail = $myinfo[0]->s_email;
-    // $mymail_a = substr_replace($mymail,'*');
+
     if (($myinfo->count())>0) {
-      return view('find_information_seller.find_pw_way', compact('mymail'));
-    }
-    else{
-      return view('find_information_seller.find_pw');
-    }
+      return view('find_information_seller.find_pw_way',
+      ['mymail'=>$mymail,
+      'myno'=>$myno]
+    );
   }
+  else{
+    return view('find_information_seller.find_pw');
+  }
+}
 
-  // public function f_way(Request $request){
-  //
-  //   $myno = DB::table('seller')->where('s_no','=',$request)->get();
-  //   // return $productinfor;
-  //
-  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-  //   // return $productdata;
-  //   return view('find_information_seller.find_pw_way', compact('myno'));
-  // }
+public function seller_f_way(Request $request)//seller 비밀번호
+{
+  //인증된 이메일(가입된 이메일)
+  $certified_email = $request->get('hidden_email');
+  //find_pw 에서 입력한 id의 no값
+  $myno = $request->get('hidden_no');
 
-  public function f_way(Request $request)//seller 비밀번호
-  {
-    //인증된 이메일(가입된 이메일)
-    $input_email = $request->get('hidden');
-    $input_name = $request->input('name');
+  //입력된 이름
+  $input_name = $request->input('name');
+  //입력된 이메일
+  $input_email = $request->input('s_email');
 
-    $email = DB::table('seller')->where('s_email','=',$input_email)->get();
-    $email_cnt = $email->count();
-    $name = $email[0]->s_name;
+  //find_pw에서 입력된 email의 컬럼
+  $email = DB::table('seller')->where('s_email','=',$certified_email)->get();
 
-    //input name과 Table상에 name이 동일하고, input email과 Table상 email이 존재할 경우
-      if($input_name == $name && $email_cnt>0){
-      return redirect('/find_pw_reset');
-    }
-    else{
-      return redirect('/find_pw_way');
-    }
+
+  //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
+  if($certified_email == $input_email ){
+    //return redirect('/find_pw_reset');
+    return view('find_information_seller.find_pw_reset', compact('myno'));
+  }
+  else{
+    return redirect('/find_pw_way_seller');
+  }
 }
 
 
-  public function find(Request $request)
-  {
-    // $picturerow = DB::table('product_image')->where('i_no','=',5)->first();
-    // $picture = $picturerow->i_filename;
-    // return $picture;
-    $sellerno =  DB::table('seller')->where('s_id','=',$input_id)->get();
-    $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
+public function seller_f_reset(Request $request)
+{
+  //find_pw 에서 입력한 id의 no값
+  $s_no = $request->get('hidden_no');
+
+  DB::table('seller')->where(['s_no'=>$s_no])->update([
+    's_password'=>bcrypt($request->input('new_pw'))]);
+
+    return redirect('/login_seller');
   }
-
-
-
-  // public function f_way($id){
-  //
-  //   $productinfor = DB::table('seller')->where('s_no','=',$id)->get();
-  //   // return $productinfor;
-  //
-  //   // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-  //   // return $productdata;
-  //   return view('find_information.find_pw_way', compact('productinfor'));
-  // }
-
-
-
-
-
-
-
 }
-
-
-
-// public function f_rese(Request $pw_r)//seller 비밀번호
-// {
-//   $input_id = $pw_r->get('myid');
-//   $input_name = $pw_r->get('pw_name');
-//   // return $input_id;
-//   //$myid = DB::table('seller')->where(['s_id'=>$input_id])->get();
-//   $myid = DB::table('seller')->where('s_id','=',$input_id)->get();
-//   // return $myid[0]->s_name;
-//   //  $myname = DB::table('seller')->where(['s_name'=>$input_name]);
-//   // $myid->s_name;
-//   // $myid->
-//   // return 0;
-//   if (isset($myid)) {
-//     return redirect('/find_pw_way');
-//   }
-//   if (count($myname) > 0) {
-//     return redirect('/find_pw_reset');
-//   }
-//   else{
-//     return redirect('/find_pw_way');
-//   }
-// }

@@ -53,14 +53,39 @@ Route::get('/mailview', function(){
 });
 Route::post('/mail', 'MailController@sends');
 
-//seller ID 찾기
+//customer ID 찾기
+Route::get('/customer_find_id', function(){
+  return view('find_information_customer/find_id');
+});
+Route::post('/customer_find_id', 'FindController@customer_find_id');
+//find_id에서 id의 존재유무를 확인하는 ajax
+Route::post('/check_customer_query', 'FindController@check_customer_query');
+
+//customer PW 찾기
+Route::get('/customer_find_pw', function(){
+  return view('find_information_customer/find_pw');
+});
+Route::post('/customer_find_pw_controller', 'FindController@customer_find_pw');
+//pw에서 id존재유무를 확인하는 jquery
+Route::post('/customer_id_check', 'FindController@customer_id_check');
+
+Route::get('/find_pw_way_customer', function(){
+  return view('find_information_customer/find_pw_way');
+});
+
+Route::post('/f_way_customer', 'FindController@customer_f_way');
+
+Route::post('/f_reset_customer', 'FindController@customer_f_reset');
+
+
+//----seller ID 찾기-----
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
 });
 //seller ID From값 전송
 Route::post('/seller_find_id', 'FindController@seller_find_id');
-
-Route::post('/check_query', 'FindController@check_query');
+//find_id에서 id의 존재유무를 확인하는 ajax
+Route::post('/check_seller_query', 'FindController@check_seller_query');
 
 //seller PW 찾기
 Route::get('/seller_find_pw', function(){
@@ -70,17 +95,14 @@ Route::post('/seller_find_pw_controller', 'FindController@seller_find_pw');
 //pw에서 id존재유무를 확인하는 jquery
 Route::post('/seller_id_check', 'FindController@seller_id_check');
 
-
-Route::get('/find_pw_way', function(){
+Route::get('/find_pw_way_seller', function(){
   return view('find_information_seller/find_pw_way');
 });
-Route::post('/f_way', 'FindController@f_way');
+Route::post('/f_way_seller', 'FindController@seller_f_way');
 
-Route::get('/find_pw_reset',  function () {
-  return view('find_information_seller.find_pw_reset');
-});
+Route::post('/f_reset_seller', 'FindController@seller_f_reset');
 
-Route::get('/find_chk', 'FindController@find_check');
+// Route::get('/find_chk', 'FindController@find_check');
 
 Route::post('/login_s', 'LoginController@login_s');
 
@@ -90,19 +112,17 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::post('/information_controller', 'InformationController@information');
 
-Route::get('/locate1', function () {
-  return view('locate');
-});
+Route::get('/locate1', 'InformationController@locate');
+
+Route::post('/modipw', 'InformationController@modipw');
+
+Route::post('/c_modipw', 'InformationController@c_modipw');
 
 
 Route::get('/faq', function () {
   return view('FAQ');
 });Route::post('/modiemail', 'InformationController@modifyemail');
 
-
-Route::get('/locate1', function () {
-  return view('locate');
-});
 
 Route::get('/customer_shop', function () {
   return view('myshop/shop_customer');
@@ -153,10 +173,6 @@ Route::get('/shopinfo','InformationController@storeinfo');
 Route::get('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
 
-Route::get('/customer', function(){
-  return view('mypage/customer');
-});
-
 Route::get('/shoppage', 'InformationController@shoppage');
 
 Route::get('/all', 'MainController@showall');
@@ -181,6 +197,9 @@ Route::get('/mypage', function(){
           return view('mypage/mypage', compact('sellerstore'));
 
 }
+else{
+return view('login/login_seller');
+}
 
 });
 
@@ -193,6 +212,10 @@ Route::get('/c_mypage', function (){
 
         return view('mypage/c_mypage',compact('data'));
 }
+else{
+return view('login/login_customer');
+}
+
 });
 
 
@@ -212,10 +235,10 @@ Route::get('/shop', function(){
 
         return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
   }
-  elseif(auth()->guard('customer')->user()){
-
+  else{
+return view('login/login_seller');
   }
-  return view('myshop/shop_seller');
+
 });
 
 Route::get('/postlist', function(){
@@ -253,3 +276,5 @@ Route::post('/basketstore', 'ProductController@basketstore');
 Route::post('/basketcount', 'ProductController@basketcount');
 
 Route::post('/basketcondition', 'ProductController@basketcondition');
+
+Route::post('/questionans/{q_no}','QnAController@question_answer');

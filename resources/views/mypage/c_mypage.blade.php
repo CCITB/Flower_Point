@@ -45,109 +45,131 @@
   </style>
   <div class="privacy">
     <table border="0" table class="table1" >
-      <form action="/c_information_controller" method="get">
-        @csrf
-        @if ($customer = auth()->guard('customer')->user())
+
+    @if ($customer = auth()->guard('customer')->user())
           <div id="tablewrap">
             <table id="shopinfo">
-          <tbody>
-            <tr class="tr1">
-              <th class="th1">
-                <div class="thcell">아이디</div>
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
-              </td>
-            </tr>
+              <tbody>
+                <tr class="tr1">
+                  <th class="th1">
+                    <div class="thcell">아이디</div>
+                  </th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
+                  </td>
+                </tr>
 
-            <tr class="tr1">
-              <th class="th1">
-                <div class="thcell">이름</div>
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
-              </td>
-            </tr>
-            <tr class="tr1">
-              <th class="th1">
-                <div class="thcell">연락처</div>
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+                <form action="/c_modipw" method="post">
+                  @csrf
+                  <tr class="tr1">
+                    <th class="th1">
+                      <div class="thcell">비밀번호</div>
+                    </th>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
+                      <div id="p_pw" style="display:none;">
+                        <input type="text" name="c_password"  placeholder="새 비밀번호">
+                        <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                      </div>
+                    </td>
+                  </tr>
+                </form>
 
-                <div id="p_num" style="display:none;">
-                  <input type="text" id="new_num" name="c_phonenum"  placeholder="새 연락처">
-                  <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+
+                <tr class="tr1">
+                  <th class="th1">
+                    <div class="thcell">이름</div>
+                  </th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
+                  </td>
+                </tr>
+                <form action="/c_information_controller" method="get">
+                  @csrf
+                <tr class="tr1">
+                  <th class="th1">
+                    <div class="thcell">연락처</div>
+                  </th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+
+                    <div id="p_num" style="display:none;">
+                      <input type="text" id="new_num" name="c_phonenum"  placeholder="새 연락처">
+                      <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                    </div>
+
+
+
+
+                    <script type="text/javascript">
+
+                    function info_modification(s,ss){
+                      if(s == "연락처수정"){
+                        document.getElementById(ss).style.display="block"
+                        modinum.style.display="none";
+                      }
+                      else if(s == "이메일수정"){
+                        document.getElementById(ss).style.display="block"
+                        modiemail.style.display="none";
+                      }
+                      else if(s == "주소수정"){
+                        document.getElementById(ss).style.display="block"
+                        modiaddress.style.display="none";
+                      }
+                      else if(s == "비밀번호수정"){
+                        document.getElementById(ss).style.display="block"
+                        modiaddress.style.display="none";
+                    }
+                    }
+                    </script>
+
+                  </td>
+                </tr>
+              </form>
+              <form action="/c_modiemail" onsubmit="return checkform()" method="post">
+                @csrf
+
+                <tr class="tr1">
+                  <th class="th1">
+                    <div class="thcell">이메일</div>
+                  </th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
+                    <div id="email" style="display:none;">
+                      <input type="text" name="c_email"  placeholder="새 이메일">
+                      <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                    </div>
+
+                  </td>
+                </tr>
+              </form>
+
+
+              <form action="/c_newaddress"  onsubmit="return checkform()" method="post">
+                @foreach ($data as $a)
+                  <tr>
+                    <th>주소</th>
+                    <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
+                  </tr>
+                  <tr>
+                    <th>우편번호</th>
+                    <td>{{$a->a_post}}</td>
+                  </tr>
+                  <tr>
+                    <th>참고항목</th>
+                    <td>{{$a->a_extra}}</td>
+                  </tr>
+                  <tr>
+                    <th>상세주소</th>
+                    <td>{{$a->a_detail}}</td>
+                  </tr>
                 </div>
+              @endforeach
+            </form>
+          </table>
 
 
-
-
-                <script type="text/javascript">
-
-                function info_modification(s,ss){
-                  if(s == "연락처수정"){
-                    document.getElementById(ss).style.display="block"
-                    modinum.style.display="none";
-                  }
-                  else if(s == "이메일수정"){
-                    document.getElementById(ss).style.display="block"
-                    modiemail.style.display="none";
-                  }
-                  else if(s == "주소수정"){
-                    document.getElementById(ss).style.display="block"
-                    modiaddress.style.display="none";
-                  }
-                }
-                </script>
-
-              </td>
-            </tr>
-          </form>
-          <form action="/c_modiemail" method="get">
-            @csrf
-
-            <tr class="tr1">
-              <th class="th1">
-                <div class="thcell">이메일</div>
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
-                <div id="email" style="display:none;">
-                  <input type="text" name="c_email"  placeholder="새 이메일">
-                  <button type="submit" name="button">수정완료</button>
-                </div>
-
-              </td>
-            </tr>
-          </form>
-
-
-          <form action="/c_newaddress" method="get">
-            @foreach ($data as $a)
-              <tr>
-                <th>주소</th>
-                <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
-              </tr>
-              <tr>
-                <th>우편번호</th>
-                <td>{{$a->a_post}}</td>
-              </tr>
-              <tr>
-                <th>참고항목</th>
-                <td>{{$a->a_extra}}</td>
-              </tr>
-              <tr>
-                <th>상세주소</th>
-                <td>{{$a->a_detail}}</td>
-              </tr>
-              </div>
-            @endforeach
-          </form>
-        </table>
-
-
-          <form action="/c_newaddress" method="get">
+          <form action="/c_newaddress" onsubmit="return checkform()" method="post">
             <div id="addresswrap" style="display:none;">
               <div id="addressmodi">
                 <div class="delivery_wrap">
@@ -179,147 +201,188 @@
               addresswrap.style.display="block";
             }
           }
-        </script>
-      </tbody>
+          </script>
+        </tbody>
 
-    </table>
-    <div class="tablespace2">
-      <h4 align="left">즐겨찾기</h4>
-      <div class="tabContainer">
-        <div class="buttonContainer">
-          <button onclick="showPanel(0,'gray')">꽃</button>
-          <button onclick="showPanel(1,'gray')">가게</button>
-        </div>
-        <div class="tabPanel">
-          <div class="panelbox">
-            <ul class="list_item">
-              <li class="list_item2">
-                <a href="#">
-                  <div class="imagebox">
-                    <img src="dummy.jpg" alt="꽃사진" align="left">
-                  </div>
-                  <div class="box_information">
-                    <div class="text_name">장미</div>
-                    <div class="box_price">111111</div>
-                  </div>
-                </a>
-              </li>
-              <li class="list_item2">
-                <a href="#">
-                  <div class="imagebox">
-                    <img src="dummy.jpg" alt="꽃사진" align="left">
-                  </div>
-                  <div class="box_information">
-                    <div class="text_name">백합</div>
-                    <div class="box_price">22222</div>
-                  </div>
-                </a>
-              </li>
-            </ul>
+      </table>
+      <div class="tablespace2">
+        <h4 align="left">즐겨찾기</h4>
+        <div class="tabContainer">
+          <div class="buttonContainer">
+            <button onclick="showPanel(0,'gray')">꽃</button>
+            <button onclick="showPanel(1,'gray')">가게</button>
           </div>
-        </div>
-        <div class="tabPanel">
-          <div class="panelbox">
-            <ul class="list_item">
-              <li class="list_item2">
-                <a href="#">
-                  <div class="imagebox">
-                    <img src="dummy.jpg" alt="가게사진" align="left">
-                  </div>
-                  <div class="box_information">
-                    <div class="text_name">가게이름</div>
-                    <div class="box_price">ㅁㄴㄻㄴㄹ</div>
-                  </div>
-                </a>
-              </li>
-            </ul>
+          <div class="tabPanel">
+            <div class="panelbox">
+              <ul class="list_item">
+                <li class="list_item2">
+                  <a href="#">
+                    <div class="imagebox">
+                      <img src="dummy.jpg" alt="꽃사진" align="left">
+                    </div>
+                    <div class="box_information">
+                      <div class="text_name">장미</div>
+                      <div class="box_price">111111</div>
+                    </div>
+                  </a>
+                </li>
+                <li class="list_item2">
+                  <a href="#">
+                    <div class="imagebox">
+                      <img src="dummy.jpg" alt="꽃사진" align="left">
+                    </div>
+                    <div class="box_information">
+                      <div class="text_name">백합</div>
+                      <div class="box_price">22222</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tabPanel">
+            <div class="panelbox">
+              <ul class="list_item">
+                <li class="list_item2">
+                  <a href="#">
+                    <div class="imagebox">
+                      <img src="dummy.jpg" alt="가게사진" align="left">
+                    </div>
+                    <div class="box_information">
+                      <div class="text_name">가게이름</div>
+                      <div class="box_price">ㅁㄴㄻㄴㄹ</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="tablespace3">
-      <h4 align="left">나의 주문 현황</h4>
+      <div class="tablespace3">
+        <h4 align="left">나의 주문 현황</h4>
 
-      <table class="myorder">
-        <tr>
-          <td>기간별조회</td>
-          <td><button class="period">1주일</button></td>
-          <td><button class="period">1개월</button></td>
-          <td><button class="period">3개월</button></td>
-          <td><input type="date"></td>
-          <td><button>조회</button></td>
-        </tr>
-        <table border="1" width="100%">
+        <table class="myorder">
           <tr>
-            <th>주문번호</th>
-            <th>상황정보</th>
-            <th>구매금액</th>
-            <th>주문처리상태</th>
-            <th></th>
+            <td>기간별조회</td>
+            <td><button class="period">1주일</button></td>
+            <td><button class="period">1개월</button></td>
+            <td><button class="period">3개월</button></td>
+            <td><input type="date"></td>
+            <td><button>조회</button></td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>장미특가</td>
-            <td>3000원</td>
-            <td>cj대한통운</td>
-            <td><input type="button" value="구매후기" onclick="show_popup()"></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>장미</td>
-            <td>4000원</td>
-            <td>cj대한통운</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>안개꽃</td>
-            <td>5000원</td>
-            <td>cj대한통운</td>
-            <td></td>
-          </tr>
+          <table border="1" width="100%">
+            <tr>
+              <th>주문번호</th>
+              <th>상황정보</th>
+              <th>구매금액</th>
+              <th>주문처리상태</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>장미특가</td>
+              <td>3000원</td>
+              <td>cj대한통운</td>
+              <td><input type="button" value="구매후기" onclick="show_popup()"></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>장미</td>
+              <td>4000원</td>
+              <td>cj대한통운</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>안개꽃</td>
+              <td>5000원</td>
+              <td>cj대한통운</td>
+              <td></td>
+            </tr>
+          </table>
         </table>
-      </table>
-    </div>
-    <div class="tablespace4">
-      <h4 align="left">마일리지</h4>
-      <table class="mileage">
-        <table border="1" width="100%">
-          <tr>
-            <th>쿠폰0장</th>
-            <th>적립금0원</th>
-            <th>사용내역보기</th>
-          </tr>
+      </div>
+      <div class="tablespace4">
+        <h4 align="left">마일리지</h4>
+        <table class="mileage">
+          <table border="1" width="100%">
+            <tr>
+              <th>쿠폰0장</th>
+              <th>적립금0원</th>
+              <th>사용내역보기</th>
+            </tr>
+          </table>
         </table>
-      </table>
-    </div>
-    <div class="tablespace5">
-      <h4 align="left">나의후기</h4>
-      <table class="myreview">
-        <table border="1" width=100%>
-          <tr>
-            <th>상품평</th>
-            <th>후기</th>
-          </tr>
-          <tr>
-            <th>a</th>
-            <td>b</td>
-          </tr>
-          <tr>
-            <th>c</th>
-            <td>d</td>
-          </tr>
-          <tr>
-            <th>e</th>
-            <td>f</td>
-          </tr>
+      </div>
+      <div class="tablespace5">
+        <h4 align="left">나의후기</h4>
+        <table class="myreview">
+          <table border="1" width=100%>
+            <tr>
+              <th>상품평</th>
+              <th>후기</th>
+            </tr>
+            <tr>
+              <th>a</th>
+              <td>b</td>
+            </tr>
+            <tr>
+              <th>c</th>
+              <td>d</td>
+            </tr>
+            <tr>
+              <th>e</th>
+              <td>f</td>
+            </tr>
+          </table>
         </table>
-      </table>
+      </div>
     </div>
   </div>
 
-@endif
-@include('lib.footer')
+        @include('lib.footer')
+
+    <script type="text/javascript">
+    function checkform(){
+      var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+      var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+      var regExp = /^\d{3}\d{3,4}\d{4}$/;
+      var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      var num =  /^[0-9]{3,4}$/;
+      var password = document.getElementById("p_pw");
+      var phonenum = document.getElementById("p_num");
+      var email = document.getElementById("email");
+
+      if((p_pw.value)==""){
+        alert('새 비밀번호를 입력해주세요');
+        return false;
+      }
+      if(!regex.test(p_pw.value)){
+        alert('특수문자 / 문자 / 숫자를 포함한 8~15자리 이내의 비밀번호를 입력해주세요');
+        return false;
+      }
+      if((phonenum.value)==""){
+        alert("전화번호를 입력해주세요");
+        return false;
+      }
+      if(!regExp.test(phonenum.value)){
+        alert("전화번호를 정확하게 입력해주세요");
+        return false;
+      }
+      if((email.value)==""){
+        alert('새 이메일을 입력해주세요');
+        return false;
+    }
+    if((!emailcheck.test(email.value))){
+      alert("올바른 형식의 이메일을 입력해주세요");
+      return false;
+    }
+    }
+    </script>
+
+  @endif
+
 </body>
 <script type="text/javascript">
 var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");

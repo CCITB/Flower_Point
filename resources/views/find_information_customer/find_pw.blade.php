@@ -20,10 +20,10 @@
     </div>
 
     <div class ="find_pw">
-      <form action="/seller_find_pw_controller" method="post" onsubmit="return check_find_pw()">
+      <form action="/customer_find_pw_controller" method="post" onsubmit="return check_find_pw()">
         @csrf
         <div class="intervel"></div>
-        <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="s_id"><br>
+        <input class="find_input" autofocus placeholder="꽃갈피 아이디" name="myid" id="c_id"><br>
         <div class="check_div" id="id_check" value=""></div>
         <div class="under_pw">
           <input class="lg_bt" type="submit" id="btn_submit" value="다음">
@@ -52,18 +52,18 @@ $.ajaxSetup({
 $(document).ready(function(){
   var idJ= /^[a-z0-9_\-]{5,20}$/;
   $("#s_id").blur(function() {
-    if(!idJ.test($("#s_id").val)){
+    if(!idJ.test($("#c_id").val)){
       $('#id_check').text("");
     }
-    else if($("#s_id").val==""){
+    else if($("#c_id").val==""){
       $('#id_check').text("필수 정보입니다.");
       $('#id_check').css('color', 'red');
-      $("#s_id").focus();
+      $("#c_id").focus();
     }
     else{
       $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능합니다.');
       $('#id_check').css('color', 'red');
-      $("#s_id").focus();
+      $("#c_id").focus();
     }
   });
 });
@@ -71,26 +71,26 @@ function check_find_pw(){
   var idJ= /^[a-z0-9_\-]{5,20}$/;
   check;
 
-  if($('#s_id').val()==''){
+  if($('#c_id').val()==''){
     $('#id_check').text("필수 정보입니다.1");
     $('#id_check').css('color', 'red');
-    $("#s_id").focus();
+    $("#c_id").focus();
     return false;
   }
-  if(!idJ.test($('#s_id').val())){
+  if(!idJ.test($('#c_id').val())){
     //2. 정규식 일치X
     $('#id_check').text('5~20자리의 영문 소문자, 숫자와 특수기호 (-),(_)만 사용 가능.');
     $('#id_check').css('color', 'red');
-    $("#s_id").focus();
+    $("#c_id").focus();
     return false;
   }
 
   else{
-    input_id = $('#s_id').val();
+    input_id = $('#c_id').val();
     $.ajax({
 
       type: 'post',
-      url: 'seller_id_check',
+      url: 'customer_id_check',
       dataType: 'json',
       data: { "id": input_id },
 

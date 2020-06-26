@@ -780,7 +780,6 @@ function selectcondition(a){
     $('#i_result3').text(hide);
     $('#i_result4').text(ghi);
     // console.log($('#i_result1').text());
-    console.log('껄껄');
     // console.log(now_productprice);
   }
   $.ajax({

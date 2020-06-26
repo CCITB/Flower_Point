@@ -20,9 +20,9 @@
       <div class ="my_id">
         @csrf
         <div class="intervel"></div>
-        <div class="id_db"> ID :{{$myfindid->s_id}} </div>
+        <div class="id_db"> ID :{{$myfindid->c_id}} </div>
         <div class="under_pw">
-          <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
+            <button class="lg_bt" type="button" onclick="location.href = '/login_customer'" >구매자 로그인</button>
         </div>
       </div>
     @endforeach
