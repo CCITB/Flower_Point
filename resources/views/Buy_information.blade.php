@@ -427,9 +427,8 @@
           $("#content").focus();
           return false;
         }
-      })
-    })
-
+      });
+    });
 
     $.ajaxSetup({
       headers: {
