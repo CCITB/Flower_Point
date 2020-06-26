@@ -299,7 +299,7 @@
                   답변하기
                   <form class="" action="/questionans/{{$qna->q_no}}" method='post'>
                     @csrf
-                    <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80" style="margin-top: 20px;"></textarea>
+                    <textarea placeholder="답변하실 내용을 입력해주세요."name="name" rows="8" cols="80" style="margin-top: 20px;"></textarea>
                     <div class="bottom-btn">
                       <button type="submit" name="button" class="qna-submit-btn">저장</button>
                       <button type="button" name="button" class="qna-submit-cancel-btn" onclick="qna_answer({{$qna->q_no}})">취소</button>
@@ -315,7 +315,7 @@
                     <input class="qna_title" name="qna_title" placeholder="제목">
                     <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
                   </div>
-                  <textarea placeholder="문의하실 내용을 입력해 주세요."name="name" rows="8" cols="80"></textarea>
+                  <textarea placeholder="문의하실 내용을 입력해주세요."name="name" rows="8" cols="80"></textarea>
                   <div class="bottom-btn">
                     <button type="submit" name="button" class="qna-submit-btn">저장</button>
                     <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>

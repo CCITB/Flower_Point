@@ -10,7 +10,7 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img class="ad_img" src="https://lh3.googleusercontent.com/proxy/S7BaRUPKi75C4CY_YQEqRpF8_hgRTmYyNP4TJl2nYDOJ25ty-iNZivf-6sTdO_1iICXgKeu882MJXDjP8DLr4aFQvn6Quzme_y5MY8Iyxar-UgYRgIAjA-JVqFVAPm7HADdG8WIiLr3BGv8ESiWElndNlWiAHrAqOdHYskwyw_jtAcWSAadAfDepWa2IUOVaAy3NAC-PWpqY1MBS_Z0fPD-4x0h9ojR1qCcAZIGQ9qw3gtgExJ0XGOg4ABOQghqbUcMLzNiMzwbDfIwFep3EX9IPi3l4J6-Y" >
+        <img class="ad_img" src="https://cdn.crowdpic.net/list-thumb/thumb_l_63587E14AD0011A959BA28A01591524C.jpg" >
         <div class="text"></div>
       </div>
 
