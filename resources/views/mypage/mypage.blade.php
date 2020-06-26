@@ -32,7 +32,7 @@
     text-align: left;
   }
   div.thcell{
-    padding: 32px 31px 32px;
+    padding: 30px;
     border-right: 1px solid #e5e5e5;
     background: #f9f9f9;
     text-align: left;
@@ -56,7 +56,7 @@
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
             </td>
           </tr>
-          <form action="/modipw" method="post" onsubmit="return checkform()">
+          <form action="/modipw" method="post" onsubmit="return pw_checkform()">
             @csrf
             <tr class="tr1">
               <th class="th1">
@@ -65,7 +65,7 @@
               <td>
                 <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
                 <div id="p_pw" style="display:none;">
-                  <input type="password" name="s_password"  placeholder="새 비밀번호">
+                  <input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                   <button type="submit" name="button">수정완료</button>
                 </div>
               </td>
@@ -79,7 +79,7 @@
             <td>
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
             </td>
-            <form action="/information_controller"  onsubmit="return checkform()" method="post">
+            <form action="/information_controller"  onsubmit="return phonenum_checkform()" method="post">
               @csrf
             </tr>
             <tr class="tr1">
@@ -90,7 +90,7 @@
                 <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
 
                 <div id="p_num" style="display:none;">
-                  <input type="text" name="s_phonenum"  placeholder="새 연락처">
+                  <input type="text" name="new_num" name="new_num" placeholder="새 연락처">
                   <button type="submit" name="button">수정완료</button>
                 </div>
 
@@ -121,7 +121,7 @@
               </td>
             </tr>
           </form>
-          <form action="/modiemail"  onsubmit="return checkform()" method="post">
+          <form action="/modiemail"  onsubmit="return email_checkform()" method="post">
             @csrf
 
             <tr class="tr1">
@@ -131,7 +131,7 @@
               <td>
                 <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
                 <div id="email" style="display:none;">
-                  <input type="text" name="s_email"  placeholder="새 이메일">
+                  <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
                   <button type="submit" name="button">수정완료</button>
                 </div>
 
@@ -199,39 +199,45 @@ function show_popup() {
   <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
 
   <script type="text/javascript">
-  function checkform(){
-    var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-    var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-    var regExp = /^\d{3}\d{3,4}\d{4}$/;
-    var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    var num =  /^[0-9]{3,4}$/;
-    var password = document.getElementById("p_pw");
-    var phonenum = document.getElementById("p_num");
-    var email = document.getElementById("email");
+  function pw_checkform(){
+    var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+    var password = document.getElementById("new_pw");
 
-    if((p_pw.value)==""){
-      alert('새 비밀번호를 입력해주세요');
+    if(!regex.test(password.value)){
+      alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
       return false;
     }
-    if(!regex.test(p_pw.value)){
-      alert('특수문자 / 문자 / 숫자를 포함한 8~15자리 이내의 비밀번호를 입력해주세요');
-      return false;
-    }
-    if((phonenum.value)==""){
-      alert("전화번호를 입력해주세요");
-      return false;
-    }
-    if(!regExp.test(phonenum.value)){
-      alert("전화번호를 정확하게 입력해주세요");
-      return false;
-    }
-    if((email.value)==""){
-      alert('새 이메일을 입력해주세요');
-      return false;
-    }
-    if((!emailcheck.test(email.value))){
-      alert("올바른 형식의 이메일을 입력해주세요");
-      return false;
+    else{
+      alert('변경되었습니다');
+      return true;
     }
   }
-</script>
+
+  function phonenum_checkform(){
+    var phonenum = document.getElementById("new_num");
+    var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+
+
+  if(!regExp.test(phonenum.value)){
+    alert("전화번호를 정확하게 입력해주세요");
+    return false;
+  }
+  else{
+    alert("변경되었습니다");
+    return true;
+  }
+  }
+
+  function email_checkform(){
+      var email = document.getElementById("new_email");
+      var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+      if(!emailcheck.test(email.value)){
+        alert("올바른 형식의 이메일을 입력해주세요");
+        return false;
+      }
+      else{
+        alert("변경되었습니다");
+        return true;
+      }
+    }
+  </script>

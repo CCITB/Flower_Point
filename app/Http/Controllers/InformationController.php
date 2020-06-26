@@ -10,14 +10,14 @@ class InformationController extends Controller
 {
   publiC function information(Request $request){
     DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-      's_phonenum'=>$request->input('s_phonenum'),
+      's_phonenum'=>$request->input('new_num'),
     ]);
 
       return redirect('/mypage');
     }
     publiC function c_information(Request $request){
       DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
-        'c_phonenum'=>$request->input('c_phonenum'),
+        'c_phonenum'=>$request->input('new_num'),
       ]);
 
         return redirect('/c_mypage');
@@ -25,7 +25,7 @@ class InformationController extends Controller
 
       publiC function modipw(Request $request){
         DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-          's_password'=>bcrypt($request->input('s_password')),
+          's_password'=>bcrypt($request->input('new_pw')),
         ]);
 
           return redirect('/mypage');
@@ -33,7 +33,7 @@ class InformationController extends Controller
 
         publiC function c_modipw(Request $request){
           DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
-            'c_password'=>bcrypt($request->input('c_password')),
+            'c_password'=>bcrypt($request->input('new_pw')),
           ]);
 
             return redirect('/c_mypage');
@@ -41,7 +41,7 @@ class InformationController extends Controller
 
     publiC function modifyemail(Request $request){
       DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-        's_email'=>$request->input('s_email'),
+        's_email'=>$request->input('new_email'),
       ]);
 
         return redirect('/mypage');
@@ -49,7 +49,7 @@ class InformationController extends Controller
 
       publiC function c_modifyemail(Request $request){
         DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
-          'c_email'=>$request->input('c_email'),
+          'c_email'=>$request->input('new_email'),
         ]);
 
           return redirect('/c_mypage');

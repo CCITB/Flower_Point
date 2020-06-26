@@ -33,7 +33,7 @@
     text-align: left;
   }
   div.thcell{
-    padding: 32px 31px 32px;
+    padding: 30px;
     border-right: 1px solid #e5e5e5;
     background: #f9f9f9;
     text-align: left;
@@ -59,7 +59,7 @@
                   </td>
                 </tr>
 
-                <form action="/c_modipw" method="post">
+                <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
                   @csrf
                   <tr class="tr1">
                     <th class="th1">
@@ -68,8 +68,8 @@
                     <td>
                       <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
                       <div id="p_pw" style="display:none;">
-                        <input type="text" name="c_password"  placeholder="새 비밀번호">
-                        <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                        <input type="text" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
+                        <button type="submit" name="button">수정완료</button>
                       </div>
                     </td>
                   </tr>
@@ -84,7 +84,7 @@
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
                   </td>
                 </tr>
-                <form action="/c_information_controller" method="get">
+                <form action="/c_information_controller" onsubmit="return phonenum_checkform()" method="get">
                   @csrf
                 <tr class="tr1">
                   <th class="th1">
@@ -94,8 +94,8 @@
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
 
                     <div id="p_num" style="display:none;">
-                      <input type="text" id="new_num" name="c_phonenum"  placeholder="새 연락처">
-                      <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                      <input type="text" id="new_num" name="new_num"  placeholder="새 연락처">
+                      <button type="submit" name="button">수정완료</button>
                     </div>
 
 
@@ -126,7 +126,7 @@
                   </td>
                 </tr>
               </form>
-              <form action="/c_modiemail" onsubmit="return checkform()" method="post">
+              <form action="/c_modiemail" onsubmit="return email_checkform()" method="post">
                 @csrf
 
                 <tr class="tr1">
@@ -136,8 +136,8 @@
                   <td>
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
                     <div id="email" style="display:none;">
-                      <input type="text" name="c_email"  placeholder="새 이메일">
-                      <button type="submit" onsubmit="return checkform()" name="button">수정완료</button>
+                      <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
+                      <button type="submit" name="button">수정완료</button>
                     </div>
 
                   </td>
@@ -145,23 +145,40 @@
               </form>
 
 
-              <form action="/c_newaddress"  onsubmit="return checkform()" method="post">
+              <form action="/c_newaddress" method="post">
                 @foreach ($data as $a)
-                  <tr>
-                    <th>주소</th>
-                    <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
+                  <tr class="tr1">
+                    <th class="th1">
+                      <div class="thcell">주소</div>
+                    </th>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit">{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
+                    </td>
                   </tr>
-                  <tr>
-                    <th>우편번호</th>
-                    <td>{{$a->a_post}}</td>
+                  <tr class="tr1">
+                    <th class="th1">
+                      <div class="thcell">우편번호</div>
+                    </th>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit">{{$a->a_post}}</p></div>
+                    </td>
                   </tr>
-                  <tr>
-                    <th>참고항목</th>
-                    <td>{{$a->a_extra}}</td>
+                  <tr class="tr1">
+                    <th class="th1">
+                      <div class="thcell">참고항목</div>
+                    </th>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit">{{$a->a_extra}}</p></div>
+                    </td>
                   </tr>
-                  <tr>
-                    <th>상세주소</th>
-                    <td>{{$a->a_detail}}</td>
+
+                  <tr class="tr1">
+                    <th class="th1">
+                      <div class="thcell">상세주소</div>
+                    </th>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit">{{$a->a_detail}}</p></div>
+                    </td>
                   </tr>
                 </div>
               @endforeach
@@ -262,7 +279,7 @@
       <div class="tablespace3">
         <h4 align="left">나의 주문 현황</h4>
 
-        <table class="myorder">
+        <table class="myorder" table border="0">
           <tr>
             <td>기간별조회</td>
             <td><button class="period">1주일</button></td>
@@ -271,7 +288,8 @@
             <td><input type="date"></td>
             <td><button>조회</button></td>
           </tr>
-          <table border="1" width="100%">
+                  </table>
+          <table class="order" border="1" width="100%">
             <tr>
               <th>주문번호</th>
               <th>상황정보</th>
@@ -301,24 +319,19 @@
               <td></td>
             </tr>
           </table>
-        </table>
-      </div>
-      <div class="tablespace4">
-        <h4 align="left">마일리지</h4>
-        <table class="mileage">
-          <table border="1" width="100%">
-            <tr>
-              <th>쿠폰0장</th>
-              <th>적립금0원</th>
-              <th>사용내역보기</th>
-            </tr>
-          </table>
-        </table>
+
       </div>
       <div class="tablespace5">
         <h4 align="left">나의후기</h4>
-        <table class="myreview">
-          <table border="1" width=100%>
+        <style media="screen">
+          table.order,table.myreview{
+          width: 100%;
+          border: 1px solid #444444;
+          border-collapse: collapse;
+
+        }
+        </style>
+          <table class="myreview" border="1" width=100%>
             <tr>
               <th>상품평</th>
               <th>후기</th>
@@ -344,41 +357,49 @@
         @include('lib.footer')
 
     <script type="text/javascript">
-    function checkform(){
-      var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-      var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-      var regExp = /^\d{3}\d{3,4}\d{4}$/;
-      var emailcheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-      var num =  /^[0-9]{3,4}$/;
-      var password = document.getElementById("p_pw");
-      var phonenum = document.getElementById("p_num");
-      var email = document.getElementById("email");
+    function pw_checkform(){
+      var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+      // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
 
-      if((p_pw.value)==""){
-        alert('새 비밀번호를 입력해주세요');
+
+      // var num =  /^[0-9]{3,4}$/;
+      var password = document.getElementById("new_pw");
+
+      if(!regex.test(password.value)){
+        alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
         return false;
       }
-      if(!regex.test(p_pw.value)){
-        alert('특수문자 / 문자 / 숫자를 포함한 8~15자리 이내의 비밀번호를 입력해주세요');
-        return false;
+      else{
+        alert('변경되었습니다');
+        return true;
       }
-      if((phonenum.value)==""){
-        alert("전화번호를 입력해주세요");
-        return false;
-      }
+    }
+
+    function phonenum_checkform(){
+      var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+      var phonenum = document.getElementById("new_num");
       if(!regExp.test(phonenum.value)){
         alert("전화번호를 정확하게 입력해주세요");
         return false;
       }
-      if((email.value)==""){
-        alert('새 이메일을 입력해주세요');
-        return false;
+      else {
+        alert("변경되었습니다");
+        return true;
+      }
     }
-    if((!emailcheck.test(email.value))){
-      alert("올바른 형식의 이메일을 입력해주세요");
-      return false;
-    }
-    }
+
+    function email_checkform(){
+        var email = document.getElementById("new_email");
+        var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+        if(!emailcheck.test(email.value)){
+          alert("올바른 형식의 이메일을 입력해주세요");
+          return false;
+        }
+        else{
+          alert("변경되었습니다");
+          return true;
+        }
+      }
     </script>
 
   @endif
