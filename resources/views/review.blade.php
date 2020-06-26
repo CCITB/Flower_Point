@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>후기작성</title>
-  <link rel="stylesheet" type="text/css" href="/css/buy_information.css">
+  <link rel="stylesheet" type="text/css" href="/css/review.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
@@ -19,20 +19,27 @@
       </div>
     </div>
 
-    <form action = "{{url('rev')}}" method="post" name="file_up" id="create_form">
+    <form action = "{{url('rev')}}" method="post" name="myrv" id="create_form"  enctype="multipart/form-data">
       @csrf
       <div class="rev_detail">
         <div class="pd_satis">
           <strong class="satis_que">상품은 만족하셨나요?</strong>
           <div class="star_total">
-            <div class="choice_star">
-              <a href="#" class="on" id="st1" onclick="star_text(1)" value=1>★</a>
-              <a href="#" class="on" id="st2" onclick="star_text(2)" value=1>★</a>
-              <a href="#" class="on" id="st3" onclick="star_text(3)" value=1>★</a>
-              <a href="#" class="on" id="st4" onclick="star_text(4)" value=1>★</a>
-              <a href="#" class="on" id="st5" onclick="star_text(5)" value=1>★</a>
+            <div class="choice_star" name="stars">
+              <button name="rate1" class="hi" id="st1" onclick="star_text(1)" value="1">★</button>
+              <button name="rate2" class="hi" id="st2" onclick="star_text(2)" value="2">★</button>
+              <button name="rate3" class="hi" id="st3" onclick="star_text(3)" value="3">★</button>
+              <button name="rate4" class="hi" id="st4" onclick="star_text(4)" value="4">★</button>
+              <button name="rate5" class="hi" id="st5" onclick="star_text(5)" value="5">★</button>
+              <input type="hidden" name="hidden" value="">
+              {{-- <a href="#" class="on" id="st1" onclick="star_text(1)" value="1">★</a>
+              <a href="#" class="on" id="st2" onclick="star_text(2)" value="2">★</a>
+              <a href="#" class="on" id="st3" onclick="star_text(3)" value="2">★</a>
+              <a href="#" class="on" id="st4" onclick="star_text(4)" value="4">★</a>
+              <a href="#" class="on" id="st5" onclick="star_text(5)" value="5">★</a> --}}
+              {{-- <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg"> --}}
             </div>
-            <div class="star_detail" id="st_detail">5점 (최고예요)</div>
+            <br><br><div class="star_detail" id="st_detail">굴개</div>
           </div>
         </div>
 
@@ -76,78 +83,85 @@
   </div>
 
 
-  <script src="//code.jquery.com/jquery-3.3.1.min.js">
-
-  $(document).on("keyup", "input:text[numberonly]", function() {
-    $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-  });
-
-  </script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
 
-  $( ".choice_star a" ).click(function() {
-    $(this).parent().children("a").removeClass("on");
-    $(this).addClass("on").prevAll("a").addClass("on");
+
+  $( ".choice_star button" ).click(function() {
+    $(this).parent().children("button").removeClass("on");
+    $(this).addClass("on").prevAll("button").addClass("on");
     return false;
   });
 
   function star_text(st_nu){
     console.log(st_nu);
 
-    switch (st_nu) {
-      case 1:
-      document.getElementById("st_detail").innerHTML = "1점 (별로예요)";
-      document.getElementById("satis_nu").innerHTML = "1";
-      document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
-      break;
-      case 2:
-      document.getElementById("st_detail").innerHTML = "2점 (그저그래요)";
-      document.getElementById("satis_nu").innerHTML = "2";
-      document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
-      break;
-      case 3:
-      document.getElementById("st_detail").innerHTML = "3점 (괜찮아요)";
-      document.getElementById("satis_nu").innerHTML = "3";
-      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-      break;
-      case 4:
-      document.getElementById("st_detail").innerHTML = "4점 (좋아요)";
-      document.getElementById("satis_nu").innerHTML = "4";
-      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-      break;
-      case 5:
-      document.getElementById("st_detail").innerHTML = "5점 (최고예요)";
-      document.getElementById("satis_nu").innerHTML = "5";
-      document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-      break;
-      default:
-      break;
+    var rate;
+
+    // switch (st_nu) {
+    //   case 1:
+    //   document.getElementById("st_detail").innerHTML = "1점 (별로예요)";
+    //   document.getElementById("satis_nu").innerHTML = "1";
+    //   document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
+    //   break;
+    //   case 2:
+    //   document.getElementById("st_detail").innerHTML = "2점 (그저그래요)";
+    //   document.getElementById("satis_nu").innerHTML = "2";
+    //   document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
+    //   break;
+    //   case 3:
+    //   document.getElementById("st_detail").innerHTML = "3점 (괜찮아요)";
+    //   document.getElementById("satis_nu").innerHTML = "3";
+    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+    //   break;
+    //   case 4:
+    //   document.getElementById("st_detail").innerHTML = "4점 (좋아요)";
+    //   document.getElementById("satis_nu").innerHTML = "4";
+    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+    //   break;
+    //   case 5:
+    //   document.getElementById("st_detail").innerHTML = "5점 (최고예요)";
+    //   document.getElementById("satis_nu").innerHTML = "5";
+    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
+    //   break;
+    //   default:
+    //   break;
+    // }
+    if(st_nu == 1){
+      $('#st_detail').text('1점 (별로예요)');
+      $('#satis_nu').text('1');
+      $('#satis_nu2').text('아쉬웠나요?');
+      rate = 1;
+      document.myrv.hidden.value = rate;
     }
-    // if(st_nu == 1){
-    //   $('#st_detail').text('1점 (별로예요)');
-    //   $('#satis_nu').text('1');
-    //   $('#satis_nu2').text('아쉬웠나요?');
-    // }
-    // if(st_nu == 2){
-    //   $('#st_detail').text('2점 (그저그래요)');
-    //   $('#satis_nu').text('2');
-    //   $('#satis_nu2').text('아쉬웠나요?');
-    // }
-    // if(st_nu == 3){
-    //   $('#st_detail').text('3점 (괜찮아요)');
-    //   $('#satis_nu').text('3');
-    //   $('#satis_nu2').text('좋았나요?');
-    // }
-    // if(st_nu == 4){
-    //   $('#st_detail').text('4점 (좋아요)');
-    //   $('#satis_nu').text('4');
-    //   $('#satis_nu2').text('좋았나요?');
-    // }
-    // if(st_nu == 5){
-    //   $('#st_detail').text('5점 (최고예요)');
-    //   $('#satis_nu').text('5');
-    //   $('#satis_nu2').text('좋았나요?');
-    // }
+    if(st_nu == 2){
+      $('#st_detail').text('2점 (그저그래요)');
+      $('#satis_nu').text('2');
+      $('#satis_nu2').text('아쉬웠나요?');
+      rate = 2;
+      document.myrv.hidden.value = rate;
+    }
+    if(st_nu == 3){
+      $('#st_detail').text('3점 (괜찮아요)');
+      $('#satis_nu').text('3');
+      $('#satis_nu2').text('좋았나요?');
+      rate = 3;
+      document.myrv.hidden.value = rate;
+    }
+    if(st_nu == 4){
+      $('#st_detail').text('4점 (좋아요)');
+      $('#satis_nu').text('4');
+      $('#satis_nu2').text('좋았나요?');
+      rate = 4;
+      document.myrv.hidden.value = rate;
+    }
+    if(st_nu == 5){
+      $('#st_detail').text('5점 (최고예요)');
+      $('#satis_nu').text('5');
+      $('#satis_nu2').text('좋았나요?');
+      rate = 5;
+      document.myrv.hidden.value = rate;
+    }
   }
 
 

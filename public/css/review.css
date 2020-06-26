@@ -1,0 +1,85 @@
+.pd_info {
+  display: flex;
+  width: 100%;
+  height: 100px;
+}
+.rev_thumbnail {
+  width: 30%;
+  background-color: #FFEAEA;
+}
+.rev_pd_name {
+  width: 70%;
+  background-color: #FAE0D4;
+}
+.review_total {
+  text-align: center;
+}
+.pd_satis {
+  width: 100%;
+  border-bottom: 1px solid #FFD8D8;
+  padding: 30px 0;
+}
+.satis_que {
+  font-size: 18px;
+}
+.star_detail {
+  color: red;
+}
+.satis_text {
+  padding: 30px 0;
+}
+.satis_how {
+  font-size: 18px;
+  padding-bottom: 13px;
+}
+textarea {
+  width: 85%;
+  height: 150px;
+  resize: none;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 1.3em;
+}
+.satis_img {
+  padding-top: 10px;
+}
+.img_bt {
+  font-size: 20px;
+}
+.under {
+  height: 50px;
+}
+img
+{
+  width:50px;
+  height:50px;
+  text-align: center;
+}
+.hi{
+  border: none;
+  width: 60px;
+  height:60px;
+  cursor: pointer;
+  background: url( "https://image.flaticon.com/icons/svg/1828/1828884.svg" );
+}
+}
+.on{
+  z-index: 10;
+}
+.choice_star {
+  font-size:0; letter-spacing:-4px;
+}
+.choice_star button{
+  text-align: center;
+  font-size:50px;
+  letter-spacing:0;
+  display:inline-block;
+  color:#ccc;
+  text-decoration:none;
+}
+.choice_star button:first-child {
+  margin-left:0;
+}
+.choice_star button.on {
+  color:#FFE400;
+}
