@@ -278,3 +278,6 @@ Route::post('/basketcount', 'ProductController@basketcount');
 Route::post('/basketcondition', 'ProductController@basketcondition');
 
 Route::post('/questionans/{q_no}','QnAController@question_answer');
+
+Route::get('/Sort_H', 'SortController@Sort_H');
+Route::get('/Sort_L', 'SortController@Sort_L');

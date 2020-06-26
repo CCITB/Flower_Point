@@ -18,8 +18,8 @@
         <h2 class="void-container">전체 상품 보기</h2>
         <div class="price-container">
 
-            <span><a href="#">높은 가격순</a></span>
-            <span><a href="#">낮은 가격순</a></span>
+            <span><a href="/Sort_H">높은 가격순</a></span>
+            <span><a href="/Sort_L">낮은 가격순</a></span>
 
 
         </div>
