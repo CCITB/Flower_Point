@@ -25,7 +25,7 @@
           @foreach ($result_data as $productlist)
           <div class="container-image">
             <div class="image">
-              <div class="image-in">
+              <div class="image-in" url="/product/{{$productlist->p_no}}">
                 <div class="imagewrap" >
                   <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
                 </div>
@@ -61,3 +61,11 @@
   @endif
   </body>
   </html>
+  <script type="text/javascript">
+  $("div.image-in").click(
+    function()
+    {
+      window.location = $(this).attr("url");
+      return false;
+    });
+  </script>

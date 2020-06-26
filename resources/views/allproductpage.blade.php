@@ -32,7 +32,7 @@
       @foreach ($data as $productlist)
         <div class="container-image">
           <div class="image">
-            <div class="image-in" url="/bi/{{$productlist->p_no}}">
+            <div class="image-in" url="/product/{{$productlist->p_no}}">
               <div class="imagewrap" >
                 <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
               </div>
