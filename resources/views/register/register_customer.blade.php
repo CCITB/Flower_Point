@@ -34,7 +34,7 @@
       <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
     <div class="signup">
-      <form action = '/RegisterControllerCustomer' method="post" name="f" onsubmit='return checkIt();'>
+      <form action = '/sms' method="post" name="f" onsubmit='return checkIt();'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="c_id">

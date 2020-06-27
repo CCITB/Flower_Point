@@ -280,4 +280,11 @@ Route::post('/basketcondition', 'ProductController@basketcondition');
 Route::post('/questionans/{q_no}','QnAController@question_answer');
 
 Route::get('/Sort_H', 'SortController@Sort_H');
+
 Route::get('/Sort_L', 'SortController@Sort_L');
+
+Route::get('/sms', 'SMStestController@blade');
+
+Route::get('/help', 'SMStestController@jso');
+
+Route::post('/ad', 'SMSController@SMSsend');
