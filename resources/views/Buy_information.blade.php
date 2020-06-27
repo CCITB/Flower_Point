@@ -61,8 +61,8 @@
             </div>
           </div>
 
-
-          <div class="options">
+          <br><br>
+          <!-- <div class="options">
             <select class="select_option" name="select_option">
               <option value="option 1">옵션 없음</option>
               <option value="option 1">옵션 1</option>
@@ -74,7 +74,7 @@
               <option value="pack 1">포장 1</option>
               <option value="pack 2">포장 2</option>
             </select>
-          </div>
+          </div> -->
 
 
           <div class="pd_pay">
