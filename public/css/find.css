@@ -40,10 +40,11 @@ hr{
 }
 /* --------------- */
 
-.fd_id{
+.fd_email,.fd_id,.fd_phone{
   display: flex;
   flex-wrap: nowrap;
 }
+
 .character{
   width: 10%;
   text-align: right;
@@ -102,17 +103,18 @@ a:hover{
 }
 .find_id {
   padding: 20px;
-  text-align: center;
+
   height: 330px;
 }
-.ip_name{
-  font-size: 1em;
-  margin-bottom:5px;
+.name_size{
+  font-size: 0.8em;
 }
 .under{
   clear: both;
   margin-top: 10px;
+  text-align: center;
 }
+
 /* button{
   background:#476600;
   color:#fff;
@@ -231,4 +233,9 @@ input.btn_e{
 }
 input.inf3{
   margin-bottom:5px;
+}
+input.inf_tel{
+  width : 13%;
+  height: 12%;
+  margin-bottom: 5px;
 }

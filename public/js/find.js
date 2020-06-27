@@ -36,6 +36,25 @@ $(document).ready(function(){
   $("#check").blur(function() {
     verify_re_pw();
   });
+
+  //이메일 인증 클릭시
+  $('#chk_email1').click(function () {
+    //이메일 인증내용이 안보이면 활성화
+    if($("#find_email").css("display") == "none"){
+      $('#find_email').css("display", "block");
+      $('#find_phone').css("display", "none");
+    }
+  });
+
+  //휴대전화 인증 클릭시
+  $('#chk_email2').click(function () {
+    if($("#find_phone").css("display") == "none"){
+      $('#find_phone').css("display", "block");
+      $('#find_email').css("display", "none");
+    }
+  });
+
+
   //********************이름*****************
   function check_name(){
     //input data
