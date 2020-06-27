@@ -66,8 +66,9 @@ class RegisterController extends Controller
     if($sellers<1){
       $s_tel1 = $request->input('s_tel1');
       $s_tel2 = $request->input('s_tel2');
+      $s_tel3 = $request->input('s_tel3');
 
-      $s_tel = $s_tel1.$s_tel2;
+      $s_tel = $s_tel1.'-'.$s_tel2.'-'.$s_tel3;
 
       DB::table('seller')->insert([
         's_id'=>$request->input('s_id'),

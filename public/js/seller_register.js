@@ -50,14 +50,26 @@ $(document).ready(function(){
     check_phonenum();
   });
 
-  $("#btn_email").click(function() {
+  //이메일 인증
+  $("#s_email").blur(function() {
     verify_email();
   });
-  //이메일 확인
-  $("#verify_num").blur(function() {
-    email_check();
-  });//blur
+  // $("#btn_email").click(function() {
+  //   verify_email();
+  // });
+  // //이메일 확인
+  // $("#verify_num").blur(function() {
+  //   email_check();
+  // });//blur
 
+  //phone
+  $("#btn_phone").click(function() {
+    verify_phone();
+  });
+
+  $("#verify_p_num").blur(function() {
+    phone_check();
+  });//blur
 
   //*************************************check******************************************
   function check_id(){
@@ -194,28 +206,80 @@ $(document).ready(function(){
     }
   }
 
-  function check_phonenum(){
-    //seller register의 id input
-    var s_phonenum_val1 = $('#s_tel1').val();
-    var s_phonenum_val2 = $('#s_tel2').val();
+  //*****************전화인증*******************
+  function verify_phone(){
+    //  var email = document.getElementById("s_email");
+    var seller_val1 = $('#s_tel1').val();
+    var seller_val2 = $('#s_tel2').val();
+    var seller_val3 = $('#s_tel3').val();
+
+    var seller_val = seller_val1+'-'+seller_val2+'-'+seller_val3;
+
+    //정규식
     var phone= /^[0-9]+$/;
 
-    //1. 정규식 일치 O
-    if(s_phonenum_val1==""&&phone.test(s_phonenum_val2)){
-      $('#phonenum_check').text('');
-    }
-    //2. 공백
-    else if(s_phonenum_val1==""||s_phonenum_val2==""){
-      $("#phonenum_check").text("필수 정보입니다.");
-      $('#phonenum_check').css('color', 'red');
-    }
-    //3. 정규식 일치 X
-    else{
-      $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
-      $('#phonenum_check').css('color', 'red');
-    }
-  }
+    //1. 공백 X
+    if(seller_val1 != "" && seller_val2 != "" && seller_val3 != ""){
+      //2. 정규식 O
+      if(phone.test(seller_val1)&&phone.test(seller_val2)&&phone.test(seller_val3)){
 
+        $.ajax({
+
+          type: 'post',
+          url: 'sms',
+          async:false,
+          dataType: 'json',
+          data: { "tel": seller_val },
+
+          // //난수
+          success : function(randomNum) {
+            $('#phonenum_check').text("인증번호가 전송되었습니다.");
+            $('#phonenum_check').css('color', 'green');
+            $('#verify_p_num').attr('disabled', false);
+
+            global_random = randomNum;
+            console.log(randomNum);
+          }//success
+          ,error:function(randomNum,status,error){
+            alert("code:"+randomNum.status+"\n"+"message:"+randomNum.responseText+"\n"+"error:"+error);}
+          });
+        }
+        //3. 정규식 X
+        else{
+          $('#phonenum_check').text("알맞는 이메일 유형이 아닙니다.");
+          $('#phonenum_check').css('color', 'red');
+        }
+      } //공백조건식
+
+      //2. 공백 O
+      else{
+        $('#phonenum_check').text("필수 정보입니다.");
+        $('#phonenum_check').css('color', 'red');
+      }
+    }
+    //전화 인증 확인
+    function phone_check(){
+      global_random;
+      //input data
+      var verify = $('#verify_p_num').val();
+      console.log(global_random);
+      console.log(verify);
+
+      //1. 공백 -- 빈칸
+      if(verify == ""){
+        $('#phonenum_check').text("인증이 필요합니다.");
+        $('#phonenum_check').css('color', 'red');
+      }
+      //2. 빈칸 X
+      //랜덤값과 맞을 때
+      else if(global_random==verify){
+        $('#phonenum_check').text("");
+      }
+      else{
+        $('#phonenum_check').text("인증번호를 다시 확인해주세요.");
+        $('#phonenum_check').css('color', 'red');
+      }
+    }
   //*******************생년월일 예외처리 함수***********************
   function checkBirthInput(){
     //input data
@@ -302,28 +366,29 @@ $(document).ready(function(){
     if(!seller_val == ""){
       //2. 정규식 O
       if(verifyJ.test(seller_val)){
+        $('#email_check').text("");
         //일부러 success에 안넣었어요!!!!
-        $('#email_check').text("인증번호가 전송되었습니다.");
-        $('#email_check').css('color', 'green');
-        $('#verify_num').attr('disabled', false);
-
-        $.ajax({
-
-          type: 'post',
-          url: 'mail',
-          async:false,
-          dataType: 'json',
-          data: { "email": seller_val },
-          //random": random },
-
-          // //난수
-          // $randoms = Math.floor(Math.random() * 10000)+1;
-          success : function(randomNum) {
-            global_random = randomNum;
-            console.log(randomNum);
-          }//success
-          ,error : function() { }
-        });
+        // $('#email_check').text("인증번호가 전송되었습니다.");
+        // $('#email_check').css('color', 'green');
+        // $('#verify_num').attr('disabled', false);
+        //
+        // $.ajax({
+        //
+        //   type: 'post',
+        //   url: 'mail',
+        //   async:false,
+        //   dataType: 'json',
+        //   data: { "email": seller_val },
+        //   //random": random },
+        //
+        //   // //난수
+        //   // $randoms = Math.floor(Math.random() * 10000)+1;
+        //   success : function(randomNum) {
+        //     global_random = randomNum;
+        //     console.log(randomNum);
+        //   }//success
+        //   ,error : function() { }
+        // });
       }
       //3. 정규식 X
       else{
@@ -341,24 +406,24 @@ $(document).ready(function(){
 });
 
 //이메일 확인
-function email_check(){
-  //input data
-  var verify = $('#verify_num').val();
-  //1. 공백 -- 빈칸
-  if(verify == ""){
-    $('#email_check').text("인증이 필요합니다.");
-    $('#email_check').css('color', 'red');
-  }
-  //2. 빈칸 X
-  //랜덤값과 맞을 때
-  else if(global_random==verify){
-    $('#email_check').text("");
-  }
-  else{
-    $('#email_check').text("인증번호를 다시 확인해주세요.");
-    $('#email_check').css('color', 'red');
-  }
-}
+// function email_check(){
+//   //input data
+//   var verify = $('#verify_num').val();
+//   //1. 공백 -- 빈칸
+//   if(verify == ""){
+//     $('#email_check').text("인증이 필요합니다.");
+//     $('#email_check').css('color', 'red');
+//   }
+//   //2. 빈칸 X
+//   //랜덤값과 맞을 때
+//   else if(global_random==verify){
+//     $('#email_check').text("");
+//   }
+//   else{
+//     $('#email_check').text("인증번호를 다시 확인해주세요.");
+//     $('#email_check').css('color', 'red');
+//   }
+// }
 
 //**********************<<<<onsubmit>>>>********************
 function checkIt(){
@@ -480,23 +545,40 @@ function checkIt(){
     $("#s_birth_y").focus();
     return false;
   }
-  //-------------------핸드폰
-  if($('#s_tel1').val()==""){
-    $("#phonenum_check").text("필수 정보입니다.");
-    $('#phonenum_check').css('color', 'red');
-    $("#s_tel1").focus();
-    return false;
-  }
-  if($('#s_tel2').val()==""){
+  //-------------------핸드폰 인증
+  if($('#s_tel1').val()=="" || $('#s_tel2').val()==""){
     $("#phonenum_check").text("필수 정보입니다.");
     $('#phonenum_check').css('color', 'red');
     $("#s_tel2").focus();
+    return false;
+  }
+  if($('#s_tel3').val()==""){
+    $("#phonenum_check").text("필수 정보입니다.");
+    $('#phonenum_check').css('color', 'red');
+    $("#s_tel3").focus();
     return false;
   }
   if(!num.test($('#s_tel1').val())||!num.test($('#s_tel2').val())){
     $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
     $('#phonenum_check').css('color', 'red');
     $("#s_tel2").focus();
+    return false;
+  }
+  if(!num.test($('#s_tel3').val())){
+    $('#phonenum_check').text('형식에 맞지 않는 번호입니다.');
+    $('#phonenum_check').css('color', 'red');
+    $("#s_tel3").focus();
+    return false;
+  }
+  //-------------------핸드폰 인증번호 칸
+  if($('#verify_p_num').val() == ""){
+    $('#phonenum_check').text("인증이 필요합니다.");
+    $('#phonenum_check').css('color', 'red');
+    return false;
+  }
+  if(global_random!=$('#verify_p_num').val()){
+    $('#phonenum_check').text("인증번호를 다시 확인해주세요.");
+    $('#phonenum_check').css('color', 'red');
     return false;
   }
   //-------------------이메일
@@ -516,18 +598,18 @@ function checkIt(){
   }
   //-------------------이메일 인증
   //인증 칸 공백
-  if($('#verify_num').val() == ""){
-    $('#email_check').text("인증이 필요합니다.");
-    $('#email_check').css('color', 'red');
-    $("#verify_num").focus();
-    return false;
-  }
-  if(global_random != $('#verify_num').val()){
-    $('#email_check').text("인증번호를 다시 확인해주세요.");
-    $('#email_check').css('color', 'red');
-    $("#verify_num").focus();
-    return false;
-  }
+  // if($('#verify_num').val() == ""){
+  //   $('#email_check').text("인증이 필요합니다.");
+  //   $('#email_check').css('color', 'red');
+  //   $("#verify_num").focus();
+  //   return false;
+  // }
+  // if(global_random != $('#verify_num').val()){
+  //   $('#email_check').text("인증번호를 다시 확인해주세요.");
+  //   $('#email_check').css('color', 'red');
+  //   $("#verify_num").focus();
+  //   return false;
+  // }
   else{
     return true;
   }
