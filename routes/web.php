@@ -51,7 +51,11 @@ Route::post('/RegisterControllerCustomer', 'RegisterController@customer_store');
 Route::get('/mailview', function(){
   return view('emails/mail');
 });
+
+//이메일 인증
 Route::post('/mail', 'MailController@sends');
+//휴대폰 인증
+Route::post('/sms', 'SMSController@SMSsend');
 
 //customer ID 찾기
 Route::get('/customer_find_id', function(){
@@ -282,9 +286,3 @@ Route::post('/questionans/{q_no}','QnAController@question_answer');
 Route::get('/Sort_H', 'SortController@Sort_H');
 
 Route::get('/Sort_L', 'SortController@Sort_L');
-
-Route::get('/sms', 'SMStestController@blade');
-
-Route::get('/help', 'SMStestController@jso');
-
-Route::post('/ad', 'SMSController@SMSsend');

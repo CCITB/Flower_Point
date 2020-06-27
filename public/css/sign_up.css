@@ -164,3 +164,7 @@ input.inf_tel{
 span.current-page{
   color: red;
 }
+.inf_v{
+  width:49%;
+  margin-top : 5px;
+}

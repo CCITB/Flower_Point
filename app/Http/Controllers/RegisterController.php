@@ -26,9 +26,9 @@ class RegisterController extends Controller
     if($customers<1){
       $c_tel1 = $request->input('c_tel1');
       $c_tel2 = $request->input('c_tel2');
-      $c_tel2 = $request->input('c_tel3');
+      $c_tel3 = $request->input('c_tel3');
 
-      $c_tel = $c_tel1.'-'.$c_tel2.'-'.$c_tel2;
+      $c_tel = $c_tel1.'-'.$c_tel2.'-'.$c_tel3;
 
     DB::table('customer')->insert([
       'c_id'=>$request->input('c_id'),

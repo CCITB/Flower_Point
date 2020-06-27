@@ -24,6 +24,7 @@
   <div id="all">
     <div class="text">
       <div class="text">
+
         <span class="id_title"><i>구매자 - 회원가입</i></span>
         <div>
           <span >step1</span>
@@ -84,6 +85,9 @@
         <input type="text" class="inf_tel" id="c_tel2" name="c_tel2"  maxlength="4">
         -
         <input type="text" class="inf_tel" id="c_tel3" name="c_tel3"  maxlength="4">
+
+        <input class="inf_v" type="text" placeholder="인증번호 입력하세요. "id="verify_p_num" name="verify_p_num" disabled="">
+        <input class="btn_e" id="btn_phone" type="button" value="인증번호 전송">
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">생년월일</div>
@@ -134,11 +138,12 @@
         </div>
 
         <div class="sign_name">이메일</div>
-        <input class="inf3" type="email" placeholder="email "id="c_email" name="c_email"  >
-        <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
+        <input class="inf1" type="email" placeholder="email "id="c_email" name="c_email"  >
+        <!-- <input class="btn_e" id="btn_email" type="button" value="인증번호 전송"> -->
         <!--인증번호 기입란-->
-        <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
+        <!-- <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled=""> -->
         <div class="check_div" id="email_check" value=""></div>
+
       </div>
       <!-- <button type="button" style="border-radius:5px; font-s"/> <a href="http://laravel.site/login">돌아가기</a> </button> </td> -->
       <div class="under">
