@@ -34,7 +34,7 @@
       <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
     <div class="signup">
-      <form action = '/sms' method="post" name="f" onsubmit='return checkIt();'>
+      <form action = '/RegisterControllerCustomer' method="post" name="f" onsubmit='return checkIt();'>
         @csrf
         <div class="sign_name">아이디</div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="c_id">
@@ -81,7 +81,9 @@
           <option value="080">080</option>
         </select>
         -
-        <input type="text" class="inf_tel" id="c_tel2" name="c_tel2"  maxlength="12">
+        <input type="text" class="inf_tel" id="c_tel2" name="c_tel2"  maxlength="4">
+        -
+        <input type="text" class="inf_tel" id="c_tel3" name="c_tel3"  maxlength="4">
         <div class="check_div" id="phonenum_check" value=""></div>
 
         <div class="sign_name">생년월일</div>
