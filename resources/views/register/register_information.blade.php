@@ -51,6 +51,7 @@
 
         <input type="hidden" name="s_tel1" value="<?php echo $_POST['s_tel1']?>">
         <input type="hidden" name="s_tel2" value="<?php echo $_POST['s_tel2']?>">
+        <input type="hidden" name="s_tel3" value="<?php echo $_POST['s_tel3']?>">
 
         <div class="paragraph">
           <div class="sign_name">매장 이름</div>

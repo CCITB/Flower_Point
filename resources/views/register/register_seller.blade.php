@@ -108,16 +108,20 @@
           <option value="080">080</option>
         </select>
         -
-        <input type="text" class="inf_tel" id="s_tel2" name="s_tel2"  maxlength="12">
-        <div class="check_div" id="phonenum_check" value=""></div>
+        <input type="text" class="inf_tel" id="s_tel2" name="s_tel2"  maxlength="4">
+        -
+        <input type="text" class="inf_tel" id="s_tel3" name="s_tel3"  maxlength="4">
 
+        <input class="inf_v" type="text" placeholder="인증번호 입력하세요. "id="verify_p_num" name="verify_p_num" disabled="">
+        <input class="btn_e" id="btn_phone" type="button" value="인증번호 전송">
+        <div class="check_div" id="phonenum_check" value=""></div>
         <div class="verify">
           <div class="sign_name">이메일</div>
           <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
-          <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email"  >
-          <input class="btn_e" id="btn_email" type="button" value="인증번호 전송">
+          <input class="inf1" type="email" placeholder="email "id="s_email" name="s_email"  >
+          <!-- <input class="btn_e" id="btn_email" type="button" value="인증번호 전송"> -->
           <!--인증번호 기입란-->
-          <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">
+          <!-- <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled=""> -->
           <div class="check_div" id="email_check" value=""></div>
         </div>
 

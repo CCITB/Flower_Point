@@ -38,8 +38,8 @@ class SMSController extends Controller
       //$sms['returnurl'] = base64_encode($_POST['returnurl']);
 
       //실험시 'Y' 입력
-      //$sms['testflag'] = base64_encode('Y');
-      
+      $sms['testflag'] = base64_encode('Y');
+
       //$sms['destination'] = strtr(base64_encode($_POST['destination']), '+/=', '-,');
 
       //$sms['smsType'] = base64_encode($_POST['smsType']); // LMS일경우 L
