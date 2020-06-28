@@ -19,8 +19,8 @@
           <span class="current-page">step1</span>
           <span>&gt;</span>
           <span >step2</span>
-          </div>
         </div>
+      </div>
       <!--<div class="id_title"><i>이용약관 동의</i></div> <hr>-->
     </div>
 
@@ -365,11 +365,7 @@
           return false;
         }
         if(!check2) {
-<<<<<<< HEAD
-          alert('개인정보 취급방침 약관 안내에 대한 약관에 동의해주세요');
-=======
           alert('개인정보 취급방침 약관 안내에 대한 약관에 동의해주세요.');
->>>>>>> 8ad6be36a2034a4b241f0df9ec468671ad8d5984
           return false;
         }
       }
