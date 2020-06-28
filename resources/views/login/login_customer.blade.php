@@ -76,8 +76,8 @@ $.ajaxSetup({
 
 function jaljomhaja(){
 
-  var login_id= $('#login_id').val();
-  var login_pw= $('#login_pw').val();
+  var login_id= $('#login_id').val(); //html에서 login_id라는 id값을 가진 태그를 가져와서 그태그에 쓰여있는값을 login_id라는 변수로 선언
+  var login_pw= $('#login_pw').val(); //html에서 login_pw라는 id값을 가진 태그를 가져와서 그태그에 쓰여있는값을 login_pw라는 변수로 선언
 
   $.ajax({
 
@@ -85,7 +85,7 @@ function jaljomhaja(){
     url: 'check_login',
     dataType: 'json',
     data:{
-      "input_id" : login_id,
+      "input_id" : login_id,  //input_id는 key값 컨트롤러에서 사용되는 값, login_id는 value값 var login_id로 선언된 값
       "input_pw" : login_pw
     },
 
