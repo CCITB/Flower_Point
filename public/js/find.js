@@ -9,6 +9,7 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
+
   //find_id 이름 입력란
   $("#name").blur(function() {
     check_name();
@@ -48,6 +49,7 @@ $(document).ready(function(){
     if($("#find_email").css("display") == "none"){
       $('#find_email').css("display", "block");
       $('#find_phone').css("display", "none");
+      $('#id_bt').attr("form", "email_form");
     }
   });
 
@@ -56,6 +58,7 @@ $(document).ready(function(){
     if($("#find_phone").css("display") == "none"){
       $('#find_phone').css("display", "block");
       $('#find_email').css("display", "none");
+      $('#id_bt').attr("form", "sms_form");
     }
   });
 
@@ -85,7 +88,7 @@ $(document).ready(function(){
     }
   }
   //*****************find_id 이메일  -- customer *******************
-function verify_email_customer(){
+  function verify_email_customer(){
     var input_name =$('#name1').val();
     var input_email =$('#c_email').val();
     //정규식
@@ -158,7 +161,7 @@ function verify_email_customer(){
     }
   }
 
-function verify_sms_customer(){
+  function verify_sms_customer(){
     var input_name =$('#name2').val();
     var input_tel1 = $('#c_tel1').val();
     var input_tel2 = $('#c_tel2').val();
@@ -368,7 +371,7 @@ function checkfunction_seller(){
   check;
   global_random;
   var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
 
   //--------------------이름
   if($('#name').val() == ""){
@@ -418,64 +421,58 @@ function checkfunction_seller(){
   }
 }
 
-// find id onsubmit -- customer
-function checkfunction_customer(){
+// find id [[email]] onsubmit -- customer
+function check_emailform_customer(){
   check;
   global_random;
   var markJ = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
-
-  //radio가 email에 체크되었을 경우
-  if($(":input:radio[name=chk]:checked").val() == "1"){
-
-      //--------------------이름
-      if($('#name1').val() == ""){
-        $('#name_check1').text("필수 정보입니다.");
-        $('#name_check1').css('color', 'red');
-        $("#name1").focus();
-        return false;
-      }
-      // 공백X 특수기호, 스페이스바 사용
-      if(markJ.test($('#name1').val())){
-        $('#name_check1').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
-        $('#name_check1').css('color', 'red');
-        $("#name1").focus();
-        return false;
-      }
-      //-------------------이메일
-      if($('#c_email').val() == ""){
-        $('#email_check').text("필수 정보입니다.");
-        $('#email_check').css('color', 'red');
-        $("#c_email").focus();
-        return false;
-      }
-
-      if(!verifyJ.test($('#c_email').val())){
-        $('#email_check').text("알맞는 이메일 유형이 아닙니다.cc");
-        $('#email_check').css('color', 'red');
-        $("#c_email").focus();
-        return false;
-      }
-      //-------------------이메일 인증
-      //인증 칸 공백
-      if($('#verify_num').val() == ""){
-        $('#email_check').text("인증이 필요합니다.");
-        $('#email_check').css('color', 'red');
-        $("#verify_num").focus();
-        return false;
-      }
-      if(global_random != $('#verify_num').val()){
-        $('#email_check').text("인증번호를 다시 확인해주세요.");
-        $('#email_check').css('color', 'red');
-        $("#verify_num").focus();
-        return false;
-      }
-      else{
-        alert('이동합니다.');
-        return true;
-      }
+  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
+  //--------------------이름
+  if($('#name1').val() == ""){
+    $('#name_check1').text("필수 정보입니다.");
+    $('#name_check1').css('color', 'red');
+    $("#name1").focus();
+    return false;
+  }
+  // 공백X 특수기호, 스페이스바 사용
+  if(markJ.test($('#name1').val())){
+    $('#name_check1').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
+    $('#name_check1').css('color', 'red');
+    $("#name1").focus();
+    return false;
+  }
+  //-------------------이메일
+  if($('#c_email').val() == ""){
+    $('#email_check').text("필수 정보입니다.");
+    $('#email_check').css('color', 'red');
+    $("#c_email").focus();
+    return false;
   }
 
+  if(!verifyJ.test($('#c_email').val())){
+    $('#email_check').text("알맞는 이메일 유형이 아닙니다.cc");
+    $('#email_check').css('color', 'red');
+    $("#c_email").focus();
+    return false;
+  }
+  //-------------------이메일 인증
+  //인증 칸 공백
+  if($('#verify_num1').val() == ""){
+    $('#email_check').text("인증이 필요합니다.");
+    $('#email_check').css('color', 'red');
+    $("#verify_num1").focus();
+    return false;
+  }
+  if(global_random != $('#verify_num1').val()){
+    $('#email_check').text("인증번호를 다시 확인해주세요.");
+    $('#email_check').css('color', 'red');
+    $("#verify_num1").focus();
+    return false;
+  }
+  else{
+    alert('이동합니다.');
+    return true;
+  }
 }
 
 //********find_pw_way onsubmit button************

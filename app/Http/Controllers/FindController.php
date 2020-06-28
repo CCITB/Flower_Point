@@ -53,7 +53,6 @@ class FindController extends Controller
     //입력한 Email과 일치하는 값을 가진 row 중, 입력한 name과 일치하는 id의 행의 개수.
     //$query_mail = $fd_mail[0]->c_name;
     $query_mail = $fd_mail->where('c_name',$input_name)->pluck('c_id')->count();
-
     //input name과 테이블 상의 email 행의 name이 일치할 경우
     if ( $query_mail > 0 ) {
       return view('find_information_customer.find_check', compact('fd_mail'));

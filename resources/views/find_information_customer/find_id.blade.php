@@ -25,7 +25,8 @@
       <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 회원정보에 등록한 이메일로 인증
         <div class="fd_id" id="find_email" value="a" style="display:block;">
           <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
-          <form action="/customer_email_check" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
+          <form action="/customer_email_check" method="post" name="fin_id" id="email_form" onsubmit="return check_emailform_customer()">
+            @csrf
           <div class="character"> </div>
           <div class="window">
             <div class="name_size">이름</div>
@@ -51,7 +52,8 @@
       <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
         <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
-        <form action="/customer_sms_check" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
+        <form action="/customer_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return checkfunction_customer()">
+          @csrf
           <div class="name_size">이름</div>
           <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name2">
           <div class="check_div" id="name_check2" value=""></div>
@@ -96,7 +98,7 @@
       </div>
 
       <div class="under">
-        <input class="lg_bt" id="id_bt" type="submit" value="찾기">
+        <input class="lg_bt" id="id_bt" type="submit" form="email_form" onchange="form_radio_check()" value="찾기">
       </div>
   </div>
 
