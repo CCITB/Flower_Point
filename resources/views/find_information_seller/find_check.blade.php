@@ -16,11 +16,11 @@
     <div class="text">
       <div class="id_title">My Information</div> <hr>
     </div>
-    @foreach ($fd_mail as $myfindid)
+    @foreach ($query_result as $id)
       <div class ="my_id">
         @csrf
         <div class="intervel"></div>
-        <div class="id_db"> ID :{{$myfindid->s_id}} </div>
+        <div class="id_db"> ID :{{$id}} </div>
         <div class="under_pw">
           <button class="lg_bt" type="button" onclick="location.href = '/login_seller'">판매자 로그인</button>
         </div>

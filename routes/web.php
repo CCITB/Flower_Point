@@ -70,7 +70,7 @@ Route::post('/customer_email_query', 'FindController@customer_email_query');
 //find_id에서 "phone"값으로 id존재유무 확인
 Route::post('/customer_sms_query', 'FindController@customer_sms_query');
 
-//customer PW 찾기
+//------customer PW 찾기------
 Route::get('/customer_find_pw', function(){
   return view('find_information_customer/find_pw');
 });
@@ -93,8 +93,14 @@ Route::get('/seller_find_id', function(){
 });
 //seller ID From값 전송
 Route::post('/seller_find_id', 'FindController@seller_find_id');
+
 //find_id에서 id의 존재유무를 확인하는 ajax
-Route::post('/check_seller_query', 'FindController@check_seller_query');
+Route::post('/seller_email_query', 'FindController@seller_email_query');
+Route::post('/seller_sms_query', 'FindController@seller_sms_query');
+//email인증 id 찾기
+Route::post('/seller_email_check', 'FindController@seller_email_check');
+//sms인증 id 찾기
+Route::post('/seller_sms_check', 'FindController@seller_sms_check');
 
 //seller PW 찾기
 Route::get('/seller_find_pw', function(){
