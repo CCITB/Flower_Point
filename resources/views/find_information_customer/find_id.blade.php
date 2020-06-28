@@ -52,7 +52,7 @@
       <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
         <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
-        <form action="/customer_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return checkfunction_customer()">
+        <form action="/customer_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return check_smsform_customer()">
           @csrf
           <div class="name_size">이름</div>
           <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name2">

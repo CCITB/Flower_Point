@@ -50,12 +50,13 @@ class FindController extends Controller
 
     //input한 email값과 일치하는 DB name 행
     $fd_mail = DB::table('customer')->where('c_email','=',$input_mail)->get();
+    
     //입력한 Email과 일치하는 값을 가진 row 중, 입력한 name과 일치하는 id의 행의 개수.
-    //$query_mail = $fd_mail[0]->c_name;
-    $query_mail = $fd_mail->where('c_name',$input_name)->pluck('c_id')->count();
+    $query_result = $fd_mail->where('c_name',$input_name)->pluck('c_id');
+
     //input name과 테이블 상의 email 행의 name이 일치할 경우
-    if ( $query_mail > 0 ) {
-      return view('find_information_customer.find_check', compact('fd_mail'));
+    if ( $query_result->count() > 0 ) {
+      return view('find_information_customer.find_check', compact('query_result'));
     }
     else{
       return redirect('/find_id');
@@ -73,12 +74,12 @@ class FindController extends Controller
     $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
 
     //input한 phonenumber 값과 일치하는 DB 행
-    $fd_mail = DB::table('customer')->where('c_phonenum','=',$input_tel)->get();
+    $fd_phone = DB::table('customer')->where('c_phonenum','=',$input_tel)->get();
 
-    $query_mail = $fd_mail[0]->c_name;
+    $query_phone = $fd_phone->where('c_name',$input_name)->pluck('c_id')->count();
 
     //input name과 테이블 상의 email 행의 name이 일치할 경우
-    if ( $input_name  == $query_mail) {
+    if ( $query_phone >0 ) {
       return view('find_information_customer.find_check', compact('fd_mail'));
     }
     else{
