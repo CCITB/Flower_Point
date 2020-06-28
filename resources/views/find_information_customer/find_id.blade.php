@@ -13,7 +13,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
-  <!--ID Email, SMS인증 : 어지수-->
+<!--ID Email, SMS인증 : 어지수-->
 <body>
   <div id="all">
     <div class="text">
@@ -23,10 +23,10 @@
     <div class="find_id">
       <!--Email 인증-->
       <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 회원정보에 등록한 이메일로 인증
-        <div class="fd_id" id="find_email" value="a" style="display:block;">
-          <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
-          <form action="/customer_email_check" method="post" name="fin_id" id="email_form" onsubmit="return check_emailform_customer()">
-            @csrf
+      <div class="fd_id" id="find_email" value="a" style="display:block;">
+        <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
+        <form action="/customer_email_check" method="post" name="fin_id" id="email_form" onsubmit="return check_emailform_customer()">
+          @csrf
           <div class="character"> </div>
           <div class="window">
             <div class="name_size">이름</div>
@@ -44,8 +44,8 @@
               <div class="check_div" id="email_check" value=""></div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
 
       <br>
       <!--SMS 인증-->
@@ -100,16 +100,16 @@
       <div class="under">
         <input class="lg_bt" id="id_bt" type="submit" form="email_form" onchange="form_radio_check()" value="찾기">
       </div>
-  </div>
+    </div>
 
 
-  <div class="bottom">
-    <a href="/find_pw">비밀번호 찾기</a>
+    <div class="bottom">
+      <a href="/find_pw">비밀번호 찾기</a>
+    </div>
+    <div class="home">
+      <a href="/">홈으로</a>
+    </div>
   </div>
-  <div class="home">
-    <a href="/">홈으로</a>
-  </div>
-</div>
-<!--*************************<<예외처리 및 클릭 이벤트 : 어지수>>***********************-->
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/js/find.js" charset="utf-8"></script>
+  <!--*************************<<예외처리 및 클릭 이벤트 : 어지수>>***********************-->
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/find.js" charset="utf-8"></script>
