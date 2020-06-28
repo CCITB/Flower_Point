@@ -62,6 +62,7 @@
       @endforeach
     </div>
   </div>
+  {{ $data->links()}}
   @include('lib.footer')
 </body>
 </html>

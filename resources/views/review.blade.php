@@ -31,13 +31,9 @@
               <button name="rate3" class="hi" id="st3" onclick="star_text(3)" value="3">★</button>
               <button name="rate4" class="hi" id="st4" onclick="star_text(4)" value="4">★</button>
               <button name="rate5" class="hi" id="st5" onclick="star_text(5)" value="5">★</button>
-              <input type="hidden" name="hidden" value="">
-              {{-- <a href="#" class="on" id="st1" onclick="star_text(1)" value="1">★</a>
-              <a href="#" class="on" id="st2" onclick="star_text(2)" value="2">★</a>
-              <a href="#" class="on" id="st3" onclick="star_text(3)" value="2">★</a>
-              <a href="#" class="on" id="st4" onclick="star_text(4)" value="4">★</a>
-              <a href="#" class="on" id="st5" onclick="star_text(5)" value="5">★</a> --}}
-              {{-- <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg"> --}}
+              <input type="hidden" id="hidden" name="hidden" value="">
+
+              <!-- <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg"> -->
             </div>
             <br><br><div class="star_detail" id="st_detail">별점을 눌러주세요.</div>
           </div>
@@ -49,19 +45,18 @@
             어떤 점이 <span id="satis_nu2">좋았나요?</span>
           </div>
           <div class="satis_detail">
-            <textarea class="satis_detail_window" name="text" placeholder="후기를 입력해주세요."></textarea>
+            <textarea class="satis_detail_window" id="review_text" name="text" maxlength="250" placeholder="후기를 입력해주세요."></textarea>
+            <br><span class="counter" id="counter">###</span>
           </div>
-          <div class="satis_img">
+          <!-- <div class="satis_img">
             <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
-          </div>
+          </div> -->
         </div>
       </div>
 
       <div class="rev_img">
         <div class="file_upload">
-          {{-- <label for="real-input" class="hid">업로드</label> --}}
           <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="my_img" accept="image/*" >
-          {{-- <input class="file_up" type="file" id="upImgFiles" onChange="uploadImgPreview();" accept="image/*" multiple> --}}
         </div>
         <div class="preview">
           <img src="#" alt="" id="image-session">
@@ -69,15 +64,12 @@
             <!-- 이미지 미리보기 -->
           </div>
         </div>
-        {{-- <div class="thumimg" id="thumbnailImgs"></div> --}}
-        {{-- <input name="files" id="fileupload" type="file" multiple />
-        <div id="fileList"></div> --}}
       </div>
 
 
       <div class="under">
         <input class="rev_bt" type="button" value="취소" onclick="self.close();" />
-        <input class="rev_bt" type='submit' value="확인">
+        <input class="rev_bt" id="sub" type='submit' value="확인">
       </div>
     </form>
   </div>
@@ -86,47 +78,18 @@
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
 
-
+ // 별점 색 on
   $( ".choice_star button" ).click(function() {
     $(this).parent().children("button").removeClass("on");
     $(this).addClass("on").prevAll("button").addClass("on");
     return false;
   });
 
+  // 별점 숫자로 바꾸기
   function star_text(st_nu){
     console.log(st_nu);
 
     var rate;
-
-    // switch (st_nu) {
-    //   case 1:
-    //   document.getElementById("st_detail").innerHTML = "1점 (별로예요)";
-    //   document.getElementById("satis_nu").innerHTML = "1";
-    //   document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
-    //   break;
-    //   case 2:
-    //   document.getElementById("st_detail").innerHTML = "2점 (그저그래요)";
-    //   document.getElementById("satis_nu").innerHTML = "2";
-    //   document.getElementById("satis_nu2").innerHTML = "아쉬웠나요?";
-    //   break;
-    //   case 3:
-    //   document.getElementById("st_detail").innerHTML = "3점 (괜찮아요)";
-    //   document.getElementById("satis_nu").innerHTML = "3";
-    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-    //   break;
-    //   case 4:
-    //   document.getElementById("st_detail").innerHTML = "4점 (좋아요)";
-    //   document.getElementById("satis_nu").innerHTML = "4";
-    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-    //   break;
-    //   case 5:
-    //   document.getElementById("st_detail").innerHTML = "5점 (최고예요)";
-    //   document.getElementById("satis_nu").innerHTML = "5";
-    //   document.getElementById("satis_nu2").innerHTML = "좋았나요?";
-    //   break;
-    //   default:
-    //   break;
-    // }
     if(st_nu == 1){
       $('#st_detail').text('1점 (별로예요)');
       $('#satis_nu').text('1');
@@ -163,6 +126,32 @@
       document.myrv.hidden.value = rate;
     }
   }
+
+  //리뷰 예외처리
+  $(document).ready(function(){
+    $("#sub").click(function(){
+      if($("#hidden").val() == 0){
+        alert("별점을 눌러주세요.");
+        $("#hidden").focus();
+        return false;
+      }
+      if($("#review_text").val().length == 0){
+        alert("본문을 입력하세요.");
+        $("#review_text").focus();
+        return false;
+      }
+    });
+  });
+  $(function() {
+        $('#review_text').keyup(function (e){
+            var content = $(this).val();
+            $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+            $('#counter').html(content.length + '/250');
+        });
+        $('#review_text').keyup();
+  });
+
+
 
 
   function checkFile(el){

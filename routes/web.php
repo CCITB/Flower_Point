@@ -127,6 +127,7 @@ Route::post('/modipw', 'InformationController@modipw');
 
 Route::post('/c_modipw', 'InformationController@c_modipw');
 
+Route::post('/check_login', 'InformationController@check_login');
 
 Route::get('/faq', function () {
   return view('FAQ');
@@ -291,3 +292,17 @@ Route::post('/questionans/{q_no}','QnAController@question_answer');
 Route::get('/Sort_H', 'SortController@Sort_H');
 
 Route::get('/Sort_L', 'SortController@Sort_L');
+
+
+//footer
+Route::get('/terms', function () {
+  return view('lib.terms');
+});
+
+Route::get('/privacy', function () {
+  return view('lib.privacy');
+});
+
+Route::get('inquiries', function () {
+  return view('lib.inquiries');
+});

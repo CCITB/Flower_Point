@@ -132,4 +132,33 @@ else{
   return view('login/login_customer');
 }
 }
+
+publiC function check_login(Request $request){
+  $input_id = $request->get('input_id');
+  $input_pw = $request->get('input_pw');
+
+  if($input_id==""){
+    return response()->json(2);
+  }
+
+  if($input_pw==""){
+    return response()->json(3);
+  }
+
+  if(! auth() ->guard('customer')->attempt(['c_id' => $input_id, 'password' => $input_pw])) {
+    return response()->json(0);
+  }
+
+
+
+  // //input한 name값과 동일한 s_name(이름)을 가진 rows
+  // $login_id = DB::table('customer')->where('c_id',$input_id)->get();
+  //
+  // //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
+  // $login_pw = $login_id->where('c_password','=',$input_pw)->pluck('c_password')->count();
+else{
+  return response()->json(1);
+}
+}
+
 }
