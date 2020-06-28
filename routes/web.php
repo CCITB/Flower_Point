@@ -68,7 +68,7 @@ Route::post('/customer_sms_check', 'FindController@customer_sms_check');
 //find_id에서 "email 값으로" id의 존재유무를 확인하는 ajax
 Route::post('/customer_email_query', 'FindController@customer_email_query');
 //find_id에서 "phone"값으로 id존재유무 확인
-Route::post('/customer_email_query', 'FindController@customer_email_query');
+Route::post('/customer_sms_query', 'FindController@customer_sms_query');
 
 //customer PW 찾기
 Route::get('/customer_find_pw', function(){
