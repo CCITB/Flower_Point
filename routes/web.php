@@ -57,13 +57,18 @@ Route::post('/mail', 'MailController@sends');
 //휴대폰 인증
 Route::post('/sms', 'SMSController@SMSsend');
 
-//customer ID 찾기
+//************* <<< customer ID 찾기 >>> **************
 Route::get('/customer_find_id', function(){
   return view('find_information_customer/find_id');
 });
-Route::post('/customer_find_id', 'FindController@customer_find_id');
-//find_id에서 id의 존재유무를 확인하는 ajax
-Route::post('/check_customer_query', 'FindController@check_customer_query');
+//email인증 id 찾기
+Route::post('/customer_email_check', 'FindController@customer_email_check');
+//sms인증 id 찾기
+Route::post('/customer_sms_check', 'FindController@customer_sms_check');
+//find_id에서 "email 값으로" id의 존재유무를 확인하는 ajax
+Route::post('/customer_email_query', 'FindController@customer_email_query');
+//find_id에서 "phone"값으로 id존재유무 확인
+Route::post('/customer_email_query', 'FindController@customer_email_query');
 
 //customer PW 찾기
 Route::get('/customer_find_pw', function(){

@@ -12,7 +12,7 @@ class FindController extends Controller
 {
   //--------------------------------customer-------------------------------
   //find_id의 ajax에서 id 존재 유무 판단을 위한 함수
-  public function check_customer_query(Request $request){
+  public function customer_email_query(Request $request){
     //name 입력 값
     $input_name = $request->get('input_name');
     $input_email = $request->get('input_email');
@@ -20,19 +20,62 @@ class FindController extends Controller
     //input한 name값과 동일한 s_name(이름)을 가진 rows
     $query_name = DB::table('customer')->where('c_name',$input_name)->get();
     //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
-    $query_email = $query_name->where('c_email',$input_email)->pluck('c_email')->count();
+    $query_email = $query_name->where('c_email',$input_email)->count();
 
     return response()->json($query_email);
   }
-  //customer 아이디 찾기
-  public function customer_find_id(Request $myid)
+  //find_id에서 "phone"값으로 존재유무 판별 -- ajax사용
+  public function customer_sms_query(Request $request){
+    //name 입력 값
+    $input_name = $request->get('input_name');
+    //phone number 입력 값
+    $input_phone_num1 = $request->get('input_tel1');
+    $input_phone_num2 = $request->get('input_tel2');
+    $input_phone_num3 = $request->get('input_tel3');
+    $input_phone_num = $input_phone_num1.'-'.$input_phone_num2.'-'.$input_phone_num3;
+
+    //input한 name값과 동일한 s_name(이름)을 가진 rows
+    $query_name = DB::table('customer')->where('c_name',$input_name)->get();
+    //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
+    $query_phone = $query_name->where('c_phonenum',$input_phone_num)->pluck('c_phonenum')->count();
+
+    return response()->json($query_phone);
+  }
+  //customer 아이디 찾기 --email 인증
+  public function customer_email_check(Request $request)
   {
     //input 값
-    $input_mail = $myid->get('c_email');
-    $input_name = $myid->get('name');
+    $input_mail = $request->get('c_email');
+    $input_name = $request->get('name');
 
     //input한 email값과 일치하는 DB name 행
     $fd_mail = DB::table('customer')->where('c_email','=',$input_mail)->get();
+    //입력한 Email과 일치하는 값을 가진 row 중, 입력한 name과 일치하는 id의 행의 개수.
+    //$query_mail = $fd_mail[0]->c_name;
+    $query_mail = $fd_mail->where('c_name',$input_name)->pluck('c_id')->count();
+
+    //input name과 테이블 상의 email 행의 name이 일치할 경우
+    if ( $query_mail > 0 ) {
+      return view('find_information_customer.find_check', compact('fd_mail'));
+    }
+    else{
+      return redirect('/find_id');
+    }
+  }
+  //customer 아이디 찾기 --sms 인증
+  public function customer_sms_check(Request $request)
+  {
+    //input 값
+    $input_name = $request->get('name');
+    $input_tel1 = $request->get('c_tel1');
+    $input_tel2 = $request->get('c_tel2');
+    $input_tel3 = $request->get('c_tel3');
+
+    $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
+
+    //input한 phonenumber 값과 일치하는 DB 행
+    $fd_mail = DB::table('customer')->where('c_phonenum','=',$input_tel)->get();
+
     $query_mail = $fd_mail[0]->c_name;
 
     //input name과 테이블 상의 email 행의 name이 일치할 경우

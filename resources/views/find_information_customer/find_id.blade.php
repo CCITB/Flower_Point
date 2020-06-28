@@ -3,7 +3,7 @@
   <title>아이디 찾기</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="csrf-token" content="vLop3qMUM8BHnM79G5kDABUmXajGoXpo0hcNXE9Y">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/css/find.css">
@@ -13,19 +13,19 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
+  <!--ID Email, SMS인증 : 어지수-->
 <body>
-
   <div id="all">
     <div class="text">
       <div class="id_title">Find ID</div> <hr>
-      <!-- <div class="text_des">회원정보에 등록한 이메일로 인증</div> -->
     </div>
 
     <div class="find_id">
-      <input type="radio" name="chk" checked="checked" id="chk_email1" value="1"> 회원정보에 등록한 이메일로 인증
+      <!--Email 인증-->
+      <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 회원정보에 등록한 이메일로 인증
         <div class="fd_id" id="find_email" value="a" style="display:block;">
           <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
-          <form action="/customer_find_id" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
+          <form action="/customer_email_check" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
           <div class="character"> </div>
           <div class="window">
             <div class="name_size">이름</div>
@@ -47,10 +47,11 @@
       </form>
 
       <br>
-      <input type="radio" name="chk" id="chk_email2" value="2"> 회원정보에 등록한 휴대전화로 인증
+      <!--SMS 인증-->
+      <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
         <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
-        <form action="/customer_find_id" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
+        <form action="/customer_sms_check" method="post" name="fin_id" onsubmit="return checkfunction_customer()">
           <div class="name_size">이름</div>
           <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name2">
           <div class="check_div" id="name_check2" value=""></div>
