@@ -286,3 +286,17 @@ Route::post('/questionans/{q_no}','QnAController@question_answer');
 Route::get('/Sort_H', 'SortController@Sort_H');
 
 Route::get('/Sort_L', 'SortController@Sort_L');
+
+
+//footer
+Route::get('/terms', function () {
+  return view('lib.terms');
+});
+
+Route::get('/privacy', function () {
+  return view('lib.privacy');
+});
+
+Route::get('inquiries', function () {
+  return view('lib.inquiries');
+});
