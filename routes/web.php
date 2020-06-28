@@ -129,6 +129,8 @@ Route::post('/c_modipw', 'InformationController@c_modipw');
 
 Route::post('/check_login', 'InformationController@check_login');
 
+Route::post('/check_sellerlogin', 'InformationController@check_sellerlogin');
+
 Route::get('/faq', function () {
   return view('FAQ');
 });Route::post('/modiemail', 'InformationController@modifyemail');

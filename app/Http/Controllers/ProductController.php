@@ -103,6 +103,9 @@ class ProductController extends Controller
      ->where('product_no', $pro_no)->paginate(5);
      // return $qnaq;
 
+    // $cno = auth()->user()->c_no;
+    // return $cno;
+
     // return $productinfor;
     // $productdata = DB::table('product')->where('p_no','=',$id)->first();
     // return $productdata;

@@ -248,15 +248,20 @@
             <th>작성자</th>
             <th>작성일</th>
             @if(auth()->guard('seller')->user())
-              <th></th>
+            <th></th>
             @endif
           </tr>
           @foreach ($qnaq as $qna)
             @if(auth()->guard('seller')->user())
               <tr class="qna_q">
-              @else
+            @endif
+
+              @if(auth()->guard('customer')->user())
                 <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                @endif
+              @else
+                <tr onclick="fake()" class="qna_q">
+              @endif
+
                 <td class="qna-index">{{$qna->q_no}}</td>
                 <td class="qna-content">{{$qna->q_title}}</td>
                 <td class="qna-condition">답변완료</td>
@@ -371,9 +376,11 @@
       }
     }
 
+    // 비로그인자가 문의하기 버튼 눌렀을 때
     function fake(){
       alert('로그인이 필요한 서비스입니다.');
     }
+
     function qna_answer(num) {
       // qna_new(1);
       if($("#answer"+num).hasClass("qna_an_show"))
