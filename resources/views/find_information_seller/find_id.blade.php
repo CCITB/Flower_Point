@@ -27,7 +27,7 @@
       <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 회원정보에 등록한 이메일로 인증
         <div class="fd_id" id="find_email" value="a" style="display:block;">
           <div class="massage">* 회원가입시 사용한 이메일 주소와 입력한 이메일이 같아야 인증번호를 받을 수 있습니다. </div>
-          <form action="/seller_email_check" method="post" name="fin_id" id="email_form" onsubmit="return check_emailform_seller()">
+          <form action="/seller_email_check" method="post" name="fin_id" id="email_form" onsubmit="return check_emailform()">
             @csrf
           <div class="character"> </div>
           <div class="window">
@@ -39,7 +39,7 @@
             <div class="verify">
               <div class="name_size">이메일</div>
               <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
-              <input class="inf3" type="email" placeholder="email " id="s_email" name="s_email">
+              <input class="inf3" type="email" placeholder="email " id="input_email" name="input_email">
               <input class="btn_e" id="btn_email_s" type="button" value="인증번호 전송">
               <!--인증번호 기입란-->
               <input class="inf1" type="text" placeholder="인증번호 입력하세요. " id="verify_num1" name="verify_num" disabled="">
@@ -54,14 +54,14 @@
       <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
         <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
-        <form action="/seller_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return check_smsform_seller()">
+        <form action="/seller_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return check_smsform()">
           @csrf
           <div class="name_size">이름</div>
           <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name2">
           <div class="check_div" id="name_check2" value=""></div>
 
           <div class="name_size">연락처</div>
-          <select class="inf_tel" id="s_tel1" name="s_tel1" >
+          <select class="inf_tel" id="input_tel1" name="input_tel1" >
             <option value="010" selected>010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -89,9 +89,9 @@
             <option value="080">080</option>
           </select>
           -
-          <input type="text" class="inf_tel" id="s_tel2" name="s_tel2"  maxlength="4">
+          <input type="text" class="inf_tel" id="input_tel2" name="input_tel2"  maxlength="4">
           -
-          <input type="text" class="inf_tel" id="s_tel3" name="s_tel3"  maxlength="4">
+          <input type="text" class="inf_tel" id="input_tel3" name="input_tel3"  maxlength="4">
           <input class="btn_e" id="btn_phone_s" type="button" value="인증번호 전송">
           <!--인증번호 기입란-->
           <input class="inf1" type="text" placeholder="인증번호 입력하세요. " id="verify_num2" name="verify_num" disabled="">

@@ -35,7 +35,7 @@
               <!--이메일 : 어지수-->
               <div class="sign_name">이메일</div>
               <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
-              <input class="inf3" type="email" placeholder="email "id="s_email" name="s_email"  >
+              <input class="inf3" type="email" placeholder="email "id="input_email" name="input_email"  >
               <input class="btn_e" id="btn_email_way_s" type="button" value="인증번호 전송">
               <!--인증번호 기입란-->
               <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num" name="verify_num" disabled="">

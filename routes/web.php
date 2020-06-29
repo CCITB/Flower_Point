@@ -82,7 +82,8 @@ Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
 
-Route::post('/f_way_customer', 'FindController@customer_f_way');
+Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');
+Route::post('/customer_sms_way', 'FindController@customer_sms_way');
 
 Route::post('/f_reset_customer', 'FindController@customer_f_reset');
 

@@ -41,7 +41,7 @@ class FindController extends Controller
   public function seller_email_check(Request $request)
   {
     //input 값
-    $input_mail = $request->get('s_email');
+    $input_mail = $request->get('input_email');
     $input_name = $request->get('name');
 
     //input한 email값과 일치하는 DB name 행
@@ -62,9 +62,9 @@ class FindController extends Controller
   {
     //input 값
     $input_name = $request->get('name');
-    $input_tel1 = $request->get('s_tel1');
-    $input_tel2 = $request->get('s_tel2');
-    $input_tel3 = $request->get('s_tel3');
+    $input_tel1 = $request->get('input_tel1');
+    $input_tel2 = $request->get('input_tel2');
+    $input_tel3 = $request->get('input_tel3');
 
     $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
 
@@ -113,7 +113,7 @@ class FindController extends Controller
   public function customer_email_check(Request $request)
   {
     //input 값
-    $input_mail = $request->get('c_email');
+    $input_mail = $request->get('input_email');
     $input_name = $request->get('name');
 
     //input한 email값과 일치하는 DB name 행
@@ -135,9 +135,9 @@ class FindController extends Controller
   {
     //input 값
     $input_name = $request->get('name');
-    $input_tel1 = $request->get('c_tel1');
-    $input_tel2 = $request->get('c_tel2');
-    $input_tel3 = $request->get('c_tel3');
+    $input_tel1 = $request->get('input_tel1');
+    $input_tel2 = $request->get('input_tel2');
+    $input_tel3 = $request->get('input_tel3');
 
     $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
 
@@ -154,7 +154,7 @@ class FindController extends Controller
       return redirect('/customer_find_id');
     }
   }
-  //find_pw - jquery
+  //[[find_pw]] 아이디 비교  - jquery
   public function customer_id_check(Request $request)
   {
     //find_pw - jquery
@@ -168,14 +168,19 @@ class FindController extends Controller
     //동일 아이디 확인
     $input_id = trim($_POST['myid']);
 
+    //입력한 id의 no값
     $myinfo = DB::table('customer')->where('c_id','=',$input_id)->get();
-
+    // $myno = $myinfo->pluck('c_no');
+    // $mymail = $myinfo->pluck('c_email');
+    // echo $myno;
+    // echo $mymail;
     $myno = $myinfo[0]->c_no;
     $mymail = $myinfo[0]->c_email;
-
+    $mytel = $myinfo[0]->c_phonenum;
     if (($myinfo->count())>0) {
       return view('find_information_customer.find_pw_way',
       ['mymail'=>$mymail,
+      'mytel'=>$mytel,
       'myno'=>$myno]
     );
   }
@@ -183,17 +188,19 @@ class FindController extends Controller
     return view('find_information_customer.find_pw');
   }
 }
-public function customer_f_way(Request $request)//seller 비밀번호
+//find_way 에서 인증
+public function customer_eamil_way(Request $request)//seller 비밀번호
 {
   //인증된 이메일(가입된 이메일)
   $certified_email = $request->get('hidden_email');
+
   //find_pw 에서 입력한 id의 no값
   $myno = $request->get('hidden_no');
 
   //입력된 이름
   $input_name = $request->input('name');
   //입력된 이메일
-  $input_email = $request->input('c_email');
+  $input_email = $request->input('input_email');
 
   //find_pw에서 입력된 email의 컬럼
   $email = DB::table('customer')->where('c_email','=',$certified_email)->get();
@@ -201,6 +208,36 @@ public function customer_f_way(Request $request)//seller 비밀번호
 
   //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
   if($certified_email == $input_email ){
+    //return redirect('/find_pw_reset');
+    return view('find_information_customer.find_pw_reset', compact('myno'));
+  }
+  else{
+    return redirect('/find_pw_way_customer');
+  }
+}
+public function customer_sms_way(Request $request)//seller 비밀번호
+{
+  //입력한 ID의 Phone (DB상에 실제 존재하는 번호)
+  $certified_tel = $request->get('hidden_tel');
+
+  //find_pw 에서 입력한 id의 no값
+  $myno = $request->get('hidden_no');
+
+  //입력된 이름
+  $input_name = $request->input('name');
+  //입력된 이메일
+  $input_tel1 = $request->input('input_tel1');
+  $input_tel2 = $request->input('input_tel2');
+  $input_tel3 = $request->input('input_tel3');
+  $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
+
+
+  //find_pw에서 입력된 email의 컬럼
+  $email = DB::table('customer')->where('c_email','=',$certified_tel)->get();
+
+
+  //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
+  if($certified_tel == $input_tel ){
     //return redirect('/find_pw_reset');
     return view('find_information_customer.find_pw_reset', compact('myno'));
   }
@@ -219,6 +256,8 @@ public function customer_f_reset(Request $request)
 
     return redirect('/login_customer');
   }
+
+
   //---------------------------------seller--------------------------------
   //find_id의 ajax에서 id 존재 유무 판단을 위한 함수
   public function check_seller_query(Request $request){
