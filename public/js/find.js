@@ -724,7 +724,7 @@ function verify_email_way_c(){
         $.ajax({
 
           type: 'post',
-          url: 'seller_email_query',
+          url: 'customer_email_query',
           async:false,
           dataType: 'json',
           data:{
@@ -888,7 +888,7 @@ function verify_email_way_seller(){
   if(!input_email == ""){
     //2. 정규식 O
     if(verifyJ.test(input_email)){
-      if($('#name1').val() != "" && $('#input_email').val() != ""){
+      if($('#name1').val() != ""){
 
         //입력한 database table상에 name과 email이 동일한값이 존재하는자 검사
         $.ajax({
