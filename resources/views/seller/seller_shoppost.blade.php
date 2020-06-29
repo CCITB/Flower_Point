@@ -76,15 +76,15 @@
         <table>
           <tr>
             <th>배송비</th>
-            <td><input type="text" numberonly="true" name="deliverycharge" value="" maxlength="15" placeholder="0" style="text-align:right;">원</td>
+            <td><input type="text"  name="deliverycharge"  onkeydown="return onlyNumber(event)" value="" maxlength="15" placeholder="0" style="text-align:right;">원</td>
           </tr>
           <tr>
             <th>판매금액</th>
-            <td><input type="text" name="sellingprice" value=""placeholder="0"style="text-align:right;" numberonly="true">원</td>
+            <td><input type="text" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value=""placeholder="0"style="text-align:right;" >원</td>
           </tr>
           <tr>
             <th>적립금</th>
-            <td><input type="text"numberonly="true" name="" value="" style="text-align:right;">원</td>
+            <td><input type="text" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" style="text-align:right;">원</td>
           </tr>
         </table>
       </div>
@@ -159,12 +159,12 @@ function readURL(el) {
 </script>
 <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 <script>
-// 숫자만
-$(document).on("keyup", "input:text[numberonly]", function() {
-  $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-  var regexp = /\B(?=(\d{3})+(?!\d))/g;
-  // $(this).val( $(this).val().toString().replace(regexp, ',') );
-});
+// // 숫자만
+// $(document).on("keyup", "input:text[numberonly]", function() {
+//   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+//   var regexp = /\B(?=(\d{3})+(?!\d))/g;
+//   // $(this).val( $(this).val().toString().replace(regexp, ',') );
+// });
 </script>
 @include('lib.footer')
 </body>
@@ -207,6 +207,23 @@ $("#send-text").submit(); }); //?? 이코드 뭐냐;;//
 //     });
 //   }
 // });
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+    // alert('숫자만 입력 가능합니다.');
+        return false;
+}
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
 </script>
 <!-- <script type="text/javascript">
 if(window.frameElement){

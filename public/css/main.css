@@ -15,7 +15,14 @@ position: relative;
   margin: 0px auto;
   height: 600px;
 }
+.image-in-price{
+padding-top: 10px;
+width: 90%;
+margin: 0 auto;
+font-size: 20px;
+text-align: right;
 
+}
 .container-image{
   float: left;
   width: 33.3%;

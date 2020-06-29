@@ -1119,5 +1119,3 @@ function replaceComma(pStr) {
 }
 
 </script>
-<button type="button" name="button" onclick="autoprice()">확인용</button>
-<button type="button" name="button" onclick="test()">확인용</button>

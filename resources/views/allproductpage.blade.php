@@ -52,8 +52,11 @@
                     </p>
                   </div>
                   <div class="image-in-bottom">
-                    {{strip_tags($productlist->p_contents)}}
+                    {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
                   </div>
+                </div>
+                <div class="image-in-price">
+                  <strong>{{number_format($productlist->p_price)}}원</strong>
                 </div>
               </div>
             </div>
