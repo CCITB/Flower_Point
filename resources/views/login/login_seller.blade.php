@@ -91,7 +91,7 @@ if((b.value)==""){
         $('#login_check').text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
         $('#login_check').css('color', 'red');
         $("#login_id").focus();
-
+        document.getElementById('login_check1').style.display="none";
       }
       else if(data==1){
         location.href="/";

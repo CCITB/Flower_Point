@@ -204,6 +204,7 @@ Route::get('/c_information_controller', 'InformationController@c_information');
 
 Route::post('/c_modiemail', 'InformationController@c_modifyemail');
 
+Route::get('/favorite/{id}', 'ProductController@favorite');
 
 Route::get('/mypage', function(){
     if($sellerinfo = auth()->guard('seller')->user()){

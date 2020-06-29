@@ -33,6 +33,7 @@ class LoginController extends Controller
     return redirect($urlPrevious);
 
     }
+    
     public function logout(Request $logout)
     { //로그아웃 시켜주는 함수
     //   if(!auth()->guard('seller')->logout()){
@@ -43,6 +44,35 @@ class LoginController extends Controller
       auth()->logout();
       session()->flush();
       return redirect($urlPrevious);
+    }
+
+    publiC function check_login(Request $request){
+      $input_id = $request->get('input_id');
+      $input_pw = $request->get('input_pw');
+
+
+
+      if(! auth() ->guard('customer')->attempt(['c_id' => $input_id, 'password' => $input_pw])) {
+        return response()->json(0);
+      }
+
+    else{
+      return response()->json(1);
+    }
+
+    }
+
+    publiC function check_sellerlogin(Request $request){
+        $input_id = $request->get('input_id');  //뷰에서 보내준 input_id라는 key값을 $input_id라는 변수로 선언
+        $input_pw = $request->get('input_pw');
+
+
+    if(! auth() ->guard('seller')->attempt(['s_id' => $input_id, 'password' => $input_pw])) {
+      return response()->json(0); //$input_id와 db테이블의 c_id가 같고 $input_pw와 db테이블의 password가 같지않으면 0을 반환
+    }
+    else{
+      return response()->json(1);
+    }
     }
 
 }
