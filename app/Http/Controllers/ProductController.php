@@ -125,6 +125,22 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
 
+
+  publiC function favorite($id){
+    // $productinfor =  DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
+    // ->select('p_no')->where('p_no','=',$id)->get();
+    $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get();
+      $pro_no = $productinfor[0]->p_no;
+      // return $pro_no;
+    if(auth()->guard('customer')->user()){
+      $c_no = auth()->guard('customer')->user()->c_no;
+    }
+      DB::table('product_favorite')->insert([
+        'customer_no'=>$c_no,
+        'product_no'=>$pro_no]);
+      return redirect()->back();
+  }
+
   // 박소현
   public function pd_qna (Request $qna,$id){
     // return $id;

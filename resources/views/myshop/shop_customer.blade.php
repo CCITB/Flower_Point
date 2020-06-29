@@ -77,9 +77,13 @@
           <div id="introducemodi">{{$shop->st_introduce}}</div>
         </div>
       </form>
+
     </div>
   <div class="wrap4">
+    <form class="" action="/favorite_store/{{$shop->st_no}}" method="get">
     <h3 class="productname">판매물품</h3>
+      <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button>
+          </form>
   </div>
   <div class="wrap5">
     <div class="wrap6">

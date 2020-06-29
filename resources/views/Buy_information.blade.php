@@ -21,13 +21,13 @@
       <!-- 상품정보와 옵션선택 -->
       <div class= "pd_option">
 
-        <form action = '/order' method=''>
 
           <div class="pd_basic">
             <div class="pd_name">{{$protb->p_name}}</div>
             <div class="star">
-              <button class="convenience" type="button">관심매장등록</button>
-              <button class="convenience" type="button">내 상품</button>
+              <form class="favorite" action="/favorite/{{$protb->p_no}}" method="get">
+
+              <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
             </div>
           </div>
 
@@ -36,6 +36,7 @@
 
           <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
             @foreach ($store as $key)
+                      <form action = '/order' method=''>
               <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</a></div>
               <div class="shop_lo"> 가게 주소</div>
             @endforeach
@@ -367,6 +368,9 @@
         @include('lib.footer')
       </body>
       <script>
+      // function alert(){
+      //   alert('내 상품에 추가되었습니다.');
+      // }
       // 상품문의하기 클릭시에 나타나는 input 공간
       function qna_new(num) {
         if($("#qna-inquiry"+num).hasClass("faq_an_show"))
