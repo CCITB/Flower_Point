@@ -36,7 +36,7 @@ $(document).ready(function(){
     verify_sms_seller();
   });
 
-    //<<<find_pw_way>>>
+  //<<<find_pw_way>>> -- customer
   //find_pw에서 email 인증 버튼
   $("#btn_email_way_c").click(function() {
     verify_email_way_c();
@@ -44,6 +44,15 @@ $(document).ready(function(){
   //find_pw에서 sms 인증 버튼
   $("#btn_email_way_s").click(function() {
     verify_email_way_s();
+  });
+  //<<<find_pw_way>>> -- seller
+  //find_pw에서 email 인증 버튼
+  $("#btn_email_way_sel_sms").click(function() {
+    verify_sms_way_seller();
+  });
+  //find_pw에서 sms 인증 버튼
+  $("#btn_email_way_sel_email").click(function() {
+    verify_email_way_seller();
   });
 
   //비밀번호 재설정 (find_pw_reset)
@@ -604,7 +613,7 @@ function check_smsform(){
 }
 
 
-//********find_pw_way sms 인증 button************
+//********find_pw_way sms 인증 button / customer ************
 function verify_email_way_s(){
   var input_name = $('#name2').val();
   var hidden_tel =$('#hidden_tel').val();
@@ -655,6 +664,10 @@ function verify_email_way_s(){
                 success : function(randomNum) {
                   $('#phonenum_check').text("인증번호가 전송되었습니다.");
                   $('#phonenum_check').css('color', 'green');
+                  $('#name2').attr('readonly', true);
+                  $('#input_tel1').attr('readonly', true);
+                  $('#input_tel2').attr('readonly', true);
+                  $('#input_tel3').attr('readonly', true);
                   $('#verify_num2').attr('disabled', false);
                   global_random = randomNum;
                   console.log(randomNum);
@@ -691,7 +704,7 @@ function verify_email_way_s(){
   }
 }
 
-//********find_pw_way email 인증 button************
+//********find_pw_way email 인증 button / customer ************
 function verify_email_way_c(){
   var input_email = $('#input_email').val();
 
@@ -711,7 +724,7 @@ function verify_email_way_c(){
         $.ajax({
 
           type: 'post',
-          url: 'customer_email_query',
+          url: 'seller_email_query',
           async:false,
           dataType: 'json',
           data:{
@@ -723,9 +736,175 @@ function verify_email_way_c(){
             console.log(data);
             if(data>0 && hidden_email==input_email){
 
-              $('#email_check').text("인증번호가 전송되었습니다.");
-              $('#email_check').css('color', 'green');
-              $('#verify_num1').attr('disabled', false);
+              //존재할 경우 email로 인증번호 발송
+              $.ajax({
+
+                type: 'post',
+                url: 'mail',
+                async:false,
+                dataType: 'json',
+                data: { "email": hidden_email },
+
+                success : function(randomNum) {
+                  $('#email_check').text("인증번호가 전송되었습니다.");
+                  $('#email_check').css('color', 'green');
+                  $('#input_email').attr('readonly', true);
+                  $('#name1').attr('readonly', true);
+                  $('#verify_num1').attr('disabled', false);
+                  global_random = randomNum;
+                  console.log(randomNum);
+                }//success
+                ,error : function() { }
+              });
+            }
+
+            if(data<1){
+              $('#verify_num1').attr('disabled', true);
+
+              //존재하지 않을 경우 이메일 발송x
+            }
+          }//success
+          ,error : function() { }
+        });
+      }
+
+    }
+    //3. 정규식 X
+    else{
+      $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
+      $('#email_check').css('color', 'red');
+      $("#input_email").focus();
+    }
+  } //공백조건식
+
+  //2. 공백 O
+  else{
+    $('#email_check').text("필수 정보입니다.");
+    $('#email_check').css('color', 'red');
+    $("#input_email").focus();
+  }
+}
+
+//********find_pw_way sms 인증 button / seller ************
+function verify_sms_way_seller(){
+  var input_name = $('#name2').val();
+  var hidden_tel =$('#hidden_tel').val();
+
+  var input_tel1 =$('#input_tel1').val();
+  var input_tel2 =$('#input_tel2').val();
+  var input_tel3 =$('#input_tel3').val();
+
+  var phoneJ = /^[0-9]+$/;
+
+  var input_tel = input_tel1+'-'+input_tel2+'-'+input_tel3;
+
+
+  //1. 공백 X
+  if(!(input_tel2 == "") && !(input_tel3 == "")){
+    //2. 정규식 O
+    if(phoneJ.test(input_tel2)&&phoneJ.test(input_tel3)){
+      if(input_name != ""){
+
+        //입력한 database table상에 name과 email이 동일한값이 존재하는자 검사
+        $.ajax({
+
+          type: 'post',
+          url: 'seller_sms_query',
+          async:false,
+          dataType: 'json',
+          data:{
+            "input_name" : input_name,
+            "input_tel" : input_tel
+          },
+
+          success : function(data) {
+            check=data;
+            console.log(data);
+            console.log(hidden_tel);
+            console.log(input_tel);
+            if(data>0 && hidden_tel==input_tel){
+
+              //존재할 경우 email로 인증번호 발송
+              $.ajax({
+
+                type: 'post',
+                url: 'sms',
+                async:false,
+                dataType: 'json',
+                data: { "tel": input_tel },
+
+                success : function(randomNum) {
+                  $('#phonenum_check').text("인증번호가 전송되었습니다.");
+                  $('#phonenum_check').css('color', 'green');
+                  $('#verify_num2').attr('disabled', false);+
+                  $('#name2').attr('readonly', true);
+                  $('#input_tel1').attr('readonly', true);
+                  $('#input_tel2').attr('readonly', true);
+                  $('#input_tel3').attr('readonly', true);
+                  global_random = randomNum;
+                  console.log(randomNum);
+                }//success
+                ,error : function() { }
+              });
+            }
+
+
+            if(data<1){
+              $('#verify_num').attr('disabled', true);
+
+              //존재하지 않을 경우 이메일 발송x
+            }
+          }//success
+          ,error : function() { }
+        });
+      }
+
+    }
+    //3. 정규식 X
+    else{
+      $('#email_check').text("알맞는 이메일 유형이 아닙니다.");
+      $('#email_check').css('color', 'red');
+      $("#s_email").focus();
+    }
+  } //공백조건식
+
+  //2. 공백 O
+  else{
+    $('#email_check').text("필수 정보입니다.");
+    $('#email_check').css('color', 'red');
+    $("#s_email").focus();
+  }
+}
+
+//********find_pw_way email 인증 button / seller ************
+function verify_email_way_seller(){
+  var input_name =$('#name1').val();
+  var input_email =$('#input_email').val();
+  var hidden_email =$('#hidden_email').val();
+  //정규식
+  var verifyJ= /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+
+  //1. 공백 X
+  if(!input_email == ""){
+    //2. 정규식 O
+    if(verifyJ.test(input_email)){
+      if($('#name1').val() != "" && $('#input_email').val() != ""){
+
+        //입력한 database table상에 name과 email이 동일한값이 존재하는자 검사
+        $.ajax({
+
+          type: 'post',
+          url: 'seller_email_query',
+          async:false,
+          dataType: 'json',
+          data:{
+            "input_name" : input_name,
+            "input_email" : input_email
+          },
+
+          success : function(data) {
+            console.log(data);
+            if(data>0 && hidden_email==input_email){
 
               //존재할 경우 email로 인증번호 발송
               $.ajax({
@@ -738,6 +917,11 @@ function verify_email_way_c(){
 
                 success : function(randomNum) {
                   global_random = randomNum;
+                  $('#email_check').text("인증번호가 전송되었습니다.");
+                  $('#email_check').css('color', 'green');
+                  $('#verify_num1').attr('disabled', false);
+                  $('#input_email').attr('readonly', true);
+                  $('#name1').attr('readonly', true);
                   console.log(randomNum);
                 }//success
                 ,error : function() { }
