@@ -325,6 +325,11 @@ li{
   margin: 60px 0 30px;
   border-bottom: 2px solid #FFB9B9;
 }
+.status{
+  font-size: 12px;
+  color: #8C8C8C;
+  padding-left: 15px;
+}
 .qna_an{
 display: none;
 }

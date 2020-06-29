@@ -132,6 +132,7 @@ class ProductController extends Controller
     $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
 
     $today = date("Ymd"); //현재날짜 받아옴
+    $state = $_GET['state']; //공개 비공개 여부
 
     if($cinfo = auth()->guard('customer')->user()){
       // return 0;
@@ -153,7 +154,8 @@ class ProductController extends Controller
       'q_contents' => $qna->input('name'),
       'q_date' =>$today,
       'product_no'=>$pro_no,
-      'customer_no'=>$cprimary
+      'customer_no'=>$cprimary,
+      'q_state'=> $state
     ]);
 
 

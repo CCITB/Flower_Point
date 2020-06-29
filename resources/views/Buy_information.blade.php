@@ -61,8 +61,8 @@
             </div>
           </div>
 
-          <br><br>
-          <!-- <div class="options">
+
+          <div class="options">
             <select class="select_option" name="select_option">
               <option value="option 1">옵션 없음</option>
               <option value="option 1">옵션 1</option>
@@ -74,7 +74,7 @@
               <option value="pack 1">포장 1</option>
               <option value="pack 2">포장 2</option>
             </select>
-          </div> -->
+          </div>
 
 
           <div class="pd_pay">
@@ -248,244 +248,275 @@
             <th>작성자</th>
             <th>작성일</th>
             @if(auth()->guard('seller')->user())
-            <th></th>
+              <th></th>
             @endif
           </tr>
           @foreach ($qnaq as $qna)
             @if(auth()->guard('seller')->user())
               <tr class="qna_q">
-            @endif
+              @endif
 
-              @if(auth()->guard('customer')->user())
+              {{-- @if($cno = auth()->guard('customer')->user()->c_no)
+              @if($qna->q_state == '공개')
+              <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+            @else
+            <tr onclick="fake1()" class="qna_q">
+          @endif
+        @endif --}}
+
+        @if(! (auth()->guard('customer')->user()))
+          @if($qna->q_state == '공개')
+            <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+            @else
+              <tr onclick="fake1()" class="qna_q">
+              @endif
+            @elseif($cno = auth()->guard('customer')->user()->c_no)
+              @if($qna->customer_no == $cno)
                 <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-              @else
-                <tr onclick="fake()" class="qna_q">
-              @endif
-
-                <td class="qna-index">{{$qna->q_no}}</td>
-                <td class="qna-content">{{$qna->q_title}}</td>
-                <td class="qna-condition">답변완료</td>
-                <td class="qna-writer">{{$qna->c_name}}</td>
-                <td class="qna-date">{{$qna->q_date}}</td>
-                @if(auth()->guard('seller')->user())
-                  @if(isset($qna->a_no))
-                    <td> <a  style="font-size:10px;" onclick="qna_answer({{$qna->q_no}})">수정하기</a><a> x</a> </td>
+                @elseif($qna->q_state == '공개')
+                  <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+                  @elseif($qna->q_state == '비공개')
+                    <tr onclick="fake1()" class="qna_q">
+                    @endif
                   @else
-                    <td> <a  style="font-size:10px;" onclick="qna_answer({{$qna->q_no}})">답변하기</a> </td>
                   @endif
-                @endif
-              </tr>
-              <tr id="answer{{$qna->q_no}}" class="qna_an">
-                {{-- <td class="qna-block"></td> --}}
-                <td colspan="5" style="text-align:left;"><div style="width:90%; margin:0 auto;">{{$qna->q_contents}}<div></td>
+
+
+
+                  <td class="qna-index">{{$qna->q_no}}</td>
+                  <td class="qna-content">{{$qna->q_title}} <span class="status">{{$qna->q_state}}</span></td>
+                  <td class="qna-condition">답변완료</td>
+                  <td class="qna-writer">{{$qna->c_name}}</td>
+                  <td class="qna-date">{{$qna->q_date}}</td>
+                  @if(auth()->guard('seller')->user())
+                    @if(isset($qna->a_no))
+                      <td> <a  style="font-size:10px;" onclick="qna_answer({{$qna->q_no}})">수정하기</a><a> x</a> </td>
+                    @else
+                      <td> <a  style="font-size:10px;" onclick="qna_answer({{$qna->q_no}})">답변하기</a> </td>
+                    @endif
+                  @endif
                 </tr>
-                @if(isset($qna->a_answer))
-                  <tr id="reply{{$qna->q_no}}" class="qna_an">
-                    <td colspan="5" style="text-align:left;"><div style="width:85%; margin:0 auto;">└ RE : {{$qna->a_answer}}</div></td>
+                <tr id="answer{{$qna->q_no}}" class="qna_an">
+                  {{-- <td class="qna-block"></td> --}}
+                  <td colspan="5" style="text-align:left;"><div style="width:90%; margin:0 auto;">{{$qna->q_contents}}<div></td>
                   </tr>
+                  @if(isset($qna->a_answer))
+                    <tr id="reply{{$qna->q_no}}" class="qna_an">
+                      <td colspan="5" style="text-align:left;"><div style="width:85%; margin:0 auto;">└ RE : {{$qna->a_answer}}</div></td>
+                    </tr>
+                  @else
+                  @endif
+                @endforeach
+              </table>
+              {{ $qnaq ->links()}}
+
+              <div class="qna-product-btn">
+                @if(auth()->guard('customer')->user())
+                  <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+                @elseif(auth()->guard('seller')->user())
+
                 @else
+                  <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
                 @endif
-              @endforeach
-            </table>
-            {{ $qnaq ->links()}}
-
-            <div class="qna-product-btn">
-              @if(auth()->guard('customer')->user())
-                <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
-              @elseif(auth()->guard('seller')->user())
-
+              </div>
+              @if(auth()->guard('seller')->user())
+                @foreach ($qnaq as $qna)
+                  <div id="qna-inquiry{{$qna->q_no}}" class="faq_an">
+                    답변하기
+                    <form class="" action="/questionans/{{$qna->q_no}}" method='post'>
+                      @csrf
+                      <textarea placeholder="답변하실 내용을 입력해주세요."name="name" rows="8" cols="80" style="margin-top: 20px;"></textarea>
+                      <div class="bottom-btn">
+                        <button type="submit" name="button" class="qna-submit-btn">저장</button>
+                        <button type="button" name="button" class="qna-submit-cancel-btn" onclick="qna_answer({{$qna->q_no}})">취소</button>
+                      </div>
+                    </form>
+                  </div>
+                @endforeach
               @else
-                <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
-              @endif
-            </div>
-            @if(auth()->guard('seller')->user())
-              @foreach ($qnaq as $qna)
-                <div id="qna-inquiry{{$qna->q_no}}" class="faq_an">
-                  답변하기
-                  <form class="" action="/questionans/{{$qna->q_no}}" method='post'>
-                    @csrf
-                    <textarea placeholder="답변하실 내용을 입력해주세요."name="name" rows="8" cols="80" style="margin-top: 20px;"></textarea>
+                <div id="qna-inquiry1" class="faq_an">
+                  문의하기
+                  <form class="" action="/pd_qna{{$protb->p_no}}" >
+                    <div class="up">
+                      <input class="qna_title" name="qna_title" id="qna_title" placeholder="제목">
+                      <label><input type="radio" name="state" id="open" value="공개">공개</label>
+                      <label><input type="radio" name="state" id="close" value="비공개">비공개</label>
+                    </div>
+                    <textarea placeholder="문의하실 내용을 입력해주세요."name="name" id="content" rows="8" cols="80"></textarea>
                     <div class="bottom-btn">
-                      <button type="submit" name="button" class="qna-submit-btn">저장</button>
-                      <button type="button" name="button" class="qna-submit-cancel-btn" onclick="qna_answer({{$qna->q_no}})">취소</button>
+                      <button type="submit" name="button" id="sub" class="qna-submit-btn">저장</button>
+                      <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
                     </div>
                   </form>
                 </div>
-              @endforeach
-            @else
-              <div id="qna-inquiry1" class="faq_an">
-                문의하기
-                <form class="" action="/pd_qna{{$protb->p_no}}" >
-                  <div>
-                    <input class="qna_title" name="qna_title" id="qna_title" placeholder="제목">
-                    <input class="qna_pw" name="qna_pw" placeholder="비밀번호">
-                  </div>
-                  <textarea placeholder="문의하실 내용을 입력해주세요."name="name" id="content" rows="8" cols="80"></textarea>
-                  <div class="bottom-btn">
-                    <button type="submit" name="button" id="sub" class="qna-submit-btn">저장</button>
-                    <button type="button" name="button" class="qna-submit-cancel-btn">취소</button>
-                  </div>
-                </form>
-              </div>
-            @endif
+              @endif
 
-          </div>
-          <div class="pd_component">
-            <div class="comp_title">
-              <h3 class="comp_title_detail">
-                <em class="anchor" id="clm"></em>
-                반품/교환정보
-              </h3>
             </div>
-            내용
+            <div class="pd_component">
+              <div class="comp_title">
+                <h3 class="comp_title_detail">
+                  <em class="anchor" id="clm"></em>
+                  반품/교환정보
+                </h3>
+              </div>
+              내용
+            </div>
+
           </div>
-
-        </div>
-      @endforeach
-      @include('lib.footer')
-    </body>
-    <script>
-    // 상품문의하기 클릭시에 나타나는 input 공간
-    function qna_new(num) {
-      if($("#qna-inquiry"+num).hasClass("faq_an_show"))
-      {
-
-        $("#qna-inquiry"+num).removeClass("faq_an_show");
-      }
-      else
-      {
-        $(".faq_an").removeClass("faq_an_show");
-        $("#qna-inquiry"+num).addClass("faq_an_show");
-
-      }
-    }
-
-    //문의하기 클릭
-    function pd_qna(num) {
-
-      if($("#answer"+num).hasClass("qna_an_show"))
-      {
-        $('#reply'+num).removeClass("qna_an_show");
-        $("#answer"+num).removeClass("qna_an_show");
-      }
-      else
-      {
-        $(".qna_an").removeClass("qna_an_show");
-        $("#answer"+num).addClass("qna_an_show");
-        $('#reply'+num).addClass("qna_an_show");
-      }
-    }
-
-    // 비로그인자가 문의하기 버튼 눌렀을 때
-    function fake(){
-      alert('로그인이 필요한 서비스입니다.');
-    }
-
-    function qna_answer(num) {
-      // qna_new(1);
-      if($("#answer"+num).hasClass("qna_an_show"))
-      {
-        $('#reply'+num).removeClass("qna_an_show");
-        $("#answer"+num).removeClass("qna_an_show");
+        @endforeach
+        @include('lib.footer')
+      </body>
+      <script>
+      // 상품문의하기 클릭시에 나타나는 input 공간
+      function qna_new(num) {
         if($("#qna-inquiry"+num).hasClass("faq_an_show"))
         {
+
           $("#qna-inquiry"+num).removeClass("faq_an_show");
         }
         else
         {
           $(".faq_an").removeClass("faq_an_show");
           $("#qna-inquiry"+num).addClass("faq_an_show");
+
         }
       }
-      else
-      {
-        $(".qna_an").removeClass("qna_an_show");
-        $("#answer"+num).addClass("qna_an_show");
-        $('#reply'+num).addClass("qna_an_show");
-        if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+
+      //문의하기 클릭
+      function pd_qna(num) {
+
+        if($("#answer"+num).hasClass("qna_an_show"))
         {
-          $("#qna-inquiry"+num).removeClass("faq_an_show");
+          $('#reply'+num).removeClass("qna_an_show");
+          $("#answer"+num).removeClass("qna_an_show");
         }
         else
         {
-          $(".faq_an").removeClass("faq_an_show");
-          $("#qna-inquiry"+num).addClass("faq_an_show");
+          $(".qna_an").removeClass("qna_an_show");
+          $("#answer"+num).addClass("qna_an_show");
+          $('#reply'+num).addClass("qna_an_show");
         }
       }
 
-
-    }
-
-
-
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript">
-
-    $(document).ready(function(){
-      $("#sub").click(function(){
-        if($("#qna_title").val().length==0){
-          alert("제목을 입력하세요.");
-          $("#qna_title").focus();
-          return false;
-        }
-        if($("#content").val().length==0){
-          alert("내용을 입력하세요.");
-          $("#content").focus();
-          return false;
-        }
-      });
-    });
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      function fake(){
+        alert('로그인이 필요한 서비스입니다.');
       }
-    });
-    var jjim =  {{$protb->p_no}};
 
-    $('#btn1').click(function() {
-      // var id = $("#hidden1").val();
-      console.log(1);
-      $.ajax({
-        type: 'post',
-        url: '/basketstore',
-        dataType: 'json',
-        data: { "id" : jjim },
-        // console.log(jjim);
-        success: function(data) {
-          console.log(data);
-          if(data==1){
-            alert("구매자는 이용할 수 없습니다.");
+      function fake1(){
+        alert('비공개 게시물 입니다.');
+      }
+
+
+      function qna_answer(num) {
+        // qna_new(1);
+        if($("#answer"+num).hasClass("qna_an_show"))
+        {
+          $('#reply'+num).removeClass("qna_an_show");
+          $("#answer"+num).removeClass("qna_an_show");
+          if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+          {
+            $("#qna-inquiry"+num).removeClass("faq_an_show");
+          }
+          else
+          {
+            $(".faq_an").removeClass("faq_an_show");
+            $("#qna-inquiry"+num).addClass("faq_an_show");
+          }
+        }
+        else
+        {
+          $(".qna_an").removeClass("qna_an_show");
+          $("#answer"+num).addClass("qna_an_show");
+          $('#reply'+num).addClass("qna_an_show");
+          if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+          {
+            $("#qna-inquiry"+num).removeClass("faq_an_show");
+          }
+          else
+          {
+            $(".faq_an").removeClass("faq_an_show");
+            $("#qna-inquiry"+num).addClass("faq_an_show");
+          }
+        }
+
+      }
+
+      </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script type="text/javascript">
+
+      $(document).ready(function(){
+        $("#sub").click(function(){
+          if($("#qna_title").val().length==0){
+            alert("제목을 입력하세요.");
+            $("#qna_title").focus();
             return false;
           }
-          if(data==0){
-            var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-            if(logincheck){
-              location.href = "/login_customer"
-            }
-            else{
-              return false;
-            }
+          if($("#content").val().length==0){
+            alert("내용을 입력하세요.");
+            $("#content").focus();
+            return false;
           }
-          else {
-            var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-            if (basketalert) {
-              location.href = "/flowercart"
-            }
-            else {
+        });
+      });
 
-            }
-          }
 
-          console.log(data);
-        },
-        error: function(data) {
-          console.log("error" +data);
-          alert("잘못된 요청입니다.")
+
+      $( ".up input" ).click(function() {
+        var state = $('input:radio[name=state]:checked').val();
+        console.log(state);
+      });
+
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-    });
+      var jjim =  {{$protb->p_no}};
 
-    </script>
-    </html>
+      $('#btn1').click(function() {
+        // var id = $("#hidden1").val();
+        console.log(1);
+        $.ajax({
+          type: 'post',
+          url: '/basketstore',
+          dataType: 'json',
+          data: { "id" : jjim },
+          // console.log(jjim);
+          success: function(data) {
+            console.log(data);
+            if(data==1){
+              alert("구매자는 이용할 수 없습니다.");
+              return false;
+            }
+            if(data==0){
+              var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+              if(logincheck){
+                location.href = "/login_customer"
+              }
+              else{
+                return false;
+              }
+            }
+            else {
+              var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+              if (basketalert) {
+                location.href = "/flowercart"
+              }
+              else {
+
+              }
+            }
+
+            console.log(data);
+          },
+          error: function(data) {
+            console.log("error" +data);
+            alert("잘못된 요청입니다.")
+          }
+        });
+      });
+
+      </script>
+      </html>
