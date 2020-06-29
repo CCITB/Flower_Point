@@ -21,22 +21,31 @@
       <!-- 상품정보와 옵션선택 -->
       <div class= "pd_option">
 
-
+        @if(auth()->guard('customer')->user())
+          <form class="favorite" action="/favorite/{{$protb->p_no}}" method="get">
           <div class="pd_basic">
             <div class="pd_name">{{$protb->p_name}}</div>
             <div class="star">
-              <form class="favorite" action="/favorite/{{$protb->p_no}}" method="get">
-
               <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
             </div>
           </div>
-
-
+        </form>
+        @elseif(auth()->guard('seller')->user())
+          <div class="pd_basic">
+            <div class="pd_name">{{$protb->p_name}}</div>
+          </div>
+        @else
+          <div class="pd_basic">
+            <div class="pd_name">{{$protb->p_name}}</div>
+            <div class="star">
+              <button class="convenience" onclick="alert('로그인 후에 이용해주세요!')" type="submit">내 상품</button>
+            </div>
+          </div>
+        @endif
           <hr class="option_line">
 
           <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
             @foreach ($store as $key)
-                      <form action = '/order' method=''>
               <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</a></div>
               <div class="shop_lo"> 가게 주소</div>
             @endforeach
@@ -92,7 +101,6 @@
             </div>
           </div>
 
-        </form>
       </div>
 
 
