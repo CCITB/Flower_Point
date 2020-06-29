@@ -134,42 +134,40 @@ else{
 }
 
 publiC function check_login(Request $request){
-  $input_id = $request->get('input_id');  //뷰에서 보내준 input_id라는 key값을 $input_id라는 변수로 선언
+  $input_id = $request->get('input_id');
   $input_pw = $request->get('input_pw');
 
-  if($input_id==""){
-    return response()->json(2);
+
+
+  if(! auth() ->guard('customer')->attempt(['c_id' => $input_id, 'password' => $input_pw])) {
+    return response()->json(0);
   }
 
-  if($input_pw==""){
-    return response()->json(3);
-  }
 
-  if(! auth() ->guard('seller')->attempt(['s_id' => $input_id, 'password' => $input_pw])) {
-    return response()->json(0); //$input_id와 db테이블의 c_id가 같고 $input_pw와 db테이블의 password가 같지않으면 0을 반환
-  }
+
+  // //input한 name값과 동일한 s_name(이름)을 가진 rows
+  // $login_id = DB::table('customer')->where('c_id',$input_id)->get();
+  //
+  // //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
+  // $login_pw = $login_id->where('c_password','=',$input_pw)->pluck('c_password')->count();
+else{
+  return response()->json(1);
+}
 }
 
-
-  publiC function check_sellerlogin(Request $request){
+publiC function check_sellerlogin(Request $request){
     $input_id = $request->get('input_id');  //뷰에서 보내준 input_id라는 key값을 $input_id라는 변수로 선언
     $input_pw = $request->get('input_pw');
 
     if($input_id==""){
       return response()->json(2);
     }
-
     if($input_pw==""){
-      return response()->json(3);
-    }
-
-    if(! auth() ->guard('seller')->attempt(['s_id' => $input_id, 'password' => $input_pw])) {
-      return response()->json(0); //$input_id와 db테이블의 c_id가 같고 $input_pw와 db테이블의 password가 같지않으면 0을 반환
-    }
-
-else{
-  return response()->json(1);
-}
+  return response()->json(3);
 }
 
+if(! auth() ->guard('seller')->attempt(['s_id' => $input_id, 'password' => $input_pw])) {
+  return response()->json(0); //$input_id와 db테이블의 c_id가 같고 $input_pw와 db테이블의 password가 같지않으면 0을 반환
+}
+}
 }
