@@ -63,8 +63,27 @@ border: 0;
 .preview-wrap{
 width: 100%;
 height: 202px;
+margin-top: 20px;
 
-
+}
+.input-guide{
+  text-align:center;
+   margin: 20px 0;
+   color:gray;
+}
+table{
+  margin-bottom: 10px;
+}
+td input{
+  height: 21px;
+  padding:3px;
+}
+.input-length{
+  width: 200px;
+}
+.th-css{
+  text-align: left;
+  padding-right: 20px;
 }
 .preview img{
 width: 100%;

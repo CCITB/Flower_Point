@@ -15,6 +15,34 @@
   // browseBtn.addEventListener('click',()=>{
   //   realInput.click();
   // });
+  function postcheck(){
+  if($('#weditor').val()==""){
+    $('#weditor').focus();
+    alert('상품설명을 입력해주세요');
+    return false;
+  }
+  if($('#productname').val()==""){
+    $('#productname').focus();
+    alert('상품명을 입력해주세요');
+    return false;
+  }
+  if($('#real-input').val()==""){
+      $('#real-input').focus();
+    alert('사진을 업로드 해주세요');
+    return false;
+  }
+  if($('#deliverycharge').val()==""){
+    $('#deliverycharge').focus();
+    alert('배송비를 입력해주세요');
+    return false;
+  }
+  if($('#sellingprice').val()==""){
+      $('#sellingprice').focus();
+    alert('상품 가격을 입력해주세요');
+    return false;
+  }
+
+  }
   </script>
 
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -36,14 +64,14 @@
       <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
       <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
     </div> -->
-    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data">
+    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
       @csrf
       <div class="" style="">
         <table>
           <tr>
             <th>상품명</th>
             <td>
-              <input type="text" name="productname" value=""placeholder="상품명..." maxlength="180" class="post-title">
+              <input type="text" name="productname" id="productname" value=""placeholder="상품명..." maxlength="180" class="post-title">
             </td>
           </tr>
         </table>
@@ -72,24 +100,26 @@
 
 
         <!-- </div>사진 업로드 부트스트랩 버튼 -->
-
+        <div class="input-guide" style="" >
+            &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
+        </div>
         <table>
           <tr>
-            <th>배송비</th>
-            <td><input type="text"  name="deliverycharge"  onkeydown="return onlyNumber(event)" value="" maxlength="15" placeholder="0" style="text-align:right;">원</td>
+            <th class="th-css">배송비</th>
+            <td><input type="text" class="input-length" id="deliverycharge" numberonly="true" name="deliverycharge" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" placeholder="0" style="text-align:right;">원</td>
           </tr>
           <tr>
-            <th>판매금액</th>
-            <td><input type="text" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value=""placeholder="0"style="text-align:right;" >원</td>
+            <th class="th-css">판매금액</th>
+            <td><input type="text" class="input-length" id="sellingprice" numberonly="true" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" placeholder="0"style="text-align:right;" >원</td>
           </tr>
           <tr>
-            <th>적립금</th>
-            <td><input type="text" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" style="text-align:right;">원</td>
+            <th class="th-css">적립금</th>
+            <td><input type="text" class="input-length" id="" numberonly="true" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" style="text-align:right;">원</td>
           </tr>
         </table>
       </div>
       <div class="postbutton">
-        <input type="submit" name="" value="저장" id="save">
+        <input type="submit" name="" value="저장" id="save" >
         <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
         <button type="button" name="button" class="Cancellation-btn">취소</button>
       </div>
@@ -159,12 +189,12 @@ function readURL(el) {
 </script>
 <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 <script>
-// // 숫자만
-// $(document).on("keyup", "input:text[numberonly]", function() {
-//   $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-//   var regexp = /\B(?=(\d{3})+(?!\d))/g;
-//   // $(this).val( $(this).val().toString().replace(regexp, ',') );
-// });
+// 숫자만
+$(document).on("keyup", "input:text[numberonly]", function() {
+  $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  $(this).val( $(this).val().toString().replace(regexp, ',') );
+});
 </script>
 @include('lib.footer')
 </body>
@@ -177,8 +207,8 @@ nhn.husky.EZCreator.createInIFrame({
   sSkinURI: "/SmartEditor2Skin.html",
   fCreator: "createSEditor2"
 });
-$("#save").click(function(){ oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
-$("#send-text").submit(); }); //?? 이코드 뭐냐;;//
+// $("#save").click(function(){ oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
+// $("#send-text").submit(); }); //?? 이코드 뭐냐;;//
 
 
 
@@ -210,11 +240,15 @@ $("#send-text").submit(); }); //?? 이코드 뭐냐;;//
 function onlyNumber(event){
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
-        return;
-    else
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ){
+          return;
+    }
+
+    else{
+      return false;
+    }
     // alert('숫자만 입력 가능합니다.');
-        return false;
+
 }
 function removeChar(event) {
     event = event || window.event;
@@ -224,6 +258,7 @@ function removeChar(event) {
     else
         event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
+
 </script>
 <!-- <script type="text/javascript">
 if(window.frameElement){
