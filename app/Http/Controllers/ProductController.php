@@ -66,13 +66,13 @@ class ProductController extends Controller
 
     // $productimage = DB::table('product')->where('store_no','=',$comparison->st_no)-first();
     // return $productimage->p_no;
-
+    // return $request->input('sellingprice');
     $path=$request->file('picture')->store('/','public');
     DB::table('product')->insert([
       'p_name'=>$request->input('productname'),
-      'p_title' => $request->input('deliverycharge'),
+      'p_title' => preg_replace("/[^0-9]/", "",$request->input('deliverycharge')),
       'p_contents' => $request->input('ir1'),
-      'p_price' => $request->input('sellingprice'),
+      'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
       'p_filename' =>$path
     ]);

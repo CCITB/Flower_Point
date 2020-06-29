@@ -48,7 +48,7 @@
           <div class="pd_deliver">
             <div class="pd_deliver1">
               <span class="del_text">배송비</span><br>
-              <span>{{$protb->p_title}}</span>
+              <span>{{number_format($protb->p_title)}}</span>
               <span>원</span>
             </div>
             <div class="pd_deliver2">
