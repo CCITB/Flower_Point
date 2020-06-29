@@ -836,11 +836,11 @@ function verify_sms_way_seller(){
                 success : function(randomNum) {
                   $('#phonenum_check').text("인증번호가 전송되었습니다.");
                   $('#phonenum_check').css('color', 'green');
-                  $('#verify_num2').attr('disabled', false);+
-                  $('#name2').attr('readonly', true);
-                  $('#input_tel1').attr('readonly', true);
-                  $('#input_tel2').attr('readonly', true);
-                  $('#input_tel3').attr('readonly', true);
+                  $('#verify_num2').attr('disabled', false);
+                  // $('#name2').attr('readonly', true);
+                  // $('#input_tel1').attr('readonly', true);
+                  // $('#input_tel2').attr('readonly', true);
+                  // $('#input_tel3').attr('readonly', true);
                   global_random = randomNum;
                   console.log(randomNum);
                 }//success
@@ -920,8 +920,8 @@ function verify_email_way_seller(){
                   $('#email_check').text("인증번호가 전송되었습니다.");
                   $('#email_check').css('color', 'green');
                   $('#verify_num1').attr('disabled', false);
-                  $('#input_email').attr('readonly', true);
-                  $('#name1').attr('readonly', true);
+                  // $('#input_email').attr('readonly', true);
+                  // $('#name1').attr('readonly', true);
                   console.log(randomNum);
                 }//success
                 ,error : function() { }

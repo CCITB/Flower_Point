@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 // << 어지수 >>
 class FindController extends Controller
 {
+  var $input_seller_email;
+  var $input_seller_phone_num;;
+  public function __construct($input_seller_email)
+  {
+    $this->input_seller_email;
+  }
   //--------------------------------customer-------------------------------
   //find_id의 ajax에서 id 존재 유무 판단을 위한 함수
   public function customer_email_query(Request $request){
@@ -189,17 +196,16 @@ public function customer_f_reset(Request $request)
     return redirect('/login_customer');
   }
 
-
   //---------------------------------seller--------------------------------
   public function seller_email_query(Request $request){
     //name 입력 값
     $input_name = $request->get('input_name');
-    $input_email = $request->get('input_email');
+    $input_seller_email = $request->get('input_email');
 
     //input한 name값과 동일한 s_name(이름)을 가진 rows
     $query_name = DB::table('seller')->where('s_name',$input_name)->get();
     //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
-    $query_email = $query_name->where('s_email',$input_email)->count();
+    $query_email = $query_name->where('s_email',$input_seller_email)->count();
 
     return response()->json($query_email);
   }
@@ -208,12 +214,12 @@ public function customer_f_reset(Request $request)
     //name 입력 값
     $input_name = $request->get('input_name');
     //phone number 입력 값
-    $input_phone_num = $request->get('input_tel');
+    $input_seller_phone_num = $request->get('input_tel');
 
     //input한 name값과 동일한 s_name(이름)을 가진 rows
     $query_name = DB::table('seller')->where('s_name',$input_name)->get();
     //input한 name값과 동일한값을 가진 column들 중 input한 email을 가진 column의 수(있으면 1 / 없으면0)
-    $query_phone = $query_name->where('s_phonenum',$input_phone_num)->count();
+    $query_phone = $query_name->where('s_phonenum',$input_seller_phone_num)->count();
 
     return response()->json($query_phone);
   }
@@ -302,15 +308,17 @@ public function seller_eamil_way(Request $request)//seller 비밀번호
   $myno = $request->get('hidden_no');
   //입력된 이름
   //$input_name = $request->input('name');
+
   //입력된 이메일
-  $input_email = $request->input('input_email');
+  // $input_email = $request->input('input_email');
+  $input_seller_email;
 
   //find_pw에서 입력된 email의 컬럼
   $email = DB::table('seller')->where('s_email','=',$certified_email)->get();
 
 
   //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
-  if($certified_email == $input_email ){
+  if($certified_email == $input_seller_email ){
     //return redirect('/find_pw_reset');
     return view('find_information_seller.find_pw_reset', compact('myno'));
   }
@@ -330,18 +338,18 @@ public function seller_sms_way(Request $request)//seller 비밀번호
   //입력된 이름
   // $input_name = $request->input('name');
   //입력된 이메일
-  $input_tel1 = $request->input('input_tel1');
-  $input_tel2 = $request->input('input_tel2');
-  $input_tel3 = $request->input('input_tel3');
-  $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
-
+  // $input_tel1 = $request->input('input_tel1');
+  // $input_tel2 = $request->input('input_tel2');
+  // $input_tel3 = $request->input('input_tel3');
+  // $input_tel = $input_tel1.'-'.$input_tel2.'-'.$input_tel3;
+  $input_seller_phone_num;
 
   //find_pw에서 입력된 email의 컬럼
   $email = DB::table('seller')->where('s_phonenum','=',$certified_tel)->get();
 
 
   //find_pw에서 입력된 id의 email과 find_pw_way에서 입력된 email이 동일할 경우
-  if($certified_tel == $input_tel ){
+  if($certified_tel == $input_seller_phone_num ){
     //return redirect('/find_pw_reset');
     return view('find_information_seller.find_pw_reset', compact('myno'));
   }
