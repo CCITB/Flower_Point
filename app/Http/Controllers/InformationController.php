@@ -111,6 +111,16 @@ publiC function storepage($id){
             return view('myshop/shop_customer', compact('shop','shop_address','product'));
 }
 
+publiC function favorite_store($id){
+  $favorite = DB::table('store')->where('st_no','=',$id)->get();
+  $favorite_store = $favorite[0]->st_no;
+  if(auth()->guard('customer')->user()){
+    $c_no=auth()->guard('customer')->user()->c_no;
+}
+DB::table('store_favorite')->insert(['store_no'=>$favorite_store,
+            'customer_no'=>$c_no]);
+            return redirect()->back();
+}
 publiC function locate(Request $request){
   if($sellerinfo = auth()->guard('seller')->user()){
     $sellerprimary = $sellerinfo->s_no;
