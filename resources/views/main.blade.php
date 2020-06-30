@@ -8,11 +8,11 @@
   <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/header.css">
-
+  <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 </head>
 <body>
   @include('lib.header')
-  @include('advertising')
+  {{-- @include('advertising') --}}
 
   <div class="hr-sect">
     인기상품
@@ -208,7 +208,7 @@
     할인상품
   </div>
   <!-- 상품진열 테이블입니다. -->
-  <div class="container-wrap">
+  {{-- <div class="container-wrap">
     <div class="container-wrapping">
 
       @foreach ($product as $productlist)
@@ -247,20 +247,104 @@
       @endforeach
     </div>
     {{ $product->links()}}
+  </div> --}}
+
+
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    @foreach ($product as $productlist)
+    <div class="swiper-slide">
+
+        <div class="sw_total">
+
+            <div class="image-in" url="/product/{{$productlist->p_no}}">
+              <div class="imgsize" >
+                <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+              </div>
+
+              <div class="image-in-font">
+                <div class="image-in-post">
+                  {{$productlist->p_name}}
+                </div>
+
+                <div class="image-in-container">
+                  <div class="image-in-star">
+                    <p class="star_rating">
+                      <a href="#" class="on">★</a>
+                      <a href="#" class="on">★</a>
+                      <a href="#" class="on">★</a>
+                      <a href="#" class="on">★</a>
+                      <a href="#" class="on">★</a>
+                    </p>
+                  </div>
+
+                  <div class="image-in-bottom">
+                    {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                  </div>
+                </div>
+
+                <div class="image-in-price">
+                  <strong>{{number_format($productlist->p_price)}}원</strong>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+    @endforeach
+
   </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
 
-  <!-- 평점 jQuery -->
-  <script src="//code.jquery.com/jquery-3.3.1.min.js">
 
-  </script>
-  <script>
-  $( ".star_rating a" ).click(function() {
-    $(this).parent().children("a").removeClass("on");
-    $(this).addClass("on").prevAll("a").addClass("on");
-    return false;
-  });
-  </script>
-  @include('lib.footer')
+@include('lib.footer')
+
+
+
+<!-- 평점 jQuery -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script>
+
+// $('.multiple-items').slick({
+//   infinite: true,
+//   slidesToShow: 3,
+//   slidesToScroll: 3
+// });
+
+// var swiper = new Swiper('.swiper-container', {
+//       slidesPerView: 3,
+//       slidesPerColumn: 6,
+//       spaceBetween: 30,
+//       pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true,
+//       },
+//     });
+
+var mySwiper = new Swiper('.swiper-container', {
+  slidesPerView: 4, // 보여지는 슬라이드 수
+  slidesPerGroup: 4, // 넘어가는 한 그룹 당 슬라이드 수
+  spaceBetween: 20, // 슬라이드 간의 거리(px 단위)
+  loop: true, // 슬라이드 무한 반복
+  // centeredSlides: true, // 다음 슬라이드의 모습이 50%만 보입니다.(중앙)
+  navigation: {
+    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+  },
+});
+
+
+$( ".star_rating a" ).click(function() {
+  $(this).parent().children("a").removeClass("on");
+  $(this).addClass("on").prevAll("a").addClass("on");
+  return false;
+});
+</script>
+
 </body>
 </html>
 <script type="text/javascript">
