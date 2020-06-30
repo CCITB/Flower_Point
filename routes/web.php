@@ -129,12 +129,12 @@ Route::post('/login_c', 'LoginController@login_c');
 
 Route::get('/logout', 'LoginController@logout');
 
-Route::post('/information_controller', 'InformationController@information');
+Route::post('information_controller', 'InformationController@information');
 
 //내 주변 꽃집 찾기
 Route::get('/locate1', 'LocateController@locate');
 
-Route::post('/modipw', 'InformationController@modipw');
+Route::post('modipw', 'InformationController@modipw');
 
 Route::post('/c_modipw', 'InformationController@c_modipw');
 
@@ -144,7 +144,7 @@ Route::post('/check_sellerlogin', 'LoginController@check_sellerlogin');
 
 Route::get('/faq', function () {
   return view('FAQ');
-});Route::post('/modiemail', 'InformationController@modifyemail');
+});Route::post('modiemail', 'InformationController@modifyemail');
 
 
 Route::get('/customer_shop', function () {
@@ -162,6 +162,8 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
   Route::get('/sellershoppost', 'ProductController@seller_shoppost');
 });
 
+
+Route::post('store_star/{id}', 'ProductController@store_star');
 
 Route::get('/product/{id}', 'ProductController@productpage');
 
@@ -183,7 +185,7 @@ Route::get('/rev2', function () {
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 
-Route::post('star2', 'ProductController@star2');
+Route::post('star2{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
@@ -196,7 +198,7 @@ Route::get('/sellermyorderlist', function(){
 });
 Route::get('/shopinfo','InformationController@storeinfo');
 
-Route::get('/c_newaddress','InformationController@c_storeinfo');
+Route::post('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
 
 Route::get('/shoppage', 'InformationController@shoppage');
@@ -207,9 +209,9 @@ Route::get('/newaddress', 'InformationController@newaddress');
 
 Route::get('/detail', 'InformationController@detailaddress');
 
-Route::get('/c_information_controller', 'InformationController@c_information');
+Route::post('/c_information_controller', 'InformationController@c_information');
 
-Route::post('/c_modiemail', 'InformationController@c_modifyemail');
+Route::post('c_modiemail', 'InformationController@c_modifyemail');
 
 Route::get('/favorite/{id}', 'ProductController@favorite');
 

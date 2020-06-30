@@ -44,7 +44,7 @@
       <table border="0" table class="table1" >
         @if($customer = auth()->guard('customer')->user())
           <div id="tablewrap">
-            <form class="" action="/star2" method="post">
+            <form class="" action="star2/{{$pro->p_no}}" method="post">
               @csrf
               <table id="shopinfo">
                 <tbody>
@@ -53,30 +53,76 @@
                     <th class="th1">
                       <div class="thcell">
                         <a href="product/{{$pro->p_no}}">
-                        <img src="\imglib\{{$pro->p_filename}}" height="100px" width="100%"alt="꽃">
-                      </a></div>
+                          <img src="\imglib\{{$pro->p_filename}}" height="100px" width="100%"alt="꽃">
+                        </a></div>
                       </th>
                       <td>
                         <a href="product/{{$pro->p_no}}">
-                        <div class="tdcell">{{$pro->p_name}}<p class="contxt.tit"></p>
-                        </a></div>
-                      </td>
-                      <td>
-                        <div class="tdcell">{{$pro->p_price}}<p class="contxt.tit"></p></div>
-                      </td>
-                      <td>
-                        <div class="tdcell"><p class="contxt.tit"><a href="{{$pro->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
-                      </td>
-                    </tr>
-                  </div>
-                </table>
-              </form>
-            </tbody>
-          @endif
+                          <div class="tdcell">{{$pro->p_name}}<p class="contxt.tit"></p>
+                          </a></div>
+                        </td>
+                        <td>
+                          <div class="tdcell">{{$pro->p_price}}<p class="contxt.tit"></p></div>
+                        </td>
+                        <td>
+                          <div class="tdcell"><p class="contxt.tit"><a href="{{$pro->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
+                        </td>
+                      @endif
+                    @endforeach
+                  </tr>
+                </div>
+              </table>
+            </form>
+          </tbody>
         </table>
       </div>
-    @endforeach
+
+      <div class="menu4">
+        <h3 align="center">즐겨찾기 꽃집</h3>
+        <hr align="left" class="one">
+      </hr>
+    </div>
+    <div class="privacy">
+      @foreach ($pro2 as $pro2)
+        <table border="0" table class="table1" >
+          @if($customer = auth()->guard('customer')->user())
+            <div id="tablewrap">
+              <form class="" action="store_star/{{$pro2->st_no}}" method="post">
+                @csrf
+                <table id="shopinfo">
+                  <tbody>
+                    <tr class="tr1">
+
+                      <th class="th1">
+                        <div class="thcell">
+                          <a href="store/{{$pro2->st_no}}">
+                          <img src="\imglib\" height="100px" width="100%"alt="꽃">
+                        </a></div>
+                      </th>
+                      <td>
+                        <a href="store/{{$pro2->st_no}}">
+                        <div class="tdcell">{{$pro2->st_name}}<p class="contxt.tit"></p>
+                      </a></div>
+                    </td>
+                    <td>
+                      <div class="tdcell">{{$pro2->st_tel}}<p class="contxt.tit"></p></div>
+                    </td>
+                    <td>
+                      <div class="tdcell"><p class="contxt.tit"><a href="{{$pro2->st_no}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
+                    </td>
+                  @endif
+                @endforeach
+              </tr>
+            </div>
+          </table>
+        </form>
+      </tbody>
+
+    </table>
   </div>
-  @include('lib.footer')
+
+
+</div>
+@include('lib.footer')
 </body>
 </html>

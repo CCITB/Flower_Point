@@ -80,7 +80,7 @@
 
     </div>
   <div class="wrap4">
-    <form class="" action="/favorite_store/{{$shop->st_no}}" method="get">
+    <form class="" action="/favorite_store/{{$shop->st_name}}" method="get">
     <h3 class="productname">판매물품</h3>
       <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button>
           </form>

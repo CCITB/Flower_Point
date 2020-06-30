@@ -124,7 +124,7 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
 
-
+//즐겨찾기 중복막기 코드
   publiC function favorite($id){
 
     $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
@@ -148,24 +148,38 @@ class ProductController extends Controller
 }
 }
 
+//customer 즐겨찾기 화면
 public function star(Request $request){
   if(auth()->guard('customer')->user()){
     $c_no = auth()->guard('customer')->user()->c_no;
   }
   $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
   ->select('*')->where('customer_no','=',$c_no)->get();
-  // $pro3 = $pro -> select('*') -> where($pro[0]->customer_no,'=',$pro2[0]->customer_no);
-  // $pro2 = $pro[0] -> where($c_no => $pro->customer_no);
-  return view('star', compact('pro'));
+
+  $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
+  ->select('*')->where('customer_no','=',$c_no)->get();
+    return view('star', compact('pro','pro2'));
 }
 
-public function star2(Request $request){
+//내상품 삭제코드
+public function star2($id){
   if(auth()->guard('customer')->user()){
     $c_no = auth()->guard('customer')->user()->c_no;
   }
-  $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
-  ->select('*')->where('customer_no','=',$c_no)->get();
-  
+
+  $productinfor = DB::table('product')->select('*')->where('p_no','=',$id)->get();
+  $delete = DB::table('product_favorite')->where('product_no','=',$productinfor[0]->p_no)->delete();
+  return redirect()->back();
+}
+
+//꽃집 즐겨찾기 삭제코드
+public function store_star($id){
+  if(auth()->guard('customer')->user()){
+    $c_no = auth()->guard('customer')->user()->c_no;
+  }
+
+  $storeinfor = DB::table('store')->select('*')->where('st_no','=',$id)->get();
+  $delete = DB::table('store_favorite')->where('store_no','=',$storeinfor[0]->st_no)->delete();
   return redirect()->back();
 }
 
