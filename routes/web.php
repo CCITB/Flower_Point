@@ -187,7 +187,7 @@ Route::post('star2', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
-Route::get('/order/{getid}', 'PaymentController@payment');
+Route::get('/order/{name?}', 'PaymentController@payment');
 
 Route::get('/complete', 'PaymentController@paymentcomplete');
 

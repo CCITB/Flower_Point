@@ -41,7 +41,7 @@
             <table class="customerinfo" cellpadding="5" cellspacing="5" width: 100%>
               <tr>
                 <th>주문고객</th>
-                <td>c_name(c_phonenum)</td>
+                <td>{{$user->c_name}}({{$user->c_phonenum}})</td>
               </tr>
             </table>
           </div>
@@ -91,9 +91,9 @@
                 <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" class="delivery_tel">
               </div>
               <div id="trade0">
-              <input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
-              <input type="radio" name="trade" id="trade2" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
-            </div>
+                <input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
+                <input type="radio" name="trade" id="trade2" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금
+              </div>
               <div id="divshow" style="display:none;">
                 <div class="delivery_wrap">
                   <strong class="info">주 소</strong>
@@ -113,181 +113,183 @@
                 <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
 
 
-              <!--결제창-->
-              <div class="pay_data">
-                <table cellpadding="5" cellspacing="5" width="100%">
-                  <label>무통장 입금</label>
-                  <th><li>은행 선택</li></th>
-                  <td>
-                    <select id="bank" name=bank margin-left:10px;>
-                      <option value="">은행을 선택해주세요</option>
-                      <option value="농협">농협</option>
-                      <option value="국민은행">국민은행</option>
-                      <option value="우리은행">우리은행</option>
-                      <option value="하나은행">하나은행</option>
-                      <option value="신한은행">신한은행</option>
-                      <option value="외한은행">외한은행</option>
-                      <option value="씨티은행">씨티은행</option>
-                      <option value="기업은행">기업은행</option>
-                      <option value="우체국">우체국</option>
-                      <option value="부산은행">부산은행</option>
-                      <option value="SC은행">SC은행</option>
-                    </select>
-                  </td>
-                </table>
+                <!--결제창-->
+                <div class="pay_data">
+                  <table cellpadding="5" cellspacing="5" width="100%">
+                    <label>무통장 입금</label>
+                    <th><li>은행 선택</li></th>
+                    <td>
+                      <select id="bank" name=bank margin-left:10px;>
+                        <option value="">은행을 선택해주세요</option>
+                        <option value="농협">농협</option>
+                        <option value="국민은행">국민은행</option>
+                        <option value="우리은행">우리은행</option>
+                        <option value="하나은행">하나은행</option>
+                        <option value="신한은행">신한은행</option>
+                        <option value="외한은행">외한은행</option>
+                        <option value="씨티은행">씨티은행</option>
+                        <option value="기업은행">기업은행</option>
+                        <option value="우체국">우체국</option>
+                        <option value="부산은행">부산은행</option>
+                        <option value="SC은행">SC은행</option>
+                      </select>
+                    </td>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-          <!--상품 정보창-->
-          <div class="product_data">
-            <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-            <table cellpadding="10" cellspacing="10" width="300px">
-              <tr>
-                <td rowspan="2"><img class="product_image" src="dummy.jpg" alt="Flower Image" width="100px" height="100px"></td>
-                <td>상품명 : p_name</td>
-              </tr>
-              <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
-            </table>
-          </div>
-        </div>
-        <!--주문창-->
-        <div class="orderbox">
-          <div class="paybox">
-            <div class="orderinfo">
-              주문정보
+            <!--상품 정보창-->
+            @foreach ($data as $key => $value)
+              <div class="product_data">
+                <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                <table cellpadding="10" cellspacing="10" width="300px">
+                  <tr>
+                    <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
+                    <td>{{$value[0]->b_name}}</td>
+                  </tr>
+                  <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
+                </table>
+              </div>
+              @endforeach
             </div>
-            <hr class="line1">
-            <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
-              <tr>
-                <th>주문자</th>
-                <td class="order_text">c_name</td>
-              </tr>
-              <tr>
-                <th>연락처</th>
-                <td class="order_text">c_phonenum</td>
-              </tr>
-            </table>
-            <div class="detail">
-              주문자 정보를 정확하게 입력해주세요.
-            </div>
-          </div>
-
-          <div class="payresult">
-            <div class="payinfo">결제정보
-            </div>
-            <hr class="line1">
-            <div class="paymentbox">
+          <!--주문창-->
+          <div class="orderbox">
+            <div class="paybox">
+              <div class="orderinfo">
+                주문정보
+              </div>
+              <hr class="line1">
               <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
                 <tr>
-                  <th>금액</th>
-                  <td class="order_text">p_price</td>
+                  <th>주문자</th>
+                  <td class="order_text">{{$user->c_name}}</td>
                 </tr>
                 <tr>
-                  <th>배송비</th>
-                  <td class="order_text">p_delivery</td>
-                </tr>
-                <tr id="paypay">
-                  <th>결제금액</th>
-                  <td class="order_text">p_price + p_delivery</td>
+                  <th>연락처</th>
+                  <td class="order_text">{{$user->c_phonenum}}</td>
                 </tr>
               </table>
-              <hr class="line2">
-            </form>
-            <form class="check" action="/complete" onsubmit="return checkform()" name="check">
-              <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-              <div class="line"><input class="end" type='submit' value="다음" ></div></form>
+              <div class="detail">
+                주문자 정보를 정확하게 입력해주세요.
+              </div>
             </div>
-          </div><!--결제정보 -->
-        </div><!--오른쪽 주문정보 박스 -->
-        <!--컨테이너박스-->
+
+            <div class="payresult">
+              <div class="payinfo">결제정보
+              </div>
+              <hr class="line1">
+              <div class="paymentbox">
+                <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
+                  <tr>
+                    <th>금액</th>
+                    <td class="order_text">p_price</td>
+                  </tr>
+                  <tr>
+                    <th>배송비</th>
+                    <td class="order_text">p_delivery</td>
+                  </tr>
+                  <tr id="paypay">
+                    <th>결제금액</th>
+                    <td class="order_text">p_price + p_delivery</td>
+                  </tr>
+                </table>
+                <hr class="line2">
+              </form>
+              <form class="check" action="/complete" onsubmit="return checkform()" name="check">
+                <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+                <div class="line"><input class="end" type='submit' value="다음" ></div></form>
+              </div>
+            </div><!--결제정보 -->
+          </div><!--오른쪽 주문정보 박스 -->
+          <!--컨테이너박스-->
+        </div>
       </div>
     </div>
-  </div>
-  @include('lib.footer')
-</body>
-<script type="text/javascript">
+    @include('lib.footer')
+  </body>
+  <script type="text/javascript">
 
-function checkform(){
+  function checkform(){
 
-  var check1=document.check.ck.checked;
-  if(!check1){
-    alert('약관에 동의해 주세요');
-    return false;
-  }
-
-  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-  var num =  /^[0-9]{3,4}$/;
-  var receiver = document.getElementById("inputtext");
-  var middlenum = document.getElementById("delivery_tel_no2");
-  var lastnum = document.getElementById("delivery_tel_no3");
-  var trade1 = document.getElementById("trade1")
-  var trade2 = document.getElementById("trade2")
-  var address = document.getElementById("address");
-  var detail_address = document.getElementById("detailAddress");
-  var bank = document.getElementById("bank");
-
-  if((receiver.value)==""){
-    alert('수령인을 입력해주세요');
-    return false;
-  }
-  if(special.test(receiver.value)){
-    alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
-    return false;
-  }
-  if((middlenum.value)==""){
-    alert('중간번호를 입력해주세요');
-    return false;
-  }
-  if(!num.test(middlenum.value)){
-    alert('중간 4자리의 숫자를 입력해주세요')
-    return false;
-  }
- if(special.test(middlenum.value)){
-    alert('숫자만 입력해주세요.')
-    return false;
-  }
-  if((lastnum.value)==""){
-    alert('번호 뒷자리를 입력해주세요');
-    return false;
-  }
-  if(!num.test(lastnum.value)){
-    alert('뒤 4자리의 숫자를 입력해주세요')
-    return false;
-  }
-  if(trade1.checked == trade2.checked){
-    alert('결제방식을 선택해주세요');
+    var check1=document.check.ck.checked;
+    if(!check1){
+      alert('약관에 동의해 주세요');
       return false;
     }
 
-  if(trade1.checked){
+    var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+    var num =  /^[0-9]{3,4}$/;
+    var receiver = document.getElementById("inputtext");
+    var middlenum = document.getElementById("delivery_tel_no2");
+    var lastnum = document.getElementById("delivery_tel_no3");
+    var trade1 = document.getElementById("trade1")
+    var trade2 = document.getElementById("trade2")
+    var address = document.getElementById("address");
+    var detail_address = document.getElementById("detailAddress");
+    var bank = document.getElementById("bank");
+
+    if((receiver.value)==""){
+      alert('수령인을 입력해주세요');
+      return false;
+    }
+    if(special.test(receiver.value)){
+      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
+      return false;
+    }
+    if((middlenum.value)==""){
+      alert('중간번호를 입력해주세요');
+      return false;
+    }
+    if(!num.test(middlenum.value)){
+      alert('중간 4자리의 숫자를 입력해주세요')
+      return false;
+    }
+    if(special.test(middlenum.value)){
+      alert('숫자만 입력해주세요.')
+      return false;
+    }
+    if((lastnum.value)==""){
+      alert('번호 뒷자리를 입력해주세요');
+      return false;
+    }
+    if(!num.test(lastnum.value)){
+      alert('뒤 4자리의 숫자를 입력해주세요')
+      return false;
+    }
+    if(trade1.checked == trade2.checked){
+      alert('결제방식을 선택해주세요');
+      return false;
+    }
+
+    if(trade1.checked){
       return true;
     }
 
-   if(trade2.checked){
-    if((address.value)==""){
-      alert('주소를 입력해주세요');
+    if(trade2.checked){
+      if((address.value)==""){
+        alert('주소를 입력해주세요');
+        return false;
+      }
+      else if((detail_address.value)==""){
+        alert('상세주소를 입력해주세요');
+        return false;
+      }
+
+    }
+
+    if((bank.value)==""){
+      alert('은행을 선택해주세요');
       return false;
     }
-    else if((detail_address.value)==""){
-      alert('상세주소를 입력해주세요');
-      return false;
+  }
+
+  function div_show(s,ss){
+    if(s == "직접거래"){
+      document.getElementById(ss).style.display="none";
+    }else{
+      document.getElementById(ss).style.display="block";
     }
-
   }
-
-  if((bank.value)==""){
-    alert('은행을 선택해주세요');
-    return false;
-  }
-}
-
-function div_show(s,ss){
-  if(s == "직접거래"){
-    document.getElementById(ss).style.display="none";
-  }else{
-    document.getElementById(ss).style.display="block";
-  }
-}
 </script>
 </html>
 
