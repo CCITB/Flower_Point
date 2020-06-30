@@ -149,7 +149,7 @@ $(document).ready(function(){
       $.ajax({
 
         type: 'post',
-        url: 'seller_Overlap',
+        url: 'customer_Overlap',
         dataType: 'json',
         data: { "id": customer_val },
 
