@@ -137,6 +137,8 @@ class InformationController extends Controller
           $data = DB::table('seller')
           ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
           ->where('s_no','=', $sellerprimary )->get();
+
+
           $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->get();
           return view('/locate', compact('store_address'));
         }

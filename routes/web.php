@@ -182,6 +182,10 @@ Route::get('/rev2', function () {
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 
+Route::post('star2', 'ProductController@star2');
+
+Route::get('/star', 'ProductController@star');
+
 Route::get('/order/{getid}', 'PaymentController@payment');
 
 Route::get('/complete', 'PaymentController@paymentcomplete');

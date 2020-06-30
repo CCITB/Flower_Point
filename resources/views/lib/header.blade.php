@@ -117,6 +117,7 @@
             <a href="#">마이페이지</a>
             <ul class="submenu_list">
               <li class="submenu"><a href="/c_mypage">내 정보</a></li>
+              <li class="submenu"><a href="/star">즐겨찾기</a></li>
             </ul>
           </li>
         @else
