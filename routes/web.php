@@ -323,3 +323,6 @@ Route::get('inquiries', function () {
 });
 
 //관리자
+Route::get('/ad_admin', function () {
+  return view('admin.index');
+});
