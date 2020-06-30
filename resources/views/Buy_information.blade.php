@@ -21,17 +21,27 @@
       <!-- 상품정보와 옵션선택 -->
       <div class= "pd_option">
 
-        <form action = '/order' method=''>
-
+        @if(auth()->guard('customer')->user())
+          <form class="favorite" action="/favorite/{{$protb->p_no}}" method="get">
           <div class="pd_basic">
             <div class="pd_name">{{$protb->p_name}}</div>
             <div class="star">
-              <button class="convenience" type="button">관심매장등록</button>
-              <button class="convenience" type="button">내 상품</button>
+              <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
             </div>
           </div>
-
-
+        </form>
+        @elseif(auth()->guard('seller')->user())
+          <div class="pd_basic">
+            <div class="pd_name">{{$protb->p_name}}</div>
+          </div>
+        @else
+          <div class="pd_basic">
+            <div class="pd_name">{{$protb->p_name}}</div>
+            <div class="star">
+              <button class="convenience" onclick="alert('로그인 후에 이용해주세요!')" type="submit">내 상품</button>
+            </div>
+          </div>
+        @endif
           <hr class="option_line">
 
           <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
@@ -91,7 +101,6 @@
             </div>
           </div>
 
-        </form>
       </div>
 
 
@@ -367,6 +376,9 @@
         @include('lib.footer')
       </body>
       <script>
+      // function alert(){
+      //   alert('내 상품에 추가되었습니다.');
+      // }
       // 상품문의하기 클릭시에 나타나는 input 공간
       function qna_new(num) {
         if($("#qna-inquiry"+num).hasClass("faq_an_show"))

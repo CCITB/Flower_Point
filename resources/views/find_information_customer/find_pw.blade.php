@@ -72,7 +72,7 @@ function check_find_pw(){
   check;
 
   if($('#c_id').val()==''){
-    $('#id_check').text("필수 정보입니다.1");
+    $('#id_check').text("필수 정보입니다.");
     $('#id_check').css('color', 'red');
     $("#c_id").focus();
     return false;

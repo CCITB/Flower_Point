@@ -17,34 +17,37 @@
     <div class="text">
       <div class="id_title">Find Password</div> <hr>
     </div>
+
     <div class ="find_pw_way">
-      <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 본인확인 이메일로 인증({{$mymail}})
+      <!--Email 인증-->
+      <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 본인확인 이메일로 인증(<span id="mymail"></span>)
       <div class="fd_id" id="find_email" value="a" style="display:block;">
         <div class="massage">*본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다</div>
-        <form action = '/f_way_customer' name='emailform' method='post' onsubmit="return check_pw_way_customer()">
+        <form action = '/customer_eamil_way' name='email_form' id="email_form" method='post' onsubmit="return check_emailform()">
           @csrf
           <div class="fd_id">
             <input type="hidden" name="hidden_email" id="hidden_email" value="">
             <input type="hidden" name="hidden_no" id="hidden_no" value="">
 
-            <div class="character"></div>
+            <div class="character"> </div>
             <div class="window">
-              <div class="ip_name">이름</div>
-              <input class="find_input" placeholder="이름을 입력하세요." name="name" id='name1'>
-              <div class="check_div" id="name_check" value=""></div>
+              <div class="name_size">이름</div>
+              <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name1">
+              <div class="check_div" id="name_check1" value=""></div>
+
+              <br>
               <div class="verify">
-                <!--이메일 : 어지수-->
-                <div class="sign_name">이메일</div>
+                <div class="name_size">이메일</div>
                 <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
-                <input class="inf3" type="email" placeholder="email "id="c_email" name="c_email"  >
+                <input class="inf3" type="email" placeholder="email " id="input_email" name="input_email">
                 <input class="btn_e" id="btn_email_way_c" type="button" value="인증번호 전송">
                 <!--인증번호 기입란-->
-                <input class="inf1" type="text" placeholder="인증번호 입력하세요. "id="verify_num1" name="verify_num" disabled="">
+                <input class="inf1" type="text" placeholder="인증번호 입력하세요. " id="verify_num1" name="verify_num" disabled="">
                 <div class="check_div" id="email_check" value=""></div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
       <br>
@@ -52,14 +55,17 @@
       <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
         <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
-        <form action="/customer_sms_check" method="post" name="fin_id" id="sms_form" onsubmit="return check_smsform_customer()">
+        <form action="/customer_sms_way" method="post" name="sms_form" id="sms_form" onsubmit="return check_smsform()">
           @csrf
+          <input type="hidden" name="hidden_tel" id="hidden_tel" value="">
+          <input type="hidden" name="hidden_no" id="hidden_no" value="">
+
           <div class="name_size">이름</div>
           <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name2">
           <div class="check_div" id="name_check2" value=""></div>
 
           <div class="name_size">연락처</div>
-          <select class="inf_tel" id="c_tel1" name="c_tel1" >
+          <select class="inf_tel" id="input_tel1" name="input_tel1" >
             <option value="010" selected>010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -87,17 +93,17 @@
             <option value="080">080</option>
           </select>
           -
-          <input type="text" class="inf_tel" id="c_tel2" name="c_tel2"  maxlength="4">
+          <input type="text" class="inf_tel" id="input_tel2" name="input_tel2"  maxlength="4">
           -
-          <input type="text" class="inf_tel" id="c_tel3" name="c_tel3"  maxlength="4">
-          <input class="btn_e" id="btn_phone_c" type="button" value="인증번호 전송">
+          <input type="text" class="inf_tel" id="input_tel3" name="input_tel3"  maxlength="4">
+          <input class="btn_e" id="btn_email_way_s" type="button" value="인증번호 전송">
           <!--인증번호 기입란-->
           <input class="inf1" type="text" placeholder="인증번호 입력하세요. " id="verify_num2" name="verify_num" disabled="">
           <div class="check_div" id="phonenum_check" value=""></div>
         </form>
       </div>
       <div class="under">
-        <input class="lg_bt" type="submit" value="다음">
+        <input class="lg_bt" id="id_bt" type="submit" form="email_form" value="다음">
       </div>
     </div>
   </div>
@@ -108,8 +114,28 @@
 //find_pw에서 입력한 ID가 가진 email값 (find_pw_way page에서 입력하는 email과 동일한지 검사를 위해 가져옴)
 var email = '{{$mymail}}';
 var no = '{{$myno}}';
-document.emailform.hidden_email.value = email;
-document.emailform.hidden_no.value = no;
+var tel = '{{$mytel}}';
+
+function masking(email) {
+
+   const len = email.split('@')[0].length - 3;
+
+   return email.replace(new RegExp('.(?=.{0,' + len + '}@)', 'g'), '*');
+
+}
+
+document.email_form.hidden_email.value = email;
+document.email_form.hidden_no.value = no;
+
+document.sms_form.hidden_no.value = no;
+document.sms_form.hidden_tel.value = tel;
+
 </script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/js/find.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  console.log($('#mymail').text(masking(email)));
+
+});
+</script>

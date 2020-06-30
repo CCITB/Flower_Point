@@ -125,6 +125,33 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
 
+
+  publiC function favorite($id){
+    // $productinfor =  DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
+    // ->select('p_no')->where('p_no','=',$id)->get();
+    $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
+      $pro_no = $productinfor[0]->p_no; // $productinfor의 첫번째 배열의 p_no ex)40
+    if(auth()->guard('customer')->user()){
+      $c_no = auth()->guard('customer')->user()->c_no;
+    }
+
+    // $customer = DB::table('product_favorite')-> where('customer_no','=',$c_no)->get();
+    $product = DB::table('product_favorite')->where('product_no','=',$pro_no)->get(); //product_favorite테이블에서 product_no랑 현재상품번호랑 같은 product_no를가져옴
+    // return $product;
+    $count = $product->where('customer_no','=',$c_no)->count();
+    // return $count;
+    if($count>0){
+        return redirect()->back();
+    }
+    elseif($count == 0){
+      DB::table('product_favorite')->insert([
+        'customer_no'=>$c_no,
+        'product_no'=>$pro_no]);
+      return redirect()->back();
+}
+}
+
+// }
   // 박소현
   public function pd_qna (Request $qna,$id){
     // return $id;

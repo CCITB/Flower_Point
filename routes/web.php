@@ -74,6 +74,7 @@ Route::post('/customer_sms_query', 'FindController@customer_sms_query');
 Route::get('/customer_find_pw', function(){
   return view('find_information_customer/find_pw');
 });
+//find_pw_way에서 사용 0
 Route::post('/customer_find_pw_controller', 'FindController@customer_find_pw');
 //pw에서 id존재유무를 확인하는 jquery
 Route::post('/customer_id_check', 'FindController@customer_id_check');
@@ -82,7 +83,12 @@ Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
 
-Route::post('/f_way_customer', 'FindController@customer_f_way');
+//비밀번호 찾기 (find_pw_way)
+Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');
+Route::post('/customer_sms_way', 'FindController@customer_sms_way');
+
+Route::post('/seller_eamil_way', 'FindController@seller_eamil_way');
+Route::post('/seller_sms_way', 'FindController@seller_sms_way');
 
 Route::post('/f_reset_customer', 'FindController@customer_f_reset');
 
@@ -91,8 +97,6 @@ Route::post('/f_reset_customer', 'FindController@customer_f_reset');
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
 });
-//seller ID From값 전송
-Route::post('/seller_find_id', 'FindController@seller_find_id');
 
 //find_id에서 id의 존재유무를 확인하는 ajax
 Route::post('/seller_email_query', 'FindController@seller_email_query');
@@ -133,9 +137,9 @@ Route::post('/modipw', 'InformationController@modipw');
 
 Route::post('/c_modipw', 'InformationController@c_modipw');
 
-Route::post('/check_login', 'InformationController@check_login');
+Route::post('/check_login', 'LoginController@check_login');
 
-Route::post('/check_sellerlogin', 'InformationController@check_sellerlogin');
+Route::post('/check_sellerlogin', 'LoginController@check_sellerlogin');
 
 Route::get('/faq', function () {
   return view('FAQ');
@@ -203,6 +207,9 @@ Route::get('/c_information_controller', 'InformationController@c_information');
 
 Route::post('/c_modiemail', 'InformationController@c_modifyemail');
 
+Route::get('/favorite/{id}', 'ProductController@favorite');
+
+Route::get('/favorite_store/{id}', 'InformationController@favorite_store');
 
 Route::get('/mypage', function(){
     if($sellerinfo = auth()->guard('seller')->user()){
