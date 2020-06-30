@@ -15,34 +15,7 @@
   // browseBtn.addEventListener('click',()=>{
   //   realInput.click();
   // });
-  function postcheck(){
-  if($('#weditor').val()==""){
-    $('#weditor').focus();
-    alert('상품설명을 입력해주세요');
-    return false;
-  }
-  if($('#productname').val()==""){
-    $('#productname').focus();
-    alert('상품명을 입력해주세요');
-    return false;
-  }
-  if($('#real-input').val()==""){
-      $('#real-input').focus();
-    alert('사진을 업로드 해주세요');
-    return false;
-  }
-  if($('#deliverycharge').val()==""){
-    $('#deliverycharge').focus();
-    alert('배송비를 입력해주세요');
-    return false;
-  }
-  if($('#sellingprice').val()==""){
-      $('#sellingprice').focus();
-    alert('상품 가격을 입력해주세요');
-    return false;
-  }
 
-  }
   </script>
 
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -101,7 +74,7 @@
 
         <!-- </div>사진 업로드 부트스트랩 버튼 -->
         <div class="input-guide" style="" >
-            &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
+          &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
         </div>
         <table>
           <tr>
@@ -207,8 +180,11 @@ nhn.husky.EZCreator.createInIFrame({
   sSkinURI: "/SmartEditor2Skin.html",
   fCreator: "createSEditor2"
 });
-// $("#save").click(function(){ oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
-// $("#send-text").submit(); }); //?? 이코드 뭐냐;;//
+// $("#save").click(function(){
+//   oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
+//   $("#send-text").submit();
+// });
+//?? 이코드 뭐냐;;
 
 
 
@@ -238,25 +214,53 @@ nhn.husky.EZCreator.createInIFrame({
 //   }
 // });
 function onlyNumber(event){
-    event = event || window.event;
-    var keyID = (event.which) ? event.which : event.keyCode;
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ){
-          return;
-    }
+  event = event || window.event;
+  var keyID = (event.which) ? event.which : event.keyCode;
+  if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ){
+    return;
+  }
 
-    else{
-      return false;
-    }
-    // alert('숫자만 입력 가능합니다.');
+  else{
+    return false;
+  }
+  // alert('숫자만 입력 가능합니다.');
 
 }
 function removeChar(event) {
-    event = event || window.event;
-    var keyID = (event.which) ? event.which : event.keyCode;
-    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
-        return;
-    else
-        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+  event = event || window.event;
+  var keyID = (event.which) ? event.which : event.keyCode;
+  if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+  return;
+  else
+  event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+function postcheck(){
+  if($('#weditor').val()==""){
+    $('#weditor').focus();
+    alert('상품설명을 입력해주세요');
+    return false;
+  }
+  if($('#productname').val()==""){
+    $('#productname').focus();
+    alert('상품명을 입력해주세요');
+    return false;
+  }
+  if($('#real-input').val()==""){
+    $('#real-input').focus();
+    alert('사진을 업로드 해주세요');
+    return false;
+  }
+  if($('#deliverycharge').val()==""){
+    $('#deliverycharge').focus();
+    alert('배송비를 입력해주세요');
+    return false;
+  }
+  if($('#sellingprice').val()==""){
+    $('#sellingprice').focus();
+    alert('상품 가격을 입력해주세요');
+    return false;
+  }
+  oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
 }
 
 </script>

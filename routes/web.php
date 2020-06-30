@@ -180,12 +180,11 @@ Route::get('/rev2', function () {
   return view('rev_image');
 });
 //결제
-Route::get('/order', function () {
-  return view('payment.order');
-});
-Route::get('/complete', function(){
-  return view('payment.complete');
-});
+// Route::get('/order{a}', 'PaymentController@payment');
+
+Route::get('/order/{getid}', 'PaymentController@payment');
+
+Route::get('/complete', 'PaymentController@paymentcomplete');
 
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');

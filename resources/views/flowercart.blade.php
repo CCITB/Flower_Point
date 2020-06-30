@@ -37,125 +37,126 @@
               </div>
               {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
               {{-- <div class="product-coupon{{$list->b_no}}">
-                쿠폰
-              </div> --}}
-              <div class="product-coupon">
-                쿠폰
-              </div>
-              <div class="product-count">
+              쿠폰
+            </div> --}}
+            <div class="product-coupon">
+              쿠폰
+            </div>
+            <div class="product-count">
+              {{-- 수량증가-------------------- --}}
+                <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
+                  <img src="/imglib/add.png" alt="">
+                </button>
+                <input class="count-plmi" type="text" name="amount{{$list->b_no}}" onkeydown="onKeyDown()"readonly id="count{{$list->b_no}}" value="{{$list->b_count}}">
+                <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
+                  <img src="/imglib/remove.png" alt="">
+                </button>
+
                 {{-- 수량증가-------------------- --}}
-                <form class="" action="" method="post" name="form">
-                  <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
-                    <img src="/imglib/add.png" alt="">
-                  </button>
-                  <input class="count-plmi" type="text" name="amount{{$list->b_no}}" onkeydown="onKeyDown()"readonly id="count{{$list->b_no}}" value="{{$list->b_count}}">
-                  <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
-                    <img src="/imglib/remove.png" alt="">
-                  </button>
-
-                  {{-- 수량증가-------------------- --}}
-                </div>
               </div>
+            </div>
 
 
-            </div>
-            <div class="flowercart-bottom">
-              <div class="text-section-wrap">
-                <div class="text-section">
-                  상품금액
-                </div>
-                <div class="price-section">
-                  <strong class="text-option" id="productprice{{$list->b_no}}">{{number_format($list->b_price*$list->b_count)}}</strong>원
-                </div>
-              </div>
-            </form>
-            <div class="imgwrap-section">
-              <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
-            </div>
+          </div>
+          <div class="flowercart-bottom">
             <div class="text-section-wrap">
               <div class="text-section">
-                할인금액
+                상품금액
               </div>
               <div class="price-section">
-                <strong class="text-option">0</strong>원
+                <strong class="text-option" id="productprice{{$list->b_no}}">{{number_format($list->b_price*$list->b_count)}}</strong>원
               </div>
             </div>
-            <div class="imgwrap-section">
-              <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
+          <div class="imgwrap-section">
+            <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
+          </div>
+          <div class="text-section-wrap">
+            <div class="text-section">
+              할인금액
             </div>
-            <div class="text-section-wrap">
-              <div class="text-section">
-                배송비
-              </div>
-              <div class="price-section">
-                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
-              </div>
+            <div class="price-section">
+              <strong class="text-option">0</strong>원
             </div>
-            <div class="imgwrap-section">
-              <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
+          </div>
+          <div class="imgwrap-section">
+            <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
+          </div>
+          <div class="text-section-wrap">
+            <div class="text-section">
+              배송비
             </div>
-            <div class="text-section-wrap">
-              <div class="text-section">
-                주문금액
-              </div>
-              <div class="price-section">
-                <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
-              </div>
+            <div class="price-section">
+              <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
+            </div>
+          </div>
+          <div class="imgwrap-section">
+            <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
+          </div>
+          <div class="text-section-wrap">
+            <div class="text-section">
+              주문금액
+            </div>
+            <div class="price-section">
+              <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
             </div>
           </div>
         </div>
-      @endforeach
-    @else
-      <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
-        <div class="" style="top:180px; position:absolute; left:260px; ">
-          장바구니가 비어있습니다.
-        </div>
       </div>
-    @endif
-
-    <div class="flowercart-allprice">
-      <div class="flowercart-right-top">
-        <strong>전체 합계</strong>
+    @endforeach
+  @else
+    <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+      <div class="" style="top:180px; position:absolute; left:260px; ">
+        장바구니가 비어있습니다.
       </div>
-      <div class="flowercart-right-middle">
-        <div class="label-container">
-          <span class="label-left">상품수</span>
-          <span class="label-right"> <strong id="i_result3"></strong> 개</span>
-          {{-- <span class="label-right"> <strong id="i_result3">{{number_format($count_sum1)}}</strong> 개</span> --}}
-        </div>
-        <div class="label-container">
-          <span class="label-left">상품금액</span>
-          <span class="label-right"> <strong id="i_result1"></strong> 원</span>
-          {{-- <span class="label-right"> <strong id="i_result1">{{number_format($price_sum1)}}</strong> 원</span> --}}
-        </div>
-        <div class="label-container">
-          <span class="label-left">할인금액</span>
-          <span class="label-right"> <strong>0</strong> 원</span>
-        </div>
-        <div class="label-container">
-          <span class="label-left">배송비</span>
-          <span class="label-right"> <strong id="i_result2"></strong> 원</span>
-          {{-- <span class="label-right"> <strong id="i_result2">{{number_format($delivery_sum1)}}</strong> 원</span> --}}
-        </div>
+    </div>
+  @endif
+
+  <div class="flowercart-allprice">
+    <div class="flowercart-right-top">
+      <strong>전체 합계</strong>
+    </div>
+    <div class="flowercart-right-middle">
+      <div class="label-container">
+        <span class="label-left">상품수</span>
+        <span class="label-right"> <strong id="i_result3"></strong> 개</span>
+        {{-- <span class="label-right"> <strong id="i_result3">{{number_format($count_sum1)}}</strong> 개</span> --}}
       </div>
-      <div class="flowercart-right-bottom">
+      <div class="label-container">
+        <span class="label-left">상품금액</span>
+        <span class="label-right"> <strong id="i_result1"></strong> 원</span>
+        {{-- <span class="label-right"> <strong id="i_result1">{{number_format($price_sum1)}}</strong> 원</span> --}}
+      </div>
+      <div class="label-container">
+        <span class="label-left">할인금액</span>
+        <span class="label-right"> <strong>0</strong> 원</span>
+      </div>
+      <div class="label-container">
+        <span class="label-left">배송비</span>
+        <span class="label-right"> <strong id="i_result2"></strong> 원</span>
+        {{-- <span class="label-right"> <strong id="i_result2">{{number_format($delivery_sum1)}}</strong> 원</span> --}}
+      </div>
+    </div>
+    <div class="flowercart-right-bottom">
 
-        <div class="allorderprice">
-          전체 주문금액
+      <div class="allorderprice">
+        전체 주문금액
 
-        </div>
-        <div class="allorderprice-section">
-          <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();"></span>원 </span>
-        </div>
-
-        <div class="basketorder">
-          <a href="#">주문하기</a>
-        </div>
+      </div>
+      <div class="allorderprice-section">
+        <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();"></span>원 </span>
+      </div>
+      <form class="" action="/order" method="get" name="productpost">
+        @csrf
+        <input type="hidden" name="getid[]" value="">
+      </form>
+      <div class="basketorder" onclick="productcheck()">
+        <a>주문하기</a>
       </div>
     </div>
   </div>
+</div>
 
-  @include('lib.footer')
+@include('lib.footer')
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -183,16 +184,11 @@ for (var i = 0; i < holy.length; i++) {
   a1 = $('#productprice'+holy[i]).text();
   a2 =  $('#deliveryprice'+holy[i]).text();
   a3 =  $('#allsum'+holy[i]).text();
-  // $('#productprice'+idindex[i]).text("0");
-  // $('#deliveryprice'+idindex[i]).text("0");
-  // $('#allsum'+idindex[i]).text("0");
+
   first1.push(a1);
   first2.push(a2);
   first3.push(a3);
-  // productprice = $('#productprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-  // deliveryprice = $('#deliveryprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-  // allsum = $('#allsum'+idindex[i]).text().replace(/[^0-9]/g,'');
-  // count = $('#count'+idindex[i]).val();
+
 }
 console.log(first1);
 console.log(first2);
@@ -306,7 +302,7 @@ function increase(a) {
   }
 });
 }
-console.log('배열이 동적으로 생성되나?');
+console.log('동적변수 생성 공간');
 var getid=[];
 $("input:checkbox[name=checkRow]:checked").each(function(i,elements){
   //해당 index(순서)값을 가져옵니다.
@@ -331,7 +327,7 @@ for(i=0; i<getid.length; i++){
 }
 // alert(orderprice488);
 // alert(orderprice488);
-console.log('배열이 동적으로 생성되나?');
+console.log('동적변수 생성 공간');
 var orderprice;
 var productprice;
 var deliveryprice;
@@ -373,10 +369,7 @@ function decrease(d) {
     document.getElementById("allsum"+d).innerHTML=AddComma(window["orderprice"+d]);
     dd=-1;
     autoprice(data[0],data[1],data[2],dd);
-    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
-    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
-    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
-    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
+
 
   },
   error: function(data) {
@@ -392,7 +385,6 @@ $.ajaxSetup({
   }
 });
 function del(e){
-  // var idindex;
   var deleted = confirm("정말 상품을 삭제하시겠습니까?");
   if(deleted){
 
@@ -454,7 +446,6 @@ function onKeyDown()
   }
 }
 function selectdel(){
-  // var idindex;
   if(!$("input:checkbox[name='checkRow']").is(":checked")){
     alert("선택하신 상품이 없습니다. 삭제를 원하시는 상품을 선택 해 주세요.");
     return false;
@@ -466,9 +457,7 @@ function selectdel(){
       console.log('전체선택 체크됨');
       // $('.checkf')
       console.log($('.checkf').is(":checked"));
-      // console.log($('.checkf'));
-      // $(".flowercart-infor").remove();
-      // document.querySelectorAll(".checkf").checked;
+
       var idindex = [];
 
       // console.log(document.querySelectorAll(".checkf").checked);
@@ -485,6 +474,7 @@ function selectdel(){
         // alert($("input:checkbox[name=checkRow]").eq(index),val());
       });
       console.log(idindex);
+      console.log('위에값은 전체선택후 삭제할때의 idindex값');
     }
     else {
       console.log('전체선택 되지않음');
@@ -505,7 +495,8 @@ function selectdel(){
         //해당 index에 해당하는 체크박스의 값을 가져옵니다.
         // alert($("input:checkbox[name=checkRow]").eq(index),val());
       });
-      console.log(idindex);;
+      console.log(idindex);
+      console.log('위에값은 idindex의 선택삭제 되었을때');
     }
     // 여기는 체크한 상품 지우는 구간 코드 끝나는 곳
   }
@@ -530,18 +521,10 @@ function selectdel(){
         console.log(Number($('#count'+data[i]).val()));
         $("#remove"+data[i]).remove();
 
-        // loadprice();
-        // console.log($("#remove"+data[i]));
-        // console.log(data[9].length);
       }
-      // return console.log('끝');
+
       if(data=idindex){
 
-        // document.getElementById("i_result4").innerHTML=AddComma(data[5]);
-        // document.getElementById("i_result3").innerHTML=AddComma(data[7]);
-        // document.getElementById("i_result1").innerHTML=AddComma(data[6]);
-        // document.getElementById("i_result2").innerHTML=AddComma(data[8]);
-        // console.log(data[9].length);
         if($(".flowercart-infor").is(".flowercart-infor")){
           // ($("#div_test").hasClass("apple") === true)
           console.log('존재');
@@ -591,7 +574,6 @@ function condition(){
     console.log('전체선택 체크됨');
 
     var idindex = [];
-
     // console.log(document.querySelectorAll(".checkf").checked);
     $("input:checkbox[name=checkRow]:checked").each(function(i,elements){
       //해당 index(순서)값을 가져옵니다.
@@ -606,11 +588,21 @@ function condition(){
       // alert($("input:checkbox[name=checkRow]").eq(index),val());
     });
     console.log(idindex);
+    console.log('위에값은 전체선택 한 경우의 idindex값');
+    getid.length=0;
+    //전체선택할때마다 상품인덱스 배열을 초기화 시켜줍니다.
+    for(i=0; i<idindex.length; i++){
+      getid.push(idindex[i]);
+    }
+    // console.log(getid);
     loadprice();
   }
   else {
     // var test1 = [];
     // delete test1[];
+    getid.length=0;
+    //getid.legth
+    //페이지 로드할때 getid에 장바구니 index가 담겨있고 선택해제시 초기화시켜줌
     test1.length=0;
     test2.length=0;
     test3.length=0;
@@ -665,13 +657,6 @@ function condition(){
   success: function(data) {
     console.log(data);
 
-    // document.getElementById("productprice"+a).innerHTML=AddComma(data[0]);
-    // document.getElementById("deliveryprice"+a).innerHTML=AddComma(data[1]);
-    // document.getElementById("allsum"+a).innerHTML=AddComma(data[2]);
-    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
-    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
-    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
-    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
 
   },
   error: function(data) {
@@ -692,8 +677,13 @@ function selectcondition(a){
   // console.log(ada);
   // console.log(1);
   var cc = $('#checkf'+a).is(":checked");
+  //cc가 true면 하나의 상품만 선택했을경우이다.
   console.log(cc);
   if(cc){
+    // 개별 선택 할때마다 배열에 상품인덱스 값을 넣어줍니다.
+    getid.push(a.toString());
+
+
     console.log('check완료');
 
     var hide = $('#i_result3').text()+$('#count'+a).val();
@@ -723,7 +713,6 @@ function selectcondition(a){
     // loadprice(a,orderprice,productprice,deliveryprice);
 
     //여기부터 천천히 작동하게 만들어보자
-    console.log('다시시작하자');
     console.log(hide8);
     // i_result1 i_result2 i_result4 상품 체크시마다 전체 주문합계에 반영시켜줌
     $('#i_result1').text(AddComma(hide6+hide1));
@@ -756,14 +745,21 @@ function selectcondition(a){
     // 만약 수량증가를 실행시키지 않았을때 보여줘야하는 값이다.
 
     // 만약 수량증가를 실행시키지 않았을때 보여줘야하는 값이다.
-
-
-
-
-
   }
 
   else {
+    // 체크가 안되어있으면 getid 배열에서 상품인덱스인 a를 지웁니다.
+    console.log(a.toString());
+    arraysequence = getid.indexOf(a.toString());
+    if(arraysequence == -1){
+      // alert('배열에 값이 없습니다.');
+    }
+    else{
+      getid.splice(arraysequence,1);
+    }
+    console.log(getid.indexOf(a.toString()));
+    // 체크가 안되어있으면 getid 배열에서 상품인덱스인 a를 지웁니다.
+
     console.log('no check');
     document.getElementById("productprice"+a).innerHTML=0;
     document.getElementById("deliveryprice"+a).innerHTML=0;
@@ -792,13 +788,7 @@ function selectcondition(a){
   success: function(data) {
     // console.log(data);
 
-    // document.getElementById("productprice"+a).innerHTML=AddComma(data[0]);
-    // document.getElementById("deliveryprice"+a).innerHTML=AddComma(data[1]);
-    // document.getElementById("allsum"+a).innerHTML=AddComma(data[2]);
-    // document.getElementById("i_result4").innerHTML=AddComma(data[3]);
-    // document.getElementById("i_result3").innerHTML=AddComma(data[5]);
-    // document.getElementById("i_result1").innerHTML=AddComma(data[4]);
-    // document.getElementById("i_result2").innerHTML=AddComma(data[6]);
+
 
   },
   error: function(data) {
@@ -886,87 +876,7 @@ function autoprice(a,b,c,dd){
     }
   }
 }
-function test(){
-  console.log($('#productprice432').text());
-}
-// function Calculation(){
-//   var idindex = [];
-//   if(!$("input:checkbox[name='checkRow']").is(":checked")){
-//     console.log('계산 불가상태');
-//     // var idindex = [];
-//
-//     $("input:checkbox[name=checkRow]").each(function(i,elements)
-//     {
-//       //해당 index(순서)값을 가져옵니다.
-//       index = $(elements).index("input:checkbox[name=checkRow]");
-//       //해당 index에 해당하는 체크박스의 ID 속성을 가져옵니다.
-//       string =  $("input:checkbox[name=checkRow]").eq(index).attr("id");
-//
-//       var no=string.replace(/[^0-9]/g,'');
-//       idindex.push(no);
-//       //해당 index에 해당하는 체크박스의 값을 가져옵니다.
-//     });
-//
-//     for (var i = 0; i < idindex.length; i++) {
-//
-//       $('#productprice'+idindex[i]).text("0");
-//       $('#deliveryprice'+idindex[i]).text("0");
-//       $('#allsum'+idindex[i]).text("0");
-//
-//       // productprice = $('#productprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       // deliveryprice = $('#deliveryprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       // allsum = $('#allsum'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       // count = $('#count'+idindex[i]).val();
-//     }
-//
-//     document.getElementById("i_result4").innerHTML=AddComma(0);
-//     document.getElementById("i_result3").innerHTML=AddComma(0);
-//     document.getElementById("i_result1").innerHTML=AddComma(0);
-//     document.getElementById("i_result2").innerHTML=AddComma(0);
-//   }
-//   else{
-//     var idindex = [];
-//     // $("input:checkbox[name=checkRow]:checked").each(function(i,elements)
-//     $("input:checkbox[name=checkRow]").each(function(i,elements)
-//     {
-//       //해당 index(순서)값을 가져옵니다.
-//       index = $(elements).index("input:checkbox[name=checkRow]");
-//       //해당 index에 해당하는 체크박스의 ID 속성을 가져옵니다.
-//       string =  $("input:checkbox[name=checkRow]").eq(index).attr("id");
-//       var no=string.replace(/[^0-9]/g,'');
-//       idindex.push(no);
-//       //해당 index에 해당하는 체크박스의 값을 가져옵니다.
-//     });
-//     // console.log(idindex);
-//     var gettag1 = [];
-//     var gettag2 = [];
-//     var gettag3 = [];
-//     var gettag4 = [];
-//     // console.log(gettag);
-//     for (var i = 0; i < idindex.length; i++) {
-//       productprice = $('#productprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       deliveryprice = $('#deliveryprice'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       allsum = $('#allsum'+idindex[i]).text().replace(/[^0-9]/g,'');
-//       count = $('#count'+idindex[i]).val();
-//       // console.log(indexno);
-//       gettag1.push(Number(productprice));
-//       gettag2.push(Number(deliveryprice));
-//       gettag3.push(Number(allsum));
-//       gettag4.push(Number(count));
-//     }
-//
-//     // var arr = [1,2,3,4,5];
-//     var sum1 = gettag1.reduce((a, b) => a + b);
-//     var sum2 = gettag2.reduce((a, b) => a + b);
-//     var sum3 = gettag3.reduce((a, b) => a + b);
-//     var sum4 = gettag4.reduce((a, b) => a + b);
-//     //전체 합계
-//     document.getElementById("i_result4").innerHTML=AddComma(sum3);
-//     document.getElementById("i_result3").innerHTML=AddComma(sum4);
-//     document.getElementById("i_result1").innerHTML=AddComma(sum1);
-//     document.getElementById("i_result2").innerHTML=AddComma(sum2);
-//   }
-// }
+
 $(document).ready(function (){
   if($(".flowercart-top").is(".flowercart-top")){
     var idindex = [];
@@ -1018,30 +928,8 @@ $(document).ready(function (){
     document.getElementById("i_result1").innerHTML="0";
     document.getElementById("i_result2").innerHTML="0";
   }
-
 });
 function loadprice(a){
-  // if(a>0)
-  // {
-  //   console.log(orderprice);
-  //   console.log('loadprice 함수안에 들어온 변수 값');
-  //   console.log(deliveryprice);
-  //   if(orderprice>0){
-  //     $('#productprice'+a).text(AddComma(window["productprice"+a]));
-  //     $('#deliveryprice'+a).text(AddComma(window["deliveryprice"+a]));
-  //     $('#allsum'+a).text(AddComma(window["orderprice"+a]));
-  //
-  //   }
-  //   else{
-  //     $('#productprice'+a).text(now_productprice);
-  //     $('#deliveryprice'+a).text(now_deliveryprice);
-  //     $('#allsum'+a).text(now_allsum);
-  //     // console.log(now_productprice);
-  //     console.log('찍히냐?');
-  //     return false;
-  //   }
-  //
-  // }
 
   if($(".flowercart-infor").is(".flowercart-infor")){
     var idindex = [];
@@ -1113,9 +1001,51 @@ function loadprice(a){
   }
 
 }
+//콤마제거함수
 function replaceComma(pStr) {
   var strCheck = /\,/g; pStr = pStr.replace(strCheck, '');
   return pStr;
 }
+  function checkindex(){
+    console.log(getid);
+    console.log(getid.length);
+  }
+  function productcheck(){
+    var productpost = document.productpost;
+    // console.log(productpost);
+    if(getid.length == 0){
+      alert('최소 하나의 상품을 선택해주세요');
+      return false;
+      location.href='/order'+getid;
+    }
+    else{
+  //     $.ajax({
+  //     type: 'get',
+  //     url: '/order/'+getid,
+  //     dataType: 'json',
+  //   //   data: { "getid" : getid
+  //   // },
+  //   success: function(data) {
+  //     console.log(data);
+  //
+  //
+  //     //data[0]=수량
+  //     //data[1]=상품가격
+  //     //data[2]=배송비
+  //   },
+  //   error: function(data) {
+  //     console.log("error" +data);
+  //   }
+  // });
+  //
+  //     // location.href='/order/'+getid;
+  //     // productpost.submit(getid);
+    }
+
+  }
+console.log('이건뭐냐');
+
+
 
 </script>
+<button type="button" onclick="checkindex()" name="button">확인용</button>
