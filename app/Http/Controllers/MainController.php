@@ -13,9 +13,9 @@ class MainController extends Controller
     // // $alldata = [$data,$imagepath];
     // // return $data;
     // return view('main',compact('data'));
-    $product = DB::table('product')->paginate(6);
-
-    return view('main', compact('product'));
+    $product = DB::table('product')->limit(6)->get();
+    $prod = DB::table('product')->skip(6)->take(6)->get();
+    return view('main', compact('product','prod'));
   }
   public function login_customer(){
     if(auth()->guard('seller')->check()){

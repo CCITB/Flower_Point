@@ -326,3 +326,10 @@ Route::get('inquiries', function () {
 Route::get('/ad_admin', function () {
   return view('admin.index');
 });
+Route::get('/ad_customer', 'AdminController@customer');
+
+Route::get('/ad_seller', 'AdminController@seller');
+
+Route::get('/test', function () {
+  return view('admin.test');
+});
