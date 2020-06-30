@@ -292,6 +292,9 @@ padding: 6px 0px;
 font-size: 12px;
 overflow: hidden;
 }
+div.tdcell{
+  width: 200px;
+}
 /* jQuery 평점 구문 */
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating a {

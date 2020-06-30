@@ -166,7 +166,6 @@ public function star2($id){
   if(auth()->guard('customer')->user()){
     $c_no = auth()->guard('customer')->user()->c_no;
   }
-
   $productinfor = DB::table('product')->select('*')->where('p_no','=',$id)->get();
   $delete = DB::table('product_favorite')->where('product_no','=',$productinfor[0]->p_no)->delete();
   return redirect()->back();

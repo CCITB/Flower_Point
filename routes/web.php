@@ -185,7 +185,7 @@ Route::get('/rev2', function () {
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 
-Route::post('star2{id}', 'ProductController@star2');
+Route::post('star2/{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
@@ -215,7 +215,7 @@ Route::post('c_modiemail', 'InformationController@c_modifyemail');
 
 Route::get('/favorite/{id}', 'ProductController@favorite');
 
-Route::get('/favorite_store/{id}', 'InformationController@favorite_store');
+Route::post('/favorite_store/{id}', 'InformationController@favorite_store');
 
 Route::get('/mypage', function(){
     if($sellerinfo = auth()->guard('seller')->user()){

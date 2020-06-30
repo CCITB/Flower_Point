@@ -26,26 +26,8 @@
 </div>
 <div class="myinfo">
   <h4>내 정보</h4>
-  <style media="screen">
-  div.tdcell{
-    padding: 10px 0 10px 30px;
-    margin: 0;
-    text-align: left;
-  }
-  div.thcell{
-    padding: 30px;
-    border-right: 1px solid #e5e5e5;
-    background: #f9f9f9;
-    text-align: left;
-    letter-spacing: -1px;
-  }
-  div#show{
-    padding-left: 32px;
-  }
-  </style>
   <div class="privacy">
     <table border="0" table class="table1" >
-
     @if ($customer = auth()->guard('customer')->user())
           <div id="tablewrap">
             <table id="shopinfo">
@@ -269,7 +251,7 @@
             </tr>
           </table>
       </div>
-      
+
       <div class="tablespace5">
         <h4 align="left">나의후기</h4>
         <style media="screen">
