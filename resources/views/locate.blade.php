@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <meta name = "viewport"content = "initial-scale = 1.0, user-scalable = no">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>꽃갈피</title>
@@ -20,64 +21,89 @@
   /* Set the size of the div element that contains the map */
 
   #map {
-
     height: 400px;  /* The height is 400 pixels */
-
     width: 100%;  /* The width is the width of the web page */
-
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   </style>
-@if(auth()->guard('seller')->user())
-@foreach ($store_address as $store_address)
+  <!--구매자일 때-->
+  @if(auth()->guard('seller')->user())
+    @foreach ($store_address)
 
-  <!--The div element for the map -->
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$store_address->a_address}}">
-    </div>
-        <div id="map"></div>
-  @endforeach
-@elseif (auth()->guard('customer')->user())
-  @foreach ($data1 as $customer_address)
-    <div id="floating-panel">
-      <input id="address" type="hidden" value="{{$customer_address->a_address}}">
+      <!--주소를 검색하는 부분을 숨겨놨음-->
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$store_address->a_address}}">
       </div>
-    <div id="map"></div>
-  @endforeach
-@endif
+      <div id="map"></div>
+    @endforeach
 
-    <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: {lat: -34.397, lng: 150.644}
+  <!--판매자일 때-->
+  @elseif (auth()->guard('customer')->user())
+    @foreach ($customer_address)
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$customer_address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
+  @endif
 
+  <!--여기서부터 맵이 생깁니다.-->
+  <script>
+  //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      //center: {lat: -34.397, lng: 150.644}
+    });
+
+    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+       var beachMarker = new google.maps.Marker({
+         position: {lat: -33.890, lng: 151.274} ,
+         map: map,
+         icon: image
+       });
+
+    //주소 좌표로 변환하는 코드입니다.
+    var geocoder = new google.maps.Geocoder();
+    $(document).ready(function() { geocodeAddress(geocoder, map);});
+  }
+
+  //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
+  function geocodeAddress(geocoder, resultsMap) {
+    //var address = document.getElementById('address').value;
+    var address = $("#address").val();
+
+    //사용자 아이콘
+    //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
+
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        resultsMap.setCenter(results[0].geometry.location);
+
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          // icon : user_Icon,
+          //
+          position: results[0].geometry.location
         });
-        var geocoder = new google.maps.Geocoder();
-        $(document).ready(function() { geocodeAddress(geocoder, map);});
-        // document.getElementById('submit').addEventListener('click', function() {
-        //
-        // });
       }
 
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
+      //주소가 안잡힐때 일어나는 일
+      else {
+        alert('Geocode was not successful for the following reason: ' + status);
       }
+    });
+  }
 
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-    </script>
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+  </script>
 </body>
 </html>

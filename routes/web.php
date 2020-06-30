@@ -131,7 +131,8 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::post('/information_controller', 'InformationController@information');
 
-Route::get('/locate1', 'InformationController@locate');
+//내 주변 꽃집 찾기
+Route::get('/locate1', 'LocateController@locate');
 
 Route::post('/modipw', 'InformationController@modipw');
 
