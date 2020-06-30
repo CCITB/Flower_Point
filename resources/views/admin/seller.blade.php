@@ -41,7 +41,6 @@
               <tr>
                 <th>판매자 고유번호</th>
                 <th>아이디</th>
-                <th>비밀번호</th>
                 <th>이름</th>
                 <th>전화번호</th>
                 <th>이메일</th>
@@ -54,7 +53,6 @@
                 <tr>
                   <td>{{$sel->s_no}}</td>
                   <td>{{$sel->s_id}}</td>
-                  <td>{{$sel->s_password}}</td>
                   <td>{{$sel->s_name}}</td>
                   <td>{{$sel->s_phonenum}}</td>
                   <td>{{$sel->s_email}}</td>
@@ -82,7 +80,7 @@
             </thead>
             <tbody>
               @foreach ($sellerall as $sel)
-                <tr>
+                <tr onclick="location.href='product/store/{{$sel->st_name}}'">
                   <td>{{$sel->s_no}}</td>
                   <td>{{$sel->st_no}}</td>
                   <td>{{$sel->st_name}}</td>
@@ -112,7 +110,7 @@
             </thead>
             <tbody>
               @foreach ($product as $sel)
-                <tr>
+                <tr onclick="location.href='/product/{{$sel->p_no}}'">
                   <td>{{$sel->p_no}}</td>
                   <td>{{$sel->p_name}}</td>
                   <td>{{number_format($sel->p_price)}} 원</td>
@@ -177,7 +175,7 @@ $(document).ready(function(){
         "info": "현재 _START_ - _END_ / _TOTAL_건",
         "infoEmpty": "데이터 없음",
         "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
-        "search": "검색 : ",
+        "search": "검색",
         "zeroRecords": "일치하는 데이터가 없습니다.",
         "loadingRecords": "로딩중...",
         "processing":     "잠시만 기다려 주세요...",
@@ -193,7 +191,7 @@ $(document).ready(function(){
         "info": "현재 _START_ - _END_ /  _TOTAL_건",
         "infoEmpty": "데이터 없음",
         "infoFiltered": "(전체  _MAX_건의 데이터에서 필터링됨 )",
-        "search": "검색 : ",
+        "search": "검색",
         "zeroRecords": "일치하는 데이터가 없습니다.",
         "loadingRecords": "로딩중...",
         "processing":     "잠시만 기다려 주세요...",
@@ -209,7 +207,7 @@ $(document).ready(function(){
         "info": "현재 _START_ - _END_ /  _TOTAL_건",
         "infoEmpty": "데이터 없음",
         "infoFiltered": "(전체 _MAX_건의 데이터에서 필터링됨 )",
-        "search": "검색 : ",
+        "search": "검색",
         "zeroRecords": "일치하는 데이터가 없습니다.",
         "loadingRecords": "로딩중...",
         "processing":     "잠시만 기다려 주세요...",

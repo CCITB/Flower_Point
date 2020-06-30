@@ -114,26 +114,26 @@
 
     <form action="/newaddress" method="get">
       <div id="addresswrap" style="display:none;">
-      <div id="addressmodi">
-        <div class="delivery_wrap">
-          <strong class="info">주 소</strong>
-          <!-- 우편번호 -->
-          <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
-          <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-        </div>
-        <!--주소 -->
-        <div class="delivery_wrap2">
-          <input type="text"  id="address" name="address" placeholder="주소" readonly>
-          <div class="detail">
-            <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
+        <div id="addressmodi">
+          <div class="delivery_wrap">
+            <strong class="info">주 소</strong>
+            <!-- 우편번호 -->
+            <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
+            <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
           </div>
-          <div class="delivery_address_detail">
-            <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+          <!--주소 -->
+          <div class="delivery_wrap2">
+            <input type="text"  id="address" name="address" placeholder="주소" readonly>
+            <div class="detail">
+              <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
+            </div>
+            <div class="delivery_address_detail">
+              <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+            </div>
           </div>
         </div>
-      </div>
         <button type="submit" id="complete1" name="button" >수정완료</button>
-    </div>
+      </div>
     </form>
     <div class="wrap4">
       <h3 class="productname">판매물품</h3>
@@ -161,6 +161,7 @@
                 <input type="text" name="" value="">
                 <button type="submit" name="button" >검색</button>
               </div>
+
               <table id="myTable">
                 <thead>
                   <tr>
@@ -168,6 +169,7 @@
                     <th class="product-name">이름</th>
                     <th class="product-price">가격</th>
                     <th class="product-amount">주문량</th>
+                    <th class="product-modify">수정</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,31 +186,36 @@
                     <td class="upload-name">{{$data3->p_name}}</td>
                     <td class="upload-price">{{$data3->p_price}}</td>
                     <td></td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-            <div>
-              {{ $proro->links()}}
-            </div>
+                    <td>
+                      <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
+                        @csrf
+                        <button type="submit">수정</button></td>
+                      </form>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <div>
+                {{ $proro->links()}}
+              </div>
 
-            {{-- <div class="nav-page">
+              {{-- <div class="nav-page">
+              <nav>
+              <a href="#" class="active">1</a>
+            </nav>
             <nav>
-            <a href="#" class="active">1</a>
+            2
           </nav>
           <nav>
-          2
+          3
         </nav>
         <nav>
-        3
+        4
       </nav>
       <nav>
-      4
+      5
     </nav>
-    <nav>
-    5
-  </nav>
-</div> --}}
+  </div> --}}
 </div>
 </div>
 

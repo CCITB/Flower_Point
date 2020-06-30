@@ -131,29 +131,40 @@ class InformationController extends Controller
         return redirect()->back();
       }
     }
-      // publiC function locate(Request $request){
-      //   if($sellerinfo = auth()->guard('seller')->user()){
-      //     $sellerprimary = $sellerinfo->s_no;
-      //     $data = DB::table('seller')
-      //     ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-      //     ->where('s_no','=', $sellerprimary )->get();
-      //
-      //
-      //     $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->get();
-      //     return view('/locate', compact('store_address'));
-      //   }
-      //   elseif($customerinfo = auth()->guard('customer')->user()){
-      //     $customerprimary = $customerinfo->c_no;
-      //     $data1 = DB::table('customer_address')
-      //     ->select('*')->where('c_no','=', $customerprimary )->get();
-      //     // $customer_address = DB::table('customer_address')->where('c_no' ,'=', $data1[0]->c_no)->get();
-      //     return view('/locate', compact('data1'));
-      //
-      //   }
-      //   else{
-      //     return view('login/login_customer');
-      //   }
-      // }
+    // publiC function locate(Request $request){
+    //   if($sellerinfo = auth()->guard('seller')->user()){
+    //     $sellerprimary = $sellerinfo->s_no;
+    //     $data = DB::table('seller')
+    //     ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+    //     ->where('s_no','=', $sellerprimary )->get();
+    //
+    //
+    //     $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->get();
+    //     return view('/locate', compact('store_address'));
+    //   }
+    //   elseif($customerinfo = auth()->guard('customer')->user()){
+    //     $customerprimary = $customerinfo->c_no;
+    //     $data1 = DB::table('customer_address')
+    //     ->select('*')->where('c_no','=', $customerprimary )->get();
+    //     // $customer_address = DB::table('customer_address')->where('c_no' ,'=', $data1[0]->c_no)->get();
+    //     return view('/locate', compact('data1'));
+    //
+    //   }
+    //   else{
+    //     return view('login/login_customer');
+    //   }
+    // }
 
 
+    public function pd_modify($id) {
+      // return $id;
+
+      $pd_db = DB::table('product')->where('p_no',$id)->get();
+      // return $pd_db;
+
+      return view('myshop.seller_pd_modify', compact('pd_db'));
     }
+
+
+
+  }
