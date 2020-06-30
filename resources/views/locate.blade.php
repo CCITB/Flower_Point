@@ -34,27 +34,43 @@
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-    @foreach ($store_address)
+  @foreach ($store_address as $address)
 
-      <!--주소를 검색하는 부분을 숨겨놨음-->
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$store_address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
+  <!--주소를 검색하는 부분을 숨겨놨음-->
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
 
   <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-    @foreach ($customer_address)
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$customer_address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
+  @foreach ($customer_address as $address)
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
   @endif
+
+  @foreach ($store_address as $address)
+  <input id="store_address" type="hidden" value="{{$address->a_address}}">
+  @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
   <script>
+  var store_marker = new Array();
+  var store_address = $("#store_address").val();
+  console.log(store_address);
+
+
+  $(document).ready(function() {
+    for(i=0; i<store_marker.length; i++){
+      store_marker.push(store_address);
+    }
+    console.log(store_marker);
+  });
+
   //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -62,12 +78,16 @@
       //center: {lat: -34.397, lng: 150.644}
     });
 
+    //전역변수사용
+    var store_address = $("#store_address").val();
+    
+
     var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-       var beachMarker = new google.maps.Marker({
-         position: {lat: -33.890, lng: 151.274} ,
-         map: map,
-         icon: image
-       });
+    var beachMarker = new google.maps.Marker({
+      position: {lat: -33.890, lng: 151.274} ,
+      map: map,
+      icon: image
+    });
 
     //주소 좌표로 변환하는 코드입니다.
     var geocoder = new google.maps.Geocoder();
@@ -76,7 +96,7 @@
 
   //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
   function geocodeAddress(geocoder, resultsMap) {
-    //var address = document.getElementById('address').value;
+    //사용자 Address
     var address = $("#address").val();
 
     //사용자 아이콘
@@ -85,11 +105,14 @@
     geocoder.geocode({'address': address}, function(results, status) {
       if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
+        // var faddr_lat = results[0].geometry.location.lat();//위도
+        // var faddr_lng = results[0].geometry.location.lng();//경도
+        // console.log(faddr_lat);
+        // console.log(faddr_lng);
 
         var marker = new google.maps.Marker({
           map: resultsMap,
           // icon : user_Icon,
-          //
           position: results[0].geometry.location
         });
       }
