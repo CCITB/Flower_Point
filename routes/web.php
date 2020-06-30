@@ -321,3 +321,5 @@ Route::get('/privacy', function () {
 Route::get('inquiries', function () {
   return view('lib.inquiries');
 });
+
+//관리자
