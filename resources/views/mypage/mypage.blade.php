@@ -56,7 +56,7 @@
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
             </td>
           </tr>
-          <form action="/modipw" method="post" onsubmit="return pw_checkform()">
+          <form action="modipw" method="post" onsubmit="return pw_checkform()">
             @csrf
             <tr class="tr1">
               <th class="th1">
@@ -79,7 +79,7 @@
             <td>
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
             </td>
-            <form action="/information_controller"  onsubmit="return phonenum_checkform()" method="post">
+            <form action="information_controller"  onsubmit="return phonenum_checkform()" method="post">
               @csrf
             </tr>
             <tr class="tr1">
@@ -121,7 +121,7 @@
               </td>
             </tr>
           </form>
-          <form action="/modiemail"  onsubmit="return email_checkform()" method="post">
+          <form action="modiemail"  onsubmit="return email_checkform()" method="post">
             @csrf
 
             <tr class="tr1">

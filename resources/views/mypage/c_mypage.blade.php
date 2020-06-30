@@ -84,7 +84,7 @@
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
                   </td>
                 </tr>
-                <form action="/c_information_controller" onsubmit="return phonenum_checkform()" method="get">
+                <form action="c_information_controller" onsubmit="return phonenum_checkform()" method="post">
                   @csrf
                 <tr class="tr1">
                   <th class="th1">
@@ -126,7 +126,7 @@
                   </td>
                 </tr>
               </form>
-              <form action="/c_modiemail" onsubmit="return email_checkform()" method="post">
+              <form action="c_modiemail" onsubmit="return email_checkform()" method="post">
                 @csrf
 
                 <tr class="tr1">
@@ -145,7 +145,8 @@
               </form>
 
 
-              <form action="/c_newaddress" method="post">
+              <form action="c_newaddress" method="post">
+                @csrf
                 @foreach ($data as $a)
                   <tr class="tr1">
                     <th class="th1">
@@ -186,7 +187,8 @@
           </table>
 
 
-          <form action="/c_newaddress" onsubmit="return checkform()" method="post">
+          <form action="c_newaddress" onsubmit="return checkform()" method="post">
+            @csrf
             <div id="addresswrap" style="display:none;">
               <div id="addressmodi">
                 <div class="delivery_wrap">
@@ -222,60 +224,7 @@
         </tbody>
 
       </table>
-      <div class="tablespace2">
-        <h4 align="left">즐겨찾기</h4>
-        <div class="tabContainer">
-          <div class="buttonContainer">
-            <button onclick="showPanel(0,'gray')">꽃</button>
-            <button onclick="showPanel(1,'gray')">가게</button>
-          </div>
-          <div class="tabPanel">
-            <div class="panelbox">
-              <ul class="list_item">
-                <li class="list_item2">
-                  <a href="#">
-                    <div class="imagebox">
-                      <img src="dummy.jpg" alt="꽃사진" align="left">
-                    </div>
-                    <div class="box_information">
-                      <div class="text_name">장미</div>
-                      <div class="box_price">111111</div>
-                    </div>
-                  </a>
-                </li>
-                <li class="list_item2">
-                  <a href="#">
-                    <div class="imagebox">
-                      <img src="dummy.jpg" alt="꽃사진" align="left">
-                    </div>
-                    <div class="box_information">
-                      <div class="text_name">백합</div>
-                      <div class="box_price">22222</div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="tabPanel">
-            <div class="panelbox">
-              <ul class="list_item">
-                <li class="list_item2">
-                  <a href="#">
-                    <div class="imagebox">
-                      <img src="dummy.jpg" alt="가게사진" align="left">
-                    </div>
-                    <div class="box_information">
-                      <div class="text_name">가게이름</div>
-                      <div class="box_price">ㅁㄴㄻㄴㄹ</div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div class="tablespace3">
         <h4 align="left">나의 주문 현황</h4>
 
@@ -319,8 +268,8 @@
               <td></td>
             </tr>
           </table>
-
       </div>
+      
       <div class="tablespace5">
         <h4 align="left">나의후기</h4>
         <style media="screen">
@@ -328,7 +277,6 @@
           width: 100%;
           border: 1px solid #444444;
           border-collapse: collapse;
-
         }
         </style>
           <table class="myreview" border="1" width=100%>
@@ -403,31 +351,7 @@
     </script>
 
   @endif
-
 </body>
-<script type="text/javascript">
-var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
-var tabPanels=document.querySelectorAll(".tabContainer  .tabPanel");
-
-function showPanel(panelIndex,colorCode) {
-  tabButtons.forEach(function(node){
-    node.style.backgroundColor="";
-    node.style.color="";
-  });
-  tabButtons[panelIndex].style.backgroundColor=colorCode;
-  tabButtons[panelIndex].style.color="white";
-  tabPanels.forEach(function(node){
-    node.style.display="none";
-  });
-  tabPanels[panelIndex].style.display="block";
-  tabPanels[panelIndex].style.backgroundColor=colorCode;
-}
-showPanel(0,'gray');
-
-function show_popup() {
-  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px "); }
-  </script>
-
   </html>
   <!--POST API Link -->
   <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

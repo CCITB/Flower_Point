@@ -20,30 +20,32 @@
         <input type="checkbox" name="checkAll" id="th_checkAll" value=""onchange="condition()" checked="checked">전체선택 ㅣ
         <span style="cursor:pointer;" onclick="selectdel()";>선택삭제</span>
       </div>
-
-      @foreach ($data as $list)
-        <div class="flowercart-infor" id="remove{{$list->b_no}}">
-          <div class="flowercart-top">
-            <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}});" value="" checked="checked">
-            <strong class="flowercart-tradename">가게명</strong>
-          </div>
-          <div class="flowercart-middle">
-            <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
-            <div class="flowercart-section">
-              <div class="product-name">{{$list->b_name}}</div>
-              <div class="product-price"> {{$list->b_price}}
-                {{-- <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a> --}}
-                <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
-              </div>
-              {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
-              {{-- <div class="product-coupon{{$list->b_no}}">
-              쿠폰
-            </div> --}}
-            <div class="product-coupon">
-              쿠폰
+      <form class="" action="/order/" method="get" name="productpost" id="productpost">
+        <input type="hidden" name="pdidx" value="">
+            </form>
+        @foreach ($data as $list)
+          <div class="flowercart-infor" id="remove{{$list->b_no}}">
+            <div class="flowercart-top">
+              <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}});" value="{{$list->b_no}}" checked="checked">
+              <strong class="flowercart-tradename">가게명</strong>
             </div>
-            <div class="product-count">
-              {{-- 수량증가-------------------- --}}
+            <div class="flowercart-middle">
+              <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
+              <div class="flowercart-section">
+                <div class="product-name">{{$list->b_name}}</div>
+                <div class="product-price"> {{$list->b_price}}
+                  {{-- <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a> --}}
+                  <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
+                </div>
+                {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
+                {{-- <div class="product-coupon{{$list->b_no}}">
+                쿠폰
+              </div> --}}
+              <div class="product-coupon">
+                쿠폰
+              </div>
+              <div class="product-count">
+                {{-- 수량증가-------------------- --}}
                 <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
                   <img src="/imglib/add.png" alt="">
                 </button>
@@ -67,42 +69,42 @@
                 <strong class="text-option" id="productprice{{$list->b_no}}">{{number_format($list->b_price*$list->b_count)}}</strong>원
               </div>
             </div>
-          <div class="imgwrap-section">
-            <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
-          </div>
-          <div class="text-section-wrap">
-            <div class="text-section">
-              할인금액
+            <div class="imgwrap-section">
+              <img src="/imglib/minus.png" ondragstart="return false" class="plmieq-icon" alt="">
             </div>
-            <div class="price-section">
-              <strong class="text-option">0</strong>원
+            <div class="text-section-wrap">
+              <div class="text-section">
+                할인금액
+              </div>
+              <div class="price-section">
+                <strong class="text-option">0</strong>원
+              </div>
             </div>
-          </div>
-          <div class="imgwrap-section">
-            <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
-          </div>
-          <div class="text-section-wrap">
-            <div class="text-section">
-              배송비
+            <div class="imgwrap-section">
+              <img src="/imglib/plus.png" ondragstart="return false" class="plmieq-icon" alt="">
             </div>
-            <div class="price-section">
-              <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
+            <div class="text-section-wrap">
+              <div class="text-section">
+                배송비
+              </div>
+              <div class="price-section">
+                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
+              </div>
             </div>
-          </div>
-          <div class="imgwrap-section">
-            <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
-          </div>
-          <div class="text-section-wrap">
-            <div class="text-section">
-              주문금액
+            <div class="imgwrap-section">
+              <img src="/imglib/equal.png" ondragstart="return false" class="plmieq-icon" alt="">
             </div>
-            <div class="price-section">
-              <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
+            <div class="text-section-wrap">
+              <div class="text-section">
+                주문금액
+              </div>
+              <div class="price-section">
+                <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
   @else
     <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
       <div class="" style="top:180px; position:absolute; left:260px; ">
@@ -145,10 +147,10 @@
       <div class="allorderprice-section">
         <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();"></span>원 </span>
       </div>
-      <form class="" action="/order" method="get" name="productpost">
-        @csrf
-        <input type="hidden" name="getid[]" value="">
-      </form>
+      {{-- <form class="" action="/order/" method="get" name="productpost"> --}}
+      {{-- @csrf --}}
+      {{-- <input type="hidden" name="getid[]" value="1"> --}}
+      {{-- </form> --}}
       <div class="basketorder" onclick="productcheck()">
         <a>주문하기</a>
       </div>
@@ -1006,46 +1008,52 @@ function replaceComma(pStr) {
   var strCheck = /\,/g; pStr = pStr.replace(strCheck, '');
   return pStr;
 }
-  function checkindex(){
-    console.log(getid);
-    console.log(getid.length);
+function checkindex(){
+  // console.log(getid);
+  // console.log(getid.length);
+  // var productpost = document.productpost;
+  var test = JSON.stringify(getid);
+  console.log(test);
+
+}
+function productcheck(){
+  var productpost = document.productpost;
+  console.log(productpost);
+  if(getid.length == 0){
+    alert('최소 하나의 상품을 선택해주세요');
+    return false;
+    location.href='/order'+getid;
   }
-  function productcheck(){
-    var productpost = document.productpost;
-    // console.log(productpost);
-    if(getid.length == 0){
-      alert('최소 하나의 상품을 선택해주세요');
-      return false;
-      location.href='/order'+getid;
-    }
-    else{
-  //     $.ajax({
-  //     type: 'get',
-  //     url: '/order/'+getid,
-  //     dataType: 'json',
-  //   //   data: { "getid" : getid
-  //   // },
-  //   success: function(data) {
-  //     console.log(data);
-  //
-  //
-  //     //data[0]=수량
-  //     //data[1]=상품가격
-  //     //data[2]=배송비
-  //   },
-  //   error: function(data) {
-  //     console.log("error" +data);
-  //   }
-  // });
-  //
-  //     // location.href='/order/'+getid;
-  //     // productpost.submit(getid);
-    }
+  else{
+    //     $.ajax({
+    //     type: 'get',
+    //     url: '/order',
+    //     dataType: 'json',
+    //   //   data: { "getid" : getid
+    //   // },
+    //   success: function(data) {
+    //     console.log(data);
+    //
+    //
+    //     //data[0]=수량
+    //     //data[1]=상품가격
+    //     //data[2]=배송비
+    //   },
+    //   error: function(data) {
+    //     console.log("error" +data);
+    //   }
+    // });
 
+    // location.href='/order/'+getid;
+    var test = JSON.stringify(getid);
+    $('input[name=pdidx]').val(test);
+    productpost.submit();
   }
-console.log('이건뭐냐');
 
-
-
+}
 </script>
+{{-- @php
+$aa = "<script>getid;</script>";
+echo "<script>document.writeln(getid);</script>";
+@endphp --}}
 <button type="button" onclick="checkindex()" name="button">확인용</button>
