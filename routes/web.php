@@ -173,11 +173,13 @@ Route::get('product/store/{id}', 'InformationController@storepage');
 
 Route::post('/pd_modify{id}', 'InformationController@pd_modify');
 
-Route::get('/pd_modify', function () {
-  return view('myshop.seller_pd_modify');
-});
+Route::post('/pd_modi{id}', 'ProductController@pd_modify');
+
+Route::post('/pd_remove{id}', 'ProductController@pd_remove');
 
 Route::post('index', 'ProductController@seller_product_register');
+
+Route::post('image', 'ProductController@store_img_register');
 
 Route::get('/review', function () {
   return view('review');

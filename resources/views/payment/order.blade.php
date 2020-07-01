@@ -182,15 +182,15 @@
                 <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
                   <tr>
                     <th>금액</th>
-                    <td class="order_text">p_price</td>
+                    <td class="order_text">{{number_format($productprice)}}</td>
                   </tr>
                   <tr>
                     <th>배송비</th>
-                    <td class="order_text">p_delivery</td>
+                    <td class="order_text">{{number_format($productdelivery)}}</td>
                   </tr>
                   <tr id="paypay">
                     <th>결제금액</th>
-                    <td class="order_text">p_price + p_delivery</td>
+                    <td class="order_text">{{number_format($productsum)}}</td>
                   </tr>
                 </table>
                 <hr class="line2">

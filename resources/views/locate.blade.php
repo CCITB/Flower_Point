@@ -63,7 +63,6 @@
   @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
-  {{-- <script>
   $(document).ready(function() {
   // for(i=0; i<store_marker.length; i++){
   //   store_marker.push(store_address);
@@ -91,11 +90,6 @@ function initMap() {
     //center: {lat: -34.397, lng: 150.644}
   });
 
-  var map2 = new google.maps.Map(document.getElementById('map2'), {
-    zoom: 2,
-    //center: user,
-    mapTypeId: 'terrain'
-  });
 
   // //주소 좌표로 변환하는 코드입니다.
   var geocoder = new google.maps.Geocoder();

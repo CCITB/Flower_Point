@@ -25,82 +25,94 @@
   @include('lib.header')
   <div class="hr-line">
     <div id="line">
-      <h2>물품등록</h2>
+      <h2>상품 게시물 수정</h2>
       <hr>
     </div>
   </div>
   <div class="post">
     @foreach ($pd_db as $pd)
-    <div id="se2_sample" style="margin:10px 0;">
-      <!-- <div class="">
-      <input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-      <input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-      <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
-      <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
-    </div> -->
+      <div id="se2_sample" style="margin:10px 0;">
+        <!-- <div class="">
+        <input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
+        <input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
+        <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
+        <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
+      </div> -->
 
-    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
-      @csrf
-      <div class="" style="">
-        <table>
-          <tr>
-            <th>상품평</th>
-            <td>
-              <input type="text" name="productname" id="productname" value="{{$pd->p_name}}"placeholder="제목" maxlength="180" class="post-title">
-            </td>
-          </tr>
-        </table>
-        <textarea name="ir1" id="weditor" rows="10" cols="100">{{$pd->p_contents}}</textarea>
+      <form action="/pd_modi{{$pd->p_no}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+        @csrf
+        <div class="" style="">
+          <table>
+            <tr>
+              <th>상품평</th>
+              <td>
+                <input type="text" name="productname" id="productname" value="{{$pd->p_name}}"placeholder="제목" maxlength="180" class="post-title">
+              </td>
+            </tr>
+          </table>
+          <textarea name="ir1" id="weditor" rows="10" cols="100">{{$pd->p_contents}}</textarea>
 
 
-        <!-- <div class="filebox">사진 업로드 부트스트랩 버튼 -->
-        <div class="preview-wrap">
-          <div class="preview-left">
-            <div class="preview">
-              <img src="#" alt="" id="image-session">
-              <div class="preview-image">
-                <!-- 이미지 미리보기 -->
+          <!-- <div class="filebox">사진 업로드 부트스트랩 버튼 -->
+          <div class="preview-wrap">
+            <div class="preview-left">
+              <div class="imginfo">기존 이미지</div>
+              <div class="preview">
+                <div class="preview-image">
+                  <!-- 이미지 미리보기 -->
+                  <img src="/imglib/{{$pd->p_filename}}" alt="내가 올린 상품 사진">
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-center">
+              <div class="imginfo">새로운 이미지</div>
+              <div class="preview">
+                <img src="#" alt="" id="image-session">
+                <div class="preview-image">
+                  <!-- 이미지 미리보기 -->
+                </div>
+              </div>
+            </div>
+            <div class="preview-right">
+              <div class="image-upload">
+                <label for="real-input">[사진 업로드] <br> 사진을 새로 올려주세요.</label><br><br>
+                <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
               </div>
             </div>
           </div>
-          <div class="preview-right">
-            <div class="image-upload">
-              <label for="real-input">사진 업로드</label>
-              <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
-            </div>
+
+          <!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
+          <!-- <button class="browse-btn">사진업로드</button> -->
+
+
+          <!-- </div>사진 업로드 부트스트랩 버튼 -->
+          <div class="input-guide" style="" >
+            &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
           </div>
+          <table>
+            <tr>
+              <th class="th-css">배송비</th>
+              <td><input type="text" class="input-length" id="deliverycharge" numberonly="true" name="deliverycharge" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_title)}}" maxlength="10" placeholder="0" style="text-align:right;">원</td>
+            </tr>
+            <tr>
+              <th class="th-css">판매금액</th>
+              <td><input type="text" class="input-length" id="sellingprice" numberonly="true" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_price)}}" maxlength="10" placeholder="0"style="text-align:right;" >원</td>
+            </tr>
+            <tr>
+              <th class="th-css">적립금</th>
+              <td><input type="text" class="input-length" id="" numberonly="true" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" style="text-align:right;">원</td>
+            </tr>
+          </table>
         </div>
-        <!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
-        <!-- <button class="browse-btn">사진업로드</button> -->
-
-
-        <!-- </div>사진 업로드 부트스트랩 버튼 -->
-        <div class="input-guide" style="" >
-          &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
+        <div class="postbutton">
+          <input type="submit" name="" value="저장" id="save" >
+          <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
+          <button type="button" name="button" class="Cancellation-btn">취소</button>
         </div>
-        <table>
-          <tr>
-            <th class="th-css">배송비</th>
-            <td><input type="text" class="input-length" id="deliverycharge" numberonly="true" name="deliverycharge" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_title)}}" maxlength="10" placeholder="0" style="text-align:right;">원</td>
-          </tr>
-          <tr>
-            <th class="th-css">판매금액</th>
-            <td><input type="text" class="input-length" id="sellingprice" numberonly="true" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_price)}}" maxlength="10" placeholder="0"style="text-align:right;" >원</td>
-          </tr>
-          <tr>
-            <th class="th-css">적립금</th>
-            <td><input type="text" class="input-length" id="" numberonly="true" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" style="text-align:right;">원</td>
-          </tr>
-        </table>
-      </div>
-      <div class="postbutton">
-        <input type="submit" name="" value="저장" id="save" >
-        <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
-        <button type="button" name="button" class="Cancellation-btn">취소</button>
-      </div>
-    </form>
-  </div>
-    @endforeach
+      </form>
+    </div>
+  @endforeach
 </div>
 
 
