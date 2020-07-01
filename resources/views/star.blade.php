@@ -87,7 +87,7 @@
         <table border="0" table class="table1" >
           @if($customer = auth()->guard('customer')->user())
             <div id="tablewrap">
-              <form class="" action="store_star/{{$pro2->st_no}}" method="post">
+              <form class="" action="store_star/{{$pro2->st_name}}" method="post">
                 @csrf
                 <table id="shopinfo">
                   <tbody>
@@ -95,12 +95,12 @@
 
                       <th class="th1">
                         <div class="thcell">
-                          <a href="store/{{$pro2->st_no}}">
-                          <img src="\imglib\{{$pro2->st_img}}" height="100px" width="100%"alt="꽃">
+                          <a href="product/store/{{$pro2->st_name}}">
+                          <img src="\imglib\{{$pro2->st_img}}" height="100px" width="100%"alt="등록된 가게이미지가 없습니다.">
                         </a></div>
                       </th>
                       <td>
-                        <a href="store/{{$pro2->st_no}}">
+                        <a href="product/store/{{$pro2->st_name}}">
                         <div class="tdcell">{{$pro2->st_name}}<p class="contxt.tit"></p>
                       </a></div>
                     </td>
@@ -108,7 +108,7 @@
                       <div class="tdcell">{{$pro2->st_tel}}<p class="contxt.tit"></p></div>
                     </td>
                     <td>
-                      <div class="tdcell"><p class="contxt.tit"><a href="{{$pro2->st_no}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
+                      <div class="tdcell"><p class="contxt.tit"><a href="{{$pro2->st_name}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
                     </td>
                   @endif
                 @endforeach

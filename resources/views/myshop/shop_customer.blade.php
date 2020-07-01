@@ -36,7 +36,7 @@
         <hr>
         <div class="wrap2">
           <div class="imgbox">
-            <img class="shopimg" src="/imglib/{{$shop->st_img}}" alt="꽃집사진" >
+            <img class="shopimg" src="/imglib/{{$shop->st_img}}" alt="등록된 가게이미지가 없습니다." >
           </div>
           <div id="tablewrap">
             <table id="shopinfo">
