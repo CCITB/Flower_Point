@@ -205,7 +205,7 @@
 
       </div>
     </div>
-    <form action="{{url('img')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+    <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
       @csrf
       <div class="preview-wrap">
         <div class="preview-left">
@@ -326,7 +326,6 @@ function postcheck(){
     alert('사진을 업로드 해주세요');
     return false;
   }
-  oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
 }
 </script>
 <!--POST API Link -->

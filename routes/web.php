@@ -177,7 +177,7 @@ Route::post('/pd_modi{id}', 'ProductController@pd_modify');
 
 Route::post('index', 'ProductController@seller_product_register');
 
-Route::post('img', 'ProductController@store_img_register');
+Route::post('image', 'ProductController@store_img_register');
 
 Route::get('/review', function () {
   return view('review');
