@@ -171,6 +171,7 @@
                     <th class="product-price">가격</th>
                     <th class="product-amount">주문량</th>
                     <th class="product-modify">수정</th>
+                    <th class="product-modify">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -190,50 +191,89 @@
                     <td>
                       <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
                         @csrf
-                        <button type="submit">수정</button></td>
+                        <input type="submit" value="수정">
                       </form>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              <div>
-                {{ $proro->links()}}
-              </div>
+                    </td>
+                    <td>
+                      <form name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
+                        @csrf
+                        <input type="submit" name="remove" id="remove" value="삭제">
+                        <input type="hidden" id="hidden" name="hidden" value="">
+                      </form>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <div>
+              {{ $proro->links()}}
             </div>
           </div>
-        @endif
+        </div>
+      @endif
 
+    </div>
+  </div>
+  <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+    @csrf
+    <div class="preview-wrap">
+      <div class="preview-left">
+        <div class="preview">
+          <img src="#" alt="" id="image-session">
+          <div class="preview-image">
+            <!-- 이미지 미리보기 -->
+          </div>
+        </div>
+      </div>
+      <div class="preview-right">
+        <div class="image-upload">
+          <label for="real-input">사진 업로드</label>
+          <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
+        </div>
       </div>
     </div>
-    <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
-      @csrf
-      <div class="preview-wrap">
-        <div class="preview-left">
-          <div class="preview">
-            <img src="#" alt="" id="image-session">
-            <div class="preview-image">
-              <!-- 이미지 미리보기 -->
-            </div>
-          </div>
-        </div>
-        <div class="preview-right">
-          <div class="image-upload">
-            <label for="real-input">사진 업로드</label>
-            <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
-          </div>
-        </div>
-      </div>
-      <div class="postbutton">
-        <input type="submit" name="" value="저장" id="save" >
-        <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
-        <button type="button" name="button" class="Cancellation-btn">취소</button>
-      </div>
-    </form>
-  </div>
+    <div class="postbutton">
+      <input type="submit" name="" value="저장" id="save" >
+      <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
+      <button type="button" name="button" class="Cancellation-btn">취소</button>
+    </div>
+  </form>
+</div>
 </div>
 @include('lib.footer')
 </body>
-<script>function checkFile(el){
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script>
+
+// function pd_remove(){
+//   var value;
+//   var returnvalue = confirm("정말 삭제하시겠습니까?");
+//   if (returnvalue == true){    //확인
+//     value = 11;
+//     document.delete.hidden.value = value;
+//   } else {   //취소
+//     value = 22;
+//     document.delete.hidden.value = value;
+//   }
+// }
+// $("#remove").click(function(){
+//   var hid;
+//   var returnvalue = confirm("정말 삭제하시겠습니까?");
+//   if(returnvalue == true){
+//     hid = 1;
+//     document.delete.hidden.value = hid;
+//     console.log(returnvalue);
+//   }
+//   else{
+//     hid = 2;
+//     document.delete.hidden.value = hid;
+//     console.log(returnvalue);
+//   }
+// });
+
+
+
+function checkFile(el){
   $('#image-session').attr('src', '#');
   var file = el.files;
   if(file[0].size > 1024 * 1024 * 2){

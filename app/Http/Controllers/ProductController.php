@@ -176,8 +176,18 @@ class ProductController extends Controller
     return redirect('/');
   }
 
+  public function pd_remove($id){
+
+    // $p_status = $_POST['hidden'];
+    // return $p_status;
+    DB::table('product')->where('p_no','=',$id)->update([
+      'p_status' => '삭제'
+    ]);
+  
+  }
+
 //즐겨찾기 중복막기 코드
-  publiC function favorite($id){
+  public function favorite($id){
 
     $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
       $pro_no = $productinfor[0]->p_no; // $productinfor의 첫번째 배열의 p_no ex)40
@@ -458,21 +468,21 @@ public function store_star($id){
     return response()->json(0);
   }
 
-  public function store_img_register(Request $request)
-  {     $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
-        $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
-        $path=$request->file('picture')->store('/','public');
-        // return $path;
-        DB::table('store')-> where('seller_no','=',$storeno) -> update([
-          'st_img'=>$path
-
-
-    // 이미지 저장경로 public\storage\
-
-    // return $path;
-    // 이미지 product 테이블과 연결해서 저장
-
-    return redirect('/shop');
-  }
+  // public function store_img_register(Request $request){
+  //       $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
+  //       $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
+  //       $path=$request->file('picture')->store('/','public');
+  //       // return $path;
+  //       DB::table('store')-> where('seller_no','=',$storeno) -> update([
+  //         'st_img'=>$path
+  //
+  //
+  //   // 이미지 저장경로 public\storage\
+  //
+  //   // return $path;
+  //   // 이미지 product 테이블과 연결해서 저장
+  //
+  //   return redirect('/shop');
+  // }
 
 }
