@@ -292,8 +292,16 @@ $(document).ready(function(){
     var mm = today.getMonth()+1;
     var dd = today.getDate();
 
-    if((mm+"").length < 2){
+    if((mm+"").length < 2 && (""+dd).length < 2 ){
+      var today = yyyy+'0'+mm+'0'+dd;
+      date = parseInt(today);
+    }
+    else if((mm+"").length < 2){
       var today = yyyy+'0'+mm+''+dd;
+      date = parseInt(today);
+    }
+    else if((dd+"").length < 2){
+      var today = yyyy+''+mm+'0'+dd;
       date = parseInt(today);
     }
     else{
