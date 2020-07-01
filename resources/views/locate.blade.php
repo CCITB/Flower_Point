@@ -24,6 +24,10 @@
     height: 400px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
   }
+  #map2 {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+  }
   /* Optional: Makes the sample page fill the window. */
   html, body {
     height: 100%;
@@ -34,99 +38,161 @@
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-  @foreach ($store_address as $address)
+    @foreach ($store_address as $address)
 
-  <!--주소를 검색하는 부분을 숨겨놨음-->
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+      <!--주소를 검색하는 부분을 숨겨놨음-->
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
 
-  <!--판매자일 때-->
+    <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-  @foreach ($customer_address as $address)
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+    @foreach ($customer_address as $address)
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
   @endif
 
   @foreach ($store_address as $address)
-  <input id="store_address" type="hidden" value="{{$address->a_address}}">
+    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+    <div id="map2"></div>
   @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
-  <script>
-  var store_marker = new Array();
-  var store_address = $("#store_address").val();
-  console.log(store_address);
-
-
+  {{-- <script>
   $(document).ready(function() {
-    for(i=0; i<store_marker.length; i++){
-      store_marker.push(store_address);
-    }
-    console.log(store_marker);
+  // for(i=0; i<store_marker.length; i++){
+  //   store_marker.push(store_address);
+  // }
+  // console.log(store_marker);
+  var arr = new Array();
+  var array = $('.array');
+  console.log(array);
+
+  for( var i=0 ; i < array.length ; i++)
+  {
+  arr.push(array);
+  //  console.log(add);
+}
+// console.log(arr[0]);
+});
+</script> --}}
+
+<script>
+var user;
+//맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    //center: {lat: -34.397, lng: 150.644}
   });
 
-  //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      //center: {lat: -34.397, lng: 150.644}
-    });
+  var map2 = new google.maps.Map(document.getElementById('map2'), {
+    zoom: 2,
+    //center: user,
+    mapTypeId: 'terrain'
+  });
 
-    //전역변수사용
-    var store_address = $("#store_address").val();
-    
+  // //주소 좌표로 변환하는 코드입니다.
+  var geocoder = new google.maps.Geocoder();
+  $(document).ready(function() {
+    geocodeAddress(geocoder, map);
+    //geocodeAddress2(geocoder, map2);
+  });
 
-    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-    var beachMarker = new google.maps.Marker({
-      position: {lat: -33.890, lng: 151.274} ,
-      map: map,
-      icon: image
-    });
+  // Create a <script> tag and set the USGS URL as the source.
+  var script = document.createElement('script');
+  // This example uses a local copy of the GeoJSON stored at
+  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+  script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+  document.getElementsByTagName('head')[0].appendChild(script);
 
-    //주소 좌표로 변환하는 코드입니다.
-    var geocoder = new google.maps.Geocoder();
-    $(document).ready(function() { geocodeAddress(geocoder, map);});
-  }
+  window.eqfeed_callback = function(array) {
+    // for (var i = 0; i < results.features.length; i++) {
+    //   var coords = results.features[i].geometry.coordinates;
+    var arr = new Array();
+    var array = $('.array');
+    console.log(array);
+    var faddr_lat = arr.geometry.location.lat();//위도
 
-  //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
-  function geocodeAddress(geocoder, resultsMap) {
-    //사용자 Address
-    var address = $("#address").val();
-
-    //사용자 아이콘
-    //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
-
-    geocoder.geocode({'address': address}, function(results, status) {
-      if (status === 'OK') {
-        resultsMap.setCenter(results[0].geometry.location);
-        // var faddr_lat = results[0].geometry.location.lat();//위도
-        // var faddr_lng = results[0].geometry.location.lng();//경도
-        // console.log(faddr_lat);
-        // console.log(faddr_lng);
-
-        var marker = new google.maps.Marker({
-          map: resultsMap,
-          // icon : user_Icon,
-          position: results[0].geometry.location
-        });
-      }
-
-      //주소가 안잡힐때 일어나는 일
-      else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
+    for( var i=0 ; i < array.length ; i++)
+    {
+      arr.push(array);
+    }
+    console.log(array[0]);
+    var latLng = new google.maps.LatLng(-34.397,150.644);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map2
     });
   }
+  // }
+}
 
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-  </script>
+// Loop through the results array and place a marker for each
+// set of coordinates.
+
+//   var arr = new Array();
+//   var array = $('.array');
+//   console.log(array);
+//
+//   for( var i=0 ; i < array.length ; i++)
+//   {
+//     arr.push(array);
+//     //  console.log(add);
+//
+//     geocoder.geocode({'address': arr[i]}, function(results, status) {
+//       if (status === 'OK') {
+//         var marker = new google.maps.Marker({
+//           map: map2,
+//           // icon : user_Icon,
+//           position: results[0].geometry.location
+//         });
+//       }
+//
+//       //주소가 안잡힐때 일어나는 일
+//       else {
+//         alert('Geocode was not successful for the following reason: ' + status);
+//       }
+//     });
+//   }
+// }
+//데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
+function geocodeAddress(geocoder, map) {
+  //사용자 Address
+  var address = $("#address").val();
+  //사용자 아이콘
+  //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
+  geocoder.geocode({'address': address}, function(results, status) {
+    console.log(address);
+    if (status === 'OK') {
+      map.setCenter(results[0].geometry.location);
+      user=map.setCenter(results[0].geometry.location);
+      // var faddr_lat = results[0].geometry.location.lat();//위도
+      // var faddr_lng = results[0].geometry.location.lng();//경도
+      // console.log(faddr_lat);
+      // console.log(faddr_lng);
+
+      var marker = new google.maps.Marker({
+        map: map,
+        // icon : user_Icon,
+        position: results[0].geometry.location
+      });
+    }
+
+    //주소가 안잡힐때 일어나는 일
+    else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+</script>
 </body>
 </html>
