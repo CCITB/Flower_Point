@@ -1,0 +1,88 @@
+.preview-wrap{
+  width: 100%;
+  height: 210px;
+  display: flex;
+  flex-direction: row;
+}
+.input-guide{
+  text-align:center;
+  margin: 20px 0;
+  color:gray;
+}
+table{
+  margin-bottom: 10px;
+}
+td input{
+  height: 21px;
+  padding:3px;
+}
+.input-length{
+  width: 200px;
+}
+.th-css{
+  text-align: left;
+  padding-right: 20px;
+}
+.preview img{
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: relative;
+}
+.preview{
+  width: 200px;
+  height: 200px;
+  border: 1px solid gray;
+  display: inline-block;
+}
+.preview-image{
+  display: inline-block;
+  z-index: 1;
+}
+
+.image-upload{
+  display: inline-block;
+}
+.preview-left{
+  width: 20%;
+  display: inline-block;
+}
+.preview-center{
+  width: 20%;
+  display: inline-block;
+}
+.preview-right{
+  width: 20%;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  padding-left: 30px;
+}
+.imginfo{
+  width: 205px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: gray;
+}
+#save{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #666;
+  width: 83.675px;
+  background-color: #666;
+  color: white;
+}
+.Cancellation-btn{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
+}
+
+div.postbutton{
+  margin-bottom: 20px;
+}

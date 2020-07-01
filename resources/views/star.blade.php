@@ -96,7 +96,7 @@
                       <th class="th1">
                         <div class="thcell">
                           <a href="store/{{$pro2->st_no}}">
-                          <img src="\imglib\" height="100px" width="100%"alt="꽃">
+                          <img src="\imglib\{{$pro2->st_img}}" height="100px" width="100%"alt="꽃">
                         </a></div>
                       </th>
                       <td>

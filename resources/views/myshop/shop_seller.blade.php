@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/shop.css">
   <link rel="stylesheet" href="/css/postlist.css">
+  <link rel="stylesheet" href="/css/image.css">
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -38,7 +39,7 @@
           <hr>
           <div class="wrap2">
             <div class="imgbox">
-              <img class="shopimg" src="/imglib/flower1.jpg" alt="꽃집사진" >
+              <img class="shopimg" src="/imglib/{{$data1->st_img}}" alt="꽃집사진" >
             </div>
             <div id="tablewrap">
               <table id="shopinfo">
@@ -214,6 +215,7 @@
 
     </div>
   </div>
+
   <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
     @csrf
     <div class="preview-wrap">
@@ -227,7 +229,7 @@
       </div>
       <div class="preview-right">
         <div class="image-upload">
-          <label for="real-input">사진 업로드</label>
+          <label for="real-input">대표사진 변경</label>
           <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
         </div>
       </div>
