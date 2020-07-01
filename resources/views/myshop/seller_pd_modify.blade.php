@@ -39,7 +39,7 @@
       <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
     </div> -->
 
-    <form action="{{url('index')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+    <form action="/pd_modi{{$pd->p_no}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
       @csrf
       <div class="" style="">
         <table>
@@ -65,7 +65,7 @@
           </div>
           <div class="preview-right">
             <div class="image-upload">
-              <label for="real-input">사진 업로드</label>
+              <label for="real-input">[사진 업로드] <br> 사진을 새로 올려주세요.</label>
               <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
             </div>
           </div>

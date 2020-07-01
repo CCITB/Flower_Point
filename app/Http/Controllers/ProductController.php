@@ -124,6 +124,58 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store'));
   }
 
+  // 상품 수정하기
+  public function pd_modify(Request $request, $id){
+
+    $storeno = auth()->guard('seller')->user()->s_no;
+
+    $p_name = $_POST['productname'];
+    $p_deli = $_POST['deliverycharge'];
+    $p_contents = $_POST['ir1'];
+    $p_price = $_POST['sellingprice'];
+
+    if(isset($p_name)){
+      $pd_name = $p_name;
+    } else {
+      $pd_name = $request->input('productname');
+    }
+    // return $pd_name;
+
+    if(isset($p_deli)){
+      $pd_deli = preg_replace("/[^0-9]/", "",$p_deli);
+    } else{
+      $pd_deli = preg_replace("/[^0-9]/", "",$request->input('deliverycharge'));
+    }
+    // return $pd_deli;
+
+    if(isset($p_contents)){
+      $pd_contents = $p_contents;
+    }
+    else {
+      $pd_contents = $request->input('ir1');
+    }
+    // return $pd_contents;
+
+    if(isset($p_price)){
+      $pd_price = preg_replace("/[^0-9]/", "",$p_price);
+    } else {
+      $pd_price = preg_replace("/[^0-9]/", "", $request->input('sellingprice'));
+    }
+    // return $pd_price;
+
+
+    $path=$request->file('picture')->store('/','public');
+    DB::table('product')->where('p_no',$id)->update([
+      'p_name'=>$pd_name,
+      'p_contents' => $pd_contents,
+      'p_filename' =>$path,
+      'p_title' => $pd_deli,
+      'p_price' => $pd_price
+    ]);
+
+    return redirect('/');
+  }
+
 //즐겨찾기 중복막기 코드
   publiC function favorite($id){
 

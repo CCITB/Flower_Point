@@ -173,9 +173,7 @@ Route::get('product/store/{id}', 'InformationController@storepage');
 
 Route::post('/pd_modify{id}', 'InformationController@pd_modify');
 
-Route::get('/pd_modify', function () {
-  return view('myshop.seller_pd_modify');
-});
+Route::post('/pd_modi{id}', 'ProductController@pd_modify');
 
 Route::post('index', 'ProductController@seller_product_register');
 
