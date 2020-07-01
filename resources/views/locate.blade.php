@@ -40,28 +40,28 @@
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-    @foreach ($store_address as $address)
+  @foreach ($store_address as $address)
 
-      <!--주소를 검색하는 부분을 숨겨놨음-->
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
+  <!--주소를 검색하는 부분을 숨겨놨음-->
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
 
-    <!--판매자일 때-->
+  <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-    @foreach ($customer_address as $address)
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
+  @foreach ($customer_address as $address)
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
   @endif
 
   @foreach ($store_address as $address)
-    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
-    <div id="map2"></div>
+  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+  <div id="map2"></div>
   @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
@@ -70,22 +70,26 @@
   var user;
   //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
   function initMap() {
+    var geocode_result;
+    var address = $("#address").val();
+    geocoder.geocode( { 'address': address }, function(results, status) {
+      if (status == 'OK') {
+        // var coords = array.geo_arr[i];
+        // var latLng = new google.maps.LatLng(위도, 경도);
+        geocode_result = map.setCenter(results[0].geometry.location);
+      }
+    });
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
-      //center: {lat: -34.397, lng: 150.644}
+      center: geocode_result
     });
-    var map2 = new google.maps.Map(document.getElementById('map2'), {
-      zoom: 2,
-      center: new google.maps.LatLng(37.566535, 126.97796919999996),
-    });
+    // var map2 = new google.maps.Map(document.getElementById('map2'), {
+    //   zoom: 15,
+    //   center: new google.maps.LatLng(37.566535, 126.97796919999996),
+    // });
 
     // //주소 좌표로 변환하는 코드입니다.
     var geocoder = new google.maps.Geocoder();
-
-    $(document).ready(function() {
-      geocodeAddress(geocoder, map);
-      //geocodeAddress2(geocoder, map2);
-    });
 
     // Create a <script> tag and set the USGS URL as the source.
     var script = document.createElement('script');
@@ -99,109 +103,69 @@
       //   var coords = results.features[i].geometry.coordinates;
 
       var arr = new Array();
+      var address = $("#address").val();
       var array = $('.array');
+      arr.push(address);
+      for(var j=0; j < array.length; j++){
+        arr.push(array[j].value);
+      }
 
-      for( var i=0 ; i < array.length ; i++)
+      for( var i=0 ; i < arr.length; i++)
       {
-        var geo_arr = new Array();
-
-        arr.push(array);
-        console.log(array[i]);
-
-        //var geo_arr[i] =
-        geocoder.geocode( { 'address': address}, function(results, status) {
+        // var geo_arr = new Array();
+        geocoder.geocode( { 'address': arr[i] }, function(results, status) {
           if (status == 'OK') {
-            //var coords = array.geo_arr[i];
-            var latLng = new google.maps.LatLng(위도, 경도);
+            // var coords = array.geo_arr[i];
+            // var latLng = new google.maps.LatLng(위도, 경도);
+            map.setCenter(results[0].geometry.location);
+            console.log(results[0]);
             var marker = new google.maps.Marker({
-              position: latLng,
-              map: map2
+              // position: latLng,
+              position: results[0].geometry.location,
+              map: map
             });
           }
           else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
-        }
+        });
       }
+      console.log(arr);
     }
+  }
 
-
-    // var address = document.getElementById('address').value;
-    // geocoder.geocode( { 'address': address}, function(results, status) {
-    //   if (status == 'OK') {
-    //
-    //     var marker = new google.maps.Marker({
-    //       map: map,
-    //       position: results[0].geometry.location
-    //     });
-    //   } else {
-    //     alert('Geocode was not successful for the following reason: ' + status);
-    //   }
-    // });
-    //
-    //
-
-
-    // Loop through the results array and place a marker for each
-    // set of coordinates.
-
-    //   var arr = new Array();
-    //   var array = $('.array');
-    //   console.log(array);
-    //
-    //   for( var i=0 ; i < array.length ; i++)
-    //   {
-    //     arr.push(array);
-    //     //  console.log(add);
-    //
-    //     geocoder.geocode({'address': arr[i]}, function(results, status) {
-    //       if (status === 'OK') {
-    //         var marker = new google.maps.Marker({
-    //           map: map2,
-    //           // icon : user_Icon,
-    //           position: results[0].geometry.location
-    //         });
-    //       }
-    //
-    //       //주소가 안잡힐때 일어나는 일
-    //       else {
-    //         alert('Geocode was not successful for the following reason: ' + status);
-    //       }
-    //     });
-    //   }
-    // }
-    //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
-    function geocodeAddress(geocoder, map) {
-      //사용자 Address
-      var address = $("#address").val();
-      //사용자 아이콘
-      //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
-      geocoder.geocode({'address': address}, function(results, status) {
-        //console.log(address);
-        if (status === 'OK') {
-          map.setCenter(results[0].geometry.location);
-          user=map.setCenter(results[0].geometry.location);
-          // var faddr_lat = results[0].geometry.location.lat();//위도
-          // var faddr_lng = results[0].geometry.location.lng();//경도
-          // console.log(faddr_lat);
-          // console.log(faddr_lng);
-
-          var marker = new google.maps.Marker({
-            map: map,
-            // icon : user_Icon,
-            position: results[0].geometry.location
-          });
-        }
-
-        //주소가 안잡힐때 일어나는 일
-        else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-      });
-    }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-    </script>
-    </body>
-    </html>
+  //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
+  // function geocodeAddress(geocoder, map) {
+  //   //사용자 Address
+  //   var address = $("#address").val();
+  //   //사용자 아이콘
+  //   //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
+  //   geocoder.geocode({'address': address}, function(results, status) {
+  //     //console.log(address);
+  //     if (status === 'OK') {
+  //       map.setCenter(results[0].geometry.location);
+  //
+  //       var faddr_lat = results[0].geometry.location.lat();//위도
+  //       var faddr_lng = results[0].geometry.location.lng();//경도
+  //       console.log(faddr_lat);
+  //       console.log(faddr_lng);
+  //
+  //       var marker = new google.maps.Marker({
+  //         map: map,
+  //         // icon : user_Icon,
+  //         position: results[0].geometry.location
+  //       });
+  //     }
+  //
+  //     //주소가 안잡힐때 일어나는 일
+  //     else {
+  //       alert('Geocode was not successful for the following reason: ' + status);
+  //     }
+  //   });
+  // }
+  // </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+  </script>
+</body>
+</html>
