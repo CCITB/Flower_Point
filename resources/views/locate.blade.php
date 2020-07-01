@@ -22,11 +22,13 @@
 
   #map {
     height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    width: 70%;  /* The width is the width of the web page */
+    margin : auto 30px;
   }
   #map2 {
     height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    width: 70%;  /* The width is the width of the web page */
+    margin : auto 30px;
   }
   /* Optional: Makes the sample page fill the window. */
   html, body {
@@ -63,130 +65,143 @@
   @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
-  $(document).ready(function() {
-  // for(i=0; i<store_marker.length; i++){
-  //   store_marker.push(store_address);
-  // }
-  // console.log(store_marker);
-  var arr = new Array();
-  var array = $('.array');
-  console.log(array);
 
-  for( var i=0 ; i < array.length ; i++)
-  {
-  arr.push(array);
-  //  console.log(add);
-}
-// console.log(arr[0]);
-});
-</script> --}}
-
-<script>
-var user;
-//맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    //center: {lat: -34.397, lng: 150.644}
-  });
-
-
-  // //주소 좌표로 변환하는 코드입니다.
-  var geocoder = new google.maps.Geocoder();
-  $(document).ready(function() {
-    geocodeAddress(geocoder, map);
-    //geocodeAddress2(geocoder, map2);
-  });
-
-  // Create a <script> tag and set the USGS URL as the source.
-  var script = document.createElement('script');
-  // This example uses a local copy of the GeoJSON stored at
-  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-  script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-  document.getElementsByTagName('head')[0].appendChild(script);
-
-  window.eqfeed_callback = function(array) {
-    // for (var i = 0; i < results.features.length; i++) {
-    //   var coords = results.features[i].geometry.coordinates;
-    var arr = new Array();
-    var array = $('.array');
-    console.log(array);
-    var faddr_lat = arr.geometry.location.lat();//위도
-
-    for( var i=0 ; i < array.length ; i++)
-    {
-      arr.push(array);
-    }
-    console.log(array[0]);
-    var latLng = new google.maps.LatLng(-34.397,150.644);
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map2
+  <script>
+  var user;
+  //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      //center: {lat: -34.397, lng: 150.644}
     });
-  }
-  // }
-}
+    var map2 = new google.maps.Map(document.getElementById('map2'), {
+      zoom: 2,
+      center: new google.maps.LatLng(37.566535, 126.97796919999996),
+    });
 
-// Loop through the results array and place a marker for each
-// set of coordinates.
+    // //주소 좌표로 변환하는 코드입니다.
+    var geocoder = new google.maps.Geocoder();
 
-//   var arr = new Array();
-//   var array = $('.array');
-//   console.log(array);
-//
-//   for( var i=0 ; i < array.length ; i++)
-//   {
-//     arr.push(array);
-//     //  console.log(add);
-//
-//     geocoder.geocode({'address': arr[i]}, function(results, status) {
-//       if (status === 'OK') {
-//         var marker = new google.maps.Marker({
-//           map: map2,
-//           // icon : user_Icon,
-//           position: results[0].geometry.location
-//         });
-//       }
-//
-//       //주소가 안잡힐때 일어나는 일
-//       else {
-//         alert('Geocode was not successful for the following reason: ' + status);
-//       }
-//     });
-//   }
-// }
-//데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
-function geocodeAddress(geocoder, map) {
-  //사용자 Address
-  var address = $("#address").val();
-  //사용자 아이콘
-  //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
-  geocoder.geocode({'address': address}, function(results, status) {
-    console.log(address);
-    if (status === 'OK') {
-      map.setCenter(results[0].geometry.location);
-      user=map.setCenter(results[0].geometry.location);
-      // var faddr_lat = results[0].geometry.location.lat();//위도
-      // var faddr_lng = results[0].geometry.location.lng();//경도
-      // console.log(faddr_lat);
-      // console.log(faddr_lng);
+    $(document).ready(function() {
+      geocodeAddress(geocoder, map);
+      //geocodeAddress2(geocoder, map2);
+    });
 
-      var marker = new google.maps.Marker({
-        map: map,
-        // icon : user_Icon,
-        position: results[0].geometry.location
+    // Create a <script> tag and set the USGS URL as the source.
+    var script = document.createElement('script');
+    // This example uses a local copy of the GeoJSON stored at
+    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+    window.eqfeed_callback = function(results) {
+      // for (var i = 0; i < results.features.length; i++) {
+      //   var coords = results.features[i].geometry.coordinates;
+
+      var arr = new Array();
+      var array = $('.array');
+
+      for( var i=0 ; i < array.length ; i++)
+      {
+        var geo_arr = new Array();
+
+        arr.push(array);
+        console.log(array[i]);
+
+        //var geo_arr[i] =
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+            //var coords = array.geo_arr[i];
+            var latLng = new google.maps.LatLng(위도, 경도);
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map2
+            });
+          }
+          else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        }
+      }
+    }
+
+
+    // var address = document.getElementById('address').value;
+    // geocoder.geocode( { 'address': address}, function(results, status) {
+    //   if (status == 'OK') {
+    //
+    //     var marker = new google.maps.Marker({
+    //       map: map,
+    //       position: results[0].geometry.location
+    //     });
+    //   } else {
+    //     alert('Geocode was not successful for the following reason: ' + status);
+    //   }
+    // });
+    //
+    //
+
+
+    // Loop through the results array and place a marker for each
+    // set of coordinates.
+
+    //   var arr = new Array();
+    //   var array = $('.array');
+    //   console.log(array);
+    //
+    //   for( var i=0 ; i < array.length ; i++)
+    //   {
+    //     arr.push(array);
+    //     //  console.log(add);
+    //
+    //     geocoder.geocode({'address': arr[i]}, function(results, status) {
+    //       if (status === 'OK') {
+    //         var marker = new google.maps.Marker({
+    //           map: map2,
+    //           // icon : user_Icon,
+    //           position: results[0].geometry.location
+    //         });
+    //       }
+    //
+    //       //주소가 안잡힐때 일어나는 일
+    //       else {
+    //         alert('Geocode was not successful for the following reason: ' + status);
+    //       }
+    //     });
+    //   }
+    // }
+    //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
+    function geocodeAddress(geocoder, map) {
+      //사용자 Address
+      var address = $("#address").val();
+      //사용자 아이콘
+      //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
+      geocoder.geocode({'address': address}, function(results, status) {
+        //console.log(address);
+        if (status === 'OK') {
+          map.setCenter(results[0].geometry.location);
+          user=map.setCenter(results[0].geometry.location);
+          // var faddr_lat = results[0].geometry.location.lat();//위도
+          // var faddr_lng = results[0].geometry.location.lng();//경도
+          // console.log(faddr_lat);
+          // console.log(faddr_lng);
+
+          var marker = new google.maps.Marker({
+            map: map,
+            // icon : user_Icon,
+            position: results[0].geometry.location
+          });
+        }
+
+        //주소가 안잡힐때 일어나는 일
+        else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
       });
     }
-
-    //주소가 안잡힐때 일어나는 일
-    else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-</script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-</script>
-</body>
-</html>
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+    </script>
+    </body>
+    </html>

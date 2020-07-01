@@ -32,8 +32,8 @@ class LocateController extends Controller
       $store_address = DB::table('store_address')->select('st_no','a_address')->get();
       // $customer_address = DB::table('customer_address')->where('c_no' ,'=', $data1[0]->c_no)->get();
       // return $store_address;
-      echo print_r($customer_address);
-      echo $store_address;
+      // echo print_r($customer_address);
+      // echo $store_address;
       return view('/locate', compact('customer_address','store_address'));
 
     }
