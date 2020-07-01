@@ -60,7 +60,7 @@
   <!--여기서부터 맵이 생깁니다.-->
   <script>
   var store_marker = new Array();
-  var store_address = $("#store_address").val();
+  var store_address = $("#store_address").value;
   console.log(store_address);
 
 
@@ -80,7 +80,7 @@
 
     //전역변수사용
     var store_address = $("#store_address").val();
-    
+
 
     var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
     var beachMarker = new google.maps.Marker({
@@ -123,7 +123,6 @@
       }
     });
   }
-
   </script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">

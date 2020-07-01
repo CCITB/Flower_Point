@@ -11,6 +11,7 @@
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
   <style>
   td.upload-date{
     text-align: center;
@@ -37,7 +38,7 @@
           <hr>
           <div class="wrap2">
             <div class="imgbox">
-              <img class="shopimg" src="/imglib/rose.jpg" alt="꽃집사진" >
+              <img class="shopimg" src="/imglib/flower1.jpg" alt="꽃집사진" >
             </div>
             <div id="tablewrap">
               <table id="shopinfo">
@@ -198,36 +199,89 @@
               <div>
                 {{ $proro->links()}}
               </div>
+            </div>
+          </div>
+        @endif
 
-              {{-- <div class="nav-page">
-              <nav>
-              <a href="#" class="active">1</a>
-            </nav>
-            <nav>
-            2
-          </nav>
-          <nav>
-          3
-        </nav>
-        <nav>
-        4
-      </nav>
-      <nav>
-      5
-    </nav>
-  </div> --}}
-</div>
-</div>
-
-@endif
-</div>
-
-</div>
-</div>
+      </div>
+    </div>
+    <form action="{{url('img')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+      @csrf
+      <div class="preview-wrap">
+        <div class="preview-left">
+          <div class="preview">
+            <img src="#" alt="" id="image-session">
+            <div class="preview-image">
+              <!-- 이미지 미리보기 -->
+            </div>
+          </div>
+        </div>
+        <div class="preview-right">
+          <div class="image-upload">
+            <label for="real-input">사진 업로드</label>
+            <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
+          </div>
+        </div>
+      </div>
+      <div class="postbutton">
+        <input type="submit" name="" value="저장" id="save" >
+        <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
+        <button type="button" name="button" class="Cancellation-btn">취소</button>
+      </div>
+    </form>
+  </div>
 </div>
 @include('lib.footer')
 </body>
-<script>
+<script>function checkFile(el){
+  $('#image-session').attr('src', '#');
+  var file = el.files;
+  if(file[0].size > 1024 * 1024 * 2){
+    alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
+    '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
+    el.outerHTML = el.outerHTML;
+  }
+  else chk_file_type(el);
+
+}
+function chk_file_type(el) {
+  var file_kind = el.value.lastIndexOf('.');
+  var file_name = el.value.substring(file_kind+1,el.length);
+  var file_type = file_name.toLowerCase();
+  // console.log(file_name)
+  // console.log(file_kind)
+
+  var check_file_type=new Array();
+  check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
+  if(check_file_type.indexOf(file_type)==-1) {
+    alert('이미지 파일만 업로드 가능합니다.');
+    var parent_Obj=el.parentNode;
+    console.log(parent_Obj);
+    var node=parent_Obj.replaceChild(el.cloneNode(true),el);
+    document.getElementById("real-input").value = "";    //초기화를 위한 추가 코드
+    document.getElementById("real-input").select();        //초기화를 위한 추가 코드                                               //일부 브라우저 미지원
+  }
+  else{readURL(el);
+    $("#real-input").change(function(){
+      readURL(this);
+    });
+  }
+}
+// 사진을 올릴때마다 파일을 새로 변경시켜주는 함수입니다.
+function readURL(el) {
+  if (el.files && el.files[0]) {
+    var reader = new FileReader();
+    // 이미지 미리보기해주는 jquery
+    reader.onload = function (e) {
+      $('#image-session').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(el.files[0]);
+  }
+}
+
+
+
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable");
@@ -264,6 +318,15 @@ function sortTable(n) {
     }
   }
 
+}
+
+function postcheck(){
+  if($('#real-input').val()==""){
+    $('#real-input').focus();
+    alert('사진을 업로드 해주세요');
+    return false;
+  }
+  oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
 }
 </script>
 <!--POST API Link -->

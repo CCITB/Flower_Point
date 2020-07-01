@@ -406,4 +406,22 @@ public function store_star($id){
     return response()->json(0);
   }
 
+  public function store_img_register(Request $request)
+  {
+    $storeno = auth()->guard('seller')->user()->s_no;
+    $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
+    $path=$request->file('picture')->store('/','public');
+    DB::table('store')->insert([
+      'st_img' =>$path
+    ]);
+
+
+    // 이미지 저장경로 public\storage\
+
+    // return $path;
+    // 이미지 product 테이블과 연결해서 저장
+
+    return redirect('/shop');
+  }
+
 }

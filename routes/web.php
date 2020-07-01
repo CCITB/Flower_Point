@@ -179,6 +179,8 @@ Route::get('/pd_modify', function () {
 
 Route::post('index', 'ProductController@seller_product_register');
 
+Route::post('img', 'ProductController@store_img_register');
+
 Route::get('/review', function () {
   return view('review');
 });
