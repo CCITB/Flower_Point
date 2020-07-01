@@ -88,7 +88,7 @@
                 배송비
               </div>
               <div class="price-section">
-                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery*$list->b_count)}}</strong>원
+                <strong class="text-option" id="deliveryprice{{$list->b_no}}">{{number_format($list->b_delivery)}}</strong>원
               </div>
             </div>
             <div class="imgwrap-section">
@@ -99,7 +99,7 @@
                 주문금액
               </div>
               <div class="price-section">
-                <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format(($list->b_price+$list->b_delivery)*$list->b_count)}}</strong>원
+                <strong class="text-option1" id="allsum{{$list->b_no}}">{{number_format($list->b_price*$list->b_count+$list->b_delivery)}}</strong>원
               </div>
             </div>
           </div>
@@ -272,9 +272,9 @@ function increase(a) {
   success: function(data) {
     console.log(data);
     // $('#checkf'+a).is(":checked");06.24사용할코드
-    window["orderprice"+a]=AddComma(data[0]*(data[1]+data[2]));
+    window["orderprice"+a]=AddComma(data[0]*data[1]+data[2]);
     window["productprice"+a]=AddComma(data[0]*data[1]);
-    window["deliveryprice"+a]=AddComma(data[0]*data[2]);
+    window["deliveryprice"+a]=AddComma(data[2]);
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
@@ -352,9 +352,9 @@ function decrease(d) {
   },
   success: function(data) {
     console.log(data);
-    window["orderprice"+d]=AddComma(data[0]*(data[1]+data[2]));
+    window["orderprice"+d]=AddComma(data[0]*data[1]+data[2]);
     window["productprice"+d]=AddComma(data[0]*data[1]);
-    window["deliveryprice"+d]=AddComma(data[0]*data[2]);
+    window["deliveryprice"+d]=AddComma(data[2]);
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
@@ -1013,7 +1013,26 @@ function checkindex(){
   // console.log(getid.length);
   // var productpost = document.productpost;
   var test = JSON.stringify(getid);
-  console.log(test);
+  // console.log(test);
+  $.ajax({
+  type: 'get',
+  url: '/index1',
+  dataType: 'json',
+//   data: { "getid" : getid
+// },
+success: function(data) {
+  console.log(1);
+
+
+  //data[0]=수량
+  //data[1]=상품가격
+  //data[2]=배송비
+},
+error: function(data) {
+  console.log('실패');
+  console.log("error" +data);
+}
+});
 
 }
 function productcheck(){
@@ -1056,4 +1075,4 @@ function productcheck(){
 $aa = "<script>getid;</script>";
 echo "<script>document.writeln(getid);</script>";
 @endphp --}}
-<button type="button" onclick="checkindex()" name="button">확인용</button>
+{{-- <button type="button" onclick="checkindex()" name="button">확인용</button> --}}
