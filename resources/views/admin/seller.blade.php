@@ -69,25 +69,25 @@
           <table id="store" class="display">
             <thead>
               <tr>
-                <th>판매자 고유번호</th>
                 <th>가게 고유번호</th>
                 <th>가게 이름</th>
                 <th>가게 번호1</th>
                 <th>가게 번호2</th>
                 <th>가게 주소</th>
                 <th>상세주소</th>
+                <th>판매자 고유번호</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($sellerall as $sel)
                 <tr onclick="location.href='product/store/{{$sel->st_name}}'">
-                  <td>{{$sel->s_no}}</td>
                   <td>{{$sel->st_no}}</td>
                   <td>{{$sel->st_name}}</td>
                   <td>{{$sel->st_tel}}</td>
                   <td>{{$sel->st_registeration_num}}</td>
                   <td>{{$sel->a_address}}</td>
                   <td>{{$sel->a_detail}}</td>
+                  <td>{{$sel->s_no}}</td>
                 </tr>
               @endforeach
             </tbody>

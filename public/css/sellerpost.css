@@ -61,15 +61,18 @@ clip: rect(0, 0, 0, 0);
 border: 0;
 } */
 .preview-wrap{
-width: 100%;
-height: 202px;
-margin-top: 20px;
-
+  width: 100%;
+  height: 210px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .input-guide{
   text-align:center;
-   margin: 20px 0;
-   color:gray;
+  margin: 20px 0;
+  color:gray;
 }
 table{
   margin-bottom: 10px;
@@ -86,45 +89,45 @@ td input{
   padding-right: 20px;
 }
 .preview img{
-width: 100%;
-height: 100%;
-z-index: 2;
-position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: relative;
 }
 .preview{
-width: 200px;
-height: 200px;
-border: 1px solid gray;
-float: right;
-
-display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid gray;
+  display: inline-block;
 }
 .preview-image{
-display: inline-block;
-
-z-index: 1;
+  display: inline-block;
+  z-index: 1;
 }
-.image-upload{
-display: inline-block;
 
+.image-upload{
+  display: inline-block;
 }
 .preview-left{
-width: 45%;
-
-display: inline-block;
-float: left;
-
+  width: 20%;
+  display: inline-block;
+}
+.preview-center{
+  width: 20%;
+  display: inline-block;
 }
 .preview-right{
-width: 50%;
-padding-top: 90px;
-padding-bottom: 90px;
-padding-left: 30px;
-
-float: left;
+  width: 20%;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  padding-left: 30px;
 }
-.preview{
-
+.imginfo{
+  width: 205px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: gray;
 }
 #save{
   height: 40px;
