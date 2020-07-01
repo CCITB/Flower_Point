@@ -53,7 +53,7 @@
                     <th class="th1">
                       <div class="thcell">
                         <a href="product/{{$pro->p_no}}">
-                          <img src="\imglib\{{$pro->p_filename}}" height="100px" width="100%"alt="꽃">
+                          <img src="\imglib\{{$pro->p_filename}}" height="100px" width="100%"alt="등록된 가게사진이 없습니다.">
                         </a></div>
                       </th>
                       <td>

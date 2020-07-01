@@ -39,7 +39,7 @@
           <hr>
           <div class="wrap2">
             <div class="imgbox">
-              <img class="shopimg" src="/imglib/{{$data1->st_img}}" alt="꽃집사진" >
+              <img class="shopimg" src="/imglib/{{$data1->st_img}}" alt="등록된 가게이미지가 없습니다." >
             </div>
             <div id="tablewrap">
               <table id="shopinfo">
@@ -89,7 +89,7 @@
             <div id="introducemodi">{{$data1->st_introduce}}</div>
             <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
             <div id="addressapi" style="display:none;">
-              <input type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요.">
+              <textarea type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요."></textarea>
               <button type="submit" id="complete2" name="button" >수정완료</button>
             </div>
           </div>
