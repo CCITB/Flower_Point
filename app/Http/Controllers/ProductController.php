@@ -102,7 +102,9 @@ class ProductController extends Controller
      ->where('product_no', $pro_no)->paginate(5);
 
      $review= DB::table('customer')
-      ->join('review', 'customer.c_no', '=', 'review.customer_no')->where('product_no', $pro_no)->paginate(3);
+      ->join('review', 'customer.c_no', '=', 'review.customer_no')
+      ->join('product', 'review.product_no','=','product.p_no')
+      ->where('product_no', $pro_no)->paginate(3);
 
      // return $qnaq;
 
