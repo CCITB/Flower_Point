@@ -104,6 +104,11 @@ div.orderbox{
   height: 680px;
 }
 
+.scroll-fixed{
+  position: fixed;
+  top: 30px;
+}
+
 div.paybox{
   margin: 0px 20px;
   padding: 20px 0px;
@@ -304,4 +309,8 @@ div.order_data{
 
 p.order_label{
   margin:10px auto;
+}
+
+div.orderinfo{
+  text-align: center;
 }

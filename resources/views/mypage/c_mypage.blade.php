@@ -50,7 +50,7 @@
                     <td>
                       <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
                       <div id="p_pw" style="display:none;">
-                        <input type="text" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
+                        <input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                         <button type="submit" name="button">수정완료</button>
                       </div>
                     </td>
@@ -339,15 +339,12 @@
     }
 
     function phonenum_checkform(){
+      var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
       var middlenum = document.getElementById("delivery_tel_no2");
       var lastnum = document.getElementById("delivery_tel_no3");
       var num =  /^[0-9]{3,4}$/;
       // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
       // var phonenum = document.getElementById("new_num");
-      if((middlenum.value)==""){
-        alert('중간번호를 입력해주세요');
-        return false;
-      }
       if(!num.test(middlenum.value)){
         alert('중간 4자리의 숫자를 입력해주세요')
         return false;
@@ -356,14 +353,12 @@
         alert('숫자만 입력해주세요.')
         return false;
       }
-      if((lastnum.value)==""){
-        alert('번호 뒷자리를 입력해주세요');
-        return false;
-      }
       if(!num.test(lastnum.value)){
         alert('뒤 4자리의 숫자를 입력해주세요')
         return false;
       }
+      if(special.test(lastnum.value)){
+        alert('숫자만 입력해주세요.');
       else {
         alert("변경되었습니다");
         return true;

@@ -148,7 +148,7 @@
                     <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
                     <td>{{$value[0]->b_name}}</td>
                   </tr>
-                  <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
+                  <tr><td>옵션선택 : {{$value[0]->b_option}}</td></tr>
                 </table>
               </div>
             @endforeach
@@ -208,6 +208,24 @@
   @include('lib.footer')
 </body>
 <script type="text/javascript">
+
+$(function() {
+
+  $(document).ready(function() {
+
+    var scrollOffset = $('.orderbox').offset();
+
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > scrollOffset.top) {
+        $('.orderbox').addClass('scroll-fixed');
+      }
+      else {
+        $('.orderbox').removeClass('scroll-fixed');
+      }
+    });
+  } );
+
+});
 
 function checkform(){
 
@@ -302,4 +320,5 @@ $('input[name=getarray]').val(JSON.stringify(getarray));
 
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 {{-- <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script> --}}

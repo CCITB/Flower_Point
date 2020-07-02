@@ -79,7 +79,7 @@
             <td>
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
             </td>
-            <form action="information_controller"  onsubmit="return phonenum_checkform()" method="post">
+            <form action="information_controller"  onsubmit="return s_phonenum_checkform()" method="post">
               @csrf
             </tr>
             <tr class="tr1">
@@ -199,32 +199,6 @@
 </div>
 @include('lib.footer')
 </body>
-
-
-
-
-
-<script type="text/javascript">
-var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
-var tabPanels=document.querySelectorAll(".tabContainer  .tabPanel");
-
-function showPanel(panelIndex,colorCode) {
-  tabButtons.forEach(function(node){
-    node.style.backgroundColor="";
-    node.style.color="";
-  });
-  tabButtons[panelIndex].style.backgroundColor=colorCode;
-  tabButtons[panelIndex].style.color="white";
-  tabPanels.forEach(function(node){
-    node.style.display="none";
-  });
-  tabPanels[panelIndex].style.display="block";
-  tabPanels[panelIndex].style.backgroundColor=colorCode;
-}
-showPanel(0,'gray');
-
-  </script>
-
   </html>
   <!--POST API Link -->
   <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
@@ -245,20 +219,33 @@ showPanel(0,'gray');
     }
   }
 
-  function phonenum_checkform(){
-    var phonenum = document.getElementById("new_num");
-    var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
-
-
-  if(!regExp.test(phonenum.value)){
-    alert("전화번호를 정확하게 입력해주세요");
-    return false;
-  }
-  else{
-    alert("변경되었습니다");
-    return true;
-  }
-  }
+  function s_phonenum_checkform(){
+    var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+    var middlenum = document.getElementById("delivery_tel_no2");
+    var lastnum = document.getElementById("delivery_tel_no3");
+    var num =  /^[0-9]{3,4}$/;
+    // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+    // var phonenum = document.getElementById("new_num");
+    if(!num.test(middlenum.value)){
+      alert('중간 4자리의 숫자를 입력해주세요');
+      return false;
+    }
+    if(special.test(middlenum.value)){
+      alert('숫자만 입력해주세요.');
+      return false;
+    }
+    if(!num.test(lastnum.value)){
+      alert('뒤 4자리의 숫자를 입력해주세요');
+      return false;
+    }
+    if(special.test(lastnum.value)){
+      alert('숫자만 입력해주세요.');
+      return false;
+    }
+    else {
+      alert("변경되었습니다");
+      return true;
+    }
 
   function email_checkform(){
       var email = document.getElementById("new_email");

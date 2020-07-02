@@ -89,8 +89,9 @@
         </div>
 
         <div class="paragraph">
-          <div class="sign_name">매장 소개</div>
-          <textarea placeholder="introduce" id="st_introduce" name="st_introduce" ></textarea>
+          <div class="sign_name">매장 소개 <span class="a">*매장 소개는 최대 85자까지 입력가능합니다.</span></div>
+          <textarea placeholder="introduce" id="st_introduce" name="st_introduce" maxlength="85" ></textarea>
+          <span class="counter" id="counter"></span>
         </div>
         <div class="under">
           <input class="lg_bt" type='submit' id="login" value="가입하기">
@@ -100,7 +101,16 @@
   </div>
 </body>
 </html>
-
+<script type="text/javascript">
+$(function() {
+      $('#st_introduce').keyup(function (e){
+          var content = $(this).val();
+          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+          $('#counter').html(content.length + '/85');
+      });
+      $('#st_introduce').keyup();
+});
+</script>
 <!--script Link -->
 <script type="text/javascript" src="/js/information_register.js" charset="utf-8"></script>
 <!--POST API Link -->
