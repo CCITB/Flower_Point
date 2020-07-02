@@ -23,16 +23,16 @@ class LocateController extends Controller
       $customer_address = DB::table('customer_address')->select('*')->where('c_no','=', $customerprimary )->get('');
 
       //store의 주소를 보여주기 위해 사용
-      $store_address = DB::table('store_address')->select('st_no','a_address')->get();
+      $store_address = DB::table('store_address')->select('st_no','a_address','a_detail','a_extra')->get();
 
       //store의 정보를 가져오기 위한 join
-      $store_join = DB::table('store')
-                    ->join('store_address', 'store.st_no','=','store_address.st_no','left outer')
-                    ->select('st_name','st_introduce','a_detail','a_extra')->get();
+      $store= DB::table('store')
+                    // ->join('store_address', 'store.st_no','=','store_address.st_no','left outer')
+                    ->select('st_no','st_name','st_introduce')->get();
 
       // echo print_r($store_join);
 
-      return view('/locate', compact('customer_address','store_address','store_join'));
+      return view('/locate', compact('customer_address','store_address','store'));
 
     }
     else{
