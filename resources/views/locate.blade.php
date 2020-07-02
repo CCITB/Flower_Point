@@ -19,7 +19,6 @@
   <style>
 
   /* Set the size of the div element that contains the map */
-
   #map {
     height: 400px;  /* The height is 400 pixels */
     width: 70%;  /* The width is the width of the web page */
@@ -40,28 +39,29 @@
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-  @foreach ($store_address as $address)
+    @foreach ($store_address as $address)
 
-  <!--주소를 검색하는 부분을 숨겨놨음-->
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+      <!--주소를 검색하는 부분을 숨겨놨음-->
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
 
-  <!--판매자일 때-->
+    <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-  @foreach ($customer_address as $address)
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+    @foreach ($customer_address as $address)
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
   @endif
 
   @foreach ($store_address as $address)
-  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
-  <div id="map2"></div>
+    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$store_join->a_address}}">
+    <div id="map2"></div>
   @endforeach
 
   <!--여기서부터 맵이 생깁니다.-->
@@ -71,24 +71,14 @@
   //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
   function initMap() {
     var geocode_result;
-    var address = $("#address").val();
-    geocoder.geocode( { 'address': address }, function(results, status) {
-      if (status == 'OK') {
-        // var coords = array.geo_arr[i];
-        // var latLng = new google.maps.LatLng(위도, 경도);
-        geocode_result = map.setCenter(results[0].geometry.location);
-      }
-    });
+    var user_address = $("#address").val();
+
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
-      center: geocode_result
+      //center: geocode_result
     });
-    // var map2 = new google.maps.Map(document.getElementById('map2'), {
-    //   zoom: 15,
-    //   center: new google.maps.LatLng(37.566535, 126.97796919999996),
-    // });
 
-    // //주소 좌표로 변환하는 코드입니다.
+    // 위도경도 변환하는 코드입니다.
     var geocoder = new google.maps.Geocoder();
 
     // Create a <script> tag and set the USGS URL as the source.
@@ -98,18 +88,38 @@
     script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
     document.getElementsByTagName('head')[0].appendChild(script);
 
+    var contentString =
+    '<div id="content">' +
+      '<h1 id="firstHeading" class="firstHeading">바텀듀오</h1>' +
+      '<div id="bodyContent">' +
+      "<p>오늘안에 하면 <b>유미원딜</b>갑니다. 경진이도 포기한 Google Map API 조지기 Start " +
+      "</div>" +
+    "</div>";
+
+    //User(seller/custsomer) 주소
+    geocoder.geocode( { 'address': user_address }, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          // position: latLng,
+          position: results[0].geometry.location,
+          map: map
+        });
+      }
+    });
+
+    //Store 주소
     window.eqfeed_callback = function(results) {
-      // for (var i = 0; i < results.features.length; i++) {
-      //   var coords = results.features[i].geometry.coordinates;
 
       var arr = new Array();
-      var address = $("#address").val();
+      //var address = $("#address").val();
       var array = $('.array');
-      arr.push(address);
+      // arr.push(address);
       for(var j=0; j < array.length; j++){
         arr.push(array[j].value);
       }
-
+      //사용자 아이콘
+      var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
       for( var i=0 ; i < arr.length; i++)
       {
         // var geo_arr = new Array();
@@ -117,17 +127,26 @@
           if (status == 'OK') {
             // var coords = array.geo_arr[i];
             // var latLng = new google.maps.LatLng(위도, 경도);
-            map.setCenter(results[0].geometry.location);
-            console.log(results[0]);
+            //map.setCenter(results[0].geometry.location);
+            //console.log(results[0]);
             var marker = new google.maps.Marker({
               // position: latLng,
               position: results[0].geometry.location,
+              icon : store_Icon,
               map: map
             });
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+
+            marker.addListener("click", function() {
+              infowindow.open(map, marker);
+            });
           }
-          else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
+          // else {
+          //   alert('Geocode was not successful for the following reason: ' + status);
+          // }
         });
       }
       console.log(arr);
@@ -163,7 +182,7 @@
   //     }
   //   });
   // }
-  // </script>
+</script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
   </script>
