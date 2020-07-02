@@ -1041,7 +1041,6 @@ function productcheck(){
   if(getid.length == 0){
     alert('최소 하나의 상품을 선택해주세요');
     return false;
-    location.href='/order'+getid;
   }
   else{
     //     $.ajax({

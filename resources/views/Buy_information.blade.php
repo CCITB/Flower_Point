@@ -96,7 +96,7 @@
           </div>
           <div class="order_bt">
             <button class="order" type="button" id="btn1">담기</button>
-            <button class="order" type="submit">주문</button>
+            <button class="order" type="button" id="btn2">주문</button>
           </div>
         </div>
 
@@ -317,6 +317,9 @@
 
           </div>
         @endforeach
+        <form class="" id="Pro" action="/order/" method="get" name="Pro">
+          <input type="hidden" name="Pro" value="">
+        </form>
         @include('lib.footer')
       </body>
       <script>
@@ -498,6 +501,11 @@
           }
         });
       });
-
+      $('#btn2').click(function(){
+        var bb = {{$protb->p_no}};
+        console.log($('input[name=Pro]').val(bb));
+        // location.href = '/order/'+Pro;
+        document.Pro.submit();
+      });
       </script>
       </html>
