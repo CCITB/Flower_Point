@@ -36,4 +36,32 @@ class AdminController extends Controller
 
     return view('admin.seller', compact('sellerall','product'));
   }
+
+  public function ad_remove($id){
+
+    DB::table('product')->where('p_no','=',$id)->update([
+      'p_status' => '삭제'
+    ]);
+
+    return redirect('/ad_seller');
+  }
+
+  public function ad_restore($id){
+
+    DB::table('product')->where('p_no','=',$id)->update([
+      'p_status' => '등록'
+    ]);
+
+    return redirect('/ad_seller');
+  }
+
+  public function product(){
+    $product = DB::table('seller')
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('store_address','store.st_no', '=', 'store_address.st_no')
+    ->join('product','store.st_no','=','product.store_no')
+    ->select('*')->get();
+
+    return view('admin.product', compact('product'));
+  }
 }

@@ -35,7 +35,7 @@
         <ul class="sub">
           <li><a href="/ad_customer">구매자 관리</a></li>
           <li><a href="/ad_seller">판매자 관리</a></li>
-          <li><a href="pricing_table.html">Pricing Table</a></li>
+          <li><a href="/ad_product">상품 세부관리</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>

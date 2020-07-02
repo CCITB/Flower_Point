@@ -344,6 +344,12 @@ Route::get('/ad_customer', 'AdminController@customer');
 
 Route::get('/ad_seller', 'AdminController@seller');
 
+Route::post('/ad_remove{id}', 'AdminController@ad_remove');
+
+Route::post('/ad_restore{id}', 'AdminController@ad_restore');
+
+Route::get('/ad_product', 'AdminController@product');
+
 Route::get('/test', function () {
   return view('admin.test');
 });

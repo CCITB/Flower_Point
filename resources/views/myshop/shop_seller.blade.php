@@ -172,7 +172,7 @@
                     <th class="product-price">가격</th>
                     <th class="product-amount">주문량</th>
                     <th class="product-modify">수정</th>
-                    <th class="product-modify">삭제</th>
+                    <th class="product-remove">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
