@@ -32,23 +32,23 @@
     <div class="signup">
       <form action = '/sto_info' method="post" name="f" onsubmit='return checkIt();'>
         @csrf
-        <div class="sign_name"><span class="a">*</span>아이디</div>
+        <div class="sign_name">아이디<span class="a">*</span></div>
         <input class="inf1" type="text" placeholder="ID" id="id" name="s_id" >
         <div class="check_div" id="id_check" value=""></div>
 
-        <div class="sign_name"><span class="a">*</span>비밀번호</div>
+        <div class="sign_name">비밀번호<span class="a">*</span></div>
         <input class="inf1" type="password" placeholder="Password" name="s_password" id="pw"  >
         <div class="check_div" id="pw_check" value=""></div>
 
-        <div class="sign_name"><span class="a">*</span>비밀번호 확인</div>
+        <div class="sign_name">비밀번호 확인<span class="a">*</span></div>
         <input class="inf1" type="password" placeholder="Password" name="s_re_password" id="check"  >
         <div class="check_div" id="re_pw_check" value=""></div>
 
-        <div class="sign_name"><span class="a">*</span>이름</div>
+        <div class="sign_name">이름<span class="a">*</span></div>
         <input class="inf1" type="text" placeholder="Name" id="name"  name="s_name" >
         <div class="check_div" id="name_check" value=""></div>
 
-        <div class="sign_name"><span class="a">*</span>생년월일</div>
+        <div class="sign_name">생년월일<span class="a">*</span></div>
         <input class="inf2" type="text" placeholder="년(4자)" id="s_birth_y" name="s_birth_y" maxlength="4"  >
 
         <select class="inf2" id="s_birth_m" name="s_birth_m" >
@@ -70,7 +70,7 @@
         <div class="check_div" id="birth_check" value=""></div>
 
         <div class="gender">
-          <div class="sign_name">성별</div>
+          <div class="sign_name">성별<span class="a">*</span></div>
           <select class="form_select" name="s_gender" id=s_gender >
             <option value="">성별</option>
             <option value="남성">남성</option>
@@ -79,7 +79,7 @@
         </div>
         <div class="check_div" id="gender_check" value=""></div>
 
-        <div class="inf2"><span class="a">*</span>연락처</div>
+        <div class="inf2">연락처<span class="a">*</span></div>
         <select class="inf2" id="s_tel1" name="s_tel1" >
           <option value="010" selected>010</option>
           <option value="011">011</option>
@@ -116,7 +116,7 @@
         <input class="btn_e" id="btn_phone" type="button" value="인증번호 전송">
         <div class="check_div" id="phonenum_check" value=""></div>
         <div class="verify">
-          <div class="sign_name"><span class="a">*</span>이메일</div>
+          <div class="sign_name">이메일<span class="a">*</span></div>
           <!--인증번호를 전송할 이메일 기입창과 전송 버튼-->
           <input class="inf1" type="email" placeholder="email "id="s_email" name="s_email"  >
           <!-- <input class="btn_e" id="btn_email" type="button" value="인증번호 전송"> -->
