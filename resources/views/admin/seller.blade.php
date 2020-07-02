@@ -71,11 +71,13 @@
               <tr>
                 <th>가게 고유번호</th>
                 <th>가게 이름</th>
-                <th>가게 번호1</th>
-                <th>가게 번호2</th>
+                <th>가게 번호</th>
+                <th>사업자등록번호</th>
                 <th>가게 주소</th>
                 <th>상세주소</th>
                 <th>판매자 고유번호</th>
+                <th>승인 여부</th>
+                <th>승인</th>
               </tr>
             </thead>
             <tbody>
@@ -88,6 +90,14 @@
                   <td>{{$sel->a_address}}</td>
                   <td>{{$sel->a_detail}}</td>
                   <td>{{$sel->s_no}}</td>
+                  <td>{{$sel->registeration_status}}</td>
+                  <td>
+                    <form name="delete" action="/{{$sel->s_no}}" method="post">
+                      @csrf
+                      <input type="submit" name="remove" id="remove" value="승인">
+                      <input type="hidden" id="hidden" name="hidden" value="">
+                    </form>
+                  </td>
                 </tr>
               @endforeach
             </tbody>

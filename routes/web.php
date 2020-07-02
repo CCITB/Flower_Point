@@ -187,9 +187,8 @@ Route::get('/review', function () {
 
 Route::post('rev', 'ReviewController@my_review');
 
-Route::get('/rev2', function () {
-  return view('rev_image');
-});
+Route::post('rev_count', 'ReviewController@rev_count');
+
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 

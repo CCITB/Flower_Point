@@ -23,13 +23,13 @@
 
         @if(auth()->guard('customer')->user())
           <form class="favorite" action="/favorite/{{$protb->p_no}}" method="get">
-          <div class="pd_basic">
-            <div class="pd_name">{{$protb->p_name}}</div>
-            <div class="star">
-              <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
+            <div class="pd_basic">
+              <div class="pd_name">{{$protb->p_name}}</div>
+              <div class="star">
+                <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
         @elseif(auth()->guard('seller')->user())
           <div class="pd_basic">
             <div class="pd_name">{{$protb->p_name}}</div>
@@ -42,63 +42,63 @@
             </div>
           </div>
         @endif
-          <hr class="option_line">
+        <hr class="option_line">
 
-          <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
-            @foreach ($store as $key)
-              <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</a></div>
-            @endforeach
-            <div class="pd_price">
-              <strong><span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
-            </div>
+        <div class="shop_basic"> <!-- 해당 매장 테이블에서 불러와 링크걸기 -->
+          @foreach ($store as $key)
+            <div class="shop_name"><a href="/product/store/{{$key->st_name}}">{{$key->st_name}}</a></div>
+          @endforeach
+          <div class="pd_price">
+            <strong><span>{{number_format($protb->p_price)}}</span>  <span>원</span> </strong>
           </div>
+        </div>
 
 
-          <div class="pd_deliver">
-            <div class="pd_deliver1">
-              <span class="del_text">배송비</span><br>
-              <span>{{number_format($protb->p_title)}}</span>
-              <span>원</span>
-            </div>
-            <div class="pd_deliver2">
-              <span class="del_text">배송기간</span><br>
-              2일 이내
-            </div>
-            <div class="pd_deliver3">
-              <span class="del_text">적립금</span><br>
-              최대 2%
-            </div>
+        <div class="pd_deliver">
+          <div class="pd_deliver1">
+            <span class="del_text">배송비</span><br>
+            <span>{{number_format($protb->p_title)}}</span>
+            <span>원</span>
           </div>
-
-
-          <div class="options">
-            <select class="select_option" name="select_option">
-              <option value="option 1">옵션 없음</option>
-              <option value="option 1">옵션 1</option>
-              <option value="option 2">옵션 2</option>
-            </select>
-
-            <select class="select_option" name="select_pack">
-              <option value="pack 1">포장 없음</option>
-              <option value="pack 1">포장 1</option>
-              <option value="pack 2">포장 2</option>
-            </select>
+          <div class="pd_deliver2">
+            <span class="del_text">배송기간</span><br>
+            2일 이내
           </div>
-
-
-          <div class="pd_pay">
-            <div class="total_price_text">
-              총 금액
-            </div>
-            <div class="total_price">
-              <span>{{number_format($protb->p_price)}}</span>
-              <span>원</span>
-            </div>
-            <div class="order_bt">
-              <button class="order" type="button" id="btn1">담기</button>
-              <button class="order" type="submit">주문</button>
-            </div>
+          <div class="pd_deliver3">
+            <span class="del_text">적립금</span><br>
+            최대 2%
           </div>
+        </div>
+
+
+        <div class="options">
+          <select class="select_option" name="select_option">
+            <option value="option 1">옵션 없음</option>
+            <option value="option 1">옵션 1</option>
+            <option value="option 2">옵션 2</option>
+          </select>
+
+          <select class="select_option" name="select_pack">
+            <option value="pack 1">포장 없음</option>
+            <option value="pack 1">포장 1</option>
+            <option value="pack 2">포장 2</option>
+          </select>
+        </div>
+
+
+        <div class="pd_pay">
+          <div class="total_price_text">
+            총 금액
+          </div>
+          <div class="total_price">
+            <span>{{number_format($protb->p_price)}}</span>
+            <span>원</span>
+          </div>
+          <div class="order_bt">
+            <button class="order" type="button" id="btn1">담기</button>
+            <button class="order" type="submit">주문</button>
+          </div>
+        </div>
 
       </div>
 
@@ -144,98 +144,39 @@
         </div>
         <div class="review_list">
           <ul>
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+            @foreach ($review as $rev)
+              <li class="user_review">
+                <div class="review_one">
+                  <div class="review_cell">
+                    <div class="user_profile">
+                      <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
 
+                    </div>
+                    <div class="review_text">
+                      <div class="star_small">
+                        <span class="stars">★★★★★</span>
+                      </div>
+                      <div class="status_user">
+                        <span class="text_info">{{$rev->c_name}}</span>
+                        <span class="text_info">{{$rev->created_at}}</span>
+                        <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                      </div>
+                      <div class="user_write">
+                        <span class="writing">꽃이 너무 마음에 들어요</span>
+                      </div>
+                      <a href="#">더보기</a>
+                    </div>
                   </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
-                  </div>
-                </div>
 
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
-
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+                  <div class="review_image">
+                    이미지
                   </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
+                  <div class="review_good">
+                    <button type="button" name="good" onclick="pd_good();">좋아요</button>
                   </div>
                 </div>
-
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
-
-            <li class="user_review">
-              <div class="review_one">
-                <div class="review_cell">
-                  <div class="user_profile">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-                  </div>
-                  <div class="review_text">
-                    <div class="star_small">
-                      <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="status_user">
-                      <span class="text_info">ID</span>
-                      <span class="text_info">20.05.23</span>
-                      <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
-                    </div>
-                    <div class="user_write">
-                      <span class="writing">꽃이 너무 마음에 들어요</span>
-                    </div>
-                    <a href="#">더보기</a>
-                  </div>
-                </div>
-                <div class="review_image">
-                  이미지
-                </div>
-                <div class="review_good">
-                  좋아요
-                </div>
-              </div>
-            </li>
+              </li>
+            @endforeach
           </ul>
         </div>
       </div>
@@ -455,6 +396,39 @@
       </script>
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script type="text/javascript">
+
+      function pd_good(){
+
+        var count = 0;
+
+        $.ajax({
+          type: 'get',
+          url: '/rev_count',
+          dataType: 'json',
+          // data: {  :  },
+
+          success: function(data) {
+
+
+          }
+
+        });
+
+
+
+
+
+      }
+
+
+
+
+
+
+
+
+
+
 
       $(document).ready(function(){
         $("#sub").click(function(){

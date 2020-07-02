@@ -100,6 +100,10 @@ class ProductController extends Controller
     $qnaq = DB::table('customer')
      ->join('question', 'customer.c_no', '=', 'question.customer_no')->leftjoin('answer','question.q_no', '=', 'answer.question_no')->select('*')
      ->where('product_no', $pro_no)->paginate(5);
+
+     $review= DB::table('customer')
+      ->join('review', 'customer.c_no', '=', 'review.customer_no')->where('product_no', $pro_no)->paginate(3);
+
      // return $qnaq;
 
     // $cno = auth()->user()->c_no;
@@ -121,7 +125,7 @@ class ProductController extends Controller
     }
     // return $qnaq;
     //나의 소중한 주석입니다 지우지 말아주세요
-    return view('Buy_information', compact('productinfor','qnaq', 'store'));
+    return view('Buy_information', compact('productinfor','qnaq', 'store','review'));
   }
 
   // 상품 수정하기

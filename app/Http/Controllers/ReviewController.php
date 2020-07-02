@@ -17,33 +17,35 @@ class ReviewController extends Controller
     $today = date("Ymd");
     $path=$myv->file('picture');
     if($myv->hasFile('picture')){
-    $path=$myv->file('picture')->store('/','public');
+      $path=$myv->file('picture')->store('/','public');
     }
-    // if(isset($path)){
-    //   return $path;
-    // }
-    // else{
-    //
-    //   return $path;
-    // }
+
     DB::table('review')->insert([
       'r_image' => $path,
       'r_contents' => $myv->input('text'),
       'r_score' => $rates,
-      'created_at' => $today,
+      'r_date' => $today,
       'customer_no' => $custo
     ]);
     echo "<script>alert('후기가 등록되었습니다.');self.close();</script>";
 
     // 이미지 저장경로 public\storage\
-
     // return $path;
     // 이미지 product 테이블과 연결해서 저장
+  }
 
-    // <script>alert('후기가 등록되었습니다.');self.close();</script>
-    // return redirect('self.close()');
+  public function review(){
+
 
 
   }
+
+
+  public function rev_count(){
+
+
+  }
+
+
 
 }
