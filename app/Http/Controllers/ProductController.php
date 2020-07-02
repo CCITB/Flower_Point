@@ -366,10 +366,22 @@ public function store_star($id){
     return response()->json(1234);
   }
   public function basketstore(Request $request){
+    // return response()->json(1);
     $data =  $request->input('id');
     $pt = DB::table('product')->where('p_no',$data)->first();
+
+    // return response()->json($test);
     if($userinfo = auth()->guard('customer')->user()){
+
       $prikey  = $userinfo->c_no;
+      $test = DB::table('basket')->where('customer_no',$prikey)->where('product_no',$data)->get();
+      if(count($test)>0){
+        DB::table('basket')->where('product_no',$data)->update([
+          'b_count' => $test[0]->b_count+1
+        ]);
+        return response()->json(11);
+      }
+      else{
       DB::table('basket')->insert([
         'b_price' => $pt->p_price ,
         'b_name' => $pt->p_name,
@@ -379,9 +391,11 @@ public function store_star($id){
         'b_delivery' => $pt->p_title,
         'b_picture' => $pt->p_filename
       ]);
-      return response()->json($data);
+      return response()->json(12);
     }
-    if($seller = auth()->guard('seller')->user()){
+      return response()->json(13);
+    }
+    elseif($seller = auth()->guard('seller')->user()){
       return response()->json(1);
     }
     else{

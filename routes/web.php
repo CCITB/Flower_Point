@@ -200,6 +200,8 @@ Route::get('/order/{name?}', 'PaymentController@payment');
 
 Route::get('/complete', 'PaymentController@paymentcomplete');
 
+Route::post('/complete', 'PaymentController@paymentprocess');
+
 Route::get('/sellermyorderlist', function(){
   return view('seller.seller_myorderlist');
 });

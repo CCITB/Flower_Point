@@ -45,9 +45,46 @@ class PaymentController extends Controller
       }
       else
       return redirect('/');
+    }
+    public function paymentprocess(Request $request){
+      // 수령인 이름
+      $request->input('recipient');
+      // 거래방법
+      $request->input('trade');
+      // 휴대폰 번호
+      $request->input('phone_no1');
+      $request->input('phone_no2');
+      $request->input('phone_no3');
+      //우편번호,주소,상세주소,추가주소
+      $request->input('postcode');
+      $request->input('address');
+      $request->input('detailAddress');
+      $request->input('extraAddress');
+      //사용자 요청사항
+      $request->input('request');
+      //장바구니 테이블에서 주문완료상태로 처리하기 위한 넘버 배열로 담겨있음
+      $basket_no = json_decode($request->input('getarray'));
+      //상품키 받아올 배열 선언
+      $proarray = [];
+      //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
+      for($i=0; $i<count($basket_no);$i++){
+      $proarray[$i] =  DB::table('basket')->where('b_no',$basket_no[$i])->get();
+      }
+      // return var_dump($proarray);
+      //
+      //
+      // DB::table('payment')->insert([
+      //
+      // ]);
+      // return 0;
+      // return ;
+
+      return redirect('/complete');
 
     }
-    public function paymentcomplete(){
+    public function paymentcomplete(Request $request){
+      // return $request;
+      // echo 1;
         return view('payment.complete');
     }
 }

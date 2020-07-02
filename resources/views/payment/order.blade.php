@@ -11,7 +11,7 @@
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" type="text/javascript">
 </script>
@@ -47,8 +47,9 @@
           </div>
           <div class="customerbox2">
             <!--결제 정보 창-->
-            <form class="info" action="#" method="post">
+            <form class="info" action="/complete" onsubmit="return checkform()" name="check" method="post">
               @csrf
+              <input type="hidden" name="getarray" value="">
               <div class="delivery_wrap">
                 <strong class="info">수령인</strong>
                 <div class=delivery_input><input id="inputtext" type="text" name="recipient"></div>
@@ -86,9 +87,9 @@
                   <option value="080">080</option>
                 </select>
                 -
-                <input type="text" title="휴대폰 중간번호" id="delivery_tel_no2" class="delivery_tel">
+                <input type="text" title="휴대폰 중간번호" id="delivery_tel_no2"maxlength="4" class="delivery_tel" name="phone_no2">
                 -
-                <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" class="delivery_tel">
+                <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" maxlength="4" class="delivery_tel" name="phone_no3">
               </div>
               <div id="trade0">
                 <input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래
@@ -98,16 +99,16 @@
                 <div class="delivery_wrap">
                   <strong class="info">주 소</strong>
                   <!-- 우편번호 -->
-                  <input type="text" id="postcode" placeholder="우편번호">
+                  <input type="text" id="postcode" placeholder="우편번호" name="postcode">
                   <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
                 </div>
                 <!--주소 -->
                 <div class="delivery_wrap2">
-                  <input type="text"  id="address" placeholder="주소">
+                  <input type="text"  id="address" placeholder="주소" name="address">
 
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소">
-                    <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목">
+                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress">
+                    <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
                   </div>
                 </div>
                 <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
@@ -140,7 +141,7 @@
             </div>
             <!--상품 정보창-->
             @foreach ($data as $key => $value)
-              <div class="product_data">
+              <div class="product_data" id="product_data{{$value[0]->b_no}}">
                 <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
                 <table cellpadding="10" cellspacing="10" width="300px">
                   <tr>
@@ -150,8 +151,8 @@
                   <tr><td>리시안셔스/옵션선택 : 안함</td></tr>
                 </table>
               </div>
-              @endforeach
-            </div>
+            @endforeach
+          </div>
           <!--주문창-->
           <div class="orderbox">
             <div class="paybox">
@@ -194,105 +195,111 @@
                   </tr>
                 </table>
                 <hr class="line2">
-              </form>
-              <form class="check" action="/complete" onsubmit="return checkform()" name="check">
                 <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-                <div class="line"><input class="end" type='submit' value="다음" ></div></form>
-              </div>
-            </div><!--결제정보 -->
-          </div><!--오른쪽 주문정보 박스 -->
-          <!--컨테이너박스-->
-        </div>
+                <div class="line"><input class="end" type='submit' value="다음" ></div>
+              </form>
+            </div>
+          </div><!--결제정보 -->
+        </div><!--오른쪽 주문정보 박스 -->
+        <!--컨테이너박스-->
       </div>
     </div>
-    @include('lib.footer')
-  </body>
-  <script type="text/javascript">
+  </div>
+  @include('lib.footer')
+</body>
+<script type="text/javascript">
 
-  function checkform(){
+function checkform(){
 
-    var check1=document.check.ck.checked;
-    if(!check1){
-      alert('약관에 동의해 주세요');
-      return false;
-    }
-
-    var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-    var num =  /^[0-9]{3,4}$/;
-    var receiver = document.getElementById("inputtext");
-    var middlenum = document.getElementById("delivery_tel_no2");
-    var lastnum = document.getElementById("delivery_tel_no3");
-    var trade1 = document.getElementById("trade1")
-    var trade2 = document.getElementById("trade2")
-    var address = document.getElementById("address");
-    var detail_address = document.getElementById("detailAddress");
-    var bank = document.getElementById("bank");
-
-    if((receiver.value)==""){
-      alert('수령인을 입력해주세요');
-      return false;
-    }
-    if(special.test(receiver.value)){
-      alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
-      return false;
-    }
-    if((middlenum.value)==""){
-      alert('중간번호를 입력해주세요');
-      return false;
-    }
-    if(!num.test(middlenum.value)){
-      alert('중간 4자리의 숫자를 입력해주세요')
-      return false;
-    }
-    if(special.test(middlenum.value)){
-      alert('숫자만 입력해주세요.')
-      return false;
-    }
-    if((lastnum.value)==""){
-      alert('번호 뒷자리를 입력해주세요');
-      return false;
-    }
-    if(!num.test(lastnum.value)){
-      alert('뒤 4자리의 숫자를 입력해주세요')
-      return false;
-    }
-    if(trade1.checked == trade2.checked){
-      alert('결제방식을 선택해주세요');
-      return false;
-    }
-
-    if(trade1.checked){
-      return true;
-    }
-
-    if(trade2.checked){
-      if((address.value)==""){
-        alert('주소를 입력해주세요');
-        return false;
-      }
-      else if((detail_address.value)==""){
-        alert('상세주소를 입력해주세요');
-        return false;
-      }
-
-    }
-
-    if((bank.value)==""){
-      alert('은행을 선택해주세요');
-      return false;
-    }
+  var check1=document.check.ck.checked;
+  if(!check1){
+    alert('약관에 동의해 주세요');
+    return false;
   }
 
-  function div_show(s,ss){
-    if(s == "직접거래"){
-      document.getElementById(ss).style.display="none";
-    }else{
-      document.getElementById(ss).style.display="block";
-    }
+  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var num =  /^[0-9]{3,4}$/;
+  var receiver = document.getElementById("inputtext");
+  var middlenum = document.getElementById("delivery_tel_no2");
+  var lastnum = document.getElementById("delivery_tel_no3");
+  var trade1 = document.getElementById("trade1")
+  var trade2 = document.getElementById("trade2")
+  var address = document.getElementById("address");
+  var detail_address = document.getElementById("detailAddress");
+  var bank = document.getElementById("bank");
+
+  if((receiver.value)==""){
+    alert('수령인을 입력해주세요');
+    return false;
   }
+  if(special.test(receiver.value)){
+    alert("한글과 영문 대 소문자를 사용하세요.(특수기호,공백 사용불가)");
+    return false;
+  }
+  if((middlenum.value)==""){
+    alert('중간번호를 입력해주세요');
+    return false;
+  }
+  if(!num.test(middlenum.value)){
+    alert('중간 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(special.test(middlenum.value)){
+    alert('숫자만 입력해주세요.')
+    return false;
+  }
+  if((lastnum.value)==""){
+    alert('번호 뒷자리를 입력해주세요');
+    return false;
+  }
+  if(!num.test(lastnum.value)){
+    alert('뒤 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(trade1.checked == trade2.checked){
+    alert('결제방식을 선택해주세요');
+    return false;
+  }
+
+  if(trade1.checked){
+    return true;
+  }
+
+  if(trade2.checked){
+    if((address.value)==""){
+      alert('주소를 입력해주세요');
+      return false;
+    }
+    else if((detail_address.value)==""){
+      alert('상세주소를 입력해주세요');
+      return false;
+    }
+
+  }
+
+  if((bank.value)==""){
+    alert('은행을 선택해주세요');
+    return false;
+  }
+}
+
+function div_show(s,ss){
+  if(s == "직접거래"){
+    document.getElementById(ss).style.display="none";
+  }else{
+    document.getElementById(ss).style.display="block";
+  }
+}
+var getarray = [];
+for(i=0; i<$('.product_data').length; i++){
+    proNum = $('.product_data').eq(i).attr('id').replace(/[^0-9]/g,'');
+    getarray.push(proNum);
+}
+$('input[name=getarray]').val(JSON.stringify(getarray));
+// console.log(getarray);
 </script>
 </html>
 
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
-<script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
+{{-- <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script> --}}
