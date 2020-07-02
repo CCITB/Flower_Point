@@ -218,13 +218,16 @@ class ProductController extends Controller
 public function star(Request $request){
   if(auth()->guard('customer')->user()){
     $c_no = auth()->guard('customer')->user()->c_no;
-  }
-  $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
-  ->select('*')->where('customer_no','=',$c_no)->get();
+    $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
+    ->select('*')->where('customer_no','=',$c_no)->get();
 
-  $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
-  ->select('*')->where('customer_no','=',$c_no)->get();
-    return view('star', compact('pro','pro2'));
+    $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
+    ->select('*')->where('customer_no','=',$c_no)->get();
+      return view('star', compact('pro','pro2'));
+}
+else{
+  return redirect('/');
+}
 }
 
 //내상품 삭제코드
