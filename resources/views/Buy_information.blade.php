@@ -154,15 +154,19 @@
                     </div>
                     <div class="review_text">
                       <div class="star_small">
-                        <span class="stars">★★★★★</span>
+                        <span name="rate1" class="hi" id="st1" value="1">★</span>
+                        <span name="rate2" class="hi" id="st2" value="2">★</span>
+                        <span name="rate3" class="hi" id="st3" value="3">★</span>
+                        <span name="rate4" class="hi" id="st4" value="4">★</span>
+                        <span name="rate5" class="hi" id="st5" value="5">★</span>
                       </div>
                       <div class="status_user">
                         <span class="text_info">{{$rev->c_name}}</span>
-                        <span class="text_info">{{$rev->created_at}}</span>
-                        <span class ="text_info_option">제품 : 리시안셔스   옵션 : 미니한다발</span>
+                        <span class="text_info">{{$rev->r_date}}</span>
+                        <span class ="text_info_option">{{$rev->p_name}}</span>
                       </div>
                       <div class="user_write">
-                        <span class="writing">꽃이 너무 마음에 들어요</span>
+                        <span class="writing">{{$rev->r_contents}}</span>
                       </div>
                       <a href="#">더보기</a>
                     </div>
@@ -172,7 +176,7 @@
                     이미지
                   </div>
                   <div class="review_good">
-                    <button type="button" name="good" onclick="pd_good();">좋아요</button>
+                    <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}"></span>{{$rev->r_good}}</button>
                   </div>
                 </div>
               </li>
@@ -397,38 +401,30 @@
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script type="text/javascript">
 
-      function pd_good(){
+      function pd_good(r_no){
 
-        var count = 0;
+        var g_bt = $('#good'+r_no);
+        console.log(g_bt);
 
         $.ajax({
-          type: 'get',
+          type: 'post',
           url: '/rev_count',
           dataType: 'json',
-          // data: {  :  },
+          data: { 'num' : r_no },
 
           success: function(data) {
+            if (data == 1){
+              console.log(data);
 
+            }
 
+          },
+          error: function(data) {
+            console.log("error" +data);
+            alert("잘못된 요청입니다.")
           }
-
         });
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
 
       $(document).ready(function(){
         $("#sub").click(function(){
@@ -472,7 +468,7 @@
           success: function(data) {
             console.log(data);
             if(data==1){
-              alert("구매자는 이용할 수 없습니다.");
+              alert("판매자는 이용할 수 없습니다.");
               return false;
             }
             if(data==0){

@@ -34,16 +34,20 @@ class ReviewController extends Controller
     // 이미지 product 테이블과 연결해서 저장
   }
 
-  public function review(){
 
+  public function rev_count(Request $re){
 
+    $pno = $re->input('num');
+    // return $pno;
+    $count = DB::table('review')->where('r_no',$pno)->get();
+    $present = $count[0]->r_good;
+    $plus = $present + 1;
+    // return $plus;
 
-  }
-
-
-  public function rev_count(){
-
-
+    $good = DB::table('review')->where('r_no',$pno)->update([
+      'r_good' => $plus
+    ]);
+    return response()->json(1);
   }
 
 
