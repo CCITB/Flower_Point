@@ -48,10 +48,8 @@
                       <div class="thcell">비밀번호</div>
                     </th>
                     <td>
-                      <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
-                      <div id="p_pw" style="display:none;">
-                        <input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
-                        <button type="submit" name="button">수정완료</button>
+                      <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
+                      <button type="submit" name="button">수정완료</button></p></div>
                       </div>
                     </td>
                   </tr>
@@ -168,32 +166,7 @@
                       <div class="thcell">주소</div>
                     </th>
                     <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
-                    </td>
-                  </tr>
-                  <tr class="tr1">
-                    <th class="th1">
-                      <div class="thcell">우편번호</div>
-                    </th>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$a->a_post}}</p></div>
-                    </td>
-                  </tr>
-                  <tr class="tr1">
-                    <th class="th1">
-                      <div class="thcell">참고항목</div>
-                    </th>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$a->a_extra}}</p></div>
-                    </td>
-                  </tr>
-
-                  <tr class="tr1">
-                    <th class="th1">
-                      <div class="thcell">상세주소</div>
-                    </th>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$a->a_detail}}</p></div>
+                      <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
                     </td>
                   </tr>
                 </div>
@@ -202,14 +175,14 @@
           </table>
 
 
-          <form action="c_newaddress" onsubmit="return checkform()" method="post">
+          <form id=nadress action="c_newaddress" onsubmit="return checkform()" method="post">
             @csrf
             <div id="addresswrap" style="display:none;">
               <div id="addressmodi">
                 <div class="delivery_wrap">
-                  <strong class="info">주 소</strong>
+                  <strong class="info">새 주 소</strong>
                   <!-- 우편번호 -->
-                  <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
+                  <input type="text" id="postcode" name="postcode" placeholder="우편번호" >
                   <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
                 </div>
                 <!--주소 -->
@@ -359,11 +332,12 @@
       }
       if(special.test(lastnum.value)){
         alert('숫자만 입력해주세요.');
+        }
       else {
         alert("변경되었습니다");
         return true;
-      }
     }
+  }
 
     function email_checkform(){
         var email = document.getElementById("new_email");

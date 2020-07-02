@@ -7,6 +7,7 @@
   <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
+  <link rel="stylesheet" href="/css/shop.css">
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
@@ -25,23 +26,6 @@
 </div>
 <div class="myinfo">
   <h4>내 정보</h4>
-  <style media="screen">
-  div.tdcell{
-    padding: 10px 0 10px 30px;
-    margin: 0;
-    text-align: left;
-  }
-  div.thcell{
-    padding: 30px;
-    border-right: 1px solid #e5e5e5;
-    background: #f9f9f9;
-    text-align: left;
-    letter-spacing: -1px;
-  }
-  div#show{
-    padding-left: 32px;
-  }
-  </style>
   <div class="privacy">
     <table border="0" table class="table1" >
 
@@ -63,10 +47,9 @@
                 <div class="thcell">비밀번호</div>
               </th>
               <td>
-                <div class="tdcell"><p class="contxt.tit"><input type="button" id=modipw value="비밀번호수정" name="modi" display="block" onclick="info_modification(this.value,'p_pw' );"></button></p></div>
-                <div id="p_pw" style="display:none;">
-                  <input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
-                  <button type="submit" name="button">수정완료</button>
+                <div class="tdcell"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
+                <button type="submit" name="button">수정완료</button><p class="contxt.tit"></p></div>
+
                 </div>
               </td>
             </tr>
@@ -246,7 +229,7 @@
       alert("변경되었습니다");
       return true;
     }
-
+}
   function email_checkform(){
       var email = document.getElementById("new_email");
       var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/

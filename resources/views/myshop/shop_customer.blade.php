@@ -42,34 +42,25 @@
             <table id="shopinfo">
               <tr>
                 <th>대표</th>
-                <td><div class="thcell">{{$shop->s_name}}</div></td>
+                <td>{{$shop->s_name}}</div></td>
               </tr>
 
               <tr>
                 <th>상호명</th>
-                <td><div class="thcell">{{$shop->st_name}}</div></td>
+                <td>{{$shop->st_name}}</div></td>
+              </tr>
+              <tr>
+                <th>연락처</th>
+                <td>{{$shop->st_tel}}</div></td>
               </tr>
             @endforeach
 
-            @foreach ($shop_address as $shop_address)
               <tr>
                 <th>주소</th>
-                <td>{{$shop_address->a_address}}</td>
-              </tr>
-              <tr>
-                <th>우편번호</th>
-                <td>{{$shop_address->a_post}}</td>
-              </tr>
+                @foreach ($shop_address as $a)
+                  <td>({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}</td>
+                @endforeach
 
-              <tr>
-                <th>참고항목</th>
-                <td>{{$shop_address->a_extra}}</td>
-              </tr>
-              <tr>
-                <th>상세주소</th>
-                <td>{{$shop_address->a_detail}}</td>
-              </tr>
-            @endforeach
         </table>
       </div>
       <form class="shop" action="/shopinfo" method="get">

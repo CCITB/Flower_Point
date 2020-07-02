@@ -31,9 +31,6 @@ img{
     display: block;
 }
 
-.privacy {
-    text-align: center;
-}
 
 .btn {
     margin: 0 85%;
@@ -152,6 +149,9 @@ table.table1{
   width: 100%;
 }
 
+table.order{
+  text-align: center;
+}
 #modinum{
  margin-right: 80%;
  margin-top: 2%;

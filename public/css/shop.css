@@ -54,10 +54,10 @@ img.shopimg{
   position: relative;
   display: inline-block;
 }
+
 #shopinfo{
   width: 100%;
   position: relative;
-  text-align: left;
   margin-left: 5%;
 }
 div.shopintro{
@@ -70,6 +70,10 @@ div.shopintro{
   width: 100%;
   position: relative;
   height: 100%;
+}
+
+#nadress{
+  margin-left: 5%;
 }
 
 div.wrap3{
@@ -147,8 +151,20 @@ input.introduce{
 }
 
 div.delivery_wrap2{
-  margin-left: 62px;
+  margin-left: 85px;
 }
+
+div.thcell{
+  padding: 30px;
+  border-right: 1px solid #e5e5e5;
+  background: #f9f9f9;
+  text-align: left;
+  letter-spacing: -1px;
+}
+
+div.tdcell{
+margin-left: 3%;
+  }
 
 div.btn{
   margin-left: 90%;
@@ -184,7 +200,7 @@ form.shop{
 
 #complete1{
   margin-top: 1%;
-  margin-left: 62px;
+  margin-left: 85px;
 }
 
 #modiaddress{
@@ -292,9 +308,7 @@ padding: 6px 0px;
 font-size: 12px;
 overflow: hidden;
 }
-div.tdcell{
-  width: 200px;
-}
+
 /* jQuery 평점 구문 */
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating a {

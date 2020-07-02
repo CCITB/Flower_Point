@@ -61,7 +61,7 @@
 
         <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
-          <input class="shop_info" type="text" id="registeration_num" name="registeration_num" maxlength="12">
+          <input class="shop_info" type="text" id="registeration_num" name="registeration_num" maxlength="12" numberOnly>
           <div class="check_div" id="stnum_check" value=""></div>
         </div>
 
@@ -89,7 +89,7 @@
         </div>
 
         <div class="paragraph">
-          <div class="sign_name">매장 소개 <span class="a">*매장 소개는 최대 85자까지 입력가능합니다.</span></div>
+          <div class="sign_name">매장 소개 <span class="a"> *매장 소개는 최대 85자까지 입력가능합니다.</span></div>
           <textarea placeholder="introduce" id="st_introduce" name="st_introduce" maxlength="85" ></textarea>
           <span class="counter" id="counter"></span>
         </div>

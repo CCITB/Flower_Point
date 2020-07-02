@@ -270,7 +270,7 @@ Route::get('/shop', function(){
         ->where('s_no','=', $sellerprimary )->get();
         $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(2);
         $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
-        $store_address = DB::table('store_address')->select('a_post','a_address','a_extra')->where('st_no' ,'=', $data[0]->st_no)->get();
+        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
         $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
 
         return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));

@@ -104,10 +104,10 @@
                 </div>
                 <!--주소 -->
                 <div class="delivery_wrap2">
-                  <input type="text"  id="address" placeholder="주소" name="address">
+                  <input type="text"  id="address" placeholder="주소" name="address" readonly>
 
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress">
+                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" readonly>
                     <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
                   </div>
                 </div>
