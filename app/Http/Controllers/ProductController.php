@@ -178,13 +178,13 @@ class ProductController extends Controller
 
   public function pd_remove($id){
 
-    // $p_status = $_POST['hidden'];
-    // return $p_status;
     DB::table('product')->where('p_no','=',$id)->update([
       'p_status' => '삭제'
     ]);
 
+    return redirect()->back();
   }
+
 
 //즐겨찾기 중복막기 코드
   public function favorite($id){

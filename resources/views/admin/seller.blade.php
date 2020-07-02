@@ -102,10 +102,12 @@
                 <th>상품 고유번호</th>
                 <th>상품명</th>
                 <th>가격</th>
-                <th>등록여부</th>
                 <th>가게 번호</th>
                 <th>가게 이름</th>
                 <th>판매자 이름</th>
+                <th>등록여부</th>
+                <th>삭제</th>
+                <th>등록</th>
               </tr>
             </thead>
             <tbody>
@@ -114,10 +116,24 @@
                   <td>{{$sel->p_no}}</td>
                   <td>{{$sel->p_name}}</td>
                   <td>{{number_format($sel->p_price)}} 원</td>
-                  <td>{{$sel->p_status}}</td>
                   <td>{{$sel->st_no}}</td>
                   <td>{{$sel->st_name}}</td>
                   <td>{{$sel->s_name}}</td>
+                  <td>{{$sel->p_status}}</td>
+                  <td>
+                    <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
+                      @csrf
+                      <input type="submit" name="remove" id="remove" value="삭제">
+                      <input type="hidden" id="hidden" name="hidden" value="">
+                    </form>
+                  </td>
+                  <td>
+                    <form name="delete" action="/ad_restore{{$sel->p_no}}" method="post">
+                      @csrf
+                      <input type="submit" name="remove" id="remove" value="등록">
+                      <input type="hidden" id="hidden" name="hidden" value="">
+                    </form>
+                  </td>
                 </tr>
               @endforeach
             </tbody>
