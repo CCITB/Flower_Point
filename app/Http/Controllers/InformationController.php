@@ -9,15 +9,28 @@ use DB;
 class InformationController extends Controller
 {
   publiC function information(Request $request){
-    DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-      's_phonenum'=>$request->input('new_num'),
-    ]);
+      $s_tel1 = $request->input('phone_no1');
+      $s_tel2 = $request->input('delivery_tel_no2');
+      $s_tel3 = $request->input('delivery_tel_no3');
 
-    return redirect('/mypage');
+      $s_tel = $s_tel1.'-'.$s_tel2.'-'.$s_tel3;
+
+      DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+        's_phonenum'=>$s_tel
+      ]);
+
+      return redirect('/mypage');
   }
+
   publiC function c_information(Request $request){
+    $c_tel1 = $request->input('phone_no1');
+    $c_tel2 = $request->input('delivery_tel_no2');
+    $c_tel3 = $request->input('delivery_tel_no3');
+
+    $c_tel = $c_tel1.'-'.$c_tel2.'-'.$c_tel3;
+
     DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
-      'c_phonenum'=>$request->input('new_num'),
+      'c_phonenum'=>$c_tel
     ]);
 
     return redirect('/c_mypage');
