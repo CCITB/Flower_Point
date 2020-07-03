@@ -413,6 +413,13 @@ function del(e){
         // ($("#div_test").hasClass("apple") === true)
         console.log('존재');
         loadprice(delcount);
+        arraysequence = getid.indexOf(e.toString());
+        if(arraysequence == -1){
+          // alert('배열에 값이 없습니다.');
+        }
+        else{
+          getid.splice(arraysequence,1);
+        }
       }
       else{
         console.log('존재x');
@@ -515,6 +522,7 @@ function selectdel(){
     // console.log(jjim);
     success: function(data) {
       console.log(data);
+      console.log('2020.07.03');
       var a = [];
       console.log(data.length);
       var countarray = 0;
@@ -522,6 +530,16 @@ function selectdel(){
         countarray = countarray+Number($('#count'+data[i]).val());
         console.log(Number($('#count'+data[i]).val()));
         $("#remove"+data[i]).remove();
+        //삭제후에 결제페이지에 넘기기전에 기본키가 담긴 배열을 업데이트 해줍니다.
+        arraysequence = getid.indexOf(data[i].toString());
+
+        if(arraysequence == -1){
+          // alert('배열에 값이 없습니다.');
+        }
+        else{
+          getid.splice(arraysequence,1);
+        }
+        // console.log(getid.indexOf(data[i].toString()));
 
       }
 
@@ -751,8 +769,10 @@ function selectcondition(a){
 
   else {
     // 체크가 안되어있으면 getid 배열에서 상품인덱스인 a를 지웁니다.
+    console.log('아 ㅋㅋ 까먹엇ㅉ낳아');
     console.log(a.toString());
     arraysequence = getid.indexOf(a.toString());
+    console.log(arraysequence);
     if(arraysequence == -1){
       // alert('배열에 값이 없습니다.');
     }
@@ -1009,31 +1029,7 @@ function replaceComma(pStr) {
   return pStr;
 }
 function checkindex(){
-  // console.log(getid);
-  // console.log(getid.length);
-  // var productpost = document.productpost;
-  var test = JSON.stringify(getid);
-  // console.log(test);
-  $.ajax({
-  type: 'get',
-  url: '/index1',
-  dataType: 'json',
-//   data: { "getid" : getid
-// },
-success: function(data) {
-  console.log(1);
-
-
-  //data[0]=수량
-  //data[1]=상품가격
-  //data[2]=배송비
-},
-error: function(data) {
-  console.log('실패');
-  console.log("error" +data);
-}
-});
-
+  console.log(getid);
 }
 function productcheck(){
   var productpost = document.productpost;
@@ -1043,35 +1039,20 @@ function productcheck(){
     return false;
   }
   else{
-    //     $.ajax({
-    //     type: 'get',
-    //     url: '/order',
-    //     dataType: 'json',
-    //   //   data: { "getid" : getid
-    //   // },
-    //   success: function(data) {
-    //     console.log(data);
-    //
-    //
-    //     //data[0]=수량
-    //     //data[1]=상품가격
-    //     //data[2]=배송비
-    //   },
-    //   error: function(data) {
-    //     console.log("error" +data);
-    //   }
-    // });
-
-    // location.href='/order/'+getid;
     var test = JSON.stringify(getid);
     $('input[name=pdidx]').val(test);
     productpost.submit();
   }
 
 }
+if (self.name != 'reload') {
+        self.name = 'reload';
+        self.location.reload(true);
+    }
+    else self.name = '';
 </script>
 {{-- @php
 $aa = "<script>getid;</script>";
 echo "<script>document.writeln(getid);</script>";
 @endphp --}}
-{{-- <button type="button" onclick="checkindex()" name="button">확인용</button> --}}
+<button type="button" onclick="checkindex()" name="button">확인용</button>
