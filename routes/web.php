@@ -278,8 +278,9 @@ Route::get('/shop', function(){
   else{
 return view('login/login_seller');
   }
-
 });
+
+Route::post('/registration', 'InformationController@registration');
 
 Route::get('/postlist', function(){
   if($sellerinfo = auth()->guard('seller')->user()){

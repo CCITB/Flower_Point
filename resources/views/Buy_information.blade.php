@@ -176,7 +176,7 @@
                     이미지
                   </div>
                   <div class="review_good">
-                    <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}"></span>{{$rev->r_good}}</button>
+                    <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}">{{$rev->r_good}}</span></button>
                   </div>
                 </div>
               </li>
@@ -418,6 +418,7 @@
           success: function(data) {
             if (data == 1){
               console.log(data);
+                // $('#count'+r_no).text('1');
 
             }
 

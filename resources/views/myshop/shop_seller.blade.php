@@ -45,15 +45,12 @@
               <table id="shopinfo">
                 <tr>
                   <th>대표</th>
-                  <td>{{$data1->s_name}}</div></td>
+                  <td><div class="thcell">{{$data1->s_name}}</div></td>
                 </tr>
-                <tr>
-                  <th>연락처</th>
-                  <td>{{$data1->st_tel}}</div></td>
-                </tr>
+
                 <tr>
                   <th>상호명</th>
-                  <td>{{$data1->st_name}}</div></td>
+                  <td><div class="thcell">{{$data1->st_name}}</div></td>
                 </tr>
               @endforeach
 
@@ -62,15 +59,38 @@
                 <tr>
                   <th>주소</th>
                   @foreach ($store_address as $a)
-                    <td>({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
+                    <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
 
+
+                    <tr>
+                      <th>우편번호</th>
+                      <td>{{$a->a_post}}</td>
+                    </tr>
+                    <tr>
+                      <th>참고항목</th>
+                      <td>{{$a->a_extra}}</td>
+                    </tr>
                   @endforeach
+                  @foreach ($detail_address as $b)
+                    <tr>
+                      <th>상세주소</th>
+                      <td>{{$b->a_detail}}</td>
+                    </tr>
+                  @endforeach
+                </tr>
+              </form>
+              <tr>
+                <th>사업자 인증</th>
+                <td>
+                  <form action="/registration" method="post"  enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
+                    <input type="submit" onclick="check()" value="등록">
+                  </form>
+                </td>
+              </tr>
 
-
-                </form>
-
-              </div>
-            </tr>
+            </div>
           </table>
         </div>
         <form class="shop" action="/shopinfo" method="get">
@@ -107,7 +127,7 @@
       <div id="addresswrap" style="display:none;">
         <div id="addressmodi">
           <div class="delivery_wrap">
-            <strong class="info">새 주 소</strong>
+            <strong class="info">주 소</strong>
             <!-- 우편번호 -->
             <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
             <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
@@ -188,7 +208,6 @@
                       <form name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
                         @csrf
                         <input type="submit" name="remove" id="remove" value="삭제">
-                        <input type="hidden" id="hidden" name="hidden" value="">
                       </form>
                     </td>
                   </tr>
@@ -354,6 +373,13 @@ function sortTable(n) {
 function postcheck(){
   if($('#real-input').val()==""){
     $('#real-input').focus();
+    alert('사진을 업로드 해주세요');
+    return false;
+  }
+}
+function check(){
+  if($('#registration').val()==""){
+    $('#registration').focus();
     alert('사진을 업로드 해주세요');
     return false;
   }

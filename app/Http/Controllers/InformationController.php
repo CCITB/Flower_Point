@@ -9,17 +9,17 @@ use DB;
 class InformationController extends Controller
 {
   publiC function information(Request $request){
-      $s_tel1 = $request->input('phone_no1');
-      $s_tel2 = $request->input('delivery_tel_no2');
-      $s_tel3 = $request->input('delivery_tel_no3');
+    $s_tel1 = $request->input('phone_no1');
+    $s_tel2 = $request->input('delivery_tel_no2');
+    $s_tel3 = $request->input('delivery_tel_no3');
 
-      $s_tel = $s_tel1.'-'.$s_tel2.'-'.$s_tel3;
+    $s_tel = $s_tel1.'-'.$s_tel2.'-'.$s_tel3;
 
-      DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-        's_phonenum'=>$s_tel
-      ]);
+    DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+      's_phonenum'=>$s_tel
+    ]);
 
-      return redirect('/mypage');
+    return redirect('/mypage');
   }
 
   publiC function c_information(Request $request){
@@ -178,6 +178,31 @@ class InformationController extends Controller
       return view('myshop.seller_pd_modify', compact('pd_db'));
     }
 
+
+    public function registration(Request $request) {
+
+        $sel = auth()->guard('seller')->user()->s_no;
+        // return $sel;
+
+
+        $st_no = DB::table('seller')->join('store', 'seller.s_no', '=', 'store.seller_no')
+        ->where('s_no',$sel)->pluck('st_no');
+        // return $st_no;
+
+
+        $path=$request->file('registration');
+        // return $path;
+
+        if($request->hasFile('registration')){
+          $path=$request->file('registration')->store('/','public');
+        }
+
+        DB::table('store')->where('st_no',$st_no)->update([
+          'registration_img' => $path
+        ]);
+
+        return redirect('/shop');
+    }
 
 
   }
