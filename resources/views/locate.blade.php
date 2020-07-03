@@ -174,11 +174,11 @@
           b=1;
           cup.push(i);
           //onsole.log(results[0]);
-         arr.forEach((item, index) => {
-            console.log(item);
+         //arr.forEach((item, index) => {
+            //console.log(item);
             // console.log(results[0]);
             //console.log(index);
-            if(item == results[0]){
+            //if(item == results[0]){
               //console.log(i);
               //console.log(cup);
               if (status == 'OK') {
@@ -189,8 +189,7 @@
                   map: map,
                 });
                 //console.log(results);
-
-
+              });
                 var infowindow = new google.maps.InfoWindow({
                   content: div[cup.length-b]
                 });
@@ -204,13 +203,13 @@
 
                   infowindow.open(map, marker);
                 });
-              }
+
               // else {
               //   alert('Geocode was not successful for the following reason: ' + status);
               // }
               //console.log(cont);
             } //if문
-          }); //foreach문
+          //}); //foreach문
         });
       }
     }
