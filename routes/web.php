@@ -352,6 +352,12 @@ Route::post('/ad_restore{id}', 'AdminController@ad_restore');
 
 Route::get('/ad_product', 'AdminController@product');
 
+Route::post('/ad_regsts', 'AdminController@registraion');
+
+Route::get('/ad_regst', function () {
+  return view('admin.registration');
+});
+
 Route::get('/test', function () {
   return view('admin.test');
 });

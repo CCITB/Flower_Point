@@ -195,7 +195,7 @@ class ProductController extends Controller
 //즐겨찾기 중복막기 코드
   public function favorite($id){
 
-    $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
+      $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
       $pro_no = $productinfor[0]->p_no; // $productinfor의 첫번째 배열의 p_no ex)40
     if(auth()->guard('customer')->user()){
       $c_no = auth()->guard('customer')->user()->c_no;
@@ -225,7 +225,11 @@ public function star(Request $request){
 
     $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
     ->select('*')->where('customer_no','=',$c_no)->get();
-      return view('star', compact('pro','pro2'));
+    $data = DB::table('product_favorite')->join('product','product_favorite.product_no','=','product.p_no')
+    ->select('*')->where('p_status','=','등록')->paginate(4);
+    // $data3 = DB::table('store_favorite')->join('store','store_favorite.store_no','=','store.st_no')
+    // ->select('*')->where('p_status','=','등록')->paginate(4);
+      return view('star', compact('pro','pro2','data'));
 }
 else{
   return redirect('/');
@@ -247,8 +251,7 @@ public function store_star($id){
   if(auth()->guard('customer')->user()){
     $c_no = auth()->guard('customer')->user()->c_no;
   }
-
-  $storeinfor = DB::table('store')->select('*')->where('st_no','=',$id)->get();
+  $storeinfor = DB::table('store')->select('*')->where('st_name','=',$id)->get();
   $delete = DB::table('store_favorite')->where('store_no','=',$storeinfor[0]->st_no)->delete();
   return redirect()->back();
 }

@@ -36,6 +36,16 @@ class AdminController extends Controller
 
     return view('admin.seller', compact('sellerall','product'));
   }
+  public function registraion(Request $request){
+
+    $st_no= $_POST['hidden'];
+    $seller = DB::table('store')->where('st_no',$st_no)->get();
+    $s_img=$seller[0]->st_no;
+
+
+
+    return view('admin.registration', compact('seller'));
+  }
 
   public function ad_remove($id){
 

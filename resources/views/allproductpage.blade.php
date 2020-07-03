@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/allproduct.css">
+  <link rel="stylesheet" href="/css/allproduct.css">
   <title></title>
 </head>
 <style>
@@ -17,11 +17,8 @@
       <div class="line-wrap">
         <h2 class="void-container">전체 상품 보기</h2>
         <div class="price-container">
-
             <span><a href="/Sort_H">높은 가격순</a></span>
             <span><a href="/Sort_L">낮은 가격순</a></span>
-
-
         </div>
       </div>
       <hr>

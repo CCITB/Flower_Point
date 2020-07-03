@@ -14,7 +14,7 @@ class PaymentController extends Controller
         $dbdata = DB::table('customer')->get();
         $ididx = json_decode($request->input('pdidx'));
         // $aa = $request;
-        return $request;
+        // return $request;
 
         $data1 = 0;
         $productprice = 0;

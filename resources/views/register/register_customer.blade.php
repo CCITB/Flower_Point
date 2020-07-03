@@ -128,10 +128,10 @@
           <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
           <!--주소 -->
           <div class="delivery_wrap2">
-            <input type="text"  id="address" name="address" placeholder="주소">
+            <input type="text"  id="address" name="address" placeholder="주소" readonly>
 
             <div class="delivery_address_detail">
-              <input type="text" class="delivery_address_list" id="detailAddress" name="detailAddress" placeholder="상세주소">
+              <input type="text" class="delivery_address_list" id="detailAddress" name="detailAddress" placeholder="상세주소" >
               <input type="text" class="delivery_address_list" id="extraAddress" name="extraAddress" placeholder="참고항목">
             </div>
           </div>

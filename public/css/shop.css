@@ -43,14 +43,15 @@ div.wrap2{
 }
 
 div.imgbox{
+    border: 1px solid;
     width: 20%;
     position: relative;
 }
 
 img.shopimg{
   width: 100%;
-  height: 50%;
-  margin-top: 3%;
+  height: 100%;
+  /* margin-top: 3%; */
   position: relative;
   display: inline-block;
 }
@@ -320,3 +321,11 @@ overflow: hidden;
 }
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:#ffc801;}
+
+.page-item{
+  display: inline-block;
+  padding: 2px;
+}
+.pagination{
+  text-align: center;
+}
