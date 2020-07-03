@@ -49,6 +49,7 @@
                     <th>가게 이름</th>
                     <th>판매자 이름</th>
                     <th>등록여부</th>
+                    <th>승인</th>
                     <th>삭제</th>
                     <th>등록</th>
                   </tr>
@@ -63,6 +64,9 @@
                       <td>{{$sel->st_name}}</td>
                       <td>{{$sel->s_name}}</td>
                       <td>{{$sel->p_status}}</td>
+                      <td>
+                        <input type="button" value="등록증 보기" onclick="show_popup()">
+                      </td>
                       <td>
                         <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
                           @csrf
@@ -151,6 +155,10 @@ $(document).ready(function(){
       }
     });
 });
+
+function show_popup() {
+  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px ");
+}
 
 
 
