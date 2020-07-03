@@ -39,45 +39,45 @@
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-  @foreach ($store_address as $address)
+    @foreach ($store_address as $address)
 
-  <!--주소를 검색하는 부분을 숨겨놨음-->
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+      <!--주소를 검색하는 부분을 숨겨놨음-->
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
 
-  <!--판매자일 때-->
+    <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-  @foreach ($customer_address as $address)
-  <div id="floating-panel">
-    <input id="address" type="hidden" value="{{$address->a_address}}">
-  </div>
-  <div id="map"></div>
-  @endforeach
+    @foreach ($customer_address as $address)
+      <div id="floating-panel">
+        <input id="address" type="hidden" value="{{$address->a_address}}">
+      </div>
+      <div id="map"></div>
+    @endforeach
   @endif
 
   <!-- store address 정보 -->
   @foreach ($store_address as $address)
-  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
   @endforeach
 
   @foreach ($store_address as $address)
-  <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
+    <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
   @endforeach
 
   @foreach ($store_address as $address)
-  <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
+    <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
   @endforeach
 
   <!--store의 정보-->
   @foreach ($store as $name)
-  <input class="store_name" id="{{$name->st_no}} "type="hidden" value="{{$name->st_name}}">
+    <input class="store_name" id="{{$name->st_no}} "type="hidden" value="{{$name->st_name}}">
   @endforeach
 
   @foreach ($store as $intro)
-  <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
+    <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
   @endforeach
 
 
@@ -134,6 +134,7 @@
     "</div>" +
     "</div>";
 
+
     //User(seller/custsomer) 주소
     geocoder.geocode( { 'address': user_address }, function(results, status) {
       if (status == 'OK') {
@@ -148,8 +149,9 @@
 
     //Store 주소
     window.eqfeed_callback = function(results) {
-
+      var cup = [];
       var arr = new Array();
+
       //var address = $("#address").val();
       var array = $('.array');
       // arr.push(address);
@@ -159,42 +161,56 @@
 
       var div = new Array();
       for(var a=0; a<arr_name.length; a++){
-        div.push('<div>' + '<h1>'+arr_name[a]+'</h1>'+"</div>");
+        div.push('<div>' + '<h1>'+arr_name[a]+'</h1>'+
+        '<div id="bodyContent">'+"<b>"+arr_intro+"</b>" +"</div>"+"</div>");
       }
-      console.log(div);
       //사용자 아이콘
       var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
-      for( var i=0 ; i < arr.length; i++){
-        //var div[i] = '<div>' + '<h1>'+arr_name[i]+'</h1>'+"</div>";
-        // var geo_arr = new Array();
-        geocoder.geocode( { 'address': arr[i] }, function(results, status) {
-          if (status == 'OK') {
-            // var coords = array.geo_arr[i];
-            // var latLng = new google.maps.LatLng(위도, 경도);
-            //map.setCenter(results[0].geometry.location);
-            //console.log(results[0]);
-            var marker = new google.maps.Marker({
-              // position: latLng,
-              position: results[0].geometry.location,
-              icon : store_Icon,
-              map: map
-            });
 
-            // for(a=0; a<3; a++){
-            var infowindow = new google.maps.InfoWindow({
-              content: div[i]
-            });
-            //}
+      for( i=0 ; i < arr.length; i++){
+         //console.log(arr[i]);
+        geocoder.geocode( {'address': arr[i] }, function(results, status) {
+              console.log(results[0]);
+          b=1;
+          cup.push(i);
+          //onsole.log(results[0]);
+         arr.forEach((item, index) => {
+            console.log(item);
+            // console.log(results[0]);
+            //console.log(index);
+            if(item == results[0]){
+              //console.log(i);
+              //console.log(cup);
+              if (status == 'OK') {
+                var marker = new google.maps.Marker({
+                  // position: latLng,
+                  position: results[0].geometry.location,
+                  icon : store_Icon,
+                  map: map,
+                });
+                //console.log(results);
 
-            marker.addListener("click", function() {
-              infowindow.open(map, marker);
-            });
 
-          }
-          // else {
-          //   alert('Geocode was not successful for the following reason: ' + status);
-          // }
-          //console.log(cont);
+                var infowindow = new google.maps.InfoWindow({
+                  content: div[cup.length-b]
+                });
+                console.log(div[cup.length-b]);
+
+
+                // console.log(arr[i]);
+                // console.log(results[0]);
+
+                marker.addListener("click", function() {
+
+                  infowindow.open(map, marker);
+                });
+              }
+              // else {
+              //   alert('Geocode was not successful for the following reason: ' + status);
+              // }
+              //console.log(cont);
+            } //if문
+          }); //foreach문
         });
       }
     }
@@ -229,9 +245,10 @@
   //     }
   //   });
   // }
-</script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-</script>
-</body>
-</html>
+
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+  </script>
+  </body>
+  </html>
