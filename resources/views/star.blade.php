@@ -24,9 +24,15 @@
 <div class="myinfo">
   <style media="screen">
   div.tdcell{
+    width: 200px;
     padding: 10px 0 10px 30px;
     margin: 0;
     text-align: left;
+  }
+  div.th1{
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
   }
   div.thcell{
     border-right: 1px solid #e5e5e5;
@@ -36,93 +42,105 @@
   }
   div#show{
     padding-left: 32px;
+
   }
 
   </style>
+    <table border="0" table class="table1" >
+  <tr class="tr1">
+    <th class="th1">상품이미지</th>
+  <th class="th1">상품명</th>
+    <th class="th1">가격</th>
+    <th></th>
+  </tr>
+</table>
   <div class="privacy">
-    @foreach ($pro as $pro)
+    @foreach ($data as $data1)
       <table border="0" table class="table1" >
         @if($customer = auth()->guard('customer')->user())
           <div id="tablewrap">
-            <form class="" action="star2/{{$pro->p_no}}" method="post">
+            <form class="" action="star2/{{$data1->p_no}}" method="post">
               @csrf
               <table id="shopinfo">
                 <tbody>
                   <tr class="tr1">
 
                     <th class="th1">
-                      <div class="thcell">
-                        <a href="product/{{$pro->p_no}}">
-                          <img src="\imglib\{{$pro->p_filename}}" height="100px" width="100%"alt="등록된 가게사진이 없습니다.">
+                      <div class="th1">
+                        <a href="product/{{$data1->p_no}}">
+                          <img src="\imglib\{{$data1->p_filename}}" height="100px" width="100px"alt="등록된 가게사진이 없습니다.">
+                        </a>
+                      </div>
+                    </th>
+                    <td>
+                      <a href="product/{{$data1->p_no}}">
+                        <div class="tdcell">{{$data1->p_name}}<p class="contxt.tit"></p>
                         </a></div>
-                      </th>
+                      </td>
                       <td>
-                        <a href="product/{{$pro->p_no}}">
-                          <div class="tdcell">{{$pro->p_name}}<p class="contxt.tit"></p>
-                          </a></div>
-                        </td>
-                        <td>
-                          <div class="tdcell">{{$pro->p_price}}<p class="contxt.tit"></p></div>
-                        </td>
-                        <td>
-                          <div class="tdcell"><p class="contxt.tit"><a href="{{$pro->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
-                        </td>
-                      @endif
-                    @endforeach
-                  </tr>
-                </div>
-              </table>
-            </form>
-          </tbody>
-        </table>
-      </div>
+                        <div class="tdcell">{{$data1->p_price}}<p class="contxt.tit"></p></div>
+                      </td>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit"><a href="{{$data1->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
+                      </td>
+                    @endif
+                  @endforeach
+                </tr>
+              </div>
 
-      <div class="menu4">
-        <h3 align="center">즐겨찾기 꽃집</h3>
-        <hr align="left" class="one">
-      </hr>
+            </table>
+          </form>
+        </tbody>
+      </table>
+
     </div>
-    <div class="privacy">
-      @foreach ($pro2 as $pro2)
-        <table border="0" table class="table1" >
-          @if($customer = auth()->guard('customer')->user())
-            <div id="tablewrap">
-              <form class="" action="store_star/{{$pro2->st_name}}" method="post">
-                @csrf
-                <table id="shopinfo">
-                  <tbody>
-                    <tr class="tr1">
-
-                      <th class="th1">
-                        <div class="thcell">
-                          <a href="product/store/{{$pro2->st_name}}">
-                          <img src="\imglib\{{$pro2->st_img}}" height="100px" width="100%"alt="등록된 가게이미지가 없습니다.">
-                        </a></div>
-                      </th>
-                      <td>
-                        <a href="product/store/{{$pro2->st_name}}">
-                        <div class="tdcell">{{$pro2->st_name}}<p class="contxt.tit"></p>
-                      </a></div>
-                    </td>
-                    <td>
-                      <div class="tdcell">{{$pro2->st_tel}}<p class="contxt.tit"></p></div>
-                    </td>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit"><a href="{{$pro2->st_name}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
-                    </td>
-                  @endif
-                @endforeach
-              </tr>
-            </div>
-          </table>
-        </form>
-      </tbody>
-
-    </table>
+        {{ $data->links()}}
+    <div class="menu4">
+      <h3 align="center">즐겨찾기 꽃집</h3>
+      <hr align="left" class="one">
+    </hr>
   </div>
+  <div class="privacy">
+    @foreach ($pro2 as $data2)
+      <table border="0" table class="table1" >
+        @if($customer = auth()->guard('customer')->user())
+          <div id="tablewrap">
+            <form class="" action="store_star/{{$data2->st_name}}" method="post">
+              @csrf
+              <table id="shopinfo">
+                <tbody>
+                  <tr class="tr1">
+
+                    <th class="th1">
+                      <div class="th1">
+                        <a href="product/store/{{$data2->st_name}}">
+                          <img src="\imglib\{{$data2->st_img}}" height="100px" width="100px"alt="등록된 가게이미지가 없습니다.">
+                        </a>
+                      </div>
+                    </th>
+                    <td>
+                      <a href="product/store/{{$data2->st_name}}">
+                        <div class="tdcell">{{$data2->st_name}}<p class="contxt.tit"></p>
+                        </a></div>
+                      </td>
+                      <td>
+                        <div class="tdcell">{{$data2->st_tel}}<p class="contxt.tit"></p></div>
+                      </td>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit"><a href="{{$data2->st_name}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
+                      </td>
+                    @endif
+                  @endforeach
+                </tr>
+              </div>
+            </table>
+          </form>
+        </tbody>
+      </table>
+    </div>
 
 
-</div>
-@include('lib.footer')
+  </div>
+  @include('lib.footer')
 </body>
 </html>
