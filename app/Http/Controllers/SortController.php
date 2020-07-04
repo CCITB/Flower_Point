@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
-
+//어지수
 class SortController extends Controller
 {
   //높은 가격순 정렬

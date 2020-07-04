@@ -11,15 +11,14 @@ class SearchController extends Controller
   public function result(Request $request)
   {
 
-    //search data
+    //insert data
     $search_query = $request->input('query');
 
-    //input data의 문자가 포함된 product name 찾기
+    //input data와 동일한 값을 Product table의 이름을 기준으로 Search
     $result_data = DB::table('product')->where('p_name','like','%'.$search_query.'%')->get();
+    //input data 결과가 없을 경우 사용할 count
     $result_name = $result_data->count();
-    //echo $result_name;
 
-    //compact('result_data')
     return view('search_result',
     ['result_data'=>$result_data,
     'search_query'=>$search_query,

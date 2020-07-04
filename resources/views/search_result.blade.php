@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
+  <!--검색 기능 : 어지수-->
   @include('lib.header')
   <div class="hr-sect">
     검색 결과

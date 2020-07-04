@@ -24,11 +24,6 @@
     width: 70%;  /* The width is the width of the web page */
     margin : auto 30px;
   }
-  #map2 {
-    height: 400px;  /* The height is 400 pixels */
-    width: 70%;  /* The width is the width of the web page */
-    margin : auto 30px;
-  }
   /* Optional: Makes the sample page fill the window. */
   html, body {
     height: 100%;
@@ -169,8 +164,7 @@
 
       for( i=0 ; i < arr.length; i++){
         //console.log(arr[i]);
-        geocoder.geocode( {'address': arr[i] },
-        (function (i) {
+        geocoder.geocode( {'address': arr[i] },(function (i) {
           return  function(results, status) {
 
             console.log(results[0]);
@@ -198,37 +192,6 @@
     }
   }
 }
-
-//데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
-// function geocodeAddress(geocoder, map) {
-//   //사용자 Address
-//   var address = $("#address").val();
-//   //사용자 아이콘
-//   //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
-//   geocoder.geocode({'address': address}, function(results, status) {
-//     //console.log(address);
-//     if (status === 'OK') {
-//       map.setCenter(results[0].geometry.location);
-//
-//       var faddr_lat = results[0].geometry.location.lat();//위도
-//       var faddr_lng = results[0].geometry.location.lng();//경도
-//       console.log(faddr_lat);
-//       console.log(faddr_lng);
-//
-//       var marker = new google.maps.Marker({
-//         map: map,
-//         // icon : user_Icon,
-//         position: results[0].geometry.location
-//       });
-//     }
-//
-//     //주소가 안잡힐때 일어나는 일
-//     else {
-//       alert('Geocode was not successful for the following reason: ' + status);
-//     }
-//   });
-// }
-
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">

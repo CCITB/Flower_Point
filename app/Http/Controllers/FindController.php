@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-// << 어지수 >>
+//어지수
 class FindController extends Controller
 {
   //--------------------------------customer-------------------------------

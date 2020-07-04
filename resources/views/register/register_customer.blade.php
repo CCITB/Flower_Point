@@ -1,5 +1,5 @@
-<!-- 어지수 + css:박소현-->
 <!DOCTYPE html>
+<!-- 어지수 + css:박소현-->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">

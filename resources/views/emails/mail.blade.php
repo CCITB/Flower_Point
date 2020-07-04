@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title></title>
 </head>
-<body>
 
+<!--어지수-->
+<!--인증 메일 내용-->
+<body>
   <h1>꽃갈피</h1>
   <hr>
   이메일 인증코드는 <h2>{{$order}}</h2> 입니다.
@@ -31,9 +34,9 @@ $.ajax({
   success : function(data) {
     console.log(data);
 
-    }
+  }
 
-  }//success
-  ,error : function() {   console.log("실패");  }
+}//success
+,error : function() {   console.log("실패");  }
 }) //ajax
 </script> --}}

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+//어지수
 class SMSController extends Controller
 {
-  //
   public function SMSsend(Request $request){
     //발신자 번호
     $shone1 = '010';
@@ -23,9 +23,6 @@ class SMSController extends Controller
       $sms['user_id'] = base64_encode("ccitsms"); //SMS 아이디.
       $sms['secure'] = base64_encode("1cc4bc9ea5d24c9811d2cf30d430276f") ;//인증키
       $sms['msg'] = base64_encode(stripslashes('[꽃갈피]본인확인 인증번호 ['.$randomNum.']를 입력해주세요.')); //문자내용드갈부분
-      // if( $_POST['smsType'] == "L"){
-      //       $sms['subject'] =  base64_encode($_POST['subject']);
-      // }
 
       //수신자 번호
       $sms['rphone'] = base64_encode($input_phone_num);
@@ -35,15 +32,9 @@ class SMSController extends Controller
       $sms['sphone3'] = base64_encode($shone3);
 
       $sms['mode'] = base64_encode("1"); // base64 사용시 반드시 모드값을 1로 주셔야 합니다.
-      //$sms['returnurl'] = base64_encode($_POST['returnurl']);
 
       //실험시 'Y' 입력
-      $sms['testflag'] = base64_encode('Y');
-
-      //$sms['destination'] = strtr(base64_encode($_POST['destination']), '+/=', '-,');
-
-      //$sms['smsType'] = base64_encode($_POST['smsType']); // LMS일경우 L
-      //$nointeractive = $_POST['nointeractive']; //사용할 경우 : 1, 성공시 대화상자(alert)를 생략
+      //$sms['testflag'] = base64_encode('Y');
 
       $host_info = explode("/", $sms_url);
       $host = $host_info[2];
@@ -106,15 +97,7 @@ class SMSController extends Controller
       else {
         $alert = "Connection Failed";
       }
-
-      // if($nointeractive=="1" && ($Result!="success" && $Result!="Test Success!" && $Result!="reserved") ) {
-      //   echo "<script>alert('".$alert ."')</script>";
-      // }
-      // else if($nointeractive!="1") {
-      //   echo "<script>alert('".$alert ."')</script>";
-      // }
-      //echo "<script>location.href='".$returnurl."';</script>";
-
+        //난수 전달
         return response()->json($randomNum);
   }
 
