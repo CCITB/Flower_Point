@@ -198,7 +198,7 @@ Route::get('/star', 'ProductController@star');
 
 Route::get('/order/{name?}', 'PaymentController@payment');
 
-Route::get('/complete', 'PaymentController@paymentcomplete');
+Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 
 Route::post('/complete', 'PaymentController@paymentprocess');
 

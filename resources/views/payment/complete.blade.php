@@ -26,27 +26,62 @@
             주문 완료</span>
         </div>
       </div>
+      @if (isset($paymentID))
+        @foreach ($paymentID as $paymentID)
+          <div class="wrapping_complete">
+            <div class="order_result"><b>결제 정보</b>
+              <hr class="dotted_line">
 
-      <div class="wrapping_complete">
-        <div class="order_result"><b>결제 정보</b>
-          <hr class="dotted_line">
-
-            <div class="order_data">
-              <p class="order_label">입금 은행 : bank</p>
-              <p class="order_label">입금 계좌 : account number</p>
-              <p class="order_label">예금주 : name</p>
+                <div class="order_data">
+                  <p class="order_label">입금 은행 : bank</p>
+                  <p class="order_label">입금 계좌 : account number</p>
+                  <p class="order_label">예금주 : name</p>
+                </div>
             </div>
+            <br>
+            <div class="order_result"><b>주문 정보</b>
+              <hr class="dotted_line">
+              <div class="order_data">
+                <p class="order_label">주문번호 : {{$paymentID->pm_no}}</p>
+                <p class="order_label">상품명 : {{$paymentID->p_name}}</p>
+                <p class="order_label">결제금액 : {{$paymentID->pm_pay}}</p>
+              </div>
+            </div>
+          </div> <!--wrapping_complete-->
+        @endforeach
+      @elseif (isset($paymentIDarray))
+        {{-- @foreach ($paymentIDarray as $key => $value) --}}
+            <div class="wrapping_complete">
+              <div class="order_result"><b>결제 정보</b>
+                <hr class="dotted_line">
+
+                  <div class="order_data">
+                    <p class="order_label">입금 은행 : bank</p>
+                    <p class="order_label">입금 계좌 : account number</p>
+                    <p class="order_label">예금주 : name</p>
+                  </div>
+              </div>
+              <br>
+              <div class="order_result"><b>주문 정보</b>
+                <hr class="dotted_line">
+                <div class="order_data">
+                  <p class="order_label">주문번호 : </p>
+                  <p class="order_label">상품명 :
+                    @foreach ($paymentIDarray as $paymentIDarray)
+                      <p>{{$paymentIDarray[0]->p_name}}</p>
+                    @endforeach
+                  </p>
+                  <p class="order_label">결제금액 : {{$pricesum}}</p>
+                </div>
+              </div>
+            </div> <!--wrapping_complete-->
+        {{-- @endforeach --}}
+      @else
+        <div class="order_data">
+          요청하신 페이지를 찾을 수 없습니다.
         </div>
-        <br>
-        <div class="order_result"><b>주문 정보</b>
-          <hr class="dotted_line">
-          <div class="order_data">
-            <p class="order_label">주문번호 : o_no</p>
-            <p class="order_label">상품명 : p_name</p>
-            <p class="order_label">결제금액 : p_price</p>
-          </div>
-        </div>
-      </div> <!--wrapping_complete-->
+      @endif
+
     </div>
     @include('lib.footer')
   </body>
