@@ -117,7 +117,7 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store','review'));
   }
 
-  // 상품 수정하기
+  // 상품 수정하기 박소현
   public function pd_modify(Request $request, $id){
 
     $storeno = auth()->guard('seller')->user()->s_no;
@@ -169,6 +169,7 @@ class ProductController extends Controller
     return redirect('/');
   }
 
+// 상품 삭제 박소현
   public function pd_remove($id){
 
     DB::table('product')->where('p_no','=',$id)->update([
@@ -243,10 +244,10 @@ public function store_star($id){
   return redirect()->back();
 }
 
-// }
-  // 박소현
+
+  // 문의하기 박소현
   public function pd_qna (Request $qna,$id){
-    // return $id;
+
     $productinfor = DB::table('product')->where('p_no',$id)->get();
     $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
 
@@ -259,14 +260,7 @@ public function store_star($id){
       $customer = DB::table('customer')
       ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
       ->where('customer_no','=', $cprimary)->get();
-
-      // return view('mypage/mypage', compact('sellerstore'));
-
     }
-
-
-    // $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['/product/{id}'];
-    // return $url;
 
     DB::table('question')->insert([
       'q_title'=>$qna->input('qna_title'),
@@ -276,8 +270,6 @@ public function store_star($id){
       'customer_no'=>$cprimary,
       'q_state'=> $state
     ]);
-
-
     return redirect()->back();
   }
 

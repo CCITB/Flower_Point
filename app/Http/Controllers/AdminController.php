@@ -1,4 +1,5 @@
 <?php
+// 관리자 컨트롤러 -- 박소현
 
 namespace App\Http\Controllers;
 
@@ -8,21 +9,15 @@ use DB;
 
 class AdminController extends Controller
 {
-  public function customer(){
-    // $data = DB::table('product')->get();
-    // // $alldata = [$data,$imagepath];
-    // // return $data;
-    // return view('main',compact('data'));
+  public function customer(){ //관리자의 구매자 DB 불러오기
+
     $customer = DB::table('customer')->select('*')->get();
 
     return view('admin.customer', compact('customer'));
   }
 
-  public function seller(){
-    // $data = DB::table('product')->get();
-    // // $alldata = [$data,$imagepath];
-    // // return $data;
-    // return view('main',compact('data'));
+  public function seller(){  // 관리자의 판매자 DB 불러오기
+
     $sellerall = DB::table('seller')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->join('store_address','store.st_no', '=', 'store_address.st_no')
@@ -36,18 +31,17 @@ class AdminController extends Controller
 
     return view('admin.seller', compact('sellerall','product'));
   }
-  public function registraion(Request $request){
+
+  public function registraion(Request $request){ // 판매자가 올린 사업자등록증 보여주기
 
     $st_no= $_POST['hidden'];
     $seller = DB::table('store')->where('st_no',$st_no)->get();
     $s_img=$seller[0]->st_no;
 
-
-
     return view('admin.registration', compact('seller'));
   }
 
-  public function ad_remove($id){
+  public function ad_remove($id){ // 상품을 '삭제' 상태로 만들기
 
     DB::table('product')->where('p_no','=',$id)->update([
       'p_status' => '삭제'
@@ -56,7 +50,7 @@ class AdminController extends Controller
     return redirect('/ad_seller');
   }
 
-  public function ad_restore($id){
+  public function ad_restore($id){ // 상품을 '등록' 상태로 만들기
 
     DB::table('product')->where('p_no','=',$id)->update([
       'p_status' => '등록'
@@ -65,12 +59,14 @@ class AdminController extends Controller
     return redirect('/ad_seller');
   }
 
-  public function product(){
+  public function product(){ // 오늘 올라온 상품만 보여주기
+    $today = date("Ymd");
+
     $product = DB::table('seller')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->join('store_address','store.st_no', '=', 'store_address.st_no')
     ->join('product','store.st_no','=','product.store_no')
-    ->select('*')->get();
+    ->select('*')->where('p_date',$today)->get();
 
     return view('admin.product', compact('product'));
   }

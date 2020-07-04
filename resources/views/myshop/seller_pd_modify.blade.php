@@ -7,17 +7,6 @@
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/sellerpost.css">
-  <script>
-  // const browseBtn = document.querySelector('.browse-btn');
-  // 무슨 코드인지 모름
-  // const realInput = document.querySelector('#real-input');
-  //
-  // browseBtn.addEventListener('click',()=>{
-  //   realInput.click();
-  // });
-
-  </script>
-
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
@@ -32,12 +21,6 @@
   <div class="post">
     @foreach ($pd_db as $pd)
       <div id="se2_sample" style="margin:10px 0;">
-        <!-- <div class="">
-        <input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-        <input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-        <input type="button" onclick="submitContents();" value="서버로 내용 전송" />
-        <input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
-      </div> -->
 
       <form action="/pd_modi{{$pd->p_no}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
         @csrf
@@ -82,11 +65,6 @@
             </div>
           </div>
 
-          <!-- chk_file_type(this); checkFile(this); readURL();함수 주석 -->
-          <!-- <button class="browse-btn">사진업로드</button> -->
-
-
-          <!-- </div>사진 업로드 부트스트랩 버튼 -->
           <div class="input-guide" style="" >
             &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
           </div>
@@ -195,39 +173,7 @@ nhn.husky.EZCreator.createInIFrame({
   sSkinURI: "/SmartEditor2Skin.html",
   fCreator: "createSEditor2"
 });
-// $("#save").click(function(){
-//   oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
-//   $("#send-text").submit();
-// });
-//?? 이코드 뭐냐;;
 
-
-
-// $("#submitBoardBtn").click(function(){
-//   var boardAccount = $('#boardAccount').val();
-//   var boardSubject= $('#boardSubject').val();
-//   var smartEditor= $('#smartEditor').val();
-//   if(boardSubject.trim().length < 4){
-//     alert("4글자 이상 입력하세요.");
-//     $('#boardSubject').focus();
-//   } else{
-//     $.ajax({
-//       url : '/index',
-//       type : 'post',
-//       datatype : 'json',
-//       data : {
-//         "boardAccount" : boardAccount,
-//         "boardSubject" : boardSubject,
-//         "smartEditor" : smartEditor
-//       },
-//       success : function(data){
-//         if(data=="ok"){
-//           location.href="/index";
-//         }
-//       }
-//     });
-//   }
-// });
 function onlyNumber(event){
   event = event || window.event;
   var keyID = (event.which) ? event.which : event.keyCode;
@@ -279,51 +225,3 @@ function postcheck(){
 }
 
 </script>
-<!-- <script type="text/javascript">
-if(window.frameElement){
-jindo.$("se2_sample").style.display = "none";
-}else{
-var oEditor = createSEditor2(jindo.$("weditor"), {
-bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
-//aAdditionalFontList : [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]],	// 추가 글꼴 목록
-fOnBeforeUnload : function(){
-//예제 코드
-//return "내용이 변경되었습니다.";
-}
-});
-
-oEditor.run({
-fnOnAppReady: function(){
-//예제 코드
-//oEditor.exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-}
-});
-
-function pasteHTML() {
-var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-oEditor.exec("PASTE_HTML", [sHTML]);
-}
-
-function showHTML() {
-var sHTML = oEditor.getIR();
-alert(sHTML);
-}
-
-function submitContents() {
-oEditor.exec("UPDATE_CONTENTS_FIELD");	// 에디터의 내용이 textarea에 적용됩니다.
-
-// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
-jindo.$("weditor").form.submit();
-}
-
-function setDefaultFont() {
-var sDefaultFont = '궁서';
-var nFontSize = 24;
-oEditor.setDefaultFont(sDefaultFont, nFontSize);
-}
-}
-</script>
-<!--Example End-->

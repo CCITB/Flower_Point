@@ -8,11 +8,7 @@ use DB;
 
 class MainController extends Controller
 {
-  public function main(){
-    // $data = DB::table('product')->get();
-    // // $alldata = [$data,$imagepath];
-    // // return $data;
-    // return view('main',compact('data'));
+  public function main(){ // 메인 슬라이드 6개씩 묶어서 나오게 하기 -- 박소현
     $product = DB::table('product')->where('p_status','등록')->limit(6)->get();
     $prod = DB::table('product')->where('p_status','등록')->skip(6)->take(6)->get();
     $pro = DB::table('product')->where('p_status','등록')->skip(12)->take(6)->get();
@@ -51,7 +47,7 @@ class MainController extends Controller
   public function register_information(){
     return view('register.register_information');
   }
-  public function showall(){
+  public function showall(){ // 전체 상품 12개씩 한 페이지처리
     $data = DB::table('product')->where('p_status','등록')->paginate(12);
     return view('allproductpage',compact('data'));
   }

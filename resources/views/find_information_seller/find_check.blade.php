@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--박소현 계속 수정중 -->
+<!DOCTYPE html> <!--찾은 아이디 나오는 페이지 html css 박소현-->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">

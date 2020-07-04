@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--   박소현     -->
+<!DOCTYPE html> <!--   회원가입 약관 박소현     -->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">

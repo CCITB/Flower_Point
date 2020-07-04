@@ -1,3 +1,4 @@
+{{-- 관리자페이지 헤더 -- 박소현 --}}
 <!--header start-->
 <header class="header black-bg">
   <div class="sidebar-toggle-box">

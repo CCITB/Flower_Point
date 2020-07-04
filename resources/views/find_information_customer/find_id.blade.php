@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--박소현 계속 수정중 -->
+<!DOCTYPE html> <!--아이디 찾기 기본 틀, css 박소현-->
 <html lang="en" dir="ltr"><head>
   <title>아이디 찾기</title>
   <meta charset="UTF-8">

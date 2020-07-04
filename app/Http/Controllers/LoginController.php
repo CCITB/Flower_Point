@@ -76,16 +76,3 @@ class LoginController extends Controller
     }
 
 }
-// $db_seller = DB::table('seller')->select('s_id','s_password')->where([
-//   's_id'=>$seller_id,
-//   's_password'=>$seller_pw
-//   ])->get();
-//
-//
-//   if(count($db_seller)>0){
-//     session()->put('iding',$seller_id);
-//
-//     return view('main');
-//   }else {
-//     return redirect('/login_seller');
-//   }

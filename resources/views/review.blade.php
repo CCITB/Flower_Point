@@ -32,8 +32,6 @@
               <button name="rate4" class="hi" id="st4" onclick="star_text(4)" value="4">★</button>
               <button name="rate5" class="hi" id="st5" onclick="star_text(5)" value="5">★</button>
               <input type="hidden" id="hidden" name="hidden" value="">
-
-              <!-- <img src="https://image.flaticon.com/icons/svg/1828/1828884.svg"> -->
             </div>
             <br><br><div class="star_detail" id="st_detail">별점을 눌러주세요.</div>
           </div>
@@ -48,9 +46,6 @@
             <textarea class="satis_detail_window" id="review_text" name="text" maxlength="250" placeholder="후기를 입력해주세요."></textarea>
             <br><span class="counter" id="counter">###</span>
           </div>
-          <!-- <div class="satis_img">
-            <button class="img_bt" type="button" onclick="location.href = '/rev2'"><span><i class="fas fa-images"></i></span> 사진 첨부하기</button>
-          </div> -->
         </div>
       </div>
 

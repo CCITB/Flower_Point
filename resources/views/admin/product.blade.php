@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{-- 관리자의 상품 세부관리 페이지 -- 박소현 --}}
 <html lang="en" dir="ltr">
 
 <head>
@@ -23,17 +24,13 @@
 
 <body>
   <section id="container">
-    <!-- **********************************************************************************************************************************************************
-    TOP BAR CONTENT & NOTIFICATIONS
-    *********************************************************************************************************************************************************** -->
+
     @include('admin.ad_header')
-    <!-- **********************************************************************************************************************************************************
-    MAIN CONTENT
-    *********************************************************************************************************************************************************** -->
+
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> 상품 세부관리</h3>
+        <h3><i class="fa fa-angle-right"></i> 오늘 올라온 상품</h3>
         <div class="row mt">
           <div class="col-lg-12">
 
@@ -83,13 +80,6 @@
               </table>
             </div>
 
-            <div class="vision_api">
-              <div class="img"></div>
-              <div class="result" id="result"></div>
-              <input class="img_url" name="img_url">
-            </div>
-
-
 
           </div>
         </div>
@@ -105,12 +95,7 @@
           &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
         </p>
         <div class="credits">
-          <!--
-          You are NOT allowed to delete the credit link to TemplateMag with free version.
-          You can delete the credit link only if you bought the pro version.
-          Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-          Licensing information: https://templatemag.com/license/
-        -->
+
         Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
       </div>
       <a href="/ad_customer#" class="go-top">
@@ -151,14 +136,6 @@ $(document).ready(function(){
       }
     });
 });
-
-
-
-
-
-
-
-
 
 
 </script>

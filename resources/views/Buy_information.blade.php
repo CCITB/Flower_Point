@@ -356,7 +356,7 @@
           $('#reply'+num).addClass("qna_an_show");
         }
       }
-
+      // 문의하기 비 로그인시
       function fake(){
         alert('로그인이 필요한 서비스입니다.');
       }
@@ -403,7 +403,7 @@
       </script>
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script type="text/javascript">
-
+      // 리뷰 좋아요 버튼
       function pd_good(r_no){
 
         var g_bt = $('#good'+r_no);

@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--박소현 계속 수정중 -->
+<!DOCTYPE html> <!--아이디 찾기 기본 틀, css 박소현-->
 <html lang="en" dir="ltr">
 <head>
   <title>꽃갈피 : 아이디 찾기</title>
@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+<!--ID Email, SMS인증 : 어지수-->
   <div id="all">
     <div class="text">
       <div class="id_title">Find ID</div> <hr>

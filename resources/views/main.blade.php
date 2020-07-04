@@ -340,75 +340,23 @@
 
       </div>
 
-
-
-
     </div>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
-
-  {{-- <div class="swiper-container">
-  <div class="swiper-wrapper">
-  @foreach ($product as $productlist)
-  <div class="swiper-slide">
-
-  <div class="sw_total">
-
-  <div class="image-in" url="/product/{{$productlist->p_no}}">
-  <div class="imgsize" >
-  <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-</div>
-
-<div class="image-in-font">
-<div class="image-in-post">
-{{$productlist->p_name}}
-</div>
-
-<div class="image-in-container">
-<div class="image-in-star">
-<p class="star_rating">
-<a href="#" class="on">★</a>
-<a href="#" class="on">★</a>
-<a href="#" class="on">★</a>
-<a href="#" class="on">★</a>
-<a href="#" class="on">★</a>
-</p>
-</div>
-
-<div class="image-in-bottom">
-{{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
-</div>
-</div>
-
-<div class="image-in-price">
-<strong>{{number_format($productlist->p_price)}}원</strong>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-@endforeach
-
-</div>
-<div class="swiper-button-prev"></div>
-<div class="swiper-button-next"></div>
-</div> --}}
 
 
 @include('lib.footer')
 
 
 
-<!-- 평점 jQuery -->
+
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script>
 
-// new Swiper('.swiper-container');
-
+// 메인 슬라이드
 var mySwiper = new Swiper('.swiper-container', {
 
   slidesPerView: 1, // 보여지는 슬라이드 수
@@ -422,7 +370,7 @@ var mySwiper = new Swiper('.swiper-container', {
   },
 });
 
-
+ // 평점
 $( ".star_rating a" ).click(function() {
   $(this).parent().children("a").removeClass("on");
   $(this).addClass("on").prevAll("a").addClass("on");

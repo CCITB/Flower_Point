@@ -282,29 +282,6 @@ return view('login/login_seller');
 
 Route::post('/registration', 'InformationController@registration');
 
-Route::get('/postlist', function(){
-  if($sellerinfo = auth()->guard('seller')->user()){
-    $sellerprimary = $sellerinfo->s_no;
-    // return $sellerprimary;
-        $data = DB::table('seller')
-        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-        ->where('s_no','=', $sellerprimary )->get();
-
-
-        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(1);
-        // $st_address = '['.$st_post.']'.$st_add.','.$st_detail.$st_extra->get();
-
-         // $data 조인을 해서 갖고온 셀러테이블과 스토어테이블이 합쳐진 데이터
-        // return $proro;
-
-        return view('post_list' , compact('data', 'proro', ));
-  }
-  else{
-
-  }
-  return view('login/login_seller');
-});
-
 //검색
 Route::get('/search', 'SearchController@result');
 Route::group(['middleware' => 'preventBackHistory'],function(){
@@ -356,8 +333,4 @@ Route::post('/ad_regsts', 'AdminController@registraion');
 
 Route::get('/ad_regst', function () {
   return view('admin.registration');
-});
-
-Route::get('/test', function () {
-  return view('admin.test');
 });

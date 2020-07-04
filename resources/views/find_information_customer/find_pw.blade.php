@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--박소현 계속 수정중 -->
+<!DOCTYPE html> <!--비밀번호 찾기 html css 박소현 -->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">

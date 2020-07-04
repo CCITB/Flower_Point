@@ -352,7 +352,7 @@
         }
       }
 
-      function show_popup() {
+      function show_popup() { // 리뷰 팝업창 띄우기 -- 박소현
         var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px ");
       }
     </script>

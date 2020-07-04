@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{-- footer의 꽃갈피 개인정보 취급방침 --}}
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">

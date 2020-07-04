@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{-- footer의 꽃갈피 입점문의 --}}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
