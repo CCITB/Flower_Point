@@ -20,10 +20,7 @@
       Customer Login
       <hr>
     </div>
-
     <div class ="login">
-      {{-- <form action = '/login_c' method="post" name="customer_login"> --}}
-        {{-- @csrf --}}
         <p>
           <input class="lg" type="text"  id="login_id" onkeypress="enterkey()" placeholder="ID" name="login_id" value="" required >
           <div class="check_div" id="login_check1" value=""></div>
@@ -36,8 +33,8 @@
           <a href="/customer_find_pw">비밀번호 찾기</a>
         </div><br>
         <br>
-        <input class="lg_bt" type="button" onclick="jaljomhaja()" value="로그인 ">
-      {{-- </form> --}}
+        <input class="lg_bt" type="button" onclick="login_message()" value="로그인 ">
+
     </div>
     <div class="bottom">
       <a href = "/terms_customers">구매자 회원가입</a>
@@ -51,35 +48,20 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-
-// console.log(1);
-// var a= 0;
-// // console.log(a);
-//
-// $('#login_id').blur(function(){
-// var  a = $('#login_id').val();
-// // var a = 1;
-// console.log(a);
-// });
-//
-// $('#login_pw').blur(function(){
-//   var a = $('#login_pw').val();
-//   console.log(a);
-//   // console.log($('#login_pw').val());
-// });
+//경진
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
 
-function jaljomhaja(){
+//로그인할때 입력한 정보와 DB상의 정보를 비교하는 코드
+function login_message(){
 
   var a = document.getElementById("login_id");
   var b = document.getElementById("login_pw");
 
   if((a.value)==""){
-
         $('#login_check1').text("ID를 입력해주세요.");
         $('#login_check1').css('color', 'red');
         $("#login_id").focus();
@@ -125,11 +107,7 @@ if((b.value)==""){
 function enterkey() {
         if (window.event.keyCode == 13) {
              // 엔터키가 눌렸을 때 실행할 내용
-             jaljomhaja();
+             login_message();
         }
-        // else return false;
 }
-
-
 </script>
-{{-- <script type="text/javascript" src="/js/login.js" charset="utf-8"></script> --}}

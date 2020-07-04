@@ -16,7 +16,7 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
-
+<!-- 정경진 -->
 <body>
   @include('lib.header')
   <div class="menu4">
@@ -74,8 +74,6 @@
 
                   <div id="p_num" style="display:none;">
                       <strong class="info">전화번호</strong>
-                      <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
-                      <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
                       <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
                         <option value="010">010</option>
                         <option value="011">011</option>
@@ -110,34 +108,10 @@
                     <button type="submit" name="button">수정완료</button>
                   </div>
                 </div>
-
-
-
-                <script type="text/javascript">
-
-                function info_modification(s,ss){
-                  if(s == "연락처수정"){
-                    document.getElementById(ss).style.display="block"
-                    modinum.style.display="none";
-                  }
-                  else if(s == "이메일수정"){
-                    document.getElementById(ss).style.display="block"
-                    modiemail.style.display="none";
-                  }
-                  else if(s == "주소수정"){
-                    document.getElementById(ss).style.display="block"
-                    modiaddress.style.display="none";
-                  }
-                  else if(s == "비밀번호수정"){
-                    document.getElementById(ss).style.display="block"
-                    modiaddress.style.display="none";
-                  }
-                }
-                </script>
-
               </td>
             </tr>
           </form>
+          
           <form action="modiemail"  onsubmit="return email_checkform()" method="post">
             @csrf
 
@@ -186,8 +160,29 @@
   <!--POST API Link -->
   <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
   <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
-
   <script type="text/javascript">
+
+//버튼 클릭이벤트
+  function info_modification(s,ss){
+    if(s == "연락처수정"){
+      document.getElementById(ss).style.display="block"
+      modinum.style.display="none";
+    }
+    else if(s == "이메일수정"){
+      document.getElementById(ss).style.display="block"
+      modiemail.style.display="none";
+    }
+    else if(s == "주소수정"){
+      document.getElementById(ss).style.display="block"
+      modiaddress.style.display="none";
+    }
+    else if(s == "비밀번호수정"){
+      document.getElementById(ss).style.display="block"
+      modiaddress.style.display="none";
+    }
+  }
+
+//비밀번호 정규식
   function pw_checkform(){
     var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
     var password = document.getElementById("new_pw");
@@ -202,6 +197,7 @@
     }
   }
 
+//전화번호 정규식
   function s_phonenum_checkform(){
     var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
     var middlenum = document.getElementById("delivery_tel_no2");
@@ -230,6 +226,8 @@
       return true;
     }
 }
+
+//이메일 정규식
   function email_checkform(){
       var email = document.getElementById("new_email");
       var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/

@@ -16,6 +16,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" type="text/javascript">
 </script>
 <body>
+  <!-- 정경진 -->
   <div class="wrapping">
     <div class="topheader">
       <h1 class="titles"><a id="title" href="/">꽃갈피</a></h1>
@@ -58,8 +59,6 @@
 
               <div class="delivery_wrap">
                 <strong class="info">전화번호</strong>
-                <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
-                <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
                 <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
                   <option value="010">010</option>
                   <option value="011">011</option>
@@ -141,6 +140,7 @@
               </div>
             </div>
             <!--상품 정보창-->
+            <!--곽승지-->
             @if(isset($data))
             @foreach ($data as $key => $value)
               <div class="product_data" id="product_data{{$value[0]->p_no}}">
@@ -241,6 +241,7 @@ $(function() {
 
 });
 
+//체크박스 확인
 function checkform(){
 
   var check1=document.check.ck.checked;
@@ -249,6 +250,7 @@ function checkform(){
     return false;
   }
 
+  //입력정보 정규식
   var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
   var num =  /^[0-9]{3,4}$/;
   var receiver = document.getElementById("inputtext");
@@ -314,7 +316,7 @@ function checkform(){
     return false;
   }
 }
-
+//라디오버튼 클릭 이벤트
 function div_show(s,ss){
   if(s == "직접거래"){
     document.getElementById(ss).style.display="none";
@@ -322,6 +324,7 @@ function div_show(s,ss){
     document.getElementById(ss).style.display="block";
   }
 }
+
 var getarray = [];
 var basketarray = [];
 for(i=0; i<$('.product_data').length; i++){

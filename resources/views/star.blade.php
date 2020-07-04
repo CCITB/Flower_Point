@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
   <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/css/star.css">
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
@@ -14,6 +15,7 @@
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<!--구매자가 추가한 꽃집,상품 즐겨찾기 화면-->
 <body>
   @include('lib.header')
   <div class="menu4">
@@ -22,30 +24,6 @@
   </hr>
 </div>
 <div class="myinfo">
-  <style media="screen">
-  div.tdcell{
-    width: 200px;
-    padding: 10px 0 10px 30px;
-    margin: 0;
-    text-align: left;
-  }
-  div.th1{
-    width: 100px;
-    height: 100px;
-    border: 1px solid;
-  }
-  div.thcell{
-    border-right: 1px solid #e5e5e5;
-    background: #f9f9f9;
-    text-align: left;
-    letter-spacing: -1px;
-  }
-  div#show{
-    padding-left: 32px;
-
-  }
-
-  </style>
     <table border="0" table class="table1" >
   <tr class="tr1">
     <th class="th1">상품이미지</th>

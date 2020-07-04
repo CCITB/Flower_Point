@@ -1,0 +1,21 @@
+div.tdcell{
+  width: 200px;
+  padding: 10px 0 10px 30px;
+  margin: 0;
+  text-align: left;
+}
+div.th1{
+  width: 100px;
+  height: 100px;
+  border: 1px solid;
+}
+div.thcell{
+  border-right: 1px solid #e5e5e5;
+  background: #f9f9f9;
+  text-align: left;
+  letter-spacing: -1px;
+}
+div#show{
+  padding-left: 32px;
+
+}

@@ -87,6 +87,18 @@ display: inline-block;
 .pagination{
   text-align: center;
 }
+td.upload-date{
+  text-align: center;
+}
+td.upload-price{
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+td.upload-name{
+  text-align: center;
+  padding-left: 15px;
+}
 
 #favoritebtn{
   margin-left: 8%;

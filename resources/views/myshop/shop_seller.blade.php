@@ -13,24 +13,11 @@
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-  <style>
-  td.upload-date{
-    text-align: center;
-  }
-  td.upload-price{
-    text-align: center;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  td.upload-name{
-    text-align: center;
-    padding-left: 15px;
-
-  }
-  </style>
 </head>
 <body>
   @include('lib.header')
+  <!-- 정경진 -->
+  <!-- seller에게 보이는 store화면 -->
   <div class="allwrap">
     <div class="wrap0">
       @if( auth()->guard('seller')->user())
@@ -53,9 +40,7 @@
                   <td><div class="thcell">{{$data1->st_name}}</div></td>
                 </tr>
               @endforeach
-
               <form class="addressgroup" action="/shopinfo" method="get">
-
                 <tr>
                   <th>주소</th>
                   @foreach ($store_address as $a)
@@ -106,22 +91,7 @@
 
 
       @endif
-      <script type="text/javascript">
-      function div_show(s,ss){
-        if(s == "주소수정"){
-          document.getElementById(ss).style.display="block";
-          ad.style.display="none";
-          complete1.style.display="block";
-          addresswrap.style.display="block";
-        }
-        else if(s== "소개수정"){
-          document.getElementById(ss).style.display="block";
-          modiinfo.style.display="none";
-          introducemodi.style.display="none";
-        }
-      }
-      </script>
-    </div>
+          </div>
 
     <form action="/newaddress" method="get">
       <div id="addresswrap" style="display:none;">
@@ -186,12 +156,6 @@
                 </thead>
                 <tbody>
 
-                  {{-- <tr>
-                  <td class="upload-date">2020.05.14</td>
-                  <td class="upload-name">sefasd</td>
-                  <td class="upload-price">20000원</td>
-                  <td></td>
-                </tr> --}}
                 @foreach ($proro as $data3)
                   <tr>
                     <td class="upload-date">{{$data3->p_date}}</td>
@@ -244,8 +208,7 @@
     </div>
     <div class="postbutton">
       <input type="submit" name="" value="저장" id="save" >
-      <!-- <button type="submit" name="button" class="send-btn" id="submitBoardBtn" form="send-text">저장</button> -->
-      <button type="button" name="button" class="Cancellation-btn">취소</button>
+            <button type="button" name="button" class="Cancellation-btn">취소</button>
     </div>
   </form>
 </div>
@@ -253,36 +216,23 @@
 @include('lib.footer')
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
-<script>
 
-// function pd_remove(){
-//   var value;
-//   var returnvalue = confirm("정말 삭제하시겠습니까?");
-//   if (returnvalue == true){    //확인
-//     value = 11;
-//     document.delete.hidden.value = value;
-//   } else {   //취소
-//     value = 22;
-//     document.delete.hidden.value = value;
-//   }
-// }
-// $("#remove").click(function(){
-//   var hid;
-//   var returnvalue = confirm("정말 삭제하시겠습니까?");
-//   if(returnvalue == true){
-//     hid = 1;
-//     document.delete.hidden.value = hid;
-//     console.log(returnvalue);
-//   }
-//   else{
-//     hid = 2;
-//     document.delete.hidden.value = hid;
-//     console.log(returnvalue);
-//   }
-// });
-
-
-
+<script type="text/javascript">
+//버튼 클릭 이벤트
+function div_show(s,ss){
+  if(s == "주소수정"){
+    document.getElementById(ss).style.display="block";
+    ad.style.display="none";
+    complete1.style.display="block";
+    addresswrap.style.display="block";
+  }
+  else if(s== "소개수정"){
+    document.getElementById(ss).style.display="block";
+    modiinfo.style.display="none";
+    introducemodi.style.display="none";
+  }
+}
+//이미지 등록관련코드
 function checkFile(el){
   $('#image-session').attr('src', '#');
   var file = el.files;
@@ -298,9 +248,6 @@ function chk_file_type(el) {
   var file_kind = el.value.lastIndexOf('.');
   var file_name = el.value.substring(file_kind+1,el.length);
   var file_type = file_name.toLowerCase();
-  // console.log(file_name)
-  // console.log(file_kind)
-
   var check_file_type=new Array();
   check_file_type=['jpg','gif','png','jpeg','bmp','tif'];
   if(check_file_type.indexOf(file_type)==-1) {

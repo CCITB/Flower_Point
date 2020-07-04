@@ -37,14 +37,14 @@ button.btn2{
 
 div.wrap2{
   position: relative;
-  float: left;
   display: flex;
   margin-bottom: 10px;
 }
 
 div.imgbox{
     border: 1px solid;
-    width: 20%;
+    width: 200px;
+    height: 200px;
     position: relative;
 }
 
@@ -246,8 +246,12 @@ position: relative;
   height: 50%;
   position: relative;
   overflow: hidden;
-
 }
+
+div.write-post{
+  float:right; 
+}
+
 .image{
 width: 90%;
 height: 90%;

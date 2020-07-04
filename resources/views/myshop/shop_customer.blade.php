@@ -11,21 +11,9 @@
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <style>
-  td.upload-date{
-    text-align: center;
-  }
-  td.upload-price{
-    text-align: center;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  td.upload-name{
-    text-align: center;
-    padding-left: 15px;
-  }
-  </style>
 </head>
+<!--정경진-->
+<!-- customer에게 보이는 store화면 -->
 <body>
   @include('lib.header')
   <div class="allwrap">
