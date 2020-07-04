@@ -153,7 +153,7 @@ Route::get('/customer_shop', function () {
 // Route::get('/myqna', function () {
 //   return view('myQnA');
 // });
-Route::get('/myqna','pagination@pages');
+Route::get('/myqna','InformationController@myqna');
 
 // Route::get('/postlist', function () {
 //   return view('post_list');

@@ -23,7 +23,7 @@
       <table class="qna-table" id="qnas">
         <thead>
           <tr>
-            <th>번호</th>
+            <th>공개</th>
             <th>문의/답변</th>
             <th>답변상태</th>
             <th>작성자</th>
@@ -33,11 +33,11 @@
         <tbody>
           @foreach($myqn as $mq)
             <tr>
-              <td class="qna-index">{{$mq->s_no}}</td>
-              <td class="qna-content">{{$mq->s_id}}</td>
-              <td class="qna-condition">답변상태</td>
-              <td class="qna-writer">작성자</td>
-              <td class="qna-date">{{$mq->s_name}}</td>
+              <td class="qna-index">{{$mq->q_state}}</td>
+              <td class="qna-content">{{$mq->q_title}}</td>
+              <td class="qna-condition">답변 전</td>
+              <td class="qna-writer">{{$mq->c_name}}</td>
+              <td class="qna-date">{{$mq->q_date}}</td>
             </tr>
           @endforeach
         </tbody>

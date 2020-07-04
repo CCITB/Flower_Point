@@ -169,40 +169,46 @@ class InformationController extends Controller
     // }
 
 
-    public function pd_modify($id) {
-      // return $id;
+    public function pd_modify($id) { // 상품수정 -- 박소현
 
       $pd_db = DB::table('product')->where('p_no',$id)->get();
-      // return $pd_db;
-
       return view('myshop.seller_pd_modify', compact('pd_db'));
     }
 
 
-    public function registration(Request $request) {
+    public function registration(Request $request) { // 사업자등록 -- 박소현
 
-        $sel = auth()->guard('seller')->user()->s_no;
-        // return $sel;
+      $sel = auth()->guard('seller')->user()->s_no;
+
+      $st_no = DB::table('seller')->join('store', 'seller.s_no', '=', 'store.seller_no')
+      ->where('s_no',$sel)->pluck('st_no');
+
+      $path=$request->file('registration');
 
 
-        $st_no = DB::table('seller')->join('store', 'seller.s_no', '=', 'store.seller_no')
-        ->where('s_no',$sel)->pluck('st_no');
-        // return $st_no;
+      if($request->hasFile('registration')){
+        $path=$request->file('registration')->store('/','public');
+      }
 
+      DB::table('store')->where('st_no',$st_no)->update([
+        'registration_img' => $path
+      ]);
 
-        $path=$request->file('registration');
-        // return $path;
-
-        if($request->hasFile('registration')){
-          $path=$request->file('registration')->store('/','public');
-        }
-
-        DB::table('store')->where('st_no',$st_no)->update([
-          'registration_img' => $path
-        ]);
-
-        return redirect('/shop');
+      return redirect('/shop');
     }
 
+
+    public function myqna(){
+      if ($cust = auth()->guard('customer')->user()){
+        $cus = $cust->c_no;
+        $myqna = DB::table('customer')
+        ->join('question','customer.c_no','=','question.customer_no')
+        ->where('c_no',$cus)->paginate(5);
+
+        return view('myQna', ['myqn' => $myqna]);
+      } else{
+        return view('login/login_customer');
+      }
+    }
 
   }
