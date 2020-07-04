@@ -33,7 +33,13 @@ textarea{
 /* 입점문의 */
 .inquiries{
   margin: 50px auto;
+  height: 450px;
   width: 50%;
   font-family:'Nanum Gothic Coding', monospace;
+}
+.infomation{
+  background-color: #EAEAEA;
+  line-height: 2em;
+  font-size: 1.2em;
 }
 /* 입점문의 끝 */

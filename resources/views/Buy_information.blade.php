@@ -312,9 +312,11 @@
                   반품/교환정보
                 </h3>
               </div>
-              내용
+              <h4>교환 및 환불</h4>
+              - 생화상품의 경우 한 번 잘라지면 다시 사용할 수 없는 꽃의 특성상 제작완료시 변심으로 인한 교환 및 취소 불가
+              <br> - 상품 불량 및 파손, 오배송 등은 교환 및 반품 가능
+              <br> - 상품 출고시 취소 및 환불 불가 <br><br><br>
             </div>
-
           </div>
         @endforeach
         <form class="" id="Pro" action="/order/" method="get" name="Pro">

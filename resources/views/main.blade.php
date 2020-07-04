@@ -19,6 +19,148 @@
     인기상품
   </div>
   <!-- 상품진열 테이블입니다. -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+
+        <div class="container-wrap">
+          <div class="container-wrapping">
+            @foreach ($product as $productlist)
+              <div class="container-image">
+                <div class="image">
+                  <div class="image-in" url="/product/{{$productlist->p_no}}">
+                    <div class="imagewrap" >
+                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                    </div>
+
+                    <div class="image-in-font">
+                      <div class="image-in-post">
+                        {{$productlist->p_name}}
+                      </div>
+                      <div class="image-in-container">
+                        <div class="image-in-star">
+                          <p class="star_rating">
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                          </p>
+                        </div>
+                        <div class="image-in-bottom">
+                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                        </div>
+                      </div>
+                      <div class="image-in-price">
+                        <strong>{{number_format($productlist->p_price)}}원</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+      </div>
+
+      <div class="swiper-slide">
+
+        <div class="container-wrap">
+          <div class="container-wrapping">
+            @foreach ($prod as $productlist)
+              <div class="container-image">
+                <div class="image">
+                  <div class="image-in" url="/product/{{$productlist->p_no}}">
+                    <div class="imagewrap" >
+                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                    </div>
+
+                    <div class="image-in-font">
+                      <div class="image-in-post">
+                        {{$productlist->p_name}}
+                      </div>
+                      <div class="image-in-container">
+                        <div class="image-in-star">
+                          <p class="star_rating">
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                          </p>
+                        </div>
+                        <div class="image-in-bottom">
+                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                        </div>
+                      </div>
+                      <div class="image-in-price">
+                        <strong>{{number_format($productlist->p_price)}}원</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+      </div>
+
+      <div class="swiper-slide">
+
+        <div class="container-wrap">
+          <div class="container-wrapping">
+            @foreach ($pro as $productlist)
+              <div class="container-image">
+                <div class="image">
+                  <div class="image-in" url="/product/{{$productlist->p_no}}">
+                    <div class="imagewrap" >
+                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                    </div>
+
+                    <div class="image-in-font">
+                      <div class="image-in-post">
+                        {{$productlist->p_name}}
+                      </div>
+                      <div class="image-in-container">
+                        <div class="image-in-star">
+                          <p class="star_rating">
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                            <a href="#" class="on">★</a>
+                          </p>
+                        </div>
+                        <div class="image-in-bottom">
+                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                        </div>
+                      </div>
+                      <div class="image-in-price">
+                        <strong>{{number_format($productlist->p_price)}}원</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+
+
+  <!-- 상품진열 테이블 끝나는 곳 입니다. -->
+  <div class="hr-sect1">
+    할인상품
+  </div>
+  <!-- 상품진열 테이블입니다. -->
   <div class="container-wrap">
     <div class="container-wrapping">
 
@@ -203,146 +345,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- 상품진열 테이블 끝나는 곳 입니다. -->
-  <div class="hr-sect1">
-    할인상품
-  </div>
-  <!-- 상품진열 테이블입니다. -->
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-
-        <div class="container-wrap">
-          <div class="container-wrapping">
-            @foreach ($product as $productlist)
-              <div class="container-image">
-                <div class="image">
-                  <div class="image-in" url="/product/{{$productlist->p_no}}">
-                    <div class="imagewrap" >
-                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-                    </div>
-
-                    <div class="image-in-font">
-                      <div class="image-in-post">
-                        {{$productlist->p_name}}
-                      </div>
-                      <div class="image-in-container">
-                        <div class="image-in-star">
-                          <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p>
-                        </div>
-                        <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
-                        </div>
-                      </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-      </div>
-
-      <div class="swiper-slide">
-
-        <div class="container-wrap">
-          <div class="container-wrapping">
-            @foreach ($prod as $productlist)
-              <div class="container-image">
-                <div class="image">
-                  <div class="image-in" url="/product/{{$productlist->p_no}}">
-                    <div class="imagewrap" >
-                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-                    </div>
-
-                    <div class="image-in-font">
-                      <div class="image-in-post">
-                        {{$productlist->p_name}}
-                      </div>
-                      <div class="image-in-container">
-                        <div class="image-in-star">
-                          <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p>
-                        </div>
-                        <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
-                        </div>
-                      </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-      </div>
-
-      <div class="swiper-slide">
-
-        <div class="container-wrap">
-          <div class="container-wrapping">
-            @foreach ($pro as $productlist)
-              <div class="container-image">
-                <div class="image">
-                  <div class="image-in" url="/product/{{$productlist->p_no}}">
-                    <div class="imagewrap" >
-                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-                    </div>
-
-                    <div class="image-in-font">
-                      <div class="image-in-post">
-                        {{$productlist->p_name}}
-                      </div>
-                      <div class="image-in-container">
-                        <div class="image-in-star">
-                          <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p>
-                        </div>
-                        <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
-                        </div>
-                      </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
   </div>
 
 
