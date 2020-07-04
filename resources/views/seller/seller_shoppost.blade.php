@@ -9,17 +9,16 @@
   <link rel="stylesheet" href="/css/sellerpost.css">
   <script>
   // const browseBtn = document.querySelector('.browse-btn');
-  // 무슨 코드인지 모름
+  // ??
   // const realInput = document.querySelector('#real-input');
   //
   // browseBtn.addEventListener('click',()=>{
   //   realInput.click();
   // });
-
+//-----------------------------------스마트 에디터 주석입니다.-----------------------------
   </script>
-
   <script type="text/javascript" src="/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-
+  {{-- 곽승지 --}}
 </head>
 <body>
   @include('lib.header')
@@ -184,7 +183,7 @@ nhn.husky.EZCreator.createInIFrame({
 //   oEditors.getById["weditor"].exec("UPDATE_CONTENTS_FIELD", []);
 //   $("#send-text").submit();
 // });
-//?? 이코드 뭐냐;;
+//??
 
 
 

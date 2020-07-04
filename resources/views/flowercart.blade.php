@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/css/flowercart.css">
   <title>장바구니</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+{{-- 곽승지 --}}
 </head>
 <body>
   @include('lib.header')
@@ -148,10 +148,6 @@
       <div class="allorderprice-section">
         <span class="allorderprice-right"> <span id="i_result4" onchange="everysum();"></span>원 </span>
       </div>
-      {{-- <form class="" action="/order/" method="get" name="productpost"> --}}
-      {{-- @csrf --}}
-      {{-- <input type="hidden" name="getid[]" value="1"> --}}
-      {{-- </form> --}}
       <div class="basketorder" onclick="productcheck()">
         <a>주문하기</a>
       </div>
@@ -162,6 +158,7 @@
 @include('lib.footer')
 </body>
 </html>
+{{-- 곽승지 --}}
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 var productidx = $('.flowercart-tradename');
@@ -206,6 +203,7 @@ console.log(first3);
 </script>
 
 <script type="text/javascript">
+// 상품합계 ui fixed 함수
 $(function() {
 
   $(document).ready(function() {
@@ -236,7 +234,7 @@ selectAll.addEventListener('click', function(){
   };
 
 }, false);
-
+//checkbox 기능함수
 var objs = document.querySelectorAll(".checkf");
 for(var i=0; i<objs.length ; i++){
   objs[i].addEventListener('click', function(){
@@ -279,14 +277,12 @@ function increase(a) {
   },
   success: function(data) {
     console.log(data);
-    // $('#checkf'+a).is(":checked");06.24사용할코드
     window["orderprice"+a]=AddComma(data[0]*data[1]+data[2]);
     window["productprice"+a]=AddComma(data[0]*data[1]);
     window["deliveryprice"+a]=AddComma(data[2]);
     orderprice = data[0]*(data[1]+data[2]);
     productprice = data[0]*data[1];
     deliveryprice = data[0]*data[2];
-    // $('.product-coupon'+a).text(window["orderprice"+a]);
     if(!$('#checkf'+a).is(":checked")){
       console.log('notcheck');
       return false;
@@ -300,7 +296,6 @@ function increase(a) {
     document.getElementById("productprice"+a).innerHTML=AddComma(window["productprice"+a]);
     document.getElementById("deliveryprice"+a).innerHTML=AddComma(window["deliveryprice"+a]);
     document.getElementById("allsum"+a).innerHTML=AddComma(window["orderprice"+a]);
-    // console.log($('#productprice'+a).text());
     dd=1;
     autoprice(data[0],data[1],data[2],dd);
     //data[0]=수량
@@ -327,16 +322,14 @@ $("input:checkbox[name=checkRow]:checked").each(function(i,elements){
   // alert($("input:checkbox[name=checkRow]").eq(index),val());
 });
 console.log(getid);
-var please = [];
+//반복문을 통해 장바구니에 담긴 상품을 구별하는 동적변수를 생성합니다.
 for(i=0; i<getid.length; i++){
   // console.log(getid[i]);
   console.log(window['orderprice'+getid[i]]=first3[i]);
   window['productprice'+getid[i]]=first1[i];
   window['deliveryprice'+getid[i]]=first2[i];
-  // alert(productprice488);
 }
-// alert(orderprice488);
-// alert(orderprice488);
+
 console.log('동적변수 생성 공간');
 var orderprice;
 var productprice;
@@ -394,6 +387,7 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
+// 단일상품 삭제 함수
 function del(e,b){
   var deleted = confirm("정말 상품을 삭제하시겠습니까?");
   if(deleted){
@@ -469,6 +463,7 @@ function onKeyDown()
     return false;
   }
 }
+// 선택상품 제거함수
 function selectdel(){
   if(!$("input:checkbox[name='checkRow']").is(":checked")){
     alert("선택하신 상품이 없습니다. 삭제를 원하시는 상품을 선택 해 주세요.");
@@ -604,11 +599,7 @@ function condition(){
       $('#productprice'+holy[i]).text(window["productprice"+holy[i]]);
       $('#deliveryprice'+holy[i]).text(window["deliveryprice"+holy[i]]);
       $('#allsum'+holy[i]).text(window["orderprice"+holy[i]]);
-      // console.log($('#productprice'+holy[i]).text());
       console.log(test1);
-      // $('#productprice'+holy[i]).text();
-      // $('#deliveryprice'+holy[i]).text();
-      // $('#allsum'+holy[i]).text();
     }
 
     var checking = 1;
@@ -637,12 +628,10 @@ function condition(){
       getid.push(idindex[i]);
       productnoidx.push(productidx.eq(i).attr('id').replace(/[^0-9]/g,''));
     }
-    // console.log(getid);
+
     loadprice();
   }
   else {
-    // var test1 = [];
-    // delete test1[];
     getid.length=0;
     productnoidx.length=0;
     //getid.legth
@@ -684,8 +673,6 @@ function condition(){
       var no=string.replace(/[^0-9]/g,'');
       // console.log(no);
       idindex.push(no);
-      //해당 index에 해당하는 체크박스의 값을 가져옵니다.
-      // alert($("input:checkbox[name=checkRow]").eq(index),val());
     });
     // console.log(idindex);
   }
@@ -714,8 +701,7 @@ var test3 = [];
 var now_productprice = [];
 var now_deliveryprice = [];
 var now_allsum = [];
-// console.log(now_productprice);
-// console.log('재차확인용');
+// 체크박스 개별선택함수
 function selectcondition(a,b){
   // var ada = $('input:checkbox[id="checkf"+'a']').is(":checked") == true;
   // console.log(ada);
@@ -746,25 +732,13 @@ function selectcondition(a,b){
     var hide8 = parseFloat(window["orderprice"+a].replace(/,/gi, ""));
     console.log(window["productprice"+a]);
     $('#i_result3').text(Number(hide5)+Number(hide3));
-    //아래코드 아직 작동안함
-    // $('#i_result4').text(Number(hide8)+Number(hide4));
-    // $('#i_result1').text(Number(hide6)+Number(hide1));
-    // $('#i_result2').text(Number(hide7)+Number(hide2));
 
-
-    // parseFloat(hide4.replace(/,/gi, ""));
-    // 아래 한줄은 왜 작동 느아ㅡ밍르민ㅇ
-    // loadprice(a,orderprice,productprice,deliveryprice);
-
-    //여기부터 천천히 작동하게 만들어보자
     console.log(hide8);
     // i_result1 i_result2 i_result4 상품 체크시마다 전체 주문합계에 반영시켜줌
     $('#i_result1').text(AddComma(hide6+hide1));
     $('#i_result2').text(AddComma(hide7+hide2));
     $('#i_result4').text(AddComma(hide8+hide4));
     // i_result1 i_result2 i_result4 상품 체크시마다 전체 주문합계에 반영시켜줌
-    // console.log(hide6+hide1);
-    // console.log(hide1);
 
     // 만약 input에 카운트를 실행시켯다면 전역변수에 담긴 수 들이다.
     if(!hide8==0){
@@ -784,16 +758,11 @@ function selectcondition(a,b){
       // $('#deliveryprice'+a).text(window["deliveryprice"+a]);
       // $('#allsum'+a).text(window["allsum"+a]);
     }
-    // 만약 input에 카운트를 실행시켯다면 전역변수에 담긴 수 들이다.
 
-    // 만약 수량증가를 실행시키지 않았을때 보여줘야하는 값이다.
-
-    // 만약 수량증가를 실행시키지 않았을때 보여줘야하는 값이다.
   }
 
   else {
     // 체크가 안되어있으면 getid 배열에서 상품인덱스인 a를 지웁니다.
-    console.log('아 ㅋㅋ 까먹엇ㅉ낳아');
     console.log(a.toString());
     arraysequence = getid.indexOf(a.toString());
     proarraysequence = productnoidx.indexOf(b.toString());
@@ -828,8 +797,7 @@ function selectcondition(a,b){
     $('#i_result2').text(def);
     $('#i_result3').text(hide);
     $('#i_result4').text(ghi);
-    // console.log($('#i_result1').text());
-    // console.log(now_productprice);
+
   }
   $.ajax({
     type: 'post',
@@ -840,8 +808,6 @@ function selectcondition(a,b){
   },
   success: function(data) {
     // console.log(data);
-
-
 
   },
   error: function(data) {
@@ -1005,8 +971,6 @@ function loadprice(a){
     for(i=0;i<getid.length;i++){
       var asdf =+ window["productprice"+getid[i]];
 
-      // console.log(eval("productprice"+getid[i]));
-      // console.log('오후1시');
     }
     $('#i_result1').text(asdf);
     $('#i_result3').text();
@@ -1084,8 +1048,4 @@ if (self.name != 'reload') {
     }
     else self.name = '';
 </script>
-{{-- @php
-$aa = "<script>getid;</script>";
-echo "<script>document.writeln(getid);</script>";
-@endphp --}}
-<button type="button" onclick="checkindex()" name="button">확인용</button>
+{{-- <button type="button" onclick="checkindex()" name="button">확인용</button> --}}

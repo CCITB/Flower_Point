@@ -451,8 +451,8 @@
         var state = $('input:radio[name=state]:checked').val();
         console.log(state);
       });
-
-
+//곽승지
+//장바구니에 상품추가 함수
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

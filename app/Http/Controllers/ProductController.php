@@ -52,13 +52,11 @@ class ProductController extends Controller
 
   public function seller_product_register(Request $request)
   {
-    // $picturerow = DB::table('product_image')->where('i_no','=',5)->first();
-    // $picture = $picturerow->i_filename;
+
     // return $picture;
     $storeno = auth()->guard('seller')->user()->s_no;
     $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
     // 로그확인용 주석
-
     // echo $comparison->st_no;
     // return $comparison->st_no;
 
@@ -90,9 +88,7 @@ class ProductController extends Controller
     $pro_no = $productinfor[0]->p_no;
     // return $pro_no;
 
-    // DB::table('question')->insert([
-    //   'product_no'=>$pro_no
-    // ]);
+
     $store = DB::table('store')->select('st_name','st_no')->where('st_no', '=', $productinfor[0]->store_no)->get();
     // $qnaq = DB::table('question')->where('product_no', $pro_no)->paginate(5);
     // $c_n = $qnaq[0]->customer_no;
@@ -105,15 +101,6 @@ class ProductController extends Controller
       ->join('review', 'customer.c_no', '=', 'review.customer_no')
       ->join('product', 'review.product_no','=','product.p_no')
       ->where('product_no', $pro_no)->paginate(3);
-
-     // return $qnaq;
-
-    // $cno = auth()->user()->c_no;
-    // return $cno;
-
-    // return $productinfor;
-    // $productdata = DB::table('product')->where('p_no','=',$id)->first();
-    // return $productdata;
 
     //나의 소중한 주석입니다 지우지 말아주세요
     if(auth()->guard('seller')->user()){
@@ -295,7 +282,7 @@ public function store_star($id){
   }
 
 
-
+//장바구니 페이지
   public function basket(){
     if(auth()->guard('customer')->user()){
       $userinfo = auth()->guard('customer')->user()->c_no;
@@ -311,7 +298,7 @@ public function store_star($id){
       return view('login.login_customer');
     }
   }
-
+//장바구니 상품삭제
   public function basketdelete(Request $request){
     $checkdata = $request->input('check');
     $no =  $request->input('id');
@@ -338,6 +325,7 @@ public function store_star($id){
     }
     return response()->json(1234);
   }
+  //장바구니에 상품 추가
   public function basketstore(Request $request){
     // return response()->json(1);
     $data =  $request->input('id');
@@ -377,6 +365,7 @@ public function store_star($id){
 
 
   }
+  // 장바구니에 있는 상품에대해 수량 추가 삭제
   public function basketcount(Request $request){
     $add = $request->input('add');
     $no = $request->input('no');
@@ -404,6 +393,7 @@ public function store_star($id){
     }
 
   }
+  // 장바구니 선택 상태
   public function basketcondition(Request $request){
     // return response()->json(1);
     $checkdata = $request->input('check');

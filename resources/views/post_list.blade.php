@@ -82,6 +82,7 @@
 
 
   <script>
+  // 곽승지 오름차순 내림차순 함수
   function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myTable");

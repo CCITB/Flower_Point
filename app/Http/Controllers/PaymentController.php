@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 use DB;
 class PaymentController extends Controller
 {
-  //
+  //곽승지
+  // 주문페이지
   public function payment(Request $request){
     if(auth()->guard('customer')->user()){
       // return 0;
@@ -53,6 +54,7 @@ class PaymentController extends Controller
     else
     return redirect('/');
   }
+  // 결제진행 함수
   public function paymentprocess(Request $request){
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -133,6 +135,7 @@ class PaymentController extends Controller
     return Redirect::route('complete')->with('data',$data);
 
   }
+  // 결제완료시에 유저에게 보여지는 창
   public function paymentcomplete(Request $request){
     $paymentID = $request->session()->get('data');
     $paymentIDarray = $request->session()->get('arraydata');

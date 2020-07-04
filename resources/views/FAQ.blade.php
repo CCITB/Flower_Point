@@ -6,6 +6,7 @@
       <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/QNA.css">
+  <link rel="stylesheet" href="/css/FAQ.css">
     </head>
     <body>
 @include('lib.header')
@@ -65,48 +66,6 @@
       </nav>
     </div>
   </div>
-
-
-
-
-
-<style>
-.faq-question{
-  font-weight: bold;
-}
-tr{
-  cursor: pointer;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-}
-.faq-block{
-  border-top: 1px;
-  border-bottom: 1px;
-  border-color: gray;
-}
-#answer1{
-background-color: #f8f8f8;
-}
-#answer2{
-  background-color: #f8f8f8;
-}
-#answer3{
-  background-color: #f8f8f8;
-}
-.faq_an{
-display: none;
-}
-.faq_an_show{
-  display: table-row;
-}
-.faq-block{
-  width: 70px;
-  color: red;
-  text-align: center;
-  height: 70px;
-  font-weight: bold;
-}
-</style>
 @include('lib.footer')
 </body>
 </html>

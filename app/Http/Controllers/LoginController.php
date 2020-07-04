@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-  //
+  //곽승지
   public function login_s(Request $login)//$login 가 form에 있는 모든 값을 가지고 있음
   {
     $urlPrevious = url()->previous();
@@ -33,7 +33,7 @@ class LoginController extends Controller
     return redirect($urlPrevious);
 
     }
-    
+
     public function logout(Request $logout)
     { //로그아웃 시켜주는 함수
     //   if(!auth()->guard('seller')->logout()){
@@ -45,7 +45,7 @@ class LoginController extends Controller
       session()->flush();
       return redirect($urlPrevious);
     }
-
+    //정경진
     publiC function check_login(Request $request){
       $input_id = $request->get('input_id');
       $input_pw = $request->get('input_pw');
