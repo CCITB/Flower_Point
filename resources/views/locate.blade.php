@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
 </head>
+
+<!--어지수-->
 <body>
   @include('lib.header')
   <div class="menu4"><!--탑헤더 밑-->
-    <h3>내 주변 꽃집</h3>
+    <h2 class="void-container">내 주변 꽃집</h2>
     <hr align="left" class="one">
   </hr>
 </head>
@@ -20,7 +22,7 @@
 
   /* Set the size of the div element that contains the map */
   #map {
-    height: 400px;  /* The height is 400 pixels */
+    height: 800px;  /* The height is 400 pixels */
     width: 70%;  /* The width is the width of the web page */
     margin : auto 30px;
   }
@@ -30,69 +32,77 @@
     margin: 0;
     padding: 0;
   }
-
+  #main {
+    width:500px;
+  }
+  #array{
+    color:#7d7d7d;
+  }
   </style>
   <!--구매자일 때-->
   @if(auth()->guard('seller')->user())
-    @foreach ($store_address as $address)
+  @foreach ($store_address as $address)
+  <!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
 
-      <!--주소를 검색하는 부분을 숨겨놨음-->
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
-
-    <!--판매자일 때-->
+  <!--판매자일 때-->
   @elseif (auth()->guard('customer')->user())
-    @foreach ($customer_address as $address)
-      <div id="floating-panel">
-        <input id="address" type="hidden" value="{{$address->a_address}}">
-      </div>
-      <div id="map"></div>
-    @endforeach
+  @foreach ($customer_address as $address)
+  <div id="floating-panel">
+    <input id="address" type="hidden" value="{{$address->a_address}}">
+  </div>
+  <div id="map"></div>
+  @endforeach
   @endif
 
   <!-- store address 정보 -->
   @foreach ($store_address as $address)
-    <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
   @endforeach
 
   @foreach ($store_address as $address)
-    <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
+  <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
   @endforeach
 
   @foreach ($store_address as $address)
-    <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
+  <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
   @endforeach
 
   <!--store의 정보-->
   @foreach ($store as $name)
-    <input class="store_name" id="{{$name->st_no}} "type="hidden" value="{{$name->st_name}}">
+  <input class="store_name" id="{{$name->st_no}} "type="hidden" value="{{$name->st_name}}">
   @endforeach
 
   @foreach ($store as $intro)
-    <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
+  <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
   @endforeach
 
 
-  <!--여기서부터 맵이 생깁니다.-->
-
   <script>
-  var user;
+  //var user;
   //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
   function initMap() {
     //contentString에 들어갈 나머지 주소들
+    var array = $('.array');
     var detail = $(".address_detail");
     var extra = $(".address_extra");
     var name = $(".store_name");
     var intro = $(".store_intro");
 
+    //store 주소 정보를 담을 배열
+    var arr = new Array();
     var arr_detail = new Array();
     var arr_extra = new Array();
     var arr_name = new Array();
     var arr_intro = new Array();
 
+    for(var j=0; j < array.length; j++){
+      arr.push(array[j].value);
+    }
     for(var a=0; a<detail.length; a++){
       arr_detail.push(detail[a].value);
     }
@@ -107,28 +117,16 @@
     }
 
     var user_address = $("#address").val();
-
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
     });
 
-    // 위도경도 변환하는 코드입니다.
+    // 위도경도 변환하는 코드
     var geocoder = new google.maps.Geocoder();
 
-    // Create a <script> tag and set the USGS URL as the source.
     var script = document.createElement('script');
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
     script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
     document.getElementsByTagName('head')[0].appendChild(script);
-
-    var contentString =
-    '<div id="content">' + '<h1 id="firstHeading" class="firstHeading">arr_name[i]</h1>' +
-    '<div id="bodyContent">' +
-    "<p>오늘안에 하면 <b>유미원딜</b>갑니다. 경진이도 포기한 Google Map API 조지기 Start " +
-    "</div>" +
-    "</div>";
-
 
     //User(seller/custsomer) 주소
     geocoder.geocode( { 'address': user_address }, function(results, status) {
@@ -144,53 +142,49 @@
 
     //Store 주소
     window.eqfeed_callback = function(results) {
-      var cup = [];
-      var arr = new Array();
-
-      //var address = $("#address").val();
-      var array = $('.array');
-      // arr.push(address);
-      for(var j=0; j < array.length; j++){
-        arr.push(array[j].value);
-      }
 
       var div = new Array();
+
       for(var a=0; a<arr_name.length; a++){
-        div.push('<div>' + '<h1>'+arr_name[a]+'</h1>'+
-        '<div id="bodyContent">'+"<b>"+arr_intro+"</b>" +"</div>"+"</div>");
+        div.push('<div id="main">'+
+        '<h1>'+arr_name[a]+'</h1><hr>'+
+        '<div id="bodyContent">'
+        +'<p><h4 id="intro"><b>'+arr_intro[a]+'</b></h4></p>'+"</div>"+
+        '<div id="address"><h4 id="array">'+arr[a]+', '+arr_detail[a]+arr_extra[a]+'<h4></div>'
+        +"</div>");
       }
       //사용자 아이콘
       var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
 
-      for( i=0 ; i < arr.length; i++){
-        //console.log(arr[i]);
-        geocoder.geocode( {'address': arr[i] },(function (i) {
-          return  function(results, status) {
+        for( i=0 ; i < arr.length; i++){
+          //console.log(arr[i]);
+          geocoder.geocode( {'address': arr[i] },(function (i) {
+            return  function(results, status) {
+              //console.log(i);
+              if (status == 'OK') {
+                var marker = new google.maps.Marker({
+                  // position: latLng,
+                  position: results[0].geometry.location,
+                  icon : store_Icon,
+                  map: map,
+                });
+                //console.log(results[0]);
 
-            console.log(results[0]);
-            // b=1;
-            // cup.push(i);
-            if (status == 'OK') {
-              var marker = new google.maps.Marker({
-                // position: latLng,
-                position: results[0].geometry.location,
-                icon : store_Icon,
-                map: map,
-              });
+                var infowindow = new google.maps.InfoWindow({
+                  content: div[i]
+                });
+                //console.log(div[i]);
 
-              var infowindow = new google.maps.InfoWindow({
-                content: div[i]
-              });
-              marker.addListener("click", function() {
+                marker.addListener("click", function() {
 
-                infowindow.open(map, marker);
-              });
-            } //if문
-          };
-        })(i)
-      );
+                  infowindow.open(map, marker);
+                });
+              } //if문
+            };
+          })(i)
+        );
+      }
     }
-  }
 }
 </script>
 <script async defer
