@@ -168,86 +168,70 @@
       var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
 
       for( i=0 ; i < arr.length; i++){
-         //console.log(arr[i]);
-        geocoder.geocode( {'address': arr[i] }, function(results, status) {
-              console.log(results[0]);
-          b=1;
-          cup.push(i);
-          //onsole.log(results[0]);
-         //arr.forEach((item, index) => {
-            //console.log(item);
-            // console.log(results[0]);
-            //console.log(index);
-            //if(item == results[0]){
-              //console.log(i);
-              //console.log(cup);
-              if (status == 'OK') {
-                var marker = new google.maps.Marker({
-                  // position: latLng,
-                  position: results[0].geometry.location,
-                  icon : store_Icon,
-                  map: map,
-                });
-                //console.log(results);
+        //console.log(arr[i]);
+        geocoder.geocode( {'address': arr[i] },
+        (function (i) {
+          return  function(results, status) {
+
+            console.log(results[0]);
+            // b=1;
+            // cup.push(i);
+            if (status == 'OK') {
+              var marker = new google.maps.Marker({
+                // position: latLng,
+                position: results[0].geometry.location,
+                icon : store_Icon,
+                map: map,
               });
-                var infowindow = new google.maps.InfoWindow({
-                  content: div[cup.length-b]
-                });
-                console.log(div[cup.length-b]);
 
+              var infowindow = new google.maps.InfoWindow({
+                content: div[i]
+              });
+              marker.addListener("click", function() {
 
-                // console.log(arr[i]);
-                // console.log(results[0]);
-
-                marker.addListener("click", function() {
-
-                  infowindow.open(map, marker);
-                });
-
-              // else {
-              //   alert('Geocode was not successful for the following reason: ' + status);
-              // }
-              //console.log(cont);
+                infowindow.open(map, marker);
+              });
             } //if문
-          //}); //foreach문
-        });
-      }
+          };
+        })(i)
+      );
     }
   }
+}
 
-  //데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
-  // function geocodeAddress(geocoder, map) {
-  //   //사용자 Address
-  //   var address = $("#address").val();
-  //   //사용자 아이콘
-  //   //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
-  //   geocoder.geocode({'address': address}, function(results, status) {
-  //     //console.log(address);
-  //     if (status === 'OK') {
-  //       map.setCenter(results[0].geometry.location);
-  //
-  //       var faddr_lat = results[0].geometry.location.lat();//위도
-  //       var faddr_lng = results[0].geometry.location.lng();//경도
-  //       console.log(faddr_lat);
-  //       console.log(faddr_lng);
-  //
-  //       var marker = new google.maps.Marker({
-  //         map: map,
-  //         // icon : user_Icon,
-  //         position: results[0].geometry.location
-  //       });
-  //     }
-  //
-  //     //주소가 안잡힐때 일어나는 일
-  //     else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  // }
+//데이터베이스에서 로그인한 사람의 주소를 받아와서 지도에 마킹해주는 함수
+// function geocodeAddress(geocoder, map) {
+//   //사용자 Address
+//   var address = $("#address").val();
+//   //사용자 아이콘
+//   //var user_Icon = new google.maps.MarkerImage("/img/flower_icon.png", null, null, null, new google.maps.Size(100,40));
+//   geocoder.geocode({'address': address}, function(results, status) {
+//     //console.log(address);
+//     if (status === 'OK') {
+//       map.setCenter(results[0].geometry.location);
+//
+//       var faddr_lat = results[0].geometry.location.lat();//위도
+//       var faddr_lng = results[0].geometry.location.lng();//경도
+//       console.log(faddr_lat);
+//       console.log(faddr_lng);
+//
+//       var marker = new google.maps.Marker({
+//         map: map,
+//         // icon : user_Icon,
+//         position: results[0].geometry.location
+//       });
+//     }
+//
+//     //주소가 안잡힐때 일어나는 일
+//     else {
+//       alert('Geocode was not successful for the following reason: ' + status);
+//     }
+//   });
+// }
 
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-  </script>
-  </body>
-  </html>
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
+</script>
+</body>
+</html>

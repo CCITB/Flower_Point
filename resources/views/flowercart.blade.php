@@ -22,12 +22,13 @@
       </div>
       <form class="" action="/order/" method="get" name="productpost" id="productpost">
         <input type="hidden" name="pdidx" value="">
+        <input type="hidden" name="productnoidx" value="">
             </form>
         @foreach ($data as $list)
           <div class="flowercart-infor" id="remove{{$list->b_no}}">
             <div class="flowercart-top">
-              <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}});" value="{{$list->b_no}}" checked="checked">
-              <strong class="flowercart-tradename">가게명</strong>
+              <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}},{{$list->p_no}});" value="{{$list->b_no}}" checked="checked">
+              <strong class="flowercart-tradename" id="product{{$list->p_no}}">가게명</strong>
             </div>
             <div class="flowercart-middle">
               <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
@@ -35,7 +36,7 @@
                 <div class="product-name">{{$list->b_name}}</div>
                 <div class="product-price"> {{$list->b_price}}
                   {{-- <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a> --}}
-                  <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}})" value="{{$list->b_no}}">x</button>
+                  <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}},{{$list->p_no}})" value="{{$list->b_no}}">x</button>
                 </div>
                 {{-- <input type="text" name="" value="{{$list->b_no}}" hidden="" id="hidden1"> --}}
                 {{-- <div class="product-coupon{{$list->b_no}}">
@@ -163,6 +164,13 @@
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+var productidx = $('.flowercart-tradename');
+var productnoidx=[];
+// console.log(productidx);
+for(i=0; i<productidx.length;i++){
+productnoidx.push(productidx.eq(i).attr('id').replace(/[^0-9]/g,''));
+}
+console.log(productnoidx);
 console.log("페이지 읽어올떄 불러옴");
 var holy = [];
 // var holy = 장바구니에 담긴 상품의 기본키가 담겨있음
@@ -386,7 +394,7 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-function del(e){
+function del(e,b){
   var deleted = confirm("정말 상품을 삭제하시겠습니까?");
   if(deleted){
 
@@ -413,12 +421,19 @@ function del(e){
         // ($("#div_test").hasClass("apple") === true)
         console.log('존재');
         loadprice(delcount);
+        proarraysequence = productnoidx.indexOf(b.toString());
         arraysequence = getid.indexOf(e.toString());
         if(arraysequence == -1){
           // alert('배열에 값이 없습니다.');
         }
         else{
           getid.splice(arraysequence,1);
+        }
+        if(proarraysequence == -1){
+          // alert('배열에 값이 없습니다.');
+        }
+        else{
+          productnoidx.splice(proarraysequence,1);
         }
       }
       else{
@@ -532,14 +547,20 @@ function selectdel(){
         $("#remove"+data[i]).remove();
         //삭제후에 결제페이지에 넘기기전에 기본키가 담긴 배열을 업데이트 해줍니다.
         arraysequence = getid.indexOf(data[i].toString());
-
+        // proarraysequence = productnoidx.indexOf(productnoidx[i].toString());
         if(arraysequence == -1){
           // alert('배열에 값이 없습니다.');
         }
         else{
           getid.splice(arraysequence,1);
         }
-        // console.log(getid.indexOf(data[i].toString()));
+        if(arraysequence == -1){
+          // alert('배열에 값이 없습니다.');
+        }
+        else{
+          productnoidx.splice(arraysequence,1);
+        }
+        // console.log(productnoidx.indexOf(productnoidx[i].toString()));
 
       }
 
@@ -610,9 +631,11 @@ function condition(){
     console.log(idindex);
     console.log('위에값은 전체선택 한 경우의 idindex값');
     getid.length=0;
+    productnoidx.length=0;
     //전체선택할때마다 상품인덱스 배열을 초기화 시켜줍니다.
     for(i=0; i<idindex.length; i++){
       getid.push(idindex[i]);
+      productnoidx.push(productidx.eq(i).attr('id').replace(/[^0-9]/g,''));
     }
     // console.log(getid);
     loadprice();
@@ -621,6 +644,7 @@ function condition(){
     // var test1 = [];
     // delete test1[];
     getid.length=0;
+    productnoidx.length=0;
     //getid.legth
     //페이지 로드할때 getid에 장바구니 index가 담겨있고 선택해제시 초기화시켜줌
     test1.length=0;
@@ -692,7 +716,7 @@ var now_deliveryprice = [];
 var now_allsum = [];
 // console.log(now_productprice);
 // console.log('재차확인용');
-function selectcondition(a){
+function selectcondition(a,b){
   // var ada = $('input:checkbox[id="checkf"+'a']').is(":checked") == true;
   // console.log(ada);
   // console.log(1);
@@ -702,7 +726,7 @@ function selectcondition(a){
   if(cc){
     // 개별 선택 할때마다 배열에 상품인덱스 값을 넣어줍니다.
     getid.push(a.toString());
-
+    productnoidx.push(b.toString());
 
     console.log('check완료');
 
@@ -772,12 +796,19 @@ function selectcondition(a){
     console.log('아 ㅋㅋ 까먹엇ㅉ낳아');
     console.log(a.toString());
     arraysequence = getid.indexOf(a.toString());
+    proarraysequence = productnoidx.indexOf(b.toString());
     console.log(arraysequence);
     if(arraysequence == -1){
-      // alert('배열에 값이 없습니다.');
+      alert('배열에 값이 없습니다.');
     }
     else{
       getid.splice(arraysequence,1);
+    }
+    if(proarraysequence == -1){
+      alert('배열에 값이 없습니다.');
+    }
+    else{
+      productnoidx.splice(proarraysequence,1);
     }
     console.log(getid.indexOf(a.toString()));
     // 체크가 안되어있으면 getid 배열에서 상품인덱스인 a를 지웁니다.
@@ -1030,6 +1061,7 @@ function replaceComma(pStr) {
 }
 function checkindex(){
   console.log(getid);
+  console.log(productnoidx);
 }
 function productcheck(){
   var productpost = document.productpost;
@@ -1041,6 +1073,7 @@ function productcheck(){
   else{
     var test = JSON.stringify(getid);
     $('input[name=pdidx]').val(test);
+    $('input[name=productnoidx]').val(JSON.stringify(productnoidx));
     productpost.submit();
   }
 

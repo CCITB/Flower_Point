@@ -50,6 +50,7 @@
             <form class="info" action="/complete" onsubmit="return checkform()" name="check" method="post">
               @csrf
               <input type="hidden" name="getarray" value="">
+              <input type="hidden" name="basketarray" value="">
               <div class="delivery_wrap">
                 <strong class="info">수령인</strong>
                 <div class=delivery_input><input id="inputtext" type="text" name="recipient"></div>
@@ -99,7 +100,7 @@
                 <div class="delivery_wrap">
                   <strong class="info">주 소</strong>
                   <!-- 우편번호 -->
-                  <input type="text" id="postcode" placeholder="우편번호" name="postcode">
+                  <input type="text" id="postcode" placeholder="우편번호" name="postcode" readonly>
                   <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
                 </div>
                 <!--주소 -->
@@ -107,7 +108,7 @@
                   <input type="text"  id="address" placeholder="주소" name="address" readonly>
 
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" readonly>
+                    <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" >
                     <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
                   </div>
                 </div>
@@ -140,10 +141,11 @@
               </div>
             </div>
             <!--상품 정보창-->
+            @if(isset($data))
             @foreach ($data as $key => $value)
-              <div class="product_data" id="product_data{{$value[0]->b_no}}">
+              <div class="product_data" id="product_data{{$value[0]->p_no}}">
                 <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-                <table cellpadding="10" cellspacing="10" width="300px">
+                <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
                   <tr>
                     <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
                     <td>{{$value[0]->b_name}}</td>
@@ -152,6 +154,18 @@
                 </table>
               </div>
             @endforeach
+          @else
+              <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
+                <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
+                  <tr>
+                    <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
+                    <td>{{$prodata[0]->p_name}}</td>
+                  </tr>
+                  <tr><td>옵션선택 : </td></tr>
+                </table>
+              </div>
+          @endif
           </div>
           <!--주문창-->
           <div class="orderbox">
@@ -309,11 +323,22 @@ function div_show(s,ss){
   }
 }
 var getarray = [];
+var basketarray = [];
 for(i=0; i<$('.product_data').length; i++){
     proNum = $('.product_data').eq(i).attr('id').replace(/[^0-9]/g,'');
+    basNum = $('.basketno').eq(i).attr('id').replace(/[^0-9]/g,'');
     getarray.push(proNum);
+    basketarray.push(basNum);
+}
+console.log($('.basketno'));
+console.log(basketarray);
+if(basketarray==''){
+console.log('빈칸');
+var basketarray = null;
+console.log(basketarray);
 }
 $('input[name=getarray]').val(JSON.stringify(getarray));
+$('input[name=basketarray]').val(JSON.stringify(basketarray));
 // console.log(getarray);
 </script>
 </html>

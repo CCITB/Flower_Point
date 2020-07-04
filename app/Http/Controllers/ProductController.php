@@ -299,7 +299,7 @@ public function store_star($id){
   public function basket(){
     if(auth()->guard('customer')->user()){
       $userinfo = auth()->guard('customer')->user()->c_no;
-      $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+      $data = DB::table('basket')->where('customer_no',$userinfo)->join('product','basket.product_no','=','product.p_no')->get();
       // return $data;
       return view('flowercart',compact('data'));
     }
@@ -310,38 +310,8 @@ public function store_star($id){
       // echo '<script>alert("구매자만 이용가능한 서비스입니다.");</script>';
       return view('login.login_customer');
     }
-
-
-    //아래코드는 재사용할 것 $id는 url id
-    // $pt = DB::table('product')->where('p_no',$id)->first();
-    //
-    // if($userinfo = auth()->guard('customer')->user()){
-    //   $prikey  = $userinfo->c_no;
-    //   DB::table('basket')->insert([
-    //     'b_price' => $pt->p_price ,
-    //     'b_name' => $pt->p_name,
-    //     'customer_no' => $prikey,
-    //     'product_no' => $id,
-    //     'b_count' =>  1,
-    //     'b_delivery' => $pt->p_title,
-    //     'b_picture' => $pt->p_filename
-    //   ]);
-    //   $cusdata = DB::table('basket')->where('customer_no',$prikey)->get();
-    //   return view('flowercart', compact('cusdata'));
   }
-  // $data = DB::table('product')->where('p_no',$id)->get();
 
-  // function(){
-  // if(auth()->guard('customer')->check()){
-  //   return view('flowercart');
-  // }
-  // if(auth()->guard('seller')->check()){
-  //   return redirect('/');
-  // }
-  // else
-  // return redirect('/login_customer');
-  // return view('flowercart');
-  // }
   public function basketdelete(Request $request){
     $checkdata = $request->input('check');
     $no =  $request->input('id');
