@@ -6,6 +6,22 @@
   <title></title>
 </head>
 <body>
-<input type=text name=text2 value="">
+  <input type="hidden" id="cInput">
+
+
+  <script type="text/javascript">
+
+
+  // function submitToParent(){
+  //
+  //   opener.document.all.text1.value = document.all.text2.value;
+  //
+  // }
+
+  </script>
+
+
+
+</script>
 </body>
 </html>
