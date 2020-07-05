@@ -202,9 +202,8 @@ Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 
 Route::post('/complete', 'PaymentController@paymentprocess');
 
-Route::get('/sellermyorderlist', function(){
-  return view('seller.seller_myorderlist');
-});
+Route::get('/sellermyorderlist', 'InformationController@orderlist');
+
 Route::get('/shopinfo','InformationController@storeinfo');
 
 Route::post('/c_newaddress','InformationController@c_storeinfo');

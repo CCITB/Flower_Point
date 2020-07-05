@@ -197,4 +197,9 @@ class InformationController extends Controller
       }
     }
 
-  }
+    publiC function orderlist(Request $request){
+
+
+        return view('seller/seller_myorderlist');
+      }
+    }

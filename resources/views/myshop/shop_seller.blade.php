@@ -25,9 +25,29 @@
           <h3 class="shopname">{{$data1->st_name}}</h3>
           <hr>
           <div class="wrap2">
-            <div class="imgbox">
-              <img class="shopimg" src="/imglib/{{$data1->st_img}}" alt="등록된 가게이미지가 없습니다." >
-            </div>
+            <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+              @csrf
+              <div class="preview-wrap">
+                <div class="preview-left">
+                  <div class="preview">
+                    <img src="imglib/{{$data1->st_img}}" onerror="this.src='imglib/image.png'" id="image-session">
+                    <div class="preview-image">
+                      <!-- 이미지 미리보기 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-right">
+                <div class="image-upload">
+                  <label for="real-input">대표사진 변경</label>
+                  <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
+                </div>
+              </div>
+              <div class="postbutton">
+                <input type="submit" name="" value="저장" id="save" >
+                      <button type="button" name="button" class="Cancellation-btn">취소</button>
+              </div>
+            </form>
             <div id="tablewrap">
               <table id="shopinfo">
                 <tr>
@@ -44,23 +64,7 @@
                 <tr>
                   <th>주소</th>
                   @foreach ($store_address as $a)
-                    <td>{{$a->a_address}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
-
-
-                    <tr>
-                      <th>우편번호</th>
-                      <td>{{$a->a_post}}</td>
-                    </tr>
-                    <tr>
-                      <th>참고항목</th>
-                      <td>{{$a->a_extra}}</td>
-                    </tr>
-                  @endforeach
-                  @foreach ($detail_address as $b)
-                    <tr>
-                      <th>상세주소</th>
-                      <td>{{$b->a_detail}}</td>
-                    </tr>
+                    <td>({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
                   @endforeach
                 </tr>
               </form>
@@ -88,6 +92,7 @@
             </div>
           </div>
         </form>
+
 
 
       @endif
@@ -188,29 +193,7 @@
     </div>
   </div>
 
-  <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
-    @csrf
-    <div class="preview-wrap">
-      <div class="preview-left">
-        <div class="preview">
-          <img src="#" alt="" id="image-session">
-          <div class="preview-image">
-            <!-- 이미지 미리보기 -->
-          </div>
-        </div>
-      </div>
-      <div class="preview-right">
-        <div class="image-upload">
-          <label for="real-input">대표사진 변경</label>
-          <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
-        </div>
-      </div>
-    </div>
-    <div class="postbutton">
-      <input type="submit" name="" value="저장" id="save" >
-            <button type="button" name="button" class="Cancellation-btn">취소</button>
-    </div>
-  </form>
+
 </div>
 </div>
 @include('lib.footer')
@@ -234,7 +217,7 @@ function div_show(s,ss){
 }
 //이미지 등록관련코드
 function checkFile(el){
-  $('#image-session').attr('src', '#');
+  $('imgbox').attr('src', '#');
   var file = el.files;
   if(file[0].size > 1024 * 1024 * 2){
     alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' +
