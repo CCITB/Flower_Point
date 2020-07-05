@@ -22,14 +22,13 @@
 
   /* Set the size of the div element that contains the map */
   #map {
-    height: 800px;  /* The height is 400 pixels */
+    height: 700px;  /* The height is 400 pixels */
     width: 70%;  /* The width is the width of the web page */
-    margin : auto 30px;
+    margin : auto auto 100px 30px;
   }
   /* Optional: Makes the sample page fill the window. */
   html, body {
     height: 100%;
-    margin: 0;
     padding: 0;
   }
   #main {
@@ -185,7 +184,7 @@
                 });
                 //console.log(div[i]);
 
-                marker.addListener("click", function() {
+                marker.addListener("mouseover", function() {
 
                   infowindow.open(map, marker);
                 });
