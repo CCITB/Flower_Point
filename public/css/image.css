@@ -53,9 +53,6 @@ td input{
 }
 .preview-right{
   width: 20%;
-  padding-top: 90px;
-  padding-bottom: 90px;
-  padding-left: 30px;
 }
 .imginfo{
   width: 205px;
@@ -84,5 +81,10 @@ td input{
 }
 
 div.postbutton{
+  margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#send-text{
+    width: 20%;
 }

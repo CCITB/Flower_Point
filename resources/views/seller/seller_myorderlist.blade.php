@@ -75,44 +75,23 @@
           <th>가격</th>
         </tr>
         <tr>
-          <td><input type="checkbox" name="checkRow" class="checkf" value=""></td>
-          <td>202000000</td>
-          <td>프리지아 꽃</td>
-          <td><input type="text" name="" value=""></td>
-          <td>우체국택배</td>
-          <td>2020.04.16</td>
-          <td>2020.04.15</td>
-          <td>ccit3</td>
-          <td>0</td>
-        </tr>
-        <tr>
           <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-          <td>202000000</td>
+          <td><input type="text" name="" value=""></td>
           <td>프리지아 꽃</td>
           <td><input type="text" name="" value=""></td>
-          <td>우체국택배</td>
-          <td>2020.04.16</td>
-          <td>2020.04.15</td>
-          <td>ccit3</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-          <td>202000000</td>
-          <td>프리지아 꽃</td>
-          <td><input type="text" name="" value=""></td>
-          <td>우체국택배</td>
-          <td>2020.04.16</td>
-          <td>2020.04.15</td>
-          <td>ccit3</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-          <td>202000000</td>
-          <td>프리지아 꽃</td>
-          <td><input type="text" name="" value=""></td>
-          <td>우체국택배</td>
+          <td><select id="bank" name=bank margin-left:10px;>
+              <option value="">택배사를 선택해주세요</option>
+              <option value="우체국택배">우체국택배</option>
+              <option value="CJ대한통운">CJ대한통운</option>
+              <option value="로젠택배">로젠택배</option>
+              <option value="한진택배">한진택배</option>
+              <option value="현대택배">현대택배</option>
+              <option value="경동택배">경동택배</option>
+              <option value="KG로지스">KG로지스</option>
+              <option value="대신택배">대신택배</option>
+              <option value="합동택배">합동택배</option>
+              <option value="천일택배">천일택배</option>
+            </select></td>
           <td>2020.04.16</td>
           <td>2020.04.15</td>
           <td>ccit3</td>
