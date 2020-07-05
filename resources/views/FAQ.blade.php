@@ -48,7 +48,7 @@
         <td>구매하시고 싶은 제품의 재고를  꽃 갈피웹사이트에서 확인해보세요. 다만, 매장의 실시간 재고상황이 반영되지 않을 수 있어, 정확한 재고량은 매장에서 확인해 주시기 바랍니다</td>
       </tr>
     </table>
-    <div class="nav-page">
+    <!-- <div class="nav-page">
       <nav>
         <a href="http://laravel.site/userqna" class="active">1</a>
       </nav>
@@ -64,7 +64,7 @@
       <nav>
         5
       </nav>
-    </div>
+    </div> -->
   </div>
 @include('lib.footer')
 </body>
