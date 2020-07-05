@@ -73,14 +73,18 @@
   @endforeach
 
   <!--store의 정보-->
-  @foreach ($store as $name)
-  <input class="store_name" id="{{$name->st_no}} "type="hidden" value="{{$name->st_name}}">
-  @endforeach
 
-  @foreach ($store as $intro)
+  @foreach ($store_info as $intro)
   <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
   @endforeach
 
+  @foreach ($store_info as $store_name)
+  <input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
+  @endforeach
+
+  @foreach ($store_info as $store_tel)
+  <input class="store_tel" id="{{$store_tel->st_no}} "type="hidden" value="{{$store_tel->st_tel}}">
+  @endforeach
 
   <script>
   //var user;
@@ -91,7 +95,9 @@
     var detail = $(".address_detail");
     var extra = $(".address_extra");
     var name = $(".store_name");
+    var tel = $(".store_tel");
     var intro = $(".store_intro");
+    console.log(tel);
 
     //store 주소 정보를 담을 배열
     var arr = new Array();
@@ -99,6 +105,7 @@
     var arr_extra = new Array();
     var arr_name = new Array();
     var arr_intro = new Array();
+    var arr_tel = new Array();
 
     for(var j=0; j < array.length; j++){
       arr.push(array[j].value);
@@ -114,6 +121,9 @@
     }
     for(var a=0; a<intro.length; a++){
       arr_intro.push(intro[a].value);
+    }
+    for(var a=0; a<tel.length; a++){
+      arr_tel.push(tel[a].value);
     }
 
     var user_address = $("#address").val();
@@ -147,7 +157,7 @@
 
       for(var a=0; a<arr_name.length; a++){
         div.push('<div id="main">'+
-        '<h1>'+arr_name[a]+'</h1><hr>'+
+        '<p><h1>'+arr_name[a]+'</h1><h5>'+arr_tel[a]+'</h5></p><hr>'+
         '<div id="bodyContent">'
         +'<p><h4 id="intro"><b>'+arr_intro[a]+'</b></h4></p>'+"</div>"+
         '<div id="address"><h4 id="array">'+arr[a]+', '+arr_detail[a]+arr_extra[a]+'<h4></div>'
