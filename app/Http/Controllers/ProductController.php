@@ -453,7 +453,7 @@ public function store_star($id){
         DB::table('store')-> where('seller_no','=',$storeno) -> update([
           'st_img'=>$path
         ]);
-        return redirect('/shop');
+        return redirect()->back();
   }
 
 }

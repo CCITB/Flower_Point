@@ -75,6 +75,7 @@
               <th>주문일시</th>
               <th>고객명</th>
               <th>가격</th>
+              <th></th>
             </tr>
             <tr>
               <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
@@ -104,6 +105,7 @@
             @foreach ($pm as $pm)
               <td>{{$pm->pm_pay}}</td>
             @endforeach
+            <td><button type="submit" name="button">저장</button></td>
           </tr>
         </table>
       </form>

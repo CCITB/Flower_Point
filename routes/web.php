@@ -331,3 +331,5 @@ Route::get('/ad_product', 'AdminController@product');
 Route::get('/ad_regst{id}', 'AdminController@registraion');
 
 Route::post('/ad_confirm{id}', 'AdminController@confrim');
+
+Route::get('/image_popup', 'InformationController@image');

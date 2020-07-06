@@ -26,8 +26,8 @@
           <h3 class="shopname">{{$data1->st_name}}</h3>
           <hr>
           <div class="wrap2">
-            <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
-              @csrf
+          <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+                 @csrf
               <div class="preview-wrap">
                 <div class="preview-left">
                   <div class="preview">
@@ -40,14 +40,10 @@
               </div>
               <div class="preview-right">
                 <div class="image-upload">
-                  <label for="real-input">대표사진 변경</label>
-                  <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
+                        <input type="button" value="이미지 등록" onclick="showPopup();" />
                 </div>
               </div>
-              <div class="postbutton">
-                <input type="submit" name="" value="저장" id="save" >
-                      <button type="button" name="button" class="Cancellation-btn">취소</button>
-              </div>
+
             </form>
             <div id="tablewrap">
               <table id="shopinfo">
@@ -193,6 +189,11 @@
 
 <script type="text/javascript">
 
+function showPopup() {
+  var url="image_popup";
+  var option="width=300, height=300, top=200"
+  window.open(url, "", option);
+ }
 
 $(document).ready(function(){
   $("#myTable").DataTable({
