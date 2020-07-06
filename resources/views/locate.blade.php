@@ -15,78 +15,61 @@
   <div class="menu4"><!--탑헤더 밑-->
     <h2 class="void-container">내 주변 꽃집</h2>
     <hr>
-  </hr>
-
-  <input id="search_input" class="controls" type="text" placeholder="Search Box"/>
-  <div id="map"></div>
+    <div id="google_map">
+      <div id="map"></div>
+      <input id="search_input" class="search_input" type="text" placeholder="Search Box"/>
+      <!-- <input id="search_btn" class="search_btn" type="button" value="검색"/> -->
+      <!-- <div id="title">d</div> -->
+    </div>
+  </div>
 </body>
+@include('lib.footer')
 </html>
 
-<style>
-
-/* Set the size of the div element that contains the map */
-#map {
-  height: 700px;  /* The height is 400 pixels */
-  width: 70%;  /* The width is the width of the web page */
-  margin : auto auto 100px 30px;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 100%;
-  padding: 0;
-}
-#main {
-  width:500px;
-}
-#array{
-  color:#7d7d7d;
-}
-</style>
 <!--구매자일 때-->
 @if(auth()->guard('seller')->user())
-  @foreach ($store_address as $address)
-    <!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
-    <div id="floating-panel">
-      <input id="address" type="hidden" value="{{$address->a_address}}">
-    </div>
-    <div id="map"></div>
-  @endforeach
+@foreach ($store_address as $address)
+<!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
+<div id="floating-panel">
+  <input id="address" type="hidden" value="{{$address->a_address}}">
+</div>
+@endforeach
 
-  <!--판매자일 때-->
+<!--판매자일 때-->
 @elseif (auth()->guard('customer')->user())
-  @foreach ($customer_address as $address)
-    <div id="floating-panel">
-      <input id="address" type="hidden" value="{{$address->a_address}}">
-    </div>
-    <div id="map"></div>
-  @endforeach
+@foreach ($customer_address as $address)
+<div id="floating-panel">
+  <input id="address" type="hidden" value="{{$address->a_address}}">
+</div>
+@endforeach
 @endif
+
 
 <!-- store address 정보 -->
 @foreach ($store_address as $address)
-  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+<input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
 @endforeach
 
 @foreach ($store_address as $address)
-  <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
+<input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
 @endforeach
 
 @foreach ($store_address as $address)
-  <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
+<input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
 @endforeach
 
 <!--store의 정보-->
 
 @foreach ($store_info as $intro)
-  <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
+<input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
 @endforeach
 
 @foreach ($store_info as $store_name)
-  <input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
+<input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
 @endforeach
 
 @foreach ($store_info as $store_tel)
-  <input class="store_tel" id="{{$store_tel->st_no}} "type="hidden" value="{{$store_tel->st_tel}}">
+<input class="store_tel" id="{{$store_tel->st_no}} "type="hidden" value="{{$store_tel->st_tel}}">
 @endforeach
 
 <script>
@@ -130,64 +113,11 @@ function initMap() {
   }
 
   var user_address = $("#address").val();
-  // var input = $("#search_input").val();
+  // Map
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
+    mapTypeId: "roadmap"
   });
-  // Create the search box and link it to the UI element.
-  // var searchBox = new google.maps.places.SearchBox(input);
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  //
-  // // Bias the SearchBox results towards current map's viewport.
-  // map.addListener("bounds_changed", function() {
-  //   searchBox.setBounds(map.getBounds());
-  // });
-  // searchBox.addListener("places_changed", function() {
-  //   var places = searchBox.getPlaces();
-  //
-  //   if (places.length == 0) {
-  //     return;
-  //   }
-  //   // Clear out the old markers.
-  //   markers.forEach(function(marker) {
-  //     marker.setMap(null);
-  //   });
-  //   markers = [];
-  //   // For each place, get the icon, name and location.
-  //   var bounds = new google.maps.LatLngBounds();
-  //   places.forEach(function(place) {
-  //     if (!place.geometry) {
-  //       console.log("Returned place contains no geometry");
-  //       return;
-  //     }
-  //     var icon = {
-  //       url: place.icon,
-  //       size: new google.maps.Size(71, 71),
-  //       origin: new google.maps.Point(0, 0),
-  //       anchor: new google.maps.Point(17, 34),
-  //       scaledSize: new google.maps.Size(25, 25)
-  //     };
-  //
-  //     // Create a marker for each place.
-  //     markers.push(
-  //       new google.maps.Marker({
-  //         map: map,
-  //         icon: icon,
-  //         title: place.name,
-  //         position: place.geometry.location
-  //       })
-  //     );
-  //     console.log(markers);
-  //
-  //     if (place.geometry.viewport) {
-  //       // Only geocodes have viewport.
-  //       bounds.union(place.geometry.viewport);
-  //     } else {
-  //       bounds.extend(place.geometry.location);
-  //     }
-  //   });
-  //   map.fitBounds(bounds);
-  // });
 
   // 위도경도 변환하는 코드
   var geocoder = new google.maps.Geocoder();
@@ -242,15 +172,14 @@ function initMap() {
             var infowindow = new google.maps.InfoWindow({
               content: div[i]
             });
-            //console.log(div[i]);
-
+            // google.maps.event.addListener(marker, "click", function() {
+            //   infowindow.open(map, this);
+            // });
             marker.addListener("mouseover", function() {
-              infowindow.open(map, marker);
+              infowindow.open(map, this);
             });
-
-
             marker.addListener("mouseout", function() {
-              infowindow.close(map, marker);
+              infowindow.close(map, this);
             });
 
           } //if문
@@ -259,13 +188,75 @@ function initMap() {
     );
   }
 }
+// Create the search box and link it to the UI element.
+var input = document.getElementById("search_input");
+var searchBox = new google.maps.places.SearchBox(input);
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+// Bias the SearchBox results towards current map's viewport.
+map.addListener("bounds_changed", function() {
+  searchBox.setBounds(map.getBounds());
+});
+
+var markers = [];
+// Listen for the event fired when the user selects a prediction and retrieve
+// more details for that place.
+searchBox.addListener("places_changed", function() {
+  var places = searchBox.getPlaces();
+
+  if (places.length == 0) {
+    return;
+  }
+
+  // Clear out the old markers.
+  markers.forEach(function(marker) {
+    marker.setMap(null);
+  });
+  //markers = [];
+
+  // For each place, get the icon, name and location.
+  var bounds = new google.maps.LatLngBounds();
+  places.forEach(function(place) {
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+    var icon = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
+
+    // Create a marker for each place.
+    markers.push(
+      new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      })
+    );
+    //console.log(markers);
+
+    if (place.geometry.viewport) {
+      // Only geocodes have viewport.
+      bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+  });
+  map.fitBounds(bounds);
+});
 }
+
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script async defer
+<!-- <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap">
-</script>
+</script> -->
 <script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initAutocomplete&libraries=places&v=weekly"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initAutocomplete&libraries=places&v=weeklykey=AIzaSyBNgEwwsTw1BLlld8mkOtzdN94EBExR7I0&callback=initMap"
 defer
 ></script>
