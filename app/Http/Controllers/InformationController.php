@@ -198,8 +198,16 @@ class InformationController extends Controller
     }
 
     publiC function orderlist(Request $request){
-
-
-        return view('seller/seller_myorderlist');
+      $order = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no')->
+      select('*')->get();
+      $order2 = DB::table('payment')->join('customer','payment.customer_no','=','customer.c_no')
+      ->get();
+      $pm = DB::table('payment')->select('*')->where('pm_no','=',$order2[0]->pm_no)->get();
+      $name = DB::table('customer')->select('c_name')->where('c_no','=',$order2[0]->customer_no)->get();
+      $order3 = DB::table('product')->select('*')->where('p_no','=',$order[0]->product_no)->get();
+      // $order4 = DB::table('payment')->select('pm_pay')->where('customer_no','=',$order2[0]->c_no)->get();
+      // return $order3;
+      // return $order2;
+        return view('seller/seller_myorderlist',compact('order','order2','pm','name','order3'));
       }
     }

@@ -46,7 +46,7 @@
                     <th class="th1">
                       <div class="th1">
                         <a href="product/{{$data1->p_no}}">
-                          <img src="\imglib\{{$data1->p_filename}}" height="100px" width="100px"alt="등록된 가게사진이 없습니다.">
+                          <img src="\imglib\{{$data1->p_filename}}" onerror="this.src='imglib/image.png'" height="100px" width="100px" >
                         </a>
                       </div>
                     </th>
