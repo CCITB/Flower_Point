@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/shop.css">
   <link rel="stylesheet" href="/css/postlist.css">
   <link rel="stylesheet" href="/css/image.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -133,20 +134,9 @@
 
           <div class="productlist">
             <div class="productlist-item">
-              <div class="">
-                <form class="date-sort">
-                  <select id="id-sort"name="language" onchange="sortTable(value)">
-                    <option value="0" selected>내림차순</option>
-                    <option value="0">오름차순</option>
-                  </select>
-                </form>
                 <div class="write-post">
-                  <a href="/sellershoppost">물품등록</a>
+                  <button class="post" type="button" onclick="location.href = '/sellershoppost'">물품등록</button>
                 </div>
-
-                <input type="text" name="" value="">
-                <button type="submit" name="button" >검색</button>
-              </div>
 
               <table id="myTable">
                 <thead>
@@ -164,7 +154,7 @@
                 @foreach ($proro as $data3)
                   <tr>
                     <td class="upload-date">{{$data3->p_date}}</td>
-                    <td class="upload-name">{{$data3->p_name}}</td>
+                    <td class="upload-name" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
                     <td class="upload-price">{{$data3->p_price}}</td>
                     <td></td>
                     <td>
@@ -199,8 +189,28 @@
 @include('lib.footer')
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 
 <script type="text/javascript">
+
+
+$(document).ready(function(){
+  $("#myTable").DataTable({
+    "language": {
+      "emptyTable": "데이터가 없습니다.",
+      "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+      "info": "현재 _START_ - _END_ / _TOTAL_건",
+      "infoEmpty": "데이터 없음",
+      "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
+      "search": "검색",
+      "zeroRecords": "일치하는 데이터가 없습니다.",
+      "loadingRecords": "로딩중...",
+      "processing":     "잠시만 기다려 주세요...",
+      "paginate": { "next": "다음", "previous": "이전"  }
+    }
+  });
+});
+
 //버튼 클릭 이벤트
 function div_show(s,ss){
   if(s == "주소수정"){
@@ -260,45 +270,6 @@ function readURL(el) {
   }
 }
 
-
-
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc";
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-
-}
 
 function postcheck(){
   if($('#real-input').val()==""){
