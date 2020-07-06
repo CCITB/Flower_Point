@@ -199,22 +199,21 @@ class InformationController extends Controller
 
     publiC function orderlist(Request $request){
       $order = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no')->
-      select('*')->get();
-      $order2 = DB::table('payment')->join('customer','payment.customer_no','=','customer.c_no')
-      ->get();
-      $pm = DB::table('payment')->select('*')->where('pm_no','=',$order2[0]->pm_no)->get();
-      $name = DB::table('customer')->select('c_name')->where('c_no','=',$order2[0]->customer_no)->get();
+      join('product','payment.product_no','=','product.p_no')
+      ->join('customer','payment.customer_no','=','customer.c_no')
+      ->select('*')->paginate(5);
+      // $pm = DB::table('payment')->select('*')->where('pm_no','=',$order2[0]->pm_no)->get();
+      // $name = DB::table('customer')->select('c_name')->where('c_no','=',$order2[0]->customer_no)->get();
       $order3 = DB::table('product')->select('*')->where('p_no','=',$order[0]->product_no)->get();
       // $order4 = DB::table('payment')->select('pm_pay')->where('customer_no','=',$order2[0]->c_no)->get();
       // return $order3;
       // return $order2;
-        return view('seller/seller_myorderlist',compact('order','order2','pm','name','order3'));
+        return view('seller/seller_myorderlist',compact('order'));
       }
 
     public function image(Request $request){
       if($sellerinfo = auth()->guard('seller')->user()){
         $sellerprimary = $sellerinfo->s_no;
-        // return $sellerprimary;
             $data = DB::table('seller')
             ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
             ->where('s_no','=', $sellerprimary )->get();
@@ -226,4 +225,6 @@ class InformationController extends Controller
             return view('image_popup' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
       }
     }
+
+
 }

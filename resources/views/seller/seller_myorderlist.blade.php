@@ -62,51 +62,48 @@
         <button type="button" name="button" class="ordercheck">발주확인</button>
         <button type="button" name="button" class="sendmessage">발송처리</button>
       </div>
-      <form class="" action="index.html" method="post">
-        <table name="">
-          @foreach ($order3 as $order3)
-            <tr>
-              <th> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-              <th>상품 주문번호</th>
-              <th>상품명</th>
-              <th>송장번호</th>
-              <th>택배사</th>
-              <th>발송일</th>
-              <th>주문일시</th>
-              <th>고객명</th>
-              <th>가격</th>
-              <th></th>
-            </tr>
+      <form class="" action="" method="post">
+        <table id="myTable"name="">
+
+          <tr>
+            <th> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+            <th>상품 주문번호</th>
+            <th>상품명</th>
+            <th>송장번호</th>
+            <th>택배사</th>
+            <th>발송일</th>
+            <th>주문일시</th>
+            <th>고객명</th>
+            <th>가격</th>
+            <th></th>
+          </tr>
+          @foreach ($order as $order)
             <tr>
               <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
               <td><input type="text" name="" value=""></td>
 
-              <td>{{$order3->p_name}}</td>
-            @endforeach
-            <td><input type="text" name="" value=""></td>
-            <td><select id="bank" name=bank margin-left:10px;>
-              <option value="">택배사를 선택해주세요</option>
-              <option value="우체국택배">우체국택배</option>
-              <option value="CJ대한통운">CJ대한통운</option>
-              <option value="로젠택배">로젠택배</option>
-              <option value="한진택배">한진택배</option>
-              <option value="현대택배">현대택배</option>
-              <option value="경동택배">경동택배</option>
-              <option value="KG로지스">KG로지스</option>
-              <option value="대신택배">대신택배</option>
-              <option value="합동택배">합동택배</option>
-              <option value="천일택배">천일택배</option>
-            </select></td>
-            <td>2020.04.16</td>
-            <td>2020.04.15</td>
-            @foreach ($name as $name)
-              <td>{{$name->c_name}}</td>
-            @endforeach
-            @foreach ($pm as $pm)
-              <td>{{$pm->pm_pay}}</td>
-            @endforeach
+              <td>{{$order->p_name}}</td>
+              <td><input type="text" name="" value=""></td>
+              <td><select id="bank" name=bank margin-left:10px;>
+                <option value="">택배사를 선택해주세요</option>
+                <option value="우체국택배">우체국택배</option>
+                <option value="CJ대한통운">CJ대한통운</option>
+                <option value="로젠택배">로젠택배</option>
+                <option value="한진택배">한진택배</option>
+                <option value="현대택배">현대택배</option>
+                <option value="경동택배">경동택배</option>
+                <option value="KG로지스">KG로지스</option>
+                <option value="대신택배">대신택배</option>
+                <option value="합동택배">합동택배</option>
+                <option value="천일택배">천일택배</option>
+              </select></td>
+              <td>2020.04.16</td>
+              <td>2020.04.15</td>
+              <td>{{$order->c_name}}</td>
+              <td>{{$order->pm_pay}}</td>
             <td><button type="submit" name="button">저장</button></td>
           </tr>
+        @endforeach
         </table>
       </form>
     </form>
