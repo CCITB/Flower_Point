@@ -38,6 +38,11 @@ img{
     margin-bottom: 50px;
 }
 
+div.menu4{
+  width: 900px;
+  margin: 0 auto;
+}
+
 .quickbuttonwrap {
     width: 100%;
     position: relative;

@@ -14,7 +14,7 @@
   @include('lib.header')
   <div class="menu4"><!--탑헤더 밑-->
     <h2 class="void-container">내 주변 꽃집</h2>
-    <hr align="left" class="one">
+    <hr>
   </hr>
 </head>
 <body>
