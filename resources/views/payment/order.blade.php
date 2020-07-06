@@ -50,6 +50,7 @@
             <!--결제 정보 창-->
             <form class="info" action="/complete" onsubmit="return checkform()" name="check" method="post">
               @csrf
+              {{-- <input type="hidden" name="token_payment" value=""> --}}
               <input type="hidden" name="getarray" value="">
               <input type="hidden" name="basketarray" value="">
               <div class="delivery_wrap">
@@ -343,9 +344,47 @@ console.log(basketarray);
 $('input[name=getarray]').val(JSON.stringify(getarray));
 $('input[name=basketarray]').val(JSON.stringify(basketarray));
 // console.log(getarray);
+
+// 결제페이지 쿠키
+$(document).ready(function(){
+  if(getCookie('paymentcookie')===''){
+    location.href='/';
+  }
+setCookie('paymentcookie','game','1');
+console.log(getCookie('paymentcookie'));
+
+});
+function setCookie(cookie_name, value, days) {
+  var exdate = new Date();
+  exdate.setDate(exdate.getDate() + days);
+  // 설정 일수만큼 현재시간에 만료값으로 지정
+
+  var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+  document.cookie = cookie_name + '=' + cookie_value+';path=/';
+console.log(document.cookie);
+// $('input[name=token_payment]').val(document.cookie);
+// console.log($('input[name=token_payment]').val());
+}
+// console.log(document.cookie);
+// console.log(document.cookie);
+function getCookie(cookie_name) {
+  var x, y;
+  var val = document.cookie.split(';');
+
+  for (var i = 0; i < val.length; i++) {
+    x = val[i].substr(0, val[i].indexOf('='));
+    y = val[i].substr(val[i].indexOf('=') + 1);
+    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+    if (x == cookie_name) {
+      return unescape(y); // unescape로 디코딩 후 값 리턴
+    }
+  }
+}
+// $('.end').click(function(){setCookie('paymentcookie','','-1');});
+
 </script>
 </html>
-
+<button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button>
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

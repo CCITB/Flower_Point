@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use DateTime;
 class PaymentController extends Controller
 {
   //곽승지
   // 주문페이지
   public function payment(Request $request){
     if(auth()->guard('customer')->user()){
+      // return request()->cookie();
       // return 0;
       $dbdata = DB::table('customer')->get();
       //장바구니에 담긴 물품중 선택해서 주문을 눌렀을때 받는 상품테이블의 인덱스와 장바구니 인덱스
@@ -56,6 +58,8 @@ class PaymentController extends Controller
   }
   // 결제진행 함수
   public function paymentprocess(Request $request){
+    // return $request->input('token_payment');
+    $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
     // 거래방법
@@ -111,6 +115,7 @@ class PaymentController extends Controller
           'customer_no' => $customerprimary,
           'delivery_no' => $deliverytable[0]->d_no,
           'product_no' => $proarray[$i][0]->product_no,
+          'created_at' => $now->format('yy-d-m H:i:s');,
         ]);
         $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
       }
@@ -129,6 +134,7 @@ class PaymentController extends Controller
       'customer_no' => $customerprimary,
       'delivery_no' => $deliverytable[0]->d_no,
       'product_no' => $product_no[0],
+      'created_at' => $now->format('yy-d-m H:i:s');,
     ]);
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
     // return 0;
