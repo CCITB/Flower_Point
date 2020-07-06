@@ -5,18 +5,23 @@
   <meta charset="utf-8">
   <title></title>
 </head>
-<body>
-  <input type="hidden" id="cInput">
 
+<body>
+  @foreach ($seller as $sel)
+    <form action="/ad_confirm{{$sel->st_no}}" method="post">
+      @csrf
+      <img class="img" id="reimg" src="/imglib/{{$sel->registration_img}}" alt="내가 올린 상품 사진">
+      @if($sel->registration_status == '미승인')
+      <input class="ad_bt" type="button" value="취소" onclick="self.close();" />
+      <input class="ad_bt" id="sub" type='submit' value="확인">
+    @else
+      <input class="ad_bt" type="button" value="닫기" onclick="self.close();" />
+    @endif
+    </form>
+  @endforeach
 
   <script type="text/javascript">
 
-
-  // function submitToParent(){
-  //
-  //   opener.document.all.text1.value = document.all.text2.value;
-  //
-  // }
 
   </script>
 

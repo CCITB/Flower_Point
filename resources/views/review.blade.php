@@ -137,6 +137,8 @@
       }
     });
   });
+
+  //글자수 세기
   $(function() {
         $('#review_text').keyup(function (e){
             var content = $(this).val();

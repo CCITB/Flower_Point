@@ -32,13 +32,18 @@ class AdminController extends Controller
     return view('admin.seller', compact('sellerall','product'));
   }
 
-  public function registraion(Request $request){ // 판매자가 올린 사업자등록증 보여주기
-
-    $st_no= $_POST['hidden'];
-    $seller = DB::table('store')->where('st_no',$st_no)->get();
-    $s_img=$seller[0]->st_no;
+  public function registraion($id){ // 판매자가 올린 사업자등록증 보여주기
+    // return $id;
+    $seller = DB::table('store')->where('st_no',$id)->get();
 
     return view('admin.registration', compact('seller'));
+  }
+
+  public function confrim($id){ // 판매자 승인하기
+    $seller = DB::table('store')->where('st_no',$id)->update([
+      'registration_status' => '승인'
+    ]);
+    echo "<script>alert('승인되었습니다.');self.close();</script>";
   }
 
   public function ad_remove($id){ // 상품을 '삭제' 상태로 만들기

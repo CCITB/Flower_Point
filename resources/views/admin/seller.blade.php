@@ -85,11 +85,9 @@
                   <td>{{$sel->a_address}}</td>
                   <td>{{$sel->a_detail}}</td>
                   <td>{{$sel->s_no}}</td>
-                  <td>{{$sel->registeration_status}}</td>
+                  <td>{{$sel->registration_status}}</td>
                   <td>
-                    <button type="button" name="hidden" onclick="openChild()">등록증보기</button>
-                    <input type="button" value="전달" onclick="setChildText({{$sel->st_no}})">
-                    <input type="hidden" id="id{{$sel->st_no}}" value="{{$sel->st_no}}">
+                    <button type="button" id="bt{{$sel->st_no}}" value="{{$sel->st_no}}" onclick="openChild({{$sel->st_no}})"name="hidden" >등록증보기</button>
                   </td>
                 </tr>
               @endforeach
@@ -185,19 +183,14 @@
 
   var openWin;
 
-  function openChild()
+  function openChild(stn)
   {
-    // window.name = "부모창 이름";
-    window.name = "parentForm";
-    // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-    openWin = window.open("/ad_regst",
-    "childForm", "width=570, height=350, resizable = no, scrollbars = no");
+      // window.name = "부모창 이름";
+      window.name = "parentForm";
+      // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+      openWin = window.open("/ad_regst"+stn,
+      "childForm", "width=550px, height=680px, left=570px, top=150px ");
   }
-
-  function setChildText(st){
-    openWin.document.getElementById("cInput").value = document.getElementById("id"+st).value;
-  }
-
 
 
 
