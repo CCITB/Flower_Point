@@ -12,34 +12,6 @@
   </div>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script type="text/javascript">
-  function setCookie(cookie_name, value, days) {
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + days);
-    // 설정 일수만큼 현재시간에 만료값으로 지정
-    var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-    document.cookie = cookie_name + '=' + cookie_value+';path=/';
-  }
-  function getCookie(cookie_name) {
-    var x, y;
-    var val = document.cookie.split(';');
-    for (var i = 0; i < val.length; i++) {
-      x = val[i].substr(0, val[i].indexOf('='));
-      y = val[i].substr(val[i].indexOf('=') + 1);
-      x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-      if (x == cookie_name) {
-        return unescape(y); // unescape로 디코딩 후 값 리턴
-      }
-    }
-  }
-  $(document).ready(function(){
-  setCookie('paymentcookie','game','1');
-  console.log(getCookie('paymentcookie'));
-  });
-  if(getCookie('paymentcookie')===''){
-    location.href='/';
-  }
-  </script>
 </head>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" type="text/javascript">
 </script>
@@ -81,6 +53,7 @@
               {{-- <input type="hidden" name="token_payment" value=""> --}}
               <input type="hidden" name="getarray" value="">
               <input type="hidden" name="basketarray" value="">
+              <input type="hidden" name="c_token" value="{{$token}}">
               <div class="delivery_wrap">
                 <strong class="info">수령인</strong>
                 <div class=delivery_input><input id="inputtext" type="text" name="recipient"></div>
@@ -171,19 +144,19 @@
             <!--상품 정보창-->
             <!--곽승지-->
             @if(isset($data))
-            @foreach ($data as $key => $value)
-              <div class="product_data" id="product_data{{$value[0]->p_no}}">
-                <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-                <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
-                  <tr>
-                    <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
-                    <td>{{$value[0]->b_name}}</td>
-                  </tr>
-                  <tr><td>옵션선택 : {{$value[0]->b_option}}</td></tr>
-                </table>
-              </div>
-            @endforeach
-          @else
+              @foreach ($data as $key => $value)
+                <div class="product_data" id="product_data{{$value[0]->p_no}}">
+                  <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                  <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
+                    <tr>
+                      <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
+                      <td>{{$value[0]->b_name}}</td>
+                    </tr>
+                    <tr><td>옵션선택 : {{$value[0]->b_option}}</td></tr>
+                  </table>
+                </div>
+              @endforeach
+            @else
               <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
                 <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
                 <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
@@ -194,7 +167,7 @@
                   <tr><td>옵션선택 : </td></tr>
                 </table>
               </div>
-          @endif
+            @endif
           </div>
           <!--주문창-->
           <div class="orderbox">
@@ -217,7 +190,6 @@
                 주문자 정보를 정확하게 입력해주세요.
               </div>
             </div>
-
             <div class="payresult">
               <div class="payinfo">결제정보
               </div>
@@ -250,8 +222,10 @@
   </div>
   @include('lib.footer')
 </body>
+{{-- <form class="" action="index.html" method="post" onsubmit="what();">
+<button type="submit" name="button"></button>
+</form> --}}
 <script type="text/javascript">
-
 $(function() {
 
   $(document).ready(function() {
@@ -344,6 +318,7 @@ function checkform(){
     alert('은행을 선택해주세요');
     return false;
   }
+  test('Spinner.gif');
 }
 //라디오버튼 클릭 이벤트
 function div_show(s,ss){
@@ -357,17 +332,17 @@ function div_show(s,ss){
 var getarray = [];
 var basketarray = [];
 for(i=0; i<$('.product_data').length; i++){
-    proNum = $('.product_data').eq(i).attr('id').replace(/[^0-9]/g,'');
-    basNum = $('.basketno').eq(i).attr('id').replace(/[^0-9]/g,'');
-    getarray.push(proNum);
-    basketarray.push(basNum);
+  proNum = $('.product_data').eq(i).attr('id').replace(/[^0-9]/g,'');
+  basNum = $('.basketno').eq(i).attr('id').replace(/[^0-9]/g,'');
+  getarray.push(proNum);
+  basketarray.push(basNum);
 }
 console.log($('.basketno'));
 console.log(basketarray);
 if(basketarray==''){
-console.log('빈칸');
-var basketarray = null;
-console.log(basketarray);
+  console.log('빈칸');
+  var basketarray = null;
+  console.log(basketarray);
 }
 $('input[name=getarray]').val(JSON.stringify(getarray));
 $('input[name=basketarray]').val(JSON.stringify(basketarray));
@@ -375,11 +350,81 @@ $('input[name=basketarray]').val(JSON.stringify(basketarray));
 
 // 결제페이지 쿠키
 
+// function setCookie(cookie_name, value, days) {
+//   var exdate = new Date();
+//   exdate.setDate(exdate.getDate() + days);
+//   // 설정 일수만큼 현재시간에 만료값으로 지정
+//   var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+//   document.cookie = cookie_name + '=' + cookie_value+';path=/';
+// }
+// function getCookie(cookie_name) {
+//   var x, y;
+//   var val = document.cookie.split(';');
+//   for (var i = 0; i < val.length; i++) {
+//     x = val[i].substr(0, val[i].indexOf('='));
+//     y = val[i].substr(val[i].indexOf('=') + 1);
+//     x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+//     if (x == cookie_name) {
+//       return unescape(y); // unescape로 디코딩 후 값 리턴
+//     }
+//   }
+// }
+// $(document).ready(function(){
+// setCookie('paymentcookie','game','1');
+// console.log(getCookie('paymentcookie'));
+// });
+// if(getCookie('paymentcookie')===''){
+//   location.href='/';
+// }
+</script>
+<script type="text/javascript">
+function test(imageName) {
+  LoadingWithMask('imglib/' + imageName);
+  setTimeout("closeLoadingWithMask()", 3000);
+}
 
+function LoadingWithMask(gif) {
+  //화면의 높이와 너비를 구합니다.
+  var maskHeight = $(document).height();
+  var maskWidth  = window.document.body.clientWidth;
+  var popupX = (document.body.offsetWidth / 2) - (200 / 2);
+  //&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 
+  var popupY= (window.screen.height / 2) - (300 / 2);
+  //&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+  //화면에 출력할 마스크를 설정해줍니다.
+  var mask = "<div id='mask' style='position:absolute; z-index:800; background-color:#000000; display:none; left:0; top:0;'></div>";
+  var loadingImg = '';
 
+  loadingImg += " <img id= 'loadingimage' src='"+ gif + "' style='position: absolute; display: block; margin: 0px auto; z-index:999;'/>";
+
+  //화면에 레이어 추가
+  $('body')
+  .append(mask)
+
+  //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+  $('#mask').css({
+    'width' : maskWidth,
+    'height': maskHeight,
+    'opacity' : '0.3'
+  });
+
+  //마스크 표시
+  $('#mask').show();
+  //로딩중 이미지 표시
+  $('#mask').append(loadingImg);
+  $('#loadingimage').css({
+    'left' : popupX,
+    'top' : popupY,
+  });
+}
+function closeLoadingWithMask() {
+  $('#mask').hide();
+  $('#mask').empty();
+}
 </script>
 </html>
+<button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button>
 {{-- <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button> --}}
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

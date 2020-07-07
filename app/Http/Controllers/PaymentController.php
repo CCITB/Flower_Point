@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use DateTime;
+use Illuminate\Support\Str;
 class PaymentController extends Controller
 {
   //곽승지
   // 주문페이지
   public function payment(Request $request){
     if(auth()->guard('customer')->user()){
+      //랜덤 토큰 생성
+      $token = str::random(32);
+      // return session()->all();
+      session()->put('c_token',$token);
+
       // return request()->cookie();
       // return 0;
       $dbdata = DB::table('customer')->get();
@@ -38,7 +44,7 @@ class PaymentController extends Controller
           $productprice += $data[$i][0]->b_price*$data[$i][0]->b_count;
         }
         $user = auth()->guard('customer')->user();
-        return view('payment.order',compact('data','user','productprice','productdelivery','productsum'));
+        return view('payment.order',compact('data','user','productprice','productdelivery','productsum','token'));
       }
 
       // return $data[0][0]->b_price*$data[0][0]->b_count;
@@ -50,7 +56,7 @@ class PaymentController extends Controller
       $productdelivery = $prodata[0]->p_title;
       $productprice = $prodata[0]->p_price;
       // echo $prodata;
-      return view('payment.order',compact('user','productprice','productdelivery','productsum','prodata'));
+      return view('payment.order',compact('user','productprice','productdelivery','productsum','prodata','token'));
 
     }
     else
@@ -59,6 +65,21 @@ class PaymentController extends Controller
   // 결제진행 함수
   public function paymentprocess(Request $request){
     // return $request->input('token_payment');
+    // session()->flush();
+    // return 0;
+    // return session()->get('token');
+    // session()->flush();
+    // return $_SESSION;
+    // return $request->input('_token');
+    // return session()->all();
+    // return $request;
+    if(session()->get('c_token')==$request->input('c_token')){
+      session()->forget('c_token');
+      // return 0;
+    }
+    else{
+      return "<script>alert('요청이 실행중입니다!');</script>";
+    }
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
