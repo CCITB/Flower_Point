@@ -206,8 +206,6 @@ Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 
 Route::post('/complete', 'PaymentController@paymentprocess');
 
-Route::get('/sellermyorderlist', 'InformationController@orderlist');
-
 Route::get('/shopinfo','InformationController@storeinfo');
 
 Route::post('/c_newaddress','InformationController@c_storeinfo');
@@ -338,4 +336,7 @@ Route::post('/ad_confirm{id}', 'AdminController@confrim');
 
 Route::get('/image_popup', 'InformationController@image');
 
-Route::post('/orderlist', 'InformationController@orderlist');
+//seller-주문관리
+Route::post('/orderlist', 'OrderlistController@orderlist');
+
+Route::get('/sellermyorderlist', 'OrderlistController@orderlist');
