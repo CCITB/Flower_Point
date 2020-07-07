@@ -178,7 +178,7 @@ table.order{
 /* Set the size of the div element that contains the map */
 #map {
   height:500px;  /* The height is 400 pixels */
-  width: 70%;  /* The width is the width of the web page */
+  width: 100%;  /* The width is the width of the web page */
   position: relative;
   margin-bottom: 20%;
 }
@@ -207,11 +207,21 @@ padding: 0;
   left : 89em;
   top : 27em;
 }
-#title {
+/* #title {
   background-color: #ffa3f9;
   position: absolute;
   left: 76%;
   top: 50%;
   width : 21%;
   height: 53%;
+} */
+.under{
+  display: flex;
+}
+.map{
+  width: 60%;
+}
+.title{
+  width: 40%;
+  background-color: #ffa3f9;
 }

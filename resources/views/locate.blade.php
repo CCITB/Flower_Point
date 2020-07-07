@@ -13,67 +13,78 @@
 <body>
   @include('lib.header')
   <div class="menu4"><!--탑헤더 밑-->
-    <h2 class="void-container">내 주변 꽃집</h2>
-    <hr>
-    <div id="google_map">
-      <div id="map"></div>
-      <input id="search_input" class="search_input" type="text" placeholder="Search Box"/>
-      <!-- <input id="search_btn" class="search_btn" type="button" value="검색"/> -->
-      <!-- <div id="title">d</div> -->
+
+    <div>
+      <h2 class="void-container">내 주변 꽃집</h2>
+      <hr>
     </div>
+    <div class="under">
+      <div id="map"></div>
+
+
+      {{-- <input id="search_btn" class="search_btn" type="button" value="검색"/> --}}
+
+
+      <input id="search_input" class="search_input" type="text" placeholder="Search Box"/>
+      {{-- <div class="title" id="title">
+      <p></p>
+    </div> --}}
+
   </div>
+</div>
 </body>
 @include('lib.footer')
 </html>
 
 <!--구매자일 때-->
 @if(auth()->guard('seller')->user())
-@foreach ($store_address as $address)
-<!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
-<div id="floating-panel">
-  <input id="address" type="hidden" value="{{$address->a_address}}">
-</div>
-@endforeach
+  @foreach ($store_address as $address)
+    <!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
+    <div id="floating-panel">
+      <input id="address" type="hidden" value="{{$address->a_address}}">
+    </div>
+  @endforeach
 
-<!--판매자일 때-->
+  <!--판매자일 때-->
 @elseif (auth()->guard('customer')->user())
-@foreach ($customer_address as $address)
-<div id="floating-panel">
-  <input id="address" type="hidden" value="{{$address->a_address}}">
-</div>
-@endforeach
+  @foreach ($customer_address as $address)
+    <div id="floating-panel">
+      <input id="address" type="hidden" value="{{$address->a_address}}">
+    </div>
+  @endforeach
 @endif
 
 
 <!-- store address 정보 -->
 @foreach ($store_address as $address)
-<input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
+  <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
 @endforeach
 
 @foreach ($store_address as $address)
-<input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
+  <input class="address_extra" id="a_extra{{$address->st_no}} "type="hidden" value="{{$address->a_extra}}">
 @endforeach
 
 @foreach ($store_address as $address)
-<input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
+  <input class="address_detail" id="a_detail{{$address->st_no}} "type="hidden" value="{{$address->a_detail}}">
 @endforeach
 
 <!--store의 정보-->
 
 @foreach ($store_info as $intro)
-<input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
+  <input class="store_intro" id="{{$intro->st_no}} "type="hidden" value="{{$intro->st_introduce}}">
 @endforeach
 
 @foreach ($store_info as $store_name)
-<input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
+  <input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
 @endforeach
 
 @foreach ($store_info as $store_tel)
-<input class="store_tel" id="{{$store_tel->st_no}} "type="hidden" value="{{$store_tel->st_tel}}">
+  <input class="store_tel" id="{{$store_tel->st_no}} "type="hidden" value="{{$store_tel->st_tel}}">
 @endforeach
 
 <script>
-//var user;
+
+
 //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
 function initMap() {
   //contentString에 들어갈 나머지 주소들
@@ -115,7 +126,7 @@ function initMap() {
   var user_address = $("#address").val();
   // Map
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 14,
     mapTypeId: "roadmap"
   });
 
@@ -136,6 +147,19 @@ function initMap() {
         map: map
       });
     }
+    // 지도에 표시할 원을 생성
+        var circle = new google.maps.Circle({
+          center :results[0].geometry.location,  // 원의 중심좌표 입니다
+          radius: 2000, // 미터 단위의 원의 반지름입니다
+          strokeWeight: 5, // 선의 두께입니다
+          strokeColor: '#75B8FA', // 선의 색깔입니다
+          strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+          strokeStyle: 'dashed', // 선의 스타일 입니다
+          fillColor: '#CFE7FF', // 채우기 색깔입니다
+          fillOpacity: 0.7  // 채우기 불투명도 입니다
+        });
+
+        circle.setMap(map);
   });
 
   //Store 주소
@@ -152,9 +176,16 @@ function initMap() {
       +"</div>");
     }
     //사용자 아이콘
+    // var input = $("#search_input").val();
     var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
 
     for( i=0 ; i < arr.length; i++){
+      // $("#search_btn").click(function(){
+      //   if(arr_name.indexof(input)){
+      //     console.log(arr_name[i]);
+      //   }
+      // });
+
       //console.log(arr[i]);
       geocoder.geocode( {'address': arr[i] },(function (i) {
         return  function(results, status) {
@@ -175,20 +206,50 @@ function initMap() {
             // google.maps.event.addListener(marker, "click", function() {
             //   infowindow.open(map, this);
             // });
-            marker.addListener("mouseover", function() {
+            // marker.addListener("mouseover", function() {
+            //   infowindow.open(map, this);
+            // });
+            // marker.addListener("mouseout", function() {
+            //   infowindow.close(map, this);
+            // });
+            marker.addListener("click", function() {
               infowindow.open(map, this);
             });
-            marker.addListener("mouseout", function() {
-              infowindow.close(map, this);
-            });
+
 
           } //if문
         };
       })(i)
     );
-  }
-}
-// Create the search box and link it to the UI element.
+  }//for
+
+  //Search
+  //  find_id 이름 입력란
+  // $("#search_btn").click(function() {
+  //   var input = $("#search_input").val();
+  //   console.log(input);
+  //   console.log(arr_name);
+  //   if(arr_name.find(/input/)){
+  //     alert('gd.');
+  //   }
+  //   else{
+  //     alert('123');
+  //   }
+  // markers = [];
+  // markers.push(
+  //       new google.maps.Marker({
+  //         map: map,
+  //         icon: store_Icon,
+  //         // title: arr_name,
+  //         // position: place.geometry.location
+  //       })
+  //     );
+  //   }
+  //});
+
+
+
+}//call
 var input = document.getElementById("search_input");
 var searchBox = new google.maps.places.SearchBox(input);
 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -238,6 +299,7 @@ searchBox.addListener("places_changed", function() {
         position: place.geometry.location
       })
     );
+    console.log(markers);
     //console.log(markers);
 
     if (place.geometry.viewport) {
@@ -249,7 +311,8 @@ searchBox.addListener("places_changed", function() {
   });
   map.fitBounds(bounds);
 });
-}
+}//init
+
 
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
