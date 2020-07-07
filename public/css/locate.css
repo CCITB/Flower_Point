@@ -38,6 +38,11 @@ img{
     margin-bottom: 50px;
 }
 
+div.menu4{
+  width: 900px;
+  margin: 0 auto;
+}
+
 .quickbuttonwrap {
     width: 100%;
     position: relative;
@@ -165,4 +170,48 @@ table.order{
 }
 #p_num{
   margin-right: 60%;
+}
+
+/* locate - jisu */
+
+
+/* Set the size of the div element that contains the map */
+#map {
+  height:500px;  /* The height is 400 pixels */
+  width: 70%;  /* The width is the width of the web page */
+  position: relative;
+  margin-bottom: 20%;
+}
+/* Optional: Makes the sample page fill the window. */
+/* html, body {
+height: 100%;
+padding: 0;
+} */
+#main {
+  width:500px;
+}
+#array{
+  color:#7d7d7d;
+}
+#search_input{
+  position: absolute;
+  left : 62em;
+  top : 26em;
+  width : 18em;
+  height : 23px;
+  padding: 5px;
+  margin-top : 5px;
+}
+#search_btn{
+  position: absolute;
+  left : 89em;
+  top : 27em;
+}
+#title {
+  background-color: #ffa3f9;
+  position: absolute;
+  left: 76%;
+  top: 50%;
+  width : 21%;
+  height: 53%;
 }

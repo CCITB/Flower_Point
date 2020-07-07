@@ -1,5 +1,4 @@
 .preview-wrap{
-  width: 100%;
   height: 210px;
   display: flex;
   flex-direction: row;
@@ -62,6 +61,17 @@ td input{
   color: gray;
 }
 #save{
+  margin-right: 5px;
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #666;
+  width: 83.675px;
+  background-color: #666;
+  color: white;
+}
+#close{
   height: 40px;
   cursor: pointer;
   outline: none !important;
@@ -81,6 +91,7 @@ td input{
 }
 
 div.postbutton{
+  display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
 }
