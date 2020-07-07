@@ -265,7 +265,7 @@
 
               <div class="qna-product-btn">
                 @if(auth()->guard('customer')->user())
-                  <button type="submit" name="button" class="product-question-btn" onclick="qna_new(1)">상품 문의하기</button>
+                  <button type="submit" name="button" class="product-question-btn" onclick="openqna({{$protb->p_no}})">상품 문의하기</button>
                 @elseif(auth()->guard('seller')->user())
 
                 @else
@@ -329,18 +329,28 @@
       //   alert('내 상품에 추가되었습니다.');
       // }
       // 상품문의하기 클릭시에 나타나는 input 공간
-      function qna_new(num) {
-        if($("#qna-inquiry"+num).hasClass("faq_an_show"))
-        {
+      // function qna_new(num) {
+      //   if($("#qna-inquiry"+num).hasClass("faq_an_show"))
+      //   {
+      //
+      //     $("#qna-inquiry"+num).removeClass("faq_an_show");
+      //   }
+      //   else
+      //   {
+      //     $(".faq_an").removeClass("faq_an_show");
+      //     $("#qna-inquiry"+num).addClass("faq_an_show");
+      //
+      //   }
+      // }
 
-          $("#qna-inquiry"+num).removeClass("faq_an_show");
-        }
-        else
-        {
-          $(".faq_an").removeClass("faq_an_show");
-          $("#qna-inquiry"+num).addClass("faq_an_show");
-
-        }
+      var openWin;
+      function openqna(qno)
+      {
+          // window.name = "부모창 이름";
+          window.name = "parentForm";
+          // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+          openWin = window.open("/Qnawrite"+qno,
+          "childqna", "width=700px, height=800px, left=50px, top=50px ");
       }
 
       //문의하기 클릭
