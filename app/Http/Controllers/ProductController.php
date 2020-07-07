@@ -463,13 +463,6 @@ class ProductController extends Controller
         DB::table('store')-> where('seller_no','=',$storeno) -> update([
           'st_img'=>$path
         ]);
-<<<<<<< HEAD
-        return redirect('/shop');
-      }
-=======
-        return redirect()->back();
-  }
->>>>>>> fd1fd9dd1d39f3665d457fed42a3f89d087749b0
 
     }
   }
