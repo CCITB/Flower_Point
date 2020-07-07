@@ -338,5 +338,7 @@ Route::get('/image_popup', 'InformationController@image');
 
 //seller-주문관리
 Route::post('/orderlist', 'OrderlistController@orderlist');
-
 Route::get('/sellermyorderlist', 'OrderlistController@orderlist');
+
+Route::post('/payment_status', 'OrderlistController@payment_status');
+Route::post('/payment_status', 'OrderlistController@payment_status');

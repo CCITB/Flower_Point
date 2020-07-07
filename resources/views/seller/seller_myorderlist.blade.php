@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" type="text/css" href="/css/orderlist.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -57,33 +58,36 @@
     </tr>
   </table> -->
   <div class="sellerorderlist">
-    <form class="" action="index.html" method="post" name="mycheck">
+    <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
       <div class="orderlist-bottom">
-        <button type="button" name="button" class="ordercheck">발주확인</button>
-        <button type="button" name="button" class="sendmessage">발송처리</button>
+        <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
+        <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
       </div>
-      <form class="" action="" method="post">
+      <form class="order_list" id="order_list" action="" method="post">
+        @csrf
         <table id="myTable"name="">
-
           <tr>
-            <th> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-            <th>상품 주문번호</th>
-            <th>상품명</th>
-            <th>송장번호</th>
-            <th>택배사</th>
-            <th>발송일</th>
-            <th>주문일시</th>
-            <th>고객명</th>
-            <th>가격</th>
-            <th></th>
+            <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+            <th class="title">상품 주문번호</th>
+            <th class="title">상품번호</th>
+            <th class="title">상품명</th>
+            <th class="title">송장번호</th>
+            <th class="title">택배사</th>
+            <!-- <th class="title">발송일</th> -->
+            <th class="title">주문일시</th>
+            <th class="title">고객명</th>
+            <th class="title">가격</th>
+            <th class="title">결제상태</th>
+            <th class="title">배송상태</th>
+            <!-- <th class="title"></th> -->
           </tr>
           @foreach ($order as $order)
             <tr>
               <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-              <td><input type="text" name="" value=""></td>
-
+              <td><input type="text" class="num" id="order_no" name="" value=""></td>
+              <td>{{$order->p_no}}</td>
               <td>{{$order->p_name}}</td>
-              <td><input type="text" name="" value=""></td>
+              <td><input type="text" class="num" id="invoice_num" name="" value=""></td>
               <td><select id="bank" name=bank margin-left:10px;>
                 <option value="">택배사를 선택해주세요</option>
                 <option value="우체국택배">우체국택배</option>
@@ -97,103 +101,29 @@
                 <option value="합동택배">합동택배</option>
                 <option value="천일택배">천일택배</option>
               </select></td>
-              <td>2020.04.16</td>
-              <td>2020.04.15</td>
+              <!-- <td>2020.04.16</td> -->
+              <td>{{$order->created_at}}</td>
               <td>{{$order->c_name}}</td>
               <td>{{$order->pm_pay}}</td>
-            <td><button type="submit" name="button">저장</button></td>
+              <td>{{$order->pm_status}}</td>
+              <td>{{$order->d_status}}</td>
+            <!-- <td><button type="submit" name="button">저장</button></td> -->
           </tr>
         @endforeach
         </table>
       </form>
-    </form>
+  <!-- </form> -->
   </div>
 
 </div>
 </div>
 </div>
 </div>
-<style media="screen">
-td input{
-
-}
-div.orderlist-bottom{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: left;
-}
-button.sendmessage{
-  height: 40px;
-  cursor: pointer;
-  outline: none !important;
-  border: none;
-  border: 1px solid #dadada;
-  width: 83.675px;
-}
-button.ordercheck{
-  height: 40px;
-  cursor: pointer;
-  outline: none !important;
-  border: none;
-  border: 1px solid #dadada;
-  width: 83.675px;
-}
-.sellerorderlist{
-  width: 80%;
-  margin: 0 auto;
-}
-.orderspace{
-  width: 3%;
-}
-.ordercount{
-  width: 6%;
-}
-.orderblink{
-  width: 8%;
-}
-.orderpicture{
-  width: 140px;
-  height: 140px;
-}
-.myorderlist{
-  width: 1130px;
-  margin: 0 auto;
-  padding: 0 30px;
-  border: 5px solid pink;
-}
-
-table{
-  border-collapse: collapse;
-  display: inline-block;
-  width: 100%;
-  font-size: 14px;
-}
-td{
-
-  width: 10%;
-}
-.myorderlist-top{
-
-
-}
-tr{
-  height: 40px;
-  border-bottom: 1px solid #e5e5e5;
-}
-.myorderlist-infor{
-
-  margin: 0 auto;
-  text-align: center;
-}
-th{
-  background-color: #f5f5f5;
-  font-weight: normal;
-  border-top: 1px solid gray;
-}
-</style>
 @include('lib.footer')
 </body>
 </html>
+
+
 <script>
 var selectAll = document.querySelector("#th_checkAll");
 selectAll.addEventListener('click', function(){
@@ -216,4 +146,12 @@ for(var i=0; i<objs.length ; i++){
     selectAll.checked = true;
   }, false);
 }
+
+$('#check').click(function () {
+    $('#order_list').attr("action", "/payment_status");
+});
+$('#send').click(function () {
+    $('#order_list').attr("action", "/delivery_status");
+});
+
 </script>

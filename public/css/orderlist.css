@@ -1,0 +1,76 @@
+div.myoderlist-wrap{
+  height:20em;
+}
+input.num{
+}
+div.orderlist-bottom{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+button.sendmessage{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
+}
+button.ordercheck{
+  height: 40px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  border: 1px solid #dadada;
+  width: 83.675px;
+}
+.sellerorderlist{
+  width: 90%;
+  margin: 0 auto;
+}
+.orderspace{
+  width: 3%;
+}
+.ordercount{
+  width: 6%;
+}
+.orderblink{
+  width: 8%;
+}
+.orderpicture{
+  width: 140px;
+  height: 140px;
+}
+.myorderlist{
+  width: 1130px;
+  margin: 0 auto;
+  padding: 0 30px;
+  border: 5px solid pink;
+}
+
+table{
+  border-collapse: collapse;
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+}
+/* td{
+
+  width: 10%;
+} */
+
+tr{
+  height: 40px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.myorderlist-infor{
+
+  margin: 0 auto;
+  text-align: center;
+}
+th.title{
+  background-color: #f5f5f5;
+  font-weight: normal;
+  border-top: 1px solid gray;
+  width : 60px;
+}
