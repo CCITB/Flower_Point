@@ -65,16 +65,6 @@
                   @endforeach
                 </tr>
               </form>
-              <tr>
-                <th>사업자 인증</th>
-                <td>
-                  <form action="/registration" method="post"  enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
-                    <input type="submit" onclick="check()" value="등록">
-                  </form>
-                </td>
-              </tr>
 
             </div>
           </table>

@@ -109,11 +109,13 @@ class ProductController extends Controller
       ->join('store','seller.s_no','=','store.seller_no')
       ->join('product','store.st_no','=','product.store_no')
       ->join('question','product.p_no','=','question.product_no','left outer')
-      ->join('answer','question.q_no','=','answer.question_no','left outer')->pluck('p_no');
+      ->join('customer','question.customer_no','=','customer.c_no')
+      ->join('answer','question.q_no','=','answer.question_no','left outer')->get();
       // return var_dump($aa);
     } else{
       $SellerAllInfor = null;
     }
+
     // return $SellerAllInfor;
     // return $qnaq;
     //나의 소중한 주석입니다 지우지 말아주세요
