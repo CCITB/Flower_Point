@@ -187,6 +187,8 @@ Route::get('/review', function () {
   return view('review');
 });
 
+Route::get('/Qnaanswer{id}','QnAController@answer');
+
 Route::post('rev', 'ReviewController@my_review');
 
 Route::post('rev_count', 'ReviewController@rev_count');
@@ -296,7 +298,7 @@ Route::post('/basketcount', 'ProductController@basketcount');
 
 Route::post('/basketcondition', 'ProductController@basketcondition');
 
-Route::post('/questionans/{q_no}','QnAController@question_answer');
+Route::post('/answer/{q_no}','QnAController@question_answer');
 
 Route::get('/Sort_H', 'SortController@Sort_H');
 

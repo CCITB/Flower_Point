@@ -51,7 +51,7 @@ td{
 .qna_text{
   height: 67%;
 }
-textarea{
+.q_text{
   padding: 10px;
   width: 95%;
   height: 50%;
@@ -77,3 +77,41 @@ textarea{
   text-align: center;
 }
 /* 문의하기 자식창 끝 */
+
+/* 답변하기 자식창 */
+
+.an_name{
+  height: 10%;
+}
+.c_name{
+  height: 10%;
+}
+.q_name{
+  height: 10%;
+}
+.qn_text{
+  height: 30%;
+}
+.an_text{
+  height: 40%;
+}
+
+.a_text{
+  padding: 10px;
+  width: 95%;
+  height: 80%;
+  resize: none;
+  line-height: 1.7em;
+  font-size: 14px;
+}
+
+
+.bottom1{
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
+
+/* 답변하기 자식창 끝 */

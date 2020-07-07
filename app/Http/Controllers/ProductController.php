@@ -109,12 +109,15 @@ class ProductController extends Controller
       ->join('store','seller.s_no','=','store.seller_no')
       ->join('product','store.st_no','=','product.store_no')
       ->join('question','product.p_no','=','question.product_no','left outer')
-      ->join('answer','question.q_no','=','answer.question_no','left outer')->get();
+      ->join('answer','question.q_no','=','answer.question_no','left outer')->pluck('p_no');
       // return var_dump($aa);
+    } else{
+      $SellerAllInfor = null;
     }
+    // return $SellerAllInfor;
     // return $qnaq;
     //나의 소중한 주석입니다 지우지 말아주세요
-    return view('Buy_information', compact('productinfor','qnaq', 'store','review'));
+    return view('Buy_information', compact('productinfor','qnaq', 'store','review','SellerAllInfor'));
   }
 
   // 상품 수정하기 박소현
@@ -246,7 +249,8 @@ class ProductController extends Controller
 
     // 문의하기에서 상품정보 불러오기
     public function pd_info ($id){
-      $cus = auth()->guard('customer')->user();
+      $cusomer = auth()->guard('customer')->user()->c_no;
+      $cus = DB::table('customer')->where('c_no',$cusomer)->get();
       $product = DB::table('product')->where('p_no',$id)->get();
 
       return view('pd_qna', compact('product','cus'));
@@ -259,27 +263,31 @@ class ProductController extends Controller
 
       $productinfor = DB::table('product')->where('p_no',$id)->get();
       $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
-
+      //
       $today = date("Ymd"); //현재날짜 받아옴
-      $state = $_GET['state']; //공개 비공개 여부
 
-      if($cinfo = auth()->guard('customer')->user()){
-        // return 0;
-        $cprimary = $cinfo->c_no; //사용자의 c_no
-        $customer = DB::table('customer')
-        ->join('question', 'customer.c_no', '=', 'question.customer_no')->select('*')
-        ->where('customer_no','=', $cprimary)->get();
+      $state; //공개 비공개 여부
+      if(isset($_GET['state'])){
+        $state = '비공개';
+      }
+      else{
+        $state = '공개';
       }
 
+
+      $cinfo = auth()->guard('customer')->user()->c_no;
+
+
       DB::table('question')->insert([
-        'q_title'=>$qna->input('qna_title'),
-        'q_contents' => $qna->input('name'),
+        'q_title'=>$qna->input('q_title'),
+        'q_contents' => $qna->input('q_text'),
         'q_date' =>$today,
         'product_no'=>$pro_no,
-        'customer_no'=>$cprimary,
-        'q_state'=> $state
+        'customer_no'=>$cinfo,
+        'q_state'=> $state,
       ]);
-      return redirect()->back();
+
+      echo "<script>alert('문의가 등록되었습니다.');self.close();</script>";
     }
 
 
@@ -456,13 +464,13 @@ class ProductController extends Controller
     }
 
     public function store_img_register(Request $request){
-      {     $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
-        $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
-        $path=$request->file('picture')->store('/','public');
-        // return $path;
-        DB::table('store')-> where('seller_no','=',$storeno) -> update([
-          'st_img'=>$path
-        ]);
+      $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
+      $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
+      $path=$request->file('picture')->store('/','public');
+      // return $path;
+      DB::table('store')-> where('seller_no','=',$storeno) -> update([
+        'st_img'=>$path
+      ]);
 
     }
   }
