@@ -229,7 +229,7 @@
           <table class="order" border="1" width="100%">
             <tr>
               <th>주문번호</th>
-              <th>상황정보</th>
+              <th>상품명</th>
               <th>구매금액</th>
               <th>주문처리상태</th>
               <th></th>
@@ -238,21 +238,21 @@
               <td>1</td>
               <td>장미특가</td>
               <td>3000원</td>
-              <td>cj대한통운</td>
+              <td>배송시작</td>
               <td><input type="button" value="구매후기" onclick="show_popup()"></td>
             </tr>
             <tr>
               <td>2</td>
               <td>장미</td>
               <td>4000원</td>
-              <td>cj대한통운</td>
+              <td>결제완료</td>
               <td></td>
             </tr>
             <tr>
               <td>1</td>
               <td>안개꽃</td>
               <td>5000원</td>
-              <td>cj대한통운</td>
+              <td>배송완료</td>
               <td></td>
             </tr>
           </table>

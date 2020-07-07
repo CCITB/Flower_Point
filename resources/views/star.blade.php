@@ -5,8 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/locate.css">
-  <link rel="stylesheet" href="/css/shop.css">
   <link rel="stylesheet" href="/css/star.css">
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -17,6 +15,15 @@
 </head>
 <!--구매자가 추가한 꽃집,상품 즐겨찾기 화면-->
 <body>
+  <style media="screen">
+  footer{
+    position:relative;
+    left:0px;
+    bottom:0px;
+    height:60px;
+    width:100%;
+  }
+  </style>
   @include('lib.header')
   <div class="menu4">
     <h3 align="center">즐겨찾기</h3>
@@ -24,14 +31,14 @@
   </hr>
 </div>
 <div class="myinfo">
-    <table border="0" table class="table1" >
-  <tr class="tr1">
-    <th class="th1">상품이미지</th>
-  <th class="th1">상품명</th>
-    <th class="th1">가격</th>
-    <th></th>
-  </tr>
-</table>
+  @if(count($data))
+    <table class="table" table border="0">
+      <tr><th class="th2">상품이미지</th><th class="th3">상품명</th><th class="th4">가격</th><th></th></tr>
+    </table>
+  </table>
+
+
+
   <div class="privacy">
     @foreach ($data as $data1)
       <table border="0" table class="table1" >
@@ -42,7 +49,6 @@
               <table id="shopinfo">
                 <tbody>
                   <tr class="tr1">
-
                     <th class="th1">
                       <div class="th1">
                         <a href="product/{{$data1->p_no}}">
@@ -59,7 +65,7 @@
                         <div class="tdcell">{{$data1->p_price}}<p class="contxt.tit"></p></div>
                       </td>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit"><a href="{{$data1->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
+                        <div class="tdcell2"><p class="contxt.tit"><a href="{{$data1->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
                       </td>
                     @endif
                   @endforeach
@@ -72,12 +78,23 @@
       </table>
 
     </div>
-        {{ $data->links()}}
-    <div class="menu4">
-      <h3 align="center">즐겨찾기 꽃집</h3>
-      <hr align="left" class="one">
-    </hr>
-  </div>
+  @else
+    <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+      <div class="" style="top:180px; position:absolute; left:300px; ">
+        내상품이 비어있습니다.
+      </div>
+    </div>
+  @endif
+  {{ $data->links()}}
+  <div class="menu4">
+    <h3 align="center">즐겨찾기 꽃집</h3>
+    <hr align="left" class="one">
+  </hr>
+</div>
+@if(count($pro2))
+  <table class="table" table border="0">
+    <tr><th class="th2">가게이미지</th><th class="th3">가게이름</th><th class="th4">가게번호</th><th></th></tr>
+  </table>
   <div class="privacy">
     @foreach ($pro2 as $data2)
       <table border="0" table class="table1" >
@@ -88,24 +105,23 @@
               <table id="shopinfo">
                 <tbody>
                   <tr class="tr1">
-
                     <th class="th1">
                       <div class="th1">
                         <a href="product/store/{{$data2->st_name}}">
-                          <img src="\imglib\{{$data2->st_img}}" height="100px" width="100px"alt="등록된 가게이미지가 없습니다.">
+                          <img src="\imglib\{{$data2->st_img}}"  onerror="this.src='imglib/image.png'" width="100px" height="100px">
                         </a>
                       </div>
                     </th>
                     <td>
                       <a href="product/store/{{$data2->st_name}}">
-                        <div class="tdcell">{{$data2->st_name}}<p class="contxt.tit"></p>
+                        <div class="tdtd">{{$data2->st_name}}<p class="contxt.tit"></p>
                         </a></div>
                       </td>
                       <td>
-                        <div class="tdcell">{{$data2->st_tel}}<p class="contxt.tit"></p></div>
+                        <div class="tdtd">{{$data2->st_tel}}<p class="contxt.tit"></p></div>
                       </td>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit"><a href="{{$data2->st_name}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
+                        <div class="tdcell3"><p class="contxt.tit"><a href="{{$data2->st_name}}"></a> <button type="submit">즐겨찾기 꽃집 삭제</button></a></p></div>
                       </td>
                     @endif
                   @endforeach
@@ -116,9 +132,14 @@
         </tbody>
       </table>
     </div>
-
-
-  </div>
-  @include('lib.footer')
+  @else
+    <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+      <div class="" style="top:180px; position:absolute; left:250px; ">
+        즐겨찾기 꽃집이 비어있습니다.
+      </div>
+    </div>
+  @endif
+</div>
 </body>
+@include('lib.footer')
 </html>

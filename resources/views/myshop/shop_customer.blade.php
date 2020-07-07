@@ -24,7 +24,7 @@
         <hr>
         <div class="wrap2">
           <div class="imgbox">
-            <img class="shopimg" src="/imglib/{{$shop->st_img}}" onerror="this.src='imglib/image.png'" >
+            <img class="shopimg" src="/imglib/{{$shop->st_img}}"  >
           </div>
           <div id="tablewrap">
             <table id="shopinfo">
@@ -79,7 +79,7 @@
               <div class="image">
                 <div class="image-in" url="/product/{{$productlist->p_no}}">
                   <div class="imagewrap" >
-                    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" width="100px" height="100px">
+                    <img src="\imglib\{{$productlist->p_filename}}"  onerror="this.src='imglib/image.png'" width="100px" height="100px">
                   </div>
                   <div class="image-in-font">
                     <div class="image-in-post">

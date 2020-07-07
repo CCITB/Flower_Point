@@ -3,19 +3,77 @@ div.tdcell{
   padding: 10px 0 10px 30px;
   margin: 0;
   text-align: left;
+  border-right: 1px solid;
 }
+
+div.tdcell2{
+  width: 200px;
+  padding: 10px 0 10px 30px;
+  margin: 0;
+  text-align: left;
+}
+
+div.tdcell3{
+  width: 200px;
+  margin: 0;
+  text-align: left;
+}
+
 div.th1{
   width: 100px;
   height: 100px;
   border: 1px solid;
 }
+
+th.th2{
+  margin-left: 300px;
+  width: 170px;
+}
+
+th.th3{
+  margin-left: 300px;
+  width: 170px;
+}
+
+th.th4{
+  margin-left: 300px;
+  width: 170px;
+}
+
 div.thcell{
   border-right: 1px solid #e5e5e5;
   background: #f9f9f9;
   text-align: left;
   letter-spacing: -1px;
 }
+
+div.tdtd{
+  width: 200px;
+  padding: 10px 0 10px 30px;
+  margin: 0;
+  text-align: left;
+  border-right: 1px solid;
+}
+
 div#show{
   padding-left: 32px;
+}
 
+.myinfo {
+    width: 750px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+table.table{
+  width: 100%;
+  border: 1px solid;
+  color: gray;
+  background-color: black;
+  border-collapse: collapse;
+}
+
+div.privacy{
+  border-bottom: 2px solid;
+  border-right: : 1px solid;
 }

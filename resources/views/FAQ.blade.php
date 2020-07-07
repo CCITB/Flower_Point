@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="/css/FAQ.css">
     </head>
     <body>
+      <style media="screen">
+        footer{
+      position:fixed;
+      left:0px;
+      bottom:0px;
+      height:60px;
+      width:100%;
+        }
+      </style>
 @include('lib.header')
 
     <div class="hr-line">
