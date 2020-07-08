@@ -28,44 +28,44 @@
   <h4>내 정보</h4>
   <div class="privacy">
     <table border="0" table class="table1" >
-    @if ($customer = auth()->guard('customer')->user())
-          <div id="tablewrap">
-            <table id="shopinfo">
-              <tbody>
+      @if ($customer = auth()->guard('customer')->user())
+        <div id="tablewrap">
+          <table id="shopinfo">
+            <tbody>
+              <tr class="tr1">
+                <th class="th1">
+                  <div class="thcell">아이디</div>
+                </th>
+                <td>
+                  <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
+                </td>
+              </tr>
+
+              <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
+                @csrf
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">아이디</div>
+                    <div class="thcell">비밀번호</div>
                   </th>
                   <td>
-                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
-                  </td>
-                </tr>
-
-                <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
-                  @csrf
-                  <tr class="tr1">
-                    <th class="th1">
-                      <div class="thcell">비밀번호</div>
-                    </th>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
+                    <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                       <button type="submit" name="button">수정완료</button></p></div>
-                      </div>
-                    </td>
-                  </tr>
-                </form>
-
-
-                <tr class="tr1">
-                  <th class="th1">
-                    <div class="thcell">이름</div>
-                  </th>
-                  <td>
-                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
+                    </div>
                   </td>
                 </tr>
-                <form action="c_information_controller" onsubmit="return phonenum_checkform()" method="post">
-                  @csrf
+              </form>
+
+
+              <tr class="tr1">
+                <th class="th1">
+                  <div class="thcell">이름</div>
+                </th>
+                <td>
+                  <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
+                </td>
+              </tr>
+              <form action="c_information_controller" onsubmit="return phonenum_checkform()" method="post">
+                @csrf
                 <tr class="tr1">
                   <th class="th1">
                     <div class="thcell">연락처</div>
@@ -74,40 +74,40 @@
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
 
                     <div id="p_num" style="display:none;">
-                        <strong class="info">전화번호</strong>
-                        <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
-                        <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
-                        <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
-                          <option value="010">010</option>
-                          <option value="011">011</option>
-                          <option value="016">016</option>
-                          <option value="017">017</option>
-                          <option value="018">018</option>
-                          <option value="019">019</option>
-                          <option value="02">02</option>
-                          <option value="031">031</option>
-                          <option value="032">032</option>
-                          <option value="033">033</option>
-                          <option value="041">041</option>
-                          <option value="042">042</option>
-                          <option value="043">043</option>
-                          <option value="044">044</option>
-                          <option value="051">051</option>
-                          <option value="052">052</option>
-                          <option value="053">053</option>
-                          <option value="054">054</option>
-                          <option value="055">055</option>
-                          <option value="061">061</option>
-                          <option value="062">062</option>
-                          <option value="063">063</option>
-                          <option value="064">064</option>
-                          <option value="070">070</option>
-                          <option value="080">080</option>
-                        </select>
-                        -
-                        <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
-                        -
-                        <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
+                      <strong class="info">전화번호</strong>
+                      <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
+                      <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
+                      <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>
+                        <option value="02">02</option>
+                        <option value="031">031</option>
+                        <option value="032">032</option>
+                        <option value="033">033</option>
+                        <option value="041">041</option>
+                        <option value="042">042</option>
+                        <option value="043">043</option>
+                        <option value="044">044</option>
+                        <option value="051">051</option>
+                        <option value="052">052</option>
+                        <option value="053">053</option>
+                        <option value="054">054</option>
+                        <option value="055">055</option>
+                        <option value="061">061</option>
+                        <option value="062">062</option>
+                        <option value="063">063</option>
+                        <option value="064">064</option>
+                        <option value="070">070</option>
+                        <option value="080">080</option>
+                      </select>
+                      -
+                      <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
+                      -
+                      <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
                       <button type="submit" name="button">수정완료</button>
                     </div>
 
@@ -132,7 +132,7 @@
                       else if(s == "비밀번호수정"){
                         document.getElementById(ss).style.display="block"
                         modiaddress.style.display="none";
-                    }
+                      }
                     }
                     </script>
 
@@ -216,7 +216,7 @@
       <div class="tablespace3">
         <h4 align="left">나의 주문 현황</h4>
 
-        <table class="myorder" table border="0">
+        {{-- <table class="myorder" table border="0">
           <tr>
             <td>기간별조회</td>
             <td><button class="period">1주일</button></td>
@@ -225,141 +225,137 @@
             <td><input type="date"></td>
             <td><button>조회</button></td>
           </tr>
-                  </table>
-          <table class="order" border="1" width="100%">
-            <tr>
-              <th>주문번호</th>
-              <th>상품명</th>
-              <th>구매금액</th>
-              <th>주문처리상태</th>
-              <th></th>
-            </tr>
+        </table> --}}
+        @if(count($data2))
+        <table class="order" border="1" width="100%">
+          <tr>
+            <th>주문번호</th>
+            <th>상품명</th>
+            <th>구매금액</th>
+            <th>주문처리상태</th>
+            <th></th>
+          </tr>
+
+          @foreach ($data2 as $data2)
             <tr>
               <td>1</td>
-              <td>장미특가</td>
-              <td>3000원</td>
-              <td>배송시작</td>
+              <td>{{$data2->p_name}}</td>
+              <td>{{$data2->pm_pay}}</td>
+              <td>{{$data2->pm_status}}</td>
               <td><input type="button" value="구매후기" onclick="show_popup()"></td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>장미</td>
-              <td>4000원</td>
-              <td>결제완료</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>안개꽃</td>
-              <td>5000원</td>
-              <td>배송완료</td>
-              <td></td>
-            </tr>
-          </table>
+          @endforeach
+        </table>
+      @else
+        <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+          <div class="" style="top:180px; position:absolute; left:300px; ">
+            주문목록이 없습니다.
+          </div>
+        </div>
+      @endif
       </div>
 
       <div class="tablespace5">
         <h4 align="left">나의후기</h4>
         <style media="screen">
-          table.order,table.myreview{
+        table.order,table.myreview{
           width: 100%;
           border: 1px solid #444444;
           border-collapse: collapse;
         }
         </style>
-          <table class="myreview" border="1" width=100%>
-            <tr>
-              <th>상품평</th>
-              <th>후기</th>
-            </tr>
-            <tr>
-              <th>a</th>
-              <td>b</td>
-            </tr>
-            <tr>
-              <th>c</th>
-              <td>d</td>
-            </tr>
-            <tr>
-              <th>e</th>
-              <td>f</td>
-            </tr>
-          </table>
+        <table class="myreview" border="1" width=100%>
+          <tr>
+            <th>상품평</th>
+            <th>후기</th>
+          </tr>
+          <tr>
+            <th>a</th>
+            <td>b</td>
+          </tr>
+          <tr>
+            <th>c</th>
+            <td>d</td>
+          </tr>
+          <tr>
+            <th>e</th>
+            <td>f</td>
+          </tr>
         </table>
-      </div>
+      </table>
     </div>
   </div>
+</div>
 
-        @include('lib.footer')
+@include('lib.footer')
 
-    <script type="text/javascript">
-    function pw_checkform(){
-      var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-      // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+<script type="text/javascript">
+function pw_checkform(){
+  var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+  // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
 
 
-      // var num =  /^[0-9]{3,4}$/;
-      var password = document.getElementById("new_pw");
+  // var num =  /^[0-9]{3,4}$/;
+  var password = document.getElementById("new_pw");
 
-      if(!regex.test(password.value)){
-        alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
-        return false;
-      }
-      else{
-        alert('변경되었습니다');
-        return true;
-      }
-    }
-
-    function phonenum_checkform(){
-      var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-      var middlenum = document.getElementById("delivery_tel_no2");
-      var lastnum = document.getElementById("delivery_tel_no3");
-      var num =  /^[0-9]{3,4}$/;
-      // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
-      // var phonenum = document.getElementById("new_num");
-      if(!num.test(middlenum.value)){
-        alert('중간 4자리의 숫자를 입력해주세요')
-        return false;
-      }
-      if(special.test(middlenum.value)){
-        alert('숫자만 입력해주세요.')
-        return false;
-      }
-      if(!num.test(lastnum.value)){
-        alert('뒤 4자리의 숫자를 입력해주세요')
-        return false;
-      }
-      if(special.test(lastnum.value)){
-        alert('숫자만 입력해주세요.');
-        }
-      else {
-        alert("변경되었습니다");
-        return true;
-    }
+  if(!regex.test(password.value)){
+    alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
+    return false;
   }
+  else{
+    alert('변경되었습니다');
+    return true;
+  }
+}
 
-    function email_checkform(){
-        var email = document.getElementById("new_email");
-        var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
-        if(!emailcheck.test(email.value)){
-          alert("올바른 형식의 이메일을 입력해주세요");
-          return false;
-        }
-        else{
-          alert("변경되었습니다");
-          return true;
-        }
-      }
+function phonenum_checkform(){
+  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var middlenum = document.getElementById("delivery_tel_no2");
+  var lastnum = document.getElementById("delivery_tel_no3");
+  var num =  /^[0-9]{3,4}$/;
+  // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+  // var phonenum = document.getElementById("new_num");
+  if(!num.test(middlenum.value)){
+    alert('중간 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(special.test(middlenum.value)){
+    alert('숫자만 입력해주세요.')
+    return false;
+  }
+  if(!num.test(lastnum.value)){
+    alert('뒤 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(special.test(lastnum.value)){
+    alert('숫자만 입력해주세요.');
+  }
+  else {
+    alert("변경되었습니다");
+    return true;
+  }
+}
 
-      function show_popup() { // 리뷰 팝업창 띄우기 -- 박소현
-        var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px ");
-      }
-    </script>
+function email_checkform(){
+  var email = document.getElementById("new_email");
+  var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+  if(!emailcheck.test(email.value)){
+    alert("올바른 형식의 이메일을 입력해주세요");
+    return false;
+  }
+  else{
+    alert("변경되었습니다");
+    return true;
+  }
+}
 
-  @endif
+function show_popup() { // 리뷰 팝업창 띄우기 -- 박소현
+  var rev_pop = window.open("/review", "리뷰팝업창", "width=550px, height=680px, left=570px, top=150px ");
+}
+</script>
+
+@endif
 </body>
-  </html>
-  <!--POST API Link -->
-  <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
-  <script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
+</html>
+<!--POST API Link -->
+<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

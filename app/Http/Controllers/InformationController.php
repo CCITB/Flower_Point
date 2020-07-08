@@ -235,8 +235,10 @@ class InformationController extends Controller
         // return $sellerprimary;
             $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
             ->where('c_no','=',$customerprimary)->get();
-
-            return view('mypage/c_mypage',compact('data'));
+            $data2 = DB::table('customer')->join('payment','customer.c_no','payment.customer_no')
+            ->join('delivery','customer.c_no','=','delivery.customer_no')
+            ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
+            return view('mypage/c_mypage',compact('data','data2'));
     }
     else{
     return view('login/login_customer');

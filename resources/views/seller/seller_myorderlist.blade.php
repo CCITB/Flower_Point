@@ -57,6 +57,7 @@
       <td>건</td>
     </tr>
   </table> -->
+  @if(count($order))
   <div class="sellerorderlist">
     <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
       <div class="orderlist-bottom">
@@ -117,7 +118,13 @@
       </form>
   <!-- </form> -->
   </div>
-
+@else
+  <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+  <div class="" style="top:180px; position:absolute; left:300px; ">
+    주문목록이 없습니다.
+  </div>
+</div>
+@endif
 </div>
 </div>
 </div>
