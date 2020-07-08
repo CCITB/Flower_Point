@@ -76,5 +76,8 @@ th.title{
 }
 
 td#p_name{
-  width: 20em;
+  width: 20%;
+}
+td#date{
+  width: 8%;
 }
