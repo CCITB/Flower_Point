@@ -47,12 +47,12 @@
               </div>
               <div class="product-count">
                 {{-- 수량증가-------------------- --}}
-                <button type="button" class="plus" id="plus{{$list->b_no}}"name="button" onclick="increase({{$list->b_no}});">
-                  <img src="/imglib/add.png" alt="">
+                <button type="button" class="minus" id="minus{{$list->b_no}}"name="button" onclick="decrease({{$list->b_no}});">
+                  <img src="/imglib/remove.png" alt="">
                 </button>
                 <input class="count-plmi" type="text" name="amount{{$list->b_no}}" onkeydown="onKeyDown()"readonly id="count{{$list->b_no}}" value="{{$list->b_count}}">
-                <button type="button" class="minus" id="minus{{$list->b_no}}" name="button" onclick="decrease({{$list->b_no}});">
-                  <img src="/imglib/remove.png" alt="">
+                <button type="button" class="plus" id="plus{{$list->b_no}}" name="button" onclick="increase({{$list->b_no}});">
+                  <img src="/imglib/add.png" alt="">
                 </button>
 
                 {{-- 수량증가-------------------- --}}
