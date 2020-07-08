@@ -271,10 +271,6 @@ strong.info{
 div.delivery_input{
   float: left;
 }
-div.delivery_input2{
-  text-align: right;
-}
-
 div.delivery_wrap2{
   text-align: right;
   margin-right:5px;
@@ -286,6 +282,12 @@ th{
 td.order_text{
   text-align:right;
 }
+
+
+
+
+
+
 
 
 /* ===================== complete -- 어지수 ====================*/
