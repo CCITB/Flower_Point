@@ -11,10 +11,10 @@ class OrderlistController extends Controller
 {
   //[seller] 나의 주문관리 -- 정경진
   public function orderlist(Request $request){
-    $order = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no')->
-    join('product','payment.product_no','=','product.p_no')
+    $order = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no')->join('product','payment.product_no','=','product.p_no')
     ->join('customer','payment.customer_no','=','customer.c_no')
-    ->select('*')->paginate(5);
+    ->select('*','payment.created_at')->paginate(5);
+    // return $order;
     // $pm = DB::table('payment')->select('*')->where('pm_no','=',$order2[0]->pm_no)->get();
     // $name = DB::table('customer')->select('c_name')->where('c_no','=',$order2[0]->customer_no)->get();
     $order3 = DB::table('product')->select('*')->where('p_no','=',$order[0]->product_no)->get();
