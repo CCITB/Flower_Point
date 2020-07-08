@@ -1,7 +1,8 @@
 div.myoderlist-wrap{
-  height:40em;
+  height:50em;
 }
-input.num{
+input#invoice_num{
+  width:100px;
 }
 div.orderlist-bottom{
   margin-top: 10px;
@@ -76,8 +77,14 @@ th.title{
 }
 
 td#p_name{
-  width: 20%;
+  width: 15%;
 }
 td#date{
   width: 8%;
+}
+td#pm_status{
+  font-size:15px;
+}
+td#d_status{
+  font-size:15px;
 }

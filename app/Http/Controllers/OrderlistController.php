@@ -19,7 +19,7 @@ class OrderlistController extends Controller
     ->join('customer','payment.customer_no','=','customer.c_no')
     ->join('store','product.store_no','store.st_no')
     ->join('seller','store.seller_no','seller.s_no')
-    ->select('*','payment.created_at')->where('s_no','=', $sellerprimary)->get();
+    ->select('*','payment.created_at')->where('s_no','=', $sellerprimary)->orderBy('pm_no', 'asc')->get();
       return view('seller/seller_myorderlist',compact('order'));
     }
   }
@@ -28,14 +28,17 @@ class OrderlistController extends Controller
     DB::table('payment')->update([
       'pm_status' => '결제 완료'
     ]);
-    return redirect('seller.seller_myorderlist');
+    DB::table('delivery')->update([
+      'd_status' => '배송 준비중'
+    ]);
+    return redirect('/sellermyorderlist');
   }
   //배송정보 입력
   public function delivery_status(Request $request){
     DB::table('delivery')->update([
       'd_status' => '배송중'
     ]);
-    return view('seller/seller_myorderlist');
+    return redirect('/sellermyorderlist');
   }
 
 }
