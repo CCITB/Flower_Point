@@ -155,6 +155,7 @@ Route::get('/customer_shop', function () {
 // });
 Route::get('/myqna','InformationController@myqna');
 
+Route::get('/seller_qna','QnAController@seller_qna');
 // Route::get('/postlist', function () {
 //   return view('post_list');
 // });
