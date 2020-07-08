@@ -27,21 +27,30 @@ class OrderlistController extends Controller
     }
   }
   //결제상태 변경
-  public function payment_status(Request $request){
-    DB::table('payment')->update([
-      'pm_status' => '결제 완료'
-    ]);
-    DB::table('delivery')->update([
-      'd_status' => '배송 준비중'
-    ]);
-    return redirect('/sellermyorderlist');
-  }
+  // public function payment_status(Request $request){
+  //   $pm_no = $request->input()
+  //
+  //   DB::table('payment')->where('pm_no',$pm_no)
+  //   ->update(['pm_status' => '결제 완료']);
+  //
+  //   DB::table('delivery')->update([
+  //     'd_status' => '결제 완료'
+  //   ]);
+  //
+  //   return response()->json($pm_no);
+  //   // return redirect('/sellermyorderlist');
+  // }
   //배송정보 입력
   public function delivery_status(Request $request){
+    $invoice = $request->input('invoice_num');
+    $delivery = $request->get('delivery');
+
     DB::table('delivery')->update([
+      'd_invoice_num' => $invoice,
+      'd_company' => $delivery,
       'd_status' => '배송중'
     ]);
-    return redirect('/sellermyorderlist');
+    //return redirect('/sellermyorderlist');
   }
 
 }
