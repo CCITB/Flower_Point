@@ -264,21 +264,15 @@
         </style>
         <table class="myreview" border="1" width=100%>
           <tr>
-            <th>상품평</th>
+            <th>상품명</th>
             <th>후기</th>
           </tr>
+          @foreach ($my as $re)
           <tr>
-            <th>a</th>
-            <td>b</td>
+            <th>{{$re->p_name}}</th>
+            <td>{{$re->r_contents}}</td>
           </tr>
-          <tr>
-            <th>c</th>
-            <td>d</td>
-          </tr>
-          <tr>
-            <th>e</th>
-            <td>f</td>
-          </tr>
+          @endforeach
         </table>
       </table>
     </div>

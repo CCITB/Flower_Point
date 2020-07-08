@@ -75,448 +75,444 @@
           <div class="left">
             <div class="countinfo">수량</div>
             <div class="realcount">
-              <input type="hidden" id="originprice" name="originprice" value="{{$protb->p_price}}">
-              <button type="button" class="counts" id="minus{{$protb->p_no}}" name="button" value="-" onclick="decrease({{$protb->p_no}});">
-                <img class="countimg1" src="/imglib/remove.png" alt="">
-              </button>
-              <input class="count-plmi" type="text" name="amount{{$protb->p_no}}" onchange="change();" readonly id="pdcount" value="{{$protb->p_count}}">
-              <button type="button" class="counts" id="plus{{$protb->p_no}}"name="button" value="+" onclick="increase({{$protb->p_no}});">
-                <img class="countimg2" src="/imglib/add.png" alt="">
-              </button>
-            </div>
-          </div>
-          <div class="order_bt">
-            <button class="order" type="button" id="btn1">담기</button>
-            <button class="order" type="button" id="btn2">주문</button>
-          </div>
-        </div>
-
-
-        <div class="pd_pay">
-          <div class="total_price_text">
-            총 금액
-          </div>
-          <div class="total_price">
-            <span>{{number_format($protb->p_price)}}<input type="text" id="sums" name="sum" size="11" readonly></span>
-            <span>원</span>
-          </div>
+              {{-- <input type="hidden" id="originprice" name="originprice" value="{{$protb->p_price}}">
+              <button type="button" class="counts" id="minus{{$protb->p_no}}" name="button1" value="-" onclick="decrease({{$protb->p_no}});">
+              <img class="countimg1" src="/imglib/remove.png" alt="">
+            </button>
+            <input class="count-plmi" type="text" name="amount{{$protb->p_no}}" onchange="change();" readonly id="pdcount{{$protb->p_no}}" value="1">
+            <button type="button" class="counts" id="plus{{$protb->p_no}}" name="button2" value="+" onclick="increase({{$protb->p_no}});">
+            <img class="countimg2" src="/imglib/add.png" alt="">
+          </button> --}}
+          <button type="button" class="counts" id="minus" name="button1" value="-">
+            <img class="countimg1" src="/imglib/remove.png" alt="">
+          </button>
+          <input class="count-plmi" type="text" name="amount{{$protb->p_no}}" onchange="change();" readonly id="pdcount" value="1">
+          <button type="button" class="counts" id="plus" name="button2" value="+">
+            <img class="countimg2" src="/imglib/add.png" alt="">
+          </button>
         </div>
       </div>
-
-
-
-      <div class="detail_tabs">
-        <ul class="tab_table" role="tablist">
-          <li class="detail_tab" role="presentation">
-            <a class="detail_tab_link" role="tab" aria-selected="false" href="#dtil">상세정보</a>
-          </li>
-          <li class="purchase_review_tab" role="presentation">
-            <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#revw">리뷰</a>
-          </li>
-          <li class="qna_tab" role="presentation">
-            <a class="qna_tab_link" role="tab" aria-selected="false" href="#que">문의하기</a>
-          </li>
-          <li class="claim_info_tab" role="presentation">
-            <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#clm">반품/교환정보</a>
-          </li>
-        </ul>
+      <div class="order_bt">
+        <button class="order" type="button" id="btn1">담기</button>
+        <button class="order" type="button" id="btn2">주문</button>
       </div>
+    </div>
 
 
-      <div class = "pd_detail"> <!-- 상품설명 디테일 -->
-        <div class="pd_detail_title">
-          <h3 class="blind" id="dtil">상품리뷰</h3>
-          {!!$protb->p_contents!!}
-        </div>
+    <div class="pd_pay">
+      <div class="total_price_text">
+        총 금액
       </div>
+      <div class="total_price">
+        <input type="hidden" id="sums" value="{{$protb->p_price}}">
+        <span id="p_show">{{number_format($protb->p_price)}}</span>
+        <span>원</span>
+      </div>
+    </div>
+  </div>
 
 
-      <div class="reviews">
-        <div class="review_title">
-          <h3 class="title_detail">
-            <em class="anchor" id="revw"></em>
-            상품 리뷰
-          </h3>
-          <p class ="revw_introduction">
-            상품을 구매하신 분들이 작성한 리뷰입니다.
-          </p>
-        </div>
-        <div class="review_list">
-          <ul>
-            @foreach ($review as $rev)
-              <li class="user_review">
-                <div class="review_one">
-                  <div class="review_cell">
-                    <div class="user_profile">
-                      <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+  <div class="detail_tabs">
+    <ul class="tab_table" role="tablist">
+      <li class="detail_tab" role="presentation">
+        <a class="detail_tab_link" role="tab" aria-selected="false" href="#dtil">상세정보</a>
+      </li>
+      <li class="purchase_review_tab" role="presentation">
+        <a class="purchase_review_tab_link" role="tab" aria-selected="true" href="#revw">리뷰</a>
+      </li>
+      <li class="qna_tab" role="presentation">
+        <a class="qna_tab_link" role="tab" aria-selected="false" href="#que">문의하기</a>
+      </li>
+      <li class="claim_info_tab" role="presentation">
+        <a class="claim_info_tab_link" role="tab" aria-selected="false" href="#clm">반품/교환정보</a>
+      </li>
+    </ul>
+  </div>
 
-                    </div>
-                    <div class="review_text">
-                      <div class="star_small">
-                        <span name="rate1" class="hi" id="st1" value="1">★</span>
-                        <span name="rate2" class="hi" id="st2" value="2">★</span>
-                        <span name="rate3" class="hi" id="st3" value="3">★</span>
-                        <span name="rate4" class="hi" id="st4" value="4">★</span>
-                        <span name="rate5" class="hi" id="st5" value="5">★</span>
-                      </div>
-                      <div class="status_user">
-                        <span class="text_info">{{$rev->c_name}}</span>
-                        <span class="text_info">{{$rev->r_date}}</span>
-                        <span class ="text_info_option">{{$rev->p_name}}</span>
-                      </div>
-                      <div class="user_write">
-                        <span class="writing">{{$rev->r_contents}}</span>
-                      </div>
-                      <a href="#">더보기</a>
-                    </div>
-                  </div>
 
-                  <div class="review_image">
-                    이미지
-                  </div>
-                  <div class="review_good">
-                    <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}">{{$rev->r_good}}</span></button>
-                  </div>
+  <div class = "pd_detail"> <!-- 상품설명 디테일 -->
+    <div class="pd_detail_title">
+      <h3 class="blind" id="dtil">상품리뷰</h3>
+      {!!$protb->p_contents!!}
+    </div>
+  </div>
+
+
+  <div class="reviews">
+    <div class="review_title">
+      <h3 class="title_detail">
+        <em class="anchor" id="revw"></em>
+        상품 리뷰
+      </h3>
+      <p class ="revw_introduction">
+        상품을 구매하신 분들이 작성한 리뷰입니다.
+      </p>
+    </div>
+    <div class="review_list">
+      <ul>
+        @foreach ($review as $rev)
+          <li class="user_review">
+            <div class="review_one">
+              <div class="review_cell">
+                <div class="user_profile">
+                  <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
+
                 </div>
-              </li>
-            @endforeach
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="pd_qna">
-        <div class="qna_title">
-          <h3 class="qna_title_detail">
-            <em class="anchor" id="que"></em>
-            문의하기
-          </h3>
-        </div>
-        <table class="qna-table">
-          <tr>
-            <th>번호</th>
-            <th>답변상태</th>
-            <th>제목</th>
-            <th>문의자</th>
-            <th>작성일</th>
-            @if(auth()->guard('seller')->user())
-              @foreach ($SellerAllInfor as $sel)
-                @if($sel->p_no == $protb->p_no )
-                  <th></th>
-                @endif
-              @endforeach
-            @endif
-          </tr>
-          @foreach ($qnaq as $qna)
-            @if(! (auth()->guard('customer')->user()) || !(auth()->guard('customer')->user()))
-              @if($qna->q_state == '공개')
-                <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                @else
-                  <tr onclick="fake1()" class="qna_q">
-                  @endif
-
-                @elseif($cno = auth()->guard('customer')->user()->c_no)
-                  @if($qna->customer_no == $cno)
-                    <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                    @elseif($qna->q_state == '공개')
-                      <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                      @elseif($qna->q_state == '비공개')
-                        <tr onclick="fake1()" class="qna_q">
-                        @endif
-                      @endif
-
-                      @if(auth()->guard('seller')->user())
-                        @foreach ($SellerAllInfor as $sel)
-                          @if($sel->p_no == $protb->p_no )
-                            <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                            @endif
-                          @endforeach
-                        @endif
-
-                        <td class="qna-index">{{$qna->q_no}}</td>
-                        <td class="qna-condition">{{$qna->an_state}}</td>
-                        <td class="qna-content">{{$qna->q_title}} <span class="status">{{$qna->q_state}}</span></td>
-                        <td class="qna-writer">{{$qna->c_name}}</td>
-                        <td class="qna-date">{{$qna->q_date}}</td>
-                        @if(auth()->guard('seller')->user())
-                          @if($sel->p_no == $protb->p_no )
-                            @if(isset($qna->a_no))
-                              <td> 답변완료</td>
-                            @else
-                              <td> <a  style="font-size:10px;" onclick="openan({{$qna->q_no}})">답변하기</a> </td>
-                            @endif
-                          @endif
-                        @endif
-                      </tr>
-                      <tr id="answer{{$qna->q_no}}" class="qna_an">
-                        <td colspan="5">
-                          <div class="con">
-                            <div class="qcon">Q. {{$qna->q_contents}}</div>
-                            <div class="acon"><br>
-                              A. {{$qna->a_answer}}
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    @endforeach
-                  </table>
-                  {{ $qnaq ->links()}}
-
-                  <div class="qna-product-btn">
-                    @if(auth()->guard('customer')->user())
-                      <button type="submit" name="button" class="product-question-btn" onclick="openqna({{$protb->p_no}})">상품 문의하기</button>
-                    @elseif(auth()->guard('seller')->user())
-
-                    @else
-                      <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
-                    @endif
+                <div class="review_text">
+                  <div class="star_small">
+                    <span name="rate1" class="hi" id="st1" value="1">★</span>
+                    <span name="rate2" class="hi" id="st2" value="2">★</span>
+                    <span name="rate3" class="hi" id="st3" value="3">★</span>
+                    <span name="rate4" class="hi" id="st4" value="4">★</span>
+                    <span name="rate5" class="hi" id="st5" value="5">★</span>
                   </div>
-                </div>
-
-                <div class="pd_component">
-                  <div class="comp_title">
-                    <h3 class="comp_title_detail">
-                      <em class="anchor" id="clm"></em>
-                      반품/교환정보
-                    </h3>
+                  <div class="status_user">
+                    <span class="text_info">{{$rev->c_name}}</span>
+                    <span class="text_info">{{$rev->r_date}}</span>
+                    <span class ="text_info_option">{{$rev->p_name}}</span>
                   </div>
-                  <h4>교환 및 환불</h4>
-                  - 생화상품의 경우 한 번 잘라지면 다시 사용할 수 없는 꽃의 특성상 제작완료시 변심으로 인한 교환 및 취소 불가
-                  <br> - 상품 불량 및 파손, 오배송 등은 교환 및 반품 가능
-                  <br> - 상품 출고시 취소 및 환불 불가 <br><br><br>
+                  <div class="user_write">
+                    <span class="writing">{{$rev->r_contents}}</span>
+                  </div>
+                  <a href="#">더보기</a>
                 </div>
               </div>
-            @endforeach
-            <form class="" id="Pro" action="/order/" method="get" name="Pro">
-              <input type="hidden" name="Pro" value="">
-            </form>
-            @include('lib.footer')
-          </body>
 
-          <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-          <script type="text/javascript">
+              <div class="review_image">
+                이미지
+              </div>
+              <div class="review_good">
+                <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}">{{$rev->r_good}}</span></button>
+              </div>
+            </div>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+  </div>
 
-          var sell_price;
-          var amount;
 
-          function init () {
-          	sell_price = $('#originprice').val();
-          	amount = $('#pdcount').val();
-          	$('#sums').val() = sell_price;
-          	change();
+  <div class="pd_qna">
+    <div class="qna_title">
+      <h3 class="qna_title_detail">
+        <em class="anchor" id="que"></em>
+        문의하기
+      </h3>
+    </div>
+    <table class="qna-table">
+      <tr>
+        <th>번호</th>
+        <th>답변상태</th>
+        <th>제목</th>
+        <th>문의자</th>
+        <th>작성일</th>
+        @if(auth()->guard('seller')->user())
+          @foreach ($SellerAllInfor as $sel)
+            @if($sel->p_no == $protb->p_no )
+              <th></th>
+            @endif
+          @endforeach
+        @endif
+      </tr>
+      @foreach ($qnaq as $qna)
+        @if(! (auth()->guard('customer')->user()) || !(auth()->guard('customer')->user()))
+          @if($qna->q_state == '공개')
+            <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+            @else
+              <tr onclick="fake1()" class="qna_q">
+              @endif
+
+            @elseif($cno = auth()->guard('customer')->user()->c_no)
+              @if($qna->customer_no == $cno)
+                <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+                @elseif($qna->q_state == '공개')
+                  <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+                  @elseif($qna->q_state == '비공개')
+                    <tr onclick="fake1()" class="qna_q">
+                    @endif
+                  @endif
+
+                  @if(auth()->guard('seller')->user())
+                    @foreach ($SellerAllInfor as $sel)
+                      @if($sel->p_no == $protb->p_no )
+                        <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
+                        @endif
+                      @endforeach
+                    @endif
+
+                    <td class="qna-index">{{$qna->q_no}}</td>
+                    <td class="qna-condition">{{$qna->an_state}}</td>
+                    <td class="qna-content">{{$qna->q_title}} <span class="status">{{$qna->q_state}}</span></td>
+                    <td class="qna-writer">{{$qna->c_name}}</td>
+                    <td class="qna-date">{{$qna->q_date}}</td>
+                    @if(auth()->guard('seller')->user())
+                      @if($sel->p_no == $protb->p_no )
+                        @if(isset($qna->a_no))
+                          <td> 답변완료</td>
+                        @else
+                          <td> <a  style="font-size:10px;" onclick="openan({{$qna->q_no}})">답변하기</a> </td>
+                        @endif
+                      @endif
+                    @endif
+                  </tr>
+                  <tr id="answer{{$qna->q_no}}" class="qna_an">
+                    <td colspan="5">
+                      <div class="con">
+                        <div class="qcon">Q. {{$qna->q_contents}}</div>
+                        <div class="acon"><br>
+                          A. {{$qna->a_answer}}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
+              </table>
+              {{ $qnaq ->links()}}
+
+              <div class="qna-product-btn">
+                @if(auth()->guard('customer')->user())
+                  <button type="submit" name="button" class="product-question-btn" onclick="openqna({{$protb->p_no}})">상품 문의하기</button>
+                @elseif(auth()->guard('seller')->user())
+
+                @else
+                  <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
+                @endif
+              </div>
+            </div>
+
+            <div class="pd_component">
+              <div class="comp_title">
+                <h3 class="comp_title_detail">
+                  <em class="anchor" id="clm"></em>
+                  반품/교환정보
+                </h3>
+              </div>
+              <h4>교환 및 환불</h4>
+              - 생화상품의 경우 한 번 잘라지면 다시 사용할 수 없는 꽃의 특성상 제작완료시 변심으로 인한 교환 및 취소 불가
+              <br> - 상품 불량 및 파손, 오배송 등은 교환 및 반품 가능
+              <br> - 상품 출고시 취소 및 환불 불가 <br><br><br>
+            </div>
+          </div>
+        @endforeach
+        <form class="" id="Pro" action="/order/" method="get" name="Pro">
+          <input type="hidden" name="Pro" value="">
+        </form>
+        @include('lib.footer')
+      </body>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script type="text/javascript">
+
+      $(function(){
+        var total = 0;
+        $('#minus').click(function(e){
+          e.preventDefault();
+          var price = $('#sums').val(); //가격
+          var stat = $('#pdcount').val(); //카운트 value값
+          var num = parseInt(stat,10); // 카운트 값을 10진수 정수로 나타냄
+          num--; //하나 낮추고
+          if(num<=0){ //0보다 작으면 1
+            alert('최소 주문 수량입니다.');
+            num =1;
           }
+          $('#pdcount').val(num);
+          total = price * num; // 최종 금액 = 원래금액 x 카운트 value값
+          com = Number(total).toLocaleString('en'); //최종금액에 영어권국가의 숫자표기방식을 따름
+          $('#p_show').text(com); // 최종 금액을 화면에 보여줌
+          console.log(total);
+        });
+        $('#plus').click(function(e){
+          e.preventDefault();
+          var price = $('#sums').val();
+          var stat = $('#pdcount').val();
+          var num = parseInt(stat,10);
+          num++;
 
-          function increase () {
-          	hm = $('#pdcount').val();
-          	sum = $('#sums').val();
-          	hm ++ ;
-
-          	sum = parseInt(hm) * sell_price;
+          if(num>99){
+            alert('더이상 주문할 수 없습니다.');
+            num=99;
           }
+          $('#pdcount').val(num);
+          total = price * num;
+          com = Number(total).toLocaleString('en');
+          $('#p_show').text(com);
+          console.log(total);
+        });
+      });
 
-          function decrease () {
-          	hm = $('#pdcount').val();
-          	sum = $('#sums').val();
-          		if (hm > 1) {
-          			hm -- ;
-          			sum = parseInt(hm) * sell_price;
-          		}
-          }
-
-          function change () {
-          	hm = $('#pdcount').val();
-          	sum = $('#sums').val();
-
-          		if (hm < 0) {
-          			hm = 0;
-          		}
-          	sum = parseInt(hm) * sell_price;
-          }
-
-
-
-
-
-          // function decrease(n){
-          //
-          //   var minus = $('#count'+n);
-          //   if(minus.value <=1){
-          //     console.log(minus.value);
-          //     return false;
-          //   }
-          //   minus.value = parseInt(minus.value) + 1;
-          //   console.log(minus.value);
-          //   c = minus.value;
-          //   $.ajax({
-          //     type: 'post',
-          //     url: '/pd_count',
-          //     dataType: 'json',
-          //     data: { "p_no" : n,
-          //     "co" : c
-          //   },
-          //   success: function(data) {
-          //     console.log(data);
-          //     window["orderprice"+a]=AddComma(data[0]*data[1]+data[2]);
-          //     window["productprice"+a]=AddComma(data[0]*data[1]);
-          //     window["deliveryprice"+a]=AddComma(data[2]);
-          //     orderprice = data[0]*(data[1]+data[2]);
-          //     productprice = data[0]*data[1];
-          //     deliveryprice = data[0]*data[2];
-          //     if(!$('#checkf'+a).is(":checked")){
-          //       console.log('notcheck');
-          //       return false;
-          //     }
-          //     else
-          //     console.log(orderprice);
-          //     console.log(productprice);
-          //     console.log(deliveryprice);
-          //     console.log('---경계선---');
-          //     console.log(window["productprice"+a]);
-          //     document.getElementById("productprice"+a).innerHTML=AddComma(window["productprice"+a]);
-          //     document.getElementById("deliveryprice"+a).innerHTML=AddComma(window["deliveryprice"+a]);
-          //     document.getElementById("allsum"+a).innerHTML=AddComma(window["orderprice"+a]);
-          //     dd=1;
-          //     autoprice(data[0],data[1],data[2],dd);
-          //     //data[0]=수량
-          //     //data[1]=상품가격
-          //     //data[2]=배송비
-          //   },
-          //   error: function(data) {
-          //     console.log("error" +data);
-          //   }
-          // });
-          // }
+      // var sell_price;
+      // var amount;
+      // var one = 1;
+      // var count = 1;
+      //
+      // function init () {
+      //   sell_price = $('#originprice').val(); //상품 가격
+      //   console.log(sell_price);
+      //
+      //   amount = $('#pdcount').val(); //카운트 개수
+      //   console.log(amount);
+      //
+      //   $('#sums').val() = sell_price; //최종가격
+      //   change();
+      // }
+      //
+      // function increase (num) {
+      //   hm = $('#pdcount'+num).val(); //카운트 개수
+      //   sum = $('#sums').val();
+      //   hm ++;
+      //
+      //   console.log(hm);
+      //   // sum = parseInt(hm) * sell_price;
+      // }
+      //
+      // function decrease (num) {
+      //   hm = $('#pdcount'+num).val();
+      //   sum = $('#sums').val();
+      //   if (hm > 1) {
+      //     hm = hm-one;
+      //     console.log(hm);
+      //     sum = parseInt(hm) * sell_price;
+      //   }
+      // }
+      //
+      // function change () {
+      //   hm = $('#pdcount').val();
+      //   sum = $('#sums').val();
+      //
+      //   if (hm < 0) {
+      //     hm = 0;
+      //   }
+      //   sum = parseInt(hm) * sell_price;
+      // }
 
 
+      var openWin;
+      function openqna(qno)
+      {
+        // window.name = "부모창 이름";
+        window.name = "parentForm";
+        // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+        openWin = window.open("/Qnawrite"+qno,
+        "childqna", "width=700px, height=800px, left=50px, top=50px ");
+      }
+      function openan(qno)
+      {
+        // window.name = "부모창 이름";
+        window.name = "parentForm";
+        // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+        openWin = window.open("/Qnaanswer"+qno,
+        "childqna", "width=700px, height=800px, left=50px, top=50px ");
+      }
+
+      //문의하기 클릭
+      function pd_qna(num) {
+
+        if($("#answer"+num).hasClass("qna_an_show")){
+          $("#answer"+num).removeClass("qna_an_show");
+        }
+        else
+        {
+          $(".qna_an").removeClass("qna_an_show");
+          $("#answer"+num).addClass("qna_an_show");
+        }
+      }
+      // 문의하기 비 로그인시
+      function fake(){
+        alert('로그인이 필요한 서비스입니다.');
+      }
+
+      function fake1(){
+        alert('비밀글은 작성자만 조회할 수 있습니다.');
+      }
 
 
-          var openWin;
-          function openqna(qno)
-          {
-            // window.name = "부모창 이름";
-            window.name = "parentForm";
-            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-            openWin = window.open("/Qnawrite"+qno,
-            "childqna", "width=700px, height=800px, left=50px, top=50px ");
-          }
-          function openan(qno)
-          {
-            // window.name = "부모창 이름";
-            window.name = "parentForm";
-            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-            openWin = window.open("/Qnaanswer"+qno,
-            "childqna", "width=700px, height=800px, left=50px, top=50px ");
-          }
+      // 리뷰 좋아요 버튼
+      function pd_good(r_no){
 
-          //문의하기 클릭
-          function pd_qna(num) {
+        var g_bt = $('#good'+r_no);
+        console.log(g_bt);
 
-            if($("#answer"+num).hasClass("qna_an_show")){
-              $("#answer"+num).removeClass("qna_an_show");
+        $.ajax({
+          type: 'post',
+          url: '/rev_count',
+          dataType: 'json',
+          data: { 'num' : r_no },
+
+          success: function(data) {
+            if (data == 1){
+              console.log(data);
+              // $('#count'+r_no).text('1');
+
             }
-            else
-            {
-              $(".qna_an").removeClass("qna_an_show");
-              $("#answer"+num).addClass("qna_an_show");
+
+          },
+          error: function(data) {
+            console.log("error" +data);
+            alert("잘못된 요청입니다.")
+          }
+        });
+      }
+
+      $( ".up input" ).click(function() {
+        var state = $('input:radio[name=state]:checked').val();
+        console.log(state);
+      });
+      //곽승지
+      //장바구니에 상품추가 함수
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      var jjim =  {{$protb->p_no}};
+
+      $('#btn1').click(function() {
+        // var id = $("#hidden1").val();
+        console.log(1);
+        $.ajax({
+          type: 'post',
+          url: '/basketstore',
+          dataType: 'json',
+          data: { "id" : jjim },
+          // console.log(jjim);
+          success: function(data) {
+            console.log(data);
+            if(data==1){
+              alert("판매자는 이용할 수 없습니다.");
+              return false;
             }
-          }
-          // 문의하기 비 로그인시
-          function fake(){
-            alert('로그인이 필요한 서비스입니다.');
-          }
-
-          function fake1(){
-            alert('비밀글은 작성자만 조회할 수 있습니다.');
-          }
-
-
-          // 리뷰 좋아요 버튼
-          function pd_good(r_no){
-
-            var g_bt = $('#good'+r_no);
-            console.log(g_bt);
-
-            $.ajax({
-              type: 'post',
-              url: '/rev_count',
-              dataType: 'json',
-              data: { 'num' : r_no },
-
-              success: function(data) {
-                if (data == 1){
-                  console.log(data);
-                  // $('#count'+r_no).text('1');
-
-                }
-
-              },
-              error: function(data) {
-                console.log("error" +data);
-                alert("잘못된 요청입니다.")
+            if(data==0){
+              var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+              if(logincheck){
+                location.href = "/login_customer"
               }
-            });
-          }
-
-          $( ".up input" ).click(function() {
-            var state = $('input:radio[name=state]:checked').val();
-            console.log(state);
-          });
-          //곽승지
-          //장바구니에 상품추가 함수
-          $.ajaxSetup({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-          var jjim =  {{$protb->p_no}};
-
-          $('#btn1').click(function() {
-            // var id = $("#hidden1").val();
-            console.log(1);
-            $.ajax({
-              type: 'post',
-              url: '/basketstore',
-              dataType: 'json',
-              data: { "id" : jjim },
-              // console.log(jjim);
-              success: function(data) {
-                console.log(data);
-                if(data==1){
-                  alert("판매자는 이용할 수 없습니다.");
-                  return false;
-                }
-                if(data==0){
-                  var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-                  if(logincheck){
-                    location.href = "/login_customer"
-                  }
-                  else{
-                    return false;
-                  }
-                }
-                else {
-                  var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-                  if (basketalert) {
-                    location.href = "/flowercart"
-                  }
-                  else {
-
-                  }
-                }
-
-                console.log(data);
-              },
-              error: function(data) {
-                console.log("error" +data);
-                alert("잘못된 요청입니다.")
+              else{
+                return false;
               }
-            });
-          });
-          $('#btn2').click(function(){
-            var bb = {{$protb->p_no}};
-            console.log($('input[name=Pro]').val(bb));
-            // location.href = '/order/'+Pro;
-            document.Pro.submit();
-          });
-          </script>
-          </html>
+            }
+            else {
+              var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+              if (basketalert) {
+                location.href = "/flowercart"
+              }
+              else {
+
+              }
+            }
+
+            console.log(data);
+          },
+          error: function(data) {
+            console.log("error" +data);
+            alert("잘못된 요청입니다.")
+          }
+        });
+      });
+      $('#btn2').click(function(){
+        var bb = {{$protb->p_no}};
+        console.log($('input[name=Pro]').val(bb));
+        // location.href = '/order/'+Pro;
+        document.Pro.submit();
+      });
+      </script>
+      </html>

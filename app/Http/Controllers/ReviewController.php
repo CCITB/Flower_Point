@@ -46,4 +46,18 @@ class ReviewController extends Controller
     return response()->json(1);
   }
 
+  public function myreview(){
+
+    $cno = auth()->guard('customer')->user()->c_no;
+
+    $my = DB::table('customer')->where('c_no',$cno)
+    ->join('review', 'customer.c_no','=','review.customer_no')
+    ->join('product', 'review.product_no','=','product.p_no')
+    ->get();
+    return $my;
+
+    return view('mypage/c_mypage',compact('my'));
+
+  }
+
 }
