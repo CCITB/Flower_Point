@@ -122,6 +122,23 @@ class ProductController extends Controller
     return view('Buy_information', compact('productinfor','qnaq', 'store','review','SellerAllInfor'));
   }
 
+  // public function pd_count(Request $re){
+  //
+  //   $pno = $re->input('p_no');
+  //
+  //   $count = DB::table('product')->where('p_no',$pno)->get();
+  //   $present = $count[0]->p_count;
+  //   $minus = $present - 1;
+  //
+  //   DB::table('product')->where('p_no',$pno)->update([
+  //     'p_count' => $minus
+  //   ]);
+  //
+  //   return response()->json(1);
+  //
+  // }
+
+
   // 상품 수정하기 박소현
   public function pd_modify(Request $request, $id){
 

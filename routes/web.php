@@ -167,6 +167,8 @@ Route::post('store_star/{id}', 'ProductController@store_star');
 
 Route::get('/product/{id}', 'ProductController@productpage');
 
+// Route::post('/pd_count', 'ProductController@pd_count');
+
 Route::get('/Qnawrite{id}', 'ProductController@pd_info');
 
 Route::get('/pd_qna{id}','ProductController@pd_qna');
