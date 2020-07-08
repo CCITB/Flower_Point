@@ -240,7 +240,12 @@ class InformationController extends Controller
             ->join('payment','customer.c_no','payment.customer_no')
             ->join('delivery','payment.delivery_no','=','delivery.d_no')
             ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
-            return view('mypage/c_mypage',compact('data','data2'));
+
+            $my = DB::table('customer')
+            ->join('review', 'customer.c_no', '=', 'review.customer_no')
+            ->join('product', 'review.product_no','=','product.p_no')
+            ->where('c_no', $customerprimary)->get();
+            return view('mypage/c_mypage',compact('data','data2','my'));
     }
     else{
     return view('login/login_customer');

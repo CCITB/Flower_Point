@@ -340,51 +340,6 @@
         });
       });
 
-      // var sell_price;
-      // var amount;
-      // var one = 1;
-      // var count = 1;
-      //
-      // function init () {
-      //   sell_price = $('#originprice').val(); //상품 가격
-      //   console.log(sell_price);
-      //
-      //   amount = $('#pdcount').val(); //카운트 개수
-      //   console.log(amount);
-      //
-      //   $('#sums').val() = sell_price; //최종가격
-      //   change();
-      // }
-      //
-      // function increase (num) {
-      //   hm = $('#pdcount'+num).val(); //카운트 개수
-      //   sum = $('#sums').val();
-      //   hm ++;
-      //
-      //   console.log(hm);
-      //   // sum = parseInt(hm) * sell_price;
-      // }
-      //
-      // function decrease (num) {
-      //   hm = $('#pdcount'+num).val();
-      //   sum = $('#sums').val();
-      //   if (hm > 1) {
-      //     hm = hm-one;
-      //     console.log(hm);
-      //     sum = parseInt(hm) * sell_price;
-      //   }
-      // }
-      //
-      // function change () {
-      //   hm = $('#pdcount').val();
-      //   sum = $('#sums').val();
-      //
-      //   if (hm < 0) {
-      //     hm = 0;
-      //   }
-      //   sum = parseInt(hm) * sell_price;
-      // }
-
 
       var openWin;
       function openqna(qno)
