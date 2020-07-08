@@ -155,6 +155,7 @@ Route::get('/customer_shop', function () {
 // });
 Route::get('/myqna','InformationController@myqna');
 
+Route::get('/seller_qna','QnAController@seller_qna');
 // Route::get('/postlist', function () {
 //   return view('post_list');
 // });
@@ -202,7 +203,9 @@ Route::post('star2/{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
+Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/order/{name?}', 'PaymentController@payment');
+});
 
 Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 
@@ -229,59 +232,14 @@ Route::get('/favorite/{id}', 'ProductController@favorite');
 
 Route::post('/favorite_store/{id}', 'InformationController@favorite_store');
 
-Route::get('/mypage', function(){
-    if($sellerinfo = auth()->guard('seller')->user()){
-      // return 0;
-      $sellerprimary = $sellerinfo->s_no;
-          $sellerstore = DB::table('seller')
-          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-          ->where('s_no','=', $sellerprimary )->get();
+Route::get('/s_mypage', 'InformationController@s_mypage');
 
-          return view('mypage/mypage', compact('sellerstore'));
-
-}
-else{
-return view('login/login_seller');
-}
-
-});
-
-Route::get('/c_mypage', function (){
-  if($customerinfo = auth()->guard('customer')->user()){
-    $customerprimary = $customerinfo->c_no;
-    // return $sellerprimary;
-        $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
-        ->where('c_no','=',$customerprimary)->get();
-
-        return view('mypage/c_mypage',compact('data'));
-}
-else{
-return view('login/login_customer');
-}
-
-});
+Route::get('/c_mypage', 'InformationController@c_mypage');
 
 
 
 
-Route::get('/shop', function(){
-  if($sellerinfo = auth()->guard('seller')->user()){
-    $sellerprimary = $sellerinfo->s_no;
-    // return $sellerprimary;
-        $data = DB::table('seller')
-        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-        ->where('s_no','=', $sellerprimary )->get();
-        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(5);
-        $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
-        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
-        $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
-
-        return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
-  }
-  else{
-return view('login/login_seller');
-  }
-});
+Route::get('/shop', 'InformationController@shop');
 
 Route::post('/registration', 'InformationController@registration');
 

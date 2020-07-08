@@ -5,6 +5,7 @@
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" type="text/css" href="/css/orderlist.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -19,7 +20,7 @@
     <div class="myorderlist">
       <div class="myorderlist-top">
         <div class="myorderlist-infor">
-          <!-- <table> 보류중
+          <!--<table> 보류중
           <tr>
           <td rowspan="3" class="orderpicture">사진</td>
           <td class="orderblink">입금대기</td>
@@ -57,36 +58,43 @@
       <td>건</td>
     </tr>
   </table> -->
-  <div class="sellerorderlist">
-    <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
+  @if(count($order))
+    <div class="sellerorderlist">
+      <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
       <div class="orderlist-bottom">
         <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
         <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
       </div>
+
+      <!--button에 따라 action값 변경 -->
       <form class="order_list" id="order_list" action="" method="post">
         @csrf
+
         <table id="myTable"name="">
-          <tr>
-            <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-            <th class="title">상품 주문번호</th>
-            <th class="title">상품번호</th>
-            <th class="title">상품명</th>
-            <th class="title">송장번호</th>
-            <th class="title">택배사</th>
-            <!-- <th class="title">발송일</th> -->
-            <th class="title">주문일시</th>
-            <th class="title">고객명</th>
-            <th class="title">가격</th>
-            <th class="title">결제상태</th>
-            <th class="title">배송상태</th>
-            <!-- <th class="title"></th> -->
-          </tr>
-          @foreach ($order as $order)
+          <thead>
             <tr>
-              <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-              <td><input type="text" class="num" id="order_no" name="" value=""></td>
+              <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+              <th class="title">주문번호</th>
+              <th class="title">상품번호</th>
+              <th class="title">상품명</th>
+              <th class="title">송장번호</th>
+              <th class="title">택배사</th>
+              <!-- <th class="title">발송일</th> -->
+              <th class="title">주문일시</th>
+              <th class="title">고객명</th>
+              <th class="title">가격</th>
+              <th class="title">결제상태</th>
+              <th class="title">배송상태</th>
+              <!-- <th class="title"></th> -->
+            </tr>
+          </thead>
+          @foreach ($order as $order)
+            <tbody>
+            <tr>
+              <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""></td>
+              <td>{{$order->pm_no}}</td>
               <td>{{$order->p_no}}</td>
-              <td>{{$order->p_name}}</td>
+              <td id="p_name">{{$order->p_name}}</td>
               <td><input type="text" class="num" id="invoice_num" name="" value=""></td>
               <td><select id="bank" name=bank margin-left:10px;>
                 <option value="">택배사를 선택해주세요</option>
@@ -107,14 +115,21 @@
               <td>{{$order->pm_pay}}</td>
               <td>{{$order->pm_status}}</td>
               <td>{{$order->d_status}}</td>
-            <!-- <td><button type="submit" name="button">저장</button></td> -->
-          </tr>
-        @endforeach
+              <!-- <td><button type="submit" name="button">저장</button></td> -->
+            </tr>
+          @endforeach
+          </tbody>
         </table>
       </form>
-  <!-- </form> -->
-  </div>
-
+      <!-- </form> -->
+    </div>
+  @else
+    <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+      <div class="" style="top:180px; position:absolute; left:300px; ">
+        주문목록이 없습니다.
+      </div>
+    </div>
+  @endif
 </div>
 </div>
 </div>
@@ -123,9 +138,29 @@
 </body>
 </html>
 
-
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script>
-var selectAll = document.querySelector("#th_checkAll");
+$(document).ready(function(){
+  $("#myTable").DataTable({
+    "language": {
+      "emptyTable": "데이터가 없습니다.",
+      "lengthMenu": "페이지당 MENU 개씩 보기",
+      "info": "현재 START - END /  TOTAL건",
+      "infoEmpty": "데이터 없음",
+      "infoFiltered": "(전체  MAX건의 데이터에서 필터링됨 )",
+      "search": "검색",
+      "zeroRecords": "일치하는 데이터가 없습니다.",
+      "loadingRecords": "로딩중...",
+      "processing":     "잠시만 기다려 주세요...",
+      "paginate": { "next": "다음", "previous": "이전"  }
+    }
+  });
+});
+</script>
+<script>
+var selectAll = document.querySelector("#th_checkAll");+
+
 selectAll.addEventListener('click', function(){
   var objs = document.querySelectorAll(".checkf");
   for (var i = 0; i < objs.length; i++) {
@@ -148,10 +183,10 @@ for(var i=0; i<objs.length ; i++){
 }
 
 $('#check').click(function () {
-    $('#order_list').attr("action", "/payment_status");
+  $('#order_list').attr("action", "/payment_status");
 });
 $('#send').click(function () {
-    $('#order_list').attr("action", "/delivery_status");
+  $('#order_list').attr("action", "/delivery_status");
 });
 
 </script>

@@ -142,7 +142,7 @@
                     <td class="upload-date">{{$data3->p_date}}</td>
                     <td class="upload-name" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
                     <td class="upload-price">{{$data3->p_price}}</td>
-                    <td></td>
+                    <td>{{$data3->pm_count}}</td>
                     <td>
                       <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
                         @csrf
@@ -160,7 +160,6 @@
               </tbody>
             </table>
             <div>
-              {{ $proro->links()}}
             </div>
           </div>
         </div>

@@ -47,6 +47,13 @@ class LoginController extends Controller
     }
     //정경진
     publiC function check_login(Request $request){
+      if(auth()->guard('seller')->check()){
+        return redirect('/');
+      }
+      if(auth()->guard('customer')->check()){
+        return redirect('/');
+      }
+      else
       $input_id = $request->get('input_id');
       $input_pw = $request->get('input_pw');
 
@@ -63,6 +70,13 @@ class LoginController extends Controller
     }
 
     publiC function check_sellerlogin(Request $request){
+      if(auth()->guard('seller')->check()){
+        return redirect('/');
+      }
+      if(auth()->guard('customer')->check()){
+        return redirect('/');
+      }
+      else
         $input_id = $request->get('input_id');  //뷰에서 보내준 input_id라는 key값을 $input_id라는 변수로 선언
         $input_pw = $request->get('input_pw');
 

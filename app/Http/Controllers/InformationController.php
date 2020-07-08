@@ -193,7 +193,7 @@ class InformationController extends Controller
 
         return view('myQna', ['myqn' => $myqna]);
       } else{
-        return view('login/login_customer');
+        return redirect('/login_customer');
       }
     }
 
@@ -211,6 +211,56 @@ class InformationController extends Controller
             return view('image_popup' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
       }
     }
+    public function shop(){
+      if($sellerinfo = auth()->guard('seller')->user()){
+        $sellerprimary = $sellerinfo->s_no;
+        // return $sellerprimary;
+            $data = DB::table('seller')
+            ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+            ->where('s_no','=', $sellerprimary )->get();
+            $proro = DB::table('product')->join('payment','payment.product_no','product.p_no')
+            ->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
+            $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
+            $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
+            $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
 
+            return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
+      }
+      else{
+    return view('login/login_seller');
+      }
+    }
+    public function c_mypage(){
+      if($customerinfo = auth()->guard('customer')->user()){
+        $customerprimary = $customerinfo->c_no;
+        // return $sellerprimary;
+            $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
+            ->where('c_no','=',$customerprimary)->get();
+            $data2 = DB::table('customer')->join('payment','customer.c_no','payment.customer_no')
+            ->join('delivery','customer.c_no','=','delivery.customer_no')
+            ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
+            return view('mypage/c_mypage',compact('data','data2'));
+    }
+    else{
+    return view('login/login_customer');
+    }
+
+    }
+    public function s_mypage(){
+        if($sellerinfo = auth()->guard('seller')->user()){
+          // return 0;
+          $sellerprimary = $sellerinfo->s_no;
+              $sellerstore = DB::table('seller')
+              ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+              ->where('s_no','=', $sellerprimary )->get();
+
+              return view('mypage/s_mypage', compact('sellerstore'));
+
+    }
+    else{
+    return view('login/login_seller');
+    }
+
+    }
 
 }
