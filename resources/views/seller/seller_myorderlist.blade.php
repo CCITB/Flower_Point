@@ -224,7 +224,7 @@ function form_check(){
       checkbox_list.push(pm_no);
 
       for(var i=0; i<checkbox_list.length; i++){
-      console.log(checkbox_list[i]);
+        console.log(checkbox_list[i]);
         console.log($('#ordercheck'+checkbox_list[i]));
 
         //선택되어 있으면 배열에 값을 저장함
