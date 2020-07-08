@@ -129,6 +129,7 @@ class PaymentController extends Controller
           'delivery_no' => $deliverytable[0]->d_no,
           'product_no' => $proarray[$i][0]->product_no,
           'created_at' => $now->format('yy-m-d H:i:s'),
+          'pm_date' =>  $today = date("Ymd")
         ]);
         $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
       }
@@ -148,6 +149,7 @@ class PaymentController extends Controller
       'delivery_no' => $deliverytable[0]->d_no,
       'product_no' => $product_no[0],
       'created_at' => $now->format('yy-m-d H:i:s'),
+      'pm_date' =>  $today = date("Ymd")
     ]);
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
     // return 0;

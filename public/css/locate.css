@@ -155,6 +155,7 @@ table.table1{
 }
 
 table.order{
+  border: 0;
   text-align: center;
 }
 #modinum{

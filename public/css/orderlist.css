@@ -52,7 +52,6 @@ button.ordercheck{
 
 table{
   border-collapse: collapse;
-  display: inline-block;
   width: 100%;
   font-size: 14px;
 }

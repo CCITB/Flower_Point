@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>꽃갈피</title>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
   <link rel="stylesheet" href="/css/shop.css">
@@ -215,37 +216,34 @@
 
       <div class="tablespace3">
         <h4 align="left">나의 주문 현황</h4>
-
-        {{-- <table class="myorder" table border="0">
-          <tr>
-            <td>기간별조회</td>
-            <td><button class="period">1주일</button></td>
-            <td><button class="period">1개월</button></td>
-            <td><button class="period">3개월</button></td>
-            <td><input type="date"></td>
-            <td><button>조회</button></td>
-          </tr>
-        </table> --}}
         @if(count($data2))
-        <table class="order" border="1" width="100%">
+        <table class="order" border="0" width="100%">
+          <thead>
           <tr>
+            <th>상품이미지</th>
+            <th>주문날짜</th>
             <th>주문번호</th>
             <th>상품명</th>
             <th>구매금액</th>
             <th>주문처리상태</th>
             <th></th>
           </tr>
-
-          @foreach ($data2 as $data2)
+        </thead>
+        <tbody>
+        @foreach ($data2 as $data2)
             <tr>
-              <td>1</td>
+              <td><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></td>
+              <td>{{$data2->pm_date}}</td>
+              <td>{{$data2->pm_no}}</td>
               <td>{{$data2->p_name}}</td>
               <td>{{$data2->pm_pay}}</td>
               <td>{{$data2->pm_status}}</td>
               <td><input type="button" value="구매후기" onclick="show_popup()"></td>
             </tr>
           @endforeach
+        </tbody>
         </table>
+        
       @else
         <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
           <div class="" style="top:180px; position:absolute; left:300px; ">
@@ -260,7 +258,7 @@
         <style media="screen">
         table.order,table.myreview{
           width: 100%;
-          border: 1px solid #444444;
+          border: 0 solid #444444;
           border-collapse: collapse;
         }
         </style>
@@ -288,8 +286,27 @@
 </div>
 
 @include('lib.footer')
-
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
+
+$(document).ready(function(){
+  $(".order").DataTable({
+    "language": {
+      "emptyTable": "데이터가 없습니다.",
+      "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+      "info": "현재 _START_ - _END_ / _TOTAL_건",
+      "infoEmpty": "데이터 없음",
+      "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
+      "search": "검색",
+      "zeroRecords": "일치하는 데이터가 없습니다.",
+      "loadingRecords": "로딩중...",
+      "processing":     "잠시만 기다려 주세요...",
+      "paginate": { "next": "다음", "previous": "이전"  }
+    }
+  });
+});
+
 function pw_checkform(){
   var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
   // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
