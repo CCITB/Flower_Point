@@ -237,13 +237,13 @@
               <td>{{$data2->pm_no}}</td>
               <td>{{$data2->p_name}}</td>
               <td>{{$data2->pm_pay}}</td>
-              <td>{{$data2->pm_status}}</td>
+              <td>{{$data2->d_status}}</td>
               <td><input type="button" value="구매후기" onclick="show_popup()"></td>
             </tr>
           @endforeach
         </tbody>
         </table>
-        
+
       @else
         <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
           <div class="" style="top:180px; position:absolute; left:300px; ">
