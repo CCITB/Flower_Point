@@ -12,7 +12,7 @@ class OrderlistController extends Controller
   //[seller] 나의 주문관리 -- 정경진
   public function orderlist(Request $request){
     if($sellerinfo = auth()->guard('seller')->user()){
-     $sellerprimary = $sellerinfo->s_no;
+    $sellerprimary = $sellerinfo->s_no;
     $order = DB::table('payment')
     ->join('delivery','payment.delivery_no','=','delivery.d_no')
     ->join('product','payment.product_no','=','product.p_no')
@@ -21,6 +21,9 @@ class OrderlistController extends Controller
     ->join('seller','store.seller_no','seller.s_no')
     ->select('*','payment.created_at')->where('s_no','=', $sellerprimary)->orderBy('pm_no', 'asc')->get();
       return view('seller/seller_myorderlist',compact('order'));
+    }
+    else{
+      return view('login/login_seller');
     }
   }
   //결제상태 변경

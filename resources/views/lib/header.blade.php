@@ -84,14 +84,14 @@
           <a href="/faq">고객센터</a>
         @if(auth()->guard('seller')->user())
             <ul class="submenu_list">
-              <li class="submenu"><a href="/myqna">문의관리</a></li>
+              <li class="submenu"><a href="/seller_qna">문의관리</a></li>
             </ul>
-            <ul class="submenu_list">
+            {{-- <ul class="submenu_list">
               <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
             </ul>
             <ul class="submenu_list">
               <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-            </ul>
+            </ul> --}}
           </li>
         @elseif(auth()->guard('customer')->user())
 

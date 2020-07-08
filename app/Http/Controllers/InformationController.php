@@ -218,7 +218,8 @@ class InformationController extends Controller
             $data = DB::table('seller')
             ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
             ->where('s_no','=', $sellerprimary )->get();
-            $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(5);
+            $proro = DB::table('product')->join('payment','payment.product_no','product.p_no')
+            ->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
             $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
             $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
             $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();

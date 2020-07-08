@@ -155,6 +155,7 @@ Route::get('/customer_shop', function () {
 // });
 Route::get('/myqna','InformationController@myqna');
 
+Route::get('/seller_qna','QnAController@seller_qna');
 // Route::get('/postlist', function () {
 //   return view('post_list');
 // });
@@ -166,6 +167,8 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::post('store_star/{id}', 'ProductController@store_star');
 
 Route::get('/product/{id}', 'ProductController@productpage');
+
+// Route::post('/pd_count', 'ProductController@pd_count');
 
 Route::get('/Qnawrite{id}', 'ProductController@pd_info');
 
@@ -200,7 +203,9 @@ Route::post('star2/{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
+Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/order/{name?}', 'PaymentController@payment');
+});
 
 Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 

@@ -1,5 +1,9 @@
 div.myoderlist-wrap{
+<<<<<<< HEAD
   height:50em;
+=======
+  margin-bottom: 30px;
+>>>>>>> a4ff33476307131d753356f621fb4bda31574091
 }
 input#invoice_num{
   width:100px;
