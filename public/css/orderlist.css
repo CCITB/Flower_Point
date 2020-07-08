@@ -1,5 +1,5 @@
 div.myoderlist-wrap{
-  height:20em;
+  height:40em;
 }
 input.num{
 }
@@ -45,7 +45,7 @@ button.ordercheck{
   width: 1130px;
   margin: 0 auto;
   padding: 0 30px;
-  border: 5px solid pink;
+  /* border: 5px solid pink; */
 }
 
 table{
@@ -73,4 +73,8 @@ th.title{
   font-weight: normal;
   border-top: 1px solid gray;
   width : 60px;
+}
+
+td#p_name{
+  width: 20em;
 }

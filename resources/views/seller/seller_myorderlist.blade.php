@@ -63,12 +63,15 @@
         <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
         <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
       </div>
+
+      <!--button에 따라 action값 변경 -->
       <form class="order_list" id="order_list" action="" method="post">
         @csrf
+
         <table id="myTable"name="">
           <tr>
             <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-            <th class="title">상품 주문번호</th>
+            <th class="title">주문번호</th>
             <th class="title">상품번호</th>
             <th class="title">상품명</th>
             <th class="title">송장번호</th>
@@ -83,10 +86,10 @@
           </tr>
           @foreach ($order as $order)
             <tr>
-              <td><input type="checkbox" class="checkf" name="checkRow" value=""></td>
-              <td><input type="text" class="num" id="order_no" name="" value=""></td>
+              <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""></td>
+              <td>{{$order->pm_no}}</td>
               <td>{{$order->p_no}}</td>
-              <td>{{$order->p_name}}</td>
+              <td id="p_name">{{$order->p_name}}</td>
               <td><input type="text" class="num" id="invoice_num" name="" value=""></td>
               <td><select id="bank" name=bank margin-left:10px;>
                 <option value="">택배사를 선택해주세요</option>
@@ -125,7 +128,8 @@
 
 
 <script>
-var selectAll = document.querySelector("#th_checkAll");
+var selectAll = document.querySelector("#th_checkAll");+
+
 selectAll.addEventListener('click', function(){
   var objs = document.querySelectorAll(".checkf");
   for (var i = 0; i < objs.length; i++) {
