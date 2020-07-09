@@ -21,61 +21,61 @@ class InformationController extends Controller
       's_phonenum'=>$s_tel
     ]);
 
-    return redirect('/mypage');
+    return redirect('/s_mypage');
   }
 
   //정경진
   //판매자 비밀번호변경
-    publiC function modipw(Request $request){
-      DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-        's_password'=>bcrypt($request->input('new_pw')),
-      ]);
+  publiC function modipw(Request $request){
+    DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+      's_password'=>bcrypt($request->input('new_pw')),
+    ]);
 
-      return redirect('/mypage');
+    return redirect('/s_mypage');
+  }
+  //정경진
+  //판매자 이메일 변경
+  publiC function modifyemail(Request $request){
+    DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
+      's_email'=>$request->input('new_email'),
+    ]);
+
+    return redirect('/s_mypage');
+  }
+
+  //정경진
+  //판매자 내꽃집가기 화면
+  publiC function storeinfo(Request $request){
+
+    if($sellerinfo = auth()->guard('seller')->user()){
+      $sellerprimary = $sellerinfo->s_no;
+      // return $sellerprimary;
+      $data = DB::table('seller')
+      ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+      ->where('s_no','=', $sellerprimary )->get();
+      $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
+      $introduce = DB::table('store')->where('st_no' ,'=' , $data[0]->st_no )->update(['st_introduce'=>$request->input('newintroduce')]);
+      return redirect('/shop');
     }
-    //정경진
-    //판매자 이메일 변경
-    publiC function modifyemail(Request $request){
-      DB::table('seller')->where(['s_no'=>auth()->guard('seller')->user()->s_no])->update([
-        's_email'=>$request->input('new_email'),
-      ]);
+  }
 
-      return redirect('/mypage');
+  //정경진
+  //판매자 가게주소변경
+  publiC function newaddress(Request $request){
+
+    if($sellerinfo = auth()->guard('seller')->user()){
+      $sellerprimary = $sellerinfo->s_no;
+      // return $sellerprimary;
+      $data = DB::table('seller')
+      ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+      ->where('s_no','=', $sellerprimary )->get();
+      $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->update(['a_post'=>$request->input('postcode'), 'a_address'=>$request->input('address'), 'a_extra'=>$request->input('extraAddress'), 'a_detail'=>$request->input('detailAddress')]);
+      return redirect('/shop');
     }
+  }
 
-    //정경진
-    //판매자 내꽃집가기 화면
-      publiC function storeinfo(Request $request){
-
-        if($sellerinfo = auth()->guard('seller')->user()){
-          $sellerprimary = $sellerinfo->s_no;
-          // return $sellerprimary;
-          $data = DB::table('seller')
-          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-          ->where('s_no','=', $sellerprimary )->get();
-          $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
-          $introduce = DB::table('store')->where('st_no' ,'=' , $data[0]->st_no )->update(['st_introduce'=>$request->input('newintroduce')]);
-          return redirect('/shop');
-        }
-      }
-
-      //정경진
-    //판매자 가게주소변경
-      publiC function newaddress(Request $request){
-
-        if($sellerinfo = auth()->guard('seller')->user()){
-          $sellerprimary = $sellerinfo->s_no;
-          // return $sellerprimary;
-          $data = DB::table('seller')
-          ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-          ->where('s_no','=', $sellerprimary )->get();
-          $store_address = DB::table('store_address')->where('st_no' ,'=', $data[0]->st_no)->update(['a_post'=>$request->input('postcode'), 'a_address'=>$request->input('address'), 'a_extra'=>$request->input('extraAddress'), 'a_detail'=>$request->input('detailAddress')]);
-          return redirect('/shop');
-        }
-      }
-
-//정경진
-//구매자 마이페이지에 들어가는 전화번호
+  //정경진
+  //구매자 마이페이지에 들어가는 전화번호
   publiC function c_information(Request $request){
     $c_tel1 = $request->input('phone_no1');
     $c_tel2 = $request->input('delivery_tel_no2');
@@ -90,8 +90,8 @@ class InformationController extends Controller
     return redirect('/c_mypage');
   }
 
-//정경진
-//구매자 비밀번호변경
+  //정경진
+  //구매자 비밀번호변경
   publiC function c_modipw(Request $request){
     DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
       'c_password'=>bcrypt($request->input('new_pw')),
@@ -99,8 +99,8 @@ class InformationController extends Controller
 
     return redirect('/c_mypage');
   }
-//정경진
-//구매자 이메일변경
+  //정경진
+  //구매자 이메일변경
   publiC function c_modifyemail(Request $request){
     DB::table('customer')->where(['c_no'=>auth()->guard('customer')->user()->c_no])->update([
       'c_email'=>$request->input('new_email'),
@@ -109,8 +109,8 @@ class InformationController extends Controller
     return redirect('/c_mypage');
 
   }
-//정경진
-//구매자가 보는 꽃집화면
+  //정경진
+  //구매자가 보는 꽃집화면
   publiC function c_storeinfo(Request $request){
 
     if($customerinfo = auth()->guard('customer')->user()){
@@ -123,7 +123,7 @@ class InformationController extends Controller
     }
   }
 
-//정경진
+  //정경진
   publiC function storepage($id){
     $shop = DB::table('store')->join('seller', 'store.seller_no', '=', 'seller.s_no')->
     select('*')->where('st_name', '=', $id)->get();
@@ -133,8 +133,8 @@ class InformationController extends Controller
     ->select('*')->where('st_name', '=', $id)->get();
     return view('myshop/shop_customer', compact('shop','shop_address','product'));
   }
-//정경진
-//꽃집 즐겨찾기 버튼 클릭시 일어나는일
+  //정경진
+  //꽃집 즐겨찾기 버튼 클릭시 일어나는일
   publiC function favorite_store($id){
     $favorite = DB::table('store')->where('st_no','=',$id)->get();
     $favorite_store = $favorite[0]->st_no;
@@ -200,21 +200,22 @@ class InformationController extends Controller
     public function image(Request $request){
       if($sellerinfo = auth()->guard('seller')->user()){
         $sellerprimary = $sellerinfo->s_no;
-            $data = DB::table('seller')
-            ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-            ->where('s_no','=', $sellerprimary )->get();
-            $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(2);
-            $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
-            $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
-            $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+        $proro = DB::table('product')->select('*')->where('store_no' ,'=', $data[0]->st_no)->paginate(2);
+        $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
+        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
+        $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
 
-            return view('image_popup' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
+        return view('image_popup' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
       }
     }
     public function shop(){
       if($sellerinfo = auth()->guard('seller')->user()){
         $sellerprimary = $sellerinfo->s_no;
         // return $sellerprimary;
+<<<<<<< HEAD
             $data = DB::table('seller')
             ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
             ->where('s_no','=', $sellerprimary )->get();
@@ -227,48 +228,83 @@ class InformationController extends Controller
             $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
 
             return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
+=======
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+        $proro = DB::table('product')->join('payment','payment.product_no','product.p_no')
+        ->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
+        $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
+        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
+        $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
+
+        return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
+>>>>>>> 7ea3a51b327c1cf295fdcb122dcc6ca8213af05b
       }
       else{
-    return view('login/login_seller');
+        return view('login/login_seller');
       }
     }
     public function c_mypage(){
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
         // return $sellerprimary;
-            $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
-            ->where('c_no','=',$customerprimary)->get();
-            $data2 = DB::table('customer')
-            ->join('payment','customer.c_no','payment.customer_no')
-            ->join('delivery','payment.delivery_no','=','delivery.d_no')
-            ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
+        $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
+        ->where('c_no','=',$customerprimary)->get();
+        $data2 = DB::table('customer')
+        ->join('payment','customer.c_no','payment.customer_no')
+        ->join('delivery','payment.delivery_no','=','delivery.d_no')
+        ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
 
-            $my = DB::table('customer')
-            ->join('review', 'customer.c_no', '=', 'review.customer_no')
-            ->join('product', 'review.product_no','=','product.p_no')
-            ->where('c_no', $customerprimary)->get();
-            return view('mypage/c_mypage',compact('data','data2','my'));
-    }
-    else{
-    return view('login/login_customer');
-    }
+
+        $my = DB::table('customer')
+        ->join('review', 'customer.c_no', '=', 'review.customer_no')
+        ->join('product', 'review.product_no','=','product.p_no')
+        ->where('c_no', $customerprimary)->get();
+        return view('mypage/c_mypage',compact('data','data2','my'));
+      }
+      else{
+        return view('login/login_customer');
+      }
 
     }
     public function s_mypage(){
-        if($sellerinfo = auth()->guard('seller')->user()){
-          // return 0;
-          $sellerprimary = $sellerinfo->s_no;
-              $sellerstore = DB::table('seller')
-              ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-              ->where('s_no','=', $sellerprimary )->get();
+      if($sellerinfo = auth()->guard('seller')->user()){
+        // return 0;
+        $sellerprimary = $sellerinfo->s_no;
+        $sellerstore = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
 
-              return view('mypage/s_mypage', compact('sellerstore'));
+        return view('mypage/s_mypage', compact('sellerstore'));
+
+      }
+      else{
+        return view('login/login_seller');
+      }
 
     }
-    else{
-    return view('login/login_seller');
-    }
 
+    publiC function check_password(Request $request){
+      if(auth()->guard('customer')->check()){
+        $userID = DB::table('customer')->where('c_no',auth()->guard('customer')->user()->c_no)->get();
+        if(!auth() ->guard('customer')->attempt(['c_id' => $userID[0]->c_id, 'password' => $request->input_password]))
+        {
+          return response()->json(0);
+        }
+        else{
+          return response()->json(1);
+        }
+      }
+      if(auth()->guard('seller')->check()){
+        $userID = DB::table('seller')->where('s_no',auth()->guard('seller')->user()->s_no)->get();
+        if(!auth() ->guard('seller')->attempt(['s_id' => $userID[0]->s_id, 'password' => $request->input_password]))
+        {
+          return response()->json(0);
+        }
+        else{
+          return response()->json(1);
+        }
+      }
     }
-
-}
+  }

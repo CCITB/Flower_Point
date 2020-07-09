@@ -67,6 +67,8 @@ function login_message(){
         $("#login_id").focus();
         return false;
   }
+
+
 if((b.value)==""){
   $('#login_check').text("Password를 입력해주세요.");
   $('#login_check').css('color', 'red');
@@ -77,7 +79,6 @@ if((b.value)==""){
 
   var login_id= $('#login_id').val(); //html에서 login_id라는 id값을 가진 태그를 가져와서 그태그에 쓰여있는값을 login_id라는 변수로 선언
   var login_pw= $('#login_pw').val(); //html에서 login_pw라는 id값을 가진 태그를 가져와서 그태그에 쓰여있는값을 login_pw라는 변수로 선언
-
   $.ajax({
 
     type: 'post',
@@ -89,7 +90,6 @@ if((b.value)==""){
     },
 
     success : function(data) {
-      console.log(data);
       if(data==0){
         $('#login_check').text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
         $('#login_check').css('color', 'red');

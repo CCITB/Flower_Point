@@ -24,100 +24,99 @@
           <span class="current-page">
             <i class="fas fa-gift fa-2x"></i>
             주문 완료</span>
+          </div>
         </div>
-      </div>
-      @if (isset($paymentID))
-        @foreach ($paymentID as $paymentID)
-          <div class="wrapping_complete">
-            <div class="order_result"><b>결제 정보</b>
-              <hr class="dotted_line">
+        @if (isset($paymentID))
+          @foreach ($paymentID as $paymentID)
+            <div class="wrapping_complete">
+              <div class="order_result"><b>결제 정보</b>
+                <hr class="dotted_line">
 
                 <div class="order_data">
                   <p class="order_label">입금 은행 : bank</p>
                   <p class="order_label">입금 계좌 : account number</p>
                   <p class="order_label">예금주 : name</p>
                 </div>
-            </div>
-            <br>
-            <div class="order_result"><b>주문 정보</b>
-              <hr class="dotted_line">
-              <div class="order_data">
-                <p class="order_label">주문번호 : {{$paymentID->pm_no}}</p>
-                <p class="order_label">상품명 : {{$paymentID->p_name}}</p>
-                <p class="order_label">결제금액 : {{$paymentID->pm_pay}}</p>
-              </div>
-            </div>
-          </div> <!--wrapping_complete-->
-        @endforeach
-      @elseif (isset($paymentIDarray))
-        {{-- @foreach ($paymentIDarray as $key => $value) --}}
-            <div class="wrapping_complete">
-              <div class="order_result"><b>결제 정보</b>
-                <hr class="dotted_line">
-
-                  <div class="order_data">
-                    <p class="order_label">입금 은행 : bank</p>
-                    <p class="order_label">입금 계좌 : account number</p>
-                    <p class="order_label">예금주 : name</p>
-                  </div>
               </div>
               <br>
               <div class="order_result"><b>주문 정보</b>
                 <hr class="dotted_line">
                 <div class="order_data">
-                  <p class="order_label">주문번호 : </p>
-                  <p class="order_label">상품명 :
-                    @foreach ($paymentIDarray as $paymentIDarray)
-                      <p>{{$paymentIDarray[0]->p_name}}</p>
-                    @endforeach
-                  </p>
-                  <p class="order_label">결제금액 : {{$pricesum}}</p>
+                  <p class="order_label">주문번호 : {{$paymentID->pm_no}}</p>
+                  <p class="order_label">상품명 : {{$paymentID->p_name}}</p>
+                  <p class="order_label">결제금액 : {{$paymentID->pm_pay}}</p>
                 </div>
               </div>
             </div> <!--wrapping_complete-->
-        {{-- @endforeach --}}
-      @else
-        <div class="order_data">
-          요청하신 페이지를 찾을 수 없습니다.
-        </div>
-      @endif
+          @endforeach
+        @elseif (isset($paymentIDarray))
+          {{-- @foreach ($paymentIDarray as $key => $value) --}}
+          <div class="wrapping_complete">
+            <div class="order_result"><b>결제 정보</b>
+              <hr class="dotted_line">
 
-    </div>
-    @include('lib.footer')
-    <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button>
-  </body>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script type="text/javascript">
-  // $(document).ready(function(){
-  //   console.log(1);
-  // console.log(setCookie('paymentcookie','','-1'));
-  //   console.log(getCookie('paymentcookie').length);
-  // });
-  // function getCookie(cookie_name) {
-  //   var x, y;
-  //   var val = document.cookie.split(';');
-  //
-  //   for (var i = 0; i < val.length; i++) {
-  //     x = val[i].substr(0, val[i].indexOf('='));
-  //     y = val[i].substr(val[i].indexOf('=') + 1);
-  //     x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-  //     if (x == cookie_name) {
-  //       return unescape(y); // unescape로 디코딩 후 값 리턴
-  //     }
-  //   }
-  // }
-  //
-  // function setCookie(cookie_name, value, days) {
-  //   var exdate = new Date();
-  //   exdate.setDate(exdate.getDate() + days);
-  //   // 설정 일수만큼 현재시간에 만료값으로 지정
-  //
-  //   var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-  //   document.cookie = cookie_name + '=' + cookie_value+';path=/';
-  // console.log(document.cookie);
-  // // $('input[name=token_payment]').val(document.cookie);
-  // // console.log($('input[name=token_payment]').val());
-  // }
-  </script>
-  </html>
+              <div class="order_data">
+                <p class="order_label">입금 은행 : bank</p>
+                <p class="order_label">입금 계좌 : account number</p>
+                <p class="order_label">예금주 : name</p>
+              </div>
+            </div>
+            <br>
+            <div class="order_result"><b>주문 정보</b>
+              <hr class="dotted_line">
+              <div class="order_data">
+                <p class="order_label">주문번호 : </p>
+                <p class="order_label">상품명 :
+                  @foreach ($paymentIDarray as $paymentIDarray)
+                    <p>{{$paymentIDarray[0]->p_name}}</p>
+                  @endforeach
+                </p>
+                <p class="order_label">결제금액 : {{$pricesum}}</p>
+              </div>
+            </div>
+          </div> <!--wrapping_complete-->
+          {{-- @endforeach --}}
+        @else
+          <div class="order_data">
+            요청하신 페이지를 찾을 수 없습니다.
+          </div>
+        @endif
+
+      </div>
+      @include('lib.footer')
+      <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button>
+    </body>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      console.log(1);
+      console.log(setCookie('paymentcookie',getCookie('paymentcookie'),'-1'));
+    });
+    function getCookie(cookie_name) {
+      var x, y;
+      var val = document.cookie.split(';');
+
+      for (var i = 0; i < val.length; i++) {
+        x = val[i].substr(0, val[i].indexOf('='));
+        y = val[i].substr(val[i].indexOf('=') + 1);
+        x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+        if (x == cookie_name) {
+          return unescape(y); // unescape로 디코딩 후 값 리턴
+        }
+      }
+    }
+
+    function setCookie(cookie_name, value, days) {
+      var exdate = new Date();
+      exdate.setDate(exdate.getDate() + days);
+      // 설정 일수만큼 현재시간에 만료값으로 지정
+
+      var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+      document.cookie = cookie_name + '=' + cookie_value+';path=/';
+      console.log(document.cookie);
+      // $('input[name=token_payment]').val(document.cookie);
+      // console.log($('input[name=token_payment]').val());
+    }
+    </script>
+    </html>

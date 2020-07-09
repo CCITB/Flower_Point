@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>꽃갈피</title>
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
@@ -35,20 +36,26 @@
             <tbody>
               <tr class="tr1">
                 <th class="th1">
-                  <div class="thcell">아이디</div>
+                  아이디
                 </th>
                 <td>
                   <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
                 </td>
               </tr>
 
-              <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
-                @csrf
+
+
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">비밀번호</div>
+                    비밀번호
                   </th>
                   <td>
+                    <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
+                      <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
+                      <div class="check_div" id="password_check" value=""></div>
+
+                      <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
+                        @csrf
                     <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                       <button type="submit" name="button">수정완료</button></p></div>
                     </div>
@@ -59,7 +66,7 @@
 
               <tr class="tr1">
                 <th class="th1">
-                  <div class="thcell">이름</div>
+                  이름
                 </th>
                 <td>
                   <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
@@ -69,7 +76,7 @@
                 @csrf
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">연락처</div>
+                    연락처
                   </th>
                   <td>
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
@@ -145,7 +152,7 @@
 
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">이메일</div>
+                    이메일
                   </th>
                   <td>
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
@@ -164,7 +171,7 @@
                 @foreach ($data as $a)
                   <tr class="tr1">
                     <th class="th1">
-                      <div class="thcell">주소</div>
+                      주소
                     </th>
                     <td>
                       <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
@@ -201,6 +208,9 @@
             </div>
           </form>
           <script type="text/javascript">
+
+
+
           function div_show(s,ss){
             if(s == "주소수정"){
               document.getElementById(ss).style.display="block";
@@ -232,10 +242,10 @@
         <tbody>
         @foreach ($data2 as $data2)
             <tr>
-              <td><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></td>
+              <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
               <td>{{$data2->pm_date}}</td>
-              <td>{{$data2->pm_no}}</td>
-              <td>{{$data2->p_name}}</td>
+              <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
+              <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
               <td>{{$data2->pm_pay}}</td>
               <td>{{$data2->d_status}}</td>
               <td><input type="button" value="구매후기" onclick="show_popup()"></td>
@@ -280,9 +290,54 @@
 </div>
 
 @include('lib.footer')
-<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+function check_password(){
+  var a = document.getElementById("origin_password");
+
+  if((a.value)==""){
+    $('#password_check').text("Password를 입력해주세요.");
+    $('#password_check').css('color', 'red');
+    $("#origin_password").focus();
+    $("#new_pw").attr("disabled", "disabled")
+    return false;
+  }
+
+  var origin_password = $('#origin_password').val();
+  $.ajax({
+
+    type: 'post',
+    url: 'check_pw',
+    dataType: 'json',
+    data:{
+      "input_password" : origin_password
+    },
+
+    success : function(data) {
+      if(data==0){
+        $('#password_check').text("Password가 일치하지 않습니다.");
+        $('#password_check').css('color', 'red');
+        $("#origin_password").focus();
+        $("#new_pw").attr("disabled", "disabled");
+      }
+      else if(data==1){
+        document.getElementById('password_check').style.display="none";
+        $("#new_pw").removeAttr("disabled");
+        $("#new_pw").focus();
+        $("#origin_password").attr("disabled", "disabled");
+      }
+    }
+    ,error : function()
+     {}
+  });
+}
 
 $(document).ready(function(){
   $(".order").DataTable({
