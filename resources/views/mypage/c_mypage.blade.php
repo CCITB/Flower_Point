@@ -58,6 +58,7 @@
                         @csrf
                     <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                       <button type="submit" name="button">수정완료</button></p></div>
+
                     </div>
                   </td>
                 </tr>

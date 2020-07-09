@@ -130,19 +130,16 @@
                     <th class="registration-date">날짜</th>
                     <th class="product-name">이름</th>
                     <th class="product-price">가격</th>
-                    <th class="product-amount">주문량</th>
                     <th class="product-modify">수정</th>
                     <th class="product-remove">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-
                 @foreach ($proro as $data3)
                   <tr>
                     <td class="upload-date">{{$data3->p_date}}</td>
                     <td class="upload-name" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
                     <td class="upload-price">{{$data3->p_price}}</td>
-                    <td>{{$data3->pm_count}}</td>
                     <td>
                       <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
                         @csrf
