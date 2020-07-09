@@ -89,10 +89,10 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-      console.log(document.cookie);
-      // console.log(setCookie('paymentcookie',getCookie('paymentcookie'),'-1'));
-    });
+    // $(document).ready(function(){
+    //   console.log(document.cookie);
+    //   console.log(setCookie('paymentcookie','','-1'));
+    // });
     // function getCookie(cookie_name) {
     //   var x, y;
     //   var val = document.cookie.split(';');
