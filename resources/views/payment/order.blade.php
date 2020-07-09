@@ -377,12 +377,15 @@ function getCookie(cookie_name) {
   }
 }
 $(document).ready(function(){
-setCookie('paymentcookie','game','1');
+  console.log(document.cookie);
+  // if(getCookie('paymentcookie')===document.cookie){
+  //   location.href='/';
+  // }
+setCookie('paymentcookie','','1');
+setCookie('paymentcookie',document.cookie,'1');
 console.log(getCookie('paymentcookie'));
 });
-if(getCookie('paymentcookie')===''){
-  location.href='/';
-}
+
 </script>
 <script type="text/javascript">
 function test(imageName) {
