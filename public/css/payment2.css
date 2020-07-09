@@ -233,19 +233,19 @@ input#inputtext{
   padding:5px;
 }
 
-input#address{
+input.address{
   width: 15em;
   height: 18px;
   padding:5px;
 }
 
-input#postcode{
+input.postcode{
   width: 5em;
   height: 2em;
   padding-left: 5px;
 }
 
-input#find_post{
+input.find_post{
   height: 30px;
   width:70px;
 }
@@ -296,7 +296,9 @@ hr.dotted_line{
   border:none;
   border-top : dotted 2px #dbdbdb;
 }
-
+label{
+  font-size: 15px;
+}
 div.wrapping_complete{
   position: relative;
   width:50%;

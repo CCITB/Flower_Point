@@ -10,8 +10,44 @@
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
   </div>
+  <input type="hidden" name="c_token" value="{{$token}}">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript">
+  // 결제페이지 쿠키
+  function setCookie(cookie_name, value, days) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + days);
+    // 설정 일수만큼 현재시간에 만료값으로 지정
+    var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+    document.cookie = cookie_name + '=' + cookie_value+';path=/';
+  }
+  function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+    for (var i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+      if (x == cookie_name) {
+        return unescape(y); // unescape로 디코딩 후 값 리턴
+      }
+    }
+  }
+  if(getCookie('paymentcookie')===$('input[name=c_token]').val()){
+    location.href='/';
+  }
+  $(document).ready(function(){
+    console.log(document.cookie);
+    console.log($('input[name=c_token]').val());
+    console.log(getCookie('paymentcookie'));
+
+  setCookie('paymentcookie','','1');
+  setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
+  console.log(getCookie('paymentcookie'));
+  });
+
+  </script>
 </head>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" type="text/javascript">
 </script>
@@ -53,7 +89,6 @@
                 {{-- <input type="hidden" name="token_payment" value=""> --}}
                 <input type="hidden" name="getarray" value="">
                 <input type="hidden" name="basketarray" value="">
-                <input type="hidden" name="c_token" value="{{$token}}">
                 <div class="delivery_wrap">
                   <strong class="info">수령인</strong>
                   <div class=delivery_input><input id="inputtext" type="text" name="recipient"></div>
@@ -100,21 +135,41 @@
                 <div id="divshow" style="display:none;">
                   <div class="delivery_wrap">
                     <div id="trade0">
-                      <label><input type="radio" name="trade" id="trade1"  value="최근배송지">최근배송지</label>
-                      <label><input type="radio" name="trade" id="trade2" value="새로운배송지">새로운배송지</label>
+                      <label><input type="radio" name="delivery" id="trade3" onclick="delivery_show(this.value,'delivery_wrap2');" checked="checked" value="기본배송지">기본배송지</label>
+                      <label><input type="radio" name="delivery" id="trade4" onclick="delivery_show(this.value,'delivery_wrap4');" value="최근배송지">최근배송지</label>
+                      <label><input type="radio" name="delivery" id="trade5" onclick="delivery_show(this.value,'delivery_wrap3');" value="신규배송지">신규배송지</label>
                     </div>
                     <strong class="info">주 소</strong>
                     <!-- 우편번호 -->
-                    <input type="text" id="postcode" placeholder="우편번호" name="postcode" readonly>
-                    <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+
                   </div>
                   <!--주소 -->
-                  <div class="delivery_wrap2">
-                    <input type="text"  id="address" placeholder="주소" name="address" readonly>
+                  <div class="delivery_wrap2" id="delivery_wrap2">
+                    <input type="text" class="postcode"  placeholder="우편번호"  readonly value="{{$useraddress[0]->a_post}}">
+                    <input type="button" class="find_post" value="우편번호"><br>
+                    <input type="text" class="address" placeholder="주소"  readonly value="{{$useraddress[0]->a_address}}">
 
+                    <div class="delivery_address_detail">
+                      <input type="text" class="delivery_address_list"  placeholder="상세주소"  readonly value="{{$useraddress[0]->a_detail}}">
+                      <input type="text" class="delivery_address_list"  placeholder="참고항목"  readonly value="{{$useraddress[0]->a_extra}}">
+                    </div>
+                  </div>
+                  <div class="delivery_wrap2" id="delivery_wrap3" style="display:none;">
+                    <input type="text" class="postcode" id="postcode" placeholder="우편번호" name="postcode" readonly>
+                    <input type="button" class="find_post" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+                    <input type="text" class="address" id="address" placeholder="주소" name="address" readonly>
                     <div class="delivery_address_detail">
                       <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" >
                       <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
+                    </div>
+                  </div>
+                  <div class="delivery_wrap2" id="delivery_wrap4" style="display:none;">
+                    <input type="text" class="postcode"  placeholder="우편번호"  readonly value="{{$latestaddress[0]->d_post}}">
+                    <input type="button" class="find_post"  value="우편번호"><br>
+                    <input type="text" class="address"  placeholder="주소"  readonly value="{{$latestaddress[0]->d_address}}">
+                    <div class="delivery_address_detail">
+                      <input type="text" class="delivery_address_list"  placeholder="상세주소" readonly value="{{$latestaddress[0]->d_detailaddress}}">
+                      <input type="text" class="delivery_address_list"  placeholder="참고항목" readonly value="{{$latestaddress[0]->d_extraaddress}}">
                     </div>
                   </div>
                   <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
@@ -266,8 +321,11 @@ function checkform(){
   var receiver = document.getElementById("inputtext");
   var middlenum = document.getElementById("delivery_tel_no2");
   var lastnum = document.getElementById("delivery_tel_no3");
-  var trade1 = document.getElementById("trade1")
-  var trade2 = document.getElementById("trade2")
+  var trade1 = document.getElementById("trade1");
+  var trade2 = document.getElementById("trade2");
+  var trade3 = document.getElementById("trade3");
+  var trade4 = document.getElementById("trade4");
+  var trade5 = document.getElementById("trade5");
   var address = document.getElementById("address");
   var detail_address = document.getElementById("detailAddress");
   var bank = document.getElementById("bank");
@@ -310,13 +368,21 @@ function checkform(){
   }
 
   if(trade2.checked){
-    if((address.value)==""){
-      alert('주소를 입력해주세요');
-      return false;
+    if(trade3.checked){
+      // 기본배송지
     }
-    else if((detail_address.value)==""){
-      alert('상세주소를 입력해주세요');
-      return false;
+    if(trade4.checked){
+      // 최근배송지
+    }
+    if(trade5.checked){
+      if((address.value)==""){
+        alert('주소를 입력해주세요');
+        return false;
+      }
+      else if((detail_address.value)==""){
+        alert('상세주소를 입력해주세요');
+        return false;
+      }
     }
 
   }
@@ -335,7 +401,27 @@ function div_show(s,ss){
     document.getElementById(ss).style.display="block";
   }
 }
-
+function delivery_show(s,ss){
+  if(s == "신규배송지"){
+    if(document.getElementById(ss).style.display=="none"){
+      document.getElementById(ss).style.display="block";
+      document.getElementById('delivery_wrap2').style.display="none";
+      document.getElementById('delivery_wrap4').style.display="none";
+    }
+  }
+  else if(s=="기본배송지"){
+    if(document.getElementById(ss).style.display=="none")
+    document.getElementById(ss).style.display="block"
+    document.getElementById('delivery_wrap3').style.display="none";
+    document.getElementById('delivery_wrap4').style.display="none";
+  }
+  else if(s=="최근배송지"){
+    if(document.getElementById(ss).style.display=="none")
+    document.getElementById(ss).style.display="block"
+    document.getElementById('delivery_wrap2').style.display="none";
+    document.getElementById('delivery_wrap3').style.display="none";
+  }
+}
 var getarray = [];
 var basketarray = [];
 for(i=0; i<$('.product_data').length; i++){
@@ -355,38 +441,6 @@ $('input[name=getarray]').val(JSON.stringify(getarray));
 $('input[name=basketarray]').val(JSON.stringify(basketarray));
 // console.log(getarray);
 
-// 결제페이지 쿠키
-
-function setCookie(cookie_name, value, days) {
-  var exdate = new Date();
-  exdate.setDate(exdate.getDate() + days);
-  // 설정 일수만큼 현재시간에 만료값으로 지정
-  var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-  document.cookie = cookie_name + '=' + cookie_value+';path=/';
-}
-function getCookie(cookie_name) {
-  var x, y;
-  var val = document.cookie.split(';');
-  for (var i = 0; i < val.length; i++) {
-    x = val[i].substr(0, val[i].indexOf('='));
-    y = val[i].substr(val[i].indexOf('=') + 1);
-    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-    if (x == cookie_name) {
-      return unescape(y); // unescape로 디코딩 후 값 리턴
-    }
-  }
-}
-$(document).ready(function(){
-  console.log(document.cookie);
-  console.log($('input[name=c_token]').val());
-  console.log(getCookie('paymentcookie'));
-  if(getCookie('paymentcookie')===$('input[name=c_token]').val()){
-    location.href='/';
-  }
-setCookie('paymentcookie','','1');
-setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
-console.log(getCookie('paymentcookie'));
-});
 
 </script>
 <script type="text/javascript">

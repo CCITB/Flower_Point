@@ -36,6 +36,7 @@ class PaymentController extends Controller
       $productsum = 0;
       // return print_r($dbdata[0]);
       // return $ididx[0];
+      // 장바구니에서 넘겼을때
       if(isset($ididx)){
         for($i = 0; $i<count($ididx); $i++){
           $data[] =  DB::table('basket')->where('b_no',$ididx[$i])->join('product','basket.product_no','=','product.p_no')->get();
@@ -44,19 +45,24 @@ class PaymentController extends Controller
           $productprice += $data[$i][0]->b_price*$data[$i][0]->b_count;
         }
         $user = auth()->guard('customer')->user();
-        return view('payment.order',compact('data','user','productprice','productdelivery','productsum','token'));
+        $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
+        $latestaddress[] = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
+        // return $latestaddress[0]->d_no;
+        return view('payment.order',compact('data','user','useraddress','latestaddress','productprice','productdelivery','productsum','token'));
       }
-
+      // 주문페이지에서 바로 주문하기 눌렀을때
       // return $data[0][0]->b_price*$data[0][0]->b_count;
       // return $data[0]->b_no;
       // return $productprice;
       $user = auth()->guard('customer')->user();
+      $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
+      $latestaddress[] = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
       $prodata = DB::table('product')->where('p_no',$proidx)->get();
       $productsum = $prodata[0]->p_title+$prodata[0]->p_price*$productcount;
       $productdelivery = $prodata[0]->p_title;
       $productprice = $prodata[0]->p_price*$productcount;
       // echo $prodata;
-      return view('payment.order',compact('user','productprice','productdelivery','productsum','prodata','token'));
+      return view('payment.order',compact('user','productprice','useraddress','latestaddress','productdelivery','productsum','prodata','token'));
 
     }
     else
@@ -72,11 +78,14 @@ class PaymentController extends Controller
     // else{
     //   return "<script>alert('요청이 실행중입니다!');</script>";
     // }
+    return $request->delivery;
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
     // 거래방법
     $request->input('trade');
+    // 배송지
+    $request->input('delivery');
     // 휴대폰 번호
     $customerphone1 = $request->input('phone_no1');
     $customerphone2 = $request->input('phone_no2');
@@ -100,17 +109,20 @@ class PaymentController extends Controller
     // return $basket_no;
     // return 0;
     //주문한 사람의 주소 저장
-    DB::table('delivery')->insert([
-      'd_name' => $recipient,
-      'd_post' => $postcode,
-      'd_address' => $address,
-      'd_detailaddress' => $detailAddress,
-      'd_extraaddress' => $extraAddress,
-      'd_phonenum' => $customerphone1.'-'.$customerphone2.'-'.$customerphone3,
-      'customer_no' => $customerprimary
-    ]);
+    if($request->delivery=='신규배송지'){
+      DB::table('delivery')->insert([
+        'd_name' => $recipient,
+        'd_post' => $postcode,
+        'd_address' => $address,
+        'd_detailaddress' => $detailAddress,
+        'd_extraaddress' => $extraAddress,
+        'd_phonenum' => $customerphone1.'-'.$customerphone2.'-'.$customerphone3,
+        'customer_no' => $customerprimary
+      ]);
+    }
+
     //delivery테이블에서 기본키를 가져오기위해 $deliverytable변수 선언
-    $deliverytable = DB::table('delivery')->where('customer_no',$customerprimary)->get();
+    $deliverytable[] = DB::table('delivery')->where('customer_no',$customerprimary)->orderBy('d_no','desc')->first();;
 
     //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
@@ -118,22 +130,39 @@ class PaymentController extends Controller
     if(isset($basket_no)){
       //반복문으로 여러상품 찾고 장바구니에서 선택한 물품을 제거
       // $data = [];
-      for($i=0; $i<count($basket_no);$i++){
-        $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
-        DB::table('basket')->where('b_no',$basket_no[$i])->delete();
-        //장바구니에서 제거한 물품을 payment테이블로 데이터 이전 deliver_no은 유저가 배송받는 주소가 매번 다를 수 있으므로 변수$deliverytable[0] 수정 필요함
-        $insertid[] = DB::table('payment')->insertGetid([
-          'pm_count' => $proarray[$i][0]->b_count,
-          'pm_pay' => $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery,
-          'customer_no' => $customerprimary,
-          'delivery_no' => $deliverytable[0]->d_no,
-          'product_no' => $proarray[$i][0]->product_no,
-          'created_at' => $now->format('yy-m-d H:i:s'),
-          'pm_date' =>  $today = date("Ymd")
-        ]);
-        $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
+      if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
+        for($i=0; $i<count($basket_no);$i++){
+          $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
+          DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $insertid[] = DB::table('payment')->insertGetid([
+            'pm_count' => $proarray[$i][0]->b_count,
+            'pm_pay' => $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery,
+            'customer_no' => $customerprimary,
+            'delivery_no' => $deliverytable[0]->d_no,
+            'product_no' => $proarray[$i][0]->product_no,
+            'created_at' => $now->format('yy-m-d H:i:s'),
+            'pm_date' =>  $today = date("Ymd")
+          ]);
+          $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
+        }
       }
-
+      elseif($request->delivery=='기본배송지'){
+        $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
+        for($i=0; $i<count($basket_no);$i++){
+          $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
+          DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $insertid[] = DB::table('payment')->insertGetid([
+            'pm_count' => $proarray[$i][0]->b_count,
+            'pm_pay' => $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery,
+            'customer_no' => $customerprimary,
+            'c_address_no' => $useraddress[0]->a_no,
+            'product_no' => $proarray[$i][0]->product_no,
+            'created_at' => $now->format('yy-m-d H:i:s'),
+            'pm_date' =>  $today = date("Ymd")
+          ]);
+          $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
+        }
+      }
       // return $proarray[1][0]->b_no;
       return Redirect::route('complete')->with('arraydata',$arraydata);
       // return $proarray;
