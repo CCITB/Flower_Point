@@ -2,8 +2,7 @@ div.tdcell{
   width: 200px;
   padding: 10px 0 10px 30px;
   margin: 0;
-  text-align: left;
-  border-right: 1px solid;
+  text-align: center;
 }
 
 div.tdcell2{
@@ -51,8 +50,7 @@ div.tdtd{
   width: 200px;
   padding: 10px 0 10px 30px;
   margin: 0;
-  text-align: left;
-  border-right: 1px solid;
+  text-align: center;
 }
 
 div#show{
@@ -67,13 +65,6 @@ div#show{
 
 table.table{
   width: 100%;
-  border: 1px solid;
   color: gray;
-  background-color: black;
   border-collapse: collapse;
-}
-
-div.privacy{
-  border-bottom: 2px solid;
-  border-right: : 1px solid;
 }

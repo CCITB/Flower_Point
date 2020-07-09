@@ -38,7 +38,7 @@
     <div id="block_container">
       <div id="header">
         <div id="block1">
-          <h1><a href="/">꽃갈피</a></h1>
+          <h1><a href="/" style="color:black">꽃갈피</a></h1>
         </div>
         <div id="block2">
           <form method="get" action="/search" class="headersearch">

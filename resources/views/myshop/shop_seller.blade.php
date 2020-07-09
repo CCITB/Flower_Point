@@ -61,7 +61,7 @@
                 <tr>
                   <th>주소</th>
                   @foreach ($store_address as $a)
-                    <td>({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
+                    <td><div class="thcell">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></div></td>
                   @endforeach
                 </tr>
               </form>

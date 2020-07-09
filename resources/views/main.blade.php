@@ -39,13 +39,13 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          <p class="star_rating">
+                          {{-- <p class="star_rating">
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
-                          </p>
+                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
@@ -82,13 +82,13 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          <p class="star_rating">
+                          {{-- <p class="star_rating">
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
-                          </p>
+                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
@@ -125,13 +125,13 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          <p class="star_rating">
+                          {{-- <p class="star_rating">
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
                             <a href="#" class="on">★</a>
-                          </p>
+                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
@@ -177,13 +177,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
@@ -207,13 +207,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
@@ -237,13 +237,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
@@ -267,13 +267,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
@@ -297,13 +297,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
@@ -327,13 +327,13 @@
               </div>
               <div class="image-in-container">
                 <div class="image-in-star">
-                  <p class="star_rating">
+                  {{-- <p class="star_rating">
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
                     <a href="#" class="on">★</a>
-                  </p>
+                  </p> --}}
                 </div>
                 <div class="image-in-bottom">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te

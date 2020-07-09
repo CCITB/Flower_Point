@@ -48,6 +48,10 @@ div.imgbox{
     position: relative;
 }
 
+div.tablespace3{
+  margin-bottom: 50px;
+}
+
 img.shopimg{
   width: 100%;
   height: 100%;
@@ -75,6 +79,7 @@ div.shopintro{
 
 #nadress{
   margin-left: 5%;
+  margin-bottom: 50px;
 }
 
 div.wrap3{
@@ -196,7 +201,7 @@ form.shop{
 }
 
 #postcode{
-  margin-left: 19px;
+  margin-left: 24px;
 }
 
 #complete1{
@@ -212,7 +217,7 @@ form.shop{
   margin-top: 1%;
 }
 #tablewrap{
-  width: 50%;
+  width: 55%;
 }
 
 #ad{
@@ -313,6 +318,7 @@ padding: 6px 0px;
 font-size: 12px;
 overflow: hidden;
 }
+
 
 /* jQuery 평점 구문 */
 .star_rating {font-size:0; letter-spacing:-4px;}

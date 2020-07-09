@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>꽃갈피</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
   <link rel="stylesheet" href="/css/shop.css">
@@ -28,7 +29,7 @@
 <div class="myinfo">
   <h4>내 정보</h4>
   <div class="privacy">
-    <table border="0" table class="table1" >
+    <table border="0" table class="table" >
 
       @if($seller = auth()->guard('seller')->user())
 
@@ -151,7 +152,7 @@
         </tbody>
       </table>
     @endif
-    @if(auth()->guard('seller')->user())
+    {{-- @if(auth()->guard('seller')->user())
       <div class="quickbuttonwrap">
         <div class="quickgroup"><a href="/locate1">
           <div class="quickbutton">
@@ -170,7 +171,7 @@
           </div>
         </div>
       </div>
-    @endif
+    @endif --}}
   </div>
 </div>
 @include('lib.footer')

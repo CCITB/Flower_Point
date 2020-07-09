@@ -262,7 +262,6 @@ class InformationController extends Controller
         ->where('s_no','=', $sellerprimary )->get();
 
         return view('mypage/s_mypage', compact('sellerstore'));
-
       }
       else{
         return view('login/login_seller');
