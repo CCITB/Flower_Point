@@ -357,32 +357,32 @@ $('input[name=basketarray]').val(JSON.stringify(basketarray));
 
 // 결제페이지 쿠키
 
-// function setCookie(cookie_name, value, days) {
-//   var exdate = new Date();
-//   exdate.setDate(exdate.getDate() + days);
-//   // 설정 일수만큼 현재시간에 만료값으로 지정
-//   var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-//   document.cookie = cookie_name + '=' + cookie_value+';path=/';
-// }
-// function getCookie(cookie_name) {
-//   var x, y;
-//   var val = document.cookie.split(';');
-//   for (var i = 0; i < val.length; i++) {
-//     x = val[i].substr(0, val[i].indexOf('='));
-//     y = val[i].substr(val[i].indexOf('=') + 1);
-//     x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-//     if (x == cookie_name) {
-//       return unescape(y); // unescape로 디코딩 후 값 리턴
-//     }
-//   }
-// }
-// $(document).ready(function(){
-// setCookie('paymentcookie','game','1');
-// console.log(getCookie('paymentcookie'));
-// });
-// if(getCookie('paymentcookie')===''){
-//   location.href='/';
-// }
+function setCookie(cookie_name, value, days) {
+  var exdate = new Date();
+  exdate.setDate(exdate.getDate() + days);
+  // 설정 일수만큼 현재시간에 만료값으로 지정
+  var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+  document.cookie = cookie_name + '=' + cookie_value+';path=/';
+}
+function getCookie(cookie_name) {
+  var x, y;
+  var val = document.cookie.split(';');
+  for (var i = 0; i < val.length; i++) {
+    x = val[i].substr(0, val[i].indexOf('='));
+    y = val[i].substr(val[i].indexOf('=') + 1);
+    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+    if (x == cookie_name) {
+      return unescape(y); // unescape로 디코딩 후 값 리턴
+    }
+  }
+}
+$(document).ready(function(){
+setCookie('paymentcookie','game','1');
+console.log(getCookie('paymentcookie'));
+});
+if(getCookie('paymentcookie')===''){
+  location.href='/';
+}
 </script>
 <script type="text/javascript">
 function test(imageName) {

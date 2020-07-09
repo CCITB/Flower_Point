@@ -304,6 +304,7 @@
             @endforeach
             <form class="" id="Pro" action="/order/" method="get" name="Pro">
               <input type="hidden" name="Pro" value="">
+              <input type="hidden" name="count" value="">
             </form>
             @include('lib.footer')
           </body>
@@ -436,7 +437,9 @@
               type: 'post',
               url: '/basketstore',
               dataType: 'json',
-              data: { "id" : jjim },
+              data: { "id" : jjim,
+            "count" : $('#pdcount').val()
+           },
               // console.log(jjim);
               success: function(data) {
                 console.log(data);
@@ -473,6 +476,7 @@
           });
           $('#btn2').click(function(){
             var bb = {{$protb->p_no}};
+            $('input[name=count]').val($('#pdcount').val());
             console.log($('input[name=Pro]').val(bb));
             // location.href = '/order/'+Pro;
             document.Pro.submit();

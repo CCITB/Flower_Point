@@ -18,7 +18,6 @@ class PaymentController extends Controller
       $token = str::random(32);
       // return session()->all();
       session()->put('c_token',$token);
-
       // return request()->cookie();
       // return 0;
       $dbdata = DB::table('customer')->get();
@@ -27,6 +26,7 @@ class PaymentController extends Controller
       $productnoidx = json_decode($request->input('productnoidx'));
       // 상품페이지에서 바로 주문을 눌렀을때 받는 상품테이블의 인덱스
       $proidx = $request->Pro;
+      $productcount = $request->count;
       // $aa = $request;
       // return $request;
 
@@ -52,9 +52,9 @@ class PaymentController extends Controller
       // return $productprice;
       $user = auth()->guard('customer')->user();
       $prodata = DB::table('product')->where('p_no',$proidx)->get();
-      $productsum = $prodata[0]->p_title+$prodata[0]->p_price;
+      $productsum = $prodata[0]->p_title+$prodata[0]->p_price*$productcount;
       $productdelivery = $prodata[0]->p_title;
-      $productprice = $prodata[0]->p_price;
+      $productprice = $prodata[0]->p_price*$productcount;
       // echo $prodata;
       return view('payment.order',compact('user','productprice','productdelivery','productsum','prodata','token'));
 

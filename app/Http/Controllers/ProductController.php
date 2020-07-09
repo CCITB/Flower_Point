@@ -359,6 +359,7 @@ class ProductController extends Controller
       public function basketstore(Request $request){
         // return response()->json(1);
         $data =  $request->input('id');
+        $count = $request->input('count');
         $pt = DB::table('product')->where('p_no',$data)->first();
 
         // return response()->json($test);
@@ -368,7 +369,7 @@ class ProductController extends Controller
           $test = DB::table('basket')->where('customer_no',$prikey)->where('product_no',$data)->get();
           if(count($test)>0){
             DB::table('basket')->where('product_no',$data)->update([
-              'b_count' => $test[0]->b_count+1
+              'b_count' => $test[0]->b_count+$count
             ]);
             return response()->json(11);
           }
@@ -378,7 +379,7 @@ class ProductController extends Controller
               'b_name' => $pt->p_name,
               'customer_no' => $prikey,
               'product_no' => $data,
-              'b_count' =>  1,
+              'b_count' =>  $count,
               'b_delivery' => $pt->p_title,
               'b_picture' => $pt->p_filename
             ]);
