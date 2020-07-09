@@ -206,38 +206,42 @@
         <th>제목</th>
         <th>문의자</th>
         <th>작성일</th>
-        @if(auth()->guard('seller')->user())
-          @foreach ($SellerAllInfor as $sel)
-            @if($sel->p_no == $protb->p_no )
+
+        @foreach ($SellerAllInfor as $qna)
+          @if($sno = auth()->guard('seller')->user())
+            @if($sno->s_no == $qna->s_no)
               <th></th>
             @endif
-          @endforeach
-        @endif
+          @endif
+        @endforeach
       </tr>
-      @foreach ($qnaq as $qna)
 
-        @if(auth()->guard('seller')->user())
-          @if($sel->p_no == $protb->p_no )
+
+      @foreach ($SellerAllInfor as $qna)
+        @if($cno = auth()->guard('customer')->user())
+          @if($cno->c_no == $qna->c_no)
             <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
             @else
               @if($qna->q_state == '공개')
                 <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                @else
+                @elseif($qna->q_state == '비공개')
                   <tr onclick="fake1()" class="qna_q">
                   @endif
                 @endif
 
-              @elseif(! (auth()->guard('customer')->user()) || !(auth()->guard('customer')->user()))
-                @if($qna->q_state == '공개')
+              @elseif($sno = auth()->guard('seller')->user())
+                @if($sno->s_no == $qna->s_no)
                   <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
                   @else
-                    <tr onclick="fake1()" class="qna_q">
-                    @endif
-
-                  @elseif($cno = auth()->guard('customer')->user()->c_no)
-                    @if($qna->customer_no == $cno)
+                    @if($qna->q_state == '공개')
                       <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
-                      @elseif($qna->q_state == '공개')
+                      @elseif($qna->q_state == '비공개')
+                        <tr onclick="fake1()" class="qna_q">
+                        @endif
+                      @endif
+
+                    @else
+                      @if($qna->q_state == '공개')
                         <tr onclick="pd_qna({{$qna->q_no}})" class="qna_q">
                         @elseif($qna->q_state == '비공개')
                           <tr onclick="fake1()" class="qna_q">
@@ -251,8 +255,8 @@
                         <td class="qna-content">{{$qna->q_title}} <span class="status">{{$qna->q_state}}</span></td>
                         <td class="qna-writer">{{$qna->c_name}}</td>
                         <td class="qna-date">{{$qna->q_date}}</td>
-                        @if(auth()->guard('seller')->user())
-                          @if($sel->p_no == $protb->p_no )
+                        @if($sno = auth()->guard('seller')->user())
+                          @if($sno->s_no == $qna->s_no)
                             @if(isset($qna->a_no))
                               <td> 답변완료</td>
                             @else
@@ -275,7 +279,6 @@
                       </tr>
                     @endforeach
                   </table>
-                  {{ $qnaq ->links()}}
 
                   <div class="qna-product-btn">
                     @if(auth()->guard('customer')->user())
@@ -438,48 +441,48 @@
               url: '/basketstore',
               dataType: 'json',
               data: { "id" : jjim,
-            "count" : $('#pdcount').val()
-           },
-              // console.log(jjim);
-              success: function(data) {
-                console.log(data);
-                if(data==1){
-                  alert("판매자는 이용할 수 없습니다.");
+              "count" : $('#pdcount').val()
+            },
+            // console.log(jjim);
+            success: function(data) {
+              console.log(data);
+              if(data==1){
+                alert("판매자는 이용할 수 없습니다.");
+                return false;
+              }
+              if(data==0){
+                var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+                if(logincheck){
+                  location.href = "/login_customer"
+                }
+                else{
                   return false;
                 }
-                if(data==0){
-                  var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-                  if(logincheck){
-                    location.href = "/login_customer"
-                  }
-                  else{
-                    return false;
-                  }
+              }
+              else {
+                var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+                if (basketalert) {
+                  location.href = "/flowercart"
                 }
                 else {
-                  var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-                  if (basketalert) {
-                    location.href = "/flowercart"
-                  }
-                  else {
 
-                  }
                 }
-
-                console.log(data);
-              },
-              error: function(data) {
-                console.log("error" +data);
-                alert("잘못된 요청입니다.")
               }
-            });
+
+              console.log(data);
+            },
+            error: function(data) {
+              console.log("error" +data);
+              alert("잘못된 요청입니다.")
+            }
           });
-          $('#btn2').click(function(){
-            var bb = {{$protb->p_no}};
-            $('input[name=count]').val($('#pdcount').val());
-            console.log($('input[name=Pro]').val(bb));
-            // location.href = '/order/'+Pro;
-            document.Pro.submit();
-          });
-          </script>
-          </html>
+        });
+        $('#btn2').click(function(){
+          var bb = {{$protb->p_no}};
+          $('input[name=count]').val($('#pdcount').val());
+          console.log($('input[name=Pro]').val(bb));
+          // location.href = '/order/'+Pro;
+          document.Pro.submit();
+        });
+        </script>
+        </html>

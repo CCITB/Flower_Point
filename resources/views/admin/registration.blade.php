@@ -10,13 +10,36 @@
   @foreach ($seller as $sel)
     <form action="/ad_confirm{{$sel->st_no}}" method="post">
       @csrf
-      <img class="img" id="reimg" src="/imglib/{{$sel->registration_img}}" alt="내가 올린 상품 사진">
+      @if(isset($sel->registration_img))
+        <img class="img" id="reimg" src="/imglib/{{$sel->registration_img}}">
+        @if($sel->registration_status == '미승인')
+          <input class="ad_bt" type="button" value="취소" onclick="self.close();" />
+          <input class="ad_bt" id="sub" type='submit' value="확인">
+        @else
+          <input class="ad_bt" type="button" value="닫기" onclick="self.close();" />
+        @endif
+      @else
+        등록된 사업자등록증이 없습니다.
+        <input class="ad_bt" type="button" value="닫기" onclick="self.close();" />
+      @endif
+
+      {{-- @else
+        등록된 사업자등록증이 없습니다.
+      @endif
       @if($sel->registration_status == '미승인')
-      <input class="ad_bt" type="button" value="취소" onclick="self.close();" />
-      <input class="ad_bt" id="sub" type='submit' value="확인">
-    @else
-      <input class="ad_bt" type="button" value="닫기" onclick="self.close();" />
-    @endif
+        <input class="ad_bt" type="button" value="취소" onclick="self.close();" />
+        <input class="ad_bt" id="sub" type='submit' value="확인">
+      @else
+        <input class="ad_bt" type="button" value="닫기" onclick="self.close();" />
+      @endif --}}
+
+
+
+
+
+
+
+
     </form>
   @endforeach
 
