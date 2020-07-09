@@ -36,7 +36,7 @@
             <tbody>
               <tr class="tr1">
                 <th class="th1">
-                  <div class="thcell">아이디</div>
+                  아이디
                 </th>
                 <td>
                   <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
@@ -47,7 +47,7 @@
 
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">비밀번호</div>
+                    비밀번호
                   </th>
                   <td>
                     <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
@@ -66,7 +66,7 @@
 
               <tr class="tr1">
                 <th class="th1">
-                  <div class="thcell">이름</div>
+                  이름
                 </th>
                 <td>
                   <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
@@ -76,7 +76,7 @@
                 @csrf
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">연락처</div>
+                    연락처
                   </th>
                   <td>
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
@@ -152,7 +152,7 @@
 
                 <tr class="tr1">
                   <th class="th1">
-                    <div class="thcell">이메일</div>
+                    이메일
                   </th>
                   <td>
                     <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
@@ -171,7 +171,7 @@
                 @foreach ($data as $a)
                   <tr class="tr1">
                     <th class="th1">
-                      <div class="thcell">주소</div>
+                      주소
                     </th>
                     <td>
                       <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
