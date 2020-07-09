@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use DateTime;
 class ProductController extends Controller
 {
   //곽승지
@@ -52,7 +53,7 @@ class ProductController extends Controller
 
   public function seller_product_register(Request $request)
   {
-
+    $now = new DateTime();
     // return $picture;
     $storeno = auth()->guard('seller')->user()->s_no;
     $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
@@ -72,7 +73,8 @@ class ProductController extends Controller
       'p_contents' => $request->input('ir1'),
       'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
-      'p_filename' =>$path
+      'p_filename' =>$path,
+      'created_at' =>$now->format('yy-m-d H:i:s')
     ]);
 
 
@@ -94,8 +96,10 @@ class ProductController extends Controller
     // $c_n = $qnaq[0]->customer_no;
     // return $c_n;
     $qnaq = DB::table('customer')
-    ->join('question', 'customer.c_no', '=', 'question.customer_no')->leftjoin('answer','question.q_no', '=', 'answer.question_no')->select('*')
-    ->where('product_no', $pro_no)->paginate(5);
+    ->join('question', 'customer.c_no', '=', 'question.customer_no')
+    ->leftjoin('answer','question.q_no', '=', 'answer.question_no')
+    ->select('*')
+    ->where('product_no', $pro_no)->get();
 
     $review= DB::table('customer')
     ->join('review', 'customer.c_no', '=', 'review.customer_no')
@@ -103,396 +107,422 @@ class ProductController extends Controller
     ->where('product_no', $pro_no)->paginate(3);
 
     //나의 소중한 주석입니다 지우지 말아주세요
-    if(auth()->guard('seller')->user()){
-      $s_no =  auth()->guard('seller')->user()->s_no;
+    // if(auth()->guard('seller')->user()){
+    //   $s_no =  auth()->guard('seller')->user()->s_no;
+    //   $SellerAllInfor = DB::table('seller')
+    //   ->join('store','seller.s_no','=','store.seller_no')
+    //   ->join('product','store.st_no','=','product.store_no')
+    //   ->join('question','product.p_no','=','question.product_no','left outer')
+    //   ->join('customer','question.customer_no','=','customer.c_no')
+    //   ->join('answer','question.q_no','=','answer.question_no','left outer')
+    //   ->where('product_no', $pro_no)->get();
+    //     // return var_dump($aa);
+    //   } else{
+    //     $SellerAllInfor = null;
+    //   }
+    if($cno = auth()->guard('customer')->user()){
+      $hihi = $cno->c_no;
+      // return $cno;
+      $SellerAllInfor = DB::table('customer')
+      ->join('question', 'customer.c_no', '=', 'question.customer_no')
+      ->leftjoin('answer','question.q_no', '=', 'answer.question_no')
+      ->select('*')
+      ->where('product_no', $pro_no)->get();
+
+    }elseif($sno = auth()->guard('seller')->user()){
+      $hihi = $sno->s_no;
       $SellerAllInfor = DB::table('seller')
       ->join('store','seller.s_no','=','store.seller_no')
       ->join('product','store.st_no','=','product.store_no')
       ->join('question','product.p_no','=','question.product_no','left outer')
       ->join('customer','question.customer_no','=','customer.c_no')
       ->join('answer','question.q_no','=','answer.question_no','left outer')
-      ->where('s_no',$s_no)->get();
-
-        // return var_dump($aa);
-      } else{
-        $SellerAllInfor = null;
-      }
-
-      // return $SellerAllInfor;
-      // return $qnaq;
-      //나의 소중한 주석입니다 지우지 말아주세요
-      return view('Buy_information', compact('productinfor','qnaq', 'store','review','SellerAllInfor'));
+      ->where('product_no', $pro_no)->get();
+    } else{
+      $SellerAllInfor = DB::table('customer')
+      ->join('question', 'customer.c_no', '=', 'question.customer_no')
+      ->leftjoin('answer','question.q_no', '=', 'answer.question_no')
+      ->select('*')
+      ->where('product_no', $pro_no)->get();
     }
 
-    // public function pd_count(Request $re){
-    //
-    //   $pno = $re->input('p_no');
-    //
-    //   $count = DB::table('product')->where('p_no',$pno)->get();
-    //   $present = $count[0]->p_count;
-    //   $minus = $present - 1;
-    //
-    //   DB::table('product')->where('p_no',$pno)->update([
-    //     'p_count' => $minus
-    //   ]);
-    //
-    //   return response()->json(1);
-    //
-    // }
+     //상품의 p_no조건
+    // return $SellerAllInfor;
+    // return $SellerAllInfor;
+    // return $qnaq;
+    //나의 소중한 주석입니다 지우지 말아주세요
+    return view('Buy_information', compact('productinfor','qnaq', 'store','review','SellerAllInfor'));
+  }
+
+  // public function pd_count(Request $re){
+  //
+  //   $pno = $re->input('p_no');
+  //
+  //   $count = DB::table('product')->where('p_no',$pno)->get();
+  //   $present = $count[0]->p_count;
+  //   $minus = $present - 1;
+  //
+  //   DB::table('product')->where('p_no',$pno)->update([
+  //     'p_count' => $minus
+  //   ]);
+  //
+  //   return response()->json(1);
+  //
+  // }
 
 
-    // 상품 수정하기 박소현
-    public function pd_modify(Request $request, $id){
+  // 상품 수정하기 박소현
+  public function pd_modify(Request $request, $id){
 
-      $storeno = auth()->guard('seller')->user()->s_no;
+    $storeno = auth()->guard('seller')->user()->s_no;
 
-      $p_name = $_POST['productname'];
-      $p_deli = $_POST['deliverycharge'];
-      $p_contents = $_POST['ir1'];
-      $p_price = $_POST['sellingprice'];
+    $p_name = $_POST['productname'];
+    $p_deli = $_POST['deliverycharge'];
+    $p_contents = $_POST['ir1'];
+    $p_price = $_POST['sellingprice'];
 
-      if(isset($p_name)){
-        $pd_name = $p_name;
-      } else {
-        $pd_name = $request->input('productname');
-      }
-      // return $pd_name;
+    if(isset($p_name)){
+      $pd_name = $p_name;
+    } else {
+      $pd_name = $request->input('productname');
+    }
+    // return $pd_name;
 
-      if(isset($p_deli)){
-        $pd_deli = preg_replace("/[^0-9]/", "",$p_deli);
-      } else{
-        $pd_deli = preg_replace("/[^0-9]/", "",$request->input('deliverycharge'));
-      }
-      // return $pd_deli;
+    if(isset($p_deli)){
+      $pd_deli = preg_replace("/[^0-9]/", "",$p_deli);
+    } else{
+      $pd_deli = preg_replace("/[^0-9]/", "",$request->input('deliverycharge'));
+    }
+    // return $pd_deli;
 
-      if(isset($p_contents)){
-        $pd_contents = $p_contents;
-      }
-      else {
-        $pd_contents = $request->input('ir1');
-      }
-      // return $pd_contents;
+    if(isset($p_contents)){
+      $pd_contents = $p_contents;
+    }
+    else {
+      $pd_contents = $request->input('ir1');
+    }
+    // return $pd_contents;
 
-      if(isset($p_price)){
-        $pd_price = preg_replace("/[^0-9]/", "",$p_price);
-      } else {
-        $pd_price = preg_replace("/[^0-9]/", "", $request->input('sellingprice'));
-      }
-      // return $pd_price;
+    if(isset($p_price)){
+      $pd_price = preg_replace("/[^0-9]/", "",$p_price);
+    } else {
+      $pd_price = preg_replace("/[^0-9]/", "", $request->input('sellingprice'));
+    }
+    // return $pd_price;
 
 
-      $path=$request->file('picture')->store('/','public');
-      DB::table('product')->where('p_no',$id)->update([
-        'p_name'=>$pd_name,
-        'p_contents' => $pd_contents,
-        'p_filename' =>$path,
-        'p_title' => $pd_deli,
-        'p_price' => $pd_price
-      ]);
+    $path=$request->file('picture')->store('/','public');
+    DB::table('product')->where('p_no',$id)->update([
+      'p_name'=>$pd_name,
+      'p_contents' => $pd_contents,
+      'p_filename' =>$path,
+      'p_title' => $pd_deli,
+      'p_price' => $pd_price
+    ]);
 
-      return redirect('/');
+    return redirect('/');
+  }
+
+  // 상품 삭제 박소현
+  public function pd_remove($id){
+
+    DB::table('product')->where('p_no','=',$id)->update([
+      'p_status' => '삭제'
+    ]);
+
+    return redirect()->back();
+  }
+
+
+  //즐겨찾기 중복막기 코드 정경진
+  public function favorite($id){
+
+    $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
+    $pro_no = $productinfor[0]->p_no;
+    // $productinfor의 첫번째 배열의 p_no ex)40
+    if(auth()->guard('customer')->user()){
+      $c_no = auth()->guard('customer')->user()->c_no;
     }
 
-    // 상품 삭제 박소현
-    public function pd_remove($id){
 
-      DB::table('product')->where('p_no','=',$id)->update([
-        'p_status' => '삭제'
-      ]);
+    $product = DB::table('product_favorite')->where('product_no','=',$pro_no)->get(); //product_favorite테이블에서 product_no랑 현재상품번호랑 같은 product_no를가져옴
+    $count = $product->where('customer_no','=',$c_no)->count();
 
+    if($count>0){
+      return redirect()->back();
+    }
+    elseif($count == 0){
+      DB::table('product_favorite')->insert([
+        'customer_no'=>$c_no,
+        'product_no'=>$pro_no]);
+        return redirect()->back();
+      }
+    }
+
+    //customer 즐겨찾기 화면 정경진
+    public function star(Request $request){
+      if(auth()->guard('customer')->user()){
+        $c_no = auth()->guard('customer')->user()->c_no;
+        $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
+        ->select('*')->where('customer_no','=',$c_no)->get();
+
+        $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
+        ->select('*')->where('customer_no','=',$c_no)->get();
+        $data = DB::table('product_favorite')->join('product','product_favorite.product_no','=','product.p_no')
+        ->select('*')->where('p_status','=','등록')->paginate(4);
+        return view('star', compact('pro','pro2','data'));
+      }
+      else{
+        return redirect('/');
+      }
+    }
+
+    //내상품 삭제코드 정경진
+    public function star2($id){
+      if(auth()->guard('customer')->user()){
+        $c_no = auth()->guard('customer')->user()->c_no;
+      }
+      $productinfor = DB::table('product')->select('*')->where('p_no','=',$id)->get();
+      $delete = DB::table('product_favorite')->where('product_no','=',$productinfor[0]->p_no)->delete();
+      return redirect()->back();
+    }
+
+    //꽃집 즐겨찾기 삭제코드 정경진
+    public function store_star($id){
+      if(auth()->guard('customer')->user()){
+        $c_no = auth()->guard('customer')->user()->c_no;
+      }
+      $storeinfor = DB::table('store')->select('*')->where('st_name','=',$id)->get();
+      $delete = DB::table('store_favorite')->where('store_no','=',$storeinfor[0]->st_no)->delete();
       return redirect()->back();
     }
 
 
-    //즐겨찾기 중복막기 코드 정경진
-    public function favorite($id){
+    // 문의하기에서 상품정보 불러오기
+    public function pd_info ($id){
+      $cusomer = auth()->guard('customer')->user()->c_no;
+      $cus = DB::table('customer')->where('c_no',$cusomer)->get();
+      $product = DB::table('product')->where('p_no',$id)->get();
 
-      $productinfor = DB::table('product')->select('p_no')->where('p_no','=',$id)->get(); //현재 페이지 상품번호와 product테이블의 p_no이같은 값을 가져옴
-      $pro_no = $productinfor[0]->p_no;
-      // $productinfor의 첫번째 배열의 p_no ex)40
+      return view('pd_qna', compact('product','cus'));
+    }
+
+
+
+    // 문의하기 박소현
+    public function pd_qna (Request $qna,$id){
+
+      $productinfor = DB::table('product')->where('p_no',$id)->get();
+      $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
+      //
+      $today = date("Ymd"); //현재날짜 받아옴
+
+      $state; //공개 비공개 여부
+      if(isset($_GET['state'])){
+        $state = '비공개';
+      }
+      else{
+        $state = '공개';
+      }
+
+
+      $cinfo = auth()->guard('customer')->user()->c_no;
+
+
+      DB::table('question')->insert([
+        'q_title'=>$qna->input('q_title'),
+        'q_contents' => $qna->input('q_text'),
+        'q_date' =>$today,
+        'product_no'=>$pro_no,
+        'customer_no'=>$cinfo,
+        'q_state'=> $state,
+      ]);
+
+      echo "<script>alert('문의가 등록되었습니다.');self.close();</script>";
+    }
+
+
+    //장바구니 페이지
+    public function basket(){
       if(auth()->guard('customer')->user()){
-        $c_no = auth()->guard('customer')->user()->c_no;
+        $userinfo = auth()->guard('customer')->user()->c_no;
+        $data = DB::table('basket')->where('customer_no',$userinfo)->join('product','basket.product_no','=','product.p_no')->get();
+        // return $data;
+        return view('flowercart',compact('data'));
       }
-
-
-      $product = DB::table('product_favorite')->where('product_no','=',$pro_no)->get(); //product_favorite테이블에서 product_no랑 현재상품번호랑 같은 product_no를가져옴
-      $count = $product->where('customer_no','=',$c_no)->count();
-
-      if($count>0){
-        return redirect()->back();
+      if(auth()->guard('seller')->user()){
+        return redirect('/');
       }
-      elseif($count == 0){
-        DB::table('product_favorite')->insert([
-          'customer_no'=>$c_no,
-          'product_no'=>$pro_no]);
-          return redirect()->back();
-        }
+      else{
+        // echo '<script>alert("구매자만 이용가능한 서비스입니다.");</script>';
+        return view('login.login_customer');
       }
+    }
+    //장바구니 상품삭제
+    public function basketdelete(Request $request){
+      $checkdata = $request->input('check');
+      $no =  $request->input('id');
+      if(auth()->guard('customer')->user()){
+        if(!isset($no)){
 
-      //customer 즐겨찾기 화면 정경진
-      public function star(Request $request){
-        if(auth()->guard('customer')->user()){
-          $c_no = auth()->guard('customer')->user()->c_no;
-          $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
-          ->select('*')->where('customer_no','=',$c_no)->get();
-
-          $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
-          ->select('*')->where('customer_no','=',$c_no)->get();
-          $data = DB::table('product_favorite')->join('product','product_favorite.product_no','=','product.p_no')
-          ->select('*')->where('p_status','=','등록')->paginate(4);
-          return view('star', compact('pro','pro2','data'));
         }
         else{
-          return redirect('/');
-        }
-      }
-
-      //내상품 삭제코드 정경진
-      public function star2($id){
-        if(auth()->guard('customer')->user()){
-          $c_no = auth()->guard('customer')->user()->c_no;
-        }
-        $productinfor = DB::table('product')->select('*')->where('p_no','=',$id)->get();
-        $delete = DB::table('product_favorite')->where('product_no','=',$productinfor[0]->p_no)->delete();
-        return redirect()->back();
-      }
-
-      //꽃집 즐겨찾기 삭제코드 정경진
-      public function store_star($id){
-        if(auth()->guard('customer')->user()){
-          $c_no = auth()->guard('customer')->user()->c_no;
-        }
-        $storeinfor = DB::table('store')->select('*')->where('st_name','=',$id)->get();
-        $delete = DB::table('store_favorite')->where('store_no','=',$storeinfor[0]->st_no)->delete();
-        return redirect()->back();
-      }
-
-
-      // 문의하기에서 상품정보 불러오기
-      public function pd_info ($id){
-        $cusomer = auth()->guard('customer')->user()->c_no;
-        $cus = DB::table('customer')->where('c_no',$cusomer)->get();
-        $product = DB::table('product')->where('p_no',$id)->get();
-
-        return view('pd_qna', compact('product','cus'));
-      }
-
-
-
-      // 문의하기 박소현
-      public function pd_qna (Request $qna,$id){
-
-        $productinfor = DB::table('product')->where('p_no',$id)->get();
-        $pro_no = $productinfor[0]->p_no; // id(url)로 p_no 받아옴
-        //
-        $today = date("Ymd"); //현재날짜 받아옴
-
-        $state; //공개 비공개 여부
-        if(isset($_GET['state'])){
-          $state = '비공개';
-        }
-        else{
-          $state = '공개';
-        }
-
-
-        $cinfo = auth()->guard('customer')->user()->c_no;
-
-
-        DB::table('question')->insert([
-          'q_title'=>$qna->input('q_title'),
-          'q_contents' => $qna->input('q_text'),
-          'q_date' =>$today,
-          'product_no'=>$pro_no,
-          'customer_no'=>$cinfo,
-          'q_state'=> $state,
-        ]);
-
-        echo "<script>alert('문의가 등록되었습니다.');self.close();</script>";
-      }
-
-
-      //장바구니 페이지
-      public function basket(){
-        if(auth()->guard('customer')->user()){
+          DB::table('basket')->where('b_no',$no)->delete();
           $userinfo = auth()->guard('customer')->user()->c_no;
-          $data = DB::table('basket')->where('customer_no',$userinfo)->join('product','basket.product_no','=','product.p_no')->get();
-          // return $data;
-          return view('flowercart',compact('data'));
-        }
-        if(auth()->guard('seller')->user()){
-          return redirect('/');
-        }
-        else{
-          // echo '<script>alert("구매자만 이용가능한 서비스입니다.");</script>';
-          return view('login.login_customer');
-        }
-      }
-      //장바구니 상품삭제
-      public function basketdelete(Request $request){
-        $checkdata = $request->input('check');
-        $no =  $request->input('id');
-        if(auth()->guard('customer')->user()){
-          if(!isset($no)){
-
-          }
-          else{
-            DB::table('basket')->where('b_no',$no)->delete();
-            $userinfo = auth()->guard('customer')->user()->c_no;
-            $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-            return response()->json($no);
-          }
-          if(!isset($checkdata)){
-
-          }
-          else{
-            for($i=0; $i<count($checkdata); $i++){
-              DB::table('basket')->where('b_no',$checkdata[$i])->delete();
-            }
-            return response()->json($checkdata);
-          }
-
-        }
-        return response()->json(1234);
-      }
-      //장바구니에 상품 추가
-      public function basketstore(Request $request){
-        // return response()->json(1);
-        $data =  $request->input('id');
-        $count = $request->input('count');
-        $pt = DB::table('product')->where('p_no',$data)->first();
-
-        // return response()->json($test);
-        if($userinfo = auth()->guard('customer')->user()){
-
-          $prikey  = $userinfo->c_no;
-          $test = DB::table('basket')->where('customer_no',$prikey)->where('product_no',$data)->get();
-          if(count($test)>0){
-            DB::table('basket')->where('product_no',$data)->update([
-              'b_count' => $test[0]->b_count+$count
-            ]);
-            return response()->json(11);
-          }
-          else{
-            DB::table('basket')->insert([
-              'b_price' => $pt->p_price ,
-              'b_name' => $pt->p_name,
-              'customer_no' => $prikey,
-              'product_no' => $data,
-              'b_count' =>  $count,
-              'b_delivery' => $pt->p_title,
-              'b_picture' => $pt->p_filename
-            ]);
-            return response()->json(12);
-          }
-          return response()->json(13);
-        }
-        elseif($seller = auth()->guard('seller')->user()){
-          return response()->json(1);
-        }
-        else{
-          return response()->json(0);
-        }
-
-
-      }
-      // 장바구니에 있는 상품에대해 수량 추가 삭제
-      public function basketcount(Request $request){
-        $add = $request->input('add');
-        $no = $request->input('no');
-        $remove = $request->input('remove');
-        $userinfo = auth()->guard('customer')->user()->c_no;
-
-        if(isset($add)){
-          // $b_no = DB::table('basket')->where('b_no', $no)->get();
-          $b_no = DB::table('basket')->where('b_no',$no)->update([
-            'b_count' => $add
-          ]);
-          $basket = DB::table('basket')->where('b_no',$no)->first();
           $data = DB::table('basket')->where('customer_no',$userinfo)->get();
-
-          return response()->json([$basket->b_count,$basket->b_price,$basket->b_delivery]);
+          return response()->json($no);
         }
-        else {
-          DB::table('basket')->where('b_no',$no)->update([
-            'b_count' => $remove
-          ]);
-          $basket = DB::table('basket')->where('b_no',$no)->first();
-          $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+        if(!isset($checkdata)){
 
-          return response()->json([$basket->b_count,$basket->b_price,$basket->b_delivery]);
+        }
+        else{
+          for($i=0; $i<count($checkdata); $i++){
+            DB::table('basket')->where('b_no',$checkdata[$i])->delete();
+          }
+          return response()->json($checkdata);
         }
 
       }
-      // 장바구니 선택 상태
-      public function basketcondition(Request $request){
-        // return response()->json(1);
-        $checkdata = $request->input('check');
-        $checkcondition = $request->input('checkcondition');
-        $uncheckcondition = $request->input('uncheckcondition');
-        $individualcheck = $request->input('individualcheck');
-        $b_no = $request->input('no');
-        $userinfo = auth()->guard('customer')->user()->c_no;
-        // $basket = DB::table('basket')->where('b_no',$no)->first();
-        if(isset($checkcondition)){
-          for($i=0; $i<count($checkdata); $i++){
-            DB::table('basket')->where('b_no',$checkdata[$i])->update([
-              'b_condition' => '선택'
-            ]);
-          }
-          $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택')->get();
-          // return response()->json($result);
+      return response()->json(1234);
+    }
+    //장바구니에 상품 추가
+    public function basketstore(Request $request){
+      // return response()->json(1);
+      $data =  $request->input('id');
+      $count = $request->input('count');
+      $pt = DB::table('product')->where('p_no',$data)->first();
+
+      // return response()->json($test);
+      if($userinfo = auth()->guard('customer')->user()){
+
+        $prikey  = $userinfo->c_no;
+        $test = DB::table('basket')->where('customer_no',$prikey)->where('product_no',$data)->get();
+        if(count($test)>0){
+          DB::table('basket')->where('product_no',$data)->update([
+            'b_count' => $test[0]->b_count+$count
+          ]);
+          return response()->json(11);
         }
         else{
-
+          DB::table('basket')->insert([
+            'b_price' => $pt->p_price ,
+            'b_name' => $pt->p_name,
+            'customer_no' => $prikey,
+            'product_no' => $data,
+            'b_count' =>  $count,
+            'b_delivery' => $pt->p_title,
+            'b_picture' => $pt->p_filename
+          ]);
+          return response()->json(12);
         }
-        if(isset($uncheckcondition)){
-          for($i=0; $i<count($checkdata); $i++){
-            DB::table('basket')->where('b_no',$checkdata[$i])->update([
-              'b_condition' => '선택해제'
-            ]);
-          }
-          $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택해제')->get();
-          for($i = 0; $i<count($result); $i++){
-
-          }
-          // return response()->json($result);
-          // return response()->json(2);
-        }
-        else{
-
-        }
-        if(isset($individualcheck)){
-          if(filter_var($individualcheck,FILTER_VALIDATE_BOOLEAN)){
-            DB::table('basket')->where('b_no',$b_no)->update([
-              'b_condition' => '선택'
-            ]);
-            return response()->json(1);
-          }
-          else{
-            DB::table('basket')->where('b_no',$b_no)->update([
-              'b_condition' => '선택해제'
-            ]);
-            return response()->json(0);
-          }
-        }
-        // if($individualcheck == '1'){
-        //   return response()->json($b_no);
-        // }
-        // elseif($individualcheck == 0){
-        //   return response()->json();
-        // }
+        return response()->json(13);
+      }
+      elseif($seller = auth()->guard('seller')->user()){
+        return response()->json(1);
+      }
+      else{
         return response()->json(0);
       }
 
-      public function store_img_register(Request $request){
-        $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
-        $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
-        $path=$request->file('picture')->store('/','public');
-        // return $path;
-        DB::table('store')-> where('seller_no','=',$storeno) -> update([
-          'st_img'=>$path
+
+    }
+    // 장바구니에 있는 상품에대해 수량 추가 삭제
+    public function basketcount(Request $request){
+      $add = $request->input('add');
+      $no = $request->input('no');
+      $remove = $request->input('remove');
+      $userinfo = auth()->guard('customer')->user()->c_no;
+
+      if(isset($add)){
+        // $b_no = DB::table('basket')->where('b_no', $no)->get();
+        $b_no = DB::table('basket')->where('b_no',$no)->update([
+          'b_count' => $add
         ]);
+        $basket = DB::table('basket')->where('b_no',$no)->first();
+        $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+
+        return response()->json([$basket->b_count,$basket->b_price,$basket->b_delivery]);
+      }
+      else {
+        DB::table('basket')->where('b_no',$no)->update([
+          'b_count' => $remove
+        ]);
+        $basket = DB::table('basket')->where('b_no',$no)->first();
+        $data = DB::table('basket')->where('customer_no',$userinfo)->get();
+
+        return response()->json([$basket->b_count,$basket->b_price,$basket->b_delivery]);
+      }
+
+    }
+    // 장바구니 선택 상태
+    public function basketcondition(Request $request){
+      // return response()->json(1);
+      $checkdata = $request->input('check');
+      $checkcondition = $request->input('checkcondition');
+      $uncheckcondition = $request->input('uncheckcondition');
+      $individualcheck = $request->input('individualcheck');
+      $b_no = $request->input('no');
+      $userinfo = auth()->guard('customer')->user()->c_no;
+      // $basket = DB::table('basket')->where('b_no',$no)->first();
+      if(isset($checkcondition)){
+        for($i=0; $i<count($checkdata); $i++){
+          DB::table('basket')->where('b_no',$checkdata[$i])->update([
+            'b_condition' => '선택'
+          ]);
+        }
+        $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택')->get();
+        // return response()->json($result);
+      }
+      else{
 
       }
+      if(isset($uncheckcondition)){
+        for($i=0; $i<count($checkdata); $i++){
+          DB::table('basket')->where('b_no',$checkdata[$i])->update([
+            'b_condition' => '선택해제'
+          ]);
+        }
+        $result = DB::table('basket')->where('customer_no',$userinfo)->where('b_condition','선택해제')->get();
+        for($i = 0; $i<count($result); $i++){
+
+        }
+        // return response()->json($result);
+        // return response()->json(2);
+      }
+      else{
+
+      }
+      if(isset($individualcheck)){
+        if(filter_var($individualcheck,FILTER_VALIDATE_BOOLEAN)){
+          DB::table('basket')->where('b_no',$b_no)->update([
+            'b_condition' => '선택'
+          ]);
+          return response()->json(1);
+        }
+        else{
+          DB::table('basket')->where('b_no',$b_no)->update([
+            'b_condition' => '선택해제'
+          ]);
+          return response()->json(0);
+        }
+      }
+      // if($individualcheck == '1'){
+      //   return response()->json($b_no);
+      // }
+      // elseif($individualcheck == 0){
+      //   return response()->json();
+      // }
+      return response()->json(0);
     }
+
+    public function store_img_register(Request $request){
+      $storeno = auth()->guard('seller')->user()->s_no; //현재 접속한 seller의 기본키
+      $comparison = DB::table('store')->select('*')->where('seller_no','=', $storeno)->get(); //store 테이블에서 접속한 seller와 s_no이같은 행을 가져옴
+      $path=$request->file('picture')->store('/','public');
+      // return $path;
+      DB::table('store')-> where('seller_no','=',$storeno) -> update([
+        'st_img'=>$path
+      ]);
+
+    }
+  }

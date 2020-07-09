@@ -11,11 +11,12 @@
     <body>
       <style media="screen">
         footer{
-      position:fixed;
+      position:relative;
       left:0px;
       bottom:0px;
       height:60px;
       width:100%;
+      margin-top: 50px;
         }
       </style>
 @include('lib.header')

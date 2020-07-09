@@ -10,7 +10,7 @@ class QnAController extends Controller
 {
   //
   public function question_answer(Request $request,$q_no){
-    // return $q_no;
+    return $q_no;
     $exist = DB::table('answer')->where('question_no',$q_no)->get();
     if(auth()->guard('seller')->user()){
 

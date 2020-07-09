@@ -377,12 +377,17 @@ function getCookie(cookie_name) {
   }
 }
 $(document).ready(function(){
-setCookie('paymentcookie','game','1');
+  console.log(document.cookie);
+  console.log($('input[name=c_token]').val());
+  console.log(getCookie('paymentcookie'));
+  if(getCookie('paymentcookie')===$('input[name=c_token]').val()){
+    location.href='/';
+  }
+setCookie('paymentcookie','','1');
+setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
 console.log(getCookie('paymentcookie'));
 });
-if(getCookie('paymentcookie')===''){
-  location.href='/';
-}
+
 </script>
 <script type="text/javascript">
 function test(imageName) {
