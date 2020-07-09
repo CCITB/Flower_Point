@@ -57,7 +57,7 @@ class PaymentController extends Controller
       $user = auth()->guard('customer')->user();
       $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
       $latestaddress[] = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
-      $prodata = DB::table('product')->where('p_no',$proidx)->get();
+      $prodata = DB::table('product')->join('basket','basket.product_no','product.p_no')->where('p_no',$proidx)->get();
       $productsum = $prodata[0]->p_title+$prodata[0]->p_price*$productcount;
       $productdelivery = $prodata[0]->p_title;
       $productprice = $prodata[0]->p_price*$productcount;
