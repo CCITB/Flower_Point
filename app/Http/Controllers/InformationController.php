@@ -215,7 +215,6 @@ class InformationController extends Controller
       if($sellerinfo = auth()->guard('seller')->user()){
         $sellerprimary = $sellerinfo->s_no;
         // return $sellerprimary;
-<<<<<<< HEAD
             $data = DB::table('seller')
             ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
             ->where('s_no','=', $sellerprimary )->get();
@@ -228,18 +227,6 @@ class InformationController extends Controller
             $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
 
             return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
-=======
-        $data = DB::table('seller')
-        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-        ->where('s_no','=', $sellerprimary )->get();
-        $proro = DB::table('product')->join('payment','payment.product_no','product.p_no')
-        ->select('*')->where('store_no' ,'=', $data[0]->st_no)->get();
-        $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
-        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
-        $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
-
-        return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
->>>>>>> 7ea3a51b327c1cf295fdcb122dcc6ca8213af05b
       }
       else{
         return view('login/login_seller');
