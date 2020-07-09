@@ -33,29 +33,38 @@ class OrderlistController extends Controller
     $pm_no = $request->get("check_on");
 
     //payment Table과 delivery Table의 조인
-    $delivery_join = DB::table('payment')
-                     ->join('delivery','payment.delivery_no','=','delivery.d_no');
+    //$delivery_join = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no');
 
     for($i=0; $i<count($pm_no); $i++){
       //각 값과 pm_no이 일치하는 값의 pm_status만 결제완료로 변경
       DB::table('payment')->where('pm_no',$pm_no[$i])
       ->join('delivery','payment.delivery_no','=','delivery.d_no')
       ->update(['payment.pm_status' => '결제 완료',
-                'delivery.d_status' => '배송 준비중']);
+      'delivery.d_status' => '배송 준비중']);
     }
     return response()->json($pm_no);
     // return redirect('/sellermyorderlist');
   }
   //배송정보 입력
   public function delivery_status(Request $request){
-    $invoice = $request->get('invoice_num');
-    $delivery = $request->get('delivery');
+    //check된 index값을 담은 배열
+    $pm_no = $request->get("check_on");
+    //송장번호를 담은 배열
+    $invoice = $request->get("invoice");
+    //배송업체명을 담은 배열
+    $delivery = $request->get("delivery");
 
-    DB::table('delivery')->update([
-      'd_invoice_num' => $invoice,
-      'd_company' => $delivery,
-      'd_status' => '배송중'
-    ]);
+    for($i=0; $i<count($pm_no); $i++){
+      //체크된 값과 동일한 결제 ,
+      DB::table('payment')->where('pm_no',$pm_no[$i])
+      ->join('delivery','payment.delivery_no','=','delivery.d_no')
+      ->update([
+        'd_invoice_num' => $invoice[i],
+        'd_company' => $delivery[i],
+        'd_status' => '배송중'
+      ]);
+    }
+    return response()->json($invoice);
     //return redirect('/sellermyorderlist');
   }
 
