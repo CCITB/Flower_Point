@@ -234,13 +234,13 @@ input#inputtext{
 }
 
 input.address{
-  width: 15em;
-  height: 18px;
-  padding:5px;
+
+  height: 2em;
+
 }
 
 input.postcode{
-  width: 5em;
+  width: 6.75em;
   height: 2em;
   padding-left: 5px;
 }
@@ -262,6 +262,7 @@ input#extraAddress{
 
 input.delivery_address_list{
   display:inline-block;
+  height: 2em;
 }
 
 strong.info{

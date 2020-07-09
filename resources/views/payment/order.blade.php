@@ -214,7 +214,8 @@
                         <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
                         <td>{{$value[0]->b_name}}</td>
                       </tr>
-                      <tr><td>옵션선택 : {{$value[0]->b_option}}</td></tr>
+                      <tr><td> 가격 : {{$value[0]->b_price}}</td></tr>
+                      <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
                     </table>
                   </div>
                 @endforeach
@@ -226,7 +227,8 @@
                       <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
                       <td>{{$prodata[0]->p_name}}</td>
                     </tr>
-                    <tr><td>옵션선택 : </td></tr>
+                    <tr><td>가격 : {{$value[0]->b_price}} </td></tr>
+                    <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
                   </table>
                 </div>
               @endif

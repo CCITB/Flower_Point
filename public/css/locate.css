@@ -148,7 +148,6 @@ margin-bottom: 50px;
 
 th.th1{
   background-color: #f9f9f9;
-  width:  20%;
   text-align: center;
 }
 
@@ -157,7 +156,12 @@ table.table1{
 }
 
 table.table{
-    margin-bottom: 50px;
+  width: 70%;
+  margin-bottom: 50px;
+}
+
+tr.tr2{
+  background-color: #ebebeb;
 }
 
 table.order{

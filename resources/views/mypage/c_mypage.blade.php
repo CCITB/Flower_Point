@@ -275,7 +275,7 @@
         }
         </style>
         <table class="table" width=100%>
-          <tr>
+          <tr class="tr2">
             <th>상품명</th>
             <th>후기</th>
           </tr>
