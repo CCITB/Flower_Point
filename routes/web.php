@@ -140,6 +140,8 @@ Route::post('/c_modipw', 'InformationController@c_modipw');
 
 Route::post('/check_login', 'LoginController@check_login');
 
+Route::post('/check_pw','InformationController@check_password');
+
 Route::post('/check_sellerlogin', 'LoginController@check_sellerlogin');
 
 Route::get('/faq', function () {

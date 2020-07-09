@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/locate.css">
@@ -40,13 +41,17 @@
               <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
             </td>
           </tr>
-          <form action="modipw" method="post" onsubmit="return pw_checkform()">
-            @csrf
             <tr class="tr1">
               <th class="th1">
                 <div class="thcell">비밀번호</div>
               </th>
               <td>
+                <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
+                  <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
+                  <div class="check_div" id="password_check" value=""></div>
+
+                  <form action="modipw" method="post" onsubmit="return pw_checkform()">
+                    @csrf
                 <div class="tdcell"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
                   <button type="submit" name="button">수정완료</button><p class="contxt.tit"></p></div>
 
@@ -173,8 +178,54 @@
 </html>
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
-<script type="text/javascript" src="/js/radio.js" charset="utf-8"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+function check_password(){
+  var a = document.getElementById("origin_password");
+
+  if((a.value)==""){
+    $('#password_check').text("Password를 입력해주세요.");
+    $('#password_check').css('color', 'red');
+    $("#origin_password").focus();
+    $("#new_pw").attr("disabled", "disabled")
+    return false;
+  }
+
+  var origin_password = $('#origin_password').val();
+  $.ajax({
+
+    type: 'post',
+    url: 'check_pw',
+    dataType: 'json',
+    data:{
+      "input_password" : origin_password
+    },
+
+    success : function(data) {
+      if(data==0){
+        $('#password_check').text("Password가 일치하지 않습니다.");
+        $('#password_check').css('color', 'red');
+        $("#origin_password").focus();
+        $("#new_pw").attr("disabled", "disabled");
+      }
+      else if(data==1){
+        document.getElementById('password_check').style.display="none";
+        $("#new_pw").removeAttr("disabled");
+        $("#new_pw").focus();
+        $("#origin_password").attr("disabled", "disabled");
+      }
+    }
+    ,error : function()
+     {}
+  });
+}
+
 
 //버튼 클릭이벤트
 function info_modification(s,ss){
