@@ -205,9 +205,9 @@ Route::post('star2/{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 
-Route::group(['middleware' => 'preventBackHistory'],function(){
+// Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/order/{name?}', 'PaymentController@payment');
-});
+// });
 
 Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 

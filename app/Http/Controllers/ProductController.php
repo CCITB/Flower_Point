@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use DateTime;
 class ProductController extends Controller
 {
   //곽승지
@@ -52,7 +53,7 @@ class ProductController extends Controller
 
   public function seller_product_register(Request $request)
   {
-
+    $now = new DateTime();
     // return $picture;
     $storeno = auth()->guard('seller')->user()->s_no;
     $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
@@ -72,7 +73,8 @@ class ProductController extends Controller
       'p_contents' => $request->input('ir1'),
       'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
-      'p_filename' =>$path
+      'p_filename' =>$path,
+      'created_at' =>$now->format('yy-m-d H:i:s')
     ]);
 
 
