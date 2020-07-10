@@ -166,7 +166,6 @@
                     <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
                   </div>
                 </div>
-                @if(isset($latestaddress))
                 <div class="delivery_wrap2" id="delivery_wrap4" style="display:none;">
                   <input type="text" class="postcode"  placeholder="우편번호"  readonly value="{{$latestaddress[0]->d_post}}">
                   <input type="button" class="find_post"  value="우편번호"><br>
@@ -176,17 +175,6 @@
                     <input type="text" class="delivery_address_list"  placeholder="참고항목" readonly value="{{$latestaddress[0]->d_extraaddress}}">
                   </div>
                 </div>
-              @else
-                <div class="delivery_wrap2" id="delivery_wrap4" style="display:none;">
-                  <input type="text" class="postcode"  placeholder="우편번호"  readonly value="">
-                  <input type="button" class="find_post"  value="우편번호"><br>
-                  <input type="text" class="address"  placeholder="주소"  readonly value="">
-                  <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list"  placeholder="상세주소" readonly value="">
-                    <input type="text" class="delivery_address_list"  placeholder="참고항목" readonly value="">
-                  </div>
-                </div>
-              @endif
                 <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
 
 

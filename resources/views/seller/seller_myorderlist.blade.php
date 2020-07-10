@@ -119,7 +119,7 @@
             <td>{{$order->c_name}}</td>
             <td>{{$order->pm_pay}}</td>
             <td id="pm_status">{{$order->pm_status}}</td>
-            <td id="d_status">{{$order->pm_d_status}}</td>
+            <td id="d_status">{{$order->d_status}}</td>
             <!-- <td><button type="submit" name="button">저장</button></td> -->
           </tr>
           @endforeach

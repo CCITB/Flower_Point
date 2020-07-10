@@ -85,7 +85,7 @@
                   <td>{{$sel->a_address}}</td>
                   <td>{{$sel->a_detail}}</td>
                   <td>{{$sel->s_no}}</td>
-                  <td>{{$sel->registeration_status}}</td>
+                  <td>{{$sel->registration_status}}</td>
                   <td>
                     <button type="button" id="bt{{$sel->st_no}}" value="{{$sel->st_no}}" onclick="openChild({{$sel->st_no}})"name="hidden" >등록증보기</button>
                   </td>
