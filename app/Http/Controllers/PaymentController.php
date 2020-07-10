@@ -46,7 +46,7 @@ class PaymentController extends Controller
         }
         $user = auth()->guard('customer')->user();
         $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
-        $latestaddress[] = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
+        $latestaddress = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->get();
         // return $latestaddress[0]->d_no;
         return view('payment.order',compact('data','user','useraddress','latestaddress','productprice','productdelivery','productsum','token'));
       }
@@ -56,12 +56,13 @@ class PaymentController extends Controller
       // return $productprice;
       $user = auth()->guard('customer')->user();
       $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
-      $latestaddress[] = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
+      $latestaddress = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->get();
       $prodata = DB::table('product')->where('p_no',$proidx)->get();
       $productsum = $prodata[0]->p_title+$prodata[0]->p_price*$productcount;
       $productdelivery = $prodata[0]->p_title;
       $productprice = $prodata[0]->p_price*$productcount;
       // echo $prodata;
+      // return $latestaddress;
       return view('payment.order',compact('user','productcount','productprice','useraddress','latestaddress','productdelivery','productsum','prodata','token'));
 
     }
@@ -115,12 +116,10 @@ class PaymentController extends Controller
     //주문한 사람의 주소 저장
     if($request->delivery=='신규배송지'){
         DB::table('delivery')->insert([
-          'd_name' => $recipient,
           'd_post' => $postcode,
           'd_address' => $address,
           'd_detailaddress' => $detailAddress,
           'd_extraaddress' => $extraAddress,
-          'd_phonenum' => $customerphone1.'-'.$customerphone2.'-'.$customerphone3,
           'customer_no' => $customerprimary
         ]);
     }
@@ -181,6 +180,8 @@ class PaymentController extends Controller
         'customer_no' => $customerprimary,
         'delivery_no' => $deliverytable[0]->d_no,
         'product_no' => $product_no[0],
+        'pm_name' => $recipient,
+        'pm_phonenum' => $customerphone1.'-'.$customerphone2.'-'.$customerphone3,
         'created_at' => $now->format('yy-m-d H:i:s'),
         'pm_date' =>  $today = date("Ymd")
       ]);
@@ -191,6 +192,8 @@ class PaymentController extends Controller
         'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_title,
         'customer_no' => $customerprimary,
         'c_address_no' => $useraddress[0]->a_no,
+        'pm_name' => $recipient,
+        'pm_phonenum' => $customerphone1.'-'.$customerphone2.'-'.$customerphone3,
         'product_no' => $product_no[0],
         'created_at' => $now->format('yy-m-d H:i:s'),
         'pm_date' =>  $today = date("Ymd")
