@@ -8,11 +8,11 @@
 
 <body>
   @foreach ($seller as $sel)
-    <form action="/ad_confirm{{$sel->st_no}}" method="post">
+    <form action="/ad_confirm{{$sel->s_no}}" method="post">
       @csrf
       @if(isset($sel->registration_img))
         <img class="img" id="reimg" src="/imglib/{{$sel->registration_img}}">
-        @if($sel->registration_status == '미승인')
+        @if($sel->registeration_status == '미승인')
           <input class="ad_bt" type="button" value="취소" onclick="self.close();" />
           <input class="ad_bt" id="sub" type='submit' value="확인">
         @else
