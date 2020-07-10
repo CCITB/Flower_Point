@@ -57,8 +57,8 @@ class OrderlistController extends Controller
       //체크된 값과 동일한 결제 ,
       DB::table('payment')->where('pm_no',$pm_no[$i])
       ->update([
-        // 'pm_invoice_num' => $invoice[i],
-        // 'pm_company' => $delivery[i],
+        'pm_invoice_num' => $invoice[$i],
+        'pm_company' => $delivery[$i],
         'pm_d_status' => '배송중'
       ]);
     }
