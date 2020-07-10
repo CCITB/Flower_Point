@@ -34,14 +34,16 @@ class AdminController extends Controller
 
   public function registraion($id){ // 판매자가 올린 사업자등록증 보여주기
     // return $id;
-    $seller = DB::table('store')->where('st_no',$id)->get();
+    $seller = DB::table('store')->where('st_no',$id)
+    ->join('seller','store.seller_no', '=', 'seller.s_no')
+    ->get();
 
     return view('admin.registration', compact('seller'));
   }
 
   public function confrim($id){ // 판매자 승인하기
-    $seller = DB::table('store')->where('st_no',$id)->update([
-      'registration_status' => '승인'
+    $seller = DB::table('seller')->where('s_no',$id)->update([
+      'registeration_status' => '승인'
     ]);
     echo "<script>alert('승인되었습니다.');self.close();</script>";
   }

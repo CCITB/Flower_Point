@@ -14,6 +14,23 @@ class MainController extends Controller
     $pro = DB::table('product')->where('p_status','등록')->skip(12)->take(6)->get();
     return view('main', compact('product','prod','pro'));
   }
+  public function registration(){
+
+    if($sno = auth()->guard('seller')->user()){
+      $so = $sno->s_no;
+
+      $sell = DB::table('seller')->where('s_no',$so)
+      ->join('store','seller.s_no','=','store.seller_no')
+      ->get();
+
+    }else{
+      $sell = null;
+    }
+
+    return view('lib.header',   ['sell'=>$sell]);
+  }
+
+
   public function login_customer(){
     if(auth()->guard('seller')->check()){
       return redirect('/');
