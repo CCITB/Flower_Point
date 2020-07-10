@@ -38,9 +38,8 @@ class OrderlistController extends Controller
     for($i=0; $i<count($pm_no); $i++){
       //각 값과 pm_no이 일치하는 값의 pm_status만 결제완료로 변경
       DB::table('payment')->where('pm_no',$pm_no[$i])
-      ->join('delivery','payment.delivery_no','=','delivery.d_no')
-      ->update(['payment.pm_status' => '결제 완료',
-      'delivery.d_status' => '배송 준비중']);
+      ->update(['pm_status' => '결제 완료',
+      'pm_d_status' => '배송 준비중']);
     }
     return response()->json($pm_no);
     // return redirect('/sellermyorderlist');
@@ -57,11 +56,10 @@ class OrderlistController extends Controller
     for($i=0; $i<count($pm_no); $i++){
       //체크된 값과 동일한 결제 ,
       DB::table('payment')->where('pm_no',$pm_no[$i])
-      ->join('delivery','payment.delivery_no','=','delivery.d_no')
       ->update([
-        'd_invoice_num' => $invoice[i],
-        'd_company' => $delivery[i],
-        'd_status' => '배송중'
+        // 'pm_invoice_num' => $invoice[i],
+        // 'pm_company' => $delivery[i],
+        'pm_d_status' => '배송중'
       ]);
     }
     return response()->json($invoice);
