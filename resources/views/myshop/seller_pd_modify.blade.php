@@ -71,7 +71,7 @@
           <table>
             <tr>
               <th class="th-css">배송비</th>
-              <td><input type="text" class="input-length" id="deliverycharge" numberonly="true" name="deliverycharge" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_title)}}" maxlength="10" placeholder="0" style="text-align:right;">원</td>
+              <td><input type="text" class="input-length" id="deliverycharge" numberonly="true" name="deliverycharge" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_delivery)}}" maxlength="10" placeholder="0" style="text-align:right;">원</td>
             </tr>
             <tr>
               <th class="th-css">판매금액</th>
