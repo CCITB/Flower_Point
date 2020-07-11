@@ -77,6 +77,7 @@
         <tr>
           <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
           <th class="title">주문번호</th>
+          <th class="title">결제번호</th>
           <th class="title">상품번호</th>
           <th class="title">상품명</th>
           <th class="title">수량</th>
@@ -95,6 +96,7 @@
         @foreach ($order as $order)
         <tr>
           <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""></td>
+          <td>{{$order->o_no}}</td>
           <td>{{$order->pm_no}}</td>
           <td>{{$order->p_no}}</td>
           <td id="p_name">{{$order->p_name}}</td>
@@ -119,7 +121,7 @@
             <td>{{$order->c_name}}</td>
             <td>{{$order->pm_pay}}</td>
             <td id="pm_status">{{$order->pm_status}}</td>
-            <td id="d_status">{{$order->d_status}}</td>
+            <td id="pm_d_status">{{$order->pm_d_status}}</td>
             <!-- <td><button type="submit" name="button">저장</button></td> -->
           </tr>
           @endforeach
