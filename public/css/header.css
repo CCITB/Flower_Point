@@ -20,6 +20,12 @@
   padding: 10px 5px;
   color: #806c63;
 }
+.charge{
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 5px;
+  color: #806c63;
+}
 .login-list{
   display: none;
   position: absolute;

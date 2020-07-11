@@ -238,7 +238,9 @@ Route::get('/s_mypage', 'InformationController@s_mypage');
 
 Route::get('/c_mypage', 'InformationController@c_mypage');
 
+Route::post('/charge', 'InformationController@charge');
 
+Route::get('/charge_popup', 'InformationController@charge_popup');
 
 
 Route::get('/shop', 'InformationController@shop');

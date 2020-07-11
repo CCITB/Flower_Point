@@ -31,9 +31,19 @@
           </div>
 
         @endif
-        <div class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></div>
+        <span class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></span>
+        @if(auth()->guard('customer')->user())
+        <span class="charge" style="float:right;" style="color:black;" onclick="showPopup();">충전하기</span>
+        @endif
       </div>
     </div>
+    <script type="text/javascript">
+    function showPopup() {
+      var url="charge_popup";
+      var option="width=700, height=400, top=200"
+      window.open(url, "", option);
+     }
+     </script>
 
     <div id="block_container">
       <div id="header">

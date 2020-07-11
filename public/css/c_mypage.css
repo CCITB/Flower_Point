@@ -1,0 +1,71 @@
+div.menu4{
+  width: 900px;
+  margin: 0 auto;
+}
+
+.myinfo {
+  width: 60%;
+  margin: 0 auto;
+}
+
+#tablewrap{
+  width: 55%;
+}
+
+#shopinfo{
+  width: 100%;
+  position: relative;
+  margin-left: 5%;
+}
+
+th.th1{
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+div.tdcell{
+  margin-left: 3%;
+}
+
+#p_num{
+  margin-right: 60%;
+  margin-left: 0.75rem;
+}
+
+#modiemail{
+  margin-right: 80%;
+  margin-top: 2%;
+}
+#email{
+  margin-right: 60%;
+  margin-left: 0.75rem;
+}
+
+#nadress{
+  margin-left: 5%;
+  margin-bottom: 50px;
+}
+
+div.delivery_wrap2{
+  margin-left: 85px;
+}
+
+div.walletwrap{
+  width: 100%;
+  position: relative;
+}
+
+div.money{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+div.chargemoney{
+  width: 100%;
+}
+div.current
+{
+  font-size: 30px;
+  width: 70%;
+  height: 50px;
+}

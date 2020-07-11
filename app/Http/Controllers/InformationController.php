@@ -215,16 +215,16 @@ class InformationController extends Controller
       if($sellerinfo = auth()->guard('seller')->user()){
         $sellerprimary = $sellerinfo->s_no;
         // return $sellerprimary;
-            $data = DB::table('seller')
-            ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
-            ->where('s_no','=', $sellerprimary )->get();
-            $proro = DB::table('product')
-            ->join('store','product.store_no','=','store.st_no')
-            ->select('*')->where('st_no' ,'=', $data[0]->st_no)->where('p_status','등록')->get();
-            $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
-            $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
-            $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
-            return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
+        $data = DB::table('seller')
+        ->join('store', 'seller.s_no', '=', 'store.seller_no')->select('*')
+        ->where('s_no','=', $sellerprimary )->get();
+        $proro = DB::table('product')
+        ->join('store','product.store_no','=','store.st_no')
+        ->select('*')->where('st_no' ,'=', $data[0]->st_no)->where('p_status','등록')->get();
+        $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
+        $store_address = DB::table('store_address')->select('*')->where('st_no' ,'=', $data[0]->st_no)->get();
+        $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
+        return view('myshop/shop_seller' , compact('data', 'proro','introduce', 'store_address', 'detail_address'));
       }
       else{
         return view('login/login_seller');
@@ -236,22 +236,22 @@ class InformationController extends Controller
         // return $sellerprimary;
         $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
         ->where('c_no','=',$customerprimary)->get();
+
         $data2 = DB::table('customer')
         ->join('payment','customer.c_no','payment.customer_no')
         ->join('delivery','payment.delivery_no','=','delivery.d_no')
         ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
 
-
+        $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
         $my = DB::table('customer')
         ->join('review', 'customer.c_no', '=', 'review.customer_no')
         ->join('product', 'review.product_no','=','product.p_no')
         ->where('c_no', $customerprimary)->get();
-        return view('mypage/c_mypage',compact('data','data2','my'));
+        return view('mypage/c_mypage',compact('data','data2','my', 'data3'));
       }
       else{
         return view('login/login_customer');
       }
-
     }
     public function s_mypage(){
       if($sellerinfo = auth()->guard('seller')->user()){
@@ -291,4 +291,27 @@ class InformationController extends Controller
         }
       }
     }
+
+    public function charge(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+        // return 0;
+        $customerprimary = $customerinfo->c_no;
+        $chargecash = preg_replace("/[^0-9]/", "", $request->input('money2'));
+        $cash = DB::table('customer')->where('c_no','=',$customerprimary)->get();
+        $totalcash = DB::table('customer')->where('c_no','=',$customerprimary)->update([
+        'c_cash'=> $cash[0]->c_cash+$chargecash
+        ]);
+        return redirect('/charge_popup');
+      }
+    }
+
+    public function charge_popup(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+        // return 0;
+        $customerprimary = $customerinfo->c_no;
+        $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
+        return view('charge_popup', compact('data3'));
+      }
+    }
+
   }
