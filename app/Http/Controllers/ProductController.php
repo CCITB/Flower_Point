@@ -69,7 +69,7 @@ class ProductController extends Controller
     $path=$request->file('picture')->store('/','public');
     DB::table('product')->insert([
       'p_name'=>$request->input('productname'),
-      'p_title' => preg_replace("/[^0-9]/", "",$request->input('deliverycharge')),
+      'p_delivery' => preg_replace("/[^0-9]/", "",$request->input('deliverycharge')),
       'p_contents' => $request->input('ir1'),
       'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
@@ -216,7 +216,7 @@ class ProductController extends Controller
       'p_name'=>$pd_name,
       'p_contents' => $pd_contents,
       'p_filename' =>$path,
-      'p_title' => $pd_deli,
+      'p_delivery' => $pd_deli,
       'p_price' => $pd_price
     ]);
 
@@ -410,7 +410,7 @@ class ProductController extends Controller
             'customer_no' => $prikey,
             'product_no' => $data,
             'b_count' =>  $count,
-            'b_delivery' => $pt->p_title,
+            'b_delivery' => $pt->p_delivery,
             'b_picture' => $pt->p_filename
           ]);
           return response()->json(12);

@@ -59,8 +59,8 @@ class PaymentController extends Controller
       $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
       $latestaddress = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
       $prodata = DB::table('product')->where('p_no',$proidx)->get();
-      $productsum = $prodata[0]->p_title+$prodata[0]->p_price*$productcount;
-      $productdelivery = $prodata[0]->p_title;
+      $productsum = $prodata[0]->p_delivery+$prodata[0]->p_price*$productcount;
+      $productdelivery = $prodata[0]->p_delivery;
       $productprice = $prodata[0]->p_price*$productcount;
       // echo $prodata;
       return view('payment.order',compact('user','productcount','productprice','useraddress','latestaddress','productdelivery','productsum','prodata','token'));
@@ -192,7 +192,7 @@ class PaymentController extends Controller
     if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
       $insertid =  DB::table('payment')->insertGetid([
         'pm_count' => $request->productcount,
-        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_title,
+        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
         'customer_no' => $customerprimary,
         'delivery_no' => $deliverytable[0]->d_no,
         'product_no' => $product_no[0],
@@ -207,7 +207,7 @@ class PaymentController extends Controller
     elseif($request->delivery=='기본배송지'){
       $insertid =  DB::table('payment')->insertGetid([
         'pm_count' => $request->productcount,
-        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_title,
+        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
         'customer_no' => $customerprimary,
         'c_address_no' => $useraddress[0]->a_no,
         'product_no' => $product_no[0],
