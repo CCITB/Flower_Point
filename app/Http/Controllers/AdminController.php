@@ -75,4 +75,26 @@ class AdminController extends Controller
 
     return view('admin.product', compact('product'));
   }
+
+  public function add_coupon(Request $request){
+
+    DB::table('coupon')->insert([
+      'cp_title'=>$request->input('c_title'),
+      'cp_minimum' => $request->input('c_minimum'),
+      'cp_flatrate' => $request->input('c_flat'),
+      'start_date' =>$request->input('start'),
+      'end_date' =>$request->input('end')
+    ]);
+
+    return redirect()->back();
+  }
+
+  public function show_coupon(){ //왜 금요일부터 안되지?
+
+    $coupon = DB::table('coupon')->select('*')->get();
+
+    return view('admin.coupon', compact('coupon'));
+  }
+
+
 }

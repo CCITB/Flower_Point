@@ -328,7 +328,7 @@
                 num =1;
               }
               $('#pdcount').val(num);
-              total = price * num; // 최종 금액 = 원래금액 x 카운트 value값
+              total = price * num; // 최종 금액 = 원래금액 * 카운트 value값
               com = Number(total).toLocaleString('en'); //최종금액에 영어권국가의 숫자표기방식을 따름
               $('#p_show').text(com); // 최종 금액을 화면에 보여줌
               console.log(total);

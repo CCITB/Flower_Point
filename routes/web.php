@@ -250,6 +250,8 @@ Route::post('/charge', 'InformationController@charge');
 
 Route::get('/charge_popup', 'InformationController@charge_popup');
 
+Route::get('/image_popup', 'InformationController@image');
+
 
 Route::get('/shop', 'InformationController@shop');
 
@@ -306,7 +308,11 @@ Route::get('/ad_regst{id}', 'AdminController@registraion');
 
 Route::post('/ad_confirm{id}', 'AdminController@confrim');
 
-Route::get('/image_popup', 'InformationController@image');
+Route::post('/cop', 'AdminController@add_coupon');
+
+Route::get('/ad_coupon', function () {
+  return view('admin.coupon');
+});
 
 //seller-주문관리
 // Route::post('/orderlist', 'OrderlistController@orderlist');
