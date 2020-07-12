@@ -1,0 +1,45 @@
+.coupon_add{
+  margin-bottom: 80px;
+}
+
+
+.c_table{
+  width: 100%;
+  height: 300px;
+  border-collapse:collapse;
+  text-align: left;
+}
+.th{
+  padding-left: 20px;
+  font-size: 15px;
+  width: 15%;
+  font-weight: 500;
+  border-bottom: 0.5px solid #D5D5D5;
+  background-color: #F6F6F6;
+}
+.td{
+  font-size: 15px;
+  padding-left: 20px;
+  border-bottom: 0.5px solid #D5D5D5;
+}
+.c_add{
+  height: 20%;
+}
+.add{
+  font-size: 1.3em;
+}
+.c_name{
+  height: 20%;
+}
+.c_title{
+  width: 15em;
+}
+.c_mini{
+  height: 20%;
+}
+.cp_flat{
+  height: 20%;
+}
+.c_date{
+  height: 20%;
+}
