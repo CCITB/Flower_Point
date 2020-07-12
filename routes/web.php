@@ -83,6 +83,10 @@ Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
 
+Route::get('/coupon', function(){
+  return view('coupon');
+});
+
 //비밀번호 찾기 (find_pw_way)
 Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');
 Route::post('/customer_sms_way', 'FindController@customer_sms_way');

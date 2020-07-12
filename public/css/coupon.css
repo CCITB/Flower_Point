@@ -1,0 +1,33 @@
+.couponwrap{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.supplement_coupon{
+  height: 209px;
+  margin-bottom: 22px;
+  background: url(//pics.gmarket.co.kr/pc/ko/net/myg/gbankbook/bg_coupn.gif) no-repeat left top;
+}
+
+
+.supplement_cnts{
+  width: 299px;
+  padding-top: 31px;
+  margin-left: 470px;
+}
+.coupon_list{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #676767;
+  margin-bottom: 50px;
+}
+
+a{
+  color: black;
+}

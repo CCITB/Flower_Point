@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+
     <link rel="stylesheet" href="/css/image.css">
   <body>
+
           @foreach ($data as $data1)
     <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
       @csrf
@@ -33,6 +35,7 @@
 
 
 </form>
+
 </body>
 <script type="text/javascript">
   //이미지 등록관련코드
