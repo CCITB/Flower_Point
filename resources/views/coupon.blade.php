@@ -28,7 +28,7 @@
           <p><span class="blindtext"></span></p>
           <dl>
             <dt><span class="bg_bul"></span>나의 보유쿠폰</dt>
-            <dd><strong></strong><span>장</span></dd>
+            <dd><strong></strong><span>0장</span></dd>
           </dl>
         </div>
       </div>

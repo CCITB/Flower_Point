@@ -26,8 +26,17 @@ table{
   border-spacing: 0;
   color: #676767;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 a{
   color: black;
+}
+
+h4{
+  margin-top: 30px;
+}
+
+.supplement_cnts2{
+  width: 299px;
 }

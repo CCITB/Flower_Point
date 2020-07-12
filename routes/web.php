@@ -87,6 +87,10 @@ Route::get('/coupon', function(){
   return view('coupon');
 });
 
+Route::get('/recievecoupon', function(){
+  return view('recievecoupon');
+});
+
 //비밀번호 찾기 (find_pw_way)
 Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');
 Route::post('/customer_sms_way', 'FindController@customer_sms_way');
