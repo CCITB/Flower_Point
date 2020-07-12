@@ -94,12 +94,11 @@
               @endif
               <div class="delivery_wrap">
                 <strong class="info">수령인</strong>
-                <div class=delivery_input><input id="inputtext" type="text" name="recipient"></div>
+                <div class=delivery_input><input id="inputtext" type="text" name="recipient" value="{{$user->c_name}}"></div>
               </div>
-
               <div class="delivery_wrap">
                 <strong class="info">전화번호</strong>
-                <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
+                <select name="phone_no1" id="delivery_tel_no1" class="delivery_tel">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -127,15 +126,15 @@
                   <option value="080">080</option>
                 </select>
                 -
-                <input type="text" title="휴대폰 중간번호" id="delivery_tel_no2"maxlength="4" class="delivery_tel" name="phone_no2">
+                <input type="text" title="휴대폰 중간번호" id="delivery_tel_no2"maxlength="4" class="delivery_tel" name="phone_no2" value="{{explode('-',$user->c_phonenum)[1]}}">
                 -
-                <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" maxlength="4" class="delivery_tel" name="phone_no3">
+                <input type="text" title="휴대폰 뒷자리" id="delivery_tel_no3" maxlength="4" class="delivery_tel" name="phone_no3" value="{{explode('-',$user->c_phonenum)[2]}}">
               </div>
               <div id="trade0">
-                <label><input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래</label>
-                <label><input type="radio" name="trade" id="trade2" value="무통장입금" onclick="div_show(this.value,'divshow');">무통장입금</label>
+                {{-- <label><input type="radio" name="trade" id="trade1"  value="직접거래" onclick="div_show(this.value,'divshow');">직접거래</label> --}}
+                <label><input type="radio" name="trade" id="trade2" value="무통장입금" checked onclick="div_show(this.value,'divshow');">무통장입금</label>
               </div>
-              <div id="divshow" style="display:none;">
+              <div id="divshow" style="">
                 <div class="delivery_wrap">
                   <div id="trade0">
                     <label><input type="radio" name="delivery" id="trade3" onclick="delivery_show(this.value,'delivery_wrap2');" checked="checked" value="기본배송지">기본배송지</label>
@@ -148,19 +147,19 @@
                 </div>
                 <!--주소 -->
                 <div class="delivery_wrap2" id="delivery_wrap2">
-                  <input type="text" class="postcode"  placeholder="우편번호"  readonly value="{{$useraddress[0]->a_post}}">
+                  <input type="text" class="postcode"  placeholder="우편번호"  disabled value="{{$useraddress[0]->a_post}}">
                   <input type="button" class="find_post" value="우편번호"><br>
-                  <input type="text" class="address" placeholder="주소"  readonly value="{{$useraddress[0]->a_address}}">
+                  <input type="text" class="address" placeholder="주소"  disabled value="{{$useraddress[0]->a_address}}">
 
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list"  placeholder="상세주소"  readonly value="{{$useraddress[0]->a_detail}}">
-                    <input type="text" class="delivery_address_list"  placeholder="참고항목"  readonly value="{{$useraddress[0]->a_extra}}">
+                    <input type="text" class="delivery_address_list"  placeholder="상세주소"  disabled value="{{$useraddress[0]->a_detail}}">
+                    <input type="text" class="delivery_address_list"  placeholder="참고항목"  disabled value="{{$useraddress[0]->a_extra}}">
                   </div>
                 </div>
                 <div class="delivery_wrap2" id="delivery_wrap3" style="display:none;">
-                  <input type="text" class="postcode" id="postcode" placeholder="우편번호" name="postcode" readonly>
+                  <input type="text" class="postcode" id="postcode" placeholder="우편번호" disabled name="postcode" value="">
                   <input type="button" class="find_post" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                  <input type="text" class="address" id="address" placeholder="주소" name="address" readonly>
+                  <input type="text" class="address" id="address" placeholder="주소" disabled name="address" value="">
                   <div class="delivery_address_detail">
                     <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" >
                     <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
@@ -168,22 +167,22 @@
                 </div>
                 @if(isset($latestaddress))
                 <div class="delivery_wrap2" id="delivery_wrap4" style="display:none;">
-                  <input type="text" class="postcode"  placeholder="우편번호"  readonly value="{{$latestaddress->d_post}}">
+                  <input type="text" class="postcode"  placeholder="우편번호"  disabled value="{{$latestaddress->d_post}}">
                   <input type="button" class="find_post"  value="우편번호"><br>
-                  <input type="text" class="address"  placeholder="주소"  readonly value="{{$latestaddress->d_address}}">
+                  <input type="text" class="address"  placeholder="주소"  disabled value="{{$latestaddress->d_address}}">
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list"  placeholder="상세주소" readonly value="{{$latestaddress->d_detailaddress}}">
-                    <input type="text" class="delivery_address_list"  placeholder="참고항목" readonly value="{{$latestaddress->d_extraaddress}}">
+                    <input type="text" class="delivery_address_list"  placeholder="상세주소" disabled value="{{$latestaddress->d_detailaddress}}">
+                    <input type="text" class="delivery_address_list"  placeholder="참고항목" disabled value="{{$latestaddress->d_extraaddress}}">
                   </div>
                 </div>
               @else
                 <div class="delivery_wrap2" id="delivery_wrap4" style="display:none;">
-                  <input type="text" class="postcode"  placeholder="우편번호"  readonly value="">
+                  <input type="text" class="postcode"  placeholder="우편번호"  disabled value="">
                   <input type="button" class="find_post"  value="우편번호"><br>
-                  <input type="text" class="address"  placeholder="주소"  readonly value="">
+                  <input type="text" class="address"  placeholder="주소"  disabled value="">
                   <div class="delivery_address_detail">
-                    <input type="text" class="delivery_address_list"  placeholder="상세주소" readonly value="">
-                    <input type="text" class="delivery_address_list"  placeholder="참고항목" readonly value="">
+                    <input type="text" class="delivery_address_list"  placeholder="상세주소" disabled value="">
+                    <input type="text" class="delivery_address_list"  placeholder="참고항목" disabled value="">
                   </div>
                 </div>
               @endif
@@ -305,6 +304,7 @@
 <button type="submit" name="button"></button>
 </form> --}}
 <script type="text/javascript">
+console.log(document.getElementById("address").value);
 $(function() {
 
   $(document).ready(function() {
@@ -375,14 +375,15 @@ function checkform(){
     alert('뒤 4자리의 숫자를 입력해주세요')
     return false;
   }
-  if(trade1.checked == trade2.checked){
-    alert('결제방식을 선택해주세요');
-    return false;
-  }
 
-  if(trade1.checked){
-    return true;
-  }
+  // if(trade1.checked == trade2.checked){
+  //   alert('결제방식을 선택해주세요');
+  //   return false;
+  // }
+
+  // if(trade1.checked){
+  //   return true;
+  // }
 
   if(trade2.checked){
     if(trade3.checked){

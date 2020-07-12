@@ -42,7 +42,7 @@
               <div class="order_result"><b>주문 정보</b>
                 <hr class="dotted_line">
                 <div class="order_data">
-                  <p class="order_label">주문번호 : {{$paymentID->pm_no}}</p>
+                  <p class="order_label">주문번호 : {{$orderNO}}</p>
                   <p class="order_label">상품명 : {{$paymentID->p_name}}</p>
                   <p class="order_label">결제금액 : {{$paymentID->pm_pay}}</p>
                 </div>
@@ -65,7 +65,7 @@
             <div class="order_result"><b>주문 정보</b>
               <hr class="dotted_line">
               <div class="order_data">
-                <p class="order_label">주문번호 : </p>
+                <p class="order_label">주문번호 : {{$orderNO}}</p>
                 <p class="order_label">상품명 :
                   @foreach ($paymentIDarray as $paymentIDarray)
                     <p>{{$paymentIDarray[0]->p_name}}</p>

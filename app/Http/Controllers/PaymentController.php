@@ -80,7 +80,7 @@ class PaymentController extends Controller
     //   return "<script>alert('요청이 실행중입니다!');</script>";
     // }
     // return $request->delivery;
-
+    return $request;
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -135,6 +135,7 @@ class PaymentController extends Controller
     $orderNO = DB::table('order')->insertGetid([
       'customer_no' => $customerprimary,
       'o_request' => $userrequest,
+      'created_at' => $now->format('yy-m-d H:i:s'),
     ]);
     //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
@@ -182,7 +183,10 @@ class PaymentController extends Controller
         }
       }
       // return $proarray[1][0]->b_no;
-      return Redirect::route('complete')->with('arraydata',$arraydata);
+      return Redirect::route('complete')->with([
+        'arraydata'=>$arraydata,
+        'orderNO'=>$orderNO
+    ]);
       // return $proarray;
     }
     // 상품테이블 정보 가져오기
@@ -221,12 +225,16 @@ class PaymentController extends Controller
     }
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
     // return 0;
-    return Redirect::route('complete')->with('data',$data);
+    return Redirect::route('complete')->with([
+      'data'=>$data,
+      'orderNO'=>$orderNO
+    ]);
 
   }
   // 결제완료시에 유저에게 보여지는 창
   public function paymentcomplete(Request $request){
     $paymentID = $request->session()->get('data');
+    $orderNO = $request->session()->get('orderNO');
     $paymentIDarray = $request->session()->get('arraydata');
     $pricesum = 0;
     if(isset($paymentIDarray)){
@@ -238,6 +246,7 @@ class PaymentController extends Controller
     // return $paymentIDarray[0][0]->pm_no;
     // echo $paymentID;
     // return dd($paymentIDarray);
-    return view('payment.complete',compact('paymentID','paymentIDarray','pricesum'));
+    // return $orderNO;
+    return view('payment.complete',compact('paymentID','paymentIDarray','pricesum','orderNO'));
   }
 }
