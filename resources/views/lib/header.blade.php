@@ -40,14 +40,6 @@
         @endif
       </div>
     </div>
-    <script type="text/javascript">
-    function showPopup() {
-      var url="charge_popup";
-      var option="width=700, height=400, top=200"
-      window.open(url, "", option);
-     }
-     </script>
-
     <div id="block_container">
       <div id="header">
         <div id="block1">
@@ -263,6 +255,13 @@ scroll-behavior: smooth;
 } */
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript">
+function showPopup() {
+  var url="charge_popup";
+  var option="width=700, height=400, top=200"
+  window.open(url, "", option);
+ }
+ </script>
 <script>
 $(document).ready(function(){
   $(function () {
