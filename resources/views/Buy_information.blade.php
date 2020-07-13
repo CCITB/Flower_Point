@@ -478,6 +478,11 @@
           });
         });
         $('#btn2').click(function(){
+          var check = '{{auth()->guard('seller')->check()}}';
+          if(1==check){
+            alert('판매자는 이용할 수 없습니다.');
+            return false;
+          }
           var bb = {{$protb->p_no}};
           $('input[name=count]').val($('#pdcount').val());
           console.log($('input[name=Pro]').val(bb));

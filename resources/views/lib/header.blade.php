@@ -31,9 +31,12 @@
           </div>
 
         @endif
-        <span class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></span>
         @if(auth()->guard('customer')->user())
+        <span class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></span>
         <span class="charge" style="float:right;" style="color:black;" onclick="showPopup();">충전하기</span>
+      @elseif(auth()->guard('seller')->user())
+      @else
+      <span class="login" style="float:right;"><a href="/flowercart" style="color:black;">장바구니</a></span>
         @endif
       </div>
     </div>
