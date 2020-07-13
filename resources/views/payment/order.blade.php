@@ -284,7 +284,7 @@
             총 상품 가격
           </div>
           <div class="" style="text-align:left; font-size:30px;">
-            <strong>{{number_format($productsum)}}</strong>원
+            <strong id="priceall">{{number_format($productsum)}}</strong>원
           </div>
           <hr style="margin-bottom:8px;">
           <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
@@ -302,17 +302,27 @@
             </tr>
             <tr>
               <th>결제 후 잔액</th>
-              <td class="order_text">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
-            </tr>
-          </table>
-          <hr class="line2">
-          <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-          <div class="line"><input class="end" type='submit' value="다음" ></div>
-        </form>
-      </div>
-    </div><!--결제정보 -->
-  </div><!--오른쪽 주문정보 박스 -->
-  <!--컨테이너박스-->
+              @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
+                <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+              </tr>
+            </table>
+            <hr class="line2">
+            <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+            <div class="line"><input class="end" type="submit" value="다음"></div>
+          @else
+            <td class="order_text" id="cashcheck1">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
+          </tr>
+        </table>
+        <hr class="line2">
+        <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+        <div class="line"><input class="end" type='submit' value="다음" ></div>
+      @endif
+
+    </form>
+  </div>
+</div><!--결제정보 -->
+</div><!--오른쪽 주문정보 박스 -->
+<!--컨테이너박스-->
 </div>
 </div>
 </div>
@@ -422,12 +432,18 @@ function checkform(){
   }
   // }
 
-  if((bank.value)==""){
-    alert('은행을 선택해주세요');
+  // if((bank.value)==""){
+  //   alert('은행을 선택해주세요');
+  //   return false;
+  // }
+  if($('#cashcheck0').text()=="잔액이 부족합니다 !"){
+    alert('잔액이 부족합니다 ! 충전 후 이용하여 주시기 바랍니다.');
     return false;
   }
   test('Spinner.gif');
 }
+
+
 //라디오버튼 클릭 이벤트
 function div_show(s,ss){
   if(s == "직접거래"){
@@ -553,8 +569,10 @@ var showPopup = function() {
     } catch (e) { }
   }, 500);
 };
+console.log({{$productsum}});
 </script>
-<button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button>
+<button type="button" name="button" onclick="checkform()">check</button>
+{{-- <button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button> --}}
 {{-- <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button> --}}
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

@@ -81,6 +81,7 @@ class PaymentController extends Controller
     // }
     // return $request->delivery;
     // return $request;
+    DB::beginTransaction();
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -109,6 +110,7 @@ class PaymentController extends Controller
       $customerprimary = auth()->guard('customer')->user()->c_no;
       //유저 기본배송지 추출
       $useraddress = DB::table('customer_address')->where('c_no',$customerprimary)->get();
+      // return auth()->guard('customer')->user()->c_cash;
     }
     // return DB::table('delivery')->where('customer_no',$customerprimary)->orderBy('d_no','desc')->take(1)->get();
     // return $basket_no;
@@ -141,12 +143,13 @@ class PaymentController extends Controller
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
     if(isset($basket_no)){
       // $data = [];
+      $sum = 0;
       if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
         //반복문으로 여러상품 찾고 장바구니에서 선택한 물품을 제거 + 주문번호 하나
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
-          $sum = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
             'pm_pay' => $sum,
@@ -167,7 +170,7 @@ class PaymentController extends Controller
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
-          $sum = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
             'pm_pay' => $sum,
@@ -184,8 +187,13 @@ class PaymentController extends Controller
           $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
+      if(auth()->guard('customer')->user()->c_cash-$sum<0){
+        DB::rollBack();
+        return "<script>alert('알 수 없는 오류입니다.')</script>";
+      }
       // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
       DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash',$sum);
+      DB::commit();
       // return $proarray[1][0]->b_no;
       return Redirect::route('complete')->with([
         'arraydata'=>$arraydata,
@@ -228,7 +236,12 @@ class PaymentController extends Controller
       ]);
     }
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
+    if(auth()->guard('customer')->user()->c_cash-$data[0]->pm_pay<0){
+      DB::rollBack();
+      return "<script>alert('알 수 없는 오류입니다.')</script>";
+    }
     DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash', $data[0]->pm_pay);
+    DB::commit();
     // return 0;
     return Redirect::route('complete')->with([
       'data'=>$data,
