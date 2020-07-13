@@ -7,7 +7,6 @@
 .supplement_coupon{
   height: 209px;
   margin-bottom: 22px;
-  background: url(//pics.gmarket.co.kr/pc/ko/net/myg/gbankbook/bg_coupn.gif) no-repeat left top;
 }
 
 
@@ -41,4 +40,13 @@ h4{
 
 .supplement_cnts2{
   width: 299px;
+}
+
+dt{
+  margin-bottom: 50px;
+}
+
+img{
+  position: absolute;
+  margin-left: 10px;
 }
