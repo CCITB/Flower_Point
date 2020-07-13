@@ -54,6 +54,8 @@ class OrderlistController extends Controller
     $invoice = $request->get("invoice");
     //배송업체명을 담은 배열
     $delivery = $request->get("delivery");
+    //배송업체 코드를 담은 배열
+    $delivery_code = $request->get("delivery_code");
 
     for($i=0; $i<count($pm_no); $i++){
       //체크된 값과 동일한 결제 ,
@@ -61,6 +63,8 @@ class OrderlistController extends Controller
       ->update([
         'pm_invoice_num' => $invoice[$i],
         'pm_company' => $delivery[$i],
+        'delivery_code' => $delivery_code[$i],
+        'pm_status' => '결제 완료',
         'pm_d_status' => '배송중'
       ]);
     }
