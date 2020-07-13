@@ -18,163 +18,163 @@
       <div id="line">
         <h2>나의 주문관리</h2>
         <hr>
+        <table>
+          <tr>
+            <!-- <td rowspan="3" class="orderpicture">사진</td>
+            <td class="orderblink">입금대기</td>
+            <td class="ordercount">0</td>
+            <td class="orderspace">건</td> -->
+            <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery1.png"/></td>
+            <td class="orderblink">배송준비</td>
+            <td class="ordercount">0</td>
+            <td class="orderspace">건</td>
+            <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery2.png"/></td>
+            <!-- <td class="orderblink">취소요청</td> -->
+            <td class="orderblink">입금대기</td>
+            <td class="ordercount">0</td>
+            <td class="orderspace">건</td>
+          </tr>
+          <tr>
+            <td>배송중</td>
+            <td>0</td>
+            <td>건</td>
+            <td>반품요청</td>
+            <td>0</td>
+            <td>건</td>
+          </tr>
+          <tr>
+            <!-- <td>오늘출발</td>
+            <td>0</td>
+            <td>건</td> -->
+            <td>배송완료</td>
+            <td>0</td>
+            <td>건</td>
+            <td>교환요청</td>
+            <td>0</td>
+            <td>건</td>
+          </tr>
+        </table>
       </div>
+
     </div>
     <div class="myorderlist">
       <div class="myorderlist-top">
         <div class="myorderlist-infor">
-          <table>
-            <tr>
-              <td rowspan="3" class="orderpicture">사진</td>
-              <td class="orderblink">입금대기</td>
-              <td class="ordercount">0</td>
-              <td class="orderspace">건</td>
-              <td rowspan="3" class="orderpicture">사진</td>
-              <td class="orderblink">배송준비</td>
-              <td class="ordercount">0</td>
-              <td class="orderspace">건</td>
-              <td rowspan="3" class="orderpicture">사진</td>
-              <td class="orderblink">취소요청</td>
-              <td class="ordercount">0</td>
-              <td class="orderspace">건</td>
-            </tr>
-            <tr>
-              <td>신규주문</td>
-              <td>0</td>
-              <td>건</td>
-              <td>배송중</td>
-              <td>0</td>
-              <td>건</td>
-              <td>반품요청</td>
-              <td>0</td>
-              <td>건</td>
-            </tr>
-            <tr>
-              <td>오늘출발</td>
-              <td>0</td>
-              <td>건</td>
-              <td>배송완료</td>
-              <td>0</td>
-              <td>건</td>
-              <!-- <td>교환요청</td>
-              <td>0</td>
-              <td>건</td> -->
-            </tr>
-          </table>
+
           @if(count($order))
-            <div class="sellerorderlist">
-              <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
-              <div class="orderlist-bottom">
-                <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
-                <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
-              </div>
+          <div class="sellerorderlist">
+            <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
+            <div class="orderlist-bottom">
+              <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
+              <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
+            </div>
 
-              <!--button에 따라 action값 변경 -->
-              <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
-              @csrf
+            <!--button에 따라 action값 변경 -->
+            <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
+            @csrf
 
-              <table id="myTable">
-                <thead>
-                  <tr>
-                    <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-                    <th class="title">주문번호</th>
-                    <th class="title">결제번호</th>
-                    <th class="title">상품번호</th>
-                    <th class="title">상품명</th>
-                    <th class="title">수량</th>
-                    <th class="title">송장번호</th>
-                    <th class="title">택배사</th>
-                    <!-- <th class="title">발송일</th> -->
-                    <th class="title">주문일시</th>
-                    <th class="title">고객명</th>
-                    <th class="title">가격</th>
-                    <th class="title">결제상태</th>
-                    <th class="title">배송상태</th>
-                    <th class="title">배송조회</th>
-                    <!-- <th class="title"></th> -->
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($order as $order)
-                    <tr>
-                      <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
-                      <td>{{$order->o_no}}</td>
-                      <td>{{$order->pm_no}}</td>
-                      <td>{{$order->p_no}}</td>
-                      <td id="p_name">{{$order->p_name}}</td>
-                      <td>{{$order->pm_count}}</td>
+            <table id="myTable">
+              <thead>
+                <tr>
+                  <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+                  <th class="title">주문번호</th>
+                  <th class="title">결제번호</th>
+                  <th class="title">상품번호</th>
+                  <th class="title">상품명</th>
+                  <th class="title">수량</th>
+                  <th class="title">송장번호</th>
+                  <th class="title">택배사</th>
+                  <!-- <th class="title">발송일</th> -->
+                  <th class="title">주문일시</th>
+                  <th class="title">고객명</th>
+                  <th class="title">가격</th>
+                  <th class="title">결제상태</th>
+                  <th class="title">배송상태</th>
+                  <th class="title">배송조회</th>
+                  <!-- <th class="title"></th> -->
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($order as $order)
+                <tr>
+                  <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
+                  <td>{{$order->o_no}}</td>
+                  <td>{{$order->pm_no}}</td>
+                  <td>{{$order->p_no}}</td>
+                  <td id="p_name">{{$order->p_name}}</td>
+                  <td>{{$order->pm_count}}</td>
 
-                      <!--데이터값 존재x-->
-                      @if(!isset($order->pm_invoice_num))
-                        <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
+                  <!--데이터값 존재x-->
+                  @if(!isset($order->pm_invoice_num))
+                  <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
 
-                        <!--데이터값 존재-->
-                      @else
-                        <td>
-                          <!-- <div id="re_inv_div" style="display:none;">
-                          <p id="re_invoice">{{$order->pm_invoice_num}}</p><input id="re_invoice_btn" class="re_btn" type="button" value="수정"/>
-                        </div> -->
-                        <div id="editform" name="editform">
-                          {{$order->pm_invoice_num}}
-                        </div>
-                        <div id="editbtn" name="editbtn">
-                          <button id="btn" name="btn" class="re_btn" type="button">수정</button>
-                        </div>
-                      </td>
-                    @endif
+                  <!--데이터값 존재-->
+                  @else
+                  <td>
+                    <!-- <div id="re_inv_div" style="display:none;">
+                    <p id="re_invoice">{{$order->pm_invoice_num}}</p><input id="re_invoice_btn" class="re_btn" type="button" value="수정"/>
+                  </div> -->
+                  <div id="editform" name="editform">
+                    {{$order->pm_invoice_num}}
+                  </div>
+                  <div id="editbtn" name="editbtn">
+                    <button id="btn" name="btn" class="re_btn" type="button">수정</button>
+                  </div>
+                </td>
+                @endif
 
-                    @if(!isset($order->pm_company))
-                      <td id="select">
-                        <select id="delivery" class="select" name=delivery margin-left:10px;>
-                          <option value="">택배 선택</option>
-                          <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
-                          {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
-                          <option value="로젠택배" id="kr.logen">로젠택배</option>
-                          <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
-                          <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
-                          <option value="한진택배" id="kr.hanjin">한진택배</option>
-                          <option value="경동택배" id="kr.kdexp">경동택배</option>
-                          <option value="대신택배" id="kr.daesin">대신택배</option>
-                          <option value="합동택배" id="kr.hdexp">합동택배</option>
-                          <option value="천일택배" id="kr.chunilps">천일택배</option>
-                        </select></td>
-                      @else
-                        <td><p>{{$order->pm_company}}</p></td>
-                      @endif
-                      <!-- <td>2020.04.16</td> -->
-                      <td id="date">{{$order->created_at}}</td>
-                      <td>{{$order->c_name}}</td>
-                      <td>{{$order->pm_pay}}</td>
-                      <td id="pm_status">{{$order->pm_status}}</td>
-                      <td id="pm_d_status">{{$order->pm_d_status}}</td>
+                @if(!isset($order->pm_company))
+                <td id="select">
+                  <select id="delivery" class="select" name=delivery margin-left:10px;>
+                    <option value="">택배 선택</option>
+                    <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
+                    {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
+                    <option value="로젠택배" id="kr.logen">로젠택배</option>
+                    <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
+                    <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
+                    <option value="한진택배" id="kr.hanjin">한진택배</option>
+                    <option value="경동택배" id="kr.kdexp">경동택배</option>
+                    <option value="대신택배" id="kr.daesin">대신택배</option>
+                    <option value="합동택배" id="kr.hdexp">합동택배</option>
+                    <option value="천일택배" id="kr.chunilps">천일택배</option>
+                  </select></td>
+                  @else
+                  <td><p>{{$order->pm_company}}</p></td>
+                  @endif
+                  <!-- <td>2020.04.16</td> -->
+                  <td id="date">{{$order->created_at}}</td>
+                  <td>{{$order->c_name}}</td>
+                  <td>{{$order->pm_pay}}</td>
+                  <td id="pm_status">{{$order->pm_status}}</td>
+                  <td id="pm_d_status">{{$order->pm_d_status}}</td>
 
-                      @if(isset($order->pm_company))
-                        {{-- <td id="delivery_search"><a href="https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}" target="_blank">배송조회</a></td> --}}
-                        <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td>
-                        @else
-                          <td id="delivery_search"></td>
-                        @endif
-                        <!-- <td><button type="submit" name="button">저장</button></td> -->
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-                <!-- </form> -->
-              </div>
-            @else
-              <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
-                <div class="" style="top:180px; position:absolute; left:300px; ">
-                  주문목록이 없습니다.
-                </div>
-              </div>
-            @endif
+                  @if(isset($order->pm_company))
+                  <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
+                  <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td>
+                  @else
+                  <td id="delivery_search"></td>
+                  @endif
+                  <!-- <td><button type="submit" name="button">저장</button></td> -->
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <!-- </form> -->
           </div>
+          @else
+          <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+            <div class="" style="top:180px; position:absolute; left:300px; ">
+              주문목록이 없습니다.
+            </div>
+          </div>
+          @endif
         </div>
       </div>
     </div>
-    @include('lib.footer')
-  </body>
-  </html>
+  </div>
+  @include('lib.footer')
+</body>
+</html>
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
@@ -216,13 +216,13 @@ $(document).ready(function(){
 
   $('#btn').on('click',function () {
     var text = $("#editform").text();
+    console.log($("#editform").text());
     $('#editform').html("<input type='text' vlaue='"+text+"' id='editDo'>");
     $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>")
   });
 });
 
 $(document).on('click','#btnDo',function () {
-  update_invoice();
   $('#editform').text($("#editDo").val());
   $('#editbtn').html("<button type='button' id='btn'>수정</button>")
 });
@@ -360,6 +360,7 @@ function form_send(){
 
     //checkbox 각각의 id값
     var index_no = elements.id;
+    console.log(elements);
     checkbox_id.push(index_no);
 
     pm_d_status.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
