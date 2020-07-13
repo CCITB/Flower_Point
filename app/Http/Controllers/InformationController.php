@@ -342,5 +342,31 @@ class InformationController extends Controller
 
       return redirect()->back();
     }
+    public function recievecoupon(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+         $customerprimary = $customerinfo->c_no;
+         $coupon = DB::table('coupon')->select('*')->where('customer_no','=',NULL)->get();
+         $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
+         return view('recievecoupon',compact('coupon','coupon2'));
+  }
+}
+    public function givecoupon(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+         $customerprimary = $customerinfo->c_no;
+         $cp = DB::table('coupon')->select('*')->get();
+         $tabledata = DB::table('coupon')->select('*')->get();
+         // $cp_no = $request->get("")
+          DB::table('coupon')->insert([
+          'cp_title' => $cp[0]->cp_title,
+          'cp_minimum' => $cp[0]->cp_minimum,
+          'cp_flatrate' => $cp[0]->cp_flatrate,
+          'cp_status' => '발급',
+          'start_date' => $cp[0]->start_date,
+          'end_date' =>  $cp[0]->end_date,
+          'customer_no' => $customerprimary
+        ]);
 
+        return redirect('/recievecoupon');
+    }
+}
   }

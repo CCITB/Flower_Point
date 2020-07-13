@@ -1,6 +1,7 @@
 .couponwrap{
-  width: 50%;
+  width: 900px;
   margin: 0 auto;
+  height: 40em;
 }
 
 .supplement_coupon{
@@ -35,6 +36,7 @@ a{
 
 h4{
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .supplement_cnts2{
