@@ -1,15 +1,24 @@
 .pd_info {
   display: flex;
+  margin-top: 10px;
   width: 100%;
   height: 100px;
 }
 .rev_thumbnail {
   width: 30%;
-  background-color: #FFEAEA;
+}
+.pdimg{
+  width: 100px;;
+  height: 100px;
 }
 .rev_pd_name {
   width: 70%;
-  background-color: #FAE0D4;
+  padding: 15px;
+  text-align:left;
+}
+.storename{
+  color: #8C8C8C;
+  margin-bottom: 15px;
 }
 .review_total {
   text-align: center;
@@ -32,7 +41,7 @@
   font-size: 18px;
   padding-bottom: 13px;
 }
-textarea {
+.satis_detail_window {
   width: 85%;
   height: 150px;
   resize: none;
@@ -40,20 +49,21 @@ textarea {
   font-size: 15px;
   line-height: 1.3em;
 }
-.satis_img {
-  padding-top: 10px;
+.counter{
+  width: 93%;
+  text-align: right;
 }
-.img_bt {
-  font-size: 20px;
+.pointinfo{
+  margin: 0 auto;
+  margin-top: 15px;
+  text-align: left;
+  width: 90%;
+  font-size: 0.7em;
+  color: red;
+  line-height: 1.7em;
 }
 .under {
   height: 50px;
-}
-img
-{
-  width:50px;
-  height:50px;
-  text-align: center;
 }
 .hi{
   border: 0;
@@ -62,7 +72,6 @@ img
   height:60px;
   cursor: pointer;
   background: url( "https://image.flaticon.com/icons/svg/1828/1828884.svg" );
-}
 }
 .on{
   z-index: 10;

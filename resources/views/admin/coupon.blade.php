@@ -81,10 +81,31 @@
                     <th>발급제한</th>
                     <th>발급 여부</th>
                     <th>발급</th>
+                    <th>미발급</th>
                   </tr>
                 </thead>
                 <tbody>
-
+                  @foreach ($coupon as $cou)
+                    <tr>
+                      <td>{{$cou->cp_title}}</td>
+                      <td>{{$cou->cp_minimum}}</td>
+                      <td>{{$cou->cp_flatrate}}</td>
+                      <td>{{$cou->start_date}} ~ {{$cou->end_date}}</td>
+                      <td>{{$cou->cp_status}}</td>
+                      <td>
+                        <form action="/ad_issue{{$cou->cp_no}}" method="post">
+                          @csrf
+                          <button type="submit" name="button">발급</button>
+                        </form>
+                      </td>
+                      <td>
+                        <form action="/ad_noissue{{$cou->cp_no}}" method="post">
+                          @csrf
+                          <button type="submit" name="button">미발급</button>
+                        </form>
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -117,6 +138,9 @@
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
   <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
+  <script src="lib/common-scripts.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script>
 
   $('#ca').click(function(){

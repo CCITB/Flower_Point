@@ -89,12 +89,29 @@ class AdminController extends Controller
     return redirect()->back();
   }
 
-  public function show_coupon(){ //왜 금요일부터 안되지?
+  public function show_coupon(){
 
     $coupon = DB::table('coupon')->select('*')->get();
 
     return view('admin.coupon', compact('coupon'));
   }
 
+  public function issue($id){
+
+    $coupon = DB::table('coupon')->where('cp_no',$id)
+    ->update([
+      'cp_status' => '발급'
+    ]);
+    return redirect()->back();
+  }
+
+  public function noissue($id){
+
+    $coupon = DB::table('coupon')->where('cp_no',$id)
+    ->update([
+      'cp_status' => '미발급'
+    ]);
+    return redirect()->back();
+  }
 
 }

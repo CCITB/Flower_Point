@@ -239,8 +239,11 @@ class InformationController extends Controller
 
         $data2 = DB::table('customer')
         ->join('payment','customer.c_no','payment.customer_no')
-        ->join('delivery','payment.delivery_no','=','delivery.d_no')
-        ->join('product','payment.product_no','product.p_no')->select('*')->where('c_no','=',$customerprimary)->get();
+        ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
+        ->join('product','payment.product_no','product.p_no')
+        ->leftjoin('review','product.p_no','=','review.product_no')
+        ->select('*')->where('c_no','=',$customerprimary)
+        ->where('pm_d_status','<>','결제 대기')->where('pm_d_status','<>','결제 준비중')->get();
 
         $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
         $my = DB::table('customer')
@@ -299,7 +302,7 @@ class InformationController extends Controller
         $chargecash = preg_replace("/[^0-9]/", "", $request->input('money2'));
         $cash = DB::table('customer')->where('c_no','=',$customerprimary)->get();
         $totalcash = DB::table('customer')->where('c_no','=',$customerprimary)->update([
-        'c_cash'=> $cash[0]->c_cash+$chargecash
+          'c_cash'=> $cash[0]->c_cash+$chargecash
         ]);
         return redirect('/charge_popup');
       }
@@ -312,6 +315,32 @@ class InformationController extends Controller
         $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
         return view('charge_popup', compact('data3'));
       }
+    }
+
+    public function pd_point($id){
+
+      $customerinfo = auth()->guard('customer')->user();
+      $customerprimary = $customerinfo->c_no;
+
+      $point = $id * 3 / 100; // point (2%)
+      $myinfo = DB::table('customer')->where('c_no',$customerprimary)->get();
+      $myp = $myinfo[0]->c_point;
+      $total_p = $point + $myp;
+
+      $pm_no = $_POST['hidden'];
+
+      DB::table('customer')->where('c_no','=',$customerprimary)
+      ->update([
+        'c_point'=>$total_p
+      ]);
+
+      DB::table('payment')->where('pm_no','=',$pm_no)
+      ->update([
+        'pm_status'=>'구매 확정',
+        'pm_d_status' => '배송 완료'
+      ]);
+
+      return redirect()->back();
     }
 
   }
