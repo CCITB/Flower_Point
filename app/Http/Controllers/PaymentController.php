@@ -80,7 +80,7 @@ class PaymentController extends Controller
     //   return "<script>alert('요청이 실행중입니다!');</script>";
     // }
     // return $request->delivery;
-    return $request;
+    // return $request;
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -146,9 +146,10 @@ class PaymentController extends Controller
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $sum = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
-            'pm_pay' => $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery,
+            'pm_pay' => $sum,
             'customer_no' => $customerprimary,
             'delivery_no' => $deliverytable[0]->d_no,
             'product_no' => $proarray[$i][0]->product_no,
@@ -166,9 +167,10 @@ class PaymentController extends Controller
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $sum = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
-            'pm_pay' => $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery,
+            'pm_pay' => $sum,
             'customer_no' => $customerprimary,
             'c_address_no' => $useraddress[0]->a_no,
             'product_no' => $proarray[$i][0]->product_no,
@@ -182,6 +184,8 @@ class PaymentController extends Controller
           $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
+      // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
+      DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash',$sum);
       // return $proarray[1][0]->b_no;
       return Redirect::route('complete')->with([
         'arraydata'=>$arraydata,
@@ -224,6 +228,7 @@ class PaymentController extends Controller
       ]);
     }
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
+    DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash', $data[0]->pm_pay);
     // return 0;
     return Redirect::route('complete')->with([
       'data'=>$data,

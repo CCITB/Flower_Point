@@ -10,16 +10,20 @@
 </head>
 <body>
   <div class="review_total">
+    @foreach ($mypd as $pd)
     <div class="pd_info">
-      <div class="rev_thumbnail">
-
-      </div>
-      <div class="rev_pd_name">
-
-      </div>
+        <div class="rev_thumbnail">
+          <img class="pdimg" src="imglib/{{$pd->p_filename}}">
+        </div>
+        <div class="rev_pd_name">
+          <div class="storename">
+            [꽃갈피] {{$pd->st_name}}
+          </div>
+          {{$pd->p_name}}
+        </div>
     </div>
 
-    <form action = "{{url('rev')}}" method="post" name="myrv" id="create_form"  enctype="multipart/form-data">
+    <form action = "/rev{{$pd->p_no}}" method="post" name="myrv" id="create_form"  enctype="multipart/form-data">
       @csrf
       <div class="rev_detail">
         <div class="pd_satis">
@@ -32,8 +36,10 @@
               <button name="rate4" class="hi" id="st4" onclick="star_text(4)" value="4">★</button>
               <button name="rate5" class="hi" id="st5" onclick="star_text(5)" value="5">★</button>
               <input type="hidden" id="hidden" name="hidden" value="">
+              <input type="hidden" name="price" value="{{$pd->p_price}}">
+              <input type="hidden" name="pm_no" value="{{$pd->pm_no}}">
             </div>
-            <br><br><div class="star_detail" id="st_detail">별점을 눌러주세요.</div>
+            <br><div class="star_detail" id="st_detail">별점을 선택하세요.</div>
           </div>
         </div>
 
@@ -43,8 +49,12 @@
             어떤 점이 <span id="satis_nu2">좋았나요?</span>
           </div>
           <div class="satis_detail">
-            <textarea class="satis_detail_window" id="review_text" name="text" maxlength="250" placeholder="후기를 입력해주세요."></textarea>
-            <br><span class="counter" id="counter">###</span>
+            <textarea class="satis_detail_window" id="review_text" name="text" maxlength="249" placeholder="후기를 입력해주세요."></textarea>
+            <div class="counter" id="counter">###</div>
+            <div class="pointinfo">
+              - 상품과 무관한 사진을 첨부한 리뷰는 통보없이 삭제 및 적립 혜택이 회수될 수 있습니다.<br>
+              - 리뷰 등록 시 해당상품의 2%가 포인트로 적립됩니다.
+            </div>
           </div>
         </div>
       </div>
@@ -54,7 +64,7 @@
           <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="my_img" accept="image/*" >
         </div>
         <div class="preview">
-          <img src="#" alt="" id="image-session">
+          <img class="primg" src="#" alt="" id="image-session">
           <div class="preview-image">
             <!-- 이미지 미리보기 -->
           </div>
@@ -63,17 +73,18 @@
 
 
       <div class="under">
-        <input class="rev_bt" type="button" value="취소" onclick="self.close();" />
         <input class="rev_bt" id="sub" type='submit' value="확인">
+        <input class="rev_bt" type="button" value="취소" onclick="self.close();" />
       </div>
     </form>
+  @endforeach
   </div>
 
 
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
 
- // 별점 색 on
+  // 별점 색 on
   $( ".choice_star button" ).click(function() {
     $(this).parent().children("button").removeClass("on");
     $(this).addClass("on").prevAll("button").addClass("on");
@@ -140,12 +151,11 @@
 
   //글자수 세기
   $(function() {
-        $('#review_text').keyup(function (e){
-            var content = $(this).val();
-            $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
-            $('#counter').html(content.length + '/250');
-        });
-        $('#review_text').keyup();
+    $('#review_text').keyup(function (e){
+      var content = $(this).val();
+      $('#counter').html(content.length + '/250');
+    });
+    $('#review_text').keyup();
   });
 
 

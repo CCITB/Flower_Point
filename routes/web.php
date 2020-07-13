@@ -87,9 +87,9 @@ Route::get('/coupon', function(){
   return view('coupon');
 });
 
-Route::get('/recievecoupon', function(){
-  return view('recievecoupon');
-});
+Route::get('/recievecoupon', 'InformationController@recievecoupon'); //추가
+
+Route::post('/givecoupon', 'InformationController@givecoupon'); //추가
 
 //비밀번호 찾기 (find_pw_way)
 Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');
@@ -196,15 +196,15 @@ Route::post('index', 'ProductController@seller_product_register');
 
 Route::post('image', 'ProductController@store_img_register');
 
-Route::get('/review', function () {
-  return view('review');
-});
+Route::get('/review{id}', 'ReviewController@pd_review');
 
 Route::get('/Qnaanswer{id}','QnAController@answer');
 
-Route::post('rev', 'ReviewController@my_review');
+Route::post('/rev{id}', 'ReviewController@my_review');
 
 Route::post('rev_count', 'ReviewController@rev_count');
+
+Route::post('/pd_point{id}', 'InformationController@pd_point');
 
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
@@ -310,9 +310,11 @@ Route::post('/ad_confirm{id}', 'AdminController@confrim');
 
 Route::post('/cop', 'AdminController@add_coupon');
 
-Route::get('/ad_coupon', function () {
-  return view('admin.coupon');
-});
+Route::get('/ad_coupon', 'AdminController@show_coupon');
+
+Route::post('/ad_issue{id}', 'AdminController@issue');
+
+Route::post('/ad_noissue{id}', 'AdminController@noissue');
 
 //seller-주문관리
 // Route::post('/orderlist', 'OrderlistController@orderlist');
