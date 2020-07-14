@@ -326,3 +326,4 @@ Route::get('/sellermyorderlist', 'OrderlistController@orderlist');
 
 Route::post('/payment_status', 'OrderlistController@payment_status');
 Route::post('/delivery_status', 'OrderlistController@delivery_status');
+Route::post('/update_invoice', 'OrderlistController@update_invoice');

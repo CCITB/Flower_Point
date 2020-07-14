@@ -113,18 +113,17 @@
                   <!--데이터값 존재-->
                   @else
                   <td>
-                    <!-- <div id="re_inv_div" style="display:none;">
-                    <p id="re_invoice">{{$order->pm_invoice_num}}</p><input id="re_invoice_btn" class="re_btn" type="button" value="수정"/>
-                  </div> -->
-                  <div id="editform" name="editform">
-                    {{$order->pm_invoice_num}}
-                  </div>
-                  <div id="editbtn" name="editbtn">
+                    <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button id="re_invoice_btn">수정</button></div>
+                    <!-- <div id="editform" name="editform"> -->
+                    <!-- {{$order->pm_invoice_num}} -->
+                    <!-- </div>
+                    <div id="editbtn" name="editbtn">
                     <button id="btn" name="btn" class="re_btn" type="button">수정</button>
-                  </div>
+                  </div> -->
                 </td>
                 @endif
 
+                <!--배송업체가 없을 경우 -->
                 @if(!isset($order->pm_company))
                 <td id="select">
                   <select id="delivery" class="select" name=delivery margin-left:10px;>
@@ -140,8 +139,10 @@
                     <option value="합동택배" id="kr.hdexp">합동택배</option>
                     <option value="천일택배" id="kr.chunilps">천일택배</option>
                   </select></td>
+
+                  <!-- 배송업체가 존재할 경우 -->
                   @else
-                  <td><p>{{$order->pm_company}}</p></td>
+                  <td><p>{{$order->pm_company}}</p><button id="re_pm_company">수정</button></td>
                   @endif
                   <!-- <td>2020.04.16</td> -->
                   <td id="date">{{$order->created_at}}</td>
@@ -206,46 +207,47 @@ $(document).ready(function(){
   });
 
 
- //결제 상태의 문자를 담은 배열
- var pm_status_str =[];
- //배송 상태의 문자를 담은 배열
- var dv_status_str =[];
- //결제 대기가 몇개인지 세어주는 카운트
- var payment_wait_cnt=0;
- //배송 중비중이 몇개인지 세어주는 카운트
- var shipping_wait_cnt=0;
- //배송중 이 몇개인지 세어주는 카운트
- var delivery_cnt=0;
- //배송 완료가 몇개인지 세어주는 카운트
- var complete_cnt=0;
+  //결제 상태의 문자를 담은 배열
+  var pm_status_str =[];
+  //배송 상태의 문자를 담은 배열
+  var dv_status_str =[];
+  //결제 대기가 몇개인지 세어주는 카운트
+  var payment_wait_cnt=0;
+  //배송 중비중이 몇개인지 세어주는 카운트
+  var shipping_wait_cnt=0;
+  //배송중 이 몇개인지 세어주는 카운트
+  var delivery_cnt=0;
+  //배송 완료가 몇개인지 세어주는 카운트
+  var complete_cnt=0;
 
-//전체 배송, 결제 상태의 값을 받기 위한 소스
- $("input:checkbox[name=checkRow]").each(function(index,elements)
- {
-   var index_no = elements.id;
+  //전체 배송, 결제 상태의 값을 받기 위한 소스
+  $("input:checkbox[name=checkRow]").each(function(index,elements)
+  {
+    var index_no = elements.id;
 
-   pm_status_str.push($('#'+index_no).parent().parent().children('#pm_status').text());
-   dv_status_str.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
+    pm_status_str.push($('#'+index_no).parent().parent().children('#pm_status').text());
+    dv_status_str.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
 
 
-   pm_status_str[index];
-   if(pm_status_str[index]=="결제 대기"){
-     payment_wait_cnt = payment_wait_cnt+1;
-   }
+    pm_status_str[index];
+    if(pm_status_str[index]=="결제 대기"){
+      payment_wait_cnt = payment_wait_cnt+1;
+    }
 
-   if(dv_status_str[index]=="배송 준비중"){
-     shipping_wait_cnt = shipping_wait_cnt+1;
-   }
+    if(dv_status_str[index]=="배송 준비중"){
+      shipping_wait_cnt = shipping_wait_cnt+1;
+    }
 
-   if(dv_status_str[index]=="배송중"){
-     delivery_cnt = delivery_cnt+1;
-   }
+    if(dv_status_str[index]=="배송중"){
+      delivery_cnt = delivery_cnt+1;
+    }
 
-   if(dv_status_str[index]=="배송 완료"){
-     complete_cnt = complete_cnt+1;
-   }
- });
+    if(dv_status_str[index]=="배송 완료"){
+      complete_cnt = complete_cnt+1;
+    }
+  });
 
+  //상단 발주확인, 발송처리 이벤트
   $('#check').click(function () {
     // $('#order_list').attr("onsubmit", "return form_check()");
     // $('#order_list').attr("action", "/payment_status");
@@ -266,20 +268,68 @@ $(document).ready(function(){
   //배송완료
   $('#complete_cnt').html(complete_cnt);
 
+});
+// $(document).on('click','#btn',function () {
+//   var text = $("#editform").text();
+//   console.log($("#editform").text());
+//   $('#editform').html("<input type='text' vlaue='"+text+"' id='editDo'>");
+//   $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>");
+// });
+//
+// $(document).on('click','#btnDo',function () {
+//   $('#editform').text($("#editDo").val());
+//   $('#editbtn').html("<button type='button' id='btn'>수정</button>")
+// });
 
-  $('#btn').on('click',function () {
-    var text = $("#editform").text();
-    console.log($("#editform").text());
-    $('#editform').html("<input type='text' vlaue='"+text+"' id='editDo'>");
-    $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>");
-  });
+
+//수정버튼 이벤트
+$(document).on('click','#re_invoice_btn',function () {
+  // console.log($(this).parent().parent().parent().children('.sorting_1').children().attr('id'));
+  var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+  var pm_no = check_btn_no.replace(/[^0-9]/g,"");
+
+  //원래 존재하고 있던 값을 유지한 상태로 새로운 input창과 버튼을 생성
+  var text = $('#re_invoice'+pm_no).text();
+  $('#div_invoice'+pm_no).html("<input type='text' class='num' id='inp_invoice' value='"+text+"'><button id='re_invoice_btn_Do'>수정하기</button>");
 });
 
-$(document).on('click','#btnDo',function () {
-  $('#editform').text($("#editDo").val());
-  $('#editbtn').html("<button type='button' id='btn'>수정</button>")
-});
+//수정하기 버튼 이벤트
+$(document).on('click','#re_invoice_btn_Do',function () {
+  // console.log($(this).parent().parent().parent().children('.sorting_1').children().attr('id'));
+  var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+  var pm_no = check_btn_no.replace(/[^0-9]/g,"");
+  // console.log(pm_no);
 
+  //화면에 보이는 텍스트
+  var text = $('#re_invoice'+pm_no).text();
+  var re_text = $('#inp_invoice').val();
+  console.log(text);
+  console.log(re_text);
+
+
+  if(re_text==""){
+    $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+text+"</p><button id='re_invoice_btn'>수정</button>");
+  }
+  else{
+    $.ajax({
+      type: 'post',
+      url: '/update_invoice',
+      dataType: 'json',
+      data: { "pm_no" : pm_no,
+              "re_text" : re_text
+     },
+      success: function(data) {
+        console.log(data);
+        alert('수정되었습니다.');
+        $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
+        // document.getElementById('pm_status').innerHTML="data";
+      },
+      error: function(data) {
+        console.log("error");
+      }
+    });
+  }
+});
 
 //전체 체크박스
 var selectAll = document.querySelector("#th_checkAll");

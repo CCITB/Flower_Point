@@ -72,4 +72,14 @@ class OrderlistController extends Controller
     //return redirect('/sellermyorderlist');
   }
 
+  public function update_invoice(Request $request){
+    $pm_no = $request->get("pm_no");
+    $re_text = $request->get("re_text");
+
+    DB::table('payment')->where('pm_no',$pm_no)
+    ->update([
+      'pm_invoice_num' => $re_text
+    ]);
+    return response()->json($re_text);
+  }
 }
