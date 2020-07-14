@@ -13,7 +13,6 @@
 </head>
 <body>
   @include('lib.header')
-  @include('advertising')
 
   <div class="hr-sect">
     인기상품
@@ -39,13 +38,6 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          {{-- <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
@@ -82,13 +74,6 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          {{-- <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
@@ -125,13 +110,6 @@
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
-                          {{-- <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p> --}}
                         </div>
                         <div class="image-in-bottom">
                           {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}

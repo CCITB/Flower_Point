@@ -185,7 +185,7 @@
     float: left;
     display: block;
     width: 20%;
-    font-size: 22px;
+    font-size: 20px;
     transition: all 0.3s ease-in-out;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -195,7 +195,8 @@
 
   }
   .dropdown-back{
-    background-color: #B2D0EB;
+    background-color: #FFE4E1;
+    opacity: 0.8;
     z-index: 10;
     transition: all 0.3s ease-in-out;
     margin-bottom: 30px;
