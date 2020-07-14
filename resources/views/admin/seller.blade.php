@@ -6,9 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
   <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>꽃갈피 관리자</title>
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
 
@@ -85,7 +83,7 @@
                   <td>{{$sel->a_address}}</td>
                   <td>{{$sel->a_detail}}</td>
                   <td>{{$sel->s_no}}</td>
-                  <td>{{$sel->registration_status}}</td>
+                  <td>{{$sel->s_approval}}</td>
                   <td>
                     <button type="button" id="bt{{$sel->st_no}}" value="{{$sel->st_no}}" onclick="openChild({{$sel->st_no}})"name="hidden" >등록증보기</button>
                   </td>
@@ -168,17 +166,9 @@
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
   <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
-
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script src="lib/jquery.ui.touch-punch.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
-  <!--script for this page-->
-
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script>
 
   var openWin;

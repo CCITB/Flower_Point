@@ -108,13 +108,18 @@
             </ul>
           </li>
         @endif
-        @if(auth()->guard('seller')->user())
+        @if($se = auth()->guard('seller')->user())
           <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
             <a href="#">마이페이지</a>
             <ul class="submenu_list">
               <li class="submenu"><a href="/s_mypage">내 정보</a></li>
-              <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
-              <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
+              @if($se->s_approval == '승인')
+                <li class="submenu"><a href="/shop">내 꽃집 가기</a></li>
+                <li class="submenu"><a href="/sellermyorderlist">나의 주문 관리</a></li>
+              @else
+                <li class="submenu" onclick="fake()">내 꽃집 가기</a></li>
+                <li class="submenu" onclick="fake()">나의 주문 관리</a></li>
+              @endif
             </ul>
           </li>
         @elseif(auth()->guard('customer')->user())
@@ -180,7 +185,7 @@
     float: left;
     display: block;
     width: 20%;
-    font-size: 22px;
+    font-size: 20px;
     transition: all 0.3s ease-in-out;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -190,7 +195,8 @@
 
   }
   .dropdown-back{
-    background-color: #B2D0EB;
+    background-color: #FFE4E1;
+    opacity: 0.8;
     z-index: 10;
     transition: all 0.3s ease-in-out;
     margin-bottom: 30px;
@@ -256,6 +262,11 @@ scroll-behavior: smooth;
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script type="text/javascript">
+
+function fake(){
+  alert("사업자등록증이 미승인된 꽃집입니다.");
+}
+
 function showPopup() {
   var url="charge_popup";
   var option="width=700, height=400, top=200"

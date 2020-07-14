@@ -278,7 +278,7 @@
                   @else
                     <td><input type="button" value="작성완료"></td>
                   @endif
-                  @if($data2->pm_status == '구매확정')
+                  @if($data2->pm_status == '구매 확정')
                     <td>구매확정 완료</td>
                   @else
                     <td>

@@ -3,7 +3,7 @@
 
 
 .user-wrap{
-  background-color: #FFDDDD;
+  background-color: #FFDADA;
 
 }
 .login:hover .login-list {
@@ -152,6 +152,7 @@ body{
   font-size: 20px;
   margin: 10px auto 8px auto;
   padding-bottom: 20px;
+  padding-top: 20px;
   width: 1130px;
 
 }
@@ -191,8 +192,8 @@ body{
 }
 .topheader
 {
-  height: 190px;
-  background-color: #FFDDDD;
+  height: 195px;
+  background-color: #FFDADA;
 }
 /* li
 {
@@ -209,7 +210,6 @@ padding-left: 0px;
 #block_container
 {
   margin: 0px auto;
-
   width: 1130px;
   height: 50%;
   display: block;

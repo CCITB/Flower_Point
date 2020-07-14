@@ -180,7 +180,7 @@ class InformationController extends Controller
         'registration_img' => $path
       ]);
 
-      return redirect('/shop');
+      return redirect('/s_mypage');
     }
 
 
