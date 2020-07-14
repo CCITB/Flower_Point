@@ -157,9 +157,9 @@
                   </div>
                 </div>
                 <div class="delivery_wrap2" id="delivery_wrap3" style="display:none;">
-                  <input type="text" class="postcode" id="postcode" placeholder="우편번호" disabled name="postcode" value="">
+                  <input type="text" class="postcode" id="postcode" placeholder="우편번호" readonly name="postcode" value="">
                   <input type="button" class="find_post" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                  <input type="text" class="address" id="address" placeholder="주소" disabled name="address" value="">
+                  <input type="text" class="address" id="address" placeholder="주소" readonly name="address" value="">
                   <div class="delivery_address_detail">
                     <input type="text" class="delivery_address_list" id="detailAddress" placeholder="상세주소" name="detailAddress" >
                     <input type="text" class="delivery_address_list" id="extraAddress" placeholder="참고항목" name="extraAddress">
