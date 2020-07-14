@@ -185,7 +185,7 @@
     float: left;
     display: block;
     width: 20%;
-    font-size: 22px;
+    font-size: 20px;
     transition: all 0.3s ease-in-out;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -195,7 +195,8 @@
 
   }
   .dropdown-back{
-    background-color: #B2D0EB;
+    background-color: #FFE4E1;
+    opacity: 0.8;
     z-index: 10;
     transition: all 0.3s ease-in-out;
     margin-bottom: 30px;
@@ -261,6 +262,11 @@ scroll-behavior: smooth;
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script type="text/javascript">
+
+function fake(){
+  alert("사업자등록증이 미승인된 꽃집입니다.");
+}
+
 function showPopup() {
   var url="charge_popup";
   var option="width=700, height=400, top=200"
