@@ -46,7 +46,10 @@ dt{
   margin-bottom: 50px;
 }
 
-img{
+img#couponimg{
   position: absolute;
   margin-left: 10px;
+  border: 1px solid #bdbdbd;
+  background-color: #bdbdbd;
+  border-radius: 13px;
 }
