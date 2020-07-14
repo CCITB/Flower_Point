@@ -11,6 +11,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://info.sweettracker.co.kr/api/v1/companylist?t_key=2A8EDai0BMFebqhDkoYuPw" -H  "accept: application/json;charset=UTF-8"></script>
 </head>
+
+<!-- 어지수 -->
 <body>
   @include('lib.header')
   <div class="myoderlist-wrap">
@@ -26,17 +28,17 @@
             <td class="orderspace">건</td> -->
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery1.png"/></td>
             <td class="orderblink">배송준비</td>
-            <td class="ordercount">0</td>
+            <td class="ordercount"><div id="shipping_wait_cnt"></div></td>
             <td class="orderspace">건</td>
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery2.png"/></td>
             <!-- <td class="orderblink">취소요청</td> -->
-            <td class="orderblink">입금대기</td>
-            <td class="ordercount">0</td>
+            <td class="orderblink">결제대기</td>
+            <td class="ordercount"><div id="payment_wait_cnt"></div></td>
             <td class="orderspace">건</td>
           </tr>
           <tr>
             <td>배송중</td>
-            <td>0</td>
+            <td><div id="delivery_cnt"></div></td>
             <td>건</td>
             <td>반품요청</td>
             <td>0</td>
@@ -47,7 +49,7 @@
             <td>0</td>
             <td>건</td> -->
             <td>배송완료</td>
-            <td>0</td>
+            <td><div id="complete_cnt"></div></td>
             <td>건</td>
             <td>교환요청</td>
             <td>0</td>
@@ -145,8 +147,8 @@
                   <td id="date">{{$order->created_at}}</td>
                   <td>{{$order->c_name}}</td>
                   <td>{{$order->pm_pay}}</td>
-                  <td id="pm_status">{{$order->pm_status}}</td>
-                  <td id="pm_d_status">{{$order->pm_d_status}}</td>
+                  <td class="pm_status" id="pm_status">{{$order->pm_status}}</td>
+                  <td id="pm_d_status" value="{{$order->pm_d_status}}">{{$order->pm_d_status}}</td>
 
                   @if(isset($order->pm_company))
                   <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
@@ -203,6 +205,47 @@ $(document).ready(function(){
     }
   });
 
+
+ //결제 상태의 문자를 담은 배열
+ var pm_status_str =[];
+ //배송 상태의 문자를 담은 배열
+ var dv_status_str =[];
+ //결제 대기가 몇개인지 세어주는 카운트
+ var payment_wait_cnt=0;
+ //배송 중비중이 몇개인지 세어주는 카운트
+ var shipping_wait_cnt=0;
+ //배송중 이 몇개인지 세어주는 카운트
+ var delivery_cnt=0;
+ //배송 완료가 몇개인지 세어주는 카운트
+ var complete_cnt=0;
+
+//전체 배송, 결제 상태의 값을 받기 위한 소스
+ $("input:checkbox[name=checkRow]").each(function(index,elements)
+ {
+   var index_no = elements.id;
+
+   pm_status_str.push($('#'+index_no).parent().parent().children('#pm_status').text());
+   dv_status_str.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
+
+
+   pm_status_str[index];
+   if(pm_status_str[index]=="결제 대기"){
+     payment_wait_cnt = payment_wait_cnt+1;
+   }
+
+   if(dv_status_str[index]=="배송 준비중"){
+     shipping_wait_cnt = shipping_wait_cnt+1;
+   }
+
+   if(dv_status_str[index]=="배송중"){
+     delivery_cnt = delivery_cnt+1;
+   }
+
+   if(dv_status_str[index]=="배송 완료"){
+     complete_cnt = complete_cnt+1;
+   }
+ });
+
   $('#check').click(function () {
     // $('#order_list').attr("onsubmit", "return form_check()");
     // $('#order_list').attr("action", "/payment_status");
@@ -214,11 +257,21 @@ $(document).ready(function(){
     form_send();
   });
 
+  //배송준비
+  $('#shipping_wait_cnt').html(shipping_wait_cnt);
+  //결제대기
+  $('#payment_wait_cnt').html(payment_wait_cnt);
+  //배송중
+  $('#delivery_cnt').html(delivery_cnt);
+  //배송완료
+  $('#complete_cnt').html(complete_cnt);
+
+
   $('#btn').on('click',function () {
     var text = $("#editform").text();
     console.log($("#editform").text());
     $('#editform').html("<input type='text' vlaue='"+text+"' id='editDo'>");
-    $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>")
+    $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>");
   });
 });
 
@@ -272,10 +325,13 @@ function form_check(){
   //선택된 택배지를 넣을 배열
   var delivery = [];
 
+
   $("input:checkbox[name=checkRow]:checked").each(function(index,elements)
   {
-
     //checkbox 각각의 id값
+    // console.log(index);
+    console.log(elements.id);
+
     var index_no = elements.id;
     checkbox_id.push(index_no);
 
@@ -288,16 +344,10 @@ function form_check(){
     //선택된 택배지를 넣을 배열
     delivery.push($('#'+index_no).parent().parent().children().children('.select').children('option:selected').val());
 
-    //택배 코드
-    console.log($('#'+index_no).parent().parent().children().children('.select').children('option:selected').val('#id'));
-    //console.log($('#'+index_no).parent().parent().children().children('.select').children('option:selected').val());
-
     //숫자가 아닌부분 공백으로 치환 ---- payment_table no값
     var pm_no = index_no.replace(/[^0-9]/g,"");
     check_on.push(pm_no);
-    //console.log(pm_no);
-    // console.log(index_no);
-    console.log(pm_status);
+    console.log(pm_no);
   });
 
 
@@ -315,6 +365,10 @@ function form_check(){
     }
     if(pm_status.indexOf("구매 확정")>=0){
       alert("구매가 확정 된 상품입니다.");
+      return false;
+    }
+    if(pm_status.indexOf("결제 취소")>=0){
+      alert("취소된 상품입니다.");
       return false;
     }
     else{
@@ -424,6 +478,9 @@ function form_send(){
     }
     if(pm_d_status.indexOf("배송 완료")>=0){
       alert("배송이 완료된 상품입니다.");
+    }
+    if(pm_d_status.indexOf("결제 취소")>=0){
+      alert("취소된 상품입니다.");
     }
     else{
       //check된 box 번호를 담은 배열
