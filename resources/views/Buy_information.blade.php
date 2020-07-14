@@ -146,17 +146,19 @@
               <li class="user_review">
                 <div class="review_one">
                   <div class="review_cell">
-                    <div class="user_profile">
-                      <img src="https://cdn.pixabay.com/photo/2020/05/16/02/20/moon-5175691_960_720.jpg" alt="유저프로필" class="pro_image">
-
-                    </div>
                     <div class="review_text">
-                      <div class="star_small">
-                        {{-- <span name="rate1" class="hi" id="st1" value="1">★</span>
-                        <span name="rate2" class="hi" id="st2" value="2">★</span>
-                        <span name="rate3" class="hi" id="st3" value="3">★</span>
-                        <span name="rate4" class="hi" id="st4" value="4">★</span>
-                        <span name="rate5" class="hi" id="st5" value="5">★</span> --}}
+                      <div class="star_small" id="star_small">
+                        @if($rev->r_score == 1)
+                          ★
+                        @elseif($rev->r_score == 2)
+                          ★★
+                        @elseif($rev->r_score == 3)
+                          ★★★
+                        @elseif($rev->r_score == 4)
+                          ★★★★
+                        @elseif($rev->r_score == 5)
+                          ★★★★★
+                        @endif
                       </div>
                       <div class="status_user">
                         <span class="text_info">{{$rev->c_name}}</span>
@@ -385,106 +387,121 @@
                 alert('비밀글은 작성자만 조회할 수 있습니다.');
               }
 
-              $(document).ready(function(){
 
+              // var score = $('#stars'+sc).val();
+              // $(document).ready(function(){
+              //   if(score == 1){
+              //     $('#star_small'+sc).text("★");
+              //   }
+              //   if(score == 2){
+              //     $('#star_small'+sc).text("★★");
+              //   }
+              //   if(score == 3){
+              //     $('#star_small'+sc).text("<span>★</span>");
+              //   }
+              //   if(score == 4){
+              //     $('#star_small'+sc).text("★★★★");
+              //   }
+              //   if(score == 5){
+              //     $('#star_small'+sc).text("★★★★★");
+              //   }
+              // });
 
-              )};
+              // 리뷰 좋아요 버튼
+              function pd_good(r_no){
 
-                // 리뷰 좋아요 버튼
-                function pd_good(r_no){
+                var g_bt = $('#good'+r_no);
 
-                  var g_bt = $('#good'+r_no);
-                  console.log(g_bt);
+                $.ajax({
+                  type: 'post',
+                  url: '/rev_count',
+                  dataType: 'json',
+                  data: { 'num' : r_no },
 
-                  $.ajax({
-                    type: 'post',
-                    url: '/rev_count',
-                    dataType: 'json',
-                    data: { 'num' : r_no },
-
-                    success: function(data) {
-                      if (data == 1){
-                        console.log(data);
-                        // $('#count'+r_no).text('1');
-
-                      }
-
-                    },
-                    error: function(data) {
-                      console.log("error" +data);
-                      alert("잘못된 요청입니다.")
-                    }
-                  });
-                }
-
-                $( ".up input" ).click(function() {
-                  var state = $('input:radio[name=state]:checked').val();
-                  console.log(state);
-                });
-                //곽승지
-                //장바구니에 상품추가 함수
-                $.ajaxSetup({
-                  headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  }
-                });
-                var jjim =  {{$protb->p_no}};
-
-                $('#btn1').click(function() {
-                  // var id = $("#hidden1").val();
-                  console.log(1);
-                  $.ajax({
-                    type: 'post',
-                    url: '/basketstore',
-                    dataType: 'json',
-                    data: { "id" : jjim,
-                    "count" : $('#pdcount').val()
-                  },
-                  // console.log(jjim);
                   success: function(data) {
-                    console.log(data);
-                    if(data==1){
-                      alert("판매자는 이용할 수 없습니다.");
-                      return false;
-                    }
-                    if(data==0){
-                      var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
-                      if(logincheck){
-                        location.href = "/login_customer"
-                      }
-                      else{
-                        return false;
-                      }
-                    }
-                    else {
-                      var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
-                      if (basketalert) {
-                        location.href = "/flowercart"
-                      }
-                      else {
-
-                      }
+                    if (data == 1){
+                      console.log(data);
+                      // $('#count'+r_no).text('1');
                     }
 
-                    console.log(data);
                   },
                   error: function(data) {
                     console.log("error" +data);
                     alert("잘못된 요청입니다.")
                   }
                 });
+              }
+
+              $( ".up input" ).click(function() {
+                var state = $('input:radio[name=state]:checked').val();
+                console.log(state);
               });
-              $('#btn2').click(function(){
-                var check = '{{auth()->guard('seller')->check()}}';
-                if(1==check){
-                  alert('판매자는 이용할 수 없습니다.');
-                  return false;
+              //곽승지
+              //장바구니에 상품추가 함수
+              $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-                var bb = {{$protb->p_no}};
-                $('input[name=count]').val($('#pdcount').val());
-                console.log($('input[name=Pro]').val(bb));
-                // location.href = '/order/'+Pro;
-                document.Pro.submit();
               });
-              </script>
-              </html>
+              var jjim =  {{$protb->p_no}};
+
+              $('#btn1').click(function() {
+                // var id = $("#hidden1").val();
+                console.log(1);
+                $.ajax({
+                  type: 'post',
+                  url: '/basketstore',
+                  dataType: 'json',
+                  data: { "id" : jjim,
+                  "count" : $('#pdcount').val()
+                },
+                // console.log(jjim);
+                success: function(data) {
+                  console.log(data);
+                  if(data==1){
+                    alert("판매자는 이용할 수 없습니다.");
+                    return false;
+                  }
+                  if(data==0){
+                    var logincheck= confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?");
+                    if(logincheck){
+                      location.href = "/login_customer"
+                    }
+                    else{
+                      return false;
+                    }
+                  }
+                  else {
+                    var basketalert = confirm("장바구니에 담겼습니다. 바로 장바구니로 이동할까요?")
+                    if (basketalert) {
+                      location.href = "/flowercart"
+                    }
+                    else {
+
+                    }
+                  }
+
+                  console.log(data);
+                },
+                error: function(data) {
+                  console.log("error" +data);
+                  alert("잘못된 요청입니다.")
+                }
+              });
+            });
+            $('#btn2').click(function(){
+              var check = '{{auth()->guard('seller')->check()}}';
+              if(1==check){
+                alert('판매자는 이용할 수 없습니다.');
+                return false;
+              }
+              var bb = {{$protb->p_no}};
+              $('input[name=count]').val($('#pdcount').val());
+              console.log($('input[name=Pro]').val(bb));
+              // location.href = '/order/'+Pro;
+              document.Pro.submit();
+            });
+
+
+            </script>
+            </html>

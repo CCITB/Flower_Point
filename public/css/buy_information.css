@@ -311,15 +311,6 @@ li{
   display: table-cell;
   width: 60%;
 }
-.user_profile{
-  float: left;
-  border: 1px solid;
-  width : 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin: 0 12px 0 20px;
-  overflow: hidden;
-}
 .pro_image{
   width: 100%;
   height: 100%;
@@ -329,8 +320,12 @@ li{
 .review_text{
   float: left;
   padding-bottom: 10px;
+  padding-left: 20px;
 }
-.hi{
+.star_small{
+  padding-bottom: 5px;
+  letter-spacing: 3pt;
+  font-size: 1.1em;
   color: #FFD228;
 }
 .status_user{
