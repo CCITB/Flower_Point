@@ -261,6 +261,11 @@ scroll-behavior: smooth;
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script type="text/javascript">
+
+function fake(){
+  alert("사업자등록증이 미승인된 꽃집입니다.");
+}
+
 function showPopup() {
   var url="charge_popup";
   var option="width=700, height=400, top=200"
