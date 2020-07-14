@@ -12,6 +12,7 @@ class MainController extends Controller
     $product = DB::table('product')->where('p_status','등록')->limit(6)->get();
     $prod = DB::table('product')->where('p_status','등록')->skip(6)->take(6)->get();
     $pro = DB::table('product')->where('p_status','등록')->skip(12)->take(6)->get();
+
     return view('main', compact('product','prod','pro'));
   }
   public function login_customer(){

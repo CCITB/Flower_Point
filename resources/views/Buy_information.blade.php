@@ -66,7 +66,7 @@
           </div>
           <div class="pd_deliver3">
             <span class="del_text">적립금</span><br>
-            최대 2%
+            최대 5%
           </div>
         </div>
 

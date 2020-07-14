@@ -135,44 +135,50 @@
               </td>
             </tr>
           </form>
-          <tr class="tr1">
-            <th class="th1">
-              사업자등록증
-            </th>
-            <td>
-              <form action="/registration" method="post"  enctype="multipart/form-data">
-                @csrf
-                <div class="tdcell">
-                  <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
-                  <input type="submit" onclick="check()" value="등록">
-                </div>
-              </form>
-            </td>
-          </tr>
+          @if($seller->s_approval == '미승인')
+            <tr class="tr1">
+              <th class="th1">사업자등록증</th>
+              @foreach ($sellerstore as $st)
+                @if(isset($st->registration_img))
+                  <td>사업자등록증을 검토중입니다.</td>
+                @else
+                  <td>
+                    <form action="/registration" method="post"  enctype="multipart/form-data">
+                      @csrf
+                      <div class="tdcell">
+                        <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
+                        <input type="submit" onclick="check()" value="등록">
+                      </div>
+                    </form>
+                  </td>
+                @endif
+              @endforeach
+            </tr>
+          @endif
         </tbody>
       </table>
     @endif
     {{-- @if(auth()->guard('seller')->user())
-      <div class="quickbuttonwrap">
-        <div class="quickgroup"><a href="/locate1">
-          <div class="quickbutton">
-            <img src="/imglib/orangerose.jpg" alt="" height="200px" width="300px;">
-            <div class="innerbutton">
-              <h1>내 주변 꽃집</h1>
-            </div>
-          </div>
-        </div>
-        <div class="quickgroup"><a href="/sellermyorderlist">
-          <div class="quickbutton">
-            <img src="imglib/rose.jpg" alt="" height="200px" width="300px;">
-            <div class="innerbutton">
-              <h1>내 주문관리</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    @endif --}}
+    <div class="quickbuttonwrap">
+    <div class="quickgroup"><a href="/locate1">
+    <div class="quickbutton">
+    <img src="/imglib/orangerose.jpg" alt="" height="200px" width="300px;">
+    <div class="innerbutton">
+    <h1>내 주변 꽃집</h1>
   </div>
+</div>
+</div>
+<div class="quickgroup"><a href="/sellermyorderlist">
+<div class="quickbutton">
+<img src="imglib/rose.jpg" alt="" height="200px" width="300px;">
+<div class="innerbutton">
+<h1>내 주문관리</h1>
+</div>
+</div>
+</div>
+</div>
+@endif --}}
+</div>
 </div>
 @include('lib.footer')
 </body>

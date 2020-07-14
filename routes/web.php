@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 //eojisu
 Route::get('/', 'MainController@main');
 
+Route::get('/header', 'MainController@header');
+
 Route::get('/login_customer', 'MainController@login_customer');
 
 Route::get('/login_seller', 'MainController@login_seller');
