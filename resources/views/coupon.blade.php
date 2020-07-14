@@ -11,7 +11,7 @@
 <body>
   <style media="screen">
     footer{
-  position:absolute;
+  position:relative;
   left:0px;
   bottom:0px;
   width:100%;
@@ -22,8 +22,9 @@
   <div class="couponwrap">
       <h4>쿠폰</h4>
       고객님께서 보유하고있는 할인쿠폰을 확인하세요! 상품구매시 더욱 저렴하게 구매할 수 있습니다.
-      <button type="button" name="button"><a href="">쿠폰존 바로가기</a></button>
+      <button type="button" name="button"><a href="/recievecoupon">쿠폰존 바로가기</a></button>
       <div class="supplement_coupon">
+        <img src="imglib/coupon.png" alt="" width="400px">
         <div class="supplement_cnts">
           <p><span class="blindtext"></span></p>
           <dl>

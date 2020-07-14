@@ -89,9 +89,9 @@ Route::get('/coupon', function(){
   return view('coupon');
 });
 
-Route::get('/recievecoupon', function(){
-  return view('recievecoupon');
-});
+Route::get('/recievecoupon', 'InformationController@recievecoupon'); //추가
+
+Route::post('/givecoupon', 'InformationController@givecoupon'); //추가
 
 //비밀번호 찾기 (find_pw_way)
 Route::post('/customer_eamil_way', 'FindController@customer_eamil_way');

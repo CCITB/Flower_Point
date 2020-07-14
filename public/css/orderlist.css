@@ -1,5 +1,5 @@
 div.myoderlist-wrap{
-  height:70em;
+  height:80em;
   margin-bottom: 30px;
 }
 input.num{
@@ -40,11 +40,12 @@ button.ordercheck{
   width: 8%;
 }
 .orderpicture{
-  width: 140px;
+  /* width: 140px; */
   height: 140px;
+  padding: 0 0 0 9em;
 }
 .myorderlist{
-  width: 1130px;
+  /* width: 1130px; */
   margin: 0 auto;
   padding: 0 30px;
   /* border: 5px solid pink; */
@@ -89,5 +90,5 @@ td#d_status{
   padding :
 } */
 table#myTable{
-  font-size:12px;
+  font-size:13px;
 }

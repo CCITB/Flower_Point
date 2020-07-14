@@ -49,6 +49,7 @@
           @endif
         </div>
       </div>
+<<<<<<< HEAD
       <script type="text/javascript">
       function showPopup() {
         var url="charge_popup";
@@ -72,6 +73,23 @@
               </label>
             </form>
           </div>
+=======
+    </div>
+    <div id="block_container">
+      <div id="header">
+        <div id="block1">
+          <h1><a href="/" style="color:black">꽃갈피</a></h1>
+        </div>
+        <div id="block2">
+          <form method="get" action="/search" class="headersearch">
+            @csrf
+            <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
+            autocomplete="off" >
+            <label for="headersearch">
+              <button type="submit"class="search-button">검색</button>
+            </label>
+          </form>
+>>>>>>> 4be65e86160105aef3bb63256b6d2cfa9a649825
         </div>
       </div>
     </div>
@@ -278,6 +296,13 @@ scroll-behavior: smooth;
 } */
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript">
+function showPopup() {
+  var url="charge_popup";
+  var option="width=700, height=400, top=200"
+  window.open(url, "", option);
+ }
+ </script>
 <script>
 
 function fake(){
