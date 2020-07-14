@@ -206,6 +206,8 @@ Route::post('/rev{id}', 'ReviewController@my_review');
 
 Route::post('rev_count', 'ReviewController@rev_count');
 
+Route::post('/pd_cancel{id}', 'InformationController@pd_cancel');
+
 Route::post('/pd_point{id}', 'InformationController@pd_point');
 
 //결제

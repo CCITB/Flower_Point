@@ -338,7 +338,8 @@ class ProductController extends Controller
         'q_state'=> $state,
       ]);
 
-      echo "<script>alert('문의가 등록되었습니다.');self.close();</script>";
+      echo "<script>alert('문의가 등록되었습니다.');opener.parent.location.reload();
+      window.close();</script>";
     }
 
 

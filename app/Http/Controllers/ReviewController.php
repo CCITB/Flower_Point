@@ -27,7 +27,7 @@ class ReviewController extends Controller
     $pm_no = $_POST['pm_no'];
     $mypd = DB::table('payment')->where('pm_no',$pm_no)
     ->join('product','payment.product_no','=','product.p_no')
-    ->leftjoin('review','product.p_no','=','review.product_no')
+    ->leftjoin('review','payment.pm_no','=','review.payment_no')
     ->get();
     $review_pm = $mypd[0]->r_no;
 
@@ -54,7 +54,8 @@ class ReviewController extends Controller
         'r_score' => $rates,
         'r_date' => $today,
         'customer_no' => $custo,
-        'product_no' => $id
+        'product_no' => $id,
+        'payment_no' => $pm_no
       ]);
       DB::table('customer')->where('c_no',$custo)->update([
         'c_point'=>$total_p

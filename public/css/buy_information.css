@@ -330,9 +330,8 @@ li{
   float: left;
   padding-bottom: 10px;
 }
-.stars{
-  display: inline-block;
-  vertical-align: top;
+.hi{
+  color: #FFD228;
 }
 .status_user{
   font-size: 13px;

@@ -241,9 +241,9 @@ class InformationController extends Controller
         ->join('payment','customer.c_no','payment.customer_no')
         ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
         ->join('product','payment.product_no','product.p_no')
-        ->leftjoin('review','product.p_no','=','review.product_no')
+        ->leftjoin('review','payment.pm_no','=','review.payment_no')
         ->select('*')->where('c_no','=',$customerprimary)
-        ->where('pm_d_status','<>','결제 대기')->where('pm_d_status','<>','결제 준비중')->get();
+        ->get();
 
         $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
         $my = DB::table('customer')
@@ -342,6 +342,18 @@ class InformationController extends Controller
 
       return redirect()->back();
     }
+
+    public function pd_cancel($id){
+
+      DB::table('payment')->where('pm_no','=',$id)
+      ->update([
+        'pm_status'=>'결제 취소',
+        'pm_d_status' => '결제 취소'
+      ]);
+
+      return redirect()->back();
+    }
+
     public function recievecoupon(Request $request){
       if($customerinfo = auth()->guard('customer')->user()){
          $customerprimary = $customerinfo->c_no;

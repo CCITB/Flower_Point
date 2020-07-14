@@ -273,14 +273,23 @@
                   <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
                   <td>{{$data2->pm_pay}}</td>
                   <td>{{$data2->pm_d_status}}</td>
-                  @if(!isset($data2->r_no))
-                    <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
+                  @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
+                    @if(!isset($data2->payment_no))
+                      <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
+                    @else
+                      <td>작성완료</td>
+                    @endif
                   @else
-                    <td><input type="button" value="작성완료"></td>
+                    <td></td>
                   @endif
-                  @if($data2->pm_status == '구매 확정')
-                    <td>구매확정 완료</td>
-                  @else
+                  @if($data2->pm_status == '결제 대기')
+                    <td>
+                      <form action="/pd_cancel{{$data2->pm_no}}" method="post">
+                        @csrf
+                        <input type="submit" id="confirm" value="결제 취소">
+                      </form>
+                    </td>
+                  @elseif($data2->pm_d_status == '배송중'|| $data2->pm_d_status == '배송 준비중')
                     <td>
                       <form action="/pd_point{{$data2->p_price}}" method="post">
                         <input type="hidden" name="hidden" value="{{$data2->pm_no}}">
@@ -288,6 +297,12 @@
                         <input type="submit" id="confirm" value="구매확정">
                       </form>
                     </td>
+                  @elseif($data2->pm_status == '구매 확정')
+                    <td>구매확정 완료</td>
+                  @elseif($data2->pm_status == '결제 취소')
+                    <td>결제 취소</td>
+                  @else
+                    <td></td>
                   @endif
                 </tr>
               @endforeach

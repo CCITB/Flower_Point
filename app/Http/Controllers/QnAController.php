@@ -10,7 +10,6 @@ class QnAController extends Controller
 {
   //
   public function question_answer(Request $request,$q_no){
-    return $q_no;
     $exist = DB::table('answer')->where('question_no',$q_no)->get();
     if(auth()->guard('seller')->user()){
 
@@ -22,7 +21,8 @@ class QnAController extends Controller
         'an_state' => '답변완료'
       ]);
     }
-    echo "<script>alert('답변이 등록되었습니다.');self.close();</script>";
+    echo "<script>alert('답변이 등록되었습니다.');opener.parent.location.reload();
+    window.close();</script>";
   }
 
 
