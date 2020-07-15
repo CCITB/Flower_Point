@@ -88,7 +88,7 @@ class RegisterController extends Controller
       DB::table('store')->insert([
         'st_name'=>$request->input('st_name'),
         'st_tel' => $request->input('st_tel'),
-        'st_registeration_num' => $request->input('registeration_num'),
+        // 'st_registeration_num' => $request->input('registeration_num'),
         'st_introduce' => $request->input('st_introduce'),
         'seller_no' =>  $sid->s_no
       ]);

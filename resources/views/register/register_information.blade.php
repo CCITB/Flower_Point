@@ -59,11 +59,11 @@
           <div class="check_div" id="stname_check" value=""></div>
         </div>
 
-        <div class="paragraph">
+        <!-- <div class="paragraph">
           <div class="sign_name">사업자 등록번호</div>
           <input class="shop_info" type="text" id="registeration_num" name="registeration_num" maxlength="12" numberOnly>
           <div class="check_div" id="stnum_check" value=""></div>
-        </div>
+        </div> -->
 
         <div class="paragraph">
           <div class="sign_name">매장 주소</div>
