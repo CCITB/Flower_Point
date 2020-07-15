@@ -36,20 +36,6 @@
           <th></th>
         </tr>
         @foreach ($coupon as $coupon)
-          @if(count($coupon2)>0)
-            <form class="" action="/givecoupon" method="post">
-              @csrf
-              <tr>
-                <th>{{$coupon->cp_title}}</th>
-                <th>{{$coupon->cp_minimum}}</th>
-                <th>{{$coupon->cp_flatrate}}</th>
-                <th>{{$coupon->start_date}}</th>
-                <th>{{$coupon->end_date}}</th>
-                <th><button type="submit" id="cpbutton{{$coupon->cp_no}}" name="cpbutton{{$coupon->cp_no}}"  disabled>쿠폰받기</button></th>
-              </tr>
-            </form>
-          @else
-
               <tr>
                 <th>{{$coupon->cp_no}}</th>
                 <th>{{$coupon->cp_title}}</th>
@@ -59,8 +45,6 @@
                 <th>{{$coupon->end_date}}</th>
                 <th><input type="button" class="cpbutton" name="cpbutton{{$coupon->cp_no}}" value="쿠폰받기"></></th>
               </tr>
-
-          @endif
         @endforeach
       </table>
     </div>
@@ -80,38 +64,32 @@ $.ajaxSetup({
 });
 
 $('.cpbutton').click(function(){
-
+  // $(this);
   var str = ""
   var tdArr = new Array();    // 배열 선언
   var checkBtn = $(this);
   var tr = checkBtn.parent().parent();
   var td = tr.children();
   var number = td.eq(0).text();
-  var couponname = td.eq(1).text();
-  var couponminimum = td.eq(2).text();
-  var coupondis = td.eq(3).text();
-  var couponstart = td.eq(4).text();
-  var couponend = td.eq(5).text();
   $.ajax({
     type: 'post',
     url: '/givecoupon',
     dataType: 'json',
     data: { "number" : number,
-            "couponname" : couponname,
-            "couponminimum" : couponminimum,
-            "coupondis"  : coupondis,
-            "couponstart" : couponstart,
-            "couponend" : couponend,
    },
     success: function(data) {
       console.log(data);
+      if(data==1){
       alert('발급받았습니다.');
-      // document.getElementById('pm_status').innerHTML="data";
-    },
+    }
+    else if(data==0){
+      alert('이미 발급받은 쿠폰입니다.');
+    }
+  },
     error: function() {
+      // console.log('1');
     }
   });
-
 });
 
 </script>

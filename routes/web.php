@@ -85,9 +85,7 @@ Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
 
-Route::get('/coupon', function(){
-  return view('coupon');
-});
+Route::get('/coupon', 'InformationController@couponpage');
 
 Route::get('/recievecoupon', 'InformationController@recievecoupon'); //추가
 
