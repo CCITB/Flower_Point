@@ -36,8 +36,8 @@
   border-radius: 5px;
   background-color: white;
   white-space: nowrap;
-
 }
+
 .login-list .login_left:hover{
   color: white;
   background-color: #B2D0EB;
@@ -45,28 +45,29 @@
   border-radius: 5px 0px 0px 5px / 5px 0px 0px 5px;
 
 }
+
 .login-list .login_right:hover{
   color: white;
   background-color: #B2D0EB;
   text-decoration: none;
   border-radius:  0px 5px 5px 0px / 0px 5px 5px 0px;
-
 }
+
 #user{
   width: 1130px;
   margin: 0 auto;
 }
+
 a{
+
   text-decoration: none;
   color: black;
   cursor: pointer;
 }
-{
 
-}
 a:hover{
   color: #9c9c9c;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .headersearch{
   display: inline-block;

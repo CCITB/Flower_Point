@@ -50,7 +50,7 @@
                     <th class="th1">
                       <div class="th1">
                         <a href="product/{{$data1->p_no}}">
-                          <img src="\imglib\{{$data1->p_filename}}" onerror="this.src='imglib/image.png'" height="100px" width="100px" >
+                          <img src="\imglib\{{$data1->p_filename}}" onerror="this.src='imglib/profile.png'" height="100px" width="100px" >
                         </a>
                       </div>
                     </th>
@@ -104,7 +104,7 @@
                   <th class="th1">
                     <div class="th1">
                       <a href="product/store/{{$data2->st_name}}">
-                        <img src="\imglib\{{$data2->st_img}}"  onerror="this.src='imglib/image.png'" width="100px" height="100px">
+                        <img src="\imglib\{{$data2->st_img}}"  onerror="this.src='imglib/dummy.png'" width="100px" height="100px">
                       </a>
                     </div>
                   </th>
