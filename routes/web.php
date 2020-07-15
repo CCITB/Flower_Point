@@ -211,7 +211,7 @@ Route::post('/pd_point{id}', 'InformationController@pd_point');
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 
-Route::post('star2/{id}', 'ProductController@star2');
+Route::post('/star2/{id}', 'ProductController@star2');
 
 Route::get('/star', 'ProductController@star');
 

@@ -40,37 +40,38 @@
       </thead>
       <div class="privacy">
         <tbody>
-          @foreach ($data as $data1)
-            @if($customer = auth()->guard('customer')->user())
-              <div id="tablewrap">
-                <form class="" action="star2/{{$data1->p_no}}" method="post">
-                  @csrf
 
-                  <tr class="tr1">
-                    <th class="th1">
-                      <div class="th1">
-                        <a href="product/{{$data1->p_no}}">
-                          <img src="\imglib\{{$data1->p_filename}}" onerror="this.src='imglib/profile.png'" height="100px" width="100px" >
-                        </a>
-                      </div>
-                    </th>
-                    <td>
+          @if($customer = auth()->guard('customer')->user())
+            <div id="tablewrap">
+              @foreach ($data as $data1)
+                <tr class="tr1">
+                  <th class="th1">
+                    <div class="th1">
                       <a href="product/{{$data1->p_no}}">
-                        <div class="tdcell">{{$data1->p_name}}<p class="contxt.tit"></p>
-                        </a></div>
+                        <img src="\imglib\{{$data1->p_filename}}" onerror="this.src='imglib/profile.png'" height="100px" width="100px" >
+                      </a>
+                    </div>
+                  </th>
+                  <td>
+                    <a href="product/{{$data1->p_no}}">
+                      <div class="tdcell">{{$data1->p_name}}<p class="contxt.tit"></p>
+                      </a></div>
+                    </td>
+                    <td>
+                      <div class="tdcell">{{$data1->p_price}}<p class="contxt.tit"></p></div>
+                    </td>
+                    <td>
+                      <form action="/star2/{{$data1->p_no}}" method="post">
+                        @csrf
+
+                        <div class="tdcell2"><button type="submit">내 상품 삭제</button><p class="contxt.tit"></p></div>
                       </td>
-                      <td>
-                        <div class="tdcell">{{$data1->p_price}}<p class="contxt.tit"></p></div>
-                      </td>
-                      <td>
-                        <div class="tdcell2"><p class="contxt.tit"><a href="{{$data1->p_no}}"></a> <button type="submit">내 상품 삭제</button></a></p></div>
-                      </td>
-                    @endif
-                  @endforeach
-                </tr>
+                    </form>
+                  </tr>
+                @endforeach
               </div>
-            </table>
-          </form>
+            @endif
+          </table>
         </tbody>
       </table>
 
@@ -89,17 +90,16 @@
 </div>
 @if(count($pro2))
   <div class="myinfo">
-  <table id="shopinfo2">
-    <thead>
-      <tr><th>가게이미지</th><th>가게이름</th><th>가게번호</th><th></th></tr>
-    </thead>
-    <div class="privacy">
-      <tbody>
-        @foreach ($pro2 as $data2)
+    <table id="shopinfo2">
+      <thead>
+        <tr><th>가게이미지</th><th>가게이름</th><th>가게번호</th><th></th></tr>
+      </thead>
+      <div class="privacy">
+        <tbody>
+
           @if($customer = auth()->guard('customer')->user())
             <div id="tablewrap">
-              <form class="" action="store_star/{{$data2->st_name}}" method="post">
-                @csrf
+              @foreach ($pro2 as $data2)
                 <tr class="tr1">
                   <th class="th1">
                     <div class="th1">
@@ -117,17 +117,20 @@
                       <div class="tdtd">{{$data2->st_tel}}<p class="contxt.tit"></p></div>
                     </td>
                     <td>
-                      <div class="tdcell3"><p class="contxt.tit"><a href="{{$data2->st_name}}"></a> <button type="submit">나만의 꽃집 삭제</button></a></p></div>
-                    </td>
-                  @endif
+                      <form class="" action="store_star/{{$data2->st_name}}" method="post">
+                        @csrf
+                        <div class="tdcell3"><p class="contxt.tit"><button type="submit">나만의 꽃집 삭제</button></p></div>
+                      </td>
+                    </tr>
+                  </form>
                 @endforeach
-              </tr>
-            </div>
+              </div>
+            @endif
           </table>
-        </form>
-      </tbody>
+
+        </tbody>
+      </div>
     </div>
-  </div>
   @else
     <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
       <div class="" style="top:180px; position:absolute; left:250px; ">

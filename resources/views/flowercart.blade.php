@@ -1035,9 +1035,9 @@ function productcheck(){
     return false;
   }
   else{
-    var test = encodeURIComponent(JSON.stringify(getid));
+    var test = (JSON.stringify(getid));
     $('input[name=pdidx]').val(test);
-    $('input[name=productnoidx]').val(encodeURIComponent(JSON.stringify(productnoidx)));
+    $('input[name=productnoidx]').val((JSON.stringify(productnoidx)));
     // console.log(test);
     // return false;
     productpost.submit();
