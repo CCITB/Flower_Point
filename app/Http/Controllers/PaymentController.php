@@ -47,9 +47,11 @@ class PaymentController extends Controller
         $user = auth()->guard('customer')->user();
         $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
         $latestaddress = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
+        $point = $user->c_point;
+        // return $point;
         // return $latestaddress;
         // return $latestaddress[0]->d_no;
-        return view('payment.order',compact('data','user','useraddress','latestaddress','productprice','productdelivery','productsum','token'));
+        return view('payment.order',compact('data','user','useraddress','latestaddress','productprice','productdelivery','productsum','token','point'));
       }
       // 주문페이지에서 바로 주문하기 눌렀을때
       // return $data[0][0]->b_price*$data[0][0]->b_count;
@@ -62,8 +64,10 @@ class PaymentController extends Controller
       $productsum = $prodata[0]->p_delivery+$prodata[0]->p_price*$productcount;
       $productdelivery = $prodata[0]->p_delivery;
       $productprice = $prodata[0]->p_price*$productcount;
+      $point = $user->c_point;
+      // return $point;
       // echo $prodata;
-      return view('payment.order',compact('user','productcount','productprice','useraddress','latestaddress','productdelivery','productsum','prodata','token'));
+      return view('payment.order',compact('user','productcount','productprice','useraddress','latestaddress','productdelivery','productsum','prodata','token','point'));
 
     }
     else
@@ -81,6 +85,7 @@ class PaymentController extends Controller
     // }
     // return $request->delivery;
     // return $request;
+    return $request->userpoint;
     DB::beginTransaction();
     $now = new DateTime();
     // 수령인 이름

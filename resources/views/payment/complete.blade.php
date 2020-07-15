@@ -29,15 +29,6 @@
         @if (isset($paymentID))
           @foreach ($paymentID as $paymentID)
             <div class="wrapping_complete">
-              <div class="order_result"><b>결제 정보</b>
-                <hr class="dotted_line">
-
-                <div class="order_data">
-                  <p class="order_label">입금 은행 : bank</p>
-                  <p class="order_label">입금 계좌 : account number</p>
-                  <p class="order_label">예금주 : name</p>
-                </div>
-              </div>
               <br>
               <div class="order_result"><b>주문 정보</b>
                 <hr class="dotted_line">
@@ -81,7 +72,10 @@
             요청하신 페이지를 찾을 수 없습니다.
           </div>
         @endif
-
+        <div class="" style="text-align:center; margin: 30px 0px;">
+          <button type="button" onclick="location.href='/'" name="button" style="width:200px;height:50px;">메인으로</button>
+          {{-- <a href="/">메인으로</a> --}}
+        </div>
       </div>
       @include('lib.footer')
       <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button>
