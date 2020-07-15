@@ -354,41 +354,41 @@ class InformationController extends Controller
       return redirect()->back();
     }
 
-    public function recievecoupon(Request $request){
+    public function couponpage(Request $request){
       if($customerinfo = auth()->guard('customer')->user()){
-         $customerprimary = $customerinfo->c_no;
-         $coupon = DB::table('coupon')->select('*')->where('customer_no','=',NULL)->get();
-         $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
-         return view('recievecoupon',compact('coupon','coupon2'));
-  }
-}
-public function givecoupon(Request $request){
+        $customerprimary = $customerinfo->c_no;
+        $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
+        ->select('*')->where('customer_no','=',$customerprimary)->get();
+        $coupon2 = count($coupon);
+        return view('coupon',compact('coupon','coupon2'));
+      }
+    }
 
-
-  $number = $request->get("number");
-  $couponname = $request->get("couponname");
-  $couponminimum = $request->get("couponminimum");
-  $coupondis = $request->get("coupondis");
-  $couponstart = $request->get("couponstart");
-  $couponend = $request->get("couponend");
-  if($customerinfo = auth()->guard('customer')->user()){
-
-    $customerprimary = $customerinfo->c_no;
-    $cp = DB::table('coupon')->select('*')->get();
-
-    $tabledata = DB::table('coupon')->select('*')->get();
-
-    $data = DB::table('coupon')->where('cp_no','=', $number)->insert([
-      'cp_title' => $cp[0]->cp_title,
-      'cp_minimum' => $cp[0]->cp_minimum,
-      'cp_flatrate' => $cp[0]->cp_flatrate,
-      'cp_status' => '발급',
-      'start_date' => $cp[0]->start_date,
-      'end_date' =>  $cp[0]->end_date,
-      'customer_no' => $customerprimary
-    ]);
-
-    return response()->json($data);
-  }
-}
+    public function recievecoupon(Request $request){
+      // if($customerinfo = auth()->guard('customer')->user()){
+      //    $customerprimary = $customerinfo->c_no;
+      $coupon = DB::table('coupon')->select('*')->get();
+      // $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
+      return view('recievecoupon',compact('coupon'));
+      // }
+    }
+    public function givecoupon(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+        $number = $request->get("number");
+        $customerprimary = $customerinfo->c_no;
+        // $cp = DB::table('coupon')->select('cp_no')->where('cp_no',$number)->first()->cp_no;
+        $cp2 = DB::table('couponbox')->select('coupon_no')->where('coupon_no',$number)->where('customer_no',$customerprimary)->first();
+        // return response()->json($cp2);
+        if(!isset($cp2)){
+          $data = DB::table('couponbox')->insert([
+            'coupon_no' => $number,
+            'customer_no' => $customerprimary
+          ]);
+          return response()->json(1);
+        }
+        else{
+          return response()->json(0);
+        }
+      }
+    }
   }
