@@ -15,37 +15,38 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script type="text/javascript">
   // 결제페이지 쿠키
-  // function setCookie(cookie_name, value, days) {
-  //   var exdate = new Date();
-  //   exdate.setDate(exdate.getDate() + days);
-  //   // 설정 일수만큼 현재시간에 만료값으로 지정
-  //   var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-  //   document.cookie = cookie_name + '=' + cookie_value+';path=/';
-  // }
-  // function getCookie(cookie_name) {
-  //   var x, y;
-  //   var val = document.cookie.split(';');
-  //   for (var i = 0; i < val.length; i++) {
-  //     x = val[i].substr(0, val[i].indexOf('='));
-  //     y = val[i].substr(val[i].indexOf('=') + 1);
-  //     x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-  //     if (x == cookie_name) {
-  //       return unescape(y); // unescape로 디코딩 후 값 리턴
-  //     }
-  //   }
-  // }
-  // if(getCookie('paymentcookie')===$('input[name=c_token]').val()){
-  //   location.href='/';
-  // }
-  // $(document).ready(function(){
-  //   console.log(document.cookie);
-  //   console.log($('input[name=c_token]').val());
-  //   console.log(getCookie('paymentcookie'));
-  //
-  //   setCookie('paymentcookie','','1');
-  //   setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
-  //   console.log(getCookie('paymentcookie'));
-  // });
+  function setCookie(cookie_name, value, days) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + days);
+    // 설정 일수만큼 현재시간에 만료값으로 지정
+    var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+    document.cookie = cookie_name + '=' + cookie_value+';path=/';
+  }
+  function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+    for (var i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+      if (x == cookie_name) {
+        return unescape(y); // unescape로 디코딩 후 값 리턴
+      }
+    }
+  }
+  if(getCookie('paymentcookie')===$('input[name=c_token]').val()){
+    // location.href='/';
+    history.back();
+  }
+  $(document).ready(function(){
+    console.log(document.cookie);
+    console.log($('input[name=c_token]').val());
+    console.log(getCookie('paymentcookie'));
+
+    setCookie('paymentcookie','','1');
+    setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
+    console.log(getCookie('paymentcookie'));
+  });
 
   </script>
 </head>
@@ -221,11 +222,8 @@
             <div class="">
               <span>잔여포인트</span> <span>{{number_format($point)}}</span>
             </div>
-            <div class="">
-              최소 사용은1,000원 부터
-            </div>
             <div class="" >
-              <input type="text" name="" id="userpoint" onkeyup="insertpoint()" value="" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
+              <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
               <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
             </div>
           </div>
@@ -314,6 +312,10 @@
               <td class="order_text">(-) {{number_format($productdelivery)}}원</td>
             </tr>
             <tr>
+              <th>포인트</th>
+              <td class="order_text" >(+) <span id="paymentpoint">0</span>원</td>
+            </tr>
+            <tr>
               <th>결제 후 잔액</th>
               @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
                 <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
@@ -323,7 +325,7 @@
             <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
             <div class="line"><input class="end" type="submit" value="다음"></div>
           @else
-            <td class="order_text" id="cashcheck1">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
+            <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
           </tr>
         </table>
         <hr class="line2">
@@ -599,14 +601,16 @@ function insertpoint(){
   // console.log(point);
   if({{$point}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
-    $('#userpoint').val({{$point}});
+    $('#userpoint').val(AddComma({{$point}}));
     $('#priceall').text(AddComma(price - {{$point}}));
-
+    $('#paymentpoint').text(AddComma({{$point}}));
+    replaceprice(cash,{{$point}});
   }
   else{
     // var cal = price - point;
 
     $('#priceall').text(AddComma(price - point));
+    $('#paymentpoint').text(AddComma(point));
     replaceprice(cash,point);
 
     // console.log(point);
@@ -617,6 +621,7 @@ function insertpoint(){
 function pointall(){
   $('#userpoint').val({{$point}});
   $('#priceall').text(AddComma(price - {{$point}}));
+  $('#paymentpoint').text(AddComma({{$point}}));
   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
   cash = {{auth()->guard('customer')->user()->c_cash}};
   replaceprice(cash,point);
@@ -628,6 +633,9 @@ function AddComma(num)
 }
 $('#userpoint').blur(function(){
 $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
+if($('#userpoint').val()>{{$point}}){
+$('#userpoint').val({{$point}});
+}
 // if($('#userpoint').val()<1000){
 //   alert('포인트 최소 사용량은 1,000원 입니다.');
 // }

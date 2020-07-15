@@ -85,7 +85,14 @@ class PaymentController extends Controller
     // }
     // return $request->delivery;
     // return $request;
-    return $request->userpoint;
+    $userpoint = $request->userpoint;
+    if($userpoint == null){
+      $userpoint = 0;
+    }
+    else if(auth()->guard('customer')->user()->c_point<$userpoint){
+      return "<script>alert('비정상적인 접근 방법입니다.')</script>";
+    }
+    // return $userpoint;
     DB::beginTransaction();
     $now = new DateTime();
     // 수령인 이름
@@ -143,6 +150,7 @@ class PaymentController extends Controller
       'customer_no' => $customerprimary,
       'o_request' => $userrequest,
       'created_at' => $now->format('yy-m-d H:i:s'),
+      'o_point' => $userpoint,
     ]);
     //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
@@ -192,18 +200,27 @@ class PaymentController extends Controller
           $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
-      if(auth()->guard('customer')->user()->c_cash-$sum<0){
+      if(auth()->guard('customer')->user()->c_cash+$userpoint-$sum<0){
         DB::rollBack();
         return "<script>alert('알 수 없는 오류입니다.')</script>";
       }
+      // else if(auth()->guard('customer')->user()->c_point<$userpoint){
+      //   DB::rollBack();
+      //   return "<script>alert('알 수 없는 오류입니다.')</script>";
+      // }
       // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
-      DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash',$sum);
+      // DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash',$sum);
+      DB::table('customer')->where('c_no',$customerprimary)->update([
+        'c_cash' => DB::raw('c_cash'.'-'.($sum-$userpoint)),
+        'c_point'=> DB::raw('c_point'.'-'.($userpoint))
+      ]);
+      // return $test
       DB::commit();
       // return $proarray[1][0]->b_no;
       return Redirect::route('complete')->with([
         'arraydata'=>$arraydata,
         'orderNO'=>$orderNO
-    ]);
+      ]);
       // return $proarray;
     }
     // 상품테이블 정보 가져오기
@@ -241,11 +258,16 @@ class PaymentController extends Controller
       ]);
     }
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
-    if(auth()->guard('customer')->user()->c_cash-$data[0]->pm_pay<0){
+    if(auth()->guard('customer')->user()->c_cash+$userpoint-$data[0]->pm_pay<0){
       DB::rollBack();
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }
-    DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash', $data[0]->pm_pay);
+    // return $userpoint;
+    $test = DB::table('customer')->where('c_no',$customerprimary)->update([
+      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint)),
+      'c_point'=> DB::raw('c_point'.'-'.($userpoint))
+    ]);
+    // return $userpoint;
     DB::commit();
     // return 0;
     return Redirect::route('complete')->with([
