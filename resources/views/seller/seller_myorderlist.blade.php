@@ -64,118 +64,143 @@
         <div class="myorderlist-infor">
 
           @if(count($order))
-          <div class="sellerorderlist">
-            <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
-            <div class="orderlist-bottom">
-              <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
-              <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
-            </div>
+            <div class="sellerorderlist">
+              <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
+              <div class="orderlist-bottom">
+                <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
+                <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
+              </div>
 
-            <!--button에 따라 action값 변경 -->
-            <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
-            @csrf
+              <!--button에 따라 action값 변경 -->
+              <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
+              @csrf
 
-            <table id="myTable">
-              <thead>
-                <tr>
-                  <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-                  <th class="title">주문번호</th>
-                  <th class="title">결제번호</th>
-                  <th class="title">상품번호</th>
-                  <th class="title">상품명</th>
-                  <th class="title">수량</th>
-                  <th class="title">송장번호</th>
-                  <th class="title">택배사</th>
-                  <!-- <th class="title">발송일</th> -->
-                  <th class="title">주문일시</th>
-                  <th class="title">고객명</th>
-                  <th class="title">가격</th>
-                  <th class="title">결제상태</th>
-                  <th class="title">배송상태</th>
-                  <th class="title">배송조회</th>
-                  <!-- <th class="title"></th> -->
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($order as $order)
-                <tr>
-                  <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
-                  <td>{{$order->o_no}}</td>
-                  <td>{{$order->pm_no}}</td>
-                  <td>{{$order->p_no}}</td>
-                  <td id="p_name">{{$order->p_name}}</td>
-                  <td>{{$order->pm_count}}</td>
+              <table id="myTable">
+                <thead>
+                  <tr>
+                    <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+                    <th class="title">주문번호</th>
+                    <th class="title">결제번호</th>
+                    <th class="title">상품번호</th>
+                    <th class="title">상품명</th>
+                    <th class="title">수량</th>
+                    <th class="title">송장번호</th>
+                    <th class="title">택배사</th>
+                    <!-- <th class="title">발송일</th> -->
+                    <th class="title">주문일시</th>
+                    <th class="title">고객명</th>
+                    <th class="title">가격</th>
+                    <th class="title">결제상태</th>
+                    <th class="title">배송상태</th>
+                    <th class="title">배송조회</th>
+                    <!-- <th class="title"></th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($order as $order)
+                    <tr>
+                      <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
+                      <td>{{$order->o_no}}</td>
+                      <td>{{$order->pm_no}}</td>
+                      <td>{{$order->p_no}}</td>
+                      <td id="p_name">{{$order->p_name}}</td>
+                      <td>{{$order->pm_count}}</td>
 
-                  <!--데이터값 존재x-->
-                  @if(!isset($order->pm_invoice_num))
-                  <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
+                      <!--데이터값 존재x-->
+                      @if(!isset($order->pm_invoice_num))
+                        <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
 
-                  <!--데이터값 존재-->
-                  @else
-                  <td>
-                    <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button class="re_invoice_btn"id="re_invoice_btn">수정</button></div>
-                    <!-- <div id="editform" name="editform"> -->
-                    <!-- {{$order->pm_invoice_num}} -->
-                    <!-- </div>
-                    <div id="editbtn" name="editbtn">
-                    <button id="btn" name="btn" class="re_btn" type="button">수정</button>
-                  </div> -->
-                </td>
-                @endif
+                        <!--데이터값 존재-->
+                      @else
+                        <td>
+                          <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button class="re_invoice_btn"id="re_invoice_btn">수정</button></div>
+                          <!-- <div id="editform" name="editform"> -->
+                          <!-- {{$order->pm_invoice_num}} -->
+                          <!-- </div>
+                          <div id="editbtn" name="editbtn">
+                          <button id="btn" name="btn" class="re_btn" type="button">수정</button>
+                        </div> -->
+                      </td>
+                    @endif
 
-                <!--배송업체가 없을 경우 -->
-                @if(!isset($order->pm_company))
-                <td id="select">
-                  <select id="delivery" class="select" name=delivery margin-left:10px;>
-                    <option value="">택배 선택</option>
-                    <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
-                    {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
-                    <option value="로젠택배" id="kr.logen">로젠택배</option>
-                    <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
-                    <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
-                    <option value="한진택배" id="kr.hanjin">한진택배</option>
-                    <option value="경동택배" id="kr.kdexp">경동택배</option>
-                    <option value="대신택배" id="kr.daesin">대신택배</option>
-                    <option value="합동택배" id="kr.hdexp">합동택배</option>
-                    <option value="천일택배" id="kr.chunilps">천일택배</option>
-                  </select></td>
+                    <!--배송업체가 없을 경우 -->
+                    @if(!isset($order->pm_company))
+                      <td id="select">
+                        <div class="selectbox" id="selectbox">
+                          <select id="delivery" class="select" name=delivery margin-left:10px;>
+                            <option value="">택배 선택</option>
+                            <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
+                            {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
+                            <option value="로젠택배" id="kr.logen">로젠택배</option>
+                            <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
+                            <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
+                            <option value="한진택배" id="kr.hanjin">한진택배</option>
+                            <option value="경동택배" id="kr.kdexp">경동택배</option>
+                            <option value="대신택배" id="kr.daesin">대신택배</option>
+                            <option value="합동택배" id="kr.hdexp">합동택배</option>
+                            <option value="천일택배" id="kr.chunilps">천일택배</option>
+                          </select>
+                        </div>
+                      </td>
 
-                  <!-- 배송업체가 존재할 경우 -->
-                  @else
-                  <td><p>{{$order->pm_company}}</p><button id="re_pm_company">수정</button></td>
-                  @endif
-                  <!-- <td>2020.04.16</td> -->
-                  <td id="date">{{$order->created_at}}</td>
-                  <td>{{$order->c_name}}</td>
-                  <td>{{$order->pm_pay}}</td>
-                  <td class="pm_status" id="pm_status">{{$order->pm_status}}</td>
-                  <td id="pm_d_status" value="{{$order->pm_d_status}}">{{$order->pm_d_status}}</td>
+                      <!-- 배송업체가 존재할 경우 -->
+                    @else
+                      <td>
+                        <div id="div_delivery{{$order->pm_no}}"style="display:block;">
+                          <p id="re_delivery{{$order->pm_no}}">{{$order->pm_company}}</p>
+                          <button class="re_delivery_btn" id="re_delivery_btn">수정</button>
+                        </div>
 
-                  @if(isset($order->pm_company))
-                  <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
-                  <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td>
-                  @else
-                  <td id="delivery_search"></td>
-                  @endif
-                  <!-- <td><button type="submit" name="button">저장</button></td> -->
-                </tr>
+                        {{-- display non 상태 --}}
+                        <div class="selectbox" id="selectbox{{$order->pm_no}}" style="display:none;">
+                          <select id="delivery{{$order->pm_no}}" class="select" name=delivery margin-left:10px;>
+                            <option value="">택배 선택</option>
+                            <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
+                            <option value="로젠택배" id="kr.logen">로젠택배</option>
+                            <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
+                            <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
+                            <option value="한진택배" id="kr.hanjin">한진택배</option>
+                            <option value="경동택배" id="kr.kdexp">경동택배</option>
+                            <option value="대신택배" id="kr.daesin">대신택배</option>
+                            <option value="합동택배" id="kr.hdexp">합동택배</option>
+                            <option value="천일택배" id="kr.chunilps">천일택배</option>
+                          </select>
+                          <button class="re_select_btn" id="re_select_btn">수정하기</button>
+                        </div>
+                      </td>
+                    @endif
+                    <!-- <td>2020.04.16</td> -->
+                    <td id="date">{{$order->created_at}}</td>
+                    <td>{{$order->c_name}}</td>
+                    <td>{{$order->pm_pay}}</td>
+                    <td class="pm_status" id="pm_status">{{$order->pm_status}}</td>
+                    <td id="pm_d_status" value="{{$order->pm_d_status}}">{{$order->pm_d_status}}</td>
+
+                    @if(isset($order->pm_company))
+                      <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
+                      <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td>
+                    @else
+                      <td id="delivery_search"></td>
+                    @endif
+                    <!-- <td><button type="submit" name="button">저장</button></td> -->
+                  </tr>
                 @endforeach
               </tbody>
             </table>
             <!-- </form> -->
           </div>
-          @else
+        @else
           <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
             <div class="" style="top:180px; position:absolute; left:300px; ">
               주문목록이 없습니다.
             </div>
           </div>
-          @endif
-        </div>
+        @endif
       </div>
     </div>
   </div>
-  @include('lib.footer')
+</div>
+@include('lib.footer')
 </body>
 </html>
 
@@ -268,8 +293,23 @@ $(document).ready(function(){
   //배송완료
   $('#complete_cnt').html(complete_cnt);
 
+  //택배사 수정 버튼
+  $('.re_delivery_btn').click(function(){
+    var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+    var pm_no = check_btn_no.replace(/[^0-9]/g,"");
+
+    if($('#div_delivery'+pm_no).css('display')=="none"){
+      $('#div_delivery'+pm_no).show();
+      $('#selectbox'+pm_no).hide();
+    }
+    else{
+      $('#selectbox'+pm_no).show();
+      $('#div_delivery'+pm_no).hide();
+    }
+  });
+
   //송장번호 수정버튼 클릭시 이벤트
-  $('.re_invoice_btn').click(function () {
+  $('.re_invoice_btn').click(function(){
     var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
     var pm_no = check_btn_no.replace(/[^0-9]/g,"");
 
@@ -277,6 +317,26 @@ $(document).ready(function(){
     var text = $('#re_invoice'+pm_no).text();
     $('#div_invoice'+pm_no).html("<input type='text' class='num' id='inp_invoice' value='"+text+"'><button id='re_invoice_btn_Do' class='re_invoice_btn_Do'>수정하기</button>");
   });
+
+  //택배사 수정버튼 클릭 이벤트
+  // $('.re_delivery_btn').click(function(){
+  //   var check_btn_no =$(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+  //   var pm_no = check_btn_no.replace(/[^0-9]/g,"");
+  //
+  //   var text = $('#re_delivery'+pm_no).text();
+  //   $('#div_delivery'+pm_no).html("<select id='delivery' class='select' name='delivery'>
+  //   <option value="">택배 선택</option>
+  //   <option value='우체국택배' id='kr.epost'>우체국택배</option>
+  //   <option value='로젠택배' id='kr.logen'>로젠택배</option>
+  //   <option value='CU편의점택배' id='kr.cupost'>CU편의점택배</option>
+  //   <option value='GSPostbox택배' id='kr.cvsnet'>GSPostbox택배</option>
+  //   <option value='한진택배' id='kr.hanjin'>한진택배</option>
+  //   <option value='경동택배' id='kr.kdexp'>경동택배</option>
+  //   <option value='대신택배' id='kr.daesin'>대신택배</option>
+  //   <option value='합동택배' id='kr.hdexp'>합동택배</option>
+  //   <option value='천일택배' id='kr.chunilps'>천일택배</option>
+  //   </select>");
+  // })
 });
 
 // 송장번호 수정하기 버튼 클릭 이벤트
@@ -289,38 +349,82 @@ $(document).on('click','.re_invoice_btn_Do',function () {
 
   //화면에 보이는 텍스트
   var text = $('#re_invoice'+pm_no).text();
-  var re_text =$(this).parent().children('#inp_invoice').val();
+  var invoice_val =$(this).parent().children('#inp_invoice').val();
   console.log($(this).parent().children('#inp_invoice').val());
   // console.log(text);
   // console.log(re_text);
   // console.log(text);
 
+  $.ajax({
+    type: 'post',
+    url: '/update_invoice',
+    dataType: 'json',
+    data: { "pm_no" : pm_no,
+    "invoice_val" : invoice_val
+  },
+  success: function(data) {
+    console.log(data);
+
+    if(data==0){
+      refreshMemList();
+    }
+    // alert('수정되었습니다.');
+    // document.getElementById('pm_status').innerHTML="data";
+    // $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
+    else{
+      alert('수정되었습니다');
+      refreshMemList();
+    }
+  },
+  error: function(data) {
+    console.log("error");
+  }
+});
+});
+
+//택배사 수정하기 버튼
+$(document).on('click','.re_select_btn',function () {
+  var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+  var pm_no = check_btn_no.replace(/[^0-9]/g,"");
+
+  if($('#selectbox'+pm_no).css('display')=="none"){
+    $('#div_delivery'+pm_no).hide();
+    $('#selectbox'+pm_no).show();
+  }
+  else{
+    //선택된 option 값
+    console.log($(this).parent().children('.select').children('option:selected').val());
+    var option_val = $(this).parent().children('.select').children('option:selected').val();
+    console.log(pm_no);
     $.ajax({
       type: 'post',
-      url: '/update_invoice',
+      url: '/update_delivery',
       dataType: 'json',
       data: { "pm_no" : pm_no,
-              "re_text" : re_text
-     },
-      success: function(data) {
-        console.log(data);
+      "option_val" : option_val
+    },
+    success: function(data) {
+      console.log(data);
 
-        if(data==0){
-          refreshMemList();
-        }
-        // alert('수정되었습니다.');
-        // document.getElementById('pm_status').innerHTML="data";
-        // $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
-        else{
-          alert('수정되었습니다');
-          refreshMemList();
-        }
-      },
-      error: function(data) {
-        console.log("error");
+      if(data==0){
+        refreshMemList();
       }
-    });
+      // alert('수정되었습니다.');
+      // document.getElementById('pm_status').innerHTML="data";
+      // $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
+      else{
+        alert('수정되었습니다');
+        $('#selectbox'+pm_no).hide();
+        $('#div_delivery'+pm_no).show();
+        // refreshMemList();
+      }
+    },
+    error: function(data) {
+      console.log("error");
+    }
+  });
 
+  }
 });
 
 //전체 체크박스

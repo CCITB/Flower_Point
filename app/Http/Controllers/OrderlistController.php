@@ -74,15 +74,34 @@ class OrderlistController extends Controller
 
   public function update_invoice(Request $request){
     $pm_no = $request->get("pm_no");
-    $re_text = $request->get("re_text");
+    $invoice_val = $request->get("invoice_val");
 
     $db_pm = DB::table('payment')->where('pm_no',$pm_no)->first()->pm_invoice_num;
 
     //변경값과 DB에 존재하는 값이 다를 때만 업데이트
-    if(!($db_pm==$re_text)){
+    if(!($db_pm==$invoice_val)){
       DB::table('payment')->where('pm_no',$pm_no)
       ->update([
-        'pm_invoice_num' => $re_text
+        'pm_invoice_num' => $invoice_val
+      ]);
+      return response()->json(1);
+    }
+    else{
+      return response()->json(0);
+    }
+  }
+
+  public function update_delivery(Request $request){
+    $pm_no = $request->get("pm_no");
+    $option_val = $request->get("option_val");
+
+    $db_pm = DB::table('payment')->where('pm_no',$pm_no)->first()->pm_company;
+
+    //변경값과 DB에 존재하는 값이 다를 때만 업데이트
+    if(!($db_pm==$option_val)){
+      DB::table('payment')->where('pm_no',$pm_no)
+      ->update([
+        'pm_company' => $option_val
       ]);
       return response()->json(1);
     }
