@@ -92,8 +92,10 @@ class OrderlistController extends Controller
   }
 
   public function update_delivery(Request $request){
+
     $pm_no = $request->get("pm_no");
     $option_val = $request->get("option_val");
+    $code_val = $request->get("code_val");
 
     $db_pm = DB::table('payment')->where('pm_no',$pm_no)->first()->pm_company;
 
@@ -101,7 +103,8 @@ class OrderlistController extends Controller
     if(!($db_pm==$option_val)){
       DB::table('payment')->where('pm_no',$pm_no)
       ->update([
-        'pm_company' => $option_val
+        'pm_company' => $option_val,
+        'delivery_code' => $code_val
       ]);
       return response()->json(1);
     }
