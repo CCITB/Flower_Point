@@ -31,7 +31,7 @@
               <div class="preview-wrap">
                 <div class="preview-left">
                   <div class="preview">
-                    <img src="imglib/{{$data1->st_img}}" onerror="this.src='imglib/image.png'" id="image-session">
+                    <img src="imglib/{{$data1->st_img}}" onerror="this.src='imglib/profile.png'" id="image-session">
                     <div class="preview-image">
                       <!-- 이미지 미리보기 -->
                     </div>
