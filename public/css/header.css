@@ -1,10 +1,11 @@
 /* 곽승지 css 무단 수정 금지*/
 /* 화면헤더 */
 
-
 .user-wrap{
-  background-color: #FFDADA;
-
+  /* background-color: #FFDADA; */
+  background-color: #fff3f2;
+  border-bottom: 1px solid #e8dfdf;
+  padding: 7px;
 }
 .login:hover .login-list {
   display: block;
@@ -71,7 +72,7 @@ a:hover{
 }
 .headersearch{
   display: inline-block;
-  border: 3px solid pink;
+  border: 3px solid #ffb5b5;
   background-color: white;
 
 }
@@ -115,9 +116,6 @@ body{
 .textmiddle{
   text-align: center;
 }
-
-
-
 
 .search-button{
   height: 40px;
@@ -194,7 +192,7 @@ body{
 .topheader
 {
   height: 195px;
-  background-color: #FFDADA;
+  /* background-color: #FFDADA; */
 }
 /* li
 {
@@ -217,13 +215,14 @@ padding-left: 0px;
   position: relative;
 }
 #block2{
-  /* position: absolute;
-  top:14%;
-  left: 300px; */
-
+  position: absolute;
+  left:33%;
+  top:70%;
 }
 #block1{
-  /* position: absolute; */
+  position: relative;
+  top:50%;
+  left:20%;
   /* left: 200px; */
   display: inline-block;
 
@@ -232,8 +231,7 @@ padding-left: 0px;
   position: relative;
   width: 100%;
   height: 105px;
-  text-align: center;
-
+  /* text-align: center; */
 }
 
 #dropdown-menu{
@@ -365,11 +363,27 @@ padding-left: 0px;
 
 /* 화면 하단부 영역 */
 footer{
-  border-top: 3px solid #FFDDDD;
+  /* border-top: 3px solid #FFDDDD;
   text-align: center;
   padding-bottom: 20px;
   padding-top: 40px;
   height: 100px;
   background-color: #FFDDDD;
-  border-top: solid  color:#FFDDDD 3px;
+  border-top: solid  color:#FFDDDD 3px; */
+
+  /* 추가 : 지수 */
+  text-align: center;
+  padding:20px;
+  background-color: #cee0b8;
+  margin-top:6em;
+}
+
+div#bottom{
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 230px;
+}
+
+div#introduce{
+  padding:30px 10px 0 27em;
 }

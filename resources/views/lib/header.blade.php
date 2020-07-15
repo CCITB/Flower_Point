@@ -45,6 +45,7 @@
         <div id="block1">
           <h1><a href="/" style="color:black">꽃갈피</a></h1>
         </div>
+
         <div id="block2">
           <form method="get" action="/search" class="headersearch">
             @csrf
@@ -55,6 +56,7 @@
             </label>
           </form>
         </div>
+
       </div>
     </div>
   </div>
@@ -146,6 +148,8 @@
   .dropdown-wrap{
     margin-bottom: 30px;
     transition: all 0.3s ease-in-out;
+    /* 추가 */
+    border-top:1px solid #f5e6e6;
   }
   ul.submenu_list{
     padding: 0px;
