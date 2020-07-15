@@ -264,14 +264,13 @@ class ProductController extends Controller
     public function star(Request $request){
       if(auth()->guard('customer')->user()){
         $c_no = auth()->guard('customer')->user()->c_no;
-        $pro = DB::table('product_favorite')->join('product','product_favorite.product_no','product.p_no')
-        ->select('*')->where('customer_no','=',$c_no)->get();
-
+        // return $pro;
         $pro2 = DB::table('store_favorite')->join('store','store_favorite.store_no','store.st_no')
         ->select('*')->where('customer_no','=',$c_no)->get();
         $data = DB::table('product_favorite')->join('product','product_favorite.product_no','=','product.p_no')
-        ->select('*')->where('p_status','=','등록')->paginate(4);
-        return view('star', compact('pro','pro2','data'));
+        ->select('*')->where('p_status','=','등록')->where('customer_no','=',$c_no)->get();
+
+        return view('star', compact('pro2','data'));
       }
       else{
         return redirect('/');
@@ -282,22 +281,22 @@ class ProductController extends Controller
     public function star2($id){
       if(auth()->guard('customer')->user()){
         $c_no = auth()->guard('customer')->user()->c_no;
-      }
+
       $productinfor = DB::table('product')->select('*')->where('p_no','=',$id)->get();
       $delete = DB::table('product_favorite')->where('product_no','=',$productinfor[0]->p_no)->delete();
       return redirect()->back();
     }
-
+}
     //꽃집 즐겨찾기 삭제코드 정경진
     public function store_star($id){
       if(auth()->guard('customer')->user()){
         $c_no = auth()->guard('customer')->user()->c_no;
-      }
+
       $storeinfor = DB::table('store')->select('*')->where('st_name','=',$id)->get();
       $delete = DB::table('store_favorite')->where('store_no','=',$storeinfor[0]->st_no)->delete();
       return redirect()->back();
     }
-
+}
 
     // 문의하기에서 상품정보 불러오기
     public function pd_info ($id){
