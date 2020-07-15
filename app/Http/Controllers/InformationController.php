@@ -358,7 +358,7 @@ class InformationController extends Controller
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
         $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
-        ->select('*')->where('customer_no','=',$customerprimary)->get();
+        ->select('*')->where('customer_no','=',$customerprimary)->where('cpb_state','=','미사용')->get();
         $coupon2 = count($coupon);
         return view('coupon',compact('coupon','coupon2'));
       }
