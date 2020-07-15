@@ -1035,9 +1035,11 @@ function productcheck(){
     return false;
   }
   else{
-    var test = JSON.stringify(getid);
+    var test = encodeURIComponent(JSON.stringify(getid));
     $('input[name=pdidx]').val(test);
-    $('input[name=productnoidx]').val(JSON.stringify(productnoidx));
+    $('input[name=productnoidx]').val(encodeURIComponent(JSON.stringify(productnoidx)));
+    // console.log(test);
+    // return false;
     productpost.submit();
   }
 
