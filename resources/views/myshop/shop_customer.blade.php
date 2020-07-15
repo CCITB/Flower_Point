@@ -89,7 +89,7 @@
               <div class="image">
                 <div class="image-in" url="/product/{{$productlist->p_no}}">
                   <div class="imagewrap" >
-                    <img src="/imglib/{{$productlist->p_filename}}"  onerror="this.src='imglib/profile.png'" width="100px" height="100px">
+                    <img src="/imglib/{{$productlist->p_filename}}"  onerror="this.src='imglib/dummy.png'" width="100px" height="100px">
                   </div>
                   <div class="image-in-font">
                     <div class="image-in-post">

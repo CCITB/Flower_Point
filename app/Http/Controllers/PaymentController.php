@@ -14,6 +14,7 @@ class PaymentController extends Controller
   // 주문페이지
   public function payment(Request $request){
     if(auth()->guard('customer')->user()){
+      // return json_decode(urldecode($request->pdidx));
       //랜덤 토큰 생성
       $token = str::random(32);
       // return session()->all();
@@ -22,8 +23,8 @@ class PaymentController extends Controller
       // return 0;
       $dbdata = DB::table('customer')->get();
       //장바구니에 담긴 물품중 선택해서 주문을 눌렀을때 받는 상품테이블의 인덱스와 장바구니 인덱스
-      $ididx = json_decode($request->input('pdidx'));
-      $productnoidx = json_decode($request->input('productnoidx'));
+      $ididx = json_decode(urldecode($request->input('pdidx')));
+      $productnoidx = json_decode(urldecode($request->input('productnoidx')));
       // 상품페이지에서 바로 주문을 눌렀을때 받는 상품테이블의 인덱스
       $proidx = $request->Pro;
       $productcount = $request->count;
