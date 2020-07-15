@@ -113,7 +113,7 @@
                   <!--데이터값 존재-->
                   @else
                   <td>
-                    <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button id="re_invoice_btn">수정</button></div>
+                    <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button class="re_invoice_btn"id="re_invoice_btn">수정</button></div>
                     <!-- <div id="editform" name="editform"> -->
                     <!-- {{$order->pm_invoice_num}} -->
                     <!-- </div>
@@ -268,49 +268,33 @@ $(document).ready(function(){
   //배송완료
   $('#complete_cnt').html(complete_cnt);
 
-});
-// $(document).on('click','#btn',function () {
-//   var text = $("#editform").text();
-//   console.log($("#editform").text());
-//   $('#editform').html("<input type='text' vlaue='"+text+"' id='editDo'>");
-//   $('#editbtn').html("<button type='button' id='btnDo'>수정하기</button>");
-// });
-//
-// $(document).on('click','#btnDo',function () {
-//   $('#editform').text($("#editDo").val());
-//   $('#editbtn').html("<button type='button' id='btn'>수정</button>")
-// });
+  //송장번호 수정버튼 클릭시 이벤트
+  $('.re_invoice_btn').click(function () {
+    var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+    var pm_no = check_btn_no.replace(/[^0-9]/g,"");
 
-
-//수정버튼 이벤트
-$(document).on('click','#re_invoice_btn',function () {
-  // console.log($(this).parent().parent().parent().children('.sorting_1').children().attr('id'));
-  var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
-  var pm_no = check_btn_no.replace(/[^0-9]/g,"");
-
-  //원래 존재하고 있던 값을 유지한 상태로 새로운 input창과 버튼을 생성
-  var text = $('#re_invoice'+pm_no).text();
-  $('#div_invoice'+pm_no).html("<input type='text' class='num' id='inp_invoice' value='"+text+"'><button id='re_invoice_btn_Do'>수정하기</button>");
+    //원래 존재하고 있던 값을 유지한 상태로 새로운 input창과 버튼을 생성
+    var text = $('#re_invoice'+pm_no).text();
+    $('#div_invoice'+pm_no).html("<input type='text' class='num' id='inp_invoice' value='"+text+"'><button id='re_invoice_btn_Do' class='re_invoice_btn_Do'>수정하기</button>");
+  });
 });
 
-//수정하기 버튼 이벤트
-$(document).on('click','#re_invoice_btn_Do',function () {
-  // console.log($(this).parent().parent().parent().children('.sorting_1').children().attr('id'));
+// 송장번호 수정하기 버튼 클릭 이벤트
+$(document).on('click','.re_invoice_btn_Do',function () {
   var check_btn_no = $(this).parent().parent().parent().children('.sorting_1').children().attr('id');
+  var text = $(this).parent().parent().parent().children();
+  // console.log($(this).parent().parent().parent().children());
+
   var pm_no = check_btn_no.replace(/[^0-9]/g,"");
-  // console.log(pm_no);
 
   //화면에 보이는 텍스트
   var text = $('#re_invoice'+pm_no).text();
-  var re_text = $('#inp_invoice').val();
-  console.log(text);
-  console.log(re_text);
+  var re_text =$(this).parent().children('#inp_invoice').val();
+  console.log($(this).parent().children('#inp_invoice').val());
+  // console.log(text);
+  // console.log(re_text);
+  // console.log(text);
 
-
-  if(re_text==""){
-    $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+text+"</p><button id='re_invoice_btn'>수정</button>");
-  }
-  else{
     $.ajax({
       type: 'post',
       url: '/update_invoice',
@@ -320,15 +304,23 @@ $(document).on('click','#re_invoice_btn_Do',function () {
      },
       success: function(data) {
         console.log(data);
-        alert('수정되었습니다.');
-        $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
+
+        if(data==0){
+          refreshMemList();
+        }
+        // alert('수정되었습니다.');
         // document.getElementById('pm_status').innerHTML="data";
+        // $('#div_invoice'+pm_no).html("<p id='re_invoice'>"+re_text+"</p><button id='re_invoice_btn'>수정</button>");
+        else{
+          alert('수정되었습니다');
+          refreshMemList();
+        }
       },
       error: function(data) {
         console.log("error");
       }
     });
-  }
+
 });
 
 //전체 체크박스
