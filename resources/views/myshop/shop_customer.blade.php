@@ -24,7 +24,7 @@
         <hr>
         <div class="wrap2">
           <div class="imgbox">
-            <img class="shopimg" src="/imglib/{{$shop->st_img}}"  >
+            <img src="/imglib/{{$shop->st_img}}" onerror="this.src='/imglib/profile.png'" class="shopimg" >
           </div>
           <div id="tablewrap">
             <table id="shopinfo">
@@ -58,6 +58,7 @@
       </form>
 
     </div>
+    @if(auth()->guard('customer')->user())
   <div class="wrap4">
     <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
       @csrf
@@ -65,6 +66,15 @@
       <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button>
           </form>
   </div>
+@elseif(auth()->guard('seller')->user())
+  <div class="wrap4">
+    <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
+      @csrf
+    <h3 class="productname">판매물품</h3>
+      {{-- <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button> --}}
+          </form>
+  </div>
+@endif
   <div class="wrap5">
     <div class="wrap6">
       <div class="wrap6-1">
@@ -79,7 +89,7 @@
               <div class="image">
                 <div class="image-in" url="/product/{{$productlist->p_no}}">
                   <div class="imagewrap" >
-                    <img src="\imglib\{{$productlist->p_filename}}"  onerror="this.src='imglib/image.png'" width="100px" height="100px">
+                    <img src="/imglib/{{$productlist->p_filename}}"  onerror="this.src='imglib/profile.png'" width="100px" height="100px">
                   </div>
                   <div class="image-in-font">
                     <div class="image-in-post">
