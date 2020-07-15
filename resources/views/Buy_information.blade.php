@@ -141,48 +141,52 @@
           </p>
         </div>
         <div class="review_list">
-          <ul>
-            @foreach ($review as $rev)
-              <li class="user_review">
-                <div class="review_one">
-                  <div class="review_cell">
-                    <div class="review_text">
-                      <div class="star_small" id="star_small">
-                        @if($rev->r_score == 1)
-                          ★
-                        @elseif($rev->r_score == 2)
-                          ★★
-                        @elseif($rev->r_score == 3)
-                          ★★★
-                        @elseif($rev->r_score == 4)
-                          ★★★★
-                        @elseif($rev->r_score == 5)
-                          ★★★★★
+
+          <div class="review_one">
+            <table>
+              @foreach ($review as $rev)
+                <tr class="review_cell" onclick="pd_qna({{$rev->r_no}})">
+                  <td>
+                    <div class="star_small" id="star_small">
+                      @if($rev->r_score == 1)
+                        <span class="yel">★</span><span class="gray">★★★★</span>
+                      @elseif($rev->r_score == 2)
+                        <span class="yel">★★</span><span class="gray">★★★</span>
+                      @elseif($rev->r_score == 3)
+                        <span class="yel">★★★</span><span class="gray">★★</span>
+                      @elseif($rev->r_score == 4)
+                        <span class="yel">★★★★</span><span class="gray">★</span>
+                      @elseif($rev->r_score == 5)
+                        <span class="yel">★★★★★</span>
+                      @endif
+                    </div>
+                  </td>
+                  <td class="user_write">
+                    {{$rev->r_contents}}
+                  </td>
+                  <td class="myname">{{$rev->c_name}}</td>
+                  <td class="mydate">{{$rev->r_date}}</td>
+                </tr>
+
+                <tr class="re_detail" id="answer{{$rev->r_no}}">
+                  <td colspan="4" class="re_text">
+                    <div class="re_de">
+                      <div class="re_con">
+                        {{$rev->r_contents}}
+                      </div>
+                      <div class="review_image">
+                        @if(isset($rev->r_image))
+                          <img class="r_img" src="/imglib/{{$rev->r_image}}">
                         @endif
                       </div>
-                      <div class="status_user">
-                        <span class="text_info">{{$rev->c_name}}</span>
-                        <span class="text_info">{{$rev->r_date}}</span>
-                        <span class ="text_info_option">{{$rev->p_name}}</span>
-                      </div>
-                      <div class="user_write">
-                        <span class="writing">{{$rev->r_contents}}</span>
-                      </div>
-                      <a href="#">더보기</a>
                     </div>
-                  </div>
-                  <div class="review_image">
-                    @if(isset($rev->r_image))
-                      <img src="/imglib/{{$rev->r_image}}">
-                    @endif
-                  </div>
-                  <div class="review_good">
-                    <button type="button" name="good" id="good{{$rev->r_no}}" onclick="pd_good({{$rev->r_no}});">좋아요 <span id="count{{$rev->r_no}}">{{$rev->r_good}}</span></button>
-                  </div>
-                </div>
-              </li>
-            @endforeach
-          </ul>
+                  </td>
+                </tr>
+
+              @endforeach
+            </table>
+          </div>
+
         </div>
       </div>
 
@@ -310,6 +314,8 @@
               <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
               <script type="text/javascript">
 
+
+
               $(function(){
                 var total = 0;
                 $('#minus').click(function(e){
@@ -369,13 +375,13 @@
               //문의하기 클릭
               function pd_qna(num) {
 
-                if($("#answer"+num).hasClass("qna_an_show")){
-                  $("#answer"+num).removeClass("qna_an_show");
+                if($("#answer"+num).hasClass("re_detail_show")){
+                  $("#answer"+num).removeClass("re_detail_show");
                 }
                 else
                 {
-                  $(".qna_an").removeClass("qna_an_show");
-                  $("#answer"+num).addClass("qna_an_show");
+                  $(".re_detail").removeClass("re_detail_show");
+                  $("#answer"+num).addClass("re_detail_show");
                 }
               }
               // 문의하기 비 로그인시
@@ -388,49 +394,43 @@
               }
 
 
-              // var score = $('#stars'+sc).val();
-              // $(document).ready(function(){
-              //   if(score == 1){
-              //     $('#star_small'+sc).text("★");
-              //   }
-              //   if(score == 2){
-              //     $('#star_small'+sc).text("★★");
-              //   }
-              //   if(score == 3){
-              //     $('#star_small'+sc).text("<span>★</span>");
-              //   }
-              //   if(score == 4){
-              //     $('#star_small'+sc).text("★★★★");
-              //   }
-              //   if(score == 5){
-              //     $('#star_small'+sc).text("★★★★★");
-              //   }
-              // });
+              function pd_qna(num) {
+
+                if($("#answer"+num).hasClass("qna_an_show")){
+                  $("#answer"+num).removeClass("qna_an_show");
+                }
+                else
+                {
+                  $(".qna_an").removeClass("qna_an_show");
+                  $("#answer"+num).addClass("qna_an_show");
+                }
+              }
 
               // 리뷰 좋아요 버튼
-              function pd_good(r_no){
-
-                var g_bt = $('#good'+r_no);
-
-                $.ajax({
-                  type: 'post',
-                  url: '/rev_count',
-                  dataType: 'json',
-                  data: { 'num' : r_no },
-
-                  success: function(data) {
-                    if (data == 1){
-                      console.log(data);
-                      // $('#count'+r_no).text('1');
-                    }
-
-                  },
-                  error: function(data) {
-                    console.log("error" +data);
-                    alert("잘못된 요청입니다.")
-                  }
-                });
-              }
+              // function pd_good(r_no){
+              //
+              //   var g_bt = $('#good'+r_no);
+              //
+              //   $.ajax({
+              //     type: 'post',
+              //     url: '/rev_count',
+              //     dataType: 'json',
+              //     data: { 'num' : r_no },
+              //
+              //     success: function(data) {
+              //       if (data == 1){
+              //         $('#count'+r_no).text(r_no);
+              //         console.log(data);
+              //         // $('#count'+r_no).text('1');
+              //       }
+              //
+              //     },
+              //     error: function(data) {
+              //       console.log("error" +data);
+              //       alert("잘못된 요청입니다.")
+              //     }
+              //   });
+              // }
 
               $( ".up input" ).click(function() {
                 var state = $('input:radio[name=state]:checked').val();

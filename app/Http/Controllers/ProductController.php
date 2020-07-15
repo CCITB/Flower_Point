@@ -104,7 +104,8 @@ class ProductController extends Controller
     $review= DB::table('customer')
     ->join('review', 'customer.c_no', '=', 'review.customer_no')
     ->join('product', 'review.product_no','=','product.p_no')
-    ->where('product_no', $pro_no)->paginate(3);
+    ->join('payment','review.payment_no','=','payment.pm_no')
+    ->where('review.product_no', $pro_no)->paginate(3);
 
     //나의 소중한 주석입니다 지우지 말아주세요
     // if(auth()->guard('seller')->user()){
