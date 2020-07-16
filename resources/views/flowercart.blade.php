@@ -42,9 +42,9 @@
                 {{-- <div class="product-coupon{{$list->b_no}}">
                 쿠폰
               </div> --}}
-              <div class="product-coupon">
-                쿠폰
-              </div>
+              {{-- <div class="product-coupon">
+
+              </div> --}}
               <div class="product-count">
                 {{-- 수량증가-------------------- --}}
                 <button type="button" class="minus" id="minus{{$list->b_no}}"name="button" onclick="decrease({{$list->b_no}});">

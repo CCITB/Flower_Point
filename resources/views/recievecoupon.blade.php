@@ -25,7 +25,7 @@
 
 
     <div class="coupon_back">
-      <table class="table table-striped">
+      <table class="type09">
         <tr>
           <th>쿠폰번호</th>
           <th>쿠폰명</th>

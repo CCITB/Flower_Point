@@ -27,14 +27,11 @@ class PaymentController extends Controller
       // 상품페이지에서 바로 주문을 눌렀을때 받는 상품테이블의 인덱스
       $proidx = $request->Pro;
       $productcount = $request->count;
-      // $aa = $request;
-      // return $request;
+
       $data1 = 0;
       $productprice = 0;
       $productdelivery = 0;
       $productsum = 0;
-      // return print_r($dbdata[0]);
-      // return $ididx[0];
       // 장바구니에서 넘겼을때
       if(isset($ididx)){
         $user = auth()->guard('customer')->user();
@@ -56,16 +53,9 @@ class PaymentController extends Controller
           $productdelivery += $data[$i][0]->b_delivery;
           $productprice += $data[$i][0]->b_price*$data[$i][0]->b_count;
         }
-
-        // return $point;
-        // return $latestaddress;
-        // return $latestaddress[0]->d_no;
         return view('payment.order',compact('data','user','useraddress','latestaddress','productprice','productdelivery','productsum','token','point'));
       }
       // 주문페이지에서 바로 주문하기 눌렀을때
-      // return $data[0][0]->b_price*$data[0][0]->b_count;
-      // return $data[0]->b_no;
-      // return $productprice;
       $user = auth()->guard('customer')->user();
       $useraddress = DB::table('customer_address')->where('c_no',$user->c_no)->get();
       $latestaddress = DB::table('delivery')->where('customer_no',$user->c_no)->orderBy('d_no','desc')->first();
@@ -146,11 +136,7 @@ class PaymentController extends Controller
       $customerprimary = auth()->guard('customer')->user()->c_no;
       //유저 기본배송지 추출
       $useraddress = DB::table('customer_address')->where('c_no',$customerprimary)->get();
-      // return auth()->guard('customer')->user()->c_cash;
     }
-    // return DB::table('delivery')->where('customer_no',$customerprimary)->orderBy('d_no','desc')->take(1)->get();
-    // return $basket_no;
-    // return 0;
     //주문한 사람의 주소 저장
     if($request->delivery=='신규배송지'){
       DB::table('delivery')->insert([
@@ -318,16 +304,24 @@ class PaymentController extends Controller
     $orderNO = $request->session()->get('orderNO');
     $paymentIDarray = $request->session()->get('arraydata');
     $pricesum = 0;
+    // 주소 보내주기
+    // $delivery = DB::table('paymentjoin')->where('order_no',$orderNO)
+    // ->select('delivery_no','c_address_no','pm_no')
+    // ->join('payment','paymentjoin.payment_no','payment.pm_no')
+    // ->orderBy('pm_no','desc')->take(1)->get();
     if(isset($paymentIDarray)){
       for($i=0;$i<count($paymentIDarray);$i++){
         $pricesum += $paymentIDarray[$i][0]->pm_pay;
       }
-      // return $pricesum;
     }
-    // return $paymentIDarray[0][0]->pm_no;
-    // echo $paymentID;
-    // return dd($paymentIDarray);
-    // return $orderNO;
-    return view('payment.complete',compact('paymentID','paymentIDarray','pricesum','orderNO'));
+    // return $delivery[0]->delivery_no;
+    // if($delivery[0]->delivery_no==null){
+    //   $address = DB::table('customer_address')->where('a_no',$delivery[0]->c_address_no)->get();
+    // }
+    // else{
+    //   $address = DB::table('delivery')->where('d_no',$delivery[0]->delivery_no)->get();
+    // }
+    // return $address;
+    return view('payment.complete',compact('paymentID','paymentIDarray','pricesum','orderNO',));
   }
 }

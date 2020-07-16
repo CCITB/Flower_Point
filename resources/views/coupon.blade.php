@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="coupon_list">
-      <table class="table table-striped">
+      <table class="type09">
         <tr>
           나의 할인쿠폰 목록
         </tr>

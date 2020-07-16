@@ -143,21 +143,19 @@
                     <td>
                       <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
                         @csrf
-                        <input type="submit" value="수정">
+                        <input type="submit" id="modify" value="수정">
                       </form>
                     </td>
                     <td>
                       <form name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
                         @csrf
-                        <input type="submit" name="remove" id="remove" value="삭제">
+                        <input type="submit" name="remove" id="removel" value="삭제">
                       </form>
                     </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
-            <div>
-            </div>
           </div>
         </div>
       @endif
@@ -174,6 +172,22 @@
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 
 <script type="text/javascript">
+
+$('#modify').click(function(){
+  var test = confirm("상품을 수정하시겠습니까?");
+  if(test == false){
+    return false;
+  }
+});
+
+$('#removel').click(function(){
+  var test = confirm("정말로 삭제하시겠습니까?");
+  if(test == true){
+    alert("삭제되었습니다.");
+  }else{
+    return false;
+  }
+});
 
 function showPopup() {
   var url="image_popup";

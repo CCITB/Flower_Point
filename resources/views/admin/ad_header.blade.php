@@ -22,12 +22,12 @@
     <!-- sidebar menu start-->
     <ul class="sidebar-menu" id="nav-accordion">
       <h5 class="centered">Sam Soffes</h5>
-      <li class="mt">
+      {{-- <li class="mt">
         <a class="active" href="/ad_admin">
           <i class="fa fa-dashboard"></i>
           <span>Dashboard</span>
           </a>
-      </li>
+      </li> --}}
       <li class="sub-menu">
         <a href="javascript:;">
           <i class="fa fa-book"></i>
@@ -37,21 +37,19 @@
           <li><a href="/ad_customer">구매자 관리</a></li>
           <li><a href="/ad_seller">판매자 관리</a></li>
           <li><a href="/ad_product">상품 세부관리</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          {{-- <li><a href="faq.html">FAQ</a></li> --}}
         </ul>
       </li>
       <li class="sub-menu">
         <a href="javascript:;">
           <i class="fa fa-th"></i>
-          <span>Data Tables</span>
+          <span>Coupon</span>
           </a>
         <ul class="sub">
-          <li><a href="basic_table.html">Basic Table</a></li>
-          <li><a href="responsive_table.html">Responsive Table</a></li>
-          <li><a href="advanced_table.html">Advanced Table</a></li>
+          <li><a href="/ad_coupon">쿠폰 발급</a></li>
         </ul>
       </li>
-      <li class="sub-menu">
+      {{-- <li class="sub-menu">
         <a href="javascript:;">
           <i class=" fa fa-bar-chart-o"></i>
           <span>Charts</span>
@@ -62,7 +60,7 @@
           <li><a href="flot_chart.html">Flot Charts</a></li>
           <li><a href="xchart.html">xChart</a></li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <!-- sidebar menu end-->
   </div>

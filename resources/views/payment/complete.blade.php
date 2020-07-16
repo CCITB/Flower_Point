@@ -28,6 +28,12 @@
         </div>
         @if (isset($paymentID))
           @foreach ($paymentID as $paymentID)
+            {{-- <div class="" style="text-align:center;">
+              주소
+            </div>
+            <div class="" style="text-align:center;">
+              (으)로 보내실 주문이 완료 되었습니다.
+            </div> --}}
             <div class="wrapping_complete">
               <br>
               <div class="order_result"><b>주문 정보</b>
@@ -42,16 +48,13 @@
           @endforeach
         @elseif (isset($paymentIDarray))
           {{-- @foreach ($paymentIDarray as $key => $value) --}}
+          {{-- <div class="" style="text-align:center;">
+            주소{{}}
+          </div>
+          <div class="" style="text-align:center;">
+            (으)로 보내실 주문이 완료 되었습니다.
+          </div> --}}
           <div class="wrapping_complete">
-            <div class="order_result"><b>결제 정보</b>
-              <hr class="dotted_line">
-
-              <div class="order_data">
-                <p class="order_label">입금 은행 : bank</p>
-                <p class="order_label">입금 계좌 : account number</p>
-                <p class="order_label">예금주 : name</p>
-              </div>
-            </div>
             <br>
             <div class="order_result"><b>주문 정보</b>
               <hr class="dotted_line">
@@ -68,8 +71,16 @@
           </div> <!--wrapping_complete-->
           {{-- @endforeach --}}
         @else
-          <div class="order_data">
-            요청하신 페이지를 찾을 수 없습니다.
+          <div class="wrapping_complete">
+            <br>
+            <div class="order_result"><b>주문 정보</b>
+              <hr class="dotted_line">
+              <div class="order_data" style="height:400px;">
+                <div class="" style="text-align:center;font-size:30px;padding:180px;">
+                  요청하신 페이지를 찾을 수 없습니다.
+                </div>
+              </div>
+            </div>
           </div>
         @endif
         <div class="" style="text-align:center; margin: 30px 0px;">
@@ -78,39 +89,10 @@
         </div>
       </div>
       @include('lib.footer')
-      <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button>
+
     </body>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript">
-    // $(document).ready(function(){
-    //   console.log(document.cookie);
-    //   console.log(setCookie('paymentcookie','','-1'));
-    // });
-    // function getCookie(cookie_name) {
-    //   var x, y;
-    //   var val = document.cookie.split(';');
-    //
-    //   for (var i = 0; i < val.length; i++) {
-    //     x = val[i].substr(0, val[i].indexOf('='));
-    //     y = val[i].substr(val[i].indexOf('=') + 1);
-    //     x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-    //     if (x == cookie_name) {
-    //       return unescape(y); // unescape로 디코딩 후 값 리턴
-    //     }
-    //   }
-    // }
-    //
-    // function setCookie(cookie_name, value, days) {
-    //   var exdate = new Date();
-    //   exdate.setDate(exdate.getDate() + days);
-    //   // 설정 일수만큼 현재시간에 만료값으로 지정
-    //
-    //   var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-    //   document.cookie = cookie_name + '=' + cookie_value+';path=/';
-    //   console.log(document.cookie);
-    //   // $('input[name=token_payment]').val(document.cookie);
-    //   // console.log($('input[name=token_payment]').val());
-    // }
     </script>
     </html>
