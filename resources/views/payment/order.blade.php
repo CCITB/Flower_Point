@@ -224,11 +224,11 @@
               <span>잔여포인트</span> <span>{{number_format($point)}}</span>
             </div>
             <div class="" >
-              <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
-              <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
+              <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="0" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
+              <span style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;" onclick="pointall()">전액사용</span>
             </div>
             <div class="">
-              <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;">쿠폰함</span>
+              <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span>
             </div>
             <div class="">
               적용쿠폰
@@ -673,6 +673,9 @@ function AddComma(num)
   return num.toString().replace(regexp, ',');
 }
 $('#userpoint').blur(function(){
+  if($('#userpoint').val()==''){
+    $('#userpoint').val('0');
+  }
   $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
   if($('#userpoint').val()>{{$point}}){
     $('#userpoint').val({{$point}});
@@ -718,6 +721,11 @@ function couponapply(mypage, myname, w, h, scroll) {
     } catch (e) { }
   }, 500);
 }
+$('#userpoint').click(function(){
+if($('#userpoint').val()==0){
+  $('#userpoint').val('');
+}
+});
 // var couponapply = function() {
 //   g_oWindow = window.open(url,"",option);
 //   // 0.5초 마다 감지
