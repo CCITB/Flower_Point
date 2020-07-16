@@ -43,9 +43,13 @@ td{
   border-top: 1px solid #EAEAEA;
   border-bottom: 1px solid #EAEAEA;
 }
-
 div.tdcell{
   margin-left: 3%;
+}
+.pw{
+  width: 30%;
+  height: 15px;
+  padding: 5px;
 }
 
 #p_num{
@@ -117,7 +121,7 @@ table.order{
   border-collapse: collapse;
 }
 .p_tr{
-  color: #3F0000;
+  color: #212121;
   background-color: #C8DBCD;
   opacity: 0.8;
   border-bottom: 1px solid #8C8C8C;
@@ -141,13 +145,13 @@ table.table_review{
 .r_pname{
   background-color: #C8DBCD;
   width: 30%;
-  color: #3F0000;
+  color: #212121;
   opacity: 0.8;
 }
 .r_con{
   background-color: #C8DBCD;
   width: 70%;
-  color: #3F0000;
+  color: #212121;
   opacity: 0.8;
 }
 .r_td{
@@ -161,3 +165,7 @@ div.current{
   height: 50px;
 }
 /* ----- 충전 팝업창 끝 ----- */
+
+/* ----- s_mypage ----- */
+
+/* ----- s_mypage 끝 ----- */

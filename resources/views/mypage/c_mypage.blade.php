@@ -38,13 +38,13 @@
                 <tr class="tr1">
                   <th class="th1">비밀번호</th>
                   <td>
-                    <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
+                    <div class="tdcell"><p class="contxt.tit"><input class="pw" type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
                       <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
                       <div class="check_div" id="password_check" value=""></div>
 
                       <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
                         @csrf
-                        <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw" disabled placeholder="새 비밀번호">
+                        <div class="tdcell"><p class="contxt.tit"><input class="pw" type="password" id="new_pw" name="new_pw" disabled placeholder="새 비밀번호">
                           <button type="submit" name="button">수정완료</button></p></div>
                         </div>
                       </form>
@@ -380,7 +380,7 @@
           if(test == true){
             alert("구매가 확정되었습니다.");
           }else{
-            return false;        
+            return false;
           }
         });
         function pw_checkform(){

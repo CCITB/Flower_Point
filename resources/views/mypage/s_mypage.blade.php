@@ -7,8 +7,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>꽃갈피</title>
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/locate.css">
-  <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/c_mypage.css">
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
@@ -20,143 +20,126 @@
 <!-- 정경진 -->
 <body>
   @include('lib.header')
-  <div class="menu4">
-    <h3 align="center">마이페이지</h3>
-    <hr align="left" class="one">
-  </hr>
-</div>
-<div class="myinfo">
-  <h4>내 정보</h4>
-  <div class="privacy">
-    <table border="0" table class="table" >
+  <div class="myinfo">
+    <div class="privacy">
+      <div class="mytitle">내 정보 관리</div>
+      <table border="0" table class="table" id="shopinfo">
+        @if($seller = auth()->guard('seller')->user())
 
-      @if($seller = auth()->guard('seller')->user())
+          <tbody>
+            <tr class="tr1">
+              <th class="th1">아이디</th>
+              <td>
+                <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
+              </td>
+            </tr>
+            <tr class="tr1">
+              <th class="th1">비밀번호</th>
+              <td>
+                <div class="tdcell"><p class="contxt.tit"><input class="pw" type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요.">
+                  <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
+                  <div class="check_div" id="password_check" value=""></div>
 
-        <tbody>
-          <tr class="tr1">
-            <th class="th1">
-              아이디
-            </th>
-            <td>
-              <div class="tdcell"><p class="contxt.tit">{{$seller->s_id}}</p></div>
-            </td>
-          </tr>
-          <tr class="tr1">
-            <th class="th1">
-              비밀번호
-            </th>
-            <td>
-              <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
-                <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
-                <div class="check_div" id="password_check" value=""></div>
-
-                <form action="modipw" method="post" onsubmit="return pw_checkform()">
-                  @csrf
-                  <div class="tdcell"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
-                    <button type="submit" name="button">수정완료</button><p class="contxt.tit"></p></div>
-
-                  </div>
+                  <form action="modipw" method="post" onsubmit="return pw_checkform()">
+                    @csrf
+                    <div class="tdcell"><input class="pw" type="password" id="new_pw" name="new_pw" disabled  placeholder="새 비밀번호">
+                      <button type="submit" name="button">수정완료</button>
+                      <p class="contxt.tit"></p>
+                    </div>
+                  </form>
                 </td>
               </tr>
-            </form>
 
-            <tr class="tr1">
-              <th class="th1">
-                이름
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
-              </td>
+              <tr class="tr1">
+                <th class="th1">이름</th>
+                <td>
+                  <div class="tdcell"><p class="contxt.tit">{{$seller->s_name}}</p></div>
+                </td>
+              </tr>
               <form action="information_controller"  onsubmit="return s_phonenum_checkform()" method="post">
                 @csrf
-              </tr>
-              <tr class="tr1">
-                <th class="th1">
-                  연락처
-                </th>
-                <td>
-                  <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
-
-                  <div id="p_num" style="display:none;">
-                    <strong class="info">전화번호</strong>
-                    <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
-                      <option value="010">010</option>
-                      <option value="011">011</option>
-                      <option value="016">016</option>
-                      <option value="017">017</option>
-                      <option value="018">018</option>
-                      <option value="019">019</option>
-                      <option value="02">02</option>
-                      <option value="031">031</option>
-                      <option value="032">032</option>
-                      <option value="033">033</option>
-                      <option value="041">041</option>
-                      <option value="042">042</option>
-                      <option value="043">043</option>
-                      <option value="044">044</option>
-                      <option value="051">051</option>
-                      <option value="052">052</option>
-                      <option value="053">053</option>
-                      <option value="054">054</option>
-                      <option value="055">055</option>
-                      <option value="061">061</option>
-                      <option value="062">062</option>
-                      <option value="063">063</option>
-                      <option value="064">064</option>
-                      <option value="070">070</option>
-                      <option value="080">080</option>
-                    </select>
-                    -
-                    <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
-                    -
-                    <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
-                    <button type="submit" name="button">수정완료</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </form>
-
-          <form action="modiemail"  onsubmit="return email_checkform()" method="post">
-            @csrf
-
-            <tr class="tr1">
-              <th class="th1">
-                이메일
-              </th>
-              <td>
-                <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
-                <div id="email" style="display:none;">
-                  <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
-                  <button type="submit" name="button">수정완료</button>
-                </div>
-
-              </td>
-            </tr>
-          </form>
-          @if($seller->s_approval == '미승인')
-            <tr class="tr1">
-              <th class="th1">사업자등록증</th>
-              @foreach ($sellerstore as $st)
-                @if(isset($st->registration_img))
-                  <td>사업자등록증을 검토중입니다.</td>
-                @else
+                <tr class="tr1">
+                  <th class="th1">연락처</th>
                   <td>
-                    <form action="/registration" method="post"  enctype="multipart/form-data">
-                      @csrf
-                      <div class="tdcell">
-                        <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
-                        <input type="submit" onclick="check()" value="등록">
-                      </div>
-                    </form>
+                    <div class="tdcell"><p class="contxt.tit">{{$seller->s_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+
+                    <div id="p_num" style="display:none;">
+                      <strong class="info">전화번호</strong>
+                      <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>
+                        <option value="02">02</option>
+                        <option value="031">031</option>
+                        <option value="032">032</option>
+                        <option value="033">033</option>
+                        <option value="041">041</option>
+                        <option value="042">042</option>
+                        <option value="043">043</option>
+                        <option value="044">044</option>
+                        <option value="051">051</option>
+                        <option value="052">052</option>
+                        <option value="053">053</option>
+                        <option value="054">054</option>
+                        <option value="055">055</option>
+                        <option value="061">061</option>
+                        <option value="062">062</option>
+                        <option value="063">063</option>
+                        <option value="064">064</option>
+                        <option value="070">070</option>
+                        <option value="080">080</option>
+                      </select>
+                      -
+                      <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
+                      -
+                      <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
+                      <button type="submit" name="button">수정완료</button>
+                    </div>
                   </td>
-                @endif
-              @endforeach
-            </tr>
+                </tr>
+              </form>
+
+              <form action="modiemail"  onsubmit="return email_checkform()" method="post">
+                @csrf
+                <tr class="tr1">
+                  <th class="th1">이메일</th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit">{{$seller->s_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
+                    <div id="email" style="display:none;">
+                      <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
+                      <button type="submit" name="button">수정완료</button>
+                    </div>
+                  </td>
+                </tr>
+              </form>
+              @if($seller->s_approval == '미승인')
+                <tr class="tr1">
+                  <th class="th1">사업자등록증</th>
+                  @foreach ($sellerstore as $st)
+                    @if(isset($st->registration_img))
+                      <td>사업자등록증을 검토중입니다.</td>
+                    @else
+                      <td>
+                        <form action="/registration" method="post"  enctype="multipart/form-data">
+                          @csrf
+                          <div class="tdcell">
+                            <input type="file" name="registration" id="registration" class="my_img" accept="image/*" >
+                            <input type="submit" onclick="check()" value="등록">
+                          </div>
+                        </form>
+                      </td>
+                    @endif
+                  @endforeach
+                </tr>
+              @endif
+            </tbody>
           @endif
-        </tbody>
-      </table>
-    @endif
+        </table>
+      </div>
+    </div>
     {{-- @if(auth()->guard('seller')->user())
     <div class="quickbuttonwrap">
     <div class="quickgroup"><a href="/locate1">
@@ -177,8 +160,6 @@
 </div>
 </div>
 @endif --}}
-</div>
-</div>
 @include('lib.footer')
 </body>
 </html>
