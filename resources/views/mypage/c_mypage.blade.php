@@ -216,10 +216,10 @@
                           <td>
                             <form action="/pd_cancel{{$data2->pm_no}}" method="post">
                               @csrf
-                              <input type="submit" id="confirm" value="결제 취소">
+                              <input type="submit" id="cansel" value="결제 취소">
                             </form>
                           </td>
-                        @elseif($data2->pm_d_status == '배송중'|| $data2->pm_d_status == '배송 준비중')
+                        @elseif($data2->pm_d_status == '배송중')
                           <td>
                             <form action="/pd_point{{$data2->p_price}}" method="post">
                               <input type="hidden" name="hidden" value="{{$data2->pm_no}}">
@@ -376,7 +376,12 @@
 
 
         $('#confirm').click(function(){
-          alert("구매가 확정되었습니다.")
+          var test = confirm("구매를 확정하시겠습니까?");
+          if(test == true){
+            alert("구매가 확정되었습니다.");
+          }else{
+            return false;        
+          }
         });
         function pw_checkform(){
           var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;

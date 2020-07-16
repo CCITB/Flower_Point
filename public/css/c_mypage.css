@@ -118,7 +118,8 @@ table.order{
 }
 .p_tr{
   color: #3F0000;
-  background-color: #E8F1D4;
+  background-color: #C8DBCD;
+  opacity: 0.8;
   border-bottom: 1px solid #8C8C8C;
 }
 
@@ -138,14 +139,16 @@ table.table_review{
   border-bottom: 1px solid #EAEAEA;
 }
 .r_pname{
-  background-color: #E8F1D4;
+  background-color: #C8DBCD;
   width: 30%;
   color: #3F0000;
+  opacity: 0.8;
 }
 .r_con{
-  background-color: #E8F1D4;
+  background-color: #C8DBCD;
   width: 70%;
   color: #3F0000;
+  opacity: 0.8;
 }
 .r_td{
   padding-left: 20px;

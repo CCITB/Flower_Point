@@ -149,7 +149,7 @@
                     <td>
                       <form name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
                         @csrf
-                        <input type="submit" name="remove" id="remove" value="삭제">
+                        <button type="submit" name="remove" id="remove" value="삭제">삭제</button>
                       </form>
                     </td>
                   </tr>
@@ -174,6 +174,15 @@
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 
 <script type="text/javascript">
+
+$('#remove').click(function(){
+  var test = confirm("정말로 삭제하시겠습니까?");
+  if(test == true){
+    alert("삭제되었습니다.");
+  }else{
+    return false;
+  }
+});
 
 function showPopup() {
   var url="image_popup";
