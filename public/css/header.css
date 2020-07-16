@@ -1,6 +1,11 @@
 /* 곽승지 css 무단 수정 금지*/
 /* 화면헤더 */
-
+img#logo{
+  width:12rem;
+}
+img#search{
+  width:1.8rem;
+}
 .user-wrap{
   /* background-color: #FFDADA; */
   background-color: #fff3f2;
@@ -71,6 +76,7 @@ a:hover{
   text-decoration: none;
 }
 .headersearch{
+  position: absolute;
   display: inline-block;
   border: 3px solid #ffb5b5;
   background-color: white;
@@ -118,15 +124,18 @@ body{
 }
 
 .search-button{
-  height: 40px;
-  width: 60px;
+  position: absolute;
+  left: 84%;
+  background: pink;
+  height: 2.7rem;
+  width: 4.2rem;
   white-space : nowrap;
   display: inline-block;
   padding: 0;
   border: none;
   outline: none;
   cursor: pointer;
-  background: white;
+  /* background: white; */
 }
 .btn{
   width: 60px;
@@ -134,6 +143,7 @@ body{
   display: inline-block;
 }
 #searchbar{
+  position: relative;
   text-indent: 20px;
   width: 400px;
   height: 40px;
@@ -217,12 +227,12 @@ padding-left: 0px;
 #block2{
   position: absolute;
   left:33%;
-  top:70%;
+  top:52%;
 }
 #block1{
   position: relative;
-  top:50%;
-  left:20%;
+  top:7%;
+  left:14%;
   /* left: 200px; */
   display: inline-block;
 
