@@ -40,9 +40,9 @@
                   <tr class="c_add">
                     <td class="td" colspan="2"><span class="add">쿠폰 생성</span>
                       <button type="submit" name="submit" id="submit">발급</button>
-                      <button type="button" name="button" id="ca">계산</button>
+                      {{-- <button type="button" name="button" id="ca">계산</button>
                       <input id="price" value="20000">
-                      <input id="result" value="">
+                      <input id="result" value=""> --}}
                     </td>
                   </tr>
                   <tr class="c_name">
@@ -140,6 +140,7 @@
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script>
 
+
   $('#ca').click(function(){
     var price = $('#price').val();
     var mini = $('#c_minimum').val();
@@ -157,6 +158,9 @@
   $(document).ready(function(){
 
     $("#submit").click(function(){
+      var num =  /^[0-9]*$/
+      var flat = $("#c_flat").val();
+
       if($("#c_title").val() == 0){
         alert("쿠폰명을 입력하세요.");
         $("#c_title").focus();
@@ -167,9 +171,17 @@
         $("#c_minimum").focus();
         return false;
       }
+      if(!num.test($("#c_minimum").val())){
+        alert('사용제한 결제금액에 숫자만 입력해주세요')
+        return false;
+      }
       if($("#c_flat").val() == 0){
         alert("최대 할인금액을 입력하세요.");
         $("#c_flat").focus();
+        return false;
+      }
+      if(!num.test(flat)){
+        alert('최대 할인금액에 숫자만 입력해주세요')
         return false;
       }
       if($("#start").val() == 0){
@@ -182,7 +194,12 @@
         $("#end").focus();
         return false;
       }else{
-        alert("발급되었습니다.");
+        var test = confirm("쿠폰을 발급하시겠습니까?");
+        if(test == true){
+          alert("쿠폰이 발급되었습니다.");
+        }else{
+          return false;
+        }
       }
     });
   });
