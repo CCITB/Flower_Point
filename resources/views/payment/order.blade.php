@@ -333,19 +333,19 @@
             </tr>
             <tr>
               <th>상품 가격</th>
-              <td class="order_text" id="productpr">(-) {{number_format($productprice)}}원</td>
+              <td class="order_text" id="productpr">(+) {{number_format($productprice)}}원</td>
             </tr>
             <tr>
               <th>배송비</th>
-              <td class="order_text">(-) {{number_format($productdelivery)}}원</td>
+              <td class="order_text">(+) {{number_format($productdelivery)}}원</td>
             </tr>
             <tr>
               <th>포인트</th>
-              <td class="order_text" >(+) <span id="paymentpoint">0</span>원</td>
+              <td class="order_text" >(-) <span id="paymentpoint">0</span>원</td>
             </tr>
             <tr>
               <th>쿠폰</th>
-              <td class="order_text" >(+)
+              <td class="order_text" >(-)
                   @if(!session()->get('coupon')==null)
                     <span id="paymentcoupon">{{number_format(session()->pull('coupon')[0]->cp_flatrate)}}</span>원</td>
                   @else
