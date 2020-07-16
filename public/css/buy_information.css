@@ -51,6 +51,7 @@ li{
 }
 .pd_name{
   font-size: 25px;
+  font-weight: bold;
 }
 .option_line{
   width: 100%;
@@ -64,6 +65,7 @@ li{
   flex-wrap: wrap;
 }
 .shop_name{
+  font-size: 1.3em;
   width: 40%;
   text-align: left;
 }

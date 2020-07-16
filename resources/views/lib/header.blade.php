@@ -116,7 +116,7 @@
         @endif
         @if($se = auth()->guard('seller')->user())
           <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-            <a href="#">마이페이지</a>
+            마이페이지
             <ul class="submenu_list">
               <li class="submenu"><a href="/s_mypage">내 정보</a></li>
               @if($se->s_approval == '승인')
@@ -130,7 +130,7 @@
           </li>
         @elseif(auth()->guard('customer')->user())
           <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-            <a href="#">마이페이지</a>
+            마이페이지
             <ul class="submenu_list">
               <li class="submenu"><a href="/c_mypage">내 정보</a></li>
               <li class="submenu"><a href="/star">즐겨찾기</a></li>
@@ -154,7 +154,7 @@
     transition: all 0.3s ease-in-out;
     /* background-color: #D9EFDC; */
     /* 추가 */
-    border-top:1px solid #FFE4E1;
+    border-top:1px solid #EAEAEA;
   }
   ul.submenu_list{
     padding: 0px;

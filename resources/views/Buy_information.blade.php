@@ -93,7 +93,7 @@
 
         <div class="pd_pay">
           <div class="total_price_text">
-            총 금액
+            상품 금액
           </div>
           <div class="total_price">
             <input type="hidden" id="sums" value="{{$protb->p_price}}">
