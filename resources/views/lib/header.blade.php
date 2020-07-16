@@ -274,7 +274,7 @@ function fake(){
 function showPopup() {
   var url="charge_popup";
   var option="width=700, height=400, top=200"
-  window.open(url, "", option);
+  window.open("http://127.0.0.1/charge_popup", "", option);
  }
  </script>
 <script>
