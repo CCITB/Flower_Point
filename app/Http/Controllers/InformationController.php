@@ -355,18 +355,22 @@ class InformationController extends Controller
     }
 
     public function pd_cancel($id){
-      if($customerinfo = auth()->guard('customer')->user()){
-        $customerprimary = $customerinfo->c_no;
         DB::table('payment')->where('pm_no','=',$id)
         ->update([
           'pm_status'=>'결제 취소',
           'pm_d_status' => '결제 취소'
         ]);
+      }
+
+      public function refund(Request $request){
+      if($customerinfo = auth()->guard('customer')->user()){
+        $customerprimary = $customerinfo->c_no;
+        $number = $request->get("number");
         $data = DB::table('paymentjoin')
       ->join('payment','payment.pm_no','paymentjoin.payment_no')
       ->join('order','paymentjoin.order_no','order.o_no')
       ->join('customer','order.customer_no','customer.c_no')
-      ->select('*')->where('c_no',$customerprimary)->where('pm_status','결제 취소')
+      ->select('*')->where('pm_no')->where('c_no',$customerprimary)->where('pm_status','결제 취소')
       ->get();
       $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
       $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);

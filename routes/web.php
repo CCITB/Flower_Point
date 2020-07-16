@@ -221,6 +221,7 @@ Route::get('/star', 'ProductController@star');
 // Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/order/{name?}', 'PaymentController@payment');
 // });
+Route::post('/refund', 'InformationController@refund');
 
 Route::get('/complete', 'PaymentController@paymentcomplete')->name('complete');
 
