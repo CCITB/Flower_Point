@@ -1,3 +1,14 @@
+@font-face { font-family: 'Bazzi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MapoFlowerIsland'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Cafe24Simplehae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Handon3gyeopsal300g'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal300g.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  font-family: 'Cafe24Oneprettynight';
+}
+
 
 .myinfo {
   width: 60%;
@@ -30,7 +41,7 @@
 }
 
 #postcode{
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 th.th1{
@@ -78,12 +89,9 @@ div.delivery_wrap2{
 /* ----- 내 지갑 ----- */
 div.walletwrap{
   width: 100%;
-  margin-top: 4em;
 }
 
 div.money{
-  font-size: 1.3em;
-  letter-spacing: 1px;
   width: 100%;
 }
 .bt_ch{
@@ -104,6 +112,38 @@ div.money{
 .bt_ch:hover{
   opacity: 1
 }
+
+.money3{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  margin-left: 20px;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.money4{
+  background-color: pink;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* ----- 내 지갑 끝 ----- */
 /* ----- 나의 주문현황 시작 ----- */
 div.myorder{
@@ -163,6 +203,9 @@ div.current{
   font-size: 30px;
   width: 70%;
   height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid red;
 }
 /* ----- 충전 팝업창 끝 ----- */
 

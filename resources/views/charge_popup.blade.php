@@ -9,7 +9,7 @@
   <div class="walletwrap">
     <form class="" action="/charge" method="post">
       @csrf
-      <h4>금액충전</h4>
+      <h2>금액충전</h2>
       @foreach ($data3 as $data3)
         사용자 : <strong>{{$data3->c_name}}</strong></br>
         <div class="current">현재 보유 금액 : <strong>{{$data3->c_cash}}</strong>원</div>
@@ -22,8 +22,8 @@
             <label><input type="radio" name="money2" id="money5" value="30,000" >30,000</label>
             <label><input type="radio" name="money2" id="money6" value="50,000" >50,000</label>
             <label><input type="radio" name="money2" id="money7" value="100,000" >100,000</label>
-            <button type="submit" onclick="alert('충전되었습니다.')" id="money3">충전하기</button>
-            <button type="submit" onclick="window.close()" >창닫기</button>
+            <button type="submit" onclick="alert('충전되었습니다.')" class="money3">충전하기</button>
+            <button type="submit" onclick="window.close()" class="money4" >창닫기</button>
           </div>
         </div>
       </div>
