@@ -205,7 +205,7 @@
   }
   .dropdown-back{
     background-color: #FFE4E1;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 10;
     transition: all 0.3s ease-in-out;
     margin-bottom: 30px;

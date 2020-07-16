@@ -13,6 +13,7 @@
 </head>
 <body>
   @include('lib.header')
+  @include('advertising')
 
   <div class="hr-sect">
     인기상품
