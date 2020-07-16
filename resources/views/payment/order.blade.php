@@ -54,6 +54,7 @@
 </script>
 <body>
   <!-- 정경진 -->
+
   <div class="wrapping">
     <div class="topheader">
       <h1 class="titles"><a id="title" href="/">꽃갈피</a></h1>
@@ -227,7 +228,29 @@
               <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
             </div>
             <div class="">
-              <span onclick="couponapply('couponapply','','600','500','no');" style="cursor:pointer;">쿠폰함</span>
+              <form class="" action="" method="post" id="form1" name="form1">
+                @csrf
+                <input type="hidden" name="frm" value="{{$productsum}}">
+                <span onclick="couponapply('','','600','500','no');" style="cursor:pointer;">쿠폰함</span>
+              </form>
+            </div>
+            <div class="">
+              적용쿠폰
+              @if(!session()->get('coupon')==null)
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                {{session()->get('coupon')}}
+                {{session()->get('coupon')[0]->cpb_no}}
+                <div class="">
+                  할인가격{{number_format(session()->get('coupon')[0]->cp_flatrate)}}원
+                </div>
+                <div class="">
+                  최소가격{{number_format(session()->get('coupon')[0]->cp_minimum)}}원
+                </div>
+              @else
+              @endif
             </div>
           </div>
         </div>
@@ -655,12 +678,23 @@ function replaceprice(cash,point){
 // function couponapply(){
   // window.open("couponapply", "hid","width=500,height=500,top=100,left=100");
 // }
+// alert(document.form1);
 function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
-  winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
-  g_oWindow = window.open(mypage, myname, winprops)
-  if (parseInt(navigator.appVersion) >= 4) { g_oWindow.window.focus(); }
+  var frmData = document.form1;
+  winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  g_oWindow = window.open(mypage, myname, winprops);
+
+  alert(frmData);
+  return false;
+        frmData.target = myname;
+        frmData.action = 'couponshow';
+        frmData.method = "post";
+        frmData.submit();
+  if (parseInt(navigator.appVersion) >= 4) {
+    g_oWindow.window.focus();
+  }
   g_oInterval = window.setInterval(function() {
     try {
       // 창이 꺼졌는지 판단

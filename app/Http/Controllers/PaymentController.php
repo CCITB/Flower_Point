@@ -17,6 +17,7 @@ class PaymentController extends Controller
       // return json_decode(urldecode($request->pdidx));
       //랜덤 토큰 생성
       $token = str::random(32);
+      // return session()->get('coupon');
       // return session()->all();
       session()->put('c_token',$token);
       // return request()->cookie();

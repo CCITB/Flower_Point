@@ -411,7 +411,12 @@ class InformationController extends Controller
       public function couponapplycheck(Request $request){
         $id = $request->id;
         session()->put('coupon',$id);
-
+        $coupon = DB::table('couponbox')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+        session()->put('coupon',$coupon);
+        $session = session()->get('coupon');
+        return response()->json(0);
+        // ->then(function(){
+        // });
         return response()->json($id);
       }
     }
