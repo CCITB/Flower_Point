@@ -9,9 +9,20 @@ use DB;
 class MainController extends Controller
 {
   public function main(){ // 메인 슬라이드 6개씩 묶어서 나오게 하기 -- 박소현
-    $product = DB::table('product')->where('p_status','등록')->limit(6)->get();
-    $prod = DB::table('product')->where('p_status','등록')->skip(6)->take(6)->get();
-    $pro = DB::table('product')->where('p_status','등록')->skip(12)->take(6)->get();
+    //조인추가 : 어지수
+    $product = DB::table('product')->where('p_status','등록')
+               ->orderBy('product.created_at', 'desc')
+               ->join('store', 'product.store_no', '=', 'store.st_no')
+               ->limit(6)->get();
+    $prod = DB::table('product')->where('p_status','등록')
+               ->orderBy('product.created_at', 'desc')
+               ->join('store', 'product.store_no', '=', 'store.st_no')
+               ->skip(6)->take(6)->get();
+
+    $pro = DB::table('product')->where('p_status','등록')
+               ->orderBy('product.created_at', 'desc')
+               ->join('store', 'product.store_no', '=', 'store.st_no')
+               ->skip(12)->take(6)->get();
 
     return view('main', compact('product','prod','pro'));
   }

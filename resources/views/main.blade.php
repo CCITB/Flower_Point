@@ -35,13 +35,15 @@
 
                     <div class="image-in-font">
                       <div class="image-in-post">
-                        {{$productlist->p_name}}
+                        {{-- {{$productlist->p_name}} --}}
+                        {{$productlist->st_name}}
                       </div>
                       <div class="image-in-container">
-                        <div class="image-in-star">
-                        </div>
+                        {{-- <div class="image-in-star">
+                        </div> --}}
                         <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                          {{$productlist->p_name}}
+                          {{-- {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}} --}}
                         </div>
                       </div>
                       <div class="image-in-price">
@@ -54,8 +56,7 @@
             @endforeach
           </div>
         </div>
-
-      </div>
+      </div> {{-- swiper-slide --}}
 
       <div class="swiper-slide">
 
@@ -71,13 +72,12 @@
 
                     <div class="image-in-font">
                       <div class="image-in-post">
-                        {{$productlist->p_name}}
+                        {{$productlist->st_name}}
                       </div>
                       <div class="image-in-container">
-                        <div class="image-in-star">
-                        </div>
+
                         <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                            {{$productlist->p_name}}
                         </div>
                       </div>
                       <div class="image-in-price">
@@ -93,7 +93,7 @@
 
       </div>
 
-      <div class="swiper-slide">
+      {{-- <div class="swiper-slide">
 
         <div class="container-wrap">
           <div class="container-wrapping">
@@ -107,13 +107,13 @@
 
                     <div class="image-in-font">
                       <div class="image-in-post">
-                        {{$productlist->p_name}}
+                        {{$productlist->st_name}}
                       </div>
                       <div class="image-in-container">
                         <div class="image-in-star">
                         </div>
                         <div class="image-in-bottom">
-                          {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                          {{$productlist->p_name}}
                         </div>
                       </div>
                       <div class="image-in-price">
@@ -126,205 +126,15 @@
             @endforeach
           </div>
         </div>
-
-      </div>
+      </div> --}}
 
     </div>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
 
+<!-- 종류별 상품-->
 
-  <!-- 상품진열 테이블 끝나는 곳 입니다. -->
-  <div class="hr-sect1">
-    할인상품
-  </div>
-  <!-- 상품진열 테이블입니다. -->
-  <div class="container-wrap">
-    <div class="container-wrapping">
-
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-image">
-        <div class="image">
-          <div class="image-in">
-            <div class="imagewrap" >
-              <img src="\imglib\flower1.jpg" alt="꽃" >
-            </div>
-
-            <div class="image-in-font">
-              <div class="image-in-post">
-                제품내용
-              </div>
-              <div class="image-in-container">
-                <div class="image-in-star">
-                  {{-- <p class="star_rating">
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                    <a href="#" class="on">★</a>
-                  </p> --}}
-                </div>
-                <div class="image-in-bottom">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 @include('lib.footer')
