@@ -278,6 +278,7 @@ Route::get('/Sort_H', 'SortController@Sort_H');
 
 Route::get('/Sort_L', 'SortController@Sort_L');
 
+Route::get('/couponapply', 'InformationController@couponapply');
 
 //footer
 Route::get('/terms', function () {

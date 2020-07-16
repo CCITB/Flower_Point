@@ -228,7 +228,7 @@
             </div>
             <div class="">
               쿠폰
-              <span onclick="window.open("URL", "쿠폰함", "팝업 옵션");">쿠폰함</span>
+              <span onclick="couponapply('couponapply','','600','500','no');">쿠폰함</span>
             </div>
           </div>
         </div>
@@ -600,8 +600,8 @@ var price = Number($('#priceall').text().replace(/[^0-9]/g,''));
 var productpr = Number($('#productpr').text().replace(/[^0-9]/g,''));
 function insertpoint(){
   var nowprice = $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
-   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
-   cash = {{auth()->guard('customer')->user()->c_cash}};
+  point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
+  cash = {{auth()->guard('customer')->user()->c_cash}};
   // console.log(point);
   if({{$point}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
@@ -636,13 +636,13 @@ function AddComma(num)
   return num.toString().replace(regexp, ',');
 }
 $('#userpoint').blur(function(){
-$('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
-if($('#userpoint').val()>{{$point}}){
-$('#userpoint').val({{$point}});
-}
-// if($('#userpoint').val()<1000){
-//   alert('포인트 최소 사용량은 1,000원 입니다.');
-// }
+  $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
+  if($('#userpoint').val()>{{$point}}){
+    $('#userpoint').val({{$point}});
+  }
+  // if($('#userpoint').val()<1000){
+  //   alert('포인트 최소 사용량은 1,000원 입니다.');
+  // }
 });
 function replaceprice(cash,point){
   if(cash>=Number($('#priceall').text().replace(/[^0-9]/g,''))){
@@ -653,6 +653,17 @@ function replaceprice(cash,point){
     $('#cashcheck0').text('잔액이 부족합니다 !');
   }
 }
+// function couponapply(){
+  // window.open("couponapply", "hid","width=500,height=500,top=100,left=100");
+// }
+function couponapply(mypage, myname, w, h, scroll) {
+  var winl = (screen.width - w) / 2;
+  var wint = (screen.height - h) / 2;
+  winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+  win = window.open(mypage, myname, winprops)
+  if (parseInt(navigator.appVersion) >= 4) { win.window.focus(); }
+}
+
 </script>
 <button type="button" name="button" onclick="checkform()">check</button>
 {{-- <button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button> --}}
