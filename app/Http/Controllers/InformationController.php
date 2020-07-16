@@ -344,65 +344,79 @@ class InformationController extends Controller
     }
 
     public function pd_cancel($id){
-
-      DB::table('payment')->where('pm_no','=',$id)
-      ->update([
-        'pm_status'=>'결제 취소',
-        'pm_d_status' => '결제 취소'
-      ]);
-
-      return redirect()->back();
-    }
-
-    public function couponpage(Request $request){
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
-        $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
-        ->select('*')->where('customer_no','=',$customerprimary)->where('cpb_state','=','미사용')->get();
-        $coupon2 = count($coupon);
-        return view('coupon',compact('coupon','coupon2'));
+        DB::table('payment')->where('pm_no','=',$id)
+        ->update([
+          'pm_status'=>'결제 취소',
+          'pm_d_status' => '결제 취소'
+        ]);
+        $data = DB::table('paymentjoin')
+      ->join('payment','payment.pm_no','paymentjoin.payment_no')
+      ->join('order','paymentjoin.order_no','order.o_no')
+      ->join('customer','order.customer_no','customer.c_no')
+      ->select('*')->where('c_no',$customerprimary)->where('pm_status','결제 취소')
+      ->get();
+      $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
+      $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
+      return $total;
+        return redirect()->back();
       }
     }
+      public function couponpage(Request $request){
+        if($customerinfo = auth()->guard('customer')->user()){
+          $customerprimary = $customerinfo->c_no;
+          $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
+          ->select('*')->where('customer_no','=',$customerprimary)->where('cpb_state','=','미사용')->get();
+          $coupon2 = count($coupon);
+          return view('coupon',compact('coupon','coupon2'));
+        }
+      }
 
-    public function recievecoupon(Request $request){
-      // if($customerinfo = auth()->guard('customer')->user()){
-      //    $customerprimary = $customerinfo->c_no;
-      $coupon = DB::table('coupon')->select('*')->get();
-      // $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
-      return view('recievecoupon',compact('coupon'));
-      // }
-    }
-    public function givecoupon(Request $request){
-      if($customerinfo = auth()->guard('customer')->user()){
-        $number = $request->get("number");
-        $customerprimary = $customerinfo->c_no;
-        // $cp = DB::table('coupon')->select('cp_no')->where('cp_no',$number)->first()->cp_no;
-        $cp2 = DB::table('couponbox')->select('coupon_no')->where('coupon_no',$number)->where('customer_no',$customerprimary)->first();
-        // return response()->json($cp2);
-        if(!isset($cp2)){
-          $data = DB::table('couponbox')->insert([
-            'coupon_no' => $number,
-            'customer_no' => $customerprimary
-          ]);
-          return response()->json(1);
-        }
-        else{
-          return response()->json(0);
+      public function recievecoupon(Request $request){
+        // if($customerinfo = auth()->guard('customer')->user()){
+        //    $customerprimary = $customerinfo->c_no;
+        $coupon = DB::table('coupon')->select('*')->get();
+        // $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
+        return view('recievecoupon',compact('coupon'));
+        // }
+      }
+      public function givecoupon(Request $request){
+        if($customerinfo = auth()->guard('customer')->user()){
+          $number = $request->get("number");
+          $customerprimary = $customerinfo->c_no;
+          // $cp = DB::table('coupon')->select('cp_no')->where('cp_no',$number)->first()->cp_no;
+          $cp2 = DB::table('couponbox')->select('coupon_no')->where('coupon_no',$number)->where('customer_no',$customerprimary)->first();
+          // return response()->json($cp2);
+          if(!isset($cp2)){
+            $data = DB::table('couponbox')->insert([
+              'coupon_no' => $number,
+              'customer_no' => $customerprimary
+            ]);
+            return response()->json(1);
+          }
+          else{
+            return response()->json(0);
+          }
         }
       }
-    }
-    public function couponapply(){
-      if(auth()->guard('customer')->check()){
-        $customerprimary = auth()->guard('customer')->user()->c_no;
-        $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
-        return view('couponapply',compact('coupon'));
+      public function couponapply(){
+        if(auth()->guard('customer')->check()){
+          $customerprimary = auth()->guard('customer')->user()->c_no;
+          $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+          return view('couponapply',compact('coupon'));
+        }
+        return redirect('/');
       }
-      return redirect('/');
+      public function couponapplycheck(Request $request){
+        $id = $request->id;
+        session()->put('coupon',$id);
+        $coupon = DB::table('couponbox')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+        session()->put('coupon',$coupon);
+        $session = session()->get('coupon');
+        return response()->json(0);
+        // ->then(function(){
+        // });
+        return response()->json($id);
+      }
     }
-    public function couponapplycheck(Request $request){
-      $id = $request->id;
-      session()->put('coupon',$id);
-      
-      return response()->json($id);
-    }
-  }

@@ -52,7 +52,7 @@ function apply(e){
     success: function(data) {
       console.log(data);
       alert('적용되었습니다!');
-      return false;
+      // return false;
         //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
@@ -60,7 +60,7 @@ function apply(e){
         //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }
 });
-  return false;
+  // return false;
   self.close();
 }
 </script>
