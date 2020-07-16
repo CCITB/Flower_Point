@@ -188,7 +188,7 @@
                     </div>
                   </div>
                 @endif
-                <div><strong class="info">요청사항</strong><input id="inputtext" type="text" name="request"></div>
+                <div><strong class="info">요청사항</strong><input id="inputtext1" type="text" name="request"></div>
 
 
                 <!--결제창-->
@@ -228,21 +228,18 @@
               <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
             </div>
             <div class="">
-              <form class="" action="" method="post" id="form1" name="form1">
-                @csrf
-                <input type="hidden" name="frm" value="{{$productsum}}">
-                <span onclick="couponapply('','','600','500','no');" style="cursor:pointer;">쿠폰함</span>
-              </form>
+              <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;">쿠폰함</span>
             </div>
             <div class="">
               적용쿠폰
               @if(!session()->get('coupon')==null)
-                <p></p>
+                {{-- <p></p>
                 <p></p>
                 <p></p>
                 <p></p>
                 {{session()->get('coupon')}}
-                {{session()->get('coupon')[0]->cpb_no}}
+                {{session()->get('coupon')[0]->cpb_no}} --}}
+                <input type="hidden" name="coupon_no" value="{{session()->get('coupon')[0]->cpb_no}}">
                 <div class="">
                   할인가격{{number_format(session()->get('coupon')[0]->cp_flatrate)}}원
                 </div>
@@ -321,7 +318,12 @@
             총 상품 가격
           </div>
           <div class="" style="text-align:left; font-size:30px;">
-            <strong id="priceall">{{number_format($productsum)}}</strong>원
+            @if(!session()->get('coupon')==null)
+              <strong id="priceall">{{number_format($productsum-session()->get('coupon')[0]->cp_flatrate)}}</strong>원
+            @else
+              <strong id="priceall">{{number_format($productsum)}}</strong>원
+            @endif
+
           </div>
           <hr style="margin-bottom:8px;">
           <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
@@ -342,26 +344,39 @@
               <td class="order_text" >(+) <span id="paymentpoint">0</span>원</td>
             </tr>
             <tr>
-              <th>결제 후 잔액</th>
-              @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
-                <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+              <th>쿠폰</th>
+              <td class="order_text" >(+)
+                  @if(!session()->get('coupon')==null)
+                    <span id="paymentcoupon">{{number_format(session()->pull('coupon')[0]->cp_flatrate)}}</span>원</td>
+                  @else
+                    <span id="paymentcoupon">0</span>원</td>
+                  @endif
               </tr>
-            </table>
-            <hr class="line2">
-            <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-            <div class="line"><input class="end" type="submit" value="다음"></div>
-          @else
-            <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
-          </tr>
-        </table>
-        <hr class="line2">
-        <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-        <div class="line"><input class="end" type='submit' value="다음" ></div>
-      @endif
+              <tr>
+                <th>결제 후 잔액</th>
+                @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
+                  <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+                </tr>
+              </table>
+              <hr class="line2">
+              <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+              <div class="line"><input class="end" type="submit" value="다음"></div>
+            @else
+              <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
+            </tr>
+          </table>
+          <hr class="line2">
+          <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+          <div class="line"><input class="end" type='submit' value="다음" ></div>
+        @endif
 
-    </form>
-  </div>
-</div><!--결제정보 -->
+      </form>
+      <form class="" action="" method="post" id="form1" name="form1">
+        @csrf
+        <input type="hidden" name="frm" value="{{$productsum}}">
+      </form>
+    </div>
+  </div><!--결제정보 -->
 </div><!--오른쪽 주문정보 박스 -->
 <!--컨테이너박스-->
 </div>
@@ -675,23 +690,18 @@ function replaceprice(cash,point){
     $('#cashcheck0').text('잔액이 부족합니다 !');
   }
 }
-// function couponapply(){
-  // window.open("couponapply", "hid","width=500,height=500,top=100,left=100");
-// }
-// alert(document.form1);
+
+console.log(document.forms);
 function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
-  var frmData = document.form1;
+  var frmData = document.forms[1];
   winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
-  g_oWindow = window.open(mypage, myname, winprops);
-
-  alert(frmData);
-  return false;
-        frmData.target = myname;
-        frmData.action = 'couponshow';
-        frmData.method = "post";
-        frmData.submit();
+  g_oWindow = window.open('', myname, winprops);
+  frmData.target = myname;
+  frmData.action = mypage;
+  frmData.method = "post";
+  frmData.submit();
   if (parseInt(navigator.appVersion) >= 4) {
     g_oWindow.window.focus();
   }

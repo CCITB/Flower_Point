@@ -92,8 +92,8 @@ class PaymentController extends Controller
     // else{
     //   return "<script>alert('요청이 실행중입니다!');</script>";
     // }
-    // return $request->delivery;
-    // return $request;
+
+    // 유저포인트
     $userpoint = $request->userpoint;
     if($userpoint == null){
       $userpoint = 0;
@@ -103,6 +103,21 @@ class PaymentController extends Controller
     }
     // return $userpoint;
     DB::beginTransaction();
+    // 사용한 쿠폰번호
+    $coupon_no = $request->coupon_no;
+    $getcoupon = DB::table('couponbox')->where('cpb_no',$coupon_no)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+    // return 1;
+
+    $flatrate = 0;
+    if(isset($coupon_no)){
+      $flatrate = $getcoupon[0]->cp_flatrate;
+      DB::table('couponbox')->where('cpb_no',$coupon_no)->update([
+        'cpb_state' => '사용'
+      ]);
+      // return 0;
+    }
+
+    // return $flatrate;
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -160,6 +175,7 @@ class PaymentController extends Controller
       'o_request' => $userrequest,
       'created_at' => $now->format('yy-m-d H:i:s'),
       'o_point' => $userpoint,
+      'couponbox_no' => $coupon_no,
     ]);
     //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
@@ -214,7 +230,7 @@ class PaymentController extends Controller
           $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
-      if(auth()->guard('customer')->user()->c_cash+$userpoint-$sum<0){
+      if(auth()->guard('customer')->user()->c_cash+$userpoint+$flatrate-$sum<0){
         DB::rollBack();
         return "<script>alert('알 수 없는 오류입니다.')</script>";
       }
@@ -275,7 +291,7 @@ class PaymentController extends Controller
       ]);
     }
     $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
-    if(auth()->guard('customer')->user()->c_cash+$userpoint-$data[0]->pm_pay<0){
+    if(auth()->guard('customer')->user()->c_cash + $userpoint + $flatrate - $data[0]->pm_pay<0){
       DB::rollBack();
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }

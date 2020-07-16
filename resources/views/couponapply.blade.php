@@ -51,17 +51,24 @@ function apply(e){
     data:{'id':e}, //보낼 데이터
     success: function(data) {
       console.log(data);
-      alert('적용되었습니다!');
-      // return false;
+      if(data==1){
+        alert('적용되었습니다!');
+        self.close();
+      }
+      else if(data==0){
+        alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
+      }
+
         //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
       console.log(data);
+
         //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }
 });
   // return false;
-  self.close();
+
 }
 </script>
 </html>
