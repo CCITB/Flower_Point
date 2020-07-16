@@ -184,7 +184,7 @@ Route::get('/Qnawrite{id}', 'ProductController@pd_info');
 
 Route::get('/pd_qna{id}','ProductController@pd_qna');
 
-Route::get('product/store/{id}', 'InformationController@storepage');
+Route::get('/store/{id}', 'InformationController@storepage');
 
 Route::post('/pd_modify{id}', 'InformationController@pd_modify');
 

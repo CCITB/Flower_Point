@@ -103,13 +103,13 @@
                 <tr class="tr1">
                   <th class="th1">
                     <div class="th1">
-                      <a href="product/store/{{$data2->st_name}}">
+                      <a href="/store/{{$data2->st_name}}">
                         <img src="\imglib\{{$data2->st_img}}"  onerror="this.src='imglib/dummy.png'" width="100px" height="100px">
                       </a>
                     </div>
                   </th>
                   <td>
-                    <a href="product/store/{{$data2->st_name}}">
+                    <a href="/store/{{$data2->st_name}}">
                       <div class="tdtd">{{$data2->st_name}}<p class="contxt.tit"></p>
                       </a></div>
                     </td>
