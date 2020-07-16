@@ -10,13 +10,13 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img class="ad_img" src="https://cdn.crowdpic.net/list-thumb/thumb_l_63587E14AD0011A959BA28A01591524C.jpg" >
+        <img class="ad_img" src="/imglib/중고땅땅.png" >
         <div class="text"></div>
       </div>
 
       <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
-        <img class="ad_img" src="https://t1.daumcdn.net/cfile/tistory/2245D43A571F2BE81C" >
+        <img class="ad_img" src="/imglib/ccit.png" >
         <div class="text"></div>
       </div>
 
