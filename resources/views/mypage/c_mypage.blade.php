@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
   @include('lib.header')
   <div class="menu4">
     <h3 align="center">마이페이지</h3>

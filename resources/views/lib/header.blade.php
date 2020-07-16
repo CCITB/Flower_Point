@@ -152,8 +152,9 @@
   .dropdown-wrap{
     margin-bottom: 30px;
     transition: all 0.3s ease-in-out;
+    /* background-color: #D9EFDC; */
     /* 추가 */
-    border-top:1px solid #f5e6e6;
+    border-top:1px solid #FFE4E1;
   }
   ul.submenu_list{
     padding: 0px;

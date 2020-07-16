@@ -78,7 +78,7 @@ a:hover{
 .headersearch{
   position: absolute;
   display: inline-block;
-  border: 3px solid #ffb5b5;
+  border: 2px solid #FBDFDF;
   background-color: white;
 
 }
@@ -126,7 +126,7 @@ body{
 .search-button{
   position: absolute;
   left: 84%;
-  background: pink;
+  background: #FBDFDF;
   height: 2.7rem;
   width: 4.2rem;
   white-space : nowrap;
@@ -384,14 +384,15 @@ footer{
   /* 추가 : 지수 */
   text-align: center;
   padding:20px;
-  background-color: #cee0b8;
+  background-color: #B4D7C4;
+  opacity: 0.7;
   margin-top:6em;
 }
 
 div#bottom{
   background-color: #f2f2f2;
   width: 100%;
-  height: 230px;
+  height: 180px;
 }
 
 div#introduce{
