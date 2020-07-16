@@ -724,7 +724,6 @@ function couponapply(mypage, myname, w, h, scroll) {
 //
 // };
 </script>
-<button type="button" name="button" onclick="checkform()">check</button>
 {{-- <button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button> --}}
 {{-- <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button> --}}
 <!--POST API Link -->

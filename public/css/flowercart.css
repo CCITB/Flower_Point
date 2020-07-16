@@ -76,13 +76,14 @@ span.label-right{
   width: 20%;
   display: inline-block;
   position: relative;
-  float: right;
-
+  vertical-align: middle;
+  /* float: right; */
 }
 .product-price{
   width: 17%;
   display: inline-block;
   float: right;
+  vertical-align: middle;
 }
 .flowercart-section{
   width: 550px;
