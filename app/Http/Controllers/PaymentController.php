@@ -241,7 +241,7 @@ class PaymentController extends Controller
       // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
       // DB::table('customer')->where('c_no',$customerprimary)->decrement('c_cash',$sum);
       DB::table('customer')->where('c_no',$customerprimary)->update([
-        'c_cash' => DB::raw('c_cash'.'-'.($sum-$userpoint)),
+        'c_cash' => DB::raw('c_cash'.'-'.($sum-$userpoint-$flatrate)),
         'c_point'=> DB::raw('c_point'.'-'.($userpoint))
       ]);
       DB::table('order')->where('o_no',$orderNO)->update([
@@ -297,7 +297,7 @@ class PaymentController extends Controller
     }
     // return $userpoint;
     $test = DB::table('customer')->where('c_no',$customerprimary)->update([
-      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint)),
+      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint-$flatrate)),
       'c_point'=> DB::raw('c_point'.'-'.($userpoint))
     ]);
     DB::table('order')->where('o_no',$orderNO)->update([
