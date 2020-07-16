@@ -178,7 +178,8 @@
 
                 @if(isset($order->pm_company))
                 <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
-                <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td>
+                <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td> -->
+                <td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
                 @else
                 <td id="delivery_search"></td>
                 @endif

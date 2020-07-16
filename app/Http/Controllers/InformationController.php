@@ -237,13 +237,24 @@ class InformationController extends Controller
         $data = DB::table('customer_address')->select('a_post','a_address','a_extra','a_detail')
         ->where('c_no','=',$customerprimary)->get();
 
+        // $data2 = DB::table('customer')
+        // ->join('payment','customer.c_no','payment.customer_no')
+        // ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
+        // ->join('product','payment.product_no','product.p_no')
+        // ->leftjoin('review','payment.pm_no','=','review.payment_no')
+        // ->select('*')->where('c_no','=',$customerprimary)
+        // ->get();
+
         $data2 = DB::table('customer')
         ->join('payment','customer.c_no','payment.customer_no')
+        ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
+        ->join('order','paymentjoin.order_no','order.o_no')
         ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
         ->join('product','payment.product_no','product.p_no')
         ->leftjoin('review','payment.pm_no','=','review.payment_no')
         ->select('*')->where('c_no','=',$customerprimary)
         ->get();
+
 
         $data3 = DB::table('customer')->select('*')->where('c_no','=',$customerprimary)->get();
         $my = DB::table('customer')

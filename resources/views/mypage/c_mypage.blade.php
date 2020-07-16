@@ -182,13 +182,14 @@
                       <th>상품이미지</th>
                       <th>주문날짜</th>
                       <th>주문번호</th>
+                      <th>결제번호</th>
                       <th>상품명</th>
                       <th>수량</th>
                       <th>구매금액</th>
                       <th>주문처리상태</th>
                       <th>후기 작성</th>
                       <th>구매 확정</th>
-                      <th>내 배송조회</th>
+                      <th>배송조회</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -196,6 +197,7 @@
                       <tr>
                         <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
                         <td>{{$data2->pm_date}}</td>
+                        <td><a href="product/{{$data2->p_no}}">{{$data2->o_no}}</a></td>
                         <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
                         <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
                         <td>{{$data2->pm_count}}</td>
@@ -232,7 +234,11 @@
                         @else
                           <td></td>
                         @endif
-                        <td><button>배송조회</button></td>
+                        @if(isset($data2->pm_company))
+                        <td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$data2->delivery_code}}/{{$data2->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
+                        @else
+                        <td id="delivery_search"></td>
+                        @endif
                       </tr>
                     @endforeach
                   </tbody>
