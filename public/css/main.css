@@ -141,3 +141,40 @@ body{
 .pagination{
   text-align: center;
 }
+
+
+/* 인기 게시물 css */
+div.hot-image{
+  width:90%;
+}
+div.hot-image-in{
+
+}
+img.hot-imagewrap{
+  width:200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
+div.hot-image-in-font{
+  text-align: center;
+  margin-left:17px;
+}
+div.hot-container-image{
+  float: left;
+  /* width: 33.3%; */
+  margin:auto 10px;
+  height: 50%;
+  position: relative;
+  overflow: hidden;
+}
+div.hot-image-in-price{
+  margin-top:10px;
+  font-size: 25px;
+}
+div.hot_div{
+  background-color: #dedede;
+  height: 707px;
+  padding:25px;
+  margin-top:5em;
+}

@@ -15,9 +15,7 @@
   @include('lib.header')
   @include('advertising')
 
-  <div class="hr-sect">
-    인기상품
-  </div>
+  <div class="hr-sect">최신상품 <img id="new_icon" src="/imglib/newicon.png"></div>
   <!-- 상품진열 테이블입니다. -->
   <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -133,8 +131,37 @@
     <div class="swiper-button-next"></div>
   </div>
 
-<!-- 종류별 상품-->
+<!-- 인기 상품-->
+<div class="hot_div">
+<div class="hr-sect">인기상품 <img id="star_icon" src="/imglib/staricon.png"></div>
 
+<div class="container-wrap">
+  <div class="container-wrapping">
+    @foreach ($product as $productlist)
+      <div class="hot-container-image">
+        <div class="hot-image">
+          <div class="hot-image-in" url="/product/{{$productlist->p_no}}">
+            <div class="hot-imagewrap" >
+              <img class="hot-imagewrap" src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+            </div>
+
+            <div class="hot-image-in-font">
+              <div class="hot-image-in-container">
+                <div class="hot-image-in-bottom">
+                  {{$productlist->p_name}}
+                </div>
+              </div>
+              <div class="hot-image-in-price">
+                <strong>{{number_format($productlist->p_price)}}원</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    @endforeach
+  </div>
+</div>
+</div>
 
 
 @include('lib.footer')

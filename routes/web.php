@@ -295,6 +295,10 @@ Route::get('inquiries', function () {
   return view('lib.inquiries');
 });
 
+Route::get('manual', function () {
+  return view('lib.manual');
+});
+
 //관리자
 Route::get('/ad_admin', function () {
   return view('admin.index');

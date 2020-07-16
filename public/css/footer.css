@@ -43,3 +43,19 @@ textarea{
   font-size: 1.2em;
 }
 /* 입점문의 끝 */
+
+/* 이용 가이드 */
+div.register_manual{
+padding:28px;
+margin-left: 240px;
+}
+/*
+
+img.invoice_manual{
+  padding:28px;
+  margin-left: 275px;
+}
+img.product_manual{
+  padding:28px;
+  margin-left: 275px;
+} */
