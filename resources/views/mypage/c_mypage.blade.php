@@ -8,6 +8,7 @@
   <title>꽃갈피</title>
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/c_mypage.css">
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -21,168 +22,118 @@
 <body>
 
   @include('lib.header')
-  <div class="menu4">
-    <h3 align="center">마이페이지</h3>
-    <hr align="left" class="one">
-  </hr>
-</div>
-<div class="myinfo">
-  <h4>내 정보</h4>
-  <div class="privacy">
-    <table border="0" table class="table1" >
-      @if ($customer = auth()->guard('customer')->user())
-        <div id="tablewrap">
-          <table id="shopinfo">
-            <tbody>
-              <tr class="tr1">
-                <th class="th1">
-                  아이디
-                </th>
-                <td>
-                  <div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div>
-                </td>
-              </tr>
 
-
-
-              <tr class="tr1">
-                <th class="th1">
-                  비밀번호
-                </th>
-                <td>
-                  <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
-                    <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
-                    <div class="check_div" id="password_check" value=""></div>
-
-                    <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
-                      @csrf
-                      <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw"  placeholder="새 비밀번호">
-                        <button type="submit" name="button">수정완료</button></p></div>
-
-                      </div>
-                    </td>
-                  </tr>
-                </form>
-
-
+  <div class="myinfo">
+    <div class="privacy">
+      <div class="mytitle">내 정보 관리</div>
+      <table border="0" table class="table1" >
+        @if ($customer = auth()->guard('customer')->user())
+          <div id="tablewrap">
+            <table  id="shopinfo">
+              <tbody>
                 <tr class="tr1">
-                  <th class="th1">
-                    이름
-                  </th>
-                  <td>
-                    <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
-                  </td>
+                  <th class="th1">아이디</th>
+                  <td><div class="tdcell"><p class="contxt.tit">{{$customer->c_id}}</p></div></td>
                 </tr>
-                <form action="c_information_controller" onsubmit="return phonenum_checkform()" method="post">
-                  @csrf
-                  <tr class="tr1">
-                    <th class="th1">
-                      연락처
-                    </th>
-                    <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+                <tr class="tr1">
+                  <th class="th1">비밀번호</th>
+                  <td>
+                    <div class="tdcell"><p class="contxt.tit"><input type="password" id="origin_password" name="origin_password"  placeholder="기존 비밀번호를 입력해주세요">
+                      <input class="lg_bt" type="button" onclick="check_password()" value="확인"></div>
+                      <div class="check_div" id="password_check" value=""></div>
 
-                      <div id="p_num" style="display:none;">
-                        <strong class="info">전화번호</strong>
-                        <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
-                        <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
-                        <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
-                          <option value="010">010</option>
-                          <option value="011">011</option>
-                          <option value="016">016</option>
-                          <option value="017">017</option>
-                          <option value="018">018</option>
-                          <option value="019">019</option>
-                          <option value="02">02</option>
-                          <option value="031">031</option>
-                          <option value="032">032</option>
-                          <option value="033">033</option>
-                          <option value="041">041</option>
-                          <option value="042">042</option>
-                          <option value="043">043</option>
-                          <option value="044">044</option>
-                          <option value="051">051</option>
-                          <option value="052">052</option>
-                          <option value="053">053</option>
-                          <option value="054">054</option>
-                          <option value="055">055</option>
-                          <option value="061">061</option>
-                          <option value="062">062</option>
-                          <option value="063">063</option>
-                          <option value="064">064</option>
-                          <option value="070">070</option>
-                          <option value="080">080</option>
-                        </select>
-                        -
-                        <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
-                        -
-                        <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
-                        <button type="submit" name="button">수정완료</button>
-                      </div>
-
-
-
-
-                      <script type="text/javascript">
-
-                      function info_modification(s,ss){
-                        if(s == "연락처수정"){
-                          document.getElementById(ss).style.display="block"
-                          modinum.style.display="none";
-                        }
-                        else if(s == "이메일수정"){
-                          document.getElementById(ss).style.display="block"
-                          modiemail.style.display="none";
-                        }
-                        else if(s == "주소수정"){
-                          document.getElementById(ss).style.display="block"
-                          modiaddress.style.display="none";
-                        }
-                        else if(s == "비밀번호수정"){
-                          document.getElementById(ss).style.display="block"
-                          modiaddress.style.display="none";
-                        }
-                      }
-                      </script>
-
+                      <form action="/c_modipw" onsubmit="return pw_checkform()" method="post">
+                        @csrf
+                        <div class="tdcell"><p class="contxt.tit"><input type="password" id="new_pw" name="new_pw" disabled placeholder="새 비밀번호">
+                          <button type="submit" name="button">수정완료</button></p></div>
+                        </div>
+                      </form>
                     </td>
                   </tr>
-                </form>
-                <form action="c_modiemail" onsubmit="return email_checkform()" method="post">
-                  @csrf
+
 
                   <tr class="tr1">
-                    <th class="th1">
-                      이메일
-                    </th>
+                    <th class="th1">이름</th>
                     <td>
-                      <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
-                      <div id="email" style="display:none;">
-                        <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
-                        <button type="submit" name="button">수정완료</button>
-                      </div>
-
+                      <div class="tdcell"><p class="contxt.tit">{{$customer->c_name}}</p></div>
                     </td>
                   </tr>
-                </form>
-
-
-                <form action="c_newaddress" method="post">
-                  @csrf
-                  @foreach ($data as $a)
+                  <form action="c_information_controller" onsubmit="return phonenum_checkform()" method="post">
+                    @csrf
                     <tr class="tr1">
-                      <th class="th1">
-                        주소
-                      </th>
+                      <th class="th1">연락처</th>
                       <td>
-                        <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}){{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
+                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_phonenum}}<input type="button" id=modinum value="연락처수정" name="modi" display="block" onclick="info_modification(this.value,'p_num' );"></button></p></div>
+
+                        <div id="p_num" style="display:none;">
+                          <strong class="info">전화번호</strong>
+                          <!-- <div class=delivery_input><input id="inputtext" type="text" name="order_tel"></div> -->
+                          <!-- <input type="text" title="휴대폰 앞자리" id="delivery_tel_no1" class="delivery_tel"> -->
+                          <select name="phone_no1"  id="delivery_tel_no1" class="delivery_tel">
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                            <option value="02">02</option>
+                            <option value="031">031</option>
+                            <option value="032">032</option>
+                            <option value="033">033</option>
+                            <option value="041">041</option>
+                            <option value="042">042</option>
+                            <option value="043">043</option>
+                            <option value="044">044</option>
+                            <option value="051">051</option>
+                            <option value="052">052</option>
+                            <option value="053">053</option>
+                            <option value="054">054</option>
+                            <option value="055">055</option>
+                            <option value="061">061</option>
+                            <option value="062">062</option>
+                            <option value="063">063</option>
+                            <option value="064">064</option>
+                            <option value="070">070</option>
+                            <option value="080">080</option>
+                          </select>
+                          -
+                          <input type="text" title="휴대폰 중간번호" name="delivery_tel_no2" id="delivery_tel_no2" class="delivery_tel" maxlength="4">
+                          -
+                          <input type="text" title="휴대폰 뒷자리" name="delivery_tel_no3" id="delivery_tel_no3" class="delivery_tel" maxlength="4">
+                          <button type="submit" name="button">수정완료</button>
+                        </div>
                       </td>
                     </tr>
-                  </div>
-                @endforeach
-              </form>
-            </table>
+                  </form>
+                  <form action="c_modiemail" onsubmit="return email_checkform()" method="post">
+                    @csrf
+                    <tr class="tr1">
+                      <th class="th1">이메일</th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">{{$customer->c_email}}<input type="button" id=modiemail value="이메일수정" name="modi" display="block" onclick="info_modification(this.value,'email' );"></p></div>
+                        <div id="email" style="display:none;">
+                          <input type="text" id="new_email" name="new_email"  placeholder="새 이메일">
+                          <button type="submit" name="button">수정완료</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </form>
 
+
+                  <form action="c_newaddress" method="post">
+                    @csrf
+                    @foreach ($data as $a)
+                      <tr class="tr1">
+                        <th class="th1">주소</th>
+                        <td>
+                          <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}){{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </form>
+                </tbody>
+              </table>
+            </div>
 
             <form id=nadress action="c_newaddress" onsubmit="return checkform()" method="post">
               @csrf
@@ -208,279 +159,285 @@
                 <button type="submit" id="complete1" name="button" >수정완료</button>
               </div>
             </form>
+          </table>
 
-            <div class="walletwrap">
-              <h4>내 지갑</h4>
-              @foreach ($data3 as $data3)
+          <div class="walletwrap">
+            <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"></div>
+            @foreach ($data3 as $data3)
 
-                <div class="money">
-                  보유 금액 : <strong>{{$data3->c_cash}}</strong>원  <input type="button" value="충전하기" onclick="showPopup();" name="charge">
-                  {{-- <div class="chargemoney">
-                  <label><input type="radio" name="money2" id="money2" value="5,000">5,000</label>
-                  <label><input type="radio" name="money2" id="money2" value="10,000">10,000</label>
-                  <label><input type="radio" name="money2" id="money2" value="20,000">20,000</label>
-                  <label><input type="radio" name="money2" id="money2" value="30,000">30,000</label>
-                  <label><input type="radio" name="money2" id="money2" value="50,000">50,000</label>
-                  <label><input type="radio" name="money2" id="money2" value="100,000">100,000</label>
-                </div> --}}
+              <div class="money">
+                보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원
               </div>
             @endforeach
           </div>
 
-          <script type="text/javascript">
-          function showPopup() {
-            var url="charge_popup";
-            var option="width=700, height=400, top=200"
-            window.open(url, "", option);
-          }
 
+          <div class="myorder">
+            <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
+            <div class="ordertable">
+              @if(count($data2))
+                <table class="order" border="0" width="100%">
+                  <thead>
+                    <tr class="p_tr">
+                      <th>상품이미지</th>
+                      <th>주문날짜</th>
+                      <th>주문번호</th>
+                      <th>상품명</th>
+                      <th>수량</th>
+                      <th>구매금액</th>
+                      <th>주문처리상태</th>
+                      <th>후기 작성</th>
+                      <th>구매 확정</th>
+                      <th>내 배송조회</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($data2 as $data2)
+                      <tr>
+                        <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
+                        <td>{{$data2->pm_date}}</td>
+                        <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
+                        <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
+                        <td>{{$data2->pm_count}}</td>
+                        <td>{{$data2->pm_pay}}</td>
+                        <td>{{$data2->pm_d_status}}</td>
+                        @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
+                          @if(!isset($data2->payment_no))
+                            <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
+                          @else
+                            <td>작성완료</td>
+                          @endif
+                        @else
+                          <td></td>
+                        @endif
+                        @if($data2->pm_status == '결제 대기')
+                          <td>
+                            <form action="/pd_cancel{{$data2->pm_no}}" method="post">
+                              @csrf
+                              <input type="submit" id="confirm" value="결제 취소">
+                            </form>
+                          </td>
+                        @elseif($data2->pm_d_status == '배송중'|| $data2->pm_d_status == '배송 준비중')
+                          <td>
+                            <form action="/pd_point{{$data2->p_price}}" method="post">
+                              <input type="hidden" name="hidden" value="{{$data2->pm_no}}">
+                              @csrf
+                              <input type="submit" id="confirm" value="구매확정">
+                            </form>
+                          </td>
+                        @elseif($data2->pm_status == '구매 확정')
+                          <td>구매확정 완료</td>
+                        @elseif($data2->pm_status == '결제 취소')
+                          <td>결제 취소</td>
+                        @else
+                          <td></td>
+                        @endif
+                        <td><button>배송조회</button></td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
 
-          function div_show(s,ss){
-            if(s == "주소수정"){
-              document.getElementById(ss).style.display="block";
-              ad.style.display="none";
-              complete1.style.display="block";
-              addresswrap.style.display="block";
-            }
-          }
-          </script>
-        </tbody>
-
-      </table>
-
-      <div class="tablespace3">
-        <h4 align="left">나의 주문 현황</h4> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
-        @if(count($data2))
-          <table class="order" border="0" width="100%">
-            <thead>
-              <tr>
-                <th>상품이미지</th>
-                <th>주문날짜</th>
-                <th>주문번호</th>
-                <th>상품명</th>
-                <th>구매금액</th>
-                <th>주문처리상태</th>
-                <th>후기 작성</th>
-                <th>구매 확정</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($data2 as $data2)
-                <tr>
-                  <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
-                  <td>{{$data2->pm_date}}</td>
-                  <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
-                  <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
-                  <td>{{$data2->pm_pay}}</td>
-                  <td>{{$data2->pm_d_status}}</td>
-                  @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
-                    @if(!isset($data2->payment_no))
-                      <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
-                    @else
-                      <td>작성완료</td>
-                    @endif
-                  @else
-                    <td></td>
-                  @endif
-                  @if($data2->pm_status == '결제 대기')
-                    <td>
-                      <form action="/pd_cancel{{$data2->pm_no}}" method="post">
-                        @csrf
-                        <input type="submit" id="confirm" value="결제 취소">
-                      </form>
-                    </td>
-                  @elseif($data2->pm_d_status == '배송중'|| $data2->pm_d_status == '배송 준비중')
-                    <td>
-                      <form action="/pd_point{{$data2->p_price}}" method="post">
-                        <input type="hidden" name="hidden" value="{{$data2->pm_no}}">
-                        @csrf
-                        <input type="submit" id="confirm" value="구매확정">
-                      </form>
-                    </td>
-                  @elseif($data2->pm_status == '구매 확정')
-                    <td>구매확정 완료</td>
-                  @elseif($data2->pm_status == '결제 취소')
-                    <td>결제 취소</td>
-                  @else
-                    <td></td>
-                  @endif
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-        @else
-          <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
-            <div class="" style="top:180px; position:absolute; left:300px; ">
-              주문목록이 없습니다.
+              @else
+                <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+                  <div class="" style="top:180px; position:absolute; left:300px; ">
+                    주문목록이 없습니다.
+                  </div>
+                </div>
+              @endif
             </div>
           </div>
-        @endif
-      </div>
 
-      <div class="tablespace5">
-        <h4 align="left">나의후기</h4>
-        <style media="screen">
-        table.order,table.myreview{
-          width: 100%;
-          border: 0 solid #444444;
-          border-collapse: collapse;
+          <div class="myreview">
+            <div class="mytitle" align="left">나의후기</div>
+            <table class="table_review">
+              <tr class="r_tr">
+                <th class="r_pname">상품명</th>
+                <th class="r_con">후기</th>
+              </tr>
+              @foreach ($my as $re)
+                <tr class="r_tr">
+                  <td class="r_td">{{$re->p_name}}</td>
+                  <td class="r_td">{{$re->r_contents}}</td>
+                </tr>
+              @endforeach
+            </table>
+          </div>
+        </div>
+
+        @include('lib.footer')
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
+        <script type="text/javascript">
+
+        function info_modification(s,ss){
+          if(s == "연락처수정"){
+            document.getElementById(ss).style.display="block"
+            modinum.style.display="none";
+          }
+          else if(s == "이메일수정"){
+            document.getElementById(ss).style.display="block"
+            modiemail.style.display="none";
+          }
+          else if(s == "주소수정"){
+            document.getElementById(ss).style.display="block"
+            modiaddress.style.display="none";
+          }
+          else if(s == "비밀번호수정"){
+            document.getElementById(ss).style.display="block"
+            modiaddress.style.display="none";
+          }
         }
-        </style>
-        <table class="table" width=100%>
-          <tr class="tr2">
-            <th>상품명</th>
-            <th>후기</th>
-          </tr>
-          @foreach ($my as $re)
-            <tr>
-              <th>{{$re->p_name}}</th>
-              <td>{{$re->r_contents}}</td>
-            </tr>
-          @endforeach
-        </table>
-      </table>
-    </div>
-  </div>
-</div>
 
-@include('lib.footer')
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
-<script type="text/javascript">
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
-function check_password(){
-  var a = document.getElementById("origin_password");
-
-  if((a.value)==""){
-    $('#password_check').text("Password를 입력해주세요.");
-    $('#password_check').css('color', 'red');
-    $("#origin_password").focus();
-    $("#new_pw").attr("disabled", "disabled")
-    return false;
-  }
-
-  var origin_password = $('#origin_password').val();
-  $.ajax({
-
-    type: 'post',
-    url: 'check_pw',
-    dataType: 'json',
-    data:{
-      "input_password" : origin_password
-    },
-
-    success : function(data) {
-      if(data==0){
-        $('#password_check').text("Password가 일치하지 않습니다.");
-        $('#password_check').css('color', 'red');
-        $("#origin_password").focus();
-        $("#new_pw").attr("disabled", "disabled");
-      }
-      else if(data==1){
-        document.getElementById('password_check').style.display="none";
-        $("#new_pw").removeAttr("disabled");
-        $("#new_pw").focus();
-        $("#origin_password").attr("disabled", "disabled");
-      }
-    }
-    ,error : function()
-    {}
-  });
-}
-
-$(document).ready(function(){
-  $(".order").DataTable({
-    "language": {
-      "emptyTable": "데이터가 없습니다.",
-      "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-      "info": "현재 _START_ - _END_ / _TOTAL_건",
-      "infoEmpty": "데이터 없음",
-      "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
-      "search": "검색",
-      "zeroRecords": "일치하는 데이터가 없습니다.",
-      "loadingRecords": "로딩중...",
-      "processing":     "잠시만 기다려 주세요...",
-      "paginate": { "next": "다음", "previous": "이전"  }
-    }
-  });
-});
+        function showPopup() {
+          var url="charge_popup";
+          var option="width=700, height=400, top=200"
+          window.open(url, "", option);
+        }
 
 
-$('#confirm').click(function(){
-  alert("구매가 확정되었습니다.")
-});
-function pw_checkform(){
-  var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-  // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+        function div_show(s,ss){
+          if(s == "주소수정"){
+            document.getElementById(ss).style.display="block";
+            ad.style.display="none";
+            complete1.style.display="block";
+            addresswrap.style.display="block";
+          }
+        }
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+        function check_password(){
+          var a = document.getElementById("origin_password");
+
+          if((a.value)==""){
+            $('#password_check').text("Password를 입력해주세요.");
+            $('#password_check').css('color', 'red');
+            $("#origin_password").focus();
+            $("#new_pw").attr("disabled", "disabled")
+            return false;
+          }
+
+          var origin_password = $('#origin_password').val();
+          $.ajax({
+
+            type: 'post',
+            url: 'check_pw',
+            dataType: 'json',
+            data:{
+              "input_password" : origin_password
+            },
+
+            success : function(data) {
+              if(data==0){
+                $('#password_check').text("Password가 일치하지 않습니다.");
+                $('#password_check').css('color', 'red');
+                $("#origin_password").focus();
+                $("#new_pw").attr("disabled", "disabled");
+              }
+              else if(data==1){
+                document.getElementById('password_check').style.display="none";
+                $("#new_pw").removeAttr("disabled");
+                $("#new_pw").focus();
+                $("#origin_password").attr("disabled", "disabled");
+              }
+            }
+            ,error : function()
+            {}
+          });
+        }
+
+        $(document).ready(function(){
+          $(".order").DataTable({
+            "language": {
+              "emptyTable": "데이터가 없습니다.",
+              "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+              "info": "현재 _START_ - _END_ / _TOTAL_건",
+              "infoEmpty": "데이터 없음",
+              "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
+              "search": "검색",
+              "zeroRecords": "일치하는 데이터가 없습니다.",
+              "loadingRecords": "로딩중...",
+              "processing":     "잠시만 기다려 주세요...",
+              "paginate": { "next": "다음", "previous": "이전"  }
+            }
+          });
+        });
 
 
-  // var num =  /^[0-9]{3,4}$/;
-  var password = document.getElementById("new_pw");
+        $('#confirm').click(function(){
+          alert("구매가 확정되었습니다.")
+        });
+        function pw_checkform(){
+          var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+          // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
 
-  if(!regex.test(password.value)){
-    alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
-    return false;
-  }
-  else{
-    alert('변경되었습니다');
-    return true;
-  }
-}
 
-function phonenum_checkform(){
-  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-  var middlenum = document.getElementById("delivery_tel_no2");
-  var lastnum = document.getElementById("delivery_tel_no3");
-  var num =  /^[0-9]{3,4}$/;
-  // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
-  // var phonenum = document.getElementById("new_num");
-  if(!num.test(middlenum.value)){
-    alert('중간 4자리의 숫자를 입력해주세요')
-    return false;
-  }
-  if(special.test(middlenum.value)){
-    alert('숫자만 입력해주세요.')
-    return false;
-  }
-  if(!num.test(lastnum.value)){
-    alert('뒤 4자리의 숫자를 입력해주세요')
-    return false;
-  }
-  if(special.test(lastnum.value)){
-    alert('숫자만 입력해주세요.');
-  }
-  else {
-    alert("변경되었습니다");
-    return true;
-  }
-}
+          // var num =  /^[0-9]{3,4}$/;
+          var password = document.getElementById("new_pw");
 
-function email_checkform(){
-  var email = document.getElementById("new_email");
-  var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
-  if(!emailcheck.test(email.value)){
-    alert("올바른 형식의 이메일을 입력해주세요");
-    return false;
-  }
-  else{
-    alert("변경되었습니다");
-    return true;
-  }
-}
+          if(!regex.test(password.value)){
+            alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
+            return false;
+          }
+          else{
+            alert('변경되었습니다');
+            return true;
+          }
+        }
 
-function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
-  var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
-}
-</script>
+        function phonenum_checkform(){
+          var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+          var middlenum = document.getElementById("delivery_tel_no2");
+          var lastnum = document.getElementById("delivery_tel_no3");
+          var num =  /^[0-9]{3,4}$/;
+          // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+          // var phonenum = document.getElementById("new_num");
+          if(!num.test(middlenum.value)){
+            alert('중간 4자리의 숫자를 입력해주세요')
+            return false;
+          }
+          if(special.test(middlenum.value)){
+            alert('숫자만 입력해주세요.')
+            return false;
+          }
+          if(!num.test(lastnum.value)){
+            alert('뒤 4자리의 숫자를 입력해주세요')
+            return false;
+          }
+          if(special.test(lastnum.value)){
+            alert('숫자만 입력해주세요.');
+          }
+          else {
+            alert("변경되었습니다");
+            return true;
+          }
+        }
 
-@endif
-</body>
-</html>
-<!--POST API Link -->
-<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+        function email_checkform(){
+          var email = document.getElementById("new_email");
+          var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+          if(!emailcheck.test(email.value)){
+            alert("올바른 형식의 이메일을 입력해주세요");
+            return false;
+          }
+          else{
+            alert("변경되었습니다");
+            return true;
+          }
+        }
+
+        function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
+          var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
+        }
+        </script>
+
+      @endif
+    </body>
+    </html>
+    <!--POST API Link -->
+    <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

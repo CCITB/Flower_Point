@@ -1,11 +1,21 @@
-div.menu4{
-  width: 900px;
-  margin: 0 auto;
-}
 
 .myinfo {
   width: 60%;
   margin: 0 auto;
+}
+.mytitle{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  margin-right: 20px;
+}
+/* ----- 내 정보 ----- */
+.privacy{
+  width: 90%;
+  margin-top: 40px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
 }
 
 #tablewrap{
@@ -16,6 +26,7 @@ div.menu4{
   width: 100%;
   position: relative;
   margin-left: 5%;
+  border-collapse: collapse;
 }
 
 #postcode{
@@ -25,6 +36,12 @@ div.menu4{
 th.th1{
   background-color: #f9f9f9;
   text-align: center;
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+}
+td{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
 }
 
 div.tdcell{
@@ -53,23 +70,91 @@ div.tdcell{
 div.delivery_wrap2{
   margin-left: 85px;
 }
-
+/* ----- 내 정보 끝 ----- */
+/* ----- 내 지갑 ----- */
 div.walletwrap{
   width: 100%;
-  position: relative;
+  margin-top: 4em;
 }
 
 div.money{
+  font-size: 1.3em;
+  letter-spacing: 1px;
   width: 100%;
-  margin-bottom: 20px;
+}
+.bt_ch{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  margin-left: 20px;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bt_ch:hover{
+  opacity: 1
+}
+/* ----- 내 지갑 끝 ----- */
+/* ----- 나의 주문현황 시작 ----- */
+div.myorder{
+  margin-top: 5em;
+  letter-spacing: 1px;
+}
+.ordertable{
+  font-size: 1.1em;
+  margin-top: 35px;
+}
+table.order{
+  text-align: center;
+  width: 100%;
+  border: 0 solid #444444;
+  border-collapse: collapse;
+}
+.p_tr{
+  color: #3F0000;
+  background-color: #E8F1D4;
+  border-bottom: 1px solid #8C8C8C;
 }
 
-div.chargemoney{
-  width: 100%;
+/* ----- 나의 주문현황 끝 ----- */
+/* ----- 나의 후기 ----- */
+div.myreview{
+  margin-top: 5em;
+  font-size: 1.1em;
+  letter-spacing: 1px;
 }
-div.current
-{
+table.table_review{
+  width: 100%;
+  border-collapse: collapse;
+}
+.r_tr{
+  height: 40px;
+  border-bottom: 1px solid #EAEAEA;
+}
+.r_pname{
+  background-color: #E8F1D4;
+  width: 30%;
+  color: #3F0000;
+}
+.r_con{
+  background-color: #E8F1D4;
+  width: 70%;
+  color: #3F0000;
+}
+.r_td{
+  padding-left: 20px;
+}
+/* ----- 나의 후기 끝 ----- */
+/* ----- 충전 팝업창  ----- */
+div.current{
   font-size: 30px;
   width: 70%;
   height: 50px;
 }
+/* ----- 충전 팝업창 끝 ----- */
