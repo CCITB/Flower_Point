@@ -84,6 +84,9 @@ Route::post('/customer_id_check', 'FindController@customer_id_check');
 Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
+Route::get('/couponapply', 'InformationController@couponapply');
+
+Route::post('/couponapply', 'InformationController@couponapplycheck');
 
 Route::get('/coupon', 'InformationController@couponpage');
 
@@ -278,7 +281,6 @@ Route::get('/Sort_H', 'SortController@Sort_H');
 
 Route::get('/Sort_L', 'SortController@Sort_L');
 
-Route::get('/couponapply', 'InformationController@couponapply');
 
 //footer
 Route::get('/terms', function () {

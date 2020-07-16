@@ -5,7 +5,6 @@
   <title></title>
 </head>
 <link rel="stylesheet" href="/css/header.css">
-{{-- <link rel="stylesheet" href="/css/bootstrap.css"> --}}
 <link rel="stylesheet" href="/css/coupon.css">
 
 <body>

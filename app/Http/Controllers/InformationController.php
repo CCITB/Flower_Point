@@ -394,9 +394,15 @@ class InformationController extends Controller
     public function couponapply(){
       if(auth()->guard('customer')->check()){
         $customerprimary = auth()->guard('customer')->user()->c_no;
-        $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->get();
-        return view('couponapply');
+        $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+        return view('couponapply',compact('coupon'));
       }
       return redirect('/');
+    }
+    public function couponapplycheck(Request $request){
+      $id = $request->id;
+      session()->put('coupon',$id);
+      
+      return response()->json($id);
     }
   }

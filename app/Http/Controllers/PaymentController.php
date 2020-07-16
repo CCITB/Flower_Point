@@ -173,6 +173,7 @@ class PaymentController extends Controller
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
@@ -194,6 +195,7 @@ class PaymentController extends Controller
         for($i=0; $i<count($basket_no);$i++){
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,

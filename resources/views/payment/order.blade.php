@@ -227,8 +227,7 @@
               <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
             </div>
             <div class="">
-              쿠폰
-              <span onclick="couponapply('couponapply','','600','500','no');">쿠폰함</span>
+              <span onclick="couponapply('couponapply','','600','500','no');" style="cursor:pointer;">쿠폰함</span>
             </div>
           </div>
         </div>
@@ -660,10 +659,26 @@ function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
   winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
-  win = window.open(mypage, myname, winprops)
-  if (parseInt(navigator.appVersion) >= 4) { win.window.focus(); }
+  g_oWindow = window.open(mypage, myname, winprops)
+  if (parseInt(navigator.appVersion) >= 4) { g_oWindow.window.focus(); }
+  g_oInterval = window.setInterval(function() {
+    try {
+      // 창이 꺼졌는지 판단
+      if( g_oWindow == null || g_oWindow.closed ) {
+        window.clearInterval(g_oInterval);
+        g_oWindow = null;
+        // Todo....
+        //.....
+        location.reload();
+      }
+    } catch (e) { }
+  }, 500);
 }
-
+// var couponapply = function() {
+//   g_oWindow = window.open(url,"",option);
+//   // 0.5초 마다 감지
+//
+// };
 </script>
 <button type="button" name="button" onclick="checkform()">check</button>
 {{-- <button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button> --}}
