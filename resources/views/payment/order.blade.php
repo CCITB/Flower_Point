@@ -226,6 +226,10 @@
               <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
               <span style="cursor:pointer;" onclick="pointall()">전액사용</span>
             </div>
+            <div class="">
+              쿠폰
+              <span onclick="window.open("URL", "쿠폰함", "팝업 옵션");">쿠폰함</span>
+            </div>
           </div>
         </div>
       </div>

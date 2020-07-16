@@ -22,7 +22,7 @@
       </div>
       <form class="" action="/order/" method="get" name="productpost" id="productpost">
         <input type="hidden" name="pdidx" value="">
-        <input type="hidden" name="productnoidx" value="">
+        {{-- <input type="hidden" name="productnoidx" value=""> --}}
             </form>
         @foreach ($data as $list)
           <div class="flowercart-infor" id="remove{{$list->b_no}}">
@@ -1037,7 +1037,7 @@ function productcheck(){
   else{
     var test = (JSON.stringify(getid));
     $('input[name=pdidx]').val(test);
-    $('input[name=productnoidx]').val((JSON.stringify(productnoidx)));
+    // $('input[name=productnoidx]').val((JSON.stringify(productnoidx)));
     // console.log(test);
     // return false;
     productpost.submit();
