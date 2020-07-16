@@ -43,7 +43,9 @@
     <div id="block_container">
       <div id="header">
         <div id="block1">
-          <h1><a href="/" style="color:black">꽃갈피</a></h1>
+          <h1><a href="/" style="color:black">
+            <img id="logo" src="/imglib/title.png">
+          </a></h1>
         </div>
 
         <div id="block2">
@@ -52,7 +54,9 @@
             <input name="query" type="text" id="searchbar" placeholder="Search.." maxlength="255"
             autocomplete="off" >
             <label for="headersearch">
-              <button type="submit"class="search-button">검색</button>
+              <button type="submit"class="search-button">
+                <img id="search" src="/imglib/search_white.png">
+              </button>
             </label>
           </form>
         </div>
