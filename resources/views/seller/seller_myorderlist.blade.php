@@ -253,7 +253,7 @@ $(document).ready(function(){
 
     pm_status_str.push($('#'+index_no).parent().parent().children('#pm_status').text());
     dv_status_str.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
-
+    console.log($('#'+index_no).parent().parent().children('#pm_d_status').text());
 
     pm_status_str[index];
     if(pm_status_str[index]=="결제 대기"){
@@ -271,6 +271,8 @@ $(document).ready(function(){
     if(dv_status_str[index]=="배송 완료"){
       complete_cnt = complete_cnt+1;
     }
+
+    console.log(complete_cnt);
   });
 
   //상단 발주확인, 발송처리 이벤트

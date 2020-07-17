@@ -24,16 +24,16 @@ class MainController extends Controller
     ->join('store', 'product.store_no', '=', 'store.st_no')
     ->skip(12)->take(6)->get();
 
-    // $popularity = DB::table('product')->where('p_status','등록')
-    //              ->select('p_no',DB::raw("count()"))
-    //              ->orderBy(DB::raw("count()"), 'desc')
-    //                 ->join('payment', 'product.p_no','=','payment.product_no')
-    //                 ->join('paymentjoin', 'payment.pm_no','=','paymentjoin.payment_no')
-    //                 ->join('order', 'paymentjoin.order_no', '=', 'order.o_no')
-    //                 ->groupBy('p_no')
-    //                 ->get();
-    //                 // return $popularity[0]->p_no;
-    //                 // return dd($popularity);
+    $popularity = DB::table('product')->where('p_status','등록')
+               ->select('p_no',DB::raw("count(*)"))
+               ->orderBy(DB::raw("count(*)"), 'desc')
+                  ->join('payment', 'product.p_no','=','payment.product_no')
+                  ->join('paymentjoin', 'payment.pm_no','=','paymentjoin.payment_no')
+                  ->join('order', 'paymentjoin.order_no', '=', 'order.o_no')
+                  ->groupBy('p_no')
+                  ->get();
+                  // return $popularity[0]->p_no;
+                  // return dd($popularity);
 
 
     return view('main', compact('product','prod','pro'));

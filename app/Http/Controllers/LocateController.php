@@ -16,10 +16,11 @@ class LocateController extends Controller
 
       //seller 주소의 store address
       $store_address = DB::table('store_address')->select('*')->get();
-
+      
       //store의 정보
       $store_info= DB::table('store')->select('st_no','st_name','st_tel','st_introduce')->get();
 
+      // return $store_address;
       return view('/locate', compact('store_address','store_info'));
     }
 
@@ -28,9 +29,10 @@ class LocateController extends Controller
       $customerprimary = $customerinfo->c_no;
       $customer_address = DB::table('customer_address')->select('*')->where('c_no','=', $customerprimary )->get('');
 
+      // return var_dump($customer_address);
+
       //store의 주소를 보여주기 위해 사용
       $store_address = DB::table('store_address')->select('st_no','a_address','a_detail','a_extra')->get();
-
       //store의 정보
       $store_info= DB::table('store')->select('st_no','st_name','st_tel','st_introduce')->get();
 

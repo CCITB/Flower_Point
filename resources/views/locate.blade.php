@@ -36,20 +36,20 @@
 @include('lib.footer')
 </html>
 
-<!--구매자일 때-->
+<!--판매자일 때-->
 @if(auth()->guard('seller')->user())
   @foreach ($store_address as $address)
     <!--주소를 검색하는 부분을 숨겨놨음 (정경진)-->
     <div id="floating-panel">
-      <input id="address" type="hidden" value="{{$address->a_address}}">
+      <input id="user_address" type="hidden" value="{{$address->a_address}}">
     </div>
   @endforeach
 
-  <!--판매자일 때-->
+  <!--구매자일 때 check-->
 @elseif (auth()->guard('customer')->user())
   @foreach ($customer_address as $address)
     <div id="floating-panel">
-      <input id="address" type="hidden" value="{{$address->a_address}}">
+      <input id="user_address" class="address_c" type="hidden" value="{{$address->a_address}}">
     </div>
   @endforeach
 @endif
@@ -94,7 +94,6 @@ function initMap() {
   var name = $(".store_name");
   var tel = $(".store_tel");
   var intro = $(".store_intro");
-  console.log(tel);
 
   //store 주소 정보를 담을 배열
   var arr = new Array();
@@ -123,7 +122,9 @@ function initMap() {
     arr_tel.push(tel[a].value);
   }
 
-  var user_address = $("#address").val();
+  var user_address = $("#user_address").val();
+  console.log(user_address);
+
   // Map
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
@@ -140,6 +141,7 @@ function initMap() {
   //User(seller/custsomer) 주소
   geocoder.geocode( { 'address': user_address }, function(results, status) {
     if (status == 'OK') {
+      console.log(results);
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
         // position: latLng,
@@ -148,18 +150,18 @@ function initMap() {
       });
     }
     // 지도에 표시할 원을 생성
-        var circle = new google.maps.Circle({
-          center :results[0].geometry.location,  // 원의 중심좌표 입니다
-          radius: 2000, // 미터 단위의 원의 반지름입니다
-          strokeWeight: 5, // 선의 두께입니다
-          strokeColor: '#75B8FA', // 선의 색깔입니다
-          strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-          strokeStyle: 'dashed', // 선의 스타일 입니다
-          fillColor: '#CFE7FF', // 채우기 색깔입니다
-          fillOpacity: 0.7  // 채우기 불투명도 입니다
-        });
-
-        circle.setMap(map);
+        // var circle = new google.maps.Circle({
+        //   center :results[0].geometry.location,  // 원의 중심좌표 입니다
+        //   radius: 2000, // 미터 단위의 원의 반지름입니다
+        //   strokeWeight: 5, // 선의 두께입니다
+        //   strokeColor: '#75B8FA', // 선의 색깔입니다
+        //   strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        //   strokeStyle: 'dashed', // 선의 스타일 입니다
+        //   fillColor: '#CFE7FF', // 채우기 색깔입니다
+        //   fillOpacity: 0.7  // 채우기 불투명도 입니다
+        // });
+        //
+        // circle.setMap(map);
   });
 
   //Store 주소
@@ -246,10 +248,8 @@ function initMap() {
   //     );
   //   }
   //});
-
-
-
 }//call
+
 var input = document.getElementById("search_input");
 var searchBox = new google.maps.places.SearchBox(input);
 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
