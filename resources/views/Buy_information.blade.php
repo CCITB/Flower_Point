@@ -162,7 +162,9 @@
                     </div>
                   </td>
                   <td class="user_write">
-                    {{$rev->r_contents}}
+                    <div class="r_con">
+                      {{$rev->r_contents}}
+                    </div>
                   </td>
                   <td class="myname">{{$rev->c_name}}</td>
                   <td class="mydate">{{$rev->r_date}}</td>
@@ -257,9 +259,9 @@
                             @if($sno = auth()->guard('seller')->user())
                               @if($sno->s_no == $qna->s_no)
                                 @if(isset($qna->a_no))
-                                  <td> 답변완료</td>
+                                  <td><a onclick="opan_an_modify({{$qna->a_no}})">답변 수정</a></td>
                                 @else
-                                  <td> <a  style="font-size:10px;" onclick="openan({{$qna->q_no}})">답변하기</a> </td>
+                                  <td> <a onclick="openan({{$qna->q_no}})">답변하기</a> </td>
                                 @endif
                               @endif
                             @endif
@@ -369,7 +371,15 @@
                 window.name = "parentForm";
                 // window.open("open할 window", "자식창 이름", "팝업창 옵션");
                 openWin = window.open("/Qnaanswer"+qno,
-                "childqna", "width=700px, height=800px, left=50px, top=50px ");
+                "childna", "width=700px, height=800px, left=50px, top=50px ");
+              }
+              function opan_an_modify(ano)
+              {
+                // window.name = "부모창 이름";
+                window.name = "parentForm";
+                // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+                openWin = window.open("/Qnamodify"+ano,
+                "childnamodi", "width=700px, height=800px, left=50px, top=50px ");
               }
 
               //문의하기 클릭

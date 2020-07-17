@@ -165,7 +165,7 @@
             <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"></div>
             @foreach ($data3 as $data3)
 
-              <div class="money">
+              <div class="mymoney">
                 보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원
               </div>
             @endforeach

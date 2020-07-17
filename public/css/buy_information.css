@@ -321,7 +321,7 @@ table{
   letter-spacing: 2pt;
   font-size: 1.5em;
   padding-left: 30px;
-  height: 30px;
+  height: 20px;
 }
 .yel{
   color: #FFD228;
@@ -330,13 +330,16 @@ table{
   color: #EAEAEA;
 }
 .user_write{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100px;
-  padding-left: 46px;
+  width: 60%;
+  padding-left: 52px;
   padding-right: 50px;
   text-align: left;
+}
+.r_con{
+  width:400px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .myname{
   width: 15%;
@@ -361,12 +364,12 @@ table{
   margin: 15px auto;
 }
 .re_con{
-  float: left;
-  width: 80%;
+  width: 100%;
   text-align: left;
+  margin-bottom: 15px;
+  line-height: 1.5em;
 }
 .review_image{
-  float: left;
   width: 20%;
   text-align: right;
   margin-bottom: 15px;

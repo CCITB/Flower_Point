@@ -33,7 +33,30 @@ class QnAController extends Controller
     ->join('product','question.product_no','=','product.p_no')->get();
 
     return view('qna_answer', compact('answer'));
+  }
 
+  public function answer_show($id){ //판매자 답변 수정 뷰
+
+    $answer = DB::table('answer')->where('a_no',$id)
+    ->join('question','answer.question_no','=','question.q_no')
+    ->join('customer','question.customer_no','=','customer.c_no')
+    ->join('product','question.product_no','=','product.p_no')
+    ->get();
+
+    return view('qna_answer_modify', compact('answer'));
+  }
+
+  public function answer_modify($id){ //판매자 답변 수정 뷰
+
+    $answer = $_POST['an_md'];
+
+    DB::table('answer')->where('a_no',$id)
+    ->update([
+      'a_answer'=> $answer
+    ]);
+
+    echo "<script>alert('답변이 수정되었습니다.');opener.parent.location.reload();
+    window.close();</script>";
   }
 
   public function seller_qna(Request $request){

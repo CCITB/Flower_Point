@@ -203,6 +203,10 @@ Route::get('/review{id}', 'ReviewController@pd_review');
 
 Route::get('/Qnaanswer{id}','QnAController@answer');
 
+Route::get('/Qnamodify{id}','QnAController@answer_show'); //판매자 답변 수정 뷰
+
+Route::post('/an_modi{id}','QnAController@answer_modify'); //판매자 답변 수정
+
 Route::post('/rev{id}', 'ReviewController@my_review');
 
 Route::post('rev_count', 'ReviewController@rev_count');
