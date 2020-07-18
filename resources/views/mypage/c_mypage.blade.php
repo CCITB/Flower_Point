@@ -214,11 +214,12 @@
                         @endif
                         @if($data2->pm_status == '결제 대기')
                           <td>
-                            <form action="/pd_cancel{{$data2->pm_no}}" method="post">
-                              @csrf
-                              <input type="submit" id="cansel" value="결제 취소">
-                            </form>
+                            {{-- <form action="/pd_cancel{{$data2->pm_no}}" method="post">
+                              @csrf --}}
+                              <input type="submit" class="cancel" value="결제 취소">
+                            {{-- </form> --}}
                           </td>
+
                         @elseif($data2->pm_d_status == '배송중')
                           <td>
                             <form action="/pd_point{{$data2->p_price}}" method="post">
@@ -357,22 +358,7 @@
           });
         }
 
-        $(document).ready(function(){
-          $(".order").DataTable({
-            "language": {
-              "emptyTable": "데이터가 없습니다.",
-              "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-              "info": "현재 _START_ - _END_ / _TOTAL_건",
-              "infoEmpty": "데이터 없음",
-              "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
-              "search": "검색",
-              "zeroRecords": "일치하는 데이터가 없습니다.",
-              "loadingRecords": "로딩중...",
-              "processing":     "잠시만 기다려 주세요...",
-              "paginate": { "next": "다음", "previous": "이전"  }
-            }
-          });
-        });
+
 
 
         $('#confirm').click(function(){
@@ -450,5 +436,58 @@
       @endif
     </body>
     </html>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('.cancel').click(function(){
+      var tdArr = new Array();    // 배열 선언
+      var checkBtn = $(this);
+      var tr = checkBtn.parent().parent();
+      var td = tr.children();
+      var number = td.eq(3).text();
+
+      $.ajax({
+        type: 'post',
+        url: '/refund',
+        dataType: 'json',
+        data: { "number" : number,
+       },
+        success: function(data) {
+          console.log(data);
+          // return false;
+          if(data==1){
+          alert('취소되었습니다.');
+          location.reload();
+        }
+      },
+        error: function() {
+          console.log('실패');
+        }
+      });
+    });
+
+
+    // $(document).ready(function(){
+    //   $(".order").DataTable({
+    //     "language": {
+    //       "emptyTable": "데이터가 없습니다.",
+    //       "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+    //       "info": "현재 _START_ - _END_ / _TOTAL_건",
+    //       "infoEmpty": "데이터 없음",
+    //       "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
+    //       "search": "검색",
+    //       "zeroRecords": "일치하는 데이터가 없습니다.",
+    //       "loadingRecords": "로딩중...",
+    //       "processing":     "잠시만 기다려 주세요...",
+    //       "paginate": { "next": "다음", "previous": "이전"  }
+    //     }
+    //   });
+    // });
+    </script>
     <!--POST API Link -->
     <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
