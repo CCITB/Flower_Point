@@ -22,7 +22,44 @@ class OrderlistController extends Controller
       ->join('store','product.store_no','store.st_no')
       ->join('seller','store.seller_no','seller.s_no')
       ->select('*','payment.created_at')->where('s_no','=', $sellerprimary)->orderBy('pm_no', 'asc')->get();
-      return view('seller/seller_myorderlist',compact('order'));
+
+      // $store= DB::table('payment')
+      // ->join('product','payment.product_no','=','product.p_no')
+      // ->join('store','product.store_no','=','store.st_no')
+      // ->join('seller','store.seller_no','seller.s_no')
+      // ->where('s_no','=',$sellerprimary);
+
+      $pm_wait = DB::table('payment')
+      ->join('product','payment.product_no','=','product.p_no')
+      ->join('store','product.store_no','=','store.st_no')
+      ->join('seller','store.seller_no','seller.s_no')
+      ->where('s_no','=',$sellerprimary)
+      ->where('pm_status','like','%결제 대기%')->get()->count();
+
+      $d_wait = DB::table('payment')
+      ->join('product','payment.product_no','=','product.p_no')
+      ->join('store','product.store_no','=','store.st_no')
+      ->join('seller','store.seller_no','seller.s_no')
+      ->where('s_no','=',$sellerprimary)
+      ->where('pm_d_status','like','%배송 준비중%')->get()->count();
+
+      $d_ing = DB::table('payment')
+      ->join('product','payment.product_no','=','product.p_no')
+      ->join('store','product.store_no','=','store.st_no')
+      ->join('seller','store.seller_no','seller.s_no')
+      ->where('s_no','=',$sellerprimary)
+      ->where('pm_d_status','like','%배송중%')->get()->count();
+
+      $d_complete = DB::table('payment')
+      ->join('product','payment.product_no','=','product.p_no')
+      ->join('store','product.store_no','=','store.st_no')
+      ->join('seller','store.seller_no','seller.s_no')
+      ->where('s_no','=',$sellerprimary)
+      ->where('pm_d_status','like','%배송 완료%')->get()->count();
+
+      // return $pm_status;
+
+      return view('seller/seller_myorderlist',compact('order','pm_wait','d_wait','d_ing','d_complete'));
     }
     else{
       return view('login/login_seller');
