@@ -77,12 +77,15 @@ class OrderlistController extends Controller
     for($i=0; $i<count($pm_no); $i++){
       //각 값과 pm_no이 일치하는 값의 pm_status만 결제완료로 변경
       DB::table('payment')->where('pm_no',$pm_no[$i])
-      ->update(['pm_status' => '결제 완료',
+      ->update([
+        'pm_complete_date' => $today = date("Ymd"),
+        'pm_status' => '결제 완료',
       'pm_d_status' => '배송 준비중']);
     }
     return response()->json($pm_no);
     // return redirect('/sellermyorderlist');
   }
+
   //배송정보 입력
   public function delivery_status(Request $request){
     //check된 index값을 담은 배열

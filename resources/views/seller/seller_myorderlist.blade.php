@@ -28,20 +28,20 @@
             <td class="orderspace">건</td> -->
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery1.png"/></td>
             <td class="orderblink">배송준비</td>
-            <td class="ordercount"><div id="shipping_wait_cnt">{{$d_wait}}</div></td>
+            <td class="ordercount"><div id="shipping_wait_cnt"><p align="right">{{$d_wait}}</p></div></td>
             <td class="orderspace">건</td>
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery2.png"/></td>
             <!-- <td class="orderblink">취소요청</td> -->
             <td class="orderblink">결제대기</td>
-            <td class="ordercount"><div id="payment_wait_cnt">{{$pm_wait}}</div></td>
+            <td class="ordercount"><div id="payment_wait_cnt"><p id="rightsort" align="right">{{$pm_wait}}</p></div></td>
             <td class="orderspace">건</td>
           </tr>
           <tr>
             <td>배송중</td>
-            <td><div id="delivery_cnt">{{$d_ing}}</div></td>
+            <td><div id="delivery_cnt"><p id="rightsort" align="right">{{$d_ing}}<p></div></td>
             <td>건</td>
             <td>반품요청</td>
-            <td>0</td>
+            <td><p id="rightsort" align="right">0<p></td>
             <td>건</td>
           </tr>
           <tr>
@@ -49,10 +49,10 @@
             <td>0</td>
             <td>건</td> -->
             <td>배송완료</td>
-            <td><div id="complete_cnt">{{$d_complete}}</div></td>
+            <td><div id="complete_cnt"><p id="rightsort" align="right">{{$d_complete}}</p></div></td>
             <td>건</td>
             <td>교환요청</td>
-            <td>0</td>
+            <td><p id="rightsort" align="right">0</p></td>
             <td>건</td>
           </tr>
         </table>
