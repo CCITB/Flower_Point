@@ -12,7 +12,7 @@
       <h2>금액충전</h2>
       @foreach ($data3 as $data3)
         사용자 : <strong>{{$data3->c_name}}</strong></br>
-        <div class="current">현재 보유 금액 : <strong>{{$data3->c_cash}}</strong>원</div>
+        <div class="current">현재 보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원</div>
         <div class="money">
           충전금액
           <div id= moneycharge>

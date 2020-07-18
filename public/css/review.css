@@ -1,3 +1,10 @@
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
+}
+
 .pd_info {
   display: flex;
   margin-top: 10px;
@@ -25,11 +32,10 @@
 }
 .pd_satis {
   width: 100%;
-  border-bottom: 1px solid #FFD8D8;
-  padding: 30px 0;
+  padding-top: 30px;
 }
 .satis_que {
-  font-size: 18px;
+  font-size: 1.3em;
 }
 .star_detail {
   color: red;
@@ -40,6 +46,7 @@
 .satis_how {
   font-size: 18px;
   padding-bottom: 13px;
+  line-height: 1.5em;
 }
 .satis_detail_window {
   width: 85%;
@@ -58,9 +65,13 @@
   margin-top: 15px;
   text-align: left;
   width: 90%;
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: red;
   line-height: 1.7em;
+}
+.primg{
+  width: 300px;
+  height: 300px;
 }
 .under {
   height: 50px;
