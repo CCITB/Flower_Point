@@ -4,9 +4,6 @@
   <meta charset="utf-8">
   <title>후기작성</title>
   <link rel="stylesheet" type="text/css" href="/css/review.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="review_total">
@@ -36,7 +33,6 @@
               <button name="rate4" class="hi" id="st4" onclick="star_text(4)" value="4">★</button>
               <button name="rate5" class="hi" id="st5" onclick="star_text(5)" value="5">★</button>
               <input type="hidden" id="hidden" name="hidden" value="">
-              <input type="hidden" name="price" value="{{$pd->p_price}}">
               <input type="hidden" name="pm_no" value="{{$pd->pm_no}}">
             </div>
             <br><div class="star_detail" id="st_detail">별점을 선택하세요.</div>
@@ -45,7 +41,7 @@
 
         <div class="satis_text">
           <div class="satis_how">
-            만족도 <span id="satis_nu">5</span>점을 주셨네요.<br>
+            만족도 <span id="satis_nu"></span>점을 주셨네요.<br>
             어떤 점이 <span id="satis_nu2">좋았나요?</span>
           </div>
           <div class="satis_detail">
@@ -53,7 +49,7 @@
             <div class="counter" id="counter">###</div>
             <div class="pointinfo">
               - 상품과 무관한 사진을 첨부한 리뷰는 통보없이 삭제 및 적립 혜택이 회수될 수 있습니다.<br>
-              - 리뷰 등록 시 해당상품의 2%가 포인트로 적립됩니다.
+              - 리뷰 등록 시 50P가 적립, 사진후기 등록시 100P 적립!
             </div>
           </div>
         </div>
@@ -65,9 +61,6 @@
         </div>
         <div class="preview">
           <img class="primg" src="#" alt="" id="image-session">
-          <div class="preview-image">
-            <!-- 이미지 미리보기 -->
-          </div>
         </div>
       </div>
 

@@ -35,19 +35,22 @@ class ReviewController extends Controller
       echo "<script>alert('이미 등록된 후기입니다.');self.close();</script>";
     } else{
 
-      $price = $_POST['price']; // 상품가격
-      $point = $price * 2 / 100; // point (2%)
       $myinfo = DB::table('customer')->where('c_no',$custo)->get();
       $myp = $myinfo[0]->c_point;
-      $total_p = $point + $myp; // 내 포인트 + 2%
 
       $rates = $_POST['hidden']; //별점 개수
       $today = date("Ymd");
       $path=$myv->file('picture');
+
       if($myv->hasFile('picture')){
         $path=$myv->file('picture')->store('/','public');
-      }
 
+        $point = 100;
+        $total_p = $point + $myp;
+      }else{
+        $point = 50;
+        $total_p = $point + $myp;      
+      }
       DB::table('review')->insert([
         'r_image' => $path,
         'r_contents' => $myv->input('text'),
@@ -55,7 +58,8 @@ class ReviewController extends Controller
         'r_date' => $today,
         'customer_no' => $custo,
         'product_no' => $id,
-        'payment_no' => $pm_no
+        'payment_no' => $pm_no,
+        'r_reserve' => $point
       ]);
       DB::table('customer')->where('c_no',$custo)->update([
         'c_point'=>$total_p
