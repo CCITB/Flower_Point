@@ -331,4 +331,11 @@ class PaymentController extends Controller
     // return $address;
     return view('payment.complete',compact('paymentID','paymentIDarray','pricesum','orderNO',));
   }
+  public function layerpopup(Request $request){
+    session()->put('productprice',$request->price);
+    $customerprimary = auth()->guard('customer')->user()->c_no;
+    $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->where('cpb_state','미사용')->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+    $returnHTML = view('couponapply',compact('coupon'))->render();
+    return response()->json($returnHTML);
+  }
 }

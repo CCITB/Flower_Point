@@ -2,9 +2,13 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>결제</title>
   <link rel="stylesheet" href="/css/payment2.css">
   <link rel="stylesheet" href="/css/header.css">
+  <style media="screen">
+  .layer-wrap { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; text-align: center; background-color: rgba(0, 0, 0, 0.5); } .layer-wrap:before { content: ""; display: inline-block; height: 100%; vertical-align: middle; margin-right: -.25em; } .pop-layer { display: inline-block; vertical-align: middle; width: 800px; height: auto; background-color: #fff; border: 5px solid #3571B5; z-index: 10; font-family:Tahoma; } .pop-layer .pop-container { padding: 20px 25px; } .pop-layer .btn-r { width: 100%; margin: 10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align: right; } a.btn-layerClose { display: inline-block; height: 25px; padding: 0 14px 0; border: 1px solid #304a8a; background-color: #3f5a9d; font-size: 13px; color: #fff; line-height: 25px; }
+  </style>
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
@@ -73,7 +77,6 @@
         </div>
       </div>
       <div class="groupbox">
-
         <!--정보기입창-->
         <div class="infobox">
           <div class="customerbox">
@@ -228,26 +231,15 @@
               <span style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;" onclick="pointall()">전액사용</span>
             </div>
             <div class="">
-              <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span>
+              {{-- <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span> --}}
+              <span href="#layer1" class="btn-layer" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span>
             </div>
             <div class="">
               적용쿠폰
-              @if(!session()->get('coupon')==null)
-                {{-- <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                {{session()->get('coupon')}}
-                {{session()->get('coupon')[0]->cpb_no}} --}}
-                <input type="hidden" name="coupon_no" value="{{session()->get('coupon')[0]->cpb_no}}">
-                <div class="">
-                  할인가격{{number_format(session()->get('coupon')[0]->cp_flatrate)}}원
-                </div>
-                <div class="">
-                  최소가격{{number_format(session()->get('coupon')[0]->cp_minimum)}}원
-                </div>
-              @else
-              @endif
+              {{-- @if(!session()->get('coupon')==null) --}}
+                <input type="hidden" name="coupon_no" id="coupon_no" value="">
+              {{-- @else --}}
+              {{-- @endif --}}
             </div>
           </div>
         </div>
@@ -318,12 +310,7 @@
             총 상품 가격
           </div>
           <div class="" style="text-align:left; font-size:30px;">
-            @if(!session()->get('coupon')==null)
-              <strong id="priceall">{{number_format($productsum-session()->get('coupon')[0]->cp_flatrate)}}</strong>원
-            @else
               <strong id="priceall">{{number_format($productsum)}}</strong>원
-            @endif
-
           </div>
           <hr style="margin-bottom:8px;">
           <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
@@ -346,11 +333,7 @@
             <tr>
               <th>쿠폰</th>
               <td class="order_text" >(-)
-                  @if(!session()->get('coupon')==null)
-                    <span id="paymentcoupon">{{number_format(session()->pull('coupon')[0]->cp_flatrate)}}</span>원</td>
-                  @else
-                    <span id="paymentcoupon">0</span>원</td>
-                  @endif
+                  <span id="paymentcoupon">0</span>원</td>
               </tr>
               <tr>
                 <th>결제 후 잔액</th>
@@ -373,7 +356,7 @@
       </form>
       <form class="" action="" method="post" id="form1" name="form1">
         @csrf
-        <input type="hidden" name="frm" value="{{$productsum}}">
+        <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
       </form>
     </div>
   </div><!--결제정보 -->
@@ -382,7 +365,25 @@
 </div>
 </div>
 </div>
+{{-- <a href="#layer1" class="btn-layer">레이어 팝업보기</a> --}}
+<!-- Start : layer-popup content -->
+<div id="layer1" class="layer-wrap">
+  <div class="pop-layer">
+    <div class="pop-container">
+      <div class="pop-conts">
+        <!--content //-->
+        하이빅스비
+        <div class="btn-r">
+          <a class="btn-layerClose">Close</a>
+        </div>
+        <!--// content-->
+      </div>
+      </div>
+    </div>
+  </div>
+  <!-- End : layer-popup content -->
 @include('lib.footer')
+
 </body>
 {{-- <form class="" action="index.html" method="post" onsubmit="what();">
 <button type="submit" name="button"></button>
@@ -631,26 +632,26 @@ function onlyNumber(){
   event.returnValue=false;
   // console.log(1);
 }
-var cash = 0;
+var cash = {{auth()->guard('customer')->user()->c_cash}};
 var point = 0;
+var coupon = 0;
 var price = Number($('#priceall').text().replace(/[^0-9]/g,''));
 var productpr = Number($('#productpr').text().replace(/[^0-9]/g,''));
 function insertpoint(){
   var nowprice = $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
-  cash = {{auth()->guard('customer')->user()->c_cash}};
   // console.log(point);
   if({{$point}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
     $('#userpoint').val(AddComma({{$point}}));
-    $('#priceall').text(AddComma(price - {{$point}}));
+    $('#priceall').text(AddComma(price - {{$point}} - coupon));
     $('#paymentpoint').text(AddComma({{$point}}));
     replaceprice(cash,{{$point}});
   }
   else{
     // var cal = price - point;
 
-    $('#priceall').text(AddComma(price - point));
+    $('#priceall').text(AddComma(price - point - coupon));
     $('#paymentpoint').text(AddComma(point));
     replaceprice(cash,point);
 
@@ -661,10 +662,9 @@ function insertpoint(){
 }
 function pointall(){
   $('#userpoint').val({{$point}});
-  $('#priceall').text(AddComma(price - {{$point}}));
+  $('#priceall').text(AddComma(price - {{$point}} - coupon));
   $('#paymentpoint').text(AddComma({{$point}}));
   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
-  cash = {{auth()->guard('customer')->user()->c_cash}};
   replaceprice(cash,point);
 }
 function AddComma(num)
@@ -685,16 +685,21 @@ $('#userpoint').blur(function(){
   // }
 });
 function replaceprice(cash,point){
+  // console.log(cash);
+  // console.log(point);
+  // console.log('내부함수문제인가?');
+  // return false;
   if(cash>=Number($('#priceall').text().replace(/[^0-9]/g,''))){
     console.log('보유하고 있는 돈이 현재 돈보다 많음.');
-    $('#cashcheck0').text(AddComma(cash+point-price)+'원');
+    $('#cashcheck0').text(AddComma(cash+point+coupon-price)+'원');
   }
   else{
+    console.log(coupon);
     $('#cashcheck0').text('잔액이 부족합니다 !');
   }
 }
 
-console.log(document.forms);
+console.log(document.form1);
 function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
@@ -722,15 +727,110 @@ function couponapply(mypage, myname, w, h, scroll) {
   }, 500);
 }
 $('#userpoint').click(function(){
-if($('#userpoint').val()==0){
-  $('#userpoint').val('');
-}
+  if($('#userpoint').val()==0){
+    $('#userpoint').val('');
+  }
 });
 // var couponapply = function() {
 //   g_oWindow = window.open(url,"",option);
 //   // 0.5초 마다 감지
 //
 // };
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+var html = 0;
+function layerpopup(){
+  // console.log();
+  // return false;
+  var frmData = $('#frm').val();
+  // var frmData = document.forms[1];
+  $.ajax({
+    url:'/layerpopup', //request 보낼 서버의 경로
+    type:'post', // 메소드(get, post, put 등)
+    data:{'price':frmData}, //보낼 데이터
+    success: function(data) {
+      // console.log(data);
+      html = data;
+      console.log('요청성공!');
+      $('.pop-conts').html(html);
+      // var list = document.querySelector('.pop-conts');
+      // list.innerHTML = html;
+      var target = $('.btn-layer').attr('href');
+      $(target).fadeIn();
+      return false;
+      if(data==1){
+        alert('적용되었습니다!');
+      }
+      else if(data==0){
+        alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
+      }
+
+      //서버로부터 정상적으로 응답이 왔을 때 실행
+    },
+    error: function(data) {
+      console.log(data);
+
+      //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
+    }
+  });
+  // return false;
+
+}
+$('.btn-layer').on('click', function() {
+    layerpopup();
+
+    // $('.pop-conts').appendChild(html);
+  console.log(1);
+
+});
+$(document).on('click','.btn-layerClose', function() {
+  $('.layer-wrap').fadeOut();
+});
+function apply(e){
+  console.log(e);
+  console.log($('#paymentcoupon').text());
+  console.log($('#productpr').text());
+  console.log($('#priceall').text());
+  // return false;
+  $.ajax({
+    url:'/couponapply', //request 보낼 서버의 경로
+    type:'post', // 메소드(get, post, put 등)
+    data:{'id':e}, //보낼 데이터
+    success: function(data) {
+      console.log(data);
+      $('#coupon_no').val(e);
+      if(data==0){
+        alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
+      }
+      coupon = data;
+      $('#paymentcoupon').text(AddComma(coupon));
+      $('#priceall').text(AddComma(price - point - coupon));
+      replaceprice(cash,point);
+      alert('적용되었습니다!');
+      $('.layer-wrap').fadeOut();
+      return false;
+        //서버로부터 정상적으로 응답이 왔을 때 실행
+    },
+    error: function(data) {
+      console.log(data);
+      alert('요청에 실패하였습니다.');
+        //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
+    }
+});
+  // return false;
+}
+$(document).on('click','.coupon_cancel', function() {
+  alert('사용이 취소되었습니다.');
+  coupon=0;
+  $('#priceall').text(AddComma(price - point - coupon));
+  $('#paymentcoupon').text(AddComma(coupon));
+  $('#coupon_no').val('');
+  replaceprice(cash,point);
+  $('.layer-wrap').fadeOut();
+});
 </script>
 {{-- <button type="button" onclick="test('Spinner.gif');" name="button">로딩용</button> --}}
 {{-- <button type="button" onclick="alert(getCookie('paymentcookie'))" name="button">쿠키확인용</button> --}}

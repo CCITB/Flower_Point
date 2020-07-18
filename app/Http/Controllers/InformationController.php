@@ -437,6 +437,7 @@ class InformationController extends Controller
       $productprice = (int)session()->pull('productprice');
       $coupon = DB::table('couponbox')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
       session()->put('coupon',$coupon);
+      return response()->json($coupon[0]->cp_flatrate);
       if($productprice>=(int)$coupon[0]->cp_minimum){
         // 사용가능
         return response()->json(1);

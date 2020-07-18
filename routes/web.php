@@ -104,6 +104,10 @@ Route::post('/seller_sms_way', 'FindController@seller_sms_way');
 Route::post('/f_reset_customer', 'FindController@customer_f_reset');
 
 
+
+
+
+
 //----seller ID 찾기-----
 Route::get('/seller_find_id', function(){
   return view('find_information_seller/find_id');
@@ -235,6 +239,7 @@ Route::get('/shopinfo','InformationController@storeinfo');
 
 Route::post('/c_newaddress','InformationController@c_storeinfo');
 //       return view('myshop/shop_seller');
+Route::post('/layerpopup', 'PaymentController@layerpopup');
 
 Route::get('/shoppage', 'InformationController@shoppage');
 
