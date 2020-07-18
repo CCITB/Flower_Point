@@ -167,17 +167,21 @@ class PaymentController extends Controller
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
     if(isset($basket_no)){
       // $data = [];
-      // 전체합계를 위한 $count_sum1
+      // 전체합계를 위한 $sum
       $sum = 0;
       // 각 payment행마다 넣기위한 변수
       $eachprice = 0;
+      // 상품+포인트 결제시 상품에서 포인트를 뺀 후 2%포인트적립을 하기 위한 변수
+      $pricesum = 0;
       if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
         //반복문으로 여러상품 찾고 장바구니에서 선택한 물품을 제거 + 주문번호 하나
         for($i=0; $i<count($basket_no);$i++){
+
           $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
           $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+          $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
             'pm_pay' => $eachprice,
@@ -200,6 +204,7 @@ class PaymentController extends Controller
           DB::table('basket')->where('b_no',$basket_no[$i])->delete();
           $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
           $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+          $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
           $insertid[] = DB::table('payment')->insertGetid([
             'pm_count' => $proarray[$i][0]->b_count,
             'pm_pay' => $eachprice,
@@ -231,7 +236,8 @@ class PaymentController extends Controller
         'c_point'=> DB::raw('c_point'.'-'.($userpoint))
       ]);
       DB::table('order')->where('o_no',$orderNO)->update([
-        'o_totalprice' => $sum
+        'o_totalprice' => $sum,
+        'o_reserve' => ($pricesum-$userpoint) * 2 / 100
       ]);
       // return $test
       DB::commit();
@@ -287,7 +293,8 @@ class PaymentController extends Controller
       'c_point'=> DB::raw('c_point'.'-'.($userpoint))
     ]);
     DB::table('order')->where('o_no',$orderNO)->update([
-      'o_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery
+      'o_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
+      'o_reserve' => ($prodata[0]->p_price*$request->productcount-$userpoint)* 2 / 100
     ]);
     // return $userpoint;
     DB::commit();
