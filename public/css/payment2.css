@@ -214,6 +214,26 @@ div.pay_data{
 .bt_ch:hover{
   opacity: 1
 }
+.btn-layer{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  width: 6em;
+  height: 2em;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
+}
+.btn-layer:hover{
+  opacity: 1
+}
 
 div.line{
   margin:20px;

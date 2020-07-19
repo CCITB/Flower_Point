@@ -209,11 +209,11 @@
                 </div>
                 <div class="" style="font-size:1.1em;">
                   <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="0" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
-                  <span style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;" onclick="pointall()">전액사용</span>
+                  <input class="bt_ch" type="button" style="cursor:pointer; font-size:0.7em;" onclick="pointall()" value="전액사용">
                 </div>
                 <div class="">
                   {{-- <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span> --}}
-                  <span href="#layer1" class="btn-layer" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span>
+                  <input type="button" href="#layer1" class="btn-layer" style="cursor:pointer; font-size:1em; width: 8em;" value="내 보유쿠폰 보기">
                 </div>
                 <div class="">
                   적용쿠폰
