@@ -364,14 +364,7 @@ function check_password(){
 
 
 
-$('#confirm').click(function(){
-  var test = confirm("구매를 확정하시겠습니까?");
-  if(test == true){
-    alert("구매가 확정되었습니다.");
-  }else{
-    return false;
-  }
-});
+
 function pw_checkform(){
   var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
   // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
