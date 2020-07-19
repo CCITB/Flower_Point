@@ -440,24 +440,13 @@ class InformationController extends Controller
         }
       }
     }
-    public function couponapply(Request $request){
-      if(auth()->guard('customer')->check()){
-        session()->put('productprice',$request->frm);
-        $customerprimary = auth()->guard('customer')->user()->c_no;
-        $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->where('cpb_state','미사용')->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
-        return view('couponapply',compact('coupon'));
-      }
-      return redirect('/');
-    }
     public function couponapplycheck(Request $request){
       $id = $request->id;
       $productprice = (int)session()->pull('productprice');
-      $coupon = DB::table('couponbox')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
-      session()->put('coupon',$coupon);
-      return response()->json($coupon[0]->cp_flatrate);
+      $coupon = DB::table('couponbox')->select('cp_title','cp_flatrate','cp_minimum')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
       if($productprice>=(int)$coupon[0]->cp_minimum){
         // 사용가능
-        return response()->json(1);
+        return response()->json($coupon);
       }
       //사용불가능
       return response()->json(0);

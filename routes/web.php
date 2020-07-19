@@ -84,7 +84,6 @@ Route::post('/customer_id_check', 'FindController@customer_id_check');
 Route::get('/find_pw_way_customer', function(){
   return view('find_information_customer/find_pw_way');
 });
-Route::post('/couponshow', 'InformationController@couponapply');
 
 Route::post('/couponapply', 'InformationController@couponapplycheck');
 

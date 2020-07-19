@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/payment2.css">
   <link rel="stylesheet" href="/css/header.css">
   <style media="screen">
-  .layer-wrap { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; text-align: center; background-color: rgba(0, 0, 0, 0.5); } .layer-wrap:before { content: ""; display: inline-block; height: 100%; vertical-align: middle; margin-right: -.25em; } .pop-layer { display: inline-block; vertical-align: middle; width: 900px; height: auto; background-color: #fff; border: 5px solid #3571B5; z-index: 10; font-family:Tahoma; } .pop-layer .pop-container { padding: 20px 25px; } .pop-layer .btn-r { width: 100%; margin: 10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align: right; } a.btn-layerClose { display: inline-block; height: 25px; padding: 0 14px 0; border: 1px solid #304a8a; background-color: #3f5a9d; font-size: 13px; color: #fff; line-height: 25px; }
+  .layer-wrap { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; text-align: center; background-color: rgba(0, 0, 0, 0.5); } .layer-wrap:before { content: ""; display: inline-block; height: 100%; vertical-align: middle; margin-right: -.25em; } .pop-layer { display: inline-block; vertical-align: middle; width: 900px; height: auto; background-color: #fff; border: 5px solid #3571B5; z-index: 10; } .pop-layer .pop-container { padding: 20px 25px; } .pop-layer .btn-r { width: 100%; margin: 10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align: right; } a.btn-layerClose { display: inline-block; height: 25px; padding: 0 14px 0; border: 1px solid #304a8a; background-color: #3f5a9d; font-size: 13px; color: #fff; line-height: 25px; }
   </style>
   <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -43,13 +43,8 @@
     history.back();
   }
   $(document).ready(function(){
-    console.log(document.cookie);
-    console.log($('input[name=c_token]').val());
-    console.log(getCookie('paymentcookie'));
-
     setCookie('paymentcookie','','1');
     setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
-    console.log(getCookie('paymentcookie'));
   });
 
   </script>
@@ -209,145 +204,141 @@
                 </div>
                 <div class="" style="font-size:1.1em;">
                   <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="0" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
-                  <input class="bt_ch" type="button" style="cursor:pointer; font-size:0.7em;" onclick="pointall()" value="전액사용">
-                </div>
-                <div class="">
-                  {{-- <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span> --}}
-                  <input type="button" href="#layer1" class="btn-layer" style="cursor:pointer; font-size:1em; width: 8em;" value="내 보유쿠폰 보기">
-                </div>
-                <div class="">
-                  적용쿠폰
-                  {{-- @if(!session()->get('coupon')==null) --}}
-                  <input type="hidden" name="coupon_no" id="coupon_no" value="">
-                  {{-- @else --}}
-                  {{-- @endif --}}
-                </div>
-              </div>
+                  <input class="bt_ch" type="button" style="cursor:pointer; font-size:0.7em;" onclick="pointall()" value="전액사용">                </div>
+                  <div class="">
+                    <input type="button" href="#layer1" class="btn-layer" style="cursor:pointer; font-size:1em; width: 8em;" value="내 보유쿠폰 보기">                  </div>
+                    <div class="send-coupon_no">
+                      적용쿠폰
+                      <input type="hidden" name="coupon_no" id="coupon_no" value="">
+                    </div>
+                    <strong class="apply-coupon">
+                    </strong>
+                  </div>
 
+                </div>
+              </div>
+              <!--상품 정보창-->
+              <!--곽승지-->
+              @if(isset($data))
+                @foreach ($data as $key => $value)
+                  <div class="product_data" id="product_data{{$value[0]->p_no}}">
+                    <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                    <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
+                      <tr>
+                        <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
+                        <td>{{$value[0]->b_name}}</td>
+                      </tr>
+                      <tr><td> 가격 : {{$value[0]->b_price}}</td></tr>
+                      <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
+                    </table>
+                  </div>
+                @endforeach
+              @else
+                <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
+                  <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                  <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
+                    <tr>
+                      <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
+                      <td>{{$prodata[0]->p_name}}</td>
+                    </tr>
+                    <tr><td>가격 : {{$productprice}}</td></tr>
+                    <tr><td>수량 : {{$productcount}}</td></tr>
+                  </table>
+                </div>
+              @endif
             </div>
-          </div>
-          <!--상품 정보창-->
-          <!--곽승지-->
-          @if(isset($data))
-            @foreach ($data as $key => $value)
-              <div class="product_data" id="product_data{{$value[0]->p_no}}">
-                <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-                <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
+            <!--주문창-->
+            <div class="orderbox">
+              <div class="paybox">
+                <div class="orderinfo">
+                  주문정보
+                </div>
+                <hr class="line1">
+                <style media="screen">
+                .tablebox1 tr td,th{
+                  font-size: 20px;
+                  padding-bottom: 10px;
+                }
+                </style>
+                <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
                   <tr>
-                    <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
-                    <td>{{$value[0]->b_name}}</td>
+                    <th class="tablebox_th">주문자</th>
+                    <td class="order_text">{{$user->c_name}}</td>
                   </tr>
-                  <tr><td> 가격 : {{$value[0]->b_price}}</td></tr>
-                  <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
+                  <tr>
+                    <th class="tablebox_th">연락처</th>
+                    <td class="order_text">{{$user->c_phonenum}}</td>
+                  </tr>
                 </table>
-              </div>
-            @endforeach
-          @else
-            <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
-              <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-              <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
-                <tr>
-                  <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
-                  <td>{{$prodata[0]->p_name}}</td>
-                </tr>
-                <tr><td>가격 : {{$productprice}}</td></tr>
-                <tr><td>수량 : {{$productcount}}</td></tr>
-              </table>
+                {{-- <div class="detail">
+                주문자 정보를 정확하게 입력해주세요.
+              </div> --}}
             </div>
-          @endif
-        </div>
-        <!--주문창-->
-        <div class="orderbox">
-          <div class="paybox">
-            <div class="orderinfo">
-              주문정보
-            </div>
-            <hr class="line1">
-            <style media="screen">
-            .tablebox1 tr td,th{
-              font-size: 20px;
-              padding-bottom: 10px;
-            }
-            </style>
-            <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
-              <tr>
-                <th class="tablebox_th">주문자</th>
-                <td class="order_text">{{$user->c_name}}</td>
-              </tr>
-              <tr>
-                <th class="tablebox_th">연락처</th>
-                <td class="order_text">{{$user->c_phonenum}}</td>
-              </tr>
-            </table>
-            {{-- <div class="detail">
-            주문자 정보를 정확하게 입력해주세요.
-          </div> --}}
-        </div>
-        <div class="payresult">
-          <div class="payinfo">결제정보
-          </div>
-          <hr class="line1">
-          <div class="paymentbox">
-            <div style="padding-left:5px; padding-right:1px">
-              <div class="hi" style="text-align:left; padding-top:5px; float:left; width:50%; font-size:25px;">
-                <strong>총 상품 가격</strong>
+            <div class="payresult">
+              <div class="payinfo">결제정보
               </div>
-              <div class="hi1" style="padding-bottom:15px; font-size:35px; float:left; width:50%; text-align:right;">
-                <strong id="priceall">{{number_format($productsum)}}</strong> 원
-              </div>
-            </div>
-            <hr style="margin-bottom:8px;">
-            <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
-              <tr>
-                <th class="ordertext">cash 잔액</th>
-                <td class="order_text">{{number_format(auth()->guard('customer')->user()->c_cash)}}원</td>
-              </tr>
-              <tr>
-                <th class="ordertext">상품 가격</th>
-                <td class="order_text" id="productpr" style="color: #4374D9;">(+) {{number_format($productprice)}}원</td>
-              </tr>
-              <tr>
-                <th class="ordertext">배송비</th>
-                <td class="order_text" style="color: #4374D9;">(+) {{number_format($productdelivery)}}원</td>
-              </tr>
-              <tr>
-                <th class="ordertext">포인트</th>
-                <td class="order_text" style="color: #F15F5F;">(-) <span id="paymentpoint">0</span>원</td>
-              </tr>
-              <tr>
-                <th class="ordertext">쿠폰</th>
-                <td class="order_text" style="color: #F15F5F;">(-)
-                  <span id="paymentcoupon">0</span>원</td>
-                </tr>
-                <tr>
-                  <th class="ordertext">결제 후 잔액</th>
-                  @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
-                    <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+              <hr class="line1">
+              <div class="paymentbox">
+                <div style="padding-left:5px; padding-right:1px">
+                  <div class="hi" style="text-align:left; padding-top:5px; float:left; width:50%; font-size:25px;">
+                    <strong>총 상품 가격</strong>
+                  </div>
+                  <div class="hi1" style="padding-bottom:15px; font-size:35px; float:left; width:50%; text-align:right;">
+                    <strong id="priceall">{{number_format($productsum)}}</strong> 원
+                  </div>
+                </div>
+                <hr style="margin-bottom:8px;">
+                <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
+                  <tr>
+                    <th class="ordertext">cash 잔액</th>
+                    <td class="order_text">{{number_format(auth()->guard('customer')->user()->c_cash)}}원</td>
+                  </tr>
+                  <tr>
+                    <th class="ordertext">상품 가격</th>
+                    <td class="order_text" id="productpr" style="color: #4374D9;">(+) {{number_format($productprice)}}원</td>
+                  </tr>
+                  <tr>
+                    <th class="ordertext">배송비</th>
+                    <td class="order_text" style="color: #4374D9;">(+) {{number_format($productdelivery)}}원</td>
+                  </tr>
+                  <tr>
+                    <th class="ordertext">포인트</th>
+                    <td class="order_text" style="color: #F15F5F;">(-) <span id="paymentpoint">0</span>원</td>
+                  </tr>
+                  <tr>
+                    <th class="ordertext">쿠폰</th>
+                    <td class="order_text" style="color: #F15F5F;">(-)
+                      <span id="paymentcoupon">0</span>원</td>
+                    </tr>
+                    <tr>
+                      <th class="ordertext">결제 후 잔액</th>
+                      @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
+                        <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+                      </tr>
+                    </table>
+                    <hr class="line2">
+                    <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+                    <div class="line"><input class="end" type="submit" value="다음"></div>
+                  @else
+                    <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
                   </tr>
                 </table>
                 <hr class="line2">
-                <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-                <div class="line"><input class="end" type="submit" value="다음"></div>
-              @else
-                <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
-              </tr>
-            </table>
-            <hr class="line2">
-            <div class="line" style="color: #F15F5F;"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-            <div class="line"><input class="end" type='submit' value="다 음" ></div>
-          @endif
+                <div class="line" style="color: #F15F5F;"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+                <div class="line"><input class="end" type='submit' value="다 음" ></div>
+              @endif
 
-        </form>
-        <form class="" action="" method="post" id="form1" name="form1">
-          @csrf
-          <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
-        </form>
-      </div>
-    </div><!--결제정보 -->
-  </div><!--오른쪽 주문정보 박스 -->
-  <!--컨테이너박스-->
-</div>
-</div>
+            </form>
+            <form class="" action="" method="post" id="form1" name="form1">
+              @csrf
+              <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
+            </form>
+          </div>
+        </div><!--결제정보 -->
+      </div><!--오른쪽 주문정보 박스 -->
+      <!--컨테이너박스-->
+    </div>
+  </div>
 </div>
 {{-- <a href="#layer1" class="btn-layer">레이어 팝업보기</a> --}}
 <!-- Start : layer-popup content -->
@@ -372,7 +363,7 @@
 <button type="submit" name="button"></button>
 </form> --}}
 <script type="text/javascript">
-console.log(document.getElementById("address").value);
+
 $(function() {
 
   $(document).ready(function() {
@@ -521,12 +512,11 @@ for(i=0; i<$('.product_data').length; i++){
   getarray.push(proNum);
   basketarray.push(basNum);
 }
-console.log($('.basketno'));
-console.log(basketarray);
+
 if(basketarray==''){
-  console.log('빈칸');
+
   var basketarray = null;
-  console.log(basketarray);
+
 }
 $('input[name=getarray]').val(JSON.stringify(getarray));
 $('input[name=basketarray]').val(JSON.stringify(basketarray));
@@ -609,7 +599,6 @@ var showPopup = function() {
     } catch (e) { }
   }, 500);
 };
-console.log({{$productsum}});
 function onlyNumber(){
   if((event.keyCode<48)||(event.keyCode>57))
   event.returnValue=false;
@@ -626,10 +615,11 @@ function insertpoint(){
   // console.log(point);
   if({{$point}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
-    $('#userpoint').val(AddComma({{$point}}));
-    $('#priceall').text(AddComma(price - {{$point}} - coupon));
-    $('#paymentpoint').text(AddComma({{$point}}));
-    replaceprice(cash,{{$point}});
+    point = {{$point}};
+    $('#userpoint').val(AddComma(point));
+    $('#priceall').text(AddComma(price - point - coupon));
+    $('#paymentpoint').text(AddComma(point));
+    replaceprice(cash,point);
   }
   else{
     // var cal = price - point;
@@ -668,21 +658,14 @@ $('#userpoint').blur(function(){
   // }
 });
 function replaceprice(cash,point){
-  // console.log(cash);
-  // console.log(point);
-  // console.log('내부함수문제인가?');
-  // return false;
   if(cash>=Number($('#priceall').text().replace(/[^0-9]/g,''))){
-    console.log('보유하고 있는 돈이 현재 돈보다 많음.');
     $('#cashcheck0').text(AddComma(cash+point+coupon-price)+'원');
   }
   else{
-    console.log(coupon);
     $('#cashcheck0').text('잔액이 부족합니다 !');
   }
 }
 
-console.log(document.form1);
 function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
@@ -737,7 +720,6 @@ function layerpopup(){
     success: function(data) {
       // console.log(data);
       html = data;
-      console.log('요청성공!');
       $('.pop-conts').html(html);
       // var list = document.querySelector('.pop-conts');
       // list.innerHTML = html;
@@ -754,7 +736,7 @@ function layerpopup(){
       //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
-      console.log(data);
+      // console.log(data);
 
       //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }
@@ -764,33 +746,27 @@ function layerpopup(){
 }
 $('.btn-layer').on('click', function() {
   layerpopup();
-
-  // $('.pop-conts').appendChild(html);
-  console.log(1);
-
 });
 $(document).on('click','.btn-layerClose', function() {
   $('.layer-wrap').fadeOut();
 });
 function apply(e){
-  console.log(e);
-  console.log($('#paymentcoupon').text());
-  console.log($('#productpr').text());
-  console.log($('#priceall').text());
   // return false;
   $.ajax({
     url:'/couponapply', //request 보낼 서버의 경로
     type:'post', // 메소드(get, post, put 등)
     data:{'id':e}, //보낼 데이터
     success: function(data) {
-      console.log(data);
+      // console.log(data);
       $('#coupon_no').val(e);
       if(data==0){
         alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
       }
-      coupon = data;
+      coupon = data[0].cp_flatrate;
       $('#paymentcoupon').text(AddComma(coupon));
       $('#priceall').text(AddComma(price - point - coupon));
+      $('.apply-coupon').text(data[0].cp_title+' '+AddComma(coupon)+'원');
+      $('.apply-coupon').append($('<img class="coupon_cancel" src="/imglib/delete.png" style="cursor:pointer; vertical-align:middle;padding-left:4px;margin-bottom:4px;">'));
       replaceprice(cash,point);
       alert('적용되었습니다!');
       $('.layer-wrap').fadeOut();
@@ -798,7 +774,7 @@ function apply(e){
       //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
-      console.log(data);
+      // console.log(data);
       alert('요청에 실패하였습니다.');
       //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }
@@ -808,6 +784,7 @@ function apply(e){
 $(document).on('click','.coupon_cancel', function() {
   alert('사용이 취소되었습니다.');
   coupon=0;
+  $('.apply-coupon').text('');
   $('#priceall').text(AddComma(price - point - coupon));
   $('#paymentcoupon').text(AddComma(coupon));
   $('#coupon_no').val('');

@@ -99,3 +99,35 @@ button.qna-submit-cancel-btn
   border: 1px solid #dadada;
   width: 83.675px;
 }
+<<<<<<< HEAD
+=======
+.frequently-qna{
+  width: 70%;
+
+  margin: 0 auto;
+}
+.frequently{
+  position: relative;
+  width: 1130px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+
+ul li{
+  list-style-type: none;
+  display: inline;
+  /* margin-left: 20px; */
+}
+.page-item{
+display: inline-block;
+}
+.pagination{
+  text-align: center;
+}
+/* @media (max-width: /* write what you need, for me it's 560px */) {
+    ul.pagination li:not(.show-mobile) {
+        display: none;
+    }
+} */
+>>>>>>> dd34d6df4c9873d467f4b23bcc52fe741d4595d7

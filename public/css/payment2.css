@@ -345,6 +345,11 @@ hr.dotted_line{
 label{
   font-size: 1em;
 }
+
+div.wrapping2{
+  margin-top: 3em;
+}
+
 div.wrapping_complete{
   position: relative;
   width:50%;
