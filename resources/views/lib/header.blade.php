@@ -270,6 +270,8 @@ scroll-behavior: smooth;
 } */
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 <script type="text/javascript">
 
 function fake(){
