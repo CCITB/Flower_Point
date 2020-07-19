@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/c_mypage.css">
   </head>
   <body>
+    @include('lib.header')
     <div class="myorder">
       <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
       <div class="ordertable">
@@ -90,6 +91,6 @@
         @endif
       </div>
     </div>
-
+  @include('lib.footer')
   </body>
 </html>

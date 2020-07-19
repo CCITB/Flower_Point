@@ -196,172 +196,156 @@
 
               <!--결제창-->
               <div class="pay_data">
-                {{-- <table cellpadding="5" cellspacing="5" width="100%">
-                <label>무통장 입금</label>
-                <th><li>은행 선택</li></th>
-                <td>
-                <select id="bank" name=bank margin-left:10px;>
-                <option value="">은행을 선택해주세요</option>
-                <option value="농협">농협</option>
-                <option value="국민은행">국민은행</option>
-                <option value="우리은행">우리은행</option>
-                <option value="하나은행">하나은행</option>
-                <option value="신한은행">신한은행</option>
-                <option value="외한은행">외한은행</option>
-                <option value="씨티은행">씨티은행</option>
-                <option value="기업은행">기업은행</option>
-                <option value="우체국">우체국</option>
-                <option value="부산은행">부산은행</option>
-                <option value="SC은행">SC은행</option>
-              </select>
-            </td>
-          </table> --}}
-          cash 잔액 {{number_format(auth()->guard('customer')->user()->c_cash)}}
-          <div class="">
-            <span onclick="showPopup();"><a>충전하기</a></span>
-          </div>
-          <div class="">
-            포인트
-          </div>
-          <div class="">
-            <span>잔여포인트</span> <span>{{number_format($point)}}</span>
-          </div>
-          <div class="" >
-            <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="0" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
-            <span style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;" onclick="pointall()">전액사용</span>
-          </div>
-          <div class="">
-            {{-- <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span> --}}
-            <span href="#layer1" class="btn-layer" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span>
-          </div>
-          <div class="">
-            적용쿠폰
-            {{-- @if(!session()->get('coupon')==null) --}}
-            <input type="hidden" name="coupon_no" id="coupon_no" value="">
-            {{-- @else --}}
-            {{-- @endif --}}
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--상품 정보창-->
-    <!--곽승지-->
-    @if(isset($data))
-      @foreach ($data as $key => $value)
-        <div class="product_data" id="product_data{{$value[0]->p_no}}">
-          <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-          <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
-            <tr>
-              <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
-              <td>{{$value[0]->b_name}}</td>
-            </tr>
-            <tr><td> 가격 : {{$value[0]->b_price}}</td></tr>
-            <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
-          </table>
-        </div>
-      @endforeach
-    @else
-      <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
-        <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
-        <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
-          <tr>
-            <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
-            <td>{{$prodata[0]->p_name}}</td>
-          </tr>
-          <tr><td>가격 : {{$productprice}}</td></tr>
-          <tr><td>수량 : {{$productcount}}</td></tr>
-        </table>
-      </div>
-    @endif
-  </div>
-  <!--주문창-->
-  <div class="orderbox">
-    <div class="paybox">
-      <div class="orderinfo">
-        주문정보
-      </div>
-      <hr class="line1">
-      <style media="screen">
-      .tablebox1 tr td,th{
-        font-size: 14px;
-        padding: 3px;
-      }
-      </style>
-      <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
-        <tr>
-          <th class="tablebox_th">주문자</th>
-          <td class="order_text">{{$user->c_name}}</td>
-        </tr>
-        <tr>
-          <th class="tablebox_th">연락처</th>
-          <td class="order_text">{{$user->c_phonenum}}</td>
-        </tr>
-      </table>
-      {{-- <div class="detail">
-      주문자 정보를 정확하게 입력해주세요.
-    </div> --}}
-  </div>
-  <div class="payresult">
-    <div class="payinfo">결제정보
-    </div>
-    <hr class="line1">
-    <div class="paymentbox">
-      <div class="" style="text-align:left; padding-bottom:10px;">
-        총 상품 가격
-      </div>
-      <div class="" style="text-align:left; font-size:30px;">
-        <strong id="priceall">{{number_format($productsum)}}</strong> 원
-      </div>
-      <hr style="margin-bottom:8px;">
-      <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
-        <tr>
-          <th class="ordertext">cash 잔액</th>
-          <td class="order_text">{{number_format(auth()->guard('customer')->user()->c_cash)}}원</td>
-        </tr>
-        <tr>
-          <th class="ordertext">상품 가격</th>
-          <td class="order_text" id="productpr" style="color: #4374D9;">(+) {{number_format($productprice)}}원</td>
-        </tr>
-        <tr>
-          <th class="ordertext">배송비</th>
-          <td class="order_text" style="color: #4374D9;">(+) {{number_format($productdelivery)}}원</td>
-        </tr>
-        <tr>
-          <th class="ordertext">포인트</th>
-          <td class="order_text" style="color: #F15F5F;">(-) <span id="paymentpoint">0</span>원</td>
-        </tr>
-        <tr>
-          <th class="ordertext">쿠폰</th>
-          <td class="order_text" style="color: #F15F5F;">(-)
-            <span id="paymentcoupon">0</span>원</td>
-          </tr>
-          <tr>
-            <th class="ordertext">결제 후 잔액</th>
-            @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
-              <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
-            </tr>
-          </table>
-          <hr class="line2">
-          <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-          <div class="line"><input class="end" type="submit" value="다음"></div>
-        @else
-          <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
-        </tr>
-      </table>
-      <hr class="line2">
-      <div class="line" style="color: #F15F5F;"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
-      <div class="line"><input class="end" type='submit' value="다 음" ></div>
-    @endif
+                <div class="pay_cash">
+                  <div class="pay_cash1" style="float:left; width:67%; font-size:1.1em;">
+                    cash 잔액 : <strong>{{number_format(auth()->guard('customer')->user()->c_cash)}}</strong>
+                  </div>
+                  <div class="pay_cash2" style="float:left; width:33%; text-align:right;">
+                    <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge">
+                  </div>
+                </div>
+                <div class="pay_point" style="font-size:1.1em;">
+                  잔여포인트 : <strong>{{number_format($point)}} P</strong>
+                </div>
+                <div class="" style="font-size:1.1em;">
+                  <input type="text" name="userpoint" id="userpoint" onkeyup="insertpoint()" value="0" style="padding:0;width: 100px; height: 20px;vertical-align:middle; text-align:right; border:none; border-bottom:1px solid #d6d6d6;" ><span style="border-bottom:solid 1px #d6d6d6;padding-bottom:1px;">원</span>
+                  <input class="bt_ch" type="button" style="cursor:pointer; font-size:0.7em;" onclick="pointall()" value="전액사용">
+                </div>
+                <div class="">
+                  {{-- <span onclick="couponapply('/couponshow','text','600','500','no');" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;">쿠폰함</span> --}}
+                  <input type="button" href="#layer1" class="btn-layer" style="cursor:pointer; font-size:1em; width: 8em;" value="내 보유쿠폰 보기">
+                </div>
+                <div class="">
+                  적용쿠폰
+                  {{-- @if(!session()->get('coupon')==null) --}}
+                  <input type="hidden" name="coupon_no" id="coupon_no" value="">
+                  {{-- @else --}}
+                  {{-- @endif --}}
+                </div>
+              </div>
 
-  </form>
-  <form class="" action="" method="post" id="form1" name="form1">
-    @csrf
-    <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
-  </form>
-</div>
-</div><!--결제정보 -->
-</div><!--오른쪽 주문정보 박스 -->
-<!--컨테이너박스-->
+            </div>
+          </div>
+          <!--상품 정보창-->
+          <!--곽승지-->
+          @if(isset($data))
+            @foreach ($data as $key => $value)
+              <div class="product_data" id="product_data{{$value[0]->p_no}}">
+                <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+                <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="basketno{{$value[0]->b_no}}">
+                  <tr>
+                    <td rowspan="2"><img class="product_image" src="imglib/{{$value[0]->b_picture}}" alt="Flower Image" width="100px" height="100px"></td>
+                    <td>{{$value[0]->b_name}}</td>
+                  </tr>
+                  <tr><td> 가격 : {{$value[0]->b_price}}</td></tr>
+                  <tr><td> 수량 : {{$value[0]->b_count}}</td></tr>
+                </table>
+              </div>
+            @endforeach
+          @else
+            <div class="product_data" id="product_data{{$prodata[0]->p_no}}">
+              <!--product_imabe Table에서 product_no에 맞는 i_filename 가져오기-->
+              <table cellpadding="10" cellspacing="10" width="300px" class="basketno" id="">
+                <tr>
+                  <td rowspan="2"><img class="product_image" src="imglib/{{$prodata[0]->p_filename}}" alt="Flower Image" width="100px" height="100px"></td>
+                  <td>{{$prodata[0]->p_name}}</td>
+                </tr>
+                <tr><td>가격 : {{$productprice}}</td></tr>
+                <tr><td>수량 : {{$productcount}}</td></tr>
+              </table>
+            </div>
+          @endif
+        </div>
+        <!--주문창-->
+        <div class="orderbox">
+          <div class="paybox">
+            <div class="orderinfo">
+              주문정보
+            </div>
+            <hr class="line1">
+            <style media="screen">
+            .tablebox1 tr td,th{
+              font-size: 20px;
+              padding-bottom: 10px;
+            }
+            </style>
+            <table class="tablebox" cellpadding="10" cellspacing="10" width="100%">
+              <tr>
+                <th class="tablebox_th">주문자</th>
+                <td class="order_text">{{$user->c_name}}</td>
+              </tr>
+              <tr>
+                <th class="tablebox_th">연락처</th>
+                <td class="order_text">{{$user->c_phonenum}}</td>
+              </tr>
+            </table>
+            {{-- <div class="detail">
+            주문자 정보를 정확하게 입력해주세요.
+          </div> --}}
+        </div>
+        <div class="payresult">
+          <div class="payinfo">결제정보
+          </div>
+          <hr class="line1">
+          <div class="paymentbox">
+            <div style="padding-left:5px; padding-right:1px">
+              <div class="hi" style="text-align:left; padding-top:5px; float:left; width:50%; font-size:25px;">
+                <strong>총 상품 가격</strong>
+              </div>
+              <div class="hi1" style="padding-bottom:15px; font-size:35px; float:left; width:50%; text-align:right;">
+                <strong id="priceall">{{number_format($productsum)}}</strong> 원
+              </div>
+            </div>
+            <hr style="margin-bottom:8px;">
+            <table class="tablebox1" cellpadding="10" cellspacing="10" width="100%">
+              <tr>
+                <th class="ordertext">cash 잔액</th>
+                <td class="order_text">{{number_format(auth()->guard('customer')->user()->c_cash)}}원</td>
+              </tr>
+              <tr>
+                <th class="ordertext">상품 가격</th>
+                <td class="order_text" id="productpr" style="color: #4374D9;">(+) {{number_format($productprice)}}원</td>
+              </tr>
+              <tr>
+                <th class="ordertext">배송비</th>
+                <td class="order_text" style="color: #4374D9;">(+) {{number_format($productdelivery)}}원</td>
+              </tr>
+              <tr>
+                <th class="ordertext">포인트</th>
+                <td class="order_text" style="color: #F15F5F;">(-) <span id="paymentpoint">0</span>원</td>
+              </tr>
+              <tr>
+                <th class="ordertext">쿠폰</th>
+                <td class="order_text" style="color: #F15F5F;">(-)
+                  <span id="paymentcoupon">0</span>원</td>
+                </tr>
+                <tr>
+                  <th class="ordertext">결제 후 잔액</th>
+                  @if(auth()->guard('customer')->user()->c_cash-$productsum<0)
+                    <td class="order_text" id="cashcheck0" style="font-weight:bold;">잔액이 부족합니다 !</td>
+                  </tr>
+                </table>
+                <hr class="line2">
+                <div class="line"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+                <div class="line"><input class="end" type="submit" value="다음"></div>
+              @else
+                <td class="order_text" id="cashcheck0" style="font-weight:bold;">{{number_format(auth()->guard('customer')->user()->c_cash-$productsum)}}원</td>
+              </tr>
+            </table>
+            <hr class="line2">
+            <div class="line" style="color: #F15F5F;"><label><input class="check" type="checkbox" name="ck" id="ck"> 주문내역 확인 동의(필수)</label></div>
+            <div class="line"><input class="end" type='submit' value="다 음" ></div>
+          @endif
+
+        </form>
+        <form class="" action="" method="post" id="form1" name="form1">
+          @csrf
+          <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
+        </form>
+      </div>
+    </div><!--결제정보 -->
+  </div><!--오른쪽 주문정보 박스 -->
+  <!--컨테이너박스-->
 </div>
 </div>
 </div>
@@ -372,7 +356,6 @@
     <div class="pop-container">
       <div class="pop-conts">
         <!--content //-->
-        하이빅스비
         <div class="btn-r">
           <a class="btn-layerClose">Close</a>
         </div>

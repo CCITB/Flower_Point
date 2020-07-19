@@ -267,6 +267,23 @@ class InformationController extends Controller
         return view('login/login_customer');
       }
     }
+
+    public function myorderlist(){
+      $customerinfo = auth()->guard('customer')->user();
+      $customerprimary = $customerinfo->c_no;
+
+      $data2 = DB::table('customer')
+      ->join('payment','customer.c_no','payment.customer_no')
+      ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
+      ->join('order','paymentjoin.order_no','order.o_no')
+      ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
+      ->join('product','payment.product_no','product.p_no')
+      ->leftjoin('review','payment.pm_no','=','review.payment_no')
+      ->select('*')->where('c_no','=',$customerprimary)
+      ->get();
+      return view('mypage/myorderlist',compact('data2'));
+    }
+
     public function s_mypage(){
       if($sellerinfo = auth()->guard('seller')->user()){
         // return 0;

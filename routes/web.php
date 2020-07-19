@@ -221,6 +221,8 @@ Route::post('/pd_point{id}', 'InformationController@pd_point');
 
 Route::get('/mypoint{id}', 'InformationController@mypoint');
 
+Route::get('/myorderlist', 'InformationController@myorderlist');
+
 
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
