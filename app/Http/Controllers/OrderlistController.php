@@ -5,10 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use DateTime;
+use \Carbon\Carbon;
 
 //어지수
 class OrderlistController extends Controller
 {
+  //실험용
+  public function time(){
+    $complete_date = DB::table('payment')->pluck('pm_complete_date');
+    $today = Carbon::now();
+    $date_diff = [];
+
+    for($i=0; $i<count($complete_date); $i++){
+      $date_diff[$i] = $today->diffInDays($complete_date[$i]);
+      if($date_diff[$i]>=7){
+        DB::table('payment')->where('pm_d_status','like','%배송중%')
+        ->update([
+          'pm_d_status'=>'인규짜응'
+        ]);
+      }
+    }
+  }
   //[seller] 나의 주문관리 -- 정경진
   public function orderlist(Request $request){
     if($sellerinfo = auth()->guard('seller')->user()){
@@ -70,24 +88,20 @@ class OrderlistController extends Controller
 
     //check된 row의 배열값
     $pm_no = $request->get("check_on");
-
-    //payment Table과 delivery Table의 조인
-    //$delivery_join = DB::table('payment')->join('delivery','payment.delivery_no','=','delivery.d_no');
-
     for($i=0; $i<count($pm_no); $i++){
-      //각 값과 pm_no이 일치하는 값의 pm_status만 결제완료로 변경
+      // 각 값과 pm_no이 일치하는 값의 pm_status만 결제완료로 변경
       DB::table('payment')->where('pm_no',$pm_no[$i])
       ->update([
-        'pm_complete_date' => $today = date("Ymd"),
         'pm_status' => '결제 완료',
-      'pm_d_status' => '배송 준비중']);
+        'pm_d_status' => '배송 준비중']);
+      }
+      return response()->json($pm_no);
     }
-    return response()->json($pm_no);
-    // return redirect('/sellermyorderlist');
   }
-
   //배송정보 입력
   public function delivery_status(Request $request){
+    // $now = Carbon::now();
+    // console.log($now);
     //check된 index값을 담은 배열
     $pm_no = $request->get("check_on");
     //송장번호를 담은 배열
@@ -104,6 +118,7 @@ class OrderlistController extends Controller
         'pm_invoice_num' => $invoice[$i],
         'pm_company' => $delivery[$i],
         'delivery_code' => $delivery_code[$i],
+        'pm_complete_date' => Carbon::now(),
         'pm_status' => '결제 완료',
         'pm_d_status' => '배송중'
       ]);
@@ -152,4 +167,5 @@ class OrderlistController extends Controller
       return response()->json(0);
     }
   }
+
 }
