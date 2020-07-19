@@ -28,7 +28,7 @@
       <section class="wrapper site-min-height">
 
         <div class="se_table">
-          <h3><i class="fa fa-angle-right"></i> 판매자 관리</h3><br>
+          <h2><i class="fa fa-angle-right"></i> 판매자 관리</h2><br>
           <table id="seller" class="display">
             <thead>
               <tr>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="se_table">
-          <h3><i class="fa fa-angle-right"></i> 가게 관리</h3><br>
+          <h2><i class="fa fa-angle-right"></i> 가게 관리</h2><br>
           <table id="store" class="display">
             <thead>
               <tr>
@@ -86,54 +86,6 @@
                   <td>{{$sel->s_approval}}</td>
                   <td>
                     <button type="button" id="bt{{$sel->st_no}}" value="{{$sel->st_no}}" onclick="openChild({{$sel->st_no}})"name="hidden" >등록증보기</button>
-                  </td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-
-
-
-        <div class="se_table">
-          <h3><i class="fa fa-angle-right"></i> 상품 관리</h3><br>
-          <table id="product" class="display">
-            <thead>
-              <tr>
-                <th>상품 고유번호</th>
-                <th>상품명</th>
-                <th>가격</th>
-                <th>가게 번호</th>
-                <th>가게 이름</th>
-                <th>판매자 이름</th>
-                <th>등록여부</th>
-                <th>삭제</th>
-                <th>등록</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($product as $sel)
-                <tr onclick="location.href='/product/{{$sel->p_no}}'">
-                  <td>{{$sel->p_no}}</td>
-                  <td>{{$sel->p_name}}</td>
-                  <td>{{number_format($sel->p_price)}} 원</td>
-                  <td>{{$sel->st_no}}</td>
-                  <td>{{$sel->st_name}}</td>
-                  <td>{{$sel->s_name}}</td>
-                  <td>{{$sel->p_status}}</td>
-                  <td>
-                    <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
-                      @csrf
-                      <input type="submit" name="remove" id="remove" value="삭제">
-                      <input type="hidden" id="hidden" name="hidden" value="">
-                    </form>
-                  </td>
-                  <td>
-                    <form name="delete" action="/ad_restore{{$sel->p_no}}" method="post">
-                      @csrf
-                      <input type="submit" name="remove" id="remove" value="등록">
-                      <input type="hidden" id="hidden" name="hidden" value="">
-                    </form>
                   </td>
                 </tr>
               @endforeach
@@ -179,7 +131,7 @@
       window.name = "parentForm";
       // window.open("open할 window", "자식창 이름", "팝업창 옵션");
       openWin = window.open("/ad_regst"+stn,
-      "childForm", "width=550px, height=680px, left=570px, top=150px ");
+      "childForm", "width=600px, height=800px, left=570px, top=150px ");
   }
 
 
@@ -216,22 +168,7 @@
       }
     });
   });
-  $(document).ready(function(){
-    $("#product").DataTable({
-      "language": {
-        "emptyTable": "데이터가 없습니다.",
-        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-        "info": "현재 _START_ - _END_ /  _TOTAL_건",
-        "infoEmpty": "데이터 없음",
-        "infoFiltered": "(전체 _MAX_건의 데이터에서 필터링됨 )",
-        "search": "검색",
-        "zeroRecords": "일치하는 데이터가 없습니다.",
-        "loadingRecords": "로딩중...",
-        "processing":     "잠시만 기다려 주세요...",
-        "paginate": { "next": "다음", "previous": "이전"  }
-      }
-    });
-  });
+
 </script>
 </body>
 

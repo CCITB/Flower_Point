@@ -1,3 +1,11 @@
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  font-family: 'Cafe24Oneprettynight';
+  font-size:1.7em;
+  letter-spacing: 1px;
+}
+
 .coupon_add{
   margin-bottom: 80px;
 }
@@ -8,6 +16,8 @@
   height: 300px;
   border-collapse:collapse;
   text-align: left;
+  font-size:1.7em;
+  letter-spacing: 1px;
 }
 .th{
   padding-left: 20px;
@@ -26,7 +36,9 @@
   height: 20%;
 }
 .add{
-  font-size: 1.3em;
+  font-size: 1.5em;
+  font-weight: 1000;
+  margin-right: 25px;
 }
 .c_name{
   height: 20%;
@@ -43,3 +55,45 @@
 .c_date{
   height: 20%;
 }
+
+/*  사업자 등록증  */
+.imgdiv{
+  margin-bottom: 10px;
+  text-align: center;
+}
+.null{
+  margin-bottom: 15em;
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 10em;
+  letter-spacing: 1px;
+}
+.img{
+  width: 550px;
+  height: 700px;
+}
+.but{
+  text-align: center;
+}
+
+.ad_bt{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
+}
+.ad_bt:hover{
+  opacity: 1
+}
+
+
+/*  사업자 등록증 끝 */

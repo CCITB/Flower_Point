@@ -27,7 +27,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> 오늘 올라온 상품</h3>
+        <h2><i class="fa fa-angle-right"></i> 오늘 올라온 상품</h2>
         <div class="row mt">
           <div class="col-lg-12">
 
@@ -60,7 +60,7 @@
                       <td>
                         <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
                           @csrf
-                          <input type="submit" name="remove" id="remove" value="삭제">
+                          <input type="submit" name="remove" id="remove1" value="삭제">
                           <input type="hidden" id="hidden" name="hidden" value="">
                         </form>
                       </td>
@@ -77,6 +77,52 @@
               </table>
             </div>
 
+
+            <div class="se_table">
+              <h2><i class="fa fa-angle-right"></i> 상품 관리</h2><br>
+              <table id="products" class="display">
+                <thead>
+                  <tr>
+                    <th>상품 고유번호</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>가게 번호</th>
+                    <th>가게 이름</th>
+                    <th>판매자 이름</th>
+                    <th>등록여부</th>
+                    <th>삭제</th>
+                    <th>등록</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($products as $sel)
+                    <tr onclick="location.href='/product/{{$sel->p_no}}'">
+                      <td>{{$sel->p_no}}</td>
+                      <td>{{$sel->p_name}}</td>
+                      <td>{{number_format($sel->p_price)}} 원</td>
+                      <td>{{$sel->st_no}}</td>
+                      <td>{{$sel->st_name}}</td>
+                      <td>{{$sel->s_name}}</td>
+                      <td>{{$sel->p_status}}</td>
+                      <td>
+                        <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
+                          @csrf
+                          <input type="submit" name="remove" id="remove{{$sel->p_no}}" onclick="confrim_remove({{$sel->p_no}})" value="삭제">
+                          <input type="hidden" id="hidden" name="hidden" value="">
+                        </form>
+                      </td>
+                      <td>
+                        <form name="delete" action="/ad_restore{{$sel->p_no}}" method="post">
+                          @csrf
+                          <input type="submit" name="enroll" id="enroll" value="등록">
+                          <input type="hidden" id="hidden" name="hidden" value="">
+                        </form>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
 
           </div>
         </div>
@@ -112,7 +158,7 @@
 $(document).ready(function(){
 	$("#product").DataTable({
     "language": {
-        "emptyTable": "데이터가 없습니다.",
+        "emptyTable": "오늘 올라온 상품이 없습니다.",
         "lengthMenu": "페이지당 _MENU_ 개씩 보기",
         "info": "현재 _START_ - _END_ /  _TOTAL_건",
         "infoEmpty": "데이터 없음",
@@ -126,6 +172,32 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+  $("#products").DataTable({
+    "language": {
+      "emptyTable": "데이터가 없습니다.",
+      "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+      "info": "현재 _START_ - _END_ /  _TOTAL_건",
+      "infoEmpty": "데이터 없음",
+      "infoFiltered": "(전체 _MAX_건의 데이터에서 필터링됨 )",
+      "search": "검색",
+      "zeroRecords": "일치하는 데이터가 없습니다.",
+      "loadingRecords": "로딩중...",
+      "processing":     "잠시만 기다려 주세요...",
+      "paginate": { "next": "다음", "previous": "이전"  }
+    }
+  });
+});
+
+function confrim_remove(pno){
+
+  var test = confirm("상품을 삭제하시겠습니까?");
+  if(test == true){
+    alert("해당 상품이 삭제되었습니다.");
+  }else if(test == false){
+    return false;
+  }
+}
 
 </script>
 

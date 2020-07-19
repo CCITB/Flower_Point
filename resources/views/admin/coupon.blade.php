@@ -27,7 +27,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> 쿠폰 발급 및 관리</h3>
+        <h2><i class="fa fa-angle-right"></i> 쿠폰 발급 및 관리</h2>
         <div class="row mt">
           <div class="col-lg-12">
 
@@ -39,7 +39,7 @@
                 <table class="c_table">
                   <tr class="c_add">
                     <td class="td" colspan="2"><span class="add">쿠폰 생성</span>
-                      <button type="submit" name="submit" id="submit">발급</button>
+                      <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
                       {{-- <button type="button" name="button" id="ca">계산</button>
                       <input id="price" value="20000">
                       <input id="result" value=""> --}}

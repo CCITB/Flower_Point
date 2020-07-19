@@ -10,7 +10,7 @@
 
   <div class="top-menu">
     <ul class="nav pull-right top-menu">
-      <li><a class="logout" href="login.html">Logout</a></li>
+      <li><a class="logout" href="/">꽃갈피 메인가기</a></li>
     </ul>
   </div>
 </header>
@@ -21,7 +21,7 @@
   <div id="sidebar" class="nav-collapse ">
     <!-- sidebar menu start-->
     <ul class="sidebar-menu" id="nav-accordion">
-      <h5 class="centered">Sam Soffes</h5>
+      <h5 class="centered">관리자 페이지</h5>
       {{-- <li class="mt">
         <a class="active" href="/ad_admin">
           <i class="fa fa-dashboard"></i>
@@ -31,22 +31,22 @@
       <li class="sub-menu">
         <a href="javascript:;">
           <i class="fa fa-book"></i>
-          <span>사용자 관리</span>
+          <span class="head_title"><strong>사용자 관리</strong></span>
           </a>
         <ul class="sub">
-          <li><a href="/ad_customer">구매자 관리</a></li>
-          <li><a href="/ad_seller">판매자 관리</a></li>
-          <li><a href="/ad_product">상품 세부관리</a></li>
+          <li class="head_sub_title"><a href="/ad_customer">구매자 관리</a></li>
+          <li class="head_sub_title"><a href="/ad_seller">판매자 관리</a></li>
+          <li class="head_sub_title"><a href="/ad_product">상품 세부관리</a></li>
           {{-- <li><a href="faq.html">FAQ</a></li> --}}
         </ul>
       </li>
       <li class="sub-menu">
         <a href="javascript:;">
           <i class="fa fa-th"></i>
-          <span>Coupon</span>
+          <span class="head_title"><strong>Coupon</strong></span>
           </a>
         <ul class="sub">
-          <li><a href="/ad_coupon">쿠폰 발급</a></li>
+          <li class="head_sub_title"><a href="/ad_coupon">쿠폰 발급</a></li>
         </ul>
       </li>
       {{-- <li class="sub-menu">

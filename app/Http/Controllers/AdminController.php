@@ -23,13 +23,7 @@ class AdminController extends Controller
     ->join('store_address','store.st_no', '=', 'store_address.st_no')
     ->select('*')->get();
 
-    $product = DB::table('seller')
-    ->join('store', 'seller.s_no', '=', 'store.seller_no')
-    ->join('store_address','store.st_no', '=', 'store_address.st_no')
-    ->join('product','store.st_no','=','product.store_no')
-    ->select('*')->get();
-
-    return view('admin.seller', compact('sellerall','product'));
+    return view('admin.seller', compact('sellerall'));
   }
 
   public function registraion($id){ // 판매자가 올린 사업자등록증 보여주기
@@ -57,7 +51,7 @@ class AdminController extends Controller
       'p_status' => '삭제'
     ]);
 
-    return redirect('/ad_seller');
+    return redirect('/ad_product');
   }
 
   public function ad_restore($id){ // 상품을 '등록' 상태로 만들기
@@ -66,7 +60,7 @@ class AdminController extends Controller
       'p_status' => '등록'
     ]);
 
-    return redirect('/ad_seller');
+    return redirect('/ad_product');
   }
 
   public function product(){ // 오늘 올라온 상품만 보여주기
@@ -78,7 +72,13 @@ class AdminController extends Controller
     ->join('product','store.st_no','=','product.store_no')
     ->select('*')->where('p_date',$today)->get();
 
-    return view('admin.product', compact('product'));
+    $products = DB::table('seller')
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('store_address','store.st_no', '=', 'store_address.st_no')
+    ->join('product','store.st_no','=','product.store_no')
+    ->select('*')->get();
+
+    return view('admin.product', compact('product','products'));
   }
 
   public function add_coupon(Request $request){

@@ -1,3 +1,16 @@
+.qna_total{
+  margin: 4em auto;
+  width: 60%;
+}
+.mytitle{
+  font-size: 2.2em;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.frequently{
+  margin-top: 50px;
+  letter-spacing: 1px;
+}
 .product-question-btn{
   height: 40px;
   cursor: pointer;
@@ -15,42 +28,42 @@ table.qna-table{
   width: 100%;
   border-top: 1px solid #ccc;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 1.1em;;
   font-weight: normal;
 }
 tr{
   height: 40px;
 }
 tr th{
+  color: #212121;
+  background-color: #C8DBCD;
+  opacity: 0.8;
   border-bottom: 1px solid #e5e5e5;
-  background-color: #f5f5f5;
   font-weight: normal;
+  height: 30px;
 }
 tr td{
-
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
-}
-td.qna-condition{
-  width: 10%;
-  font-size: 12px;
+  height: 35px;
 }
 td.qna-index{
-  width: 7%;
+  width: 15%;
 }
 td.qna-content{
-  width: 48%;
+  width: 50%;
   text-align: left;
   padding-left: 20px;
   padding-right: 20px;
 }
+td.qna-condition{
+  width: 10%;
+}
 td.qna-writer{
   width: 10%;
-  font-size: 12px;
 }
 td.qna-date{
   width: 15%;
-  font-size: 12px;
 }
 div#qna-inquiry1{
   margin: 0 auto;
@@ -86,32 +99,3 @@ button.qna-submit-cancel-btn
   border: 1px solid #dadada;
   width: 83.675px;
 }
-.frequently-qna{
-  width: 70%;
-
-  margin: 0 auto;
-}
-.frequently{
-  position: relative;
-  width: 1130px;
-  padding: 0 30px;
-  margin: 0 auto;
-}
-
-
-ul li{
-  list-style-type: none;
-  display: inline;
-  margin-left: 20px;
-}
-.page-item{
-display: inline-block;
-}
-.pagination{
-  text-align: center;
-}
-/* @media (max-width: /* write what you need, for me it's 560px */) {
-    ul.pagination li:not(.show-mobile) {
-        display: none;
-    }
-} */

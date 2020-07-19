@@ -28,7 +28,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> 구매자 관리</h3>
+        <h2><i class="fa fa-angle-right"></i> 구매자 관리</h2>
         <div class="row mt">
           <div class="col-lg-12">
 
