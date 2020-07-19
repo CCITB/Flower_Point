@@ -32,10 +32,10 @@ div.groupbox{
 
 /*head*/
 /* div.topheader{
-  height: 150px;
-  background-color: #262626;
-  position : relative;
-  margin-bottom: 20px;
+height: 150px;
+background-color: #262626;
+position : relative;
+margin-bottom: 20px;
 
 } */
 
@@ -99,7 +99,7 @@ div.orderbox{
   position: relative;
   margin-bottom: 30px;
   padding:10px;
-  height: 785px;
+  height: 755px;
 }
 .scroll-fixed{
   position: fixed;
@@ -129,8 +129,6 @@ table.tablebox{
 
 div.payresult{
   text-align: center;
-  padding: 20px 0px;
-  margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
   overflow: hidden;
@@ -191,6 +189,29 @@ div.pay_data{
   border-top: solid 1px #d6d6d6;
   margin-top:20px;
   padding:10px;
+}
+.pay_cash{
+  height: 60px;
+}
+.bt_ch{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  width: 6em;
+  height: 2em;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
+}
+.bt_ch:hover{
+  opacity: 1
 }
 
 div.line{
