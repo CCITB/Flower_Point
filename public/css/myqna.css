@@ -102,7 +102,7 @@ button.qna-submit-cancel-btn
 ul li{
   list-style-type: none;
   display: inline;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 .page-item{
 display: inline-block;
