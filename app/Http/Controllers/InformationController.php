@@ -411,6 +411,9 @@ class InformationController extends Controller
         $coupon2 = count($coupon);
         return view('coupon',compact('coupon','coupon2'));
       }
+      else{
+        return redirect('/');
+      }
     }
 
     public function recievecoupon(Request $request){

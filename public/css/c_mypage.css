@@ -19,7 +19,7 @@ body{
 /* ----- 내 정보 ----- */
 .privacy{
   width: 90%;
-  margin-top: 40px;
+  margin-top: 3em;
   font-size: 1.1em;
   letter-spacing: 1px;
 }

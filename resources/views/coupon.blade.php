@@ -19,7 +19,7 @@
   </style>
   @include('lib.header')
   <div class="couponwrap">
-    <h4>쿠폰</h4>
+    <h3>쿠폰</h3>
     고객님께서 보유하고있는 할인쿠폰을 확인하세요! 상품구매시 더욱 저렴하게 구매할 수 있습니다.
     <button type="button" name="button"><a href="/recievecoupon">쿠폰존 바로가기</a></button>
     <div class="supplement_coupon">
@@ -35,7 +35,7 @@
     <div class="coupon_list">
       <table class="type09">
         <tr>
-          나의 할인쿠폰 목록
+          <h3>나의 할인쿠폰 목록</h3>
         </tr>
         <tr>
           <th>쿠폰명</th>

@@ -24,7 +24,7 @@ div.allwrap{
   /* width: 100%;
   position: relative; */
   /* width: 90%; */
-  margin-top: 40px;
+  margin-top: 3em;
   font-size: 1.1em;
   letter-spacing: 1px;
 }
@@ -63,7 +63,6 @@ button.btn2{
 div.wrap2{
   position: relative;
   display: flex;
-  margin-bottom: 10px;
 }
 
 div.imgbox{

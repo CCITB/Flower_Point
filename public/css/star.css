@@ -68,3 +68,7 @@ table.table{
   color: gray;
   border-collapse: collapse;
 }
+
+h3{
+  margin-top: 3em;
+}
