@@ -135,7 +135,7 @@
               </table>
             </div>
 
-            <form id=nadress action="c_newaddress" onsubmit="return checkform()" method="post">
+            <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
               @csrf
               <div id="addresswrap" style="display:none;">
                 <div id="addressmodi">
@@ -156,7 +156,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" id="complete1" name="button" >수정완료</button>
+                <button type="submit" id="complete1"  name="button" >수정완료</button>
               </div>
             </form>
           </table>
@@ -428,6 +428,14 @@ function email_checkform(){
   else{
     alert("변경되었습니다");
     return true;
+  }
+}
+
+function address_checkform(){
+  var address = document.getElementById("postcode");
+  if((address.value)==""){
+    alert("새 주소를 입력해주세요");
+    return false;
   }
 }
 
