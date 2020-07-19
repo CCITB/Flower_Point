@@ -445,4 +445,20 @@ class InformationController extends Controller
       //사용불가능
       return response()->json(0);
     }
+
+
+      public function mypoint($id){
+
+        $cus = DB::table('customer')->where('c_no',$id)->get();
+
+        $myreview = DB::table('customer')->where('c_no',$id)
+        ->leftjoin('review','customer.c_no','=','review.customer_no')
+        ->get();
+
+        $myorder = DB::table('customer')->where('c_no',$id)
+        ->join('order','customer.c_no','=','order.customer_no')
+        ->get();
+
+        return view('mypage.mypoint',compact('cus','myreview','myorder'));
+      }
   }

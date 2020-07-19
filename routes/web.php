@@ -219,6 +219,9 @@ Route::post('/pd_cancel{id}', 'InformationController@pd_cancel');
 
 Route::post('/pd_point{id}', 'InformationController@pd_point');
 
+Route::get('/mypoint{id}', 'InformationController@mypoint');
+
+
 //결제
 // Route::get('/order{a}', 'PaymentController@payment');
 
