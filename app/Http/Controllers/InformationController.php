@@ -453,10 +453,13 @@ class InformationController extends Controller
 
         $myreview = DB::table('customer')->where('c_no',$id)
         ->leftjoin('review','customer.c_no','=','review.customer_no')
+        ->join('product','review.product_no','=','product.p_no')
+        ->orderBy('review.created_at', 'desc')
         ->get();
 
         $myorder = DB::table('customer')->where('c_no',$id)
         ->join('order','customer.c_no','=','order.customer_no')
+        ->orderBy('order.created_at', 'desc')
         ->get();
 
         return view('mypage.mypoint',compact('cus','myreview','myorder'));

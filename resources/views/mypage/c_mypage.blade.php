@@ -442,7 +442,7 @@ function showpoint(cno)
   window.name = "parentForm";
   // window.open("open할 window", "자식창 이름", "팝업창 옵션");
   openWin = window.open("/mypoint"+cno,
-  "childqna", "width=600px, height=800px, left=680px, top=100px ");
+  "childqna", "width=600px, height=800px, left=600px, top=100px ");
 }
 </script>
 
