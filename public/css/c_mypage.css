@@ -7,7 +7,7 @@ body{
 
 .myinfo {
   width: 60%;
-  margin: 0 auto;
+  margin: auto auto 35em auto;
 }
 .mytitle{
   font-size: 1.5em;

@@ -83,15 +83,15 @@
                       <th class="title" style="width:36px;">결제번호</th>
                       <th class="title" style="width:36px;">상품번호</th>
                       <th class="title">상품명</th>
-                      <th class="title" style="width:26px;">수량</th>
+                      <th class="title" style="width:28px;">수량</th>
                       <th class="add_title" style="width:106.6px;">송장번호</th>
                       <th class="title">택배사</th>
                       <!-- <th class="title">발송일</th> -->
                       <th class="title">주문 일시</th>
-                      <th class="title" style="width:38px;">고객명</th>
-                      <th class="title" style="width:25.8px;">가격</th>
-                      <th class="pm_title" style="width:39px;">결제 상태</th>
-                      <th class="pm_title" style="width:39px;">배송 상태</th>
+                      <th class="title" style="width:41px;">고객명</th>
+                      <th class="title" style="width:29px;">가격</th>
+                      <th class="pm_title" style="width:45.5px;">결제 상태</th>
+                      <th class="pm_title" style="width:43.8889px;">배송 상태</th>
                       <th class="title" style="width:37px;">배송 조회</th>
                       <!-- <th class="title"></th> -->
                     </tr>

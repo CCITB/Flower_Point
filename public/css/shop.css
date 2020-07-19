@@ -8,6 +8,10 @@ html, body{
   letter-spacing: 1px;
 }
 
+tbody{
+  letter-spacing: 1px;
+}
+
 div.mytitle{
   font-size: 1.5em;
   font-weight: bold;
@@ -29,7 +33,7 @@ div.myinfo{
     /* width: 70%;
     position: relative;
     margin: 0 auto; */
-    height: 60em;
+    height: 75em;
     width: 60%;
     margin: 0 auto;
 }
@@ -186,11 +190,11 @@ div.delivery_wrap2{
 
 div.thcell{
   padding: 22px;
-  font-size: 15px;
+  font-size: 17px;
   /* border-right: 1px solid #e5e5e5; */
   background: #f9f9f9;
   text-align: left;
-  letter-spacing: -1px;
+  letter-spacing: 1px;
 }
 
 div.tdcell{
@@ -397,7 +401,7 @@ input.addr_input{
 }
 td.upload{
   border-bottom: 1px solid #e5e5e5;
-  font-size: 14px;
+  font-size: 17px;
   height: 30px;
   text-align: center;
 }
