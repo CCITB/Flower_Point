@@ -1,6 +1,14 @@
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  font-family: 'Cafe24Oneprettynight';
+}
+
 div.myoderlist-wrap{
   height:80em;
+  width:85em;
   margin-bottom: 30px;
+  margin-left:74px;
 }
 input.num{
   width:90%;
@@ -28,7 +36,7 @@ button.ordercheck{
 }
 .sellerorderlist{
   width: 90%;
-  margin: 0 auto;
+  margin: 65px auto;
 }
 .orderspace{
   width: 3%;
@@ -71,10 +79,10 @@ tr{
   text-align: center;
 }
 /* th.title{
-  background-color: #f5f5f5;
-  font-weight: normal;
-  border-top: 1px solid gray;
-  /* width : 60px; }*/
+background-color: #f5f5f5;
+font-weight: normal;
+border-top: 1px solid gray;
+/* width : 60px; }*/
 
 
 td#p_name{
@@ -84,10 +92,10 @@ td#date{
   width: 5%;
 }
 /* td#pm_status{
-  font-size:15px;
+font-size:15px;
 }
 td#d_status{
-  padding :
+padding :
 } */
 table#myTable{
   font-size:13px;
@@ -100,3 +108,36 @@ tr.p_tr{
   opacity:0.8;
   border-bottom: 1px solid #8C8C8C;
 }
+td.order_list{
+  font-weight: 700;
+  font-size:17px;
+}
+td.order_cnt{
+  font-size:17px;
+}
+/*상단 주문관리*/
+.order_line{
+  /* width: 955px; */
+  padding: 0 30px;
+  position: relative;
+  /* width: 1130px; */
+  margin: 0 auto;
+  margin-top: 90px;
+  margin-bottom: 8px;
+}
+div.mytitle{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  margin-right: 20px;
+}
+#tbody{
+  background: gray;
+}
+tr{
+  font-size:15px;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 9px;
+  }

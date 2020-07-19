@@ -16,9 +16,9 @@
 <body>
   @include('lib.header')
   <div class="myoderlist-wrap">
-    <div class="hr-line">
+    <div class="order_line">
       <div id="line">
-        <h2>나의 주문관리</h2>
+        <div class="mytitle">나의 주문관리</div>
         <hr>
         <table>
           <tr>
@@ -27,183 +27,184 @@
             <td class="ordercount">0</td>
             <td class="orderspace">건</td> -->
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery1.png"/></td>
-            <td class="orderblink">배송준비</td>
-            <td class="ordercount"><div id="shipping_wait_cnt"><p align="right">{{$d_wait}}</p></div></td>
-            <td class="orderspace">건</td>
+            <td class="order_list">배송준비</td>
+            <td class="order_num"><div id="shipping_wait_cnt"><p align="right">{{$d_wait}}</p></div></td>
+            <td class="order_cnt">건</td>
             <td rowspan="3" class="orderpicture"><img width="100px"height="100px" src="/imglib/delivery2.png"/></td>
             <!-- <td class="orderblink">취소요청</td> -->
-            <td class="orderblink">결제대기</td>
-            <td class="ordercount"><div id="payment_wait_cnt"><p id="rightsort" align="right">{{$pm_wait}}</p></div></td>
-            <td class="orderspace">건</td>
+            <td class="order_list">결제대기</td>
+            <td class="order_num"><div id="payment_wait_cnt"><p id="rightsort" align="right">{{$pm_wait}}</p></div></td>
+            <td class="order_cnt">건</td>
           </tr>
           <tr>
-            <td>배송중</td>
-            <td><div id="delivery_cnt"><p id="rightsort" align="right">{{$d_ing}}<p></div></td>
-            <td>건</td>
-            <td>반품요청</td>
-            <td><p id="rightsort" align="right">0<p></td>
-            <td>건</td>
-          </tr>
-          <tr>
-            <!-- <td>오늘출발</td>
-            <td>0</td>
-            <td>건</td> -->
-            <td>배송완료</td>
-            <td><div id="complete_cnt"><p id="rightsort" align="right">{{$d_complete}}</p></div></td>
-            <td>건</td>
-            <td>교환요청</td>
-            <td><p id="rightsort" align="right">0</p></td>
-            <td>건</td>
-          </tr>
-        </table>
-      </div>
-
-    </div>
-    <div class="myorderlist">
-      <div class="myorderlist-top">
-        <div class="myorderlist-infor">
-
-          @if(count($order))
-          <div class="sellerorderlist">
-            <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
-            <div class="orderlist-bottom">
-              <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
-              <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
-            </div>
-
-            <!--button에 따라 action값 변경 -->
-            <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
-            @csrf
-
-            <table id="myTable">
-              <thead>
-                <tr class="p_tr">
-                  <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
-                  <th class="title">주문번호</th>
-                  <th class="title">결제번호</th>
-                  <th class="title">상품번호</th>
-                  <th class="title">상품명</th>
-                  <th class="title">수량</th>
-                  <th class="title">송장번호</th>
-                  <th class="title">택배사</th>
-                  <!-- <th class="title">발송일</th> -->
-                  <th class="title">주문일시</th>
-                  <th class="title">고객명</th>
-                  <th class="title">가격</th>
-                  <th class="title">결제상태</th>
-                  <th class="title">배송상태</th>
-                  <th class="title">배송조회</th>
-                  <!-- <th class="title"></th> -->
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($order as $order)
-                <tr>
-                  <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
-                  <td>{{$order->o_no}}</td>
-                  <td>{{$order->pm_no}}</td>
-                  <td>{{$order->p_no}}</td>
-                  <td id="p_name">{{$order->p_name}}</td>
-                  <td>{{$order->pm_count}}</td>
-
-                  <!--데이터값 존재x-->
-                  @if(!isset($order->pm_invoice_num))
-                  <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
-
-                  <!--데이터값 존재-->
-                  @else
-                  <td>
-                    <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button class="re_invoice_btn"id="re_invoice_btn">수정</button></div>
-                    <!-- <div id="editform" name="editform"> -->
-                    <!-- {{$order->pm_invoice_num}} -->
-                    <!-- </div>
-                    <div id="editbtn" name="editbtn">
-                    <button id="btn" name="btn" class="re_btn" type="button">수정</button>
-                  </div> -->
-                </td>
-                @endif
-
-                <!--배송업체가 없을 경우 -->
-                @if(!isset($order->pm_company))
-                <td id="select">
-                  <div class="selectbox" id="selectbox">
-                    <select id="delivery" class="select" name=delivery margin-left:10px;>
-                      <option value="">택배 선택</option>
-                      <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
-                      {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
-                      <option value="로젠택배" id="kr.logen">로젠택배</option>
-                      <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
-                      <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
-                      <option value="한진택배" id="kr.hanjin">한진택배</option>
-                      <option value="경동택배" id="kr.kdexp">경동택배</option>
-                      <option value="대신택배" id="kr.daesin">대신택배</option>
-                      <option value="합동택배" id="kr.hdexp">합동택배</option>
-                      <option value="천일택배" id="kr.chunilps">천일택배</option>
-                    </select>
-                  </div>
-                </td>
-
-                <!-- 배송업체가 존재할 경우 -->
-                @else
-                <td>
-                  <div id="div_delivery{{$order->pm_no}}"style="display:block;">
-                    <p id="re_delivery{{$order->pm_no}}">{{$order->pm_company}}</p>
-                    <button class="re_delivery_btn" id="re_delivery_btn">수정</button>
-                  </div>
-
-                  {{-- display non 상태 --}}
-                  <div class="re_selectbox" id="re_selectbox{{$order->pm_no}}" style="display:none;">
-                    <select id="re_delivery{{$order->pm_no}}" class="re_select" name=delivery margin-left:10px;>
-                      <option value="">택배 선택</option>
-                      <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
-                      <option value="로젠택배" id="kr.logen">로젠택배</option>
-                      <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
-                      <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
-                      <option value="한진택배" id="kr.hanjin">한진택배</option>
-                      <option value="경동택배" id="kr.kdexp">경동택배</option>
-                      <option value="대신택배" id="kr.daesin">대신택배</option>
-                      <option value="합동택배" id="kr.hdexp">합동택배</option>
-                      <option value="천일택배" id="kr.chunilps">천일택배</option>
-                    </select>
-                    <button class="re_select_btn" id="re_select_btn">수정하기</button>
-                  </div>
-                </td>
-                @endif
-                <!-- <td>2020.04.16</td> -->
-                <td id="date">{{$order->created_at}}</td>
-                <td>{{$order->c_name}}</td>
-                <td>{{$order->pm_pay}}</td>
-                <td class="pm_status" id="pm_status">{{$order->pm_status}}</td>
-                <td id="pm_d_status" value="{{$order->pm_d_status}}">{{$order->pm_d_status}}</td>
-
-                @if(isset($order->pm_company))
-                <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
-                <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td> -->
-                <td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
-                @else
-                <td id="delivery_search"></td>
-                @endif
-                <!-- <td><button type="submit" name="button">저장</button></td> -->
+            <td class="order_list">배송중</td>
+            <td class="order_num"><div id="delivery_cnt"><p id="rightsort" align="right">{{$d_ing}}<p></div></td>
+              <td class="order_cnt">건</td>
+              <td class="order_list">반품요청</td>
+              <td class="order_num"><p id="rightsort" align="right">0<p></td>
+                <td class="order_cnt">건</td>
               </tr>
-              @endforeach
-            </tbody>
-          </table>
-          <!-- </form> -->
-        </div>
-        @else
-        <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
-          <div class="" style="top:180px; position:absolute; left:300px; ">
-            주문목록이 없습니다.
+              <tr>
+                <!-- <td>오늘출발</td>
+                <td>0</td>
+                <td>건</td> -->
+                <td class="order_list">배송완료</td>
+                <td class="order_num"><div id="complete_cnt"><p id="rightsort" align="right">{{$d_complete}}</p></div></td>
+                <td class="order_cnt">건</td>
+                <td class="order_list">교환요청</td>
+                <td class="order_num"><p id="rightsort" align="right">0</p></td>
+                <td class="order_cnt">건</td>
+              </tr>
+            </table>
           </div>
         </div>
-        @endif
+
+        <div class="myorderlist">
+          <div class="myorderlist-top">
+            <div class="myorderlist-infor">
+
+              @if(count($order))
+              <div class="sellerorderlist">
+                <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
+                <div class="orderlist-bottom">
+                  <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
+                  <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
+                </div>
+
+                <!--button에 따라 action값 변경 -->
+                <!-- <form class="order_list" id="order_list" action="" method="post" onsubmit=""> -->
+                @csrf
+
+                <table id="myTable">
+                  <thead>
+                    <tr class="p_tr">
+                      <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
+                      <th class="title" style="width:36px;">주문번호</th>
+                      <th class="title" style="width:36px;">결제번호</th>
+                      <th class="title" style="width:36px;">상품번호</th>
+                      <th class="title">상품명</th>
+                      <th class="title" style="width:26px;">수량</th>
+                      <th class="add_title" style="width:106.6px;">송장번호</th>
+                      <th class="title">택배사</th>
+                      <!-- <th class="title">발송일</th> -->
+                      <th class="title">주문 일시</th>
+                      <th class="title" style="width:38px;">고객명</th>
+                      <th class="title" style="width:25.8px;">가격</th>
+                      <th class="pm_title" style="width:39px;">결제 상태</th>
+                      <th class="pm_title" style="width:39px;">배송 상태</th>
+                      <th class="title" style="width:37px;">배송 조회</th>
+                      <!-- <th class="title"></th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($order as $order)
+                    <tr id="tbody{{$order->pm_no}}">
+                      <td><input type="checkbox" class="checkf" id="ordercheck{{$order->pm_no}}" name="checkRow" value=""/></td>
+                      <td>{{$order->o_no}}</td>
+                      <td>{{$order->pm_no}}</td>
+                      <td>{{$order->p_no}}</td>
+                      <td id="p_name">{{$order->p_name}}</td>
+                      <td>{{$order->pm_count}}</td>
+
+                      <!--데이터값 존재x-->
+                      @if(!isset($order->pm_invoice_num))
+                      <td><input type="text" class="num" id="invoice_num{{$order->pm_no}}" name="invoice_num"></td>
+
+                      <!--데이터값 존재-->
+                      @else
+                      <td>
+                        <div id="div_invoice{{$order->pm_no}}"><p id="re_invoice{{$order->pm_no}}">{{$order->pm_invoice_num}}</p><button class="re_invoice_btn"id="re_invoice_btn">수정</button></div>
+                        <!-- <div id="editform" name="editform"> -->
+                        <!-- {{$order->pm_invoice_num}} -->
+                        <!-- </div>
+                        <div id="editbtn" name="editbtn">
+                        <button id="btn" name="btn" class="re_btn" type="button">수정</button>
+                      </div> -->
+                    </td>
+                    @endif
+
+                    <!--배송업체가 없을 경우 -->
+                    @if(!isset($order->pm_company))
+                    <td id="select">
+                      <div class="selectbox" id="selectbox">
+                        <select id="delivery" class="select" name=delivery margin-left:10px;>
+                          <option value="">택배 선택</option>
+                          <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
+                          {{-- <option value="CJ대한통운" id="kr.cjlogistics" >CJ대한통운</option> --}}
+                          <option value="로젠택배" id="kr.logen">로젠택배</option>
+                          <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
+                          <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
+                          <option value="한진택배" id="kr.hanjin">한진택배</option>
+                          <option value="경동택배" id="kr.kdexp">경동택배</option>
+                          <option value="대신택배" id="kr.daesin">대신택배</option>
+                          <option value="합동택배" id="kr.hdexp">합동택배</option>
+                          <option value="천일택배" id="kr.chunilps">천일택배</option>
+                        </select>
+                      </div>
+                    </td>
+
+                    <!-- 배송업체가 존재할 경우 -->
+                    @else
+                    <td>
+                      <div id="div_delivery{{$order->pm_no}}"style="display:block;">
+                        <p id="re_delivery{{$order->pm_no}}">{{$order->pm_company}}</p>
+                        <button class="re_delivery_btn" id="re_delivery_btn">수정</button>
+                      </div>
+
+                      <!-- display non 상태 -->
+                      <div class="re_selectbox" id="re_selectbox{{$order->pm_no}}" style="display:none;">
+                        <select id="re_delivery{{$order->pm_no}}" class="re_select" name=delivery margin-left:10px;>
+                          <option value="">택배 선택</option>
+                          <option value="우체국택배" id="kr.epost" name="우체국 택배" tel="+8215881300">우체국택배</option>
+                          <option value="로젠택배" id="kr.logen">로젠택배</option>
+                          <option value="CU편의점택배" id="kr.cupost">CU편의점택배</option>
+                          <option value="GSPostbox택배" id="kr.cvsnet">GSPostbox택배</option>
+                          <option value="한진택배" id="kr.hanjin">한진택배</option>
+                          <option value="경동택배" id="kr.kdexp">경동택배</option>
+                          <option value="대신택배" id="kr.daesin">대신택배</option>
+                          <option value="합동택배" id="kr.hdexp">합동택배</option>
+                          <option value="천일택배" id="kr.chunilps">천일택배</option>
+                        </select>
+                        <button class="re_select_btn" id="re_select_btn">수정하기</button>
+                      </div>
+                    </td>
+                    @endif
+                    <!-- <td>2020.04.16</td> -->
+                    <td id="date">{{$order->created_at}}</td>
+                    <td>{{$order->c_name}}</td>
+                    <td>{{$order->pm_pay}}</td>
+                    <td class="pm_status" id="pm_status">{{$order->pm_status}}</td>
+                    <td id="pm_d_status" value="{{$order->pm_d_status}}">{{$order->pm_d_status}}</td>
+
+                    @if(isset($order->pm_company))
+                    <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='http://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=API_KEY&t_code=04&t_invoice=380448983861'">배송조회</button></td> -->
+                    <!-- <td id="delivery_search"><button id="delivery_search_btn" onclick="location.href='https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'">배송조회</button></td> -->
+                    <td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$order->delivery_code}}/{{$order->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
+                    @else
+                    <td id="delivery_search"></td>
+                    @endif
+                    <!-- <td><button type="submit" name="button">저장</button></td> -->
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <!-- </form> -->
+            </div>
+            @else
+            <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+              <div class="" style="top:180px; position:absolute; left:300px; ">
+                주문목록이 없습니다.
+              </div>
+            </div>
+            @endif
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-@include('lib.footer')
-</body>
-</html>
+
+    @include('lib.footer')
+  </body>
+  </html>
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
@@ -232,6 +233,20 @@ $(document).ready(function(){
     }
   });
 
+  // $("input:checkbox[name=checkRow]").each(function(index,elements){
+  //   var index_no = elements.id;
+  //   var indexs = index_no.replace(/[^0-9]/g,"");
+  //
+  //   var dv_status_str =[];
+  //   dv_status_str.push($('#'+index_no).parent().parent().children('#pm_d_status').text());
+  //   // //배송 상태의 문자를 담은 배열
+  //
+  //   console.log($('#tbody'+indexs));
+  //
+  //   if(dv_status_str[index]=="배송 완료"){
+  //     $('#tbody'+indexs).css('background','gray');
+  //   }
+  // });
 
   // //결제 상태의 문자를 담은 배열
   // var pm_status_str =[];
