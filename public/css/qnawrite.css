@@ -1,4 +1,10 @@
 /* 박소현 */
+/* @font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
+} */
 /* 문의하기 자식창 */
 .qna_all{
   padding-left: 15px;
@@ -10,10 +16,6 @@
   margin-bottom: 20px;
 }
 
-
-.middle{
-
-}
 .info1{
   font-size: 13px;
   text-align: center;
@@ -110,8 +112,5 @@ td{
   margin-top: 20px;
   text-align: center;
 }
-
-
-
 
 /* 답변하기 자식창 끝 */

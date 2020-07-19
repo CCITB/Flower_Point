@@ -162,332 +162,345 @@
           </table>
 
           <div class="walletwrap">
-            <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"></div>
             @foreach ($data3 as $data3)
+            <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"><input class="bt_ch" type="button" value="포인트 적립내역" onclick="showpoint({{$data3->c_no}});" name="mpoint"></div>
 
               <div class="mymoney">
                 보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원
+              </div>
+              <div class="mypoint">
+                보유 포인트 : <strong>{{number_format($data3->c_point)}}</strong>원
               </div>
             @endforeach
           </div>
 
 
-          <div class="myorder">
-            <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
-            <div class="ordertable">
-              @if(count($data2))
-                <table class="order" border="0" width="100%">
-                  <thead>
-                    <tr class="p_tr">
-                      <th>상품이미지</th>
-                      <th>주문날짜</th>
-                      <th>주문번호</th>
-                      <th>결제번호</th>
-                      <th>상품명</th>
-                      <th>수량</th>
-                      <th>구매금액</th>
-                      <th>주문처리상태</th>
-                      <th>후기 작성</th>
-                      <th>구매 확정</th>
-                      <th>배송조회</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($data2 as $data2)
-                      <tr>
-                        <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
-                        <td>{{$data2->pm_date}}</td>
-                        <td><a href="product/{{$data2->p_no}}">{{$data2->o_no}}</a></td>
-                        <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
-                        <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
-                        <td>{{$data2->pm_count}}</td>
-                        <td>{{$data2->pm_pay}}</td>
-                        <td>{{$data2->pm_d_status}}</td>
-                        @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
-                          @if(!isset($data2->payment_no))
-                            <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
-                          @else
-                            <td>작성완료</td>
-                          @endif
-                        @else
-                          <td></td>
-                        @endif
-                        @if($data2->pm_status == '결제 대기')
-                          <td>
-                            {{-- <form action="/pd_cancel{{$data2->pm_no}}" method="post">
-                              @csrf --}}
-                              <input type="submit" class="cancel" value="결제 취소">
-                            {{-- </form> --}}
-                          </td>
+          {{-- <div class="myorder">
+          <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
+          <div class="ordertable">
+          @if(count($data2))
+          <table class="order" border="0" width="100%">
+          <thead>
+          <tr class="p_tr">
+          <th>상품이미지</th>
+          <th>주문날짜</th>
+          <th>주문번호</th>
+          <th>결제번호</th>
+          <th>상품명</th>
+          <th>수량</th>
+          <th>구매금액</th>
+          <th>주문처리상태</th>
+          <th>후기 작성</th>
+          <th>구매 확정</th>
+          <th>배송조회</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach ($data2 as $data2)
+      <tr>
+      <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
+      <td>{{$data2->pm_date}}</td>
+      <td><a href="product/{{$data2->p_no}}">{{$data2->o_no}}</a></td>
+      <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
+      <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
+      <td>{{$data2->pm_count}}</td>
+      <td>{{$data2->pm_pay}}</td>
+      <td>{{$data2->pm_d_status}}</td>
+      @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
+      @if(!isset($data2->payment_no))
+      <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
+    @else
+    <td>작성완료</td>
+  @endif
+@else
+<td></td>
+@endif
+@if($data2->pm_status == '결제 대기')
+<td> --}}
+{{-- <form action="/pd_cancel{{$data2->pm_no}}" method="post">
+@csrf --}}
+{{-- <input type="submit" class="cancel" value="결제 취소"> --}}
+{{-- </form> --}}
+{{-- </td>
 
-                        @elseif($data2->pm_d_status == '배송중')
-                          <td>
-                            <form action="/pd_point{{$data2->p_price}}" method="post">
-                              <input type="hidden" name="hidden" value="{{$data2->pm_no}}">
-                              @csrf
-                              <input type="submit" id="confirm" value="구매확정">
-                            </form>
-                          </td>
-                        @elseif($data2->pm_status == '구매 확정')
-                          <td>구매확정 완료</td>
-                        @elseif($data2->pm_status == '결제 취소')
-                          <td>결제 취소</td>
-                        @else
-                          <td></td>
-                        @endif
-                        @if(isset($data2->pm_company))
-                        <td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$data2->delivery_code}}/{{$data2->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
-                        @else
-                        <td id="delivery_search"></td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+@elseif($data2->pm_d_status == '배송중')
+<td>
+<form action="/pd_point{{$data2->p_price}}" method="post">
+<input type="hidden" name="hidden" value="{{$data2->pm_no}}">
+@csrf
+<input type="submit" id="confirm" value="구매확정">
+</form>
+</td>
+@elseif($data2->pm_status == '구매 확정')
+<td>구매확정 완료</td>
+@elseif($data2->pm_status == '결제 취소')
+<td>결제 취소</td>
+@else
+<td></td>
+@endif
+@if(isset($data2->pm_company))
+<td id="delivery_search"><button id="delivery_search_btn" onclick="window.open('https://tracker.delivery/#/{{$data2->delivery_code}}/{{$data2->pm_invoice_num}}'),'배송조회',width='300px',height='300px'">배송조회</button></td>
+@else
+<td id="delivery_search"></td>
+@endif
+</tr>
+@endforeach
+</tbody>
+</table>
 
-              @else
-                <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
-                  <div class="" style="top:180px; position:absolute; left:300px; ">
-                    주문목록이 없습니다.
-                  </div>
-                </div>
-              @endif
-            </div>
-          </div>
+@else
+<div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
+<div class="" style="top:180px; position:absolute; left:300px; ">
+주문목록이 없습니다.
+</div>
+</div>
+@endif
+</div>
+</div> --}}
 
-          <div class="myreview">
-            <div class="mytitle" align="left">나의후기</div>
-            <table class="table_review">
-              <tr class="r_tr">
-                <th class="r_pname">상품명</th>
-                <th class="r_con">후기</th>
-              </tr>
-              @foreach ($my as $re)
-                <tr class="r_tr">
-                  <td class="r_td">{{$re->p_name}}</td>
-                  <td class="r_td">{{$re->r_contents}}</td>
-                </tr>
-              @endforeach
-            </table>
-          </div>
-        </div>
+<div class="myreview">
+  <div class="mytitle" align="left">내 후기</div>
+  <table class="table_review">
+    <tr class="r_tr">
+      <th class="r_pname">상품명</th>
+      <th class="r_con">후기</th>
+    </tr>
+    @foreach ($my as $re)
+      <tr class="r_tr">
+        <td class="r_td">{{$re->p_name}}</td>
+        <td class="r_td">{{$re->r_contents}}</td>
+      </tr>
+    @endforeach
+  </table>
+</div>
+</div>
 
-        @include('lib.footer')
-        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
-        <script type="text/javascript">
+@include('lib.footer')
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
 
-        function info_modification(s,ss){
-          if(s == "연락처수정"){
-            document.getElementById(ss).style.display="block"
-            modinum.style.display="none";
-          }
-          else if(s == "이메일수정"){
-            document.getElementById(ss).style.display="block"
-            modiemail.style.display="none";
-          }
-          else if(s == "주소수정"){
-            document.getElementById(ss).style.display="block"
-            modiaddress.style.display="none";
-          }
-          else if(s == "비밀번호수정"){
-            document.getElementById(ss).style.display="block"
-            modiaddress.style.display="none";
-          }
-        }
+function info_modification(s,ss){
+  if(s == "연락처수정"){
+    document.getElementById(ss).style.display="block"
+    modinum.style.display="none";
+  }
+  else if(s == "이메일수정"){
+    document.getElementById(ss).style.display="block"
+    modiemail.style.display="none";
+  }
+  else if(s == "주소수정"){
+    document.getElementById(ss).style.display="block"
+    modiaddress.style.display="none";
+  }
+  else if(s == "비밀번호수정"){
+    document.getElementById(ss).style.display="block"
+    modiaddress.style.display="none";
+  }
+}
 
-        function showPopup() {
-          var url="charge_popup";
-          var option="width=700, height=400, top=200"
-          window.open(url, "", option);
-        }
-
-
-        function div_show(s,ss){
-          if(s == "주소수정"){
-            document.getElementById(ss).style.display="block";
-            ad.style.display="none";
-            complete1.style.display="block";
-            addresswrap.style.display="block";
-          }
-        }
-
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-
-        function check_password(){
-          var a = document.getElementById("origin_password");
-
-          if((a.value)==""){
-            $('#password_check').text("Password를 입력해주세요.");
-            $('#password_check').css('color', 'red');
-            $("#origin_password").focus();
-            $("#new_pw").attr("disabled", "disabled")
-            return false;
-          }
-
-          var origin_password = $('#origin_password').val();
-          $.ajax({
-
-            type: 'post',
-            url: 'check_pw',
-            dataType: 'json',
-            data:{
-              "input_password" : origin_password
-            },
-
-            success : function(data) {
-              if(data==0){
-                $('#password_check').text("Password가 일치하지 않습니다.");
-                $('#password_check').css('color', 'red');
-                $("#origin_password").focus();
-                $("#new_pw").attr("disabled", "disabled");
-              }
-              else if(data==1){
-                document.getElementById('password_check').style.display="none";
-                $("#new_pw").removeAttr("disabled");
-                $("#new_pw").focus();
-                $("#origin_password").attr("disabled", "disabled");
-              }
-            }
-            ,error : function()
-            {}
-          });
-        }
+function showPopup() {
+  var url="charge_popup";
+  var option="width=700, height=400, top=100, left=50px"
+  window.open(url, "", option);
+}
 
 
+function div_show(s,ss){
+  if(s == "주소수정"){
+    document.getElementById(ss).style.display="block";
+    ad.style.display="none";
+    complete1.style.display="block";
+    addresswrap.style.display="block";
+  }
+}
 
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
-        $('#confirm').click(function(){
-          var test = confirm("구매를 확정하시겠습니까?");
-          if(test == true){
-            alert("구매가 확정되었습니다.");
-          }else{
-            return false;
-          }
-        });
-        function pw_checkform(){
-          var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
-          // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+function check_password(){
+  var a = document.getElementById("origin_password");
 
+  if((a.value)==""){
+    $('#password_check').text("Password를 입력해주세요.");
+    $('#password_check').css('color', 'red');
+    $("#origin_password").focus();
+    $("#new_pw").attr("disabled", "disabled")
+    return false;
+  }
 
-          // var num =  /^[0-9]{3,4}$/;
-          var password = document.getElementById("new_pw");
+  var origin_password = $('#origin_password').val();
+  $.ajax({
 
-          if(!regex.test(password.value)){
-            alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
-            return false;
-          }
-          else{
-            alert('변경되었습니다');
-            return true;
-          }
-        }
+    type: 'post',
+    url: 'check_pw',
+    dataType: 'json',
+    data:{
+      "input_password" : origin_password
+    },
 
-        function phonenum_checkform(){
-          var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
-          var middlenum = document.getElementById("delivery_tel_no2");
-          var lastnum = document.getElementById("delivery_tel_no3");
-          var num =  /^[0-9]{3,4}$/;
-          // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
-          // var phonenum = document.getElementById("new_num");
-          if(!num.test(middlenum.value)){
-            alert('중간 4자리의 숫자를 입력해주세요')
-            return false;
-          }
-          if(special.test(middlenum.value)){
-            alert('숫자만 입력해주세요.')
-            return false;
-          }
-          if(!num.test(lastnum.value)){
-            alert('뒤 4자리의 숫자를 입력해주세요')
-            return false;
-          }
-          if(special.test(lastnum.value)){
-            alert('숫자만 입력해주세요.');
-          }
-          else {
-            alert("변경되었습니다");
-            return true;
-          }
-        }
-
-        function email_checkform(){
-          var email = document.getElementById("new_email");
-          var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
-          if(!emailcheck.test(email.value)){
-            alert("올바른 형식의 이메일을 입력해주세요");
-            return false;
-          }
-          else{
-            alert("변경되었습니다");
-            return true;
-          }
-        }
-
-        function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
-          var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
-        }
-        </script>
-
-      @endif
-    </body>
-    </html>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
-    <script type="text/javascript">
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    success : function(data) {
+      if(data==0){
+        $('#password_check').text("Password가 일치하지 않습니다.");
+        $('#password_check').css('color', 'red');
+        $("#origin_password").focus();
+        $("#new_pw").attr("disabled", "disabled");
       }
-    });
-
-    $('.cancel').click(function(){
-      var tdArr = new Array();    // 배열 선언
-      var checkBtn = $(this);
-      var tr = checkBtn.parent().parent();
-      var td = tr.children();
-      var number = td.eq(3).text();
-
-      $.ajax({
-        type: 'post',
-        url: '/refund',
-        dataType: 'json',
-        data: { "number" : number,
-       },
-        success: function(data) {
-          console.log(data);
-          // return false;
-          if(data==1){
-          alert('취소되었습니다.');
-          location.reload();
-        }
-      },
-        error: function() {
-          console.log('실패');
-        }
-      });
-    });
+      else if(data==1){
+        document.getElementById('password_check').style.display="none";
+        $("#new_pw").removeAttr("disabled");
+        $("#new_pw").focus();
+        $("#origin_password").attr("disabled", "disabled");
+      }
+    }
+    ,error : function()
+    {}
+  });
+}
 
 
-    // $(document).ready(function(){
-    //   $(".order").DataTable({
-    //     "language": {
-    //       "emptyTable": "데이터가 없습니다.",
-    //       "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-    //       "info": "현재 _START_ - _END_ / _TOTAL_건",
-    //       "infoEmpty": "데이터 없음",
-    //       "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
-    //       "search": "검색",
-    //       "zeroRecords": "일치하는 데이터가 없습니다.",
-    //       "loadingRecords": "로딩중...",
-    //       "processing":     "잠시만 기다려 주세요...",
-    //       "paginate": { "next": "다음", "previous": "이전"  }
-    //     }
-    //   });
-    // });
-    </script>
-    <!--POST API Link -->
-    <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>
+
+
+$('#confirm').click(function(){
+  var test = confirm("구매를 확정하시겠습니까?");
+  if(test == true){
+    alert("구매가 확정되었습니다.");
+  }else{
+    return false;
+  }
+});
+function pw_checkform(){
+  var regex = /^[A-Za-z0-9!\@\#\$\%\^\&\*]{8,16}$/;
+  // var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+
+
+  // var num =  /^[0-9]{3,4}$/;
+  var password = document.getElementById("new_pw");
+
+  if(!regex.test(password.value)){
+    alert(' 문자 / 숫자를 포함한 8~16자리 이내의 비밀번호를 입력해주세요');
+    return false;
+  }
+  else{
+    alert('변경되었습니다');
+    return true;
+  }
+}
+
+function phonenum_checkform(){
+  var special = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"\s]/gi;
+  var middlenum = document.getElementById("delivery_tel_no2");
+  var lastnum = document.getElementById("delivery_tel_no3");
+  var num =  /^[0-9]{3,4}$/;
+  // var regExp = /^\d{3,4}\d{3,4}\d{4}$/;
+  // var phonenum = document.getElementById("new_num");
+  if(!num.test(middlenum.value)){
+    alert('중간 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(special.test(middlenum.value)){
+    alert('숫자만 입력해주세요.')
+    return false;
+  }
+  if(!num.test(lastnum.value)){
+    alert('뒤 4자리의 숫자를 입력해주세요')
+    return false;
+  }
+  if(special.test(lastnum.value)){
+    alert('숫자만 입력해주세요.');
+  }
+  else {
+    alert("변경되었습니다");
+    return true;
+  }
+}
+
+function email_checkform(){
+  var email = document.getElementById("new_email");
+  var emailcheck = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/
+  if(!emailcheck.test(email.value)){
+    alert("올바른 형식의 이메일을 입력해주세요");
+    return false;
+  }
+  else{
+    alert("변경되었습니다");
+    return true;
+  }
+}
+
+function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
+  var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
+}
+
+var openWin;
+function showpoint(cno)
+{
+  // window.name = "부모창 이름";
+  window.name = "parentForm";
+  // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+  openWin = window.open("/mypoint"+cno,
+  "childqna", "width=600px, height=800px, left=600px, top=100px ");
+}
+</script>
+
+@endif
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+<script type="text/javascript">
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$('.cancel').click(function(){
+  var tdArr = new Array();    // 배열 선언
+  var checkBtn = $(this);
+  var tr = checkBtn.parent().parent();
+  var td = tr.children();
+  var number = td.eq(3).text();
+
+  $.ajax({
+    type: 'post',
+    url: '/refund',
+    dataType: 'json',
+    data: { "number" : number,
+  },
+  success: function(data) {
+    console.log(data);
+    // return false;
+    if(data==1){
+      alert('취소되었습니다.');
+      location.reload();
+    }
+  },
+  error: function() {
+    console.log('실패');
+  }
+});
+});
+
+
+// $(document).ready(function(){
+//   $(".order").DataTable({
+//     "language": {
+//       "emptyTable": "데이터가 없습니다.",
+//       "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+//       "info": "현재 _START_ - _END_ / _TOTAL_건",
+//       "infoEmpty": "데이터 없음",
+//       "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
+//       "search": "검색",
+//       "zeroRecords": "일치하는 데이터가 없습니다.",
+//       "loadingRecords": "로딩중...",
+//       "processing":     "잠시만 기다려 주세요...",
+//       "paginate": { "next": "다음", "previous": "이전"  }
+//     }
+//   });
+// });
+</script>
+<!--POST API Link -->
+<script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

@@ -1,6 +1,10 @@
 /* =================== payment -- 어지수 , 정경진 =================== */
-body{
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+body{
+  font-family: 'Cafe24Oneprettynight';
+  font-size: 1.2em;
+  letter-spacing: 1px;
 }
 h1.titles {
   margin:0;
@@ -11,6 +15,7 @@ li{
 }
 
 div.wrapping{
+  margin-top: 30px;
   background:#ffffff;
   position: relative;
   display: inline-block;
@@ -26,13 +31,13 @@ div.groupbox{
 }
 
 /*head*/
-div.topheader{
+/* div.topheader{
   height: 150px;
   background-color: #262626;
   position : relative;
   margin-bottom: 20px;
 
-}
+} */
 
 a#title{
   margin:0;
@@ -51,24 +56,16 @@ div.text{
   width: 70%;
   margin: 0 auto;
   margin-bottom: 30px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 20px;
 }
 
 span.title{
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.6em;
 }
-
-.titlepage{
-  letter-spacing: -1px;
-  height: 17px;
-  line-height: 24px;
-}
-
 .page-sorting{
   float: right;
-  font-size: 14px;
-  margin-top: 10px;
   font-weight: bold;
 }
 
@@ -79,17 +76,18 @@ img.card{
   padding-top: 10px;
 }
 
-div.containerbox{
-  position: relative;
-  width: 100%;
-  margin-top: 30px;
-  display: inline-block;
-
-}
-
 table{
   border-collapse: collapse;
 }
+.customerinfo{
+  height: 40px;
+}
+.cinfo_th{
+  font-size: 1em;
+  padding-right: 30px;
+  padding-left: 10px;
+}
+
 
 
 div.orderbox{
@@ -101,27 +99,32 @@ div.orderbox{
   position: relative;
   margin-bottom: 30px;
   padding:10px;
-  height: 680px;
+  height: 785px;
 }
-
 .scroll-fixed{
   position: fixed;
   top: 30px;
 }
-
 div.paybox{
   margin: 0px 20px;
   padding: 20px 0px;
   margin-bottom: 20px;
   height: 190px;
 }
-
-
 hr.line1{
   border-top: dotted  gray 2px;
 }
 hr.line2{
   border-top: solid  gray 2px;
+}
+
+table.tablebox{
+  margin-bottom: 35px;
+  border-bottom: none;
+}
+
+.tablebox_th{
+  font-size: 1em;
 }
 
 div.payresult{
@@ -132,20 +135,16 @@ div.payresult{
   margin-right: 20px;
   overflow: hidden;
 }
-
-
-table.tablebox{
-  margin-bottom: 35px;
-  border-bottom: none;
+#priceall{
+  color:#F15F5F;
 }
-
-div.detail{
-  color: red;
-  margin-bottom: 70px;
-  margin-left: 60%;
-  font-size: 7px;
+.ordertext{
+  padding-bottom: 10px;
+  font-size: 1em;
 }
-
+td.order_text{
+  text-align:right;
+}
 div.ordertable{
   margin-bottom: 100px;
 }
@@ -196,6 +195,7 @@ div.pay_data{
 
 div.line{
   margin:20px;
+  font-size: 1em;
 }
 
 input[type=checkbox]{
@@ -204,11 +204,16 @@ input[type=checkbox]{
 }
 
 input[type=submit]{
-  background:#ea9999ff;
+  background:#476600;
   color:#ffffff;
-  width:16em;
-  height:4em;
+  font-size: 1.3em;
+  width: 8em;
+  height: 2em;
   border:none;
+  border-radius: 5px;
+  font-family: 'Cafe24Oneprettynight';
+  opacity: 0.8;
+  outline: 0;
 }
 
 input.delivery_tel{
@@ -281,13 +286,10 @@ div.delivery_wrap2{
 th{
   text-align:left;
 }
-td.order_text{
-  text-align:right;
+
+hr{
+  border-bottom: 0px;
 }
-
-
-
-
 
 
 
@@ -299,7 +301,7 @@ hr.dotted_line{
   border-top : dotted 2px #dbdbdb;
 }
 label{
-  font-size: 15px;
+  font-size: 1em;
 }
 div.wrapping_complete{
   position: relative;
