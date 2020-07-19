@@ -622,10 +622,11 @@ function insertpoint(){
   // console.log(point);
   if({{$point}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
-    $('#userpoint').val(AddComma({{$point}}));
-    $('#priceall').text(AddComma(price - {{$point}} - coupon));
-    $('#paymentpoint').text(AddComma({{$point}}));
-    replaceprice(cash,{{$point}});
+    point = {{$point}};
+    $('#userpoint').val(AddComma(point));
+    $('#priceall').text(AddComma(price - point - coupon));
+    $('#paymentpoint').text(AddComma(point));
+    replaceprice(cash,point);
   }
   else{
     // var cal = price - point;
