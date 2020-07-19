@@ -72,7 +72,11 @@ class MainController extends Controller
     return view('register.register_information');
   }
   public function showall(){ // 전체 상품 12개씩 한 페이지처리
-    $data = DB::table('product')->where('p_status','등록')->paginate(12);
+    // $data = DB::table('product')->where('p_status','등록')->paginate(12);
+    $data  = DB::table('product')->where('p_status','등록')
+    ->orderBy('product.created_at', 'desc')
+    ->join('store', 'product.store_no', '=', 'store.st_no')
+    ->paginate(12);
     return view('allproductpage',compact('data'));
   }
 }

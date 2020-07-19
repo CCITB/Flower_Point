@@ -36,11 +36,15 @@
 
               <div class="image-in-font">
                 <div class="image-in-post">
-                  {{$productlist->p_name}}
+                  {{-- {{$productlist->p_name}} --}}
+                  {{$productlist->st_name}}
                 </div>
                 <div class="image-in-container">
+                  {{-- <div class="image-in-star">
+                  </div> --}}
                   <div class="image-in-bottom">
-                    {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                    {{$productlist->p_name}}
+                    {{-- {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}} --}}
                   </div>
                 </div>
                 <div class="image-in-price">
