@@ -644,23 +644,6 @@ function condition(){
     });
     // console.log(idindex);
   }
-
-//   $.ajax({
-//     type: 'post',
-//     url: '/basketcondition',
-//     dataType: 'json',
-//     data: { "check" : idindex,
-//     "checkcondition" : checking,
-//     "uncheckcondition" : unchecked,
-//   },
-//   success: function(data) {
-//
-//
-//   },
-//   error: function(data) {
-//     console.log("error" +data);
-//   }
-// });
 }
 var test1 = [];
 var test2 = [];
@@ -748,21 +731,6 @@ function selectcondition(a,b){
     $('#i_result4').text(ghi);
 
   }
-  $.ajax({
-    type: 'post',
-    url: '/basketcondition',
-    dataType: 'json',
-    data: { "individualcheck" : cc ,
-    "no" : a,
-  },
-  success: function(data) {
-    // console.log(data);
-
-  },
-  error: function(data) {
-    console.log("error" +data);
-  }
-});
 }
 
 
