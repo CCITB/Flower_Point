@@ -43,13 +43,8 @@
     history.back();
   }
   $(document).ready(function(){
-    console.log(document.cookie);
-    console.log($('input[name=c_token]').val());
-    console.log(getCookie('paymentcookie'));
-
     setCookie('paymentcookie','','1');
     setCookie('paymentcookie',$('input[name=c_token]').val(),'1');
-    console.log(getCookie('paymentcookie'));
   });
 
   </script>
@@ -368,7 +363,7 @@
 <button type="submit" name="button"></button>
 </form> --}}
 <script type="text/javascript">
-console.log(document.getElementById("address").value);
+
 $(function() {
 
   $(document).ready(function() {
@@ -517,12 +512,11 @@ for(i=0; i<$('.product_data').length; i++){
   getarray.push(proNum);
   basketarray.push(basNum);
 }
-console.log($('.basketno'));
-console.log(basketarray);
+
 if(basketarray==''){
-  console.log('빈칸');
+
   var basketarray = null;
-  console.log(basketarray);
+
 }
 $('input[name=getarray]').val(JSON.stringify(getarray));
 $('input[name=basketarray]').val(JSON.stringify(basketarray));
@@ -605,7 +599,6 @@ var showPopup = function() {
     } catch (e) { }
   }, 500);
 };
-console.log({{$productsum}});
 function onlyNumber(){
   if((event.keyCode<48)||(event.keyCode>57))
   event.returnValue=false;
@@ -665,21 +658,14 @@ $('#userpoint').blur(function(){
   // }
 });
 function replaceprice(cash,point){
-  // console.log(cash);
-  // console.log(point);
-  // console.log('내부함수문제인가?');
-  // return false;
   if(cash>=Number($('#priceall').text().replace(/[^0-9]/g,''))){
-    console.log('보유하고 있는 돈이 현재 돈보다 많음.');
     $('#cashcheck0').text(AddComma(cash+point+coupon-price)+'원');
   }
   else{
-    console.log(coupon);
     $('#cashcheck0').text('잔액이 부족합니다 !');
   }
 }
 
-console.log(document.form1);
 function couponapply(mypage, myname, w, h, scroll) {
   var winl = (screen.width - w) / 2;
   var wint = (screen.height - h) / 2;
@@ -734,7 +720,6 @@ function layerpopup(){
     success: function(data) {
       // console.log(data);
       html = data;
-      console.log('요청성공!');
       $('.pop-conts').html(html);
       // var list = document.querySelector('.pop-conts');
       // list.innerHTML = html;
@@ -751,7 +736,7 @@ function layerpopup(){
       //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
-      console.log(data);
+      // console.log(data);
 
       //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }
@@ -761,23 +746,18 @@ function layerpopup(){
 }
 $('.btn-layer').on('click', function() {
   layerpopup();
-
-  // $('.pop-conts').appendChild(html);
-  console.log(1);
-
 });
 $(document).on('click','.btn-layerClose', function() {
   $('.layer-wrap').fadeOut();
 });
 function apply(e){
-  console.log(e);
   // return false;
   $.ajax({
     url:'/couponapply', //request 보낼 서버의 경로
     type:'post', // 메소드(get, post, put 등)
     data:{'id':e}, //보낼 데이터
     success: function(data) {
-      console.log(data);
+      // console.log(data);
       $('#coupon_no').val(e);
       if(data==0){
         alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
@@ -794,7 +774,7 @@ function apply(e){
       //서버로부터 정상적으로 응답이 왔을 때 실행
     },
     error: function(data) {
-      console.log(data);
+      // console.log(data);
       alert('요청에 실패하였습니다.');
       //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
     }

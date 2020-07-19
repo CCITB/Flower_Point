@@ -334,7 +334,7 @@
                   total = price * num; // 최종 금액 = 원래금액 * 카운트 value값
                   com = Number(total).toLocaleString('en'); //최종금액에 영어권국가의 숫자표기방식을 따름
                   $('#p_show').text(com); // 최종 금액을 화면에 보여줌
-                  console.log(total);
+                  // console.log(total);
                 });
                 $('#plus').click(function(e){
                   e.preventDefault();
@@ -351,7 +351,7 @@
                   total = price * num;
                   com = Number(total).toLocaleString('en');
                   $('#p_show').text(com);
-                  console.log(total);
+                  // console.log(total);
                 });
               });
 
@@ -444,7 +444,7 @@
 
               $( ".up input" ).click(function() {
                 var state = $('input:radio[name=state]:checked').val();
-                console.log(state);
+                // console.log(state);
               });
               //곽승지
               //장바구니에 상품추가 함수
@@ -457,7 +457,7 @@
 
               $('#btn1').click(function() {
                 // var id = $("#hidden1").val();
-                console.log(1);
+
                 $.ajax({
                   type: 'post',
                   url: '/basketstore',
@@ -467,7 +467,7 @@
                 },
                 // console.log(jjim);
                 success: function(data) {
-                  console.log(data);
+                  // console.log(data);
                   if(data==1){
                     alert("판매자는 이용할 수 없습니다.");
                     return false;
@@ -491,10 +491,10 @@
                     }
                   }
 
-                  console.log(data);
+                  // console.log(data);
                 },
                 error: function(data) {
-                  console.log("error" +data);
+                  // console.log("error" +data);
                   alert("잘못된 요청입니다.")
                 }
               });
@@ -507,7 +507,7 @@
               }
               var bb = {{$protb->p_no}};
               $('input[name=count]').val($('#pdcount').val());
-              console.log($('input[name=Pro]').val(bb));
+              $('input[name=Pro]').val(bb);
               // location.href = '/order/'+Pro;
               document.Pro.submit();
             });
