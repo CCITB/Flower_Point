@@ -73,7 +73,7 @@
 
         <!-- </div>사진 업로드 부트스트랩 버튼 -->
         <div class="input-guide" style="" >
-          &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액, 적립금은 숫자만 입력 가능합니다.
+          &nbsp;&nbsp;&nbsp;&#8251; 배송비, 판매금액은 숫자만 입력 가능합니다.
         </div>
         <table>
           <tr>
@@ -83,10 +83,6 @@
           <tr>
             <th class="th-css">판매금액</th>
             <td><input type="text" class="input-length" id="sellingprice" numberonly="true" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" placeholder="0"style="text-align:right;" >원</td>
-          </tr>
-          <tr>
-            <th class="th-css">적립금</th>
-            <td><input type="text" class="input-length" id="" numberonly="true" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" style="text-align:right;">원</td>
           </tr>
         </table>
       </div>
