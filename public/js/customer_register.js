@@ -154,7 +154,7 @@ $(document).ready(function(){
         data: { "id": customer_val },
 
         success : function name(data) {
-          console.log(data);
+          // console.log(data);
 
           global_id_check=data;
           //1. ID 중복O
@@ -311,8 +311,8 @@ $(document).ready(function(){
       input_birth = parseInt(c_birth);
     }
 
-    console.log(typeof date, typeof input_birth);
-    console.log(date, input_birth);
+    // console.log(typeof date, typeof input_birth);
+    // console.log(date, input_birth);
 
     //(년) - 정규식 O , 4자리
     if(birthJ.test(c_birth_y)&&c_birth_y.length==4){
@@ -386,7 +386,7 @@ $(document).ready(function(){
             $('#verify_p_num').attr('disabled', false);
 
             global_random = randomNum;
-            console.log(randomNum);
+            // console.log(randomNum);
           }//success
           ,error:function(randomNum,status,error){
             alert("code:"+randomNum.status+"\n"+"message:"+randomNum.responseText+"\n"+"error:"+error);}
@@ -411,8 +411,8 @@ $(document).ready(function(){
       global_random;
       //input data
       var verify = $('#verify_p_num').val();
-      console.log(global_random);
-      console.log(verify);
+      // console.log(global_random);
+      // console.log(verify);
 
       //1. 공백 -- 빈칸
       if(verify == ""){
