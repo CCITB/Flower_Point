@@ -15,7 +15,7 @@
     <div class = "pd_image">
       <!--이미지 틀 -->
       @foreach ($productinfor as $protb)
-        <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" alt="?">
+        <img src="/imglib/{{$protb->p_filename}}" class="pd_image1" onerror="this.src='imglib/dummy.png'">
       </div>
 
       <!-- 상품정보와 옵션선택 -->

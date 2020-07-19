@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
+
   <div class="topheader">
     <h1 class="titles"><a id="title" href="/">꽃갈피</a></h1>
   </div>
+    @include('lib.header')
   <div class="wrapping2">
     <div class="text">
       <span class="title">주문/결제</span>
