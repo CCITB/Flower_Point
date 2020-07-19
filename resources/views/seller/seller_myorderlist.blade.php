@@ -77,7 +77,7 @@
 
             <table id="myTable">
               <thead>
-                <tr>
+                <tr class="p_tr">
                   <th class="title"> <input type="checkbox" name="checkAll" id="th_checkAll"  value=""> </th>
                   <th class="title">주문번호</th>
                   <th class="title">결제번호</th>
