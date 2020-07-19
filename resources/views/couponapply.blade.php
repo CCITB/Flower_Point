@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/coupon.css">
 {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
 <div class="coupon_list">
-  <table class="table table-striped" style="margin:0 auto;">
+  <table class="type09" style="margin:0 auto;margin-bottom:10px;">
     <tr>
       나의 할인쿠폰 목록
     </tr>
@@ -28,9 +28,9 @@
     보유한 쿠폰이 없습니다.
   </div>
 @endif
-<div class="coupon_cancel" style="cursor:pointer;">
+<span class="coupon_cancel" style="cursor:pointer;border:1px solid #d0d0d0;padding:4px;font-size:12px;margin:10px;">
   사용취소
-</div>
+</span>
 </div>
 <div class="btn-r">
   <a class="btn-layerClose">Close</a>
