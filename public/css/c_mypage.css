@@ -229,18 +229,48 @@ div.current{
 .p_title{
   font-size: 1.5em;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 4em;
 }
 
 .points{
   width: 100%;
-  height: 50px;
+}
+.hi_title{
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-left: 5px;
 }
 .his_title{
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 .botbt{
+  padding-left: 5px;
   width: 0.7em;
+}
+.point_history{
+  width: 560px;
+  flex-wrap: nowrap;
+  display: flex;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  font-size: 1.3em;
+  padding-left: 5px;
+}
+.h_title{
+  width: 35%;
+}
+.h_date{
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+.h_ono{
+  width: 43%;
+  padding: 10px;
+}
+.h_point{
+  text-align: right;
+  width: 22%;
+  padding: 10px;
 }
 
 
@@ -250,5 +280,6 @@ div.current{
 }
 .p_detail_show{
   display: table-row;
+  background-color: #F7EDDA;
 }
 /* ----- mypoint 끝 ----- */
