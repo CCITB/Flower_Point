@@ -153,6 +153,7 @@ div.infobox{
 }
 
 div.customerbox{
+  height: 40px;
   border: solid 1px #d6d6d6;
   background-color: #fff;
   margin-bottom: 20px;

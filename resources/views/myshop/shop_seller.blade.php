@@ -5,8 +5,9 @@
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/shop.css">
-  <link rel="stylesheet" href="/css/postlist.css">
+  <!-- <link rel="stylesheet" href="/css/postlist.css"> -->
   <link rel="stylesheet" href="/css/image.css">
+
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
@@ -20,10 +21,10 @@
   <!-- 정경진 -->
   <!-- seller에게 보이는 store화면 -->
   <div class="allwrap">
-    <div class="wrap0">
+    <div class="myinfo">
       @if( auth()->guard('seller')->user())
         @foreach ($data as $data1)
-          <h3 class="shopname">{{$data1->st_name}}</h3>
+          <div class="mytitle">{{$data1->st_name}}</div>
           <hr>
           <div class="wrap2">
           <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
@@ -45,27 +46,27 @@
               </div>
 
             </form>
+
             <div id="tablewrap">
               <table id="shopinfo">
                 <tr>
-                  <th>대표</th>
+                  <th class="st_tr">대표</th>
                   <td><div class="thcell">{{$data1->s_name}}</div></td>
                 </tr>
 
                 <tr>
-                  <th>상호명</th>
+                  <th class="st_tr">상호명</th>
                   <td><div class="thcell">{{$data1->st_name}}</div></td>
                 </tr>
               @endforeach
               <form class="addressgroup" action="/shopinfo" method="get">
                 <tr>
-                  <th>주소</th>
+                  <th class="st_tr">주소</th>
                   @foreach ($store_address as $a)
                     <td><div class="thcell">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></div></td>
                   @endforeach
                 </tr>
               </form>
-
             </div>
           </table>
         </div>
@@ -91,17 +92,17 @@
           <div class="delivery_wrap">
             <strong class="info">주 소</strong>
             <!-- 우편번호 -->
-            <input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly>
+            <input type="text" class="addr_input" id="postcode" name="postcode" placeholder="우편번호" readonly>
             <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
           </div>
           <!--주소 -->
           <div class="delivery_wrap2">
-            <input type="text"  id="address" name="address" placeholder="주소" readonly>
+            <input type="text" class="addr_input" id="address" name="address" placeholder="주소" readonly>
             <div class="detail">
-              <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
+              <input type="text" class="addr_input" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
             </div>
             <div class="delivery_address_detail">
-              <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+              <input type="text" class="addr_input" name="detailAddress" id="detailAddress" placeholder="상세주소" >
             </div>
           </div>
         </div>
@@ -110,6 +111,9 @@
     </form>
     <div class="wrap4">
       <h3 class="productname">판매물품</h3>
+      <div class="write-post">
+        <button class="bt_ch" type="button" onclick="location.href = '/sellershoppost'">물품등록</button>
+      </div>
     </div>
     <div class="wrap5">
       @if( auth()->guard('seller')->user())
@@ -120,13 +124,10 @@
 
           <div class="productlist">
             <div class="productlist-item">
-                <div class="write-post">
-                  <button class="post" type="button" onclick="location.href = '/sellershoppost'">물품등록</button>
-                </div>
 
               <table id="myTable">
                 <thead>
-                  <tr>
+                  <tr class="p_tr">
                     <th class="registration-date">날짜</th>
                     <th class="product-name">이름</th>
                     <th class="product-price">가격</th>
@@ -134,22 +135,22 @@
                     <th class="product-remove">삭제</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tdbody">
                 @foreach ($proro as $data3)
                   <tr>
-                    <td class="upload-date">{{$data3->p_date}}</td>
-                    <td class="upload-name" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
-                    <td class="upload-price">{{$data3->p_price}}</td>
-                    <td>
-                      <form class="" action="/pd_modify{{$data3->p_no}}" method="post">
+                    <td class="upload">{{$data3->p_date}}</td>
+                    <td class="upload" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
+                    <td class="upload">{{$data3->p_price}}</td>
+                    <td class="upload">
+                      <form class="upload" action="/pd_modify{{$data3->p_no}}" method="post">
                         @csrf
-                        <input type="submit" id="modify" value="수정">
+                        <input type="submit" id="modify" class="modify" value="수정">
                       </form>
                     </td>
-                    <td>
-                      <form name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
+                    <td class="upload">
+                      <form  class="upload" name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
                         @csrf
-                        <input type="submit" name="remove" id="removel" value="삭제">
+                        <input type="submit" name="remove" id="removel" class="modify" value="삭제">
                       </form>
                     </td>
                   </tr>

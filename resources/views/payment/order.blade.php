@@ -356,7 +356,6 @@
     <div class="pop-container">
       <div class="pop-conts">
         <!--content //-->
-        하이빅스비
         <div class="btn-r">
           <a class="btn-layerClose">Close</a>
         </div>

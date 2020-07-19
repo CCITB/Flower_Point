@@ -1,15 +1,36 @@
+@font-face { font-family: 'Cafe24Oneprettynight';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+format('woff'); font-weight: normal; font-style: normal; }
+
 html, body{
   height: 100%;
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
+}
+
+div.mytitle{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  margin-right: 20px;
 }
 
 div.allwrap{
-  width: 100%;
-  position: relative;
+  /* width: 100%;
+  position: relative; */
+  /* width: 90%; */
+  margin-top: 40px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
 }
 
-div.wrap0{
-    width: 70%;
+div.myinfo{
+    /* width: 70%;
     position: relative;
+    margin: 0 auto; */
+    height: 60em;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -87,6 +108,7 @@ div.wrap3{
 }
 
 div.wrap4{
+  margin-top: 3em;
   position: relative;
   display: inline-block;
   width: 100%;
@@ -95,6 +117,8 @@ div.wrap4{
 h3.productname{
     width: 80%;
     display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 div.product{
@@ -151,18 +175,19 @@ div.wrap8-2{
   width: 50%;
 }
 
-input.introduce{
+/* input#{
   width: 100%;
   height: 95%;
-}
+} */
 
 div.delivery_wrap2{
-  margin-left: 85px;
+  margin-left: 65px;
 }
 
 div.thcell{
-  padding: 30px;
-  border-right: 1px solid #e5e5e5;
+  padding: 22px;
+  font-size: 15px;
+  /* border-right: 1px solid #e5e5e5; */
   background: #f9f9f9;
   text-align: left;
   letter-spacing: -1px;
@@ -210,7 +235,8 @@ form.shop{
 }
 
 #modiaddress{
-  margin-left: 30%;
+  margin-left: 74%;
+  height: 26px;
 }
 
 #modiinfo{
@@ -338,4 +364,67 @@ overflow: hidden;
 }
 .pagination{
   text-align: center;
+}
+
+/*디자인*/
+tr.p_tr{
+  color: #212121;
+  background-color: #C8DBCD;
+  opacity: 0.8;
+  border-bottom: 1px solid #8C8C8C;
+}
+th.st_tr{
+  width: 55px;
+  font-weight: bold;
+}
+input.modify{
+  height: 28px
+}
+input.addr_input{
+  padding:3px;
+}
+#tdbody{
+
+}
+.productlist{
+  width:100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+.productlist-item{
+  width: 100%;
+  margin: 0 auto;
+}
+td.upload{
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px;
+  height: 30px;
+  text-align: center;
+}
+/* form.upload{
+  text-align: center;
+
+} */
+.bt_ch{
+  position: absolute;
+  left:101px;
+  margin-top: 21px;
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 32px;
+  text-align: center;
+  margin-left: 20px;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+div#addresswrap{
+  margin-left: 16em;
+  width:21em;
+  background:#f9f9f9;
 }
