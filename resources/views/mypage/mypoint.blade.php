@@ -13,7 +13,7 @@
     <div class="p_history">
       @foreach ($cus as $myinfo)
         <div class="p_title">
-          <strong>총 보유 적립금액 : {{number_format($myinfo->c_point)}} 포인트</strong>
+          <strong>총 보유 적립금액 : <span style="color: #F15F5F;">{{number_format($myinfo->c_point)}}</span> 포인트</strong>
         </div>
       @endforeach
       <div class="p_middle">
