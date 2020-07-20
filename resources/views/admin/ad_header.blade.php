@@ -10,7 +10,8 @@
 
   <div class="top-menu">
     <ul class="nav pull-right top-menu">
-      <li><a class="logout" href="/">꽃갈피 메인가기</a></li>
+      <li style="float:left;"><a class="logout" href="/">꽃갈피 메인가기</a></li>
+      <li style="float:left;"><button class="logout" style="outline:0;">LogOut</button></li>
     </ul>
   </div>
 </header>

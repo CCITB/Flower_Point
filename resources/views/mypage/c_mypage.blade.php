@@ -119,101 +119,103 @@
                     </tr>
                   </form>
 
+                  @foreach ($data as $a)
+                    <tr class="tr1">
+                      <th class="th1">주소</th>
+                      <td>
+                        <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}){{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
+                      </td>
+                    </tr>
+                  @endforeach
 
-                  <form action="c_newaddress" method="post">
+
+                  <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
                     @csrf
-                    @foreach ($data as $a)
-                      <tr class="tr1">
-                        <th class="th1">주소</th>
-                        <td>
-                          <div class="tdcell"><p class="contxt.tit">({{$a->a_post}}){{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></p></div>
+                    <tr class="tr1">
+                      <div id="addresswrap" style="display:none;">
+                        <th>
+                          <div id="addressmodi">
+                            <div class="delivery_wrap">
+                              <strong class="info">새 주 소</strong>
+                            </th>
+                            <td>
+                              <!-- 우편번호 -->
+                              <input type="text" id="postcode" name="postcode" placeholder="우편번호" >
+                              <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+                            </div>
+                            <!--주소 -->
+                            <div class="delivery_wrap2">
+                              <input type="text"  id="address" name="address" placeholder="주소" readonly>
+                              <div class="detail">
+                                <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
+                              </div>
+                              <div class="delivery_address_detail">
+                                <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+                              </div>
+                            </div>
+                          </div>
+                          <button type="submit" id="complete1"  name="button" >수정완료</button>
                         </td>
-                      </tr>
-                    @endforeach
+                      </div>
+                    </tr>
                   </form>
                 </tbody>
               </table>
             </div>
 
-            <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
-              @csrf
-              <div id="addresswrap" style="display:none;">
-                <div id="addressmodi">
-                  <div class="delivery_wrap">
-                    <strong class="info">새 주 소</strong>
-                    <!-- 우편번호 -->
-                    <input type="text" id="postcode" name="postcode" placeholder="우편번호" >
-                    <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                  </div>
-                  <!--주소 -->
-                  <div class="delivery_wrap2">
-                    <input type="text"  id="address" name="address" placeholder="주소" readonly>
-                    <div class="detail">
-                      <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
-                    </div>
-                    <div class="delivery_address_detail">
-                      <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
-                    </div>
-                  </div>
+            <div class="walletwrap">
+              @foreach ($data3 as $data3)
+                <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"><input class="bt_ch" type="button" value="포인트 적립내역" onclick="showpoint({{$data3->c_no}});" name="mpoint"></div>
+
+                <div class="mymoney">
+                  보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원
                 </div>
-                <button type="submit" id="complete1"  name="button" >수정완료</button>
-              </div>
-            </form>
-          </table>
-
-          <div class="walletwrap">
-            @foreach ($data3 as $data3)
-            <div class="mytitle">내 지갑 <input class="bt_ch" type="button" value="충전하기" onclick="showPopup();" name="charge"><input class="bt_ch" type="button" value="포인트 적립내역" onclick="showpoint({{$data3->c_no}});" name="mpoint"></div>
-
-              <div class="mymoney">
-                보유 금액 : <strong>{{number_format($data3->c_cash)}}</strong>원
-              </div>
-              <div class="mypoint">
-                보유 포인트 : <strong>{{number_format($data3->c_point)}}</strong>원
-              </div>
-            @endforeach
-          </div>
+                <div class="mypoint">
+                  보유 포인트 : <strong>{{number_format($data3->c_point)}}</strong>원
+                </div>
+              @endforeach
+            </div>
 
 
-          {{-- <div class="myorder">
-          <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
-          <div class="ordertable">
-          @if(count($data2))
-          <table class="order" border="0" width="100%">
-          <thead>
-          <tr class="p_tr">
-          <th>상품이미지</th>
-          <th>주문날짜</th>
-          <th>주문번호</th>
-          <th>결제번호</th>
-          <th>상품명</th>
-          <th>수량</th>
-          <th>구매금액</th>
-          <th>주문처리상태</th>
-          <th>후기 작성</th>
-          <th>구매 확정</th>
-          <th>배송조회</th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach ($data2 as $data2)
-      <tr>
-      <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
-      <td>{{$data2->pm_date}}</td>
-      <td><a href="product/{{$data2->p_no}}">{{$data2->o_no}}</a></td>
-      <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
-      <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
-      <td>{{$data2->pm_count}}</td>
-      <td>{{$data2->pm_pay}}</td>
-      <td>{{$data2->pm_d_status}}</td>
-      @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
-      @if(!isset($data2->payment_no))
-      <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
-    @else
-    <td>작성완료</td>
-  @endif
-@else
-<td></td>
+            {{-- <div class="myorder">
+            <span class="mytitle" align="left">나의 주문 현황</span> <span>구매확정을 누르시면 구매금액의 3%가 적립됩니다.</span>
+            <div class="ordertable">
+            @if(count($data2))
+            <table class="order" border="0" width="100%">
+            <thead>
+            <tr class="p_tr">
+            <th>상품이미지</th>
+            <th>주문날짜</th>
+            <th>주문번호</th>
+            <th>결제번호</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>구매금액</th>
+            <th>주문처리상태</th>
+            <th>후기 작성</th>
+            <th>구매 확정</th>
+            <th>배송조회</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach ($data2 as $data2)
+        <tr>
+        <td><a href="product/{{$data2->p_no}}"><img src="imglib/{{$data2->p_filename}}" width="100px" height="100px"></a></td>
+        <td>{{$data2->pm_date}}</td>
+        <td><a href="product/{{$data2->p_no}}">{{$data2->o_no}}</a></td>
+        <td><a href="product/{{$data2->p_no}}">{{$data2->pm_no}}</a></td>
+        <td><a href="product/{{$data2->p_no}}">{{$data2->p_name}}</a></td>
+        <td>{{$data2->pm_count}}</td>
+        <td>{{$data2->pm_pay}}</td>
+        <td>{{$data2->pm_d_status}}</td>
+        @if($data2->pm_status == '결제 완료'||$data2->pm_status == '구매 확정')
+        @if(!isset($data2->payment_no))
+        <td><input type="button" value="구매후기" onclick="show_popup({{$data2->pm_no}})"></td>
+      @else
+      <td>작성완료</td>
+    @endif
+  @else
+  <td></td>
 @endif
 @if($data2->pm_status == '결제 대기')
 <td> --}}

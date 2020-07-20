@@ -83,6 +83,7 @@ div.delivery_wrap2{
 /* ----- 내 정보 끝 ----- */
 /* ----- 내 지갑 ----- */
 div.walletwrap{
+  margin-top: 4em;
   width: 100%;
   font-size: 1.1em;
 }
@@ -152,12 +153,12 @@ div.mypoint{
 /* ----- 내 지갑 끝 ----- */
 /* ----- 나의 주문현황 시작 ----- */
 div.myorder{
-  margin-top: 5em;
   letter-spacing: 1px;
   font-size: 1.1em;
   width: 65%;
   margin: 5em auto;
   min-height: 35em;
+  padding-bottom: 10em;
 }
 .ordertable{
   margin-top: 35px;
@@ -181,6 +182,7 @@ div.myreview{
   margin-top: 5em;
   font-size: 1.1em;
   letter-spacing: 1px;
+  margin-bottom: 8em;
 }
 table.table_review{
   width: 100%;

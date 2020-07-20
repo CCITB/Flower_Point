@@ -65,7 +65,7 @@
         @endif
       </div>
 
-      <div class="mystars">
+      <div class="mystars1">
         <h2 align="center">나만의 꽃집</h2>
 
         @if(count($pro2))

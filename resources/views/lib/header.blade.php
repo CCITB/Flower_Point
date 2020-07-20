@@ -116,54 +116,58 @@
             <ul class="submenu_list">
               <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
             </ul>
-      </li>
-    @elseif(auth()->guard('customer')->user())
+          </li>
+        @elseif(auth()->guard('customer')->user())
 
-      <ul class="submenu_list">
-        <li class="submenu" style="height:17.6px;"><a href="/myqna">내 문의관리</a></li>
-      </ul>
-      <ul class="submenu_list">
-        <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-      </ul>
-      <ul class="submenu_list">
-        <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-      </ul>
-      <ul class="submenu_list">
-        <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
-      </ul>
-    </li>
-  @endif
-  @if($se = auth()->guard('seller')->user())
-    <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-      마이페이지
-      <ul class="submenu_list">
-        <li class="submenu" style="height:22px; padding-top:25px;"><a href="/s_mypage">내 정보</a></li>
-        @if($se->s_approval == '승인')
-          <li class="submenu" style="height:22px;"><a href="/shop">내 꽃집 가기</a></li>
-          <li class="submenu" style="height:22px;"><a href="/sellermyorderlist">나의 주문 관리</a></li>
-        @else
-          <li class="submenu" style="height:22px;" onclick="fake()">내 꽃집 가기</a></li>
-          <li class="submenu" style="height:22px;" onclick="fake()">나의 주문 관리</a></li>
-        @endif
-      </ul>
-    </li>
-  @elseif(auth()->guard('customer')->user())
-    <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-      마이페이지
-      <ul class="submenu_list">
-        <li class="submenu" style="height:17.6px; padding-top:18px;"><a href="/c_mypage">내 정보</a></li>
-        <li class="submenu" style="height:17.6px;"><a href="/star">즐겨찾기</a></li>
-        <li class="submenu" style="height:17.6px;"><a href="/coupon">내쿠폰</a></li>
-        <li class="submenu" style="height:17.6px;"><a href="/myorderlist">내 주문관리</a></li>
-      </ul>
-    </li>
-  @else
-    <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
-      <a href="#">마이페이지</a>
-    </li>
-  @endif
-</ul>
-</div>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="/myqna">내 문의관리</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+          </ul>
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
+          </ul>
+        </li>
+      @else
+        <ul class="submenu_list">
+          <li class="submenu" style="height:8em;"></li>
+        </ul>
+      @endif
+      @if($se = auth()->guard('seller')->user())
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+          마이페이지
+          <ul class="submenu_list">
+            <li class="submenu" style="height:22px; padding-top:25px;"><a href="/s_mypage">내 정보</a></li>
+            @if($se->s_approval == '승인')
+              <li class="submenu" style="height:22px;"><a href="/shop">내 꽃집 가기</a></li>
+              <li class="submenu" style="height:22px;"><a href="/sellermyorderlist">나의 주문 관리</a></li>
+            @else
+              <li class="submenu" style="height:22px;" onclick="fake()">내 꽃집 가기</a></li>
+              <li class="submenu" style="height:22px;" onclick="fake()">나의 주문 관리</a></li>
+            @endif
+          </ul>
+        </li>
+      @elseif(auth()->guard('customer')->user())
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+          마이페이지
+          <ul class="submenu_list">
+            <li class="submenu" style="height:17.6px; padding-top:18px;"><a href="/c_mypage">내 정보</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/star">즐겨찾기</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/coupon">내쿠폰</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/myorderlist">내 주문관리</a></li>
+          </ul>
+        </li>
+      @else
+        <li class="mainmenu" onmouseover="mouseOver();" onmouseout="mouseOut();" style="border-right:none;">
+          <a href="#">마이페이지</a>
+        </li>
+      @endif
+    </ul>
+  </div>
 </div>
 <div class="topmenu-list">
 
