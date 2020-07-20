@@ -427,9 +427,6 @@ function address_checkform(){
   }
 }
 
-function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
-  var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
-}
 
 var openWin;
 function showpoint(cno)
@@ -438,7 +435,7 @@ function showpoint(cno)
   window.name = "parentForm";
   // window.open("open할 window", "자식창 이름", "팝업창 옵션");
   openWin = window.open("/mypoint"+cno,
-  "childqna", "width=600px, height=800px, left=600px, top=100px ");
+  "childqna", "width=550px, height=700px, left=600px, top=100px ");
 }
 
 $(document).ready(function(){

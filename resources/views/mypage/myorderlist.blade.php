@@ -143,6 +143,10 @@
   });
 
 
+  function show_popup(n) { // 리뷰 팝업창 띄우기 -- 박소현
+    var rev_pop = window.open("/review"+n, "리뷰팝업창", "width=580px, height=750px, left=500px, top=100px ");
+  }
+
   $(document).ready(function(){
     $("#myorders").DataTable({
       "language": {

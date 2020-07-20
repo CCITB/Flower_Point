@@ -233,6 +233,9 @@ div.current{
 /* ----- 충전 팝업창 끝 ----- */
 
 /* ----- mypoint ----- */
+.total_mypoint{
+  font-family: 'Cafe24Oneprettynight';
+}
 .p_header{
   width: 100%;
   height: 100px;
