@@ -1,4 +1,5 @@
 /* 수정시 소현에게 */
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 #all{
   margin:5% auto;
@@ -11,12 +12,13 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   opacity: 0.8;
-  font-family: 'Kanit','Nanum Gothic Coding', monospace;
+  font-family: 'Kanit', 'Cafe24Oneprettynight';
 }
 body {
   background-image: url(https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
   background-repeat : no-repeat;
   background-size : cover;
+  letter-spacing: 1px;
 }
 p{
   padding-top: 5px;
@@ -73,10 +75,12 @@ a:hover{
   float: right;
   text-align: right;
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 .home{
   float: left;
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
 /* -------------------- */
@@ -98,6 +102,7 @@ a:hover{
 }
 .go{
   text-align: right;
+  font-size: 1.2em;
 }
 /* .lg_bt{
 width: 100px;
@@ -112,13 +117,14 @@ text-align: center;
   color: white;
   padding: 9px 32px;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   margin: 4px 2px;
   opacity: 0.6;
   transition: 0.4s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 .lg_bt:hover{
   opacity: 1
@@ -150,4 +156,7 @@ text-align: center;
 }
 .paragraph{
   padding-bottom: 20px;
+}
+.check_div{
+  margin-top: 10px;
 }

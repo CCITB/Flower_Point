@@ -15,7 +15,7 @@
   <div id="all">
     <div class="text">
       <div class="id_title">Find Password</div> <hr>
-      <div class="text_des">비밀번호 재설정</div>
+      <div class="text_desc">비밀번호 재설정</div>
     </div>
 
     <div class ="pw_reset">

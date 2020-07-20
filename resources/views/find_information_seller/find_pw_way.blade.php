@@ -21,16 +21,15 @@
     <div class ="find_pw_way">
       {{-- <form action = '/f_way_seller' name='emailform' method='post' onsubmit="return check_pw_way_seller()"> --}}
       <!--Email 인증-->
-      <input type="radio" name="chk" checked="checked" id="chk_email" value="1"> 본인확인 이메일로 인증(<span id="mymail"></span>)
+      <label><input type="radio" name="chk" checked="checked" id="chk_email" value="1"><span style="font-size:1.1em;"> 회원정보에 등록한 이메일로 인증</span>(<span id="mymail" style="color: #4374D9;"></span>)</label>
       <div class="fd_id" id="find_email" value="a" style="display:block;">
-        <div class="massage">*본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다</div>
+        <div class="massage" style="padding-top:5px; margin-bottom:3px;">*본인확인 이메일 주소와 입력한 이메일 주소가 같아야 인증번호를 받을 수 있습니다</div>
         <form action = '/seller_eamil_way' name='email_form' id="email_form" method='post' onsubmit="return check_emailform()">
           @csrf
           <div class="fd_id">
             <input type="hidden" name="hidden_email" id="hidden_email" value="">
             <input type="hidden" name="hidden_no" id="hidden_no" value="">
 
-            <div class="character"> </div>
             <div class="window">
               <div class="name_size">이름</div>
               <input class="find_input" placeholder="이름을 입력하세요." name="name" id="name1">
@@ -54,9 +53,9 @@
 
       <br>
       <!--SMS 인증-->
-      <input type="radio" name="chk" id="chk_sms" value="2"> 회원정보에 등록한 휴대전화로 인증
+      <label><input type="radio" name="chk" id="chk_sms" value="2"> <span style="font-size:1.1em;">회원정보에 등록한 휴대전화로 인증</span></label>
       <div class="find_phone" id="find_phone" value="b" style="display:none;">
-        <div class="massage">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
+        <div class="massage" style="padding-top:5px; margin-bottom:3px;">* 회원가입시 사용한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 인증번호를 받을 수 있습니다. </div>
         <form action="/seller_sms_way" method="post" name="sms_form" id="sms_form" onsubmit="return check_smsform()">
           @csrf
           <input type="hidden" name="hidden_tel" id="hidden_tel" value="">

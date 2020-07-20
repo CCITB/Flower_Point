@@ -1,4 +1,5 @@
 /* 수정시 소현에게 */
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 #all{
   margin:5% auto;
@@ -11,7 +12,7 @@
   flex-wrap: nowrap;
   align-content: flex-start;
   opacity: 0.8;
-  font-family:'Kanit','Nanum Gothic Coding', monospace;
+  font-family: 'Kanit', 'Cafe24Oneprettynight';
 }
 body {
   background-image: url(https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
@@ -79,7 +80,7 @@ a:hover{
   color: white;
   padding: 9px 32px;
   text-align: center;
-  font-size: 16px;
+  font-size: 17px;
   margin: 4px 2px;
   opacity: 0.6;
   transition: 0.4s;
@@ -96,62 +97,30 @@ a:hover{
   float: right;
   text-align: right;
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 .home{
   float: left;
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 .find_id {
   padding: 20px;
-
+  padding-top: 0;
   height: 330px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  min-height: 23em;
 }
 .name_size{
-  font-size: 0.8em;
+  font-size: 1em;
+  margin-bottom: 5px;
 }
 .under{
   clear: both;
   margin-top: 10px;
   text-align: center;
 }
-
-/* button{
-  background:#476600;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:40px;
-  border-radius: 5px;
-  font-size:1.1em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-button:hover{
-  background:#fff;
-  color:#476600;
-}
-button:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #476600;
-  transition:400ms ease all;
-}
-button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-button:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-} */
 /* -------------------- */
 
 /* ----- find_pw ------ */
@@ -171,17 +140,29 @@ button:hover:before,button:hover:after{
 /* ----- find_pw_way ------ */
 .find_pw_way{
   padding: 20px;
+  padding-top: 0;
   height: 330px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  min-height: 23em;
 }
 /* -------------------- */
 /* ----- pw_reset ------ */
+.text_desc{
+  font-size: 1.3em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 .pw_reset{
   padding: 20px;
   text-align: center;
   height: 330px;
+  letter-spacing: 1px;
 }
 .pw_requirement{
   padding-bottom: 55px;
+  font-size: 1em;
+  color: #4374D9;
 }
 .pw_re{
   height: 40px;
@@ -201,8 +182,11 @@ button:hover:before,button:hover:after{
   padding: 20px;
   text-align: center;
   height: 330px;
+  letter-spacing: 1px;
 }
-
+.id_db{
+  font-size: 1.7em;
+}
 
 /* -------------------- */
 

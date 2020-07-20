@@ -22,6 +22,7 @@ body{
   margin-top: 3em;
   font-size: 1.1em;
   letter-spacing: 1px;
+  margin-bottom: 6em;
 }
 
 #tablewrap{
@@ -35,9 +36,6 @@ body{
   border-collapse: collapse;
 }
 
-#postcode{
-  margin-left: 20px;
-}
 
 th.th1{
   background-color: #f9f9f9;
@@ -74,11 +72,20 @@ div.tdcell{
 
 #nadress{
   margin-left: 5%;
-  margin-bottom: 50px;
 }
-
+.delivery_wrap{
+  width: 7em;
+  padding-top:40px;
+  text-align: center;
+  float: left;
+  background-color: #f9f9f9;
+  height: 100px;
+  box-sizing: border-box;
+}
 div.delivery_wrap2{
-  margin-left: 85px;
+  margin-left: 3%;
+  float: left;
+  height: 100px;
 }
 /* ----- 내 정보 끝 ----- */
 /* ----- 내 지갑 ----- */
