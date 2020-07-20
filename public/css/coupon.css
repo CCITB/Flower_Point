@@ -1,9 +1,19 @@
 .couponwrap{
-  width: 900px;
+  width: 60%;
   margin: 0 auto;
-  height: 40em;
+  min-height: 50em;
+  margin-top: 5em;
+  font-size: 1.1em;
 }
-
+.mytitle{
+  font-size: 1.6em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+}
+.coinfo{
+  font-size: 1.1em;
+}
 .supplement_coupon{
   height: 209px;
   margin-bottom: 22px;
@@ -13,31 +23,41 @@
 
 
 .supplement_cnts{
-  width: 299px;
-  padding-top: 31px;
+  padding-top: 50px;
   margin-left: 470px;
 }
-.coupon_list{
-  position: relative;
-  z-index: 1;
-  width: 100%;
+.hi{
+  float: left;
+  width: 50%;
+}
+.hi1{
+  float: left;
+  width: 50%;
 }
 
-#coupon_button{
+.coupon_list{
+  margin-top: 7em;
+}
+
+.co_bt{
   background-color: #476600;
   border: none;
   border-radius: 5px;
   color: white;
   text-align: center;
-  margin-left: 10px;
-  font-size: 16px;
+  width: 7em;
+  height: 2em;
+  font-size: 1em;
   opacity: 0.6;
   transition: 0.4s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
 }
-
+.co_bt:hover{
+  opacity: 1
+}
 .coupon_text{
   color: white;
 }
@@ -54,17 +74,9 @@ a{
   color: black;
 }
 
-h3{
-  margin-top: 3em;
-  margin-bottom: 30px;
-}
-
-.supplement_cnts2{
-  width: 299px;
-}
-
 dt{
   margin-bottom: 50px;
+  width: 100%;
 }
 
 img#couponimg{

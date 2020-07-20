@@ -8,58 +8,49 @@
 <link rel="stylesheet" href="/css/coupon.css">
 
 <body>
-  <style media="screen">
-  footer{
-    position:relative;
-    left:0px;
-    bottom:0px;
-    width:100%;
-    margin-top: 50px;
-  }
-  </style>
   @include('lib.header')
   <div class="couponwrap">
-    <h3>쿠폰</h3>
-    고객님께서 보유하고있는 할인쿠폰을 확인하세요! 상품구매시 더욱 저렴하게 구매할 수 있습니다.
-    <button type="button" id="coupon_button" name="button"><a class="coupon_text" href="/recievecoupon">쿠폰존 바로가기</a></button>
-    <div class="supplement_coupon">
-      <img id="couponimg"src="imglib/coupon.png" alt="" width="400px">
-      <div class="supplement_cnts">
-        <p><span class="blindtext"></span></p>
-        <dl>
-          <dt><span class="bg_bul"></span>나의 보유쿠폰</dt>
-          <dd><strong></strong><span>{{$coupon2}}장</span></dd>
-        </dl>
+    <div class="czone">
+      <div class="mytitle">쿠폰</div>
+      <span style="font-size:1.3em;" class="coinfo">고객님께서 보유하고있는 할인쿠폰을 확인하세요! 상품구매시 더욱 저렴하게 구매할 수 있습니다.<span>
+        <div class="supplement_coupon">
+          <img id="couponimg"src="imglib/coupon.png" alt="" width="400px">
+          <div class="supplement_cnts">
+            <div class="hi">
+              <div style="font-size:1.3em; margin-bottom:30px; text-align:center;"><span class="bg_bul">나의 보유쿠폰</span></div>
+              <div style="color: #4374D9; font-size:1.2em; padding-left:15px; text-align:center;"><strong><span>{{$coupon2}} 장</span></strong></div>
+            </div>
+            <div class="hi1">
+              <button type="button" class="co_bt" name="button"><a class="coupon_text" href="/recievecoupon">쿠폰존 바로가기</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="coupon_list">
+        <div class="mytitle">나의 할인쿠폰 목록</div>
+        <table class="type09">
+          <tr>
+            <th>쿠폰명</th>
+            <th>쿠폰내용</th>
+            <th>유효기간</th>
+          </tr>
+          @if(isset($coupon2))
+            @foreach ($coupon as $coupon)
+              <tr>
+                <th>{{$coupon->cp_title}}</th>
+                <th>{{$coupon->cp_minimum}}원이상 구매시 {{$coupon->cp_flatrate}}원 할인</th>
+                <th>{{$coupon->start_date}} ~ {{$coupon->end_date}}</th>
+              </tr>
+            @endforeach
+          @else
+            <div class="" style="top:180px; position:absolute; left:300px; ">
+              보유한 쿠폰이 없습니다.
+            </div>
+          @endif
+        </table>
       </div>
     </div>
-    <div class="coupon_list">
-      <table class="type09">
-        <tr>
-          <h3>나의 할인쿠폰 목록</h3>
-        </tr>
-        <tr>
-          <th>쿠폰명</th>
-          <th>쿠폰내용</th>
-          <th>유효기간</th>
-        </tr>
-        @if(isset($coupon2))
-        @foreach ($coupon as $coupon)
-          <tr>
-            <th>{{$coupon->cp_title}}</th>
-            <th>{{$coupon->cp_minimum}}원이상 구매시 {{$coupon->cp_flatrate}}원 할인</th>
-            <th>{{$coupon->start_date}}~{{$coupon->end_date}}</th>
-          </tr>
-        @endforeach
-      @else
-        <div class="" style="top:180px; position:absolute; left:300px; ">
-          보유한 쿠폰이 없습니다.
-        </div>
-      @endif
-      </table>
-    </div>
-  </div>
 
-</div>
-@include('lib.footer')
-</body>
-</html>
+    @include('lib.footer')
+  </body>
+  </html>
