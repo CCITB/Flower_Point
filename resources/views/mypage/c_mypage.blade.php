@@ -260,23 +260,29 @@
 
 <div class="myreview">
   <div class="mytitle" align="left">내 후기</div>
-  <table class="table_review">
-    <tr class="r_tr">
-      <th class="r_pname">상품명</th>
-      <th class="r_con">후기</th>
-    </tr>
-    @foreach ($my as $re)
+  <table class="table_review" id="reviews">
+    <thead>
       <tr class="r_tr">
-        <td class="r_td">{{$re->p_name}}</td>
-        <td class="r_td">{{$re->r_contents}}</td>
+        <th class="r_pname">상품명</th>
+        <th class="r_con">후기</th>
+        <th class="r_date">작성일</th>
       </tr>
-    @endforeach
+    </thead>
+    <tbody>
+      @foreach ($my as $re)
+        <tr class="r_tr">
+          <td class="r_td">{{$re->p_name}}</td>
+          <td class="r_td">{{$re->r_contents}}</td>
+          <td class="r_td" style="text-align:center;">{{$re->r_date}}</td>
+        </tr>
+      @endforeach
+    </tbody>
   </table>
 </div>
 </div>
 
 @include('lib.footer')
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
 
@@ -445,12 +451,29 @@ function showpoint(cno)
   openWin = window.open("/mypoint"+cno,
   "childqna", "width=600px, height=800px, left=600px, top=100px ");
 }
+
+$(document).ready(function(){
+  $("#reviews").DataTable({
+    "language": {
+      "emptyTable": "작성한 후기가 없습니다.",
+      "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+      "info": "현재 _START_ - _END_ /  _TOTAL_건",
+      "infoEmpty": "데이터 없음",
+      "infoFiltered": "(전체  _MAX_건의 데이터에서 필터링됨 )",
+      "search": "검색",
+      "zeroRecords": "일치하는 데이터가 없습니다.",
+      "loadingRecords": "로딩중...",
+      "processing":     "잠시만 기다려 주세요...",
+      "paginate": { "next": "다음", "previous": "이전"  }
+    }
+  });
+});
 </script>
 
 @endif
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" ></script>
+
 <script type="text/javascript">
 $.ajaxSetup({
   headers: {
@@ -486,22 +509,8 @@ $('.cancel').click(function(){
 });
 
 
-// $(document).ready(function(){
-//   $(".order").DataTable({
-//     "language": {
-//       "emptyTable": "데이터가 없습니다.",
-//       "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-//       "info": "현재 _START_ - _END_ / _TOTAL_건",
-//       "infoEmpty": "데이터 없음",
-//       "infoFiltered": "( 전체 _MAX_건의 데이터에서 필터링됨 )",
-//       "search": "검색",
-//       "zeroRecords": "일치하는 데이터가 없습니다.",
-//       "loadingRecords": "로딩중...",
-//       "processing":     "잠시만 기다려 주세요...",
-//       "paginate": { "next": "다음", "previous": "이전"  }
-//     }
-//   });
-// });
+
+
 </script>
 <!--POST API Link -->
 <script type="text/javascript" src="/js/postAPI.js" charset="utf-8"></script>

@@ -317,6 +317,11 @@ Route::get('manual', function () {
 Route::get('/ad_admin', function () {
   return view('admin.index');
 });
+
+Route::get('/ad_login', function () {
+  return view('admin.login');
+});
+
 Route::get('/ad_customer', 'AdminController@customer');
 
 Route::get('/ad_seller', 'AdminController@seller');

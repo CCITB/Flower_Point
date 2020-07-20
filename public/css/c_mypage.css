@@ -7,7 +7,7 @@ body{
 
 .myinfo {
   width: 60%;
-  margin: auto auto 35em auto;
+  margin: 0 auto;
 }
 .mytitle{
   font-size: 1.5em;
@@ -103,15 +103,16 @@ div.mypoint{
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 9px 32px;
+  padding: 9px 25px;
   text-align: center;
   margin-left: 20px;
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.6;
   transition: 0.4s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
 }
 .bt_ch:hover{
   opacity: 1
@@ -197,7 +198,13 @@ table.table_review{
 }
 .r_con{
   background-color: #C8DBCD;
-  width: 70%;
+  width: 50%;
+  color: #212121;
+  opacity: 0.8;
+}
+.r_date{
+  width: 20%;
+  background-color: #C8DBCD;
   color: #212121;
   opacity: 0.8;
 }

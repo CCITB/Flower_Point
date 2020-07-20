@@ -1,74 +1,75 @@
-div.tdcell{
-  width: 200px;
-  padding: 10px 0 10px 30px;
-  margin: 0;
+.star_total{
+  width: 60%;
+  min-height: 35em;
+  margin: 5em auto;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+.mystars{
+  margin-bottom: 5em;
+}
+h2{
+  letter-spacing: 2px;
+  text-align: left;
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+}
+table{
+  width: 100%;
+  border-spacing: 0;
+}
+#shopinfo{
+  border-collapse: collapse;
+}
+#shopinfo2{
+  border-collapse: collapse;
+}
+thead{
+  background-color: #C8DBCD;
+  border-bottom: none;
+  color: #212121;
+  opacity: 0.8;
+}
+th.th1{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+}
+td{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
   text-align: center;
-}
-
-div.tdcell2{
-  width: 200px;
-  padding: 10px 0 10px 30px;
-  margin: 0;
-  text-align: left;
-}
-
-div.tdcell3{
-  width: 200px;
-  margin: 0;
-  text-align: left;
 }
 
 div.th1{
   width: 100px;
   height: 100px;
-  border: 1px solid;
-}
-
-th.th2{
-  margin-left: 300px;
-  width: 170px;
-}
-
-th.th3{
-  margin-left: 300px;
-  width: 170px;
-}
-
-th.th4{
-  margin-left: 300px;
-  width: 170px;
-}
-
-div.thcell{
-  border-right: 1px solid #e5e5e5;
-  background: #f9f9f9;
-  text-align: left;
-  letter-spacing: -1px;
-}
-
-div.tdtd{
-  width: 200px;
-  padding: 10px 0 10px 30px;
-  margin: 0;
   text-align: center;
 }
-
-div#show{
-  padding-left: 32px;
+.st_img{
+  text-align: center;
 }
-
-.myinfo {
-    width: 58%;
-    margin: 0 auto;
-    margin-bottom: 100px;
+.bt_ch{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 25px;
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
 }
-
-table.table{
-  width: 100%;
-  color: gray;
-  border-collapse: collapse;
+.bt_ch:hover{
+  opacity: 1
 }
-
-h3{
-  margin-top: 3em;
+.myflw_remove{
+  width: 20%;
+  text-align: center;
+}
+.st_star_remove{
+  width: 22%;
 }
