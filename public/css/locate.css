@@ -185,7 +185,13 @@ table.order{
   margin-right: 60%;
   margin-left: 0.75rem;
 }
-
+h1{
+  margin: 0;
+  display:inline-block;
+}
+a{
+  margin-left: 1em;
+}
 /* locate - jisu */
 
 

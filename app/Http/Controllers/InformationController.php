@@ -269,7 +269,7 @@ class InformationController extends Controller
     }
 
     public function myorderlist(){
-      $customerinfo = auth()->guard('customer')->user();
+      if($customerinfo = auth()->guard('customer')->user()){
       $customerprimary = $customerinfo->c_no;
 
       $data2 = DB::table('customer')
@@ -283,7 +283,10 @@ class InformationController extends Controller
       ->get();
       return view('mypage/myorderlist',compact('data2'));
     }
-
+    else{
+      return redirect('/');
+    }
+}
     public function s_mypage(){
       if($sellerinfo = auth()->guard('seller')->user()){
         // return 0;
