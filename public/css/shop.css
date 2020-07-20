@@ -385,6 +385,7 @@ input.modify{
 }
 input.addr_input{
   padding:3px;
+  margin-left:15px;
 }
 #tdbody{
 

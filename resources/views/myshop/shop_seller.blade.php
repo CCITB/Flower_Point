@@ -90,7 +90,7 @@
       <div id="addresswrap" style="display:none;">
         <div id="addressmodi">
           <div class="delivery_wrap">
-            <strong class="info">주 소</strong>
+            <strong class="info">새 주소</strong>
             <!-- 우편번호 -->
             <input type="text" class="addr_input" id="postcode" name="postcode" placeholder="우편번호" readonly>
             <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
