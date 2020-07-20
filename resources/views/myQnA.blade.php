@@ -32,7 +32,7 @@
         </thead>
         <tbody>
           @foreach($myqn as $mq)
-            <tr>
+            <tr onclick="location.href='/product/{{$mq->p_no}}#que'" style="cursor: pointer;">
               <td class="qna-condition">{{$mq->an_state}}</td>
               <td class="qna-content">{{$mq->q_title}}</td>
               <td class="qna-index">{{$mq->q_state}}</td>

@@ -189,7 +189,9 @@ class InformationController extends Controller
         $cus = $cust->c_no;
         $myqna = DB::table('customer')
         ->join('question','customer.c_no','=','question.customer_no')
-        ->where('c_no',$cus)->paginate(5);
+        ->join('product','question.product_no','=','product.p_no')
+        ->join('store','product.store_no','=','store.st_no')
+        ->where('c_no',$cus)->get();
 
         return view('myQna', ['myqn' => $myqna]);
       } else{

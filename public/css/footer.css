@@ -45,9 +45,91 @@ textarea{
 /* 입점문의 끝 */
 
 /* 이용 가이드 */
-div.register_manual{
-padding:28px;
-margin-left: 240px;
+div.manual_total{
+width: 900px;
+margin: 3em auto;
+}
+.register_manual, .invoice_manual, .product_manual{
+  margin-bottom: 30px;
+  width: 900px;
+  height: 700px;
+}
+.register_manual_h, .invoice_manual_h, .product_manual_h{
+  margin-bottom: 7em;
+}
+
+.detail_tabs{
+  margin: 40px 0 30px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+.tab_table{
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.register_tab{
+  display: table-cell;
+}
+.invoice_tab{
+  display: table-cell;
+}
+.product_tab{
+  display: table-cell;
+}
+.register_link{
+  position: relative;
+  background-color: #FFEFEF;
+  color: #1F0000;
+  font-weight: bold;
+  display: block;
+  height: 42px;
+  line-height: 43px;
+}
+.invoice_tab_link{
+  position: relative;
+  background-color: #FFEFEF;
+  color: #1F0000;
+  font-weight: bold;
+  display: block;
+  height: 42px;
+  line-height: 43px;
+}
+.product_link{
+  position: relative;
+  background-color: #FFEFEF;
+  color: #1F0000;
+  font-weight: bold;
+  display: block;
+  height: 42px;
+  line-height: 43px;
+}
+.invoice_tab_link::before{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: '';
+  width: 1px;
+  height: 18px;
+  margin-top: -9px;
+  background-color: #FFCBCB;
+}
+.product_link::before{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: '';
+  width: 1px;
+  height: 18px;
+  margin-top: -9px;
+  background-color: #FFCBCB;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 /*
 
