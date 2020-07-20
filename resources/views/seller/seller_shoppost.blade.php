@@ -103,6 +103,13 @@
 //     var reader = new FileReader();
 //     reader.onload = function(event) { var img = document.createElement("img"); img.setAttribute("src", event.target.result); document.querySelector("#preview").appendChild(img); };
 //     console.log(image); reader.readAsDataURL(image); } }
+$('.Cancellation-btn').click(function(){
+var confirm1 = confirm('글 작성을 취소하시겠습니까?');
+if(confirm1){
+  location.href='/';
+}
+
+});
 // 파일용량제한 스크립트
 function checkFile(el){
   $('#image-session').attr('src', '#');
