@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
   * @var array
   */
   protected $commands = [
-    App\Console\Commands\DeliveryStatus::class
+    Commands\DeliveryStatus::class
      // Commands\DeliveryStatus::class
   ];
 
@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
     //
     // })->hourlyAt(50);
     $schedule->command('delivery:send')
-    ->hourlyAt(50);
+    ->hourlyAt(54);
   }
 
   /**
@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
   }
 }
 
-//배송중인 상품의 결제완료 시간
+// 배송중인 상품의 결제완료 시간
 // $complete_date = DB::table('payment')->pluck('pm_complete_date');
 // //현재시간
 // $today = Carbon::now();
