@@ -5,10 +5,10 @@ body{
 }
 
 div.myoderlist-wrap{
-  height:80em;
+  min-height: 35em;
   width:85em;
   margin-bottom: 30px;
-  margin: 0 auto;
+  margin: 4em auto;
 }
 input.num{
   width:90%;
@@ -36,6 +36,10 @@ button.ordercheck{
 }
 .sellerorderlist{
   width: 90%;
+  margin: 65px auto;
+}
+.sellerqnalist{
+  width: 80%;
   margin: 65px auto;
 }
 .orderspace{
@@ -129,7 +133,7 @@ td.order_cnt{
   margin-bottom: 8px;
 }
 div.mytitle{
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: bold;
   margin-bottom: 30px;
   letter-spacing: 2px;
@@ -144,3 +148,8 @@ tr{
 table.dataTable tbody th, table.dataTable tbody td {
     padding: 8px 9px;
   }
+thead.sel_qna{
+  background-color: #C8DBCD;
+  color: #212121;
+  opacity: 0.8;
+}

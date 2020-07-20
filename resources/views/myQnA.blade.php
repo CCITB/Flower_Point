@@ -14,7 +14,7 @@
   @include('lib.header')
   <div class="qna_total">
     <div class="mytitle">
-      나의 QnA
+      나의 문의관리
     </div>
 
   <div class="frequently">

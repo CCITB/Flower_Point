@@ -12,20 +12,19 @@
   <div class="myoderlist-wrap">
     <div class="hr-line">
       <div id="line">
-        <h2>나의 문의관리</h2>
-        <hr>
+        <div class="mytitle">나의 문의관리</div>
       </div>
     </div>
     <div class="myorderlist">
       <div class="myorderlist-top">
         <div class="myorderlist-infor">
           @if(count($data))
-            <div class="sellerorderlist">
+            <div class="sellerqnalist">
               <form class="order_list" id="order_list" action="" method="post">
                 @csrf
 
-                <table id="myTable"name="">
-                  <thead>
+                <table id="myTable" style="border-collapse: collapse;">
+                  <thead class="sel_qna">
                   <tr>
                     <th class="title">번호</th>
                     <th class="title">문의/답변</th>
