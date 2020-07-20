@@ -56,6 +56,11 @@
 
 
 <!-- store address 정보 -->
+
+@foreach ($store_address as $address)
+  <input class="array_url" id="address_url{{$address->st_name}} "type="hidden" value="{{$address->st_name}}">
+@endforeach
+
 @foreach ($store_address as $address)
   <input class="array" id="address_store{{$address->st_no}} "type="hidden" value="{{$address->a_address}}">
 @endforeach
@@ -75,7 +80,7 @@
 @endforeach
 
 @foreach ($store_info as $store_name)
-  <input class="store_name" id="{{$store_name->st_no}} "type="hidden" value="{{$store_name->st_name}}">
+  <input class="store_name" id="{{$store_name->st_no}}  "type="hidden" value="{{$store_name->st_name}}">
 @endforeach
 
 @foreach ($store_info as $store_tel)
@@ -88,6 +93,7 @@
 //맵 가져오는 소스, 확대수치(zoom), 중심좌표(위도,경도)->(lat, lng);
 function initMap() {
   //contentString에 들어갈 나머지 주소들
+  var url = $('.array_url');
   var array = $('.array');
   var detail = $(".address_detail");
   var extra = $(".address_extra");
@@ -96,6 +102,7 @@ function initMap() {
   var intro = $(".store_intro");
 
   //store 주소 정보를 담을 배열
+  var arr_url = new Array();
   var arr = new Array();
   var arr_detail = new Array();
   var arr_extra = new Array();
@@ -103,8 +110,13 @@ function initMap() {
   var arr_intro = new Array();
   var arr_tel = new Array();
 
+
+
   for(var j=0; j < array.length; j++){
     arr.push(array[j].value);
+  }
+  for(var a=0; a < url.length; a++){
+    arr_url.push(url[a].value);
   }
   for(var a=0; a<detail.length; a++){
     arr_detail.push(detail[a].value);
@@ -121,6 +133,7 @@ function initMap() {
   for(var a=0; a<tel.length; a++){
     arr_tel.push(tel[a].value);
   }
+
 
   var user_address = $("#user_address").val();
   console.log(user_address);
@@ -171,7 +184,7 @@ function initMap() {
 
     for(var a=0; a<arr_name.length; a++){
       div.push('<div id="main">'+
-      '<p><h1>'+arr_name[a]+'</h1><h5>'+arr_tel[a]+'</h5></p><hr>'+
+      '<p><h1><a href="store/'+arr_url[a]+'">'+arr_name[a]+'</h1><h5></a>'+arr_tel[a]+'</h5></p><hr>'+
       '<div id="bodyContent">'
       +'<p><h4 id="intro"><b>'+arr_intro[a]+'</b></h4></p>'+"</div>"+
       '<div id="address"><h4 id="array">'+arr[a]+', '+arr_detail[a]+arr_extra[a]+'<h4></div>'
