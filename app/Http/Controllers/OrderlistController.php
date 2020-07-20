@@ -11,22 +11,6 @@ use \Carbon\Carbon;
 //어지수
 class OrderlistController extends Controller
 {
-  //실험용
-  public function time(){
-    $complete_date = DB::table('payment')->pluck('pm_complete_date');
-    $today = Carbon::now();
-    $date_diff = [];
-
-    for($i=0; $i<count($complete_date); $i++){
-      $date_diff[$i] = $today->diffInDays($complete_date[$i]);
-      if($date_diff[$i]>=7){
-        DB::table('payment')->where('pm_d_status','like','%배송중%')
-        ->update([
-          'pm_d_status'=>'인규짜응'
-        ]);
-      }
-    }
-  }
   //[seller] 나의 주문관리 -- 정경진
   public function orderlist(Request $request){
     if($sellerinfo = auth()->guard('seller')->user()){
@@ -97,7 +81,7 @@ class OrderlistController extends Controller
       }
       return response()->json($pm_no);
     }
-  }
+
   //배송정보 입력
   public function delivery_status(Request $request){
     // $now = Carbon::now();
