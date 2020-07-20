@@ -1,5 +1,5 @@
 .couponwrap{
-  width: 60%;
+  width: 1000px;
   margin: 0 auto;
   min-height: 50em;
   margin-top: 5em;
@@ -16,7 +16,6 @@
 }
 .supplement_coupon{
   height: 209px;
-  margin-bottom: 22px;
   margin-top: 1em;
   margin-bottom: 3em;
 }
@@ -28,11 +27,12 @@
 }
 .hi{
   float: left;
-  width: 50%;
+  width: 200px;
 }
 .hi1{
   float: left;
-  width: 50%;
+  width: 250px;
+  text-align: right;
 }
 
 .coupon_list{

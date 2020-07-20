@@ -102,6 +102,9 @@ table#myTable{
 }
 
 /* 디자인 */
+table.order_table{
+  border-top: 1px solid #e5e5e5;
+}
 tr.p_tr{
   color:#212121;
   background-color: #CBDBCD;

@@ -20,7 +20,7 @@
               <div style="font-size:1.3em; margin-bottom:30px; text-align:center;"><span class="bg_bul">나의 보유쿠폰</span></div>
               <div style="color: #4374D9; font-size:1.2em; padding-left:15px; text-align:center;"><strong><span>{{$coupon2}} 장</span></strong></div>
             </div>
-            <div class="hi1">
+            <div class="hi1" style="padding-top:25px;">
               <button type="button" class="co_bt" name="button"><a class="coupon_text" href="/recievecoupon">쿠폰존 바로가기</a></button>
             </div>
           </div>

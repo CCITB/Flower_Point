@@ -18,9 +18,9 @@
   <div class="myoderlist-wrap">
     <div class="order_line">
       <div id="line">
+
         <div class="mytitle">나의 주문관리</div>
-        <hr>
-        <table>
+        <table class="order_table">
           <tr>
             <!-- <td rowspan="3" class="orderpicture">사진</td>
             <td class="orderblink">입금대기</td>
