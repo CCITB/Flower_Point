@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
     //
     // })->hourlyAt(50);
     $schedule->command('delivery:send')
-    ->hourlyAt(54);
+    ->hourlyAt(59);
   }
 
   /**
