@@ -21,7 +21,7 @@
   <div class="couponwrap">
     <h3>쿠폰</h3>
     고객님께서 보유하고있는 할인쿠폰을 확인하세요! 상품구매시 더욱 저렴하게 구매할 수 있습니다.
-    <button type="button" name="button"><a href="/recievecoupon">쿠폰존 바로가기</a></button>
+    <button type="button" id="coupon_button" name="button"><a class="coupon_text" href="/recievecoupon">쿠폰존 바로가기</a></button>
     <div class="supplement_coupon">
       <img id="couponimg"src="imglib/coupon.png" alt="" width="400px">
       <div class="supplement_cnts">

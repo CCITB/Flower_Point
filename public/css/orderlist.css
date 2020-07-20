@@ -8,7 +8,7 @@ div.myoderlist-wrap{
   height:80em;
   width:85em;
   margin-bottom: 30px;
-  margin-left:10em;
+  margin: 0 auto;
 }
 input.num{
   width:90%;

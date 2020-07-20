@@ -381,15 +381,37 @@ class InformationController extends Controller
         $customerprimary = $customerinfo->c_no;
         $number = $request->get("number");
 
+
         $data = DB::table('paymentjoin')
         ->join('payment','payment.pm_no','paymentjoin.payment_no')
         ->join('order','paymentjoin.order_no','order.o_no')
-        ->join('customer','order.customer_no','customer.c_no')
+        ->join('customer','order.customer_no','customer.c_no','left outer')
         ->join('couponbox','order.couponbox_no','couponbox.cpb_no')
         ->join('coupon','couponbox.coupon_no','coupon.cp_no')
         ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
         ->get();
+        //쿠폰안썻을때
+        if($data->isEmpty()){
+          $data = DB::table('paymentjoin')
+          ->join('payment','payment.pm_no','paymentjoin.payment_no')
+          ->join('order','paymentjoin.order_no','order.o_no')
+          ->join('customer','order.customer_no','customer.c_no','left outer')
+          ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
+          ->get();
+          $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
+          $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
+          $price = $total-$point;
+          $currentcash = $data[0]->c_cash;
 
+          $updateprice = DB::table('customer')->where('c_no','=',$customerprimary)->update([
+            'c_cash'=>$price+$currentcash
+          ]);
+          DB::table('payment')->where('pm_no',$number)->
+          update(['pm_status'=>'결제 취소','pm_d_status' => '결제 취소']);
+          return response()->json(1);
+        }
+
+        // return response()->json($data);
         $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
         $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
         $coupon = preg_replace("/[^0-9]/", "", $data[0]->cp_flatrate);
@@ -399,7 +421,6 @@ class InformationController extends Controller
         $updateprice = DB::table('customer')->where('c_no','=',$customerprimary)->update([
           'c_cash'=>$price+$currentcash
         ]);
-        // return response()->json($price);
         DB::table('payment')->where('pm_no',$number)->
         update(['pm_status'=>'결제 취소','pm_d_status' => '결제 취소']);
         return response()->json(1);

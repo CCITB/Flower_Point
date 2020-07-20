@@ -7,6 +7,8 @@
 .supplement_coupon{
   height: 209px;
   margin-bottom: 22px;
+  margin-top: 1em;
+  margin-bottom: 3em;
 }
 
 
@@ -19,6 +21,25 @@
   position: relative;
   z-index: 1;
   width: 100%;
+}
+
+#coupon_button{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  margin-left: 10px;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.coupon_text{
+  color: white;
 }
 
 table{

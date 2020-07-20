@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>내 주문관리</title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/main.css">
@@ -98,6 +99,39 @@
   <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 
   <script>
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  $('.cancel').click(function(){
+    var tdArr = new Array();    // 배열 선언
+    var checkBtn = $(this);
+    var tr = checkBtn.parent().parent();
+    var td = tr.children();
+    var number = td.eq(3).text();
+
+    $.ajax({
+      type: 'post',
+      url: '/refund',
+      dataType: 'json',
+      data: { "number" : number,
+    },
+    success: function(data) {
+      // console.log(data);
+      // return false;
+      if(data==1){
+        alert('취소되었습니다.');
+        location.reload();
+      }
+    },
+    error: function() {
+      console.log();
+    }
+  });
+  });
+
 
   $('#confirm').click(function(){
     var test = confirm("구매를 확정하시겠습니까?");
@@ -108,7 +142,7 @@
     }
   });
 
-  
+
   $(document).ready(function(){
     $("#myorders").DataTable({
       "language": {
