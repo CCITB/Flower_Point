@@ -129,36 +129,30 @@
                   @endforeach
 
 
-                  <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
-                    @csrf
-                    <tr class="tr1">
-                      <div id="addresswrap" style="display:none;">
-                        <th>
-                          <div id="addressmodi">
-                            <div class="delivery_wrap">
-                              <strong class="info">새 주 소</strong>
-                            </th>
-                            <td>
-                              <!-- 우편번호 -->
-                              <input type="text" id="postcode" name="postcode" placeholder="우편번호" >
-                              <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-                            </div>
-                            <!--주소 -->
-                            <div class="delivery_wrap2">
-                              <input type="text"  id="address" name="address" placeholder="주소" readonly>
-                              <div class="detail">
-                                <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
-                              </div>
-                              <div class="delivery_address_detail">
-                                <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
-                              </div>
-                            </div>
+                  <tr class="tr1" id="addresswrap" style="display:none;">
+                    <th class="th1">
+                      <strong class="info">새 주 소</strong>
+                    </th>
+                    <td class="tdcell">
+                      <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
+                        @csrf
+                        <div class="delivery_wrap2">
+                          <!-- 우편번호 -->
+                          <input type="text" id="postcode" name="postcode" placeholder="우편번호" >
+                          <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+                          <!--주소 -->
+                          <input type="text"  id="address" name="address" placeholder="주소" readonly>
+                          <div class="detail">
+                            <input type="text" class="delivery_address_list" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
                           </div>
-                          <button type="submit" id="complete1"  name="button" >수정완료</button>
-                        </td>
-                      </div>
-                    </tr>
-                  </form>
+                          <div class="delivery_address_detail">
+                            <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+                          </div>
+                        </div>
+                        <button type="submit" id="complete1"  name="button" >수정완료</button>
+                      </form>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

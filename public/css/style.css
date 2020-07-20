@@ -120,7 +120,7 @@ a, a:hover, a:focus {
 
 /*LOGIN CONFIGURATION PAGE*/
 .form-login {
-	max-width: 330px;
+	max-width: 350px;
 	margin: 100px auto 0;
 	background: #fff;
 	border-radius: 5px;
@@ -131,11 +131,12 @@ a, a:hover, a:focus {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #4ecdc4;
+	background: #C8DBCD;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
-	color: #fff;
-	font-size: 20px;
+	font-size: 30px;
+  letter-spacing: 1px;
+  font-weight: 500;
 	text-transform: uppercase;
 	font-weight: 300;
 }

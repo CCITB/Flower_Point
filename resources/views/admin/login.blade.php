@@ -14,29 +14,19 @@
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 </head>
 
 <body>
-  <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
       <form class="form-login" action="/login_a" method="post">
         @csrf
-        <h2 class="form-login-heading">sign in now</h2>
+        <h2 class="form-login-heading">꽃갈피 관리자</h2>
         <div class="login-wrap">
           <input type="text" class="form-control" placeholder="User ID" autofocus name="ID">
           <br>
-          <input type="password" class="form-control" placeholder="Password" name="Password">
-          <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i>login</button>
+          <input type="password" class="form-control" placeholder="Password" name="Password"><br>
+          <button class="btn btn-theme btn-block" type="submit" style="font-size:20px; letter-spacing: 1px;"><i class="fa fa-lock"></i>Login</button>
         </div>
       </form>
     </div>
