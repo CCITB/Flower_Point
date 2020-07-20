@@ -11,7 +11,7 @@
   <div class="top-menu">
     <ul class="nav pull-right top-menu">
       <li style="float:left;"><a class="logout" href="/">꽃갈피 메인가기</a></li>
-      <li style="float:left;"><button class="logout" style="outline:0;">LogOut</button></li>
+      <li style="float:left;"><a class="logout" href="/ad_logout" style="outline:0;cursor:pointer;">LogOut</a></li>
     </ul>
   </div>
 </header>

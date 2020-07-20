@@ -118,5 +118,31 @@ class AdminController extends Controller
     ]);
     return redirect()->back();
   }
+  public function login(){
+    return view('admin.login');
+  }
+  public function login_a(Request $request){
+    //
+    // DB::table('admin')->insert([
+    //   'admin_id' => $request->ID,
+    //   'admin_pw'  => bcrypt($request->Password)
+    // ]);
+    // return auth()->guard('admin')->attempt(['admin_id' => $request->ID,'password' => $request->Password]);
+    if(!auth()->guard('admin')->attempt(['admin_id' => $request->ID,'password' => $request->Password])){
+      return back();
+    }
+    return redirect('/ad_customer');
+  }
+  public function adminpage(){
+    if(auth()->guard('admin')->check()){
+      return view('admin.index');
+    }
+    return redirect('/');
+  }
+  public function logout(){
+    auth()->logout();
+    session()->flush();
+    return redirect(url()->previous());
+  }
 
 }

@@ -314,35 +314,40 @@ Route::get('manual', function () {
 });
 
 //관리자
-Route::get('/ad_admin', function () {
-  return view('admin.index');
+Route::get('/ad_admin', 'AdminController@adminpage');
+
+Route::get('/ad_login', 'AdminController@login');
+
+Route::post('/login_a', 'AdminController@login_a');
+
+Route::get('/ad_logout', 'AdminController@logout');
+  //middleware group admin
+Route::group(['middleware' => ['admin'],['preventBackHistory']], function () {
+    //
+    Route::get('/ad_customer', 'AdminController@customer');
+
+    Route::get('/ad_seller', 'AdminController@seller');
+
+    Route::post('/ad_remove{id}', 'AdminController@ad_remove');
+
+    Route::post('/ad_restore{id}', 'AdminController@ad_restore');
+
+    Route::get('/ad_product', 'AdminController@product');
+
+    Route::get('/ad_regst{id}', 'AdminController@registraion');
+
+    Route::post('/ad_confirm{id}', 'AdminController@confrim');
+
+    Route::post('/cop', 'AdminController@add_coupon');
+
+    Route::get('/ad_coupon', 'AdminController@show_coupon');
+
+    Route::post('/ad_issue{id}', 'AdminController@issue');
+
+    Route::post('/ad_noissue{id}', 'AdminController@noissue');
 });
 
-Route::get('/ad_login', function () {
-  return view('admin.login');
-});
 
-Route::get('/ad_customer', 'AdminController@customer');
-
-Route::get('/ad_seller', 'AdminController@seller');
-
-Route::post('/ad_remove{id}', 'AdminController@ad_remove');
-
-Route::post('/ad_restore{id}', 'AdminController@ad_restore');
-
-Route::get('/ad_product', 'AdminController@product');
-
-Route::get('/ad_regst{id}', 'AdminController@registraion');
-
-Route::post('/ad_confirm{id}', 'AdminController@confrim');
-
-Route::post('/cop', 'AdminController@add_coupon');
-
-Route::get('/ad_coupon', 'AdminController@show_coupon');
-
-Route::post('/ad_issue{id}', 'AdminController@issue');
-
-Route::post('/ad_noissue{id}', 'AdminController@noissue');
 
 //seller-주문관리
 // Route::post('/orderlist', 'OrderlistController@orderlist');

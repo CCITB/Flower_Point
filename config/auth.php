@@ -56,6 +56,11 @@ return [
     'seller' => [
       'driver' => 'session',
       'provider' => 'seller',
+    ],
+
+    'admin' => [
+      'driver' => 'session',
+      'provider' => 'admin',
     ]
   ],
 
@@ -90,6 +95,11 @@ return [
     'seller' => [
         'driver' => 'eloquent',
         'model' => App\seller::class,
+    ],
+
+    'admin' => [
+        'driver' => 'eloquent',
+        'model' => App\admin::class,
     ]
   ],
 
