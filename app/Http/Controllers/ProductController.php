@@ -10,33 +10,6 @@ use DateTime;
 class ProductController extends Controller
 {
   //곽승지
-  public function __construct(Request $request)
-  {
-    // $this->a = 2;
-    // $this->a12 = 1;
-    // $this->middleware('user');
-    // $this->middleware(function ($request, $next) {
-    //   $this->user = Auth::user();
-    //
-    //   return $next($request);
-    // });
-    //
-    // $this->userinfo = auth()->guard('customer')->user()->c_no;
-    // $this->data = DB::table('basket')->where('customer_no',$this->userinfo)->get();
-    // $this->price_sum = $this->data->sum('b_price');
-    // $this->dz = 0;
-    // $this->price_sum1 = 0;
-    // $this->count_sum1 = 0;
-    // $this->delivery_sum1 = 0;
-    // for($i=0; $i<count($this->data); $i++){
-    //   $this->dz+=($this->data[$i]->b_price+$this->data[$i]->b_delivery)*$this->data[$i]->b_count;
-    //   $this->price_sum1+=$this->data[$i]->b_price*$this->data[$i]->b_count;
-    //   $this->count_sum1+=$this->data[$i]->b_count;
-    //   $this->delivery_sum1+=$this->data[$i]->b_delivery*$this->data[$i]->b_count;
-    // }
-
-
-  }
 
   //
   public function seller_shoppost(){
@@ -87,6 +60,10 @@ class ProductController extends Controller
   }
   public function productpage($id){
     $productinfor = DB::table('product')->where('p_no','=',$id)->get();
+
+    if($productinfor->isEmpty()){
+      return redirect('/');
+    }
     $pro_no = $productinfor[0]->p_no;
     // return $pro_no;
 
