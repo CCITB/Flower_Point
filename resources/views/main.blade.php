@@ -38,129 +38,129 @@
                       </div>
                       <div class="image-in-container">
                         {{-- <div class="image-in-star">
-                        </div> --}}
-                        <div class="image-in-bottom">
-                          {{$productlist->p_name}}
-                          {{-- {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}} --}}
-                        </div>
+                      </div> --}}
+                      <div class="image-in-bottom">
+                        {{$productlist->p_name}}
+                        {{-- {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}} --}}
                       </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
+                    </div>
+                    <div class="image-in-price">
+                      <strong>{{number_format($productlist->p_price)}}원</strong>
                     </div>
                   </div>
                 </div>
               </div>
-            @endforeach
-          </div>
+            </div>
+          @endforeach
         </div>
-      </div> {{-- swiper-slide --}}
+      </div>
+    </div> {{-- swiper-slide --}}
 
-      <div class="swiper-slide">
+    <div class="swiper-slide">
 
-        <div class="container-wrap">
-          <div class="container-wrapping">
-            @foreach ($prod as $productlist)
-              <div class="container-image">
-                <div class="image">
-                  <div class="image-in" url="/product/{{$productlist->p_no}}">
-                    <div class="imagewrap" >
-                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+      <div class="container-wrap">
+        <div class="container-wrapping">
+          @foreach ($prod as $productlist)
+            <div class="container-image">
+              <div class="image">
+                <div class="image-in" url="/product/{{$productlist->p_no}}">
+                  <div class="imagewrap" >
+                    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                  </div>
+
+                  <div class="image-in-font">
+                    <div class="image-in-post">
+                      {{$productlist->st_name}}
                     </div>
+                    <div class="image-in-container">
 
-                    <div class="image-in-font">
-                      <div class="image-in-post">
-                        {{$productlist->st_name}}
+                      <div class="image-in-bottom">
+                        {{$productlist->p_name}}
                       </div>
-                      <div class="image-in-container">
-
-                        <div class="image-in-bottom">
-                            {{$productlist->p_name}}
-                        </div>
-                      </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
+                    </div>
+                    <div class="image-in-price">
+                      <strong>{{number_format($productlist->p_price)}}원</strong>
                     </div>
                   </div>
                 </div>
               </div>
-            @endforeach
-          </div>
+            </div>
+          @endforeach
         </div>
-
       </div>
 
-      {{-- <div class="swiper-slide">
-
-        <div class="container-wrap">
-          <div class="container-wrapping">
-            @foreach ($pro as $productlist)
-              <div class="container-image">
-                <div class="image">
-                  <div class="image-in" url="/product/{{$productlist->p_no}}">
-                    <div class="imagewrap" >
-                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-                    </div>
-
-                    <div class="image-in-font">
-                      <div class="image-in-post">
-                        {{$productlist->st_name}}
-                      </div>
-                      <div class="image-in-container">
-                        <div class="image-in-star">
-                        </div>
-                        <div class="image-in-bottom">
-                          {{$productlist->p_name}}
-                        </div>
-                      </div>
-                      <div class="image-in-price">
-                        <strong>{{number_format($productlist->p_price)}}원</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-      </div> --}}
-
     </div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+
+    {{-- <div class="swiper-slide">
+
+    <div class="container-wrap">
+    <div class="container-wrapping">
+    @foreach ($pro as $productlist)
+    <div class="container-image">
+    <div class="image">
+    <div class="image-in" url="/product/{{$productlist->p_no}}">
+    <div class="imagewrap" >
+    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
   </div>
+
+  <div class="image-in-font">
+  <div class="image-in-post">
+  {{$productlist->st_name}}
+</div>
+<div class="image-in-container">
+<div class="image-in-star">
+</div>
+<div class="image-in-bottom">
+{{$productlist->p_name}}
+</div>
+</div>
+<div class="image-in-price">
+<strong>{{number_format($productlist->p_price)}}원</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+@endforeach
+</div>
+</div>
+</div> --}}
+
+</div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
 
 <!-- 인기 상품-->
 <div class="hot_div">
-<div class="hr-sect">인기상품 <img id="star_icon" src="/imglib/staricon.png"></div>
+  <div class="hr-sect">인기상품 <img id="star_icon" src="/imglib/staricon.png"></div>
 
-<div class="container-wrap">
-  <div class="container-wrapping">
-    @foreach ($product as $productlist)
-      <div class="hot-container-image">
-        <div class="hot-image">
-          <div class="hot-image-in" url="/product/{{$productlist->p_no}}">
-            <div class="hot-imagewrap" >
-              <img class="hot-imagewrap" src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-            </div>
-
-            <div class="hot-image-in-font">
-              <div class="hot-image-in-container">
-                <div class="hot-image-in-bottom">
-                  {{$productlist->p_name}}
-                </div>
+  <div class="container-wrap">
+    <div class="container-wrapping">
+      @foreach ($popularityArray as $productlist)
+        <div class="hot-container-image">
+          <div class="hot-image">
+            <div class="hot-image-in" >
+              <div class="hot-imagewrap" style="cursor:pointer;" url="/product/{{$productlist[0]->p_no}}">
+                <img class="hot-imagewrap" src="\imglib\{{$productlist[0]->p_filename}}" alt="꽃" >
               </div>
-              <div class="hot-image-in-price">
-                <strong>{{number_format($productlist->p_price)}}원</strong>
+
+              <div class="hot-image-in-font">
+                <div class="hot-image-in-container">
+                  <div class="hot-image-in-bottom">
+                    {{$productlist[0]->p_name}}
+                  </div>
+                </div>
+                <div class="hot-image-in-price">
+                  <strong>{{number_format($productlist[0]->p_price)}}원</strong>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
+    </div>
   </div>
-</div>
 </div>
 
 
@@ -188,14 +188,13 @@ var mySwiper = new Swiper('.swiper-container', {
   },
 });
 
- // 평점
+// 평점
 $( ".star_rating a" ).click(function() {
   $(this).parent().children("a").removeClass("on");
   $(this).addClass("on").prevAll("a").addClass("on");
   return false;
 });
 </script>
-
 </body>
 </html>
 <script type="text/javascript">
@@ -205,4 +204,10 @@ $("div.image-in").click(
     window.location = $(this).attr("url");
     return false;
   });
-</script>
+  $("div.hot-imagewrap").click(
+    function()
+    {
+      window.location = $(this).attr("url");
+      return false;
+    });
+    </script>

@@ -32,11 +32,19 @@ class MainController extends Controller
                   ->join('order', 'paymentjoin.order_no', '=', 'order.o_no')
                   ->groupBy('p_no')
                   ->get();
+                  // return $product;
+                  // return $popularity;
+                  for($i=0;$i<count($popularity);$i++){
+                  $popularityArray[] =  DB::table('product')->where('p_status','등록')->where('p_no',$popularity[$i]->p_no)
+                    ->join('store', 'product.store_no', '=', 'store.st_no')
+                    ->limit(6)->get();
+                  }
+                  // return $popularityArray;
                   // return $popularity[0]->p_no;
                   // return dd($popularity);
 
 
-    return view('main', compact('product','prod','pro'));
+    return view('main', compact('product','prod','pro','popularityArray'));
   }
   public function login_customer(){
     if(auth()->guard('seller')->check()){
