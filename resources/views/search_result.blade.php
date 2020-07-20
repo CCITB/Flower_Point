@@ -28,7 +28,7 @@
             <div class="image">
               <div class="image-in" url="/product/{{$productlist->p_no}}">
                 <div class="imagewrap" >
-                  <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                  <img src="\imglib\{{$productlist->p_filename}}" onerror="this.src='imglib/dummy.png'" >
                 </div>
 
                 <div class="image-in-font">
@@ -37,18 +37,9 @@
                     {{$productlist->p_name}}
                   </div>
                   <div class="image-in-container">
-                    <div class="image-in-star">
-                      <p class="star_rating">
-                        <a href="#" class="on">★</a>
-                        <a href="#" class="on">★</a>
-                        <a href="#" class="on">★</a>
-                        <a href="#" class="on">★</a>
-                        <a href="#" class="on">★</a>
-                      </p>
-                    </div>
                     <div class="image-in-bottom">
-                      <!--물품 내용-->
-                    {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}}
+                      <!--물품 내용-->{{$productlist->st_name}}
+                    {{-- {{str_replace("&nbsp;"," ",strip_tags($productlist->p_contents))}} --}}
                     </div>
                   </div>
                   <div class="image-in-price">

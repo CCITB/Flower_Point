@@ -15,7 +15,7 @@ class SearchController extends Controller
     $search_query = $request->input('query');
 
     //input data와 동일한 값을 Product table의 이름을 기준으로 Search
-    $result_data = DB::table('product')->where('p_name','like','%'.$search_query.'%')->get();
+    $result_data = DB::table('product')->join('store','product.store_no','store.st_no')->where('p_name','like','%'.$search_query.'%')->get();
     //input data 결과가 없을 경우 사용할 count
     $result_name = $result_data->count();
 
