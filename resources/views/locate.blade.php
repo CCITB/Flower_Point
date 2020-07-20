@@ -57,7 +57,7 @@
 
 <!-- store address 정보 -->
 
-@foreach ($store_address as $address)
+@foreach ($store_info as $address)
   <input class="array_url" id="address_url{{$address->st_name}} "type="hidden" value="{{$address->st_name}}">
 @endforeach
 
