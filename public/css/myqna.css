@@ -25,14 +25,13 @@ div.qna-product-btn{
   width: 100%;
 }
 table.qna-table{
-  width: 100%;
   border-top: 1px solid #ccc;
   border-collapse: collapse;
-  font-size: 1.1em;;
+  font-size: 1em;;
   font-weight: normal;
 }
 tr{
-  height: 40px;
+  height: 30px;
 }
 tr th{
   color: #212121;
@@ -45,19 +44,19 @@ tr th{
 tr td{
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
-  height: 35px;
+  height: 30px;
 }
-td.qna-index{
+td.qna-condition{
   width: 15%;
 }
 td.qna-content{
-  width: 50%;
+  width: 45%;
   text-align: left;
   padding-left: 20px;
   padding-right: 20px;
 }
-td.qna-condition{
-  width: 10%;
+td.qna-index{
+  width: 15%;
 }
 td.qna-writer{
   width: 10%;
@@ -99,35 +98,3 @@ button.qna-submit-cancel-btn
   border: 1px solid #dadada;
   width: 83.675px;
 }
-<<<<<<< HEAD
-=======
-.frequently-qna{
-  width: 70%;
-
-  margin: 0 auto;
-}
-.frequently{
-  position: relative;
-  width: 1130px;
-  padding: 0 30px;
-  margin: 0 auto;
-}
-
-
-ul li{
-  list-style-type: none;
-  display: inline;
-  /* margin-left: 20px; */
-}
-.page-item{
-display: inline-block;
-}
-.pagination{
-  text-align: center;
-}
-/* @media (max-width: /* write what you need, for me it's 560px */) {
-    ul.pagination li:not(.show-mobile) {
-        display: none;
-    }
-} */
->>>>>>> dd34d6df4c9873d467f4b23bcc52fe741d4595d7
