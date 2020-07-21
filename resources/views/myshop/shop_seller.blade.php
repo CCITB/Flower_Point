@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/shop.css">
   <!-- <link rel="stylesheet" href="/css/postlist.css"> -->
-  <link rel="stylesheet" href="/css/image.css">
 
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" type="text/css"/>
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -21,107 +20,84 @@
   <!-- 정경진 -->
   <!-- seller에게 보이는 store화면 -->
   <div class="allwrap">
-    <div class="myinfo">
-      @if( auth()->guard('seller')->user())
-        @foreach ($data as $data1)
-          <div class="mytitle">{{$data1->st_name}}</div>
-          <hr>
-          <div class="wrap2">
-          <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
-                 @csrf
-              <div class="preview-wrap">
-                <div class="preview-left">
-                  <div class="preview">
-                    <img src="imglib/{{$data1->st_img}}" onerror="this.src='imglib/profile.png'" id="image-session">
-                    <div class="preview-image">
-                      <!-- 이미지 미리보기 -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="preview-right">
-                <div class="image-upload">
-                        <input type="button" value="이미지 등록" onclick="showPopup();" />
-                </div>
-              </div>
+    <div class="wrap0">
+      @foreach ($data as $data1)
+        <div class="mytitle">{{$data1->st_name}}</div>
+        <div class="wrap2">
 
+          <div class="imgbox">
+            <img src="imglib/{{$data1->st_img}}" onerror="this.src='imglib/profile.png'" class="shopimg" id="image-session">
+            <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+              @csrf
+              <div class="image-upload">
+                <input type="button" value="이미지 등록" onclick="showPopup();" />
+              </div>
             </form>
+          </div>
 
-            <div id="tablewrap">
-              <table id="shopinfo">
-                <tr>
-                  <th class="st_tr">대표</th>
-                  <td><div class="thcell">{{$data1->s_name}}</div></td>
-                </tr>
-
-                <tr>
-                  <th class="st_tr">상호명</th>
-                  <td><div class="thcell">{{$data1->st_name}}</div></td>
-                </tr>
-              @endforeach
+          <div class="tablewrap">
+            <table id="shopinfo">
+              <tr>
+                <th class="st_th">대표</th>
+                <td class="st_td">{{$data1->s_name}}</td>
+              </tr>
+              <tr>
+                <th class="st_th">상호명</th>
+                <td class="st_td">{{$data1->st_name}}</td>
+              </tr>
               <form class="addressgroup" action="/shopinfo" method="get">
                 <tr>
-                  <th class="st_tr">주소</th>
-                  @foreach ($store_address as $a)
-                    <td><div class="thcell">({{$a->a_post}}) {{$a->a_address}}, {{$a->a_detail}}{{$a->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></div></td>
-                  @endforeach
+                  <th class="st_th">주소</th>
+                  <td class="st_td">({{$data1->a_post}}) {{$data1->a_address}}, {{$data1->a_detail}}{{$data1->a_extra}}<input type="button" id=modiaddress value="주소수정" name="introduce" display="block" onclick="div_show(this.value,'addresswrap' );"></td>
                 </tr>
               </form>
-            </div>
-          </table>
-        </div>
-        <form class="shop" action="/shopinfo" method="get">
+              <tr>
+                <th class="st_th1"></th>
+                <td class="st_td1">
+                  <div class="addresswrap" id="addresswrap" style="display:none;">
+                    <form action="/newaddress" method="get">
+                      <div class="delivery_wrap">
+                        <strong class="info">새 주소</strong>
+                      </div>
+                      <div class="delivery_wrap2">
+                        <!-- 우편번호 -->
+                        <input type="text" class="addr_input" id="postcode" name="postcode" placeholder="우편번호" readonly>
+                        <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
+                        <!--주소 -->
+                        <input type="text" class="addr_input" id="address" name="address" placeholder="주소" readonly><br>
+                        <input type="text" class="addr_input" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly><br>
+                        <input type="text" class="addr_input" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+                      </div>
+                      <button type="submit" id="complete1" name="button" >수정완료</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
           <div class="shopintro">
             <div id="introducemodi">{{$data1->st_introduce}}</div>
-            <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
-            <div id="addressapi" style="display:none;">
-              <textarea type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요."></textarea>
-              <button type="submit" id="complete2" name="button" >수정완료</button>
-            </div>
-          </div>
-        </form>
-
-
-
-      @endif
-          </div>
-
-    <form action="/newaddress" method="get">
-      <div id="addresswrap" style="display:none;">
-        <div id="addressmodi">
-          <div class="delivery_wrap">
-            <strong class="info">새 주소</strong>
-            <!-- 우편번호 -->
-            <input type="text" class="addr_input" id="postcode" name="postcode" placeholder="우편번호" readonly>
-            <input type="button" id="find_post" onclick="execDaumPostcode()" value="우편번호"><br>
-          </div>
-          <!--주소 -->
-          <div class="delivery_wrap2">
-            <input type="text" class="addr_input" id="address" name="address" placeholder="주소" readonly>
-            <div class="detail">
-              <input type="text" class="addr_input" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly>
-            </div>
-            <div class="delivery_address_detail">
-              <input type="text" class="addr_input" name="detailAddress" id="detailAddress" placeholder="상세주소" >
-            </div>
+            <form class="shop" action="/shopinfo" method="get">
+              <input type="button" id="modiinfo" value="소개수정" name="introduce" display="block" onclick="div_show(this.value,'addressapi' );">
+              <div id="addressapi" style="display:none;">
+                <textarea type="text" id="content" name="newintroduce" placeholder="가게소개를 적으세요."></textarea>
+                <button type="submit" id="complete2" name="button" >수정완료</button>
+              </div>
+            </form>
           </div>
         </div>
-        <button type="submit" id="complete1" name="button" >수정완료</button>
-      </div>
-    </form>
-    <div class="wrap4">
-      <h3 class="productname">판매물품</h3>
-      <div class="write-post">
-        <button class="bt_ch" type="button" onclick="location.href = '/sellershoppost'">물품등록</button>
-      </div>
+      @endforeach
     </div>
-    <div class="wrap5">
-      @if( auth()->guard('seller')->user())
-        <div class="wrap6">
-          <div class="wrap6-1">
-            <img src="\imglib\" alt="" width="100px" height="100px">
-          </div>
 
+
+    <div class="wrap0">
+      <div class="productname">
+        판매물품
+        <button class="favoritebtn" type="button" onclick="location.href = '/sellershoppost'">물품등록</button>
+      </div>
+      <div class="wrap5">
+        @if( auth()->guard('seller')->user())
           <div class="productlist">
             <div class="productlist-item">
 
@@ -136,36 +112,35 @@
                   </tr>
                 </thead>
                 <tbody id="tdbody">
-                @foreach ($proro as $data3)
-                  <tr>
-                    <td class="upload">{{$data3->p_date}}</td>
-                    <td class="upload" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
-                    <td class="upload">{{$data3->p_price}}</td>
-                    <td class="upload">
-                      <form class="upload" action="/pd_modify{{$data3->p_no}}" method="post">
-                        @csrf
-                        <input type="submit" id="modify" class="modify" value="수정">
-                      </form>
-                    </td>
-                    <td class="upload">
-                      <form  class="upload" name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
-                        @csrf
-                        <input type="submit" name="remove" id="removel" class="modify" value="삭제">
-                      </form>
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
+                  @foreach ($proro as $data3)
+                    <tr>
+                      <td class="upload">{{$data3->p_date}}</td>
+                      <td class="upload" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
+                      <td class="upload">{{$data3->p_price}}</td>
+                      <td class="upload">
+                        <form class="upload" action="/pd_modify{{$data3->p_no}}" method="post">
+                          @csrf
+                          <input type="submit" id="modify" class="modify" value="수정">
+                        </form>
+                      </td>
+                      <td class="upload">
+                        <form  class="upload" name="delete" action="/pd_remove{{$data3->p_no}}" method="post">
+                          @csrf
+                          <input type="submit" name="remove" id="removel" class="modify" value="삭제">
+                        </form>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      @endif
+        @endif
+      </div>
 
     </div>
+
   </div>
-
-
-</div>
 </div>
 @include('lib.footer')
 </body>
@@ -194,7 +169,7 @@ function showPopup() {
   var url="image_popup";
   var option="width=300, height=300, top=200"
   window.open(url, "", option);
- }
+}
 
 $(document).ready(function(){
   $("#myTable").DataTable({
