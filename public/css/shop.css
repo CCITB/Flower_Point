@@ -30,51 +30,73 @@ div.allwrap{
 }
 
 div.wrap0{
-    margin: 0 auto;
-    width: 1100px;
+  margin: 0 auto;
+  width: 1100px;
 }
 
 div.myinfo{
-    /* width: 70%;
-    position: relative;
-    margin: 0 auto; */
-    height: 75em;
-    width: 60%;
-    margin: 0 auto;
-}
-
-div.wrap1{
+  /* width: 70%;
   position: relative;
-  width: 100%;
-  float: left;
+  margin: 0 auto; */
+  height: 75em;
+  width: 60%;
+  margin: 0 auto;
 }
-
-h3.shopname{
-  width: 80%;
-  position: relative;
-  display: inline-block;
+.shopname{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
 }
-
-button.btn1{
-  position: relative;
-}
-
-button.btn2{
-    position: relative;
-    margin-left: 88%;
-    margin-bottom: 30px;
-}
-
 div.wrap2{
   position: relative;
   display: flex;
 }
-
 div.imgbox{
-    border: 1px solid;
-    width: 200px;
-    height: 200px;
-    position: relative;
+  width: 18%;
+  height: 200px;
+  position: relative;
+}
+.tablewrap{
+  width: 50%;
+}
+div.shopintro{
+  width: 32%;
+  margin-left: 5em;
+  height: 200px;
+  position: relative;
+}
+.st_th{
+  background-color: #f9f9f9;
+  text-align: center;
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+  height: 2.7em;
+  width: 20%;
+}
+.st_td{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+  padding-left: 3%;
+}
+#introducemodi{
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+  padding: 10px;
+  box-sizing: border-box;
+}
+div.wrap4{
+  margin-top: 3em;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.productname{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
 }
 
 div.tablespace3{
@@ -93,12 +115,9 @@ img.shopimg{
   width: 100%;
   position: relative;
   margin-left: 5%;
+  border-collapse: collapse;
 }
-div.shopintro{
-  width: 100%;
-  height: 50%;
-  position: relative;
-}
+
 
 #intro_content{
   width: 100%;
@@ -109,24 +128,6 @@ div.shopintro{
 #nadress{
   margin-left: 5%;
   margin-bottom: 50px;
-}
-
-div.wrap3{
-    position:relative;
-}
-
-div.wrap4{
-  margin-top: 3em;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-h3.productname{
-    width: 80%;
-    display: inline-block;
-    font-size: 1.5em;
-    font-weight: bold;
 }
 
 div.product{
@@ -184,8 +185,8 @@ div.wrap8-2{
 }
 
 /* input#{
-  width: 100%;
-  height: 95%;
+width: 100%;
+height: 95%;
 } */
 
 div.delivery_wrap2{
@@ -202,8 +203,8 @@ div.thcell{
 }
 
 div.tdcell{
-margin-left: 3%;
-  }
+  margin-left: 3%;
+}
 
 div.btn{
   margin-left: 90%;
@@ -218,11 +219,6 @@ div.complete{
   height: 100%;
 }
 
-#introducemodi{
-  width: 100%;
-  height: 100%;
-  border: 1px solid;
-}
 #content{
   width: 98%;
   height: 98%;
@@ -250,9 +246,7 @@ form.shop{
 #modiinfo{
   margin-top: 1%;
 }
-#tablewrap{
-  width: 55%;
-}
+
 
 #ad{
   width: 100%;
@@ -266,13 +260,13 @@ table.adtable{
   border-top: 1px solid #d9d9d9;
 }
 .container-wrap{
-width: 900px;
-   position: relative;
-   margin: auto;
-   overflow: hidden;
+  width: 900px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
 }
 .container-wrapping{
-position: relative;
+  position: relative;
   width: 100%;
   margin: 0px auto;
   height: 600px;
@@ -292,76 +286,76 @@ div.write-post{
 }
 
 .image{
-width: 90%;
-height: 90%;
-float: left;
-position: absolute;
-border: 1px solid #d9d9d9;
-border-radius: 10px;
-box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
-background-color: #f8f9fb;
+  width: 90%;
+  height: 90%;
+  float: left;
+  position: absolute;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
+  background-color: #f8f9fb;
 }
 .image-in{
- width: 100%;
- height: 100%;
--webkit-filter: brightness(100%);
-cursor: pointer;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: brightness(100%);
+  cursor: pointer;
 }
 .image-in:hover{
   -webkit-filter: brightness(70%);
-     -webkit-transition: all 1s ease;
-     -moz-transition: all 1s ease;
-     -o-transition: all 1s ease;
-     -ms-transition: all 1s ease;
-     transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
 .imagewrap{
   width: 100%;
   height: 150px;
 }
 .imagewrap img{
-border-top-right-radius:10px;
-border-top-left-radius:10px;
-width: 100%;
-height: 100%;
+  border-top-right-radius:10px;
+  border-top-left-radius:10px;
+  width: 100%;
+  height: 100%;
 }
 .image-in-post{
-width: 90%;
-padding-top: 5px;
-margin: 0 auto;
-padding-bottom: 5px;
+  width: 90%;
+  padding-top: 5px;
+  margin: 0 auto;
+  padding-bottom: 5px;
 }
 .image-in-bottom{
   position: relative;
-width: 90%;
-margin: 0 auto;
-display: -webkit-box;
--webkit-line-clamp:1;
--webkit-box-orient: vertical;
-height: 14px;
-overflow: hidden;
-text-overflow: ellipsis;
+  width: 90%;
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
+  height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .image-in-star{
-width: 90%;
-margin: 0 auto;
-padding: 6px 0px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 6px 0px;
 }
 
 .image-in-font{
-font-size: 12px;
-overflow: hidden;
+  font-size: 12px;
+  overflow: hidden;
 }
 
 
 /* jQuery 평점 구문 */
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating a {
- font-size:16px;
- letter-spacing:0;
- display:inline-block;
- color:#ccc;
- text-decoration:none;
+  font-size:16px;
+  letter-spacing:0;
+  display:inline-block;
+  color:#ccc;
+  text-decoration:none;
 }
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:#ffc801;}
@@ -411,7 +405,7 @@ td.upload{
   text-align: center;
 }
 /* form.upload{
-  text-align: center;
+text-align: center;
 
 } */
 .bt_ch{

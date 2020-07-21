@@ -24,7 +24,7 @@
         <thead>
           <tr>
             <th>답변 여부</th>
-            <th>문의/답변</th>
+            <th>제목</th>
             <th>공개 범위</th>
             <th>작성자</th>
             <th>작성일</th>

@@ -27,7 +27,7 @@
                   <thead class="sel_qna">
                   <tr>
                     <th class="title">번호</th>
-                    <th class="title">문의/답변</th>
+                    <th class="title">제목</th>
                     <th class="title">문의내용</th>
                     <th class="title">답변상태</th>
                     <th class="title">작성자</th>
@@ -38,10 +38,10 @@
                   <tbody>
                   @foreach ($data as $data)
 
-                    <tr>
+                    <tr style="height: 45px;">
                       <td><a href="/product/{{$data->p_no}}">{{$data->q_no}}</a></td>
-                      <td><a href="/product/{{$data->p_no}}">{{$data->q_title}}</a></td>
-                      <td><a href="/product/{{$data->p_no}}">{{$data->q_contents}}</a></td>
+                      <td style="text-align:left;"><a href="/product/{{$data->p_no}}">{{$data->q_title}}</a></td>
+                      <td style="text-align:left;"><a href="/product/{{$data->p_no}}">{{$data->q_contents}}</a></td>
                       <td><a href="/product/{{$data->p_no}}">{{$data->an_state}}</a></td>
                       <td><a href="/product/{{$data->p_no}}">{{$data->c_name}}</a></td>
                       <td><a href="/product/{{$data->p_no}}">{{$data->q_date}}</a></td>

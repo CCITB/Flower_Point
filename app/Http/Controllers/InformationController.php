@@ -125,13 +125,12 @@ class InformationController extends Controller
 
   //정경진
   publiC function storepage($id){
-    $shop = DB::table('store')->join('seller', 'store.seller_no', '=', 'seller.s_no')->
-    select('*')->where('st_name', '=', $id)->get();
-    $shop_address = DB::table('store_address')->join('store', 'store_address.st_no', '=', 'store.st_no')
+    $shop = DB::table('store')->join('seller', 'store.seller_no', '=', 'seller.s_no')
+    ->join('store_address', 'store.st_no', '=', 'store_address.st_no')
     ->select('*')->where('st_name', '=', $id)->get();
     $product = DB::table('product')->join('store','product.store_no','=','store.st_no')
     ->select('*')->where('st_name', '=', $id)->get();
-    return view('myshop/shop_customer', compact('shop','shop_address','product'));
+    return view('myshop/shop_customer', compact('shop','product'));
   }
   //정경진
   //꽃집 즐겨찾기 버튼 클릭시 일어나는일
