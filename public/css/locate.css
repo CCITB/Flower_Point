@@ -3,6 +3,13 @@
     {
     font-family: Nanum Gothic;
 }
+.void-container{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  margin-right: 20px;
+}
 img{
   opacity: 70%;
 }
@@ -39,7 +46,7 @@ img{
 }
 
 div.menu4{
-  width: 900px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 3em;
 }
@@ -197,7 +204,7 @@ a{
 
 /* Set the size of the div element that contains the map */
 #map {
-  height:500px;  /* The height is 400 pixels */
+  height:600px;  /* The height is 400 pixels */
   width: 100%;  /* The width is the width of the web page */
   position: relative;
   margin-bottom: 20%;
@@ -214,13 +221,14 @@ padding: 0;
   color:#7d7d7d;
 }
 #search_input{
-  position: absolute;
   left : 62em;
-  top : 26em;
+  top : 20em;
   width : 18em;
-  height : 23px;
+  height : 30px;
   padding: 5px;
   margin-top : 5px;
+  border: none;
+  outline-style: groove;
 }
 #search_btn{
   position: absolute;
@@ -236,7 +244,7 @@ padding: 0;
   height: 53%;
 } */
 .under{
-  display: flex;
+  width: 100%
 }
 .map{
   width: 60%;

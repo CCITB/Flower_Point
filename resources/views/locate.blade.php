@@ -15,8 +15,10 @@
   <div class="menu4"><!--탑헤더 밑-->
 
     <div>
-      <h2 class="void-container">내 주변 꽃집</h2>
-      <hr>
+      <div class="void-container">내 주변 꽃집
+        <input id="search_input" class="search_input" type="text" placeholder="내 주변 꽃집 검색"/>
+      </div>
+
     </div>
     <div class="under">
       <div id="map"></div>
@@ -25,7 +27,7 @@
       {{-- <input id="search_btn" class="search_btn" type="button" value="검색"/> --}}
 
 
-      <input id="search_input" class="search_input" type="text" placeholder="Search Box"/>
+
       {{-- <div class="title" id="title">
       <p></p>
     </div> --}}

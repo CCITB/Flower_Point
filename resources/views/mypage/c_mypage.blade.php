@@ -131,8 +131,8 @@
               </table>
 
               <div id="addresswrap" style="display:none;">
-              <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
-                @csrf
+                <form id=nadress action="c_newaddress" onsubmit="return address_checkform()" method="post">
+                  @csrf
                   <div class="delivery_wrap">
                     <strong class="info">새 주소</strong>
                   </div>
@@ -146,8 +146,8 @@
                     <input type="text" class="delivery_address_list" name="detailAddress" id="detailAddress" placeholder="상세주소" >
                     <button type="submit" id="complete1"  name="button" >수정완료</button>
                   </div>
-              </form>
-            </div>
+                </form>
+              </div>
             </div>
 
             <div class="walletwrap">
@@ -259,7 +259,7 @@
     </thead>
     <tbody>
       @foreach ($my as $re)
-        <tr class="r_tr">
+        <tr class="r_tr" onclick="location.href='/product/{{$re->p_no}}#revw'" style="cursor: pointer;">
           <td class="r_td">{{$re->p_name}}</td>
           <td class="r_td">{{$re->r_contents}}</td>
           <td class="r_td" style="text-align:center;">{{$re->r_date}}</td>
