@@ -1,8 +1,14 @@
+@font-face { font-family: 'Cafe24Oneprettynight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+  /* font-family: 'Cafe24Oneprettynight'; */
+}
 /* 이용약관 */
 .terms{
   margin: 50px auto;
   width: 50%;
-  font-family:'Nanum Gothic Coding', monospace;
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
 }
 .title{
   text-align: center;
@@ -26,7 +32,8 @@ textarea{
 .privacy{
   margin: 50px auto;
   width: 50%;
-  font-family:'Nanum Gothic Coding', monospace;
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
 }
 /* 개인정보 취급방침 끝 */
 
@@ -35,7 +42,8 @@ textarea{
   margin: 50px auto;
   height: 450px;
   width: 50%;
-  font-family:'Nanum Gothic Coding', monospace;
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
 }
 .infomation{
   background-color: #EAEAEA;
@@ -46,8 +54,10 @@ textarea{
 
 /* 이용 가이드 */
 div.manual_total{
-width: 900px;
-margin: 3em auto;
+  width: 900px;
+  margin: 3em auto;
+  font-family: 'Cafe24Oneprettynight';
+  letter-spacing: 1px;
 }
 .register_manual, .invoice_manual, .product_manual{
   margin-bottom: 30px;
@@ -134,10 +144,10 @@ ul{
 /*
 
 img.invoice_manual{
-  padding:28px;
-  margin-left: 275px;
+padding:28px;
+margin-left: 275px;
 }
 img.product_manual{
-  padding:28px;
-  margin-left: 275px;
+padding:28px;
+margin-left: 275px;
 } */
