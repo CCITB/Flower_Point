@@ -52,11 +52,12 @@
                 </tr>
               </form>
               <tr>
-                <th class="st_th1"></th>
+                <th class="st_th1">
+                </th>
                 <td class="st_td1">
                   <div class="addresswrap" id="addresswrap" style="display:none;">
                     <form action="/newaddress" method="get">
-                      <div class="delivery_wrap">
+                      <div class="delivery_wrap" style="margin-bottom:10px;">
                         <strong class="info">새 주소</strong>
                       </div>
                       <div class="delivery_wrap2">
@@ -67,8 +68,8 @@
                         <input type="text" class="addr_input" id="address" name="address" placeholder="주소" readonly><br>
                         <input type="text" class="addr_input" name="extraAddress"id="extraAddress" placeholder="참고항목" readonly><br>
                         <input type="text" class="addr_input" name="detailAddress" id="detailAddress" placeholder="상세주소" >
+                        <button type="submit" id="complete1" name="button" >수정완료</button>
                       </div>
-                      <button type="submit" id="complete1" name="button" >수정완료</button>
                     </form>
                   </div>
                 </td>

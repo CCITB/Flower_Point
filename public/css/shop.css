@@ -77,8 +77,7 @@ div.shopintro{
 }
 /*seller*/
 .addresswrap{
-  clear: both;
-  width: 100%;
+  padding: 10px;
 }
 /*------*/
 .st_th{
@@ -177,8 +176,14 @@ img.shopimg{
 }
 
 /* seller shop */
-
-
+.st_th1{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+}
+.st_td1{
+  border-top: 1px solid #EAEAEA;
+  border-bottom: 1px solid #EAEAEA;
+}
 /* seller shop 끝 */
 
 div.product{
@@ -192,10 +197,6 @@ div.product{
 width: 100%;
 height: 95%;
 } */
-
-div.delivery_wrap2{
-  margin-left: 65px;
-}
 
 div.thcell{
   padding: 22px;
@@ -225,7 +226,7 @@ form.shop{
 }
 #complete1{
   margin-top: 1%;
-  margin-left: 300px;
+
 }
 
 #modiaddress{
@@ -375,11 +376,8 @@ input.modify{
 }
 input.addr_input{
   padding:3px;
-  margin-left:15px;
 }
-#tdbody{
 
-}
 .productlist{
   width:100%;
   padding: 0 30px;
