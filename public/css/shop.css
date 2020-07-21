@@ -3,7 +3,6 @@ src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24O
 format('woff'); font-weight: normal; font-style: normal; }
 
 html, body{
-  height: 100%;
   font-family: 'Cafe24Oneprettynight';
   letter-spacing: 1px;
 }
@@ -32,6 +31,7 @@ div.allwrap{
 div.wrap0{
   margin: 0 auto;
   width: 1100px;
+  margin-bottom: 5em;
 }
 
 div.myinfo{
@@ -42,14 +42,24 @@ div.myinfo{
   width: 60%;
   margin: 0 auto;
 }
+.up{
+  display: flex;
+  width: 1080px;
+  margin-bottom: 40px;
+}
 .shopname{
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 40px;
   letter-spacing: 2px;
+  float: left;
+  width: 70%;
+}
+.st_star{
+  float: left;
+  text-align: right;
+  width: 30%;
 }
 div.wrap2{
-  position: relative;
   display: flex;
 }
 div.imgbox{
@@ -86,10 +96,8 @@ div.shopintro{
   padding: 10px;
   box-sizing: border-box;
 }
+
 div.wrap4{
-  margin-top: 3em;
-  position: relative;
-  display: inline-block;
   width: 100%;
 }
 .productname{
@@ -98,6 +106,29 @@ div.wrap4{
   margin-bottom: 40px;
   letter-spacing: 2px;
 }
+div.wrap5{
+  width: 100%;
+}
+.favoritebtn{
+  background-color: #476600;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 9px 25px;
+  text-align: center;
+  margin-left: 20px;
+  font-size: 18px;
+  opacity: 0.6;
+  transition: 0.4s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Cafe24Oneprettynight';
+}
+.favoritebtn:hover{
+  opacity: 1
+}
+
 
 div.tablespace3{
   margin-bottom: 50px;
@@ -136,11 +167,6 @@ div.product{
   margin-bottom: 10px;
 }
 
-div.wrap5{
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
 
 div.wrap6{
   position: relative;
@@ -256,7 +282,7 @@ table.adtable{
   width: 100%;
 }
 
-.image-in-container{
+/* .image-in-container{
   border-top: 1px solid #d9d9d9;
 }
 .container-wrap{
@@ -279,13 +305,13 @@ table.adtable{
   height: 50%;
   position: relative;
   overflow: hidden;
-}
+} */
 
 div.write-post{
   float:right;
 }
 
-.image{
+/* .image{
   width: 90%;
   height: 90%;
   float: left;
@@ -294,8 +320,8 @@ div.write-post{
   border-radius: 10px;
   box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
   background-color: #f8f9fb;
-}
-.image-in{
+} */
+/* .image-in{
   width: 100%;
   height: 100%;
   -webkit-filter: brightness(100%);
@@ -345,7 +371,7 @@ div.write-post{
 .image-in-font{
   font-size: 12px;
   overflow: hidden;
-}
+} */
 
 
 /* jQuery 평점 구문 */
@@ -366,6 +392,7 @@ div.write-post{
 }
 .pagination{
   text-align: center;
+  font-size: 1.5em;
 }
 
 /*디자인*/

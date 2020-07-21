@@ -129,7 +129,7 @@ class InformationController extends Controller
     ->join('store_address', 'store.st_no', '=', 'store_address.st_no')
     ->select('*')->where('st_name', '=', $id)->get();
     $product = DB::table('product')->join('store','product.store_no','=','store.st_no')
-    ->select('*')->where('st_name', '=', $id)->get();
+    ->select('*')->where('st_name', '=', $id)->paginate(9);
     return view('myshop/shop_customer', compact('shop','product'));
   }
   //정경진

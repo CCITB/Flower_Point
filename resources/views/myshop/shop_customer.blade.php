@@ -5,6 +5,7 @@
   <title></title>
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/css/main.css">
   <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
     style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -18,7 +19,23 @@
   <div class="allwrap">
     @foreach ($shop as $shop)
       <div class="wrap0">
-        <div class="shopname">{{$shop->st_name}}</div>
+        <div class="up">
+          <div class="shopname">{{$shop->st_name}}</div>
+          <div class="st_star">
+            @if(auth()->guard('customer')->user())
+              <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
+                @csrf
+                <button class="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button>
+              </form>
+            @elseif(auth()->guard('seller')->user())
+              <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
+                @csrf
+                {{-- <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button> --}}
+              </form>
+            @endif
+          </div>
+        </div>
+
         <div class="wrap2">
 
           <div class="imgbox">
@@ -56,58 +73,31 @@
       </div>
     @endforeach
 
-    @if(auth()->guard('customer')->user())
-      <div class="wrap4">
-        <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
-          @csrf
-          <h3 class="productname">판매물품</h3>
-          <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button>
-        </form>
-      </div>
-    @elseif(auth()->guard('seller')->user())
-      <div class="wrap4">
-        <form class="" action="/favorite_store/{{$shop->st_no}}" method="post">
-          @csrf
-          <h3 class="productname">판매물품</h3>
-          {{-- <button id="favoritebtn" type="submit" onclick="alert('즐겨찾기에 추가되었습니다.')" name="button">즐겨찾기 등록</button> --}}
-        </form>
-      </div>
-    @endif
-    <div class="wrap5">
-      <div class="wrap6">
-        <div class="wrap6-1">
-          <img src="\imglib\" alt="" width="100px" height="100px">
-        </div>
-
-        <div class="productlist">
-
+    <div class="wrap0">
+      <div class="productname">판매물품</div>
+      <div class="wrap5">
+        <div class="container-wrap" style="height:50em;">
           <div class="container-wrapping">
             @foreach ($product as $productlist)
               <div class="container-image">
                 <div class="image">
                   <div class="image-in" url="/product/{{$productlist->p_no}}">
                     <div class="imagewrap" >
-                      <img src="/imglib/{{$productlist->p_filename}}"  onerror="this.src='imglib/dummy.png'" width="100px" height="100px">
+                      <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
                     </div>
+
                     <div class="image-in-font">
                       <div class="image-in-post">
-                        <!--게시글 제목-->
-                        {{$productlist->p_name}}
+                        {{$productlist->st_name}}
                       </div>
                       <div class="image-in-container">
-                        <div class="image-in-star">
-                          <p class="star_rating">
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                            <a href="#" class="on">★</a>
-                          </p>
-                        </div>
+
                         <div class="image-in-bottom">
-                          <!--물품 내용-->
-                          {{strip_tags($productlist->p_contents)}}
+                          {{$productlist->p_name}}
                         </div>
+                      </div>
+                      <div class="image-in-price">
+                        <strong>{{number_format($productlist->p_price)}}원</strong>
                       </div>
                     </div>
                   </div>
@@ -115,10 +105,10 @@
               </div>
             @endforeach
           </div>
-
         </div>
-      </div>
+        {{$product->links()}}
 
+      </div>
     </div>
   </div>
 
