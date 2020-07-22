@@ -34,7 +34,7 @@ class SMSController extends Controller
       $sms['mode'] = base64_encode("1"); // base64 사용시 반드시 모드값을 1로 주셔야 합니다.
 
       //실험시 'Y' 입력
-      //$sms['testflag'] = base64_encode('Y');
+      $sms['testflag'] = base64_encode('Y');
 
       $host_info = explode("/", $sms_url);
       $host = $host_info[2];

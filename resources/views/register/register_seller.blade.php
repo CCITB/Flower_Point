@@ -48,6 +48,31 @@
         <input class="inf1" type="text" placeholder="Name" id="name"  name="s_name" >
         <div class="check_div" id="name_check" value=""></div>
 
+        <div class="sign_name">입금계좌<span class="a">*</span></div>
+        <select class="inf2" id="s_bankname" name="s_bankname" >
+          <option value="" selected>은행</option>
+          <option value="국민은행">국민은행</option>
+          <option value="기업은행">기업은행</option>
+          <option value="농협은행">농협은행</option>
+          <option value="신한은행">신한은행</option>
+          <option value="SC제일은행">SC제일은행</option>
+          <option value="하나은행">하나은행</option>
+          <option value="씨티은행">씨티은행</option>
+          <option value="우리은행">우리은행</option>
+          <option value="BNK경남은행">BNK경남은행</option>
+          <option value="KJB광주은행">KJB광주은행</option>
+          <option value="DGB대구은행">DGB대구은행</option>
+          <option value="BNK부산은행">BNK부산은행</option>
+          <option value="KDB산업은행">KDB산업은행</option>
+          <option value="Sh수협은행">Sh수협은행</option>
+          <option value="JB전북은행">JB전북은행</option>
+          <option value="제주은행">제주은행</option>
+          <option value="케이뱅크">케이뱅크</option>
+          <option value="카카오뱅크">카카오뱅크</option>
+        </select>
+        <input class="inf2_bank" type="text" placeholder="계좌번호" id="s_account_num" name="s_account_num">
+        <div class="check_div" id="bank_check" value=""></div>
+
         <div class="sign_name">생년월일<span class="a">*</span></div>
         <input class="inf2" type="text" placeholder="년(4자)" id="s_birth_y" name="s_birth_y" maxlength="4"  >
 

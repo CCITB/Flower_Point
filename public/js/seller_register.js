@@ -32,6 +32,13 @@ $(document).ready(function(){
     check_name();
   });//blur
 
+  $('#s_bankname').blur(function(){
+    check_bank();
+  })
+  $('#s_account_num').blur(function(){
+    check_bank();
+  })
+
   $("#s_birth_y").blur(function() {
     checkBirthInput();
   });//blur
@@ -192,6 +199,62 @@ $(document).ready(function(){
     }
   }
 
+  function check_bank(){
+    var s_bankname = $('#s_bankname').val();
+    var s_account = $('#s_account_num').val();
+    var no= /^[0-9]+$/;
+
+    if(s_bankname == ""){
+      $('#bank_check').text('수익금 반환 은행은 필수항목입니다.')
+      $('#bank_check').css('color','red');
+    }
+    else{
+      if(s_account == ""){
+        $('#bank_check').text("수익금 반환 계좌번호는 필수항목입니다.");
+        $('#bank_check').css('color','red');
+      }
+      else if(!no.test(s_account)){
+        $('#bank_check').text("하이픈(-)을 제외한 숫자만 입력해주세요.");
+        $('#bank_check').css('color','red');
+      }
+      else{
+        //보통 은행 계좌는 최소 11자리~13자리 (11자리가 SC제일은행)
+        if(s_account.length<11){
+          console.log(s_account.length);
+          $('#bank_check').text("계좌번호가 알맞지 않습니다.");
+          $('#bank_check').css('color','red');
+        }
+        else{
+          $('#bank_check').text("");
+        }
+      }
+    }
+  }
+
+  // function check_account(){
+  //   var s_account = $('#s_account_num').val();
+  //   var no= /^[0-9]+$/;
+  //
+  //   if(s_account == ""){
+  //     $('#bank_check').text("수익금 반환계좌는 필수항목입니다.");
+  //     $('#bank_check').css('color','red');
+  //   }
+  //   else if(!no.test(s_account)){
+  //     $('#bank_check').text("하이픈(-)을 제외한 숫자만 입력해주세요.");
+  //     $('#bank_check').css('color','red');
+  //   }
+  //   else{
+  //     //보통 은행 계좌는 최소 11자리~13자리 (11자리가 SC제일은행)
+  //     if(s_account.length<11){
+  //       $('#bank_check').text("계좌번호가 알맞지 않습니다.");
+  //       $('#bank_check').css('color','red');
+  //     }
+  //     else{
+  //       $('#bank_check').text("");
+  //     }
+  //   }
+  // }
+
   function check_gender(){
     //Input data
     var s_gender = $('#s_gender').val();
@@ -238,7 +301,7 @@ $(document).ready(function(){
             $('#verify_p_num').attr('disabled', false);
 
             global_random = randomNum;
-            // console.log(randomNum);
+            console.log(randomNum);
           }//success
           ,error:function(randomNum,status,error){
             alert("code:"+randomNum.status+"\n"+"message:"+randomNum.responseText+"\n"+"error:"+error);}
@@ -447,6 +510,8 @@ function checkIt(){
   //   document.f.s_id.focus();
   //   return false;
   // }
+  //-------------------계좌번호
+
   //-------------------ID 예외처리
   if($('#id').val()==''){
     $('#id_check').text('필수 정보입니다.');
@@ -514,6 +579,35 @@ function checkIt(){
     $('#name_check').text("한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용불가)");
     $('#name_check').css('color', 'red');
     $("#name").focus();
+    return false;
+  }
+
+  //은행 계좌
+  if($('#s_bankname').val()==""){
+    $('#bank_check').text('수익금 반환 은행은 필수항목입니다.');
+    $('#bank_check').css('color','red');
+    $("#s_bankname").focus();
+    return false;
+  }
+
+  if($('#s_account_num').val()==""){
+    $('#bank_check').text('수익금 반환 계좌번호는 필수항목입니다.');
+    $('#bank_check').css('color','red');
+    $("#s_account_num").focus();
+    return false;
+  }
+
+  if(!num.test($('#s_account_num').val())){
+    $('#bank_check').text("하이픈(-)을 제외한 숫자만 입력해주세요.");
+    $('#bank_check').css('color','red');
+    $("#s_account_num").focus();
+    return false;
+  }
+
+  if($('#s_account_num').val().length<11){
+    $('#bank_check').text('계좌번호가 알맞지 않습니다.');
+    $('#bank_check').css('color','red');
+    $("#s_account_num").focus();
     return false;
   }
   //-------------------생년월일(필수는 data는 아니지만 잘못된 값 넣는 것을 방지)

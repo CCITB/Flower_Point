@@ -53,6 +53,9 @@
         <input type="hidden" name="s_tel2" value="<?php echo $_POST['s_tel2']?>">
         <input type="hidden" name="s_tel3" value="<?php echo $_POST['s_tel3']?>">
 
+        <input type="hidden" name="s_bankname" value="<?php echo $_POST['s_bankname']?>">
+        <input type="hidden" name="s_account_num" value="<?php echo $_POST['s_account_num']?>">
+
         <div class="paragraph">
           <div class="sign_name">매장 이름</div>
           <input class="shop_info" type="text" placeholder="store name" id="st_name" name="st_name" >
