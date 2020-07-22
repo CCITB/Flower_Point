@@ -331,7 +331,7 @@
             </form>
             <form class="" action="" method="post" id="form1" name="form1">
               @csrf
-              <input type="hidden" name="frm" id="frm" value="{{$productsum}}">
+              <input type="hidden" name="frm" id="frm" value="{{$productprice}}">
             </form>
           </div>
         </div><!--결제정보 -->
@@ -758,6 +758,7 @@ function apply(e){
     data:{'id':e}, //보낼 데이터
     success: function(data) {
       // console.log(data);
+      // return false;
       $('#coupon_no').val(e);
       if(data==0){
         alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');

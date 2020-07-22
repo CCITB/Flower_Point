@@ -271,23 +271,23 @@ class InformationController extends Controller
 
     public function myorderlist(){
       if($customerinfo = auth()->guard('customer')->user()){
-      $customerprimary = $customerinfo->c_no;
+        $customerprimary = $customerinfo->c_no;
 
-      $data2 = DB::table('customer')
-      ->join('payment','customer.c_no','payment.customer_no')
-      ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
-      ->join('order','paymentjoin.order_no','order.o_no')
-      ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
-      ->join('product','payment.product_no','product.p_no')
-      ->leftjoin('review','payment.pm_no','=','review.payment_no')
-      ->select('*')->where('c_no','=',$customerprimary)
-      ->get();
-      return view('mypage/myorderlist',compact('data2'));
+        $data2 = DB::table('customer')
+        ->join('payment','customer.c_no','payment.customer_no')
+        ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
+        ->join('order','paymentjoin.order_no','order.o_no')
+        ->leftjoin('delivery','payment.delivery_no','=','delivery.d_no')
+        ->join('product','payment.product_no','product.p_no')
+        ->leftjoin('review','payment.pm_no','=','review.payment_no')
+        ->select('*')->where('c_no','=',$customerprimary)
+        ->get();
+        return view('mypage/myorderlist',compact('data2'));
+      }
+      else{
+        return redirect('/');
+      }
     }
-    else{
-      return redirect('/');
-    }
-}
     public function s_mypage(){
       if($sellerinfo = auth()->guard('seller')->user()){
         // return 0;
@@ -470,8 +470,28 @@ class InformationController extends Controller
     }
     public function couponapplycheck(Request $request){
       $id = $request->id;
-      $productprice = (int)session()->pull('productprice');
-      $coupon = DB::table('couponbox')->select('cp_title','cp_flatrate','cp_minimum')->where('cpb_no',$id)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+      $productprice = (int)session()->get('productprice');
+      $coupon = DB::table('couponbox')
+      ->select('cp_title','cp_flatrate','cp_minimum','cp_percent')->where('cpb_no',$id)
+      ->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+      // 정률쿠폰 계산식
+      $discount = $productprice*$coupon[0]->cp_percent/100;
+      // return response()->json($productprice);
+      // return response()->json();
+      // 정률 쿠폰을 사용했을 때
+      if((int)$coupon[0]->cp_percent > 0 && $productprice >=(int)$coupon[0]->cp_minimum){
+        // 최대할인 적용
+        if($coupon[0]->cp_flatrate<$discount){
+          return response()->json($coupon);
+        }
+        //최대할인 미적용
+        else{
+          $coupon[0]->cp_flatrate=$discount;
+          return response()->json($coupon);
+        }
+      }
+
+      // 정액 쿠폰을 사용했을 때
       if($productprice>=(int)$coupon[0]->cp_minimum){
         // 사용가능
         return response()->json($coupon);
@@ -481,21 +501,21 @@ class InformationController extends Controller
     }
 
 
-      public function mypoint($id){
+    public function mypoint($id){
 
-        $cus = DB::table('customer')->where('c_no',$id)->get();
+      $cus = DB::table('customer')->where('c_no',$id)->get();
 
-        $myreview = DB::table('customer')->where('c_no',$id)
-        ->leftjoin('review','customer.c_no','=','review.customer_no')
-        ->join('product','review.product_no','=','product.p_no')
-        ->orderBy('review.created_at', 'desc')
-        ->get();
+      $myreview = DB::table('customer')->where('c_no',$id)
+      ->leftjoin('review','customer.c_no','=','review.customer_no')
+      ->join('product','review.product_no','=','product.p_no')
+      ->orderBy('review.created_at', 'desc')
+      ->get();
 
-        $myorder = DB::table('customer')->where('c_no',$id)
-        ->join('order','customer.c_no','=','order.customer_no')
-        ->orderBy('order.created_at', 'desc')
-        ->get();
+      $myorder = DB::table('customer')->where('c_no',$id)
+      ->join('order','customer.c_no','=','order.customer_no')
+      ->orderBy('order.created_at', 'desc')
+      ->get();
 
-        return view('mypage.mypoint',compact('cus','myreview','myorder'));
-      }
+      return view('mypage.mypoint',compact('cus','myreview','myorder'));
+    }
   }
