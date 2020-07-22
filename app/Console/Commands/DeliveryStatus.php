@@ -41,7 +41,8 @@ class DeliveryStatus extends Command
       DB::table('payment')->where('pm_d_status','like','%배송중%')
       ->where('pm_complete_date','<', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)'))
       ->update([
-        'pm_d_status'=>'배송 완료'
+        'pm_d_status'=>'배송 완료',
+        'pm_status' =>'구매 확정'
       ]);
     }
 }

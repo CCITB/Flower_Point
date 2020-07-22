@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
   */
   protected $commands = [
     Commands\DeliveryStatus::class
-     // Commands\DeliveryStatus::class
   ];
 
   /**
@@ -26,10 +25,6 @@ class Kernel extends ConsoleKernel
   */
   protected function schedule(Schedule $schedule)
   {
-    //현재시간과 배송중 인 상태의 시간의 차를 계산
-    // $schedule->call(function () {
-    //
-    // })->hourlyAt(50);
     $schedule->command('delivery:send')
     ->daily();
   }
