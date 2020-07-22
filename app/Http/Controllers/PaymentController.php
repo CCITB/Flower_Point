@@ -122,11 +122,8 @@ class PaymentController extends Controller
     $basket_no = json_decode($request->input('basketarray'));
     //상품키 받아올 배열 선언
     $proarray = [];
-
+    //쿠폰할인가격 선언
     $flatrate = 0;
-
-
-
     //로그인 유저 기본키 추출
     if(auth()->guard('customer')->check()){
       $customerprimary = auth()->guard('customer')->user()->c_no;
@@ -145,12 +142,8 @@ class PaymentController extends Controller
         'customer_no' => $customerprimary,
       ]);
     }
-
     //delivery테이블에서 기본키를 가져오기위해 $deliverytable변수 선언
     $deliverytable[] = DB::table('delivery')->where('customer_no',$customerprimary)->orderBy('d_no','desc')->first();
-
-
-    // return $proarray;
     //주문번호
     $orderNO = DB::table('order')->insertGetid([
       'customer_no' => $customerprimary,
@@ -169,44 +162,36 @@ class PaymentController extends Controller
       $eachprice = 0;
       // 상품+포인트 결제시 상품에서 포인트를 뺀 후 2%포인트적립을 하기 위한 변수
       $pricesum = 0;
+      for($i=0; $i<count($basket_no);$i++){
+        $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
+        DB::table('basket')->where('b_no',$basket_no[$i])->delete();
+        $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+        $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+        $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
+        $insertid[] = DB::table('payment')->insertGetid([
+          'pm_count' => $proarray[$i][0]->b_count,
+          'pm_pay' => $eachprice,
+          'customer_no' => $customerprimary,
+          'product_no' => $proarray[$i][0]->product_no,
+          'created_at' => $now->format('yy-m-d H:i:s'),
+          'pm_date' =>  $today = date("Ymd")
+        ]);
+      }
       if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
         //반복문으로 여러상품 찾고 장바구니에서 선택한 물품을 제거 + 주문번호 하나
         for($i=0; $i<count($basket_no);$i++){
-          $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
-          DB::table('basket')->where('b_no',$basket_no[$i])->delete();
-          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
-          $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
-          $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
-          $insertid[] = DB::table('payment')->insertGetid([
-            'pm_count' => $proarray[$i][0]->b_count,
-            'pm_pay' => $eachprice,
-            'customer_no' => $customerprimary,
+          DB::table('payment')->where('pm_no',$insertid[$i])->update([
             'delivery_no' => $deliverytable[0]->d_no,
-            'product_no' => $proarray[$i][0]->product_no,
-            'created_at' => $now->format('yy-m-d H:i:s'),
-            'pm_date' =>  $today = date("Ymd")
           ]);
         }
       }
       elseif($request->delivery=='기본배송지'){
         for($i=0; $i<count($basket_no);$i++){
-          $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
-          DB::table('basket')->where('b_no',$basket_no[$i])->delete();
-          $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
-          $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
-          $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
-          $insertid[] = DB::table('payment')->insertGetid([
-            'pm_count' => $proarray[$i][0]->b_count,
-            'pm_pay' => $eachprice,
-            'customer_no' => $customerprimary,
+          DB::table('payment')->where('pm_no',$insertid[$i])->update([
             'c_address_no' => $useraddress[0]->a_no,
-            'product_no' => $proarray[$i][0]->product_no,
-            'created_at' => $now->format('yy-m-d H:i:s'),
-            'pm_date' =>  $today = date("Ymd")
           ]);
         }
       }
-      // return $arraydata[0][0]->o_dcnt_totalprice;
       // 쿠폰사용시에
       if(isset($coupon_no)){
         //정률 쿠폰일 경우
@@ -229,12 +214,12 @@ class PaymentController extends Controller
           'cpb_state' => '사용'
         ]);
       }
+      // 적립포인트 계산
       $reserve = ($pricesum-$userpoint-$flatrate) * 2 / 100;
       if(auth()->guard('customer')->user()->c_cash+$userpoint+$flatrate-$sum<0){
         DB::rollBack();
         return "<script>alert('알 수 없는 오류입니다.')</script>";
       }
-
       // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
       DB::table('customer')->where('c_no',$customerprimary)->update([
         'c_cash' => DB::raw('c_cash'.'-'.($sum-$userpoint-$flatrate)),
@@ -256,9 +241,7 @@ class PaymentController extends Controller
         ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
         ->join('order','paymentjoin.order_no','order.o_no')->get();
       }
-      // return $test
       DB::commit();
-      // return $proarray[1][0]->b_no;
       return Redirect::route('complete')->with([
         'arraydata'=>$arraydata,
         'orderNO'=>$orderNO
@@ -268,37 +251,29 @@ class PaymentController extends Controller
     // 상품테이블 정보 가져오기
     $prodata = DB::table('product')->where('p_no',$product_no[0])->get();
     //상품페이지에서 단품 결제시에 사용되는 코드, 칼럼 pm_count는 임시용으로 1이지만 상품페이지에 수량선택 기능이 추가되면 수정이 필요함.
-    // return $deliverytable[0]->d_no;
+    $insertid =  DB::table('payment')->insertGetid([
+      'pm_count' => $request->productcount,
+      'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
+      'customer_no' => $customerprimary,
+      'product_no' => $product_no[0],
+      'created_at' => $now->format('yy-m-d H:i:s'),
+      'pm_date' =>  $today = date("Ymd")
+    ]);
+
     if($request->delivery=='최근배송지'||$request->delivery=='신규배송지'){
-      $insertid =  DB::table('payment')->insertGetid([
-        'pm_count' => $request->productcount,
-        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
-        'customer_no' => $customerprimary,
+      DB::table('payment')->where('pm_no',$insertid)->update([
         'delivery_no' => $deliverytable[0]->d_no,
-        'product_no' => $product_no[0],
-        'created_at' => $now->format('yy-m-d H:i:s'),
-        'pm_date' =>  $today = date("Ymd")
-      ]);
-      DB::table('paymentjoin')->insert([
-        'payment_no' => $insertid,
-        'order_no' => $orderNO
       ]);
     }
     elseif($request->delivery=='기본배송지'){
-      $insertid =  DB::table('payment')->insertGetid([
-        'pm_count' => $request->productcount,
-        'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
-        'customer_no' => $customerprimary,
+      DB::table('payment')->where('pm_no',$insertid)->update([
         'c_address_no' => $useraddress[0]->a_no,
-        'product_no' => $product_no[0],
-        'created_at' => $now->format('yy-m-d H:i:s'),
-        'pm_date' =>  $today = date("Ymd")
-      ]);
-      DB::table('paymentjoin')->insert([
-        'payment_no' => $insertid,
-        'order_no' => $orderNO
       ]);
     }
+    DB::table('paymentjoin')->insert([
+      'payment_no' => $insertid,
+      'order_no' => $orderNO
+    ]);
     // 쿠폰사용시에
     if(isset($coupon_no)){
       //정률 쿠폰일 경우
@@ -343,9 +318,8 @@ class PaymentController extends Controller
       DB::rollBack();
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }
-    // return $userpoint;
     DB::commit();
-    // return 0;
+    
     return Redirect::route('complete')->with([
       'data'=>$data,
       'orderNO'=>$orderNO
@@ -366,7 +340,7 @@ class PaymentController extends Controller
     // ->join('payment','paymentjoin.payment_no','payment.pm_no')
     // ->orderBy('pm_no','desc')->take(1)->get();
     if(isset($paymentIDarray)){
-    $pricesum = $paymentIDarray[0][0]->o_dcnt_totalprice;
+      $pricesum = $paymentIDarray[0][0]->o_dcnt_totalprice;
       // for($i=0;$i<count($paymentIDarray);$i++){
       //   $pricesum += $paymentIDarray[$i][0]->pm_pay;
       // }
