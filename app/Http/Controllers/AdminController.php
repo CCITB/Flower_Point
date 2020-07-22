@@ -94,6 +94,20 @@ class AdminController extends Controller
     return redirect()->back();
   }
 
+  public function add_coupon_pe(Request $request){
+
+    DB::table('coupon')->insert([
+      'cp_title'=>$request->input('c_title'),
+      'cp_minimum' => $request->input('c_minimum'),
+      'cp_percent' => $request->input('c_percent'),
+      'cp_max' => $request->input('c_max'),
+      'start_date' =>$request->input('start'),
+      'end_date' =>$request->input('end')
+    ]);
+
+    return redirect()->back();
+  }
+
   public function show_coupon(){
 
     $coupon = DB::table('coupon')->select('*')->get();

@@ -340,6 +340,8 @@ Route::group(['middleware' => ['admin'],['preventBackHistory']], function () {
 
     Route::post('/cop', 'AdminController@add_coupon');
 
+    Route::post('/cop_pe', 'AdminController@add_coupon_pe');
+
     Route::get('/ad_coupon', 'AdminController@show_coupon');
 
     Route::post('/ad_issue{id}', 'AdminController@issue');

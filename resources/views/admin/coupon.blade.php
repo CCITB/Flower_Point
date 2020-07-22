@@ -31,41 +31,71 @@
         <div class="row mt">
           <div class="col-lg-12">
 
-
             <div class="coupon_add">
+              <div class="coupon_flatadd">
+                <form action="/cop" method="post">
+                  @csrf
+                  <table class="c_table">
+                    <tr class="c_add">
+                      <td class="td" colspan="2"><span class="add">정액 쿠폰 생성</span>
+                        <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
+                        {{-- <button type="button" name="button" id="ca">계산</button>
+                        <input id="price" value="20000">
+                        <input id="result" value=""> --}}
+                      </td>
+                    </tr>
+                    <tr class="c_name">
+                      <th class="th">쿠폰명</th>
+                      <td class="td"><input class="c_title" name="c_title" id="c_title"></td>
+                    </tr>
+                    <tr class="c_mini">
+                      <th class="th">사용제한 결제금액</th>
+                      <td class="td"><input class="c_minimum" name="c_minimum" id="c_minimum"> 원 이상 결제 시 사용가능</td>
+                    </tr>
+                    <tr class="cp_flat">
+                      <th class="th">최대 할인금액</th>
+                      <td class="td">최대 <input class="c_flat" name="c_flat" id="c_flat"> 원 까지 할인</td>
+                    </tr>
+                    <tr class="c_date">
+                      <th class="th">발급제한</th>
+                      <td class="td"><input type="date" name="start" id="start"> ~ <input type="date" name="end" id="end"></td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
 
-              <form action="/cop" method="post">
-                @csrf
-                <table class="c_table">
-                  <tr class="c_add">
-                    <td class="td" colspan="2"><span class="add">쿠폰 생성</span>
-                      <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
-                      {{-- <button type="button" name="button" id="ca">계산</button>
-                      <input id="price" value="20000">
-                      <input id="result" value=""> --}}
-                    </td>
-                  </tr>
-                  <tr class="c_name">
-                    <th class="th">쿠폰명</th>
-                    <td class="td"><input class="c_title" name="c_title" id="c_title"></td>
-                  </tr>
-                  <tr class="c_mini">
-                    <th class="th">사용제한 결제금액</th>
-                    <td class="td"><input class="c_minimum" name="c_minimum" id="c_minimum"> 원 이상 결제 시 사용가능</td>
-                  </tr>
-                  <tr class="cp_flat">
-                    <th class="th">최대 할인금액</th>
-                    <td class="td">최대 <input class="c_flat" name="c_flat" id="c_flat"> 원 까지 할인</td>
-                  </tr>
-                  <tr class="c_date">
-                    <th class="th">발급제한</th>
-                    <td class="td"><input type="date" name="start" id="start"> ~ <input type="date" name="end" id="end"></td>
-                  </tr>
-                </table>
-              </form>
-
+              <div class="coupon_percentadd">
+                <form action="/cop_pe" method="post">
+                  @csrf
+                  <table class="c_table">
+                    <tr class="c_add">
+                      <td class="td" colspan="2"><span class="add">정률 쿠폰 생성</span>
+                        <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
+                        {{-- <button type="button" name="button" id="ca">계산</button>
+                        <input id="price" value="20000">
+                        <input id="result" value=""> --}}
+                      </td>
+                    </tr>
+                    <tr class="c_name">
+                      <th class="th">쿠폰명</th>
+                      <td class="td"><input class="c_title" name="c_title" id="c_title"></td>
+                    </tr>
+                    <tr class="c_mini">
+                      <th class="th">사용제한 결제금액</th>
+                      <td class="td"><input class="c_minimum" name="c_minimum" id="c_minimum"> 원 이상 결제 시 사용가능</td>
+                    </tr>
+                    <tr class="cp_flat">
+                      <th class="th">최대 할인금액</th>
+                      <td class="td">금액의 <input class="c_percent" name="c_percent" id="c_percent"> % 할인 , 최대 <input class="c_max" name="c_max" id="c_max">원 까지</td>
+                    </tr>
+                    <tr class="c_date">
+                      <th class="th">발급제한</th>
+                      <td class="td"><input type="date" name="start" id="start"> ~ <input type="date" name="end" id="end"></td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
             </div>
-
 
 
             <div class="">
