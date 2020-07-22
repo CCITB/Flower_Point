@@ -186,11 +186,6 @@ class PaymentController extends Controller
             'created_at' => $now->format('yy-m-d H:i:s'),
             'pm_date' =>  $today = date("Ymd")
           ]);
-          DB::table('paymentjoin')->insert([
-            'payment_no' => $insertid[$i],
-            'order_no' => $orderNO
-          ]);
-          $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
       elseif($request->delivery=='기본배송지'){
@@ -209,13 +204,9 @@ class PaymentController extends Controller
             'created_at' => $now->format('yy-m-d H:i:s'),
             'pm_date' =>  $today = date("Ymd")
           ]);
-          DB::table('paymentjoin')->insert([
-            'payment_no' => $insertid[$i],
-            'order_no' => $orderNO
-          ]);
-          $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])->join('product','payment.product_no','=','product.p_no')->get();
         }
       }
+      // return $arraydata[0][0]->o_dcnt_totalprice;
       // 쿠폰사용시에
       if(isset($coupon_no)){
         //정률 쿠폰일 경우
@@ -252,8 +243,19 @@ class PaymentController extends Controller
       DB::table('order')->where('o_no',$orderNO)->update([
         'o_totalprice' => $sum,
         'o_reserve' => $reserve,
-        'o_dcnt_coupon' => $flatrate
+        'o_dcnt_coupon' => $flatrate,
+        'o_dcnt_totalprice' => $sum-$userpoint-$flatrate
       ]);
+      for($i=0; $i<count($basket_no);$i++){
+        DB::table('paymentjoin')->insert([
+          'payment_no' => $insertid[$i],
+          'order_no' => $orderNO
+        ]);
+        $arraydata[] = DB::table('payment')->where('pm_no',$insertid[$i])
+        ->join('product','payment.product_no','=','product.p_no')
+        ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
+        ->join('order','paymentjoin.order_no','order.o_no')->get();
+      }
       // return $test
       DB::commit();
       // return $proarray[1][0]->b_no;
@@ -320,21 +322,27 @@ class PaymentController extends Controller
       ]);
     }
     $reserve = ($prodata[0]->p_price*$request->productcount-$userpoint-$flatrate)* 2 / 100;
-    $data = DB::table('payment')->where('pm_no',$insertid)->join('product','payment.product_no','=','product.p_no')->get();
+    // return $userpoint;
+    DB::table('order')->where('o_no',$orderNO)->update([
+      'o_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
+      'o_reserve' => $reserve,
+      'o_dcnt_coupon' => $flatrate,
+      'o_dcnt_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery-$flatrate-$userpoint
+    ]);
+
+    $data = DB::table('payment')->where('pm_no',$insertid)
+    ->join('product','payment.product_no','=','product.p_no')
+    ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
+    ->join('order','paymentjoin.order_no','order.o_no')->get();
+    DB::table('customer')->where('c_no',$customerprimary)->update([
+      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint-$flatrate)),
+      'c_point'=> DB::raw('c_point'.'-'.($userpoint).'+'.($reserve))
+    ]);
+
     if(auth()->guard('customer')->user()->c_cash + $userpoint + $flatrate - $data[0]->pm_pay<0){
       DB::rollBack();
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }
-    // return $userpoint;
-    $test = DB::table('customer')->where('c_no',$customerprimary)->update([
-      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint-$flatrate)),
-      'c_point'=> DB::raw('c_point'.'-'.($userpoint).'+'.($reserve))
-    ]);
-    DB::table('order')->where('o_no',$orderNO)->update([
-      'o_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
-      'o_reserve' => $reserve,
-      'o_dcnt_coupon' => $flatrate
-    ]);
     // return $userpoint;
     DB::commit();
     // return 0;
@@ -350,15 +358,18 @@ class PaymentController extends Controller
     $orderNO = $request->session()->get('orderNO');
     $paymentIDarray = $request->session()->get('arraydata');
     $pricesum = 0;
+    $test = DB::table('paymentjoin')->where('order_no',250)->join('payment','paymentjoin.payment_no','payment.pm_no')->join('order','paymentjoin.order_no','order.o_no')->get();
+    // return dd($test);
     // 주소 보내주기
     // $delivery = DB::table('paymentjoin')->where('order_no',$orderNO)
     // ->select('delivery_no','c_address_no','pm_no')
     // ->join('payment','paymentjoin.payment_no','payment.pm_no')
     // ->orderBy('pm_no','desc')->take(1)->get();
     if(isset($paymentIDarray)){
-      for($i=0;$i<count($paymentIDarray);$i++){
-        $pricesum += $paymentIDarray[$i][0]->pm_pay;
-      }
+    $pricesum = $paymentIDarray[0][0]->o_dcnt_totalprice;
+      // for($i=0;$i<count($paymentIDarray);$i++){
+      //   $pricesum += $paymentIDarray[$i][0]->pm_pay;
+      // }
     }
     // return $delivery[0]->delivery_no;
     // if($delivery[0]->delivery_no==null){
