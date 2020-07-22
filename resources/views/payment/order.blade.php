@@ -759,10 +759,11 @@ function apply(e){
     success: function(data) {
       // console.log(data);
       // return false;
-      $('#coupon_no').val(e);
       if(data==0){
         alert('쿠폰사용 조건의 최소금액을 만족하지 않습니다!');
+        return false;
       }
+      $('#coupon_no').val(e);
       coupon = data[0].cp_flatrate;
       $('#paymentcoupon').text(AddComma(coupon));
       $('#priceall').text(AddComma(price - point - coupon));

@@ -444,7 +444,7 @@ class InformationController extends Controller
     public function recievecoupon(Request $request){
       // if($customerinfo = auth()->guard('customer')->user()){
       //    $customerprimary = $customerinfo->c_no;
-      $coupon = DB::table('coupon')->select('*')->get();
+      $coupon = DB::table('coupon')->select('*')->where('cp_expiration','=','N')->get();
       // $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
       return view('recievecoupon',compact('coupon'));
       // }

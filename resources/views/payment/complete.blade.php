@@ -43,7 +43,7 @@
                 <div class="order_data">
                   <p class="order_label">주문번호 : {{$orderNO}}</p>
                   <p class="order_label">상품명 : {{$paymentID->p_name}}</p>
-                  <p class="order_label">결제금액 : {{$paymentID->pm_pay}}</p>
+                  <p class="order_label">결제금액 : {{$paymentID->o_dcnt_totalprice}}</p>
                 </div>
               </div>
             </div> <!--wrapping_complete-->
