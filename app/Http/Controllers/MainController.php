@@ -33,7 +33,7 @@ class MainController extends Controller
                   ->groupBy('p_no')
                   ->get();
                   // return $product;
-                  // return $popularity;
+                  $popularityArray = null;
                   for($i=0;$i<count($popularity);$i++){
                   $popularityArray[] =  DB::table('product')->where('p_status','등록')->where('p_no',$popularity[$i]->p_no)
                     ->join('store', 'product.store_no', '=', 'store.st_no')
@@ -42,7 +42,7 @@ class MainController extends Controller
                   // return $popularityArray;
                   // return $popularity[0]->p_no;
                   // return dd($popularity);
-
+                  // return $popularityArray;
 
     return view('main', compact('product','prod','pro','popularityArray'));
   }
