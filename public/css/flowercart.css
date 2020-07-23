@@ -83,6 +83,7 @@ span.label-right{
   width: 17%;
   display: inline-block;
   float: right;
+  text-align: right;
   vertical-align: middle;
 }
 .flowercart-section{

@@ -64,7 +64,7 @@
                     <p>{{$paymentIDarray[0]->p_name}}</p>
                   @endforeach
                 </p>
-                <p class="order_label">결제금액 : {{$pricesum}}</p>
+                <p class="order_label">결제금액 : {{number_format($pricesum)}}</p>
               </div>
             </div>
           </div> <!--wrapping_complete-->
