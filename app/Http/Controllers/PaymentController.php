@@ -166,11 +166,13 @@ class PaymentController extends Controller
         $proarray[$i] = DB::table('basket')->where('b_no',$basket_no[$i])->get();
         DB::table('basket')->where('b_no',$basket_no[$i])->delete();
         $sum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
-        $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price+$proarray[$i][0]->b_delivery;
+        $eachprice = $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
+        $deliveryprice = $proarray[$i][0]->b_delivery;
         $pricesum += $proarray[$i][0]->b_count*$proarray[$i][0]->b_price;
         $insertid[] = DB::table('payment')->insertGetid([
           'pm_count' => $proarray[$i][0]->b_count,
           'pm_pay' => $eachprice,
+          'pm_deliverypay' => $deliveryprice,
           'customer_no' => $customerprimary,
           'product_no' => $proarray[$i][0]->product_no,
           'created_at' => $now->format('yy-m-d H:i:s'),
@@ -253,7 +255,8 @@ class PaymentController extends Controller
     //상품페이지에서 단품 결제시에 사용되는 코드, 칼럼 pm_count는 임시용으로 1이지만 상품페이지에 수량선택 기능이 추가되면 수정이 필요함.
     $insertid =  DB::table('payment')->insertGetid([
       'pm_count' => $request->productcount,
-      'pm_pay' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
+      'pm_pay' => $request->productcount*$prodata[0]->p_price,
+      'pm_deliverypay' => $prodata[0]->p_delivery,
       'customer_no' => $customerprimary,
       'product_no' => $product_no[0],
       'created_at' => $now->format('yy-m-d H:i:s'),
@@ -319,7 +322,7 @@ class PaymentController extends Controller
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }
     DB::commit();
-    
+
     return Redirect::route('complete')->with([
       'data'=>$data,
       'orderNO'=>$orderNO
