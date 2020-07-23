@@ -152,32 +152,42 @@
           // console.log(p_price[i]);
           pricesum += pm_pay[i]; //pm_pay 총 합
         }
-        console.log("총 가격"+pricesum);
+        // console.log("총 가격"+pricesum);
         // console.log(p_price);
         // $('#sum_price').text(pricesum);
 
         var delsum = 0;
         for(var i=0; i<cal.length; i++){
-          del_price[i] = cal[i].p_delivery;
+          del_price[i] = cal[i].pm_deliverypay;
           delsum += del_price[i];
         }
-        console.log("배송비 합"+delsum);
-        var totalprice = pricesum - delsum;
-        $('#sum_price').text(totalprice);
-        console.log("원가격합" +totalprice);
+        // console.log("배송비 합"+delsum);
+        // var totalprice = pricesum - delsum;
+        $('#sum_price').text(pricesum);
+        // console.log("원가격합" +totalprice);
 
         var o_dcnt_sum = 0;
         for(var i=0; i<cal.length; i++){
           o_dcnt_totalprice[i] = cal[i].o_dcnt_totalprice;
-          console.log(o_dcnt_totalprice[i]);
-        
+          // console.log(o_dcnt_totalprice[i]);
+
           o_dcnt_sum= o_dcnt_sum+o_dcnt_totalprice[i]; //o_dcnt_totalprice 총 합
         }
-        console.log("실 총 가격"+o_dcnt_sum);
-        $('#sum_o_dcnt_totalprice').text(o_dcnt_sum);
-        var realprice = o_dcnt_sum - delsum;
-        console.log(realprice);
+        // console.log("실 총 가격"+o_dcnt_sum);
+        // $('#sum_o_dcnt_totalprice').text(o_dcnt_sum);
+        // var realprice = o_dcnt_sum - delsum;
+        // console.log(realprice);
 
+        var ono =0;
+        var o = [];
+        for (var i = 0; i < cal.length; i++) {
+          o_no[i] = cal[i].o_dcnt_totalprice;
+          console.log(o_no[i]);
+          ono = o_no[i]
+          console.log("하이"+ono);
+
+        }
+        console.log(o_no);
 
       },
       error: function(cal) {

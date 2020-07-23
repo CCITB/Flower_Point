@@ -9,9 +9,6 @@
 </head>
 <body>
 
-  <div class="topheader">
-    <h1 class="titles"><a id="title" href="/">꽃갈피</a></h1>
-  </div>
     @include('lib.header')
   <div class="wrapping2">
     <div class="text">

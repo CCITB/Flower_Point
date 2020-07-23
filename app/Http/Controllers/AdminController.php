@@ -140,7 +140,7 @@ class AdminController extends Controller
     ->join('store_address','store.st_no', '=', 'store_address.st_no')
     ->select('*')->get();
 
-    $calculate = DB::table('seller')->where('s_no',79)
+    $calculate = DB::table('seller')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->join('product','store.st_no','=','product.store_no')
     ->join('payment','product.p_no','=','payment.product_no')
@@ -156,7 +156,7 @@ class AdminController extends Controller
 
     $sno = $request->get('s_no');
 
-    $calculate = DB::table('seller')->where('s_no',$sno)
+    $calculate = DB::table('seller')->where('s_no',$sno)->where('pm_status','구매 확정')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->leftjoin('product','store.st_no','=','product.store_no')
     ->leftjoin('payment','product.p_no','=','payment.product_no')

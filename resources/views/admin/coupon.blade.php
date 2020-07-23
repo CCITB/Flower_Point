@@ -38,7 +38,7 @@
                   <table class="c_table">
                     <tr class="c_add">
                       <td class="td" colspan="2"><span class="add">정액 쿠폰 생성</span>
-                        <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
+                        <button class="ad_bt" type="submit" name="submit" id="submit1" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
                         {{-- <button type="button" name="button" id="ca">계산</button>
                         <input id="price" value="20000">
                         <input id="result" value=""> --}}
@@ -70,7 +70,7 @@
                   <table class="c_table">
                     <tr class="c_add">
                       <td class="td" colspan="2"><span class="add">정률 쿠폰 생성</span>
-                        <button class="ad_bt" type="submit" name="submit" id="submit" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
+                        <button class="ad_bt" type="submit" name="submit" id="submit2" style="font-size:1.4em; width:5em; height:2em; padding:0;">쿠폰 발급</button>
                         {{-- <button type="button" name="button" id="ca">계산</button>
                         <input id="price" value="20000">
                         <input id="result" value=""> --}}
@@ -78,11 +78,11 @@
                     </tr>
                     <tr class="c_name">
                       <th class="th">쿠폰명</th>
-                      <td class="td"><input class="c_title" name="c_title" id="c_title"></td>
+                      <td class="td"><input class="c_title" name="c_title" id="co_title"></td>
                     </tr>
                     <tr class="c_mini">
                       <th class="th">사용제한 결제금액</th>
-                      <td class="td"><input class="c_minimum" name="c_minimum" id="c_minimum"> 원 이상 결제 시 사용가능</td>
+                      <td class="td"><input class="c_minimum" name="c_minimum" id="co_minimum"> 원 이상 결제 시 사용가능</td>
                     </tr>
                     <tr class="cp_flat">
                       <th class="th">최대 할인금액</th>
@@ -90,7 +90,7 @@
                     </tr>
                     <tr class="c_date">
                       <th class="th">발급제한</th>
-                      <td class="td"><input type="date" name="start" id="start"> ~ <input type="date" name="end" id="end"></td>
+                      <td class="td"><input type="date" name="start" id="start1"> ~ <input type="date" name="end" id="end1"></td>
                     </tr>
                   </table>
                 </form>
@@ -171,25 +171,12 @@
   <script>
 
 
-  $('#ca').click(function(){
-    var price = $('#price').val();
-    var mini = $('#c_minimum').val();
-    var flat = $('#c_flat').val();
-
-    if(price >mini){
-      result = price - flat;
-      $('#result').val(result);
-      console.log(total);
-    } else{
-      alert("적용할 수 없습니다.");
-    }
-  });
-
   $(document).ready(function(){
 
-    $("#submit").click(function(){
+    $("#submit1").click(function(){
       var num =  /^[0-9]*$/
       var flat = $("#c_flat").val();
+      var mini = $('#c_minimum').val();
 
       if($("#c_title").val() == 0){
         alert("쿠폰명을 입력하세요.");
@@ -214,6 +201,10 @@
         alert('최대 할인금액에 숫자만 입력해주세요')
         return false;
       }
+      if(flat > mini){
+        alert("적용할 수 없습니다.");
+        return false;
+      }
       if($("#start").val() == 0){
         alert("발급제한을 입력하세요.");
         $("#start").focus();
@@ -222,6 +213,11 @@
       if($("#end").val() == 0){
         alert("발급제한을 입력하세요.");
         $("#end").focus();
+        return false;
+      }
+      if($("#end").val() > $("#start").val()){
+        alert("적용할 수 없습니다.");
+        $("#start").focus();
         return false;
       }else{
         var test = confirm("쿠폰을 발급하시겠습니까?");
@@ -232,6 +228,77 @@
         }
       }
     });
+
+    $("#submit2").click(function(){
+      var num =  /^[0-9]*$/
+      var percent = $("#c_percent").val();
+      var mini = $('#co_minimum').val();
+      var max = $('#c_max').val();
+
+      if($("#co_title").val() == 0){
+        alert("쿠폰명을 입력하세요.");
+        $("#co_title").focus();
+        return false;
+      }
+      if($("#co_minimum").val() == 0){
+        alert("사용제한 결제금액을 입력하세요.");
+        $("#co_minimum").focus();
+        return false;
+      }
+      if(!num.test($("#co_minimum").val())){
+        alert('사용제한 결제금액에 숫자만 입력해주세요')
+        return false;
+      }
+      if($("#c_percent").val() == 0){
+        alert("최대 할인금액을 입력하세요.");
+        $("#c_percent").focus();
+        return false;
+      }
+      if($("#c_max").val() == 0){
+        alert("최대 할인금액을 입력하세요.");
+        $("#c_max").focus();
+        return false;
+      }
+      if(!num.test(percent)){
+        alert('최대 할인금액에 숫자만 입력해주세요')
+        return false;
+      }
+      if(!num.test(max)){
+        alert('최대 할인금액에 숫자만 입력해주세요')
+        return false;
+      }
+      if(percent > mini){
+        alert("적용할 수 없습니다.");
+        return false;
+      }
+      if(max > mini){
+        alert("적용할 수 없습니다.");
+        return false;
+      }
+      if($("#start1").val() == 0){
+        alert("발급제한을 입력하세요.");
+        $("#start1").focus();
+        return false;
+      }
+      if($("#end1").val() == 0){
+        alert("발급제한을 입력하세요.");
+        $("#end1").focus();
+        return false;
+      }
+      if($("#end1").val() > $("#start1").val()){
+        alert("적용할 수 없습니다.");
+        $("#start1").focus();
+        return false;
+      }else{
+        var test = confirm("쿠폰을 발급하시겠습니까?");
+        if(test == true){
+          alert("쿠폰이 발급되었습니다.");
+        }else{
+          return false;
+        }
+      }
+    });
+
   });
 
 
