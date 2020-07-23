@@ -34,7 +34,7 @@
               <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">
               <div class="flowercart-section">
                 <div class="product-name">{{$list->b_name}}</div>
-                <div class="product-price"> {{$list->b_price}}
+                <div class="product-price">
                   {{-- <a class="btn{{$list->b_no}}" onclick="del({{$list->b_no}})" href="#" >x</a> --}}
                   <button type="button" name="button" class= "btn1" onclick="del({{$list->b_no}},{{$list->p_no}})" value="{{$list->b_no}}">x</button>
                 </div>
