@@ -131,7 +131,7 @@
       window.name = "parentForm";
       // window.open("open할 window", "자식창 이름", "팝업창 옵션");
       openWin = window.open("/ad_regst"+stn,
-      "childForm", "width=600px, height=800px, left=570px, top=150px ");
+      "childForm", "width=600px, height=800px, left=570px, top=100px ");
   }
 
 

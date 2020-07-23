@@ -86,7 +86,7 @@
                     </tr>
                     <tr class="cp_flat">
                       <th class="th">최대 할인금액</th>
-                      <td class="td">금액의 <input class="c_percent" name="c_percent" id="c_percent"> % 할인 , 최대 <input class="c_max" name="c_max" id="c_max">원 까지</td>
+                      <td class="td">금액의 <input class="c_percent" name="c_percent" id="c_percent"> % 할인 , 최대 <input class="c_max" name="c_max" id="c_max"> 원 까지 할인</td>
                     </tr>
                     <tr class="c_date">
                       <th class="th">발급제한</th>

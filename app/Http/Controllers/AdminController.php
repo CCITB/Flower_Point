@@ -100,7 +100,7 @@ class AdminController extends Controller
       'cp_title'=>$request->input('c_title'),
       'cp_minimum' => $request->input('c_minimum'),
       'cp_percent' => $request->input('c_percent'),
-      'cp_max' => $request->input('c_max'),
+      'cp_flatrate' => $request->input('c_max'),
       'start_date' =>$request->input('start'),
       'end_date' =>$request->input('end')
     ]);
@@ -132,6 +132,43 @@ class AdminController extends Controller
     ]);
     return redirect()->back();
   }
+
+  public function choice_st(){
+
+    $sellerall = DB::table('seller')
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('store_address','store.st_no', '=', 'store_address.st_no')
+    ->select('*')->get();
+
+    $calculate = DB::table('seller')->where('s_no',79)
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('product','store.st_no','=','product.store_no')
+    ->join('payment','product.p_no','=','payment.product_no')
+    ->join('paymentjoin','payment.pm_no','=','paymentjoin.payment_no')
+    ->join('order','paymentjoin.order_no','=','order.o_no')
+    ->get();
+    // $p_no = $calculate->pm_no;
+    // return $p_no;
+    return view('admin.calculate', compact('sellerall'));
+  }
+
+  public function calculate(Request $request){
+
+    $sno = $request->get('s_no');
+
+    $calculate = DB::table('seller')->where('s_no',$sno)
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->leftjoin('product','store.st_no','=','product.store_no')
+    ->leftjoin('payment','product.p_no','=','payment.product_no')
+    ->leftjoin('paymentjoin','payment.pm_no','=','paymentjoin.payment_no')
+    ->leftjoin('order','paymentjoin.order_no','=','order.o_no')
+    ->get();
+
+    // $p_no = $calculate->p_no;
+    // return $p_no;
+    return response()->json($calculate);
+  }
+
   public function login(){
     return view('admin.login');
   }

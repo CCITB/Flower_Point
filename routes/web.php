@@ -347,6 +347,10 @@ Route::group(['middleware' => ['admin'],['preventBackHistory']], function () {
     Route::post('/ad_issue{id}', 'AdminController@issue');
 
     Route::post('/ad_noissue{id}', 'AdminController@noissue');
+
+    Route::get('/ad_calculate', 'AdminController@choice_st');
+
+    Route::post('/show_calculate', 'AdminController@calculate');
 });
 
 

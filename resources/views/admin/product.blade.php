@@ -108,14 +108,12 @@
                         <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
                           @csrf
                           <input type="submit" name="remove" id="remove{{$sel->p_no}}" onclick="confrim_remove({{$sel->p_no}})" value="삭제">
-                          <input type="hidden" id="hidden" name="hidden" value="">
                         </form>
                       </td>
                       <td>
                         <form name="delete" action="/ad_restore{{$sel->p_no}}" method="post">
                           @csrf
                           <input type="submit" name="enroll" id="enroll" value="등록">
-                          <input type="hidden" id="hidden" name="hidden" value="">
                         </form>
                       </td>
                     </tr>
