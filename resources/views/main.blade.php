@@ -137,6 +137,7 @@
 
   <div class="container-wrap">
     <div class="container-wrapping">
+      @if(isset($popularityArray))
       @foreach ($popularityArray as $productlist)
         <div class="hot-container-image">
           <div class="hot-image">
@@ -159,6 +160,8 @@
           </div>
         </div>
       @endforeach
+    @else
+    @endif
     </div>
   </div>
 </div>
