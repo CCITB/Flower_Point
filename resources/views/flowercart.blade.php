@@ -28,7 +28,7 @@
           <div class="flowercart-infor" id="remove{{$list->b_no}}">
             <div class="flowercart-top">
               <input type="checkbox" name="checkRow" class="checkf" id="checkf{{$list->b_no}}" onchange="selectcondition({{$list->b_no}},{{$list->p_no}});" value="{{$list->b_no}}" checked="checked">
-              <strong class="flowercart-tradename" id="product{{$list->p_no}}">가게명</strong>
+              <strong class="flowercart-tradename" id="product{{$list->p_no}}">{{$list->st_name}}</strong>
             </div>
             <div class="flowercart-middle">
               <img class="flowercart-preview" src="/imglib/{{$list->b_picture}}" alt="?">

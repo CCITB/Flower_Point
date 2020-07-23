@@ -324,7 +324,7 @@ class ProductController extends Controller
     public function basket(){
       if(auth()->guard('customer')->user()){
         $userinfo = auth()->guard('customer')->user()->c_no;
-        $data = DB::table('basket')->where('customer_no',$userinfo)->join('product','basket.product_no','=','product.p_no')->get();
+        $data = DB::table('basket')->where('customer_no',$userinfo)->join('product','basket.product_no','=','product.p_no')->join('store','product.store_no','store.st_no')->get();
         // return $data;
         return view('flowercart',compact('data'));
       }
