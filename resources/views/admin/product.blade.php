@@ -98,7 +98,7 @@
                   @foreach ($products as $sel)
                     <tr onclick="location.href='/product/{{$sel->p_no}}'">
                       <td>{{$sel->p_no}}</td>
-                      <td>{{$sel->p_name}}</td>
+                      <td style="width:30%;">{{$sel->p_name}}</td>
                       <td>{{number_format($sel->p_price)}} 원</td>
                       <td>{{$sel->st_no}}</td>
                       <td>{{$sel->st_name}}</td>
@@ -189,7 +189,7 @@ $(document).ready(function(){
 
 function confrim_remove(pno){
 
-  var test = confirm("상품을 삭제하시겠습니까?");
+  var test = confirm("상품을 등록하시겠습니까?");
   if(test == true){
     alert("해당 상품이 삭제되었습니다.");
   }else if(test == false){

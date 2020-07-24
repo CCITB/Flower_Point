@@ -81,7 +81,7 @@
                 <tbody>
                   <tr>
                     <td ><span id="p_no"></span></td>
-                    <td></td>
+                    <td><span class="p_name" id="p_name"></span></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -137,6 +137,7 @@
     var o_dcnt_totalprice=[];
     var del_price=[];
     var o_no=[];
+    var p_name=[];
     $.ajax({
       type: 'post',
       url: '/show_calculate',
@@ -152,9 +153,9 @@
           // console.log(p_price[i]);
           pricesum += pm_pay[i]; //pm_pay 총 합
         }
-        // console.log("총 가격"+pricesum);
+        console.log("총 가격"+pricesum);
         // console.log(p_price);
-        // $('#sum_price').text(pricesum);
+        $('#sum_price').text(pricesum);
 
         var delsum = 0;
         for(var i=0; i<cal.length; i++){
@@ -163,8 +164,14 @@
         }
         // console.log("배송비 합"+delsum);
         // var totalprice = pricesum - delsum;
-        $('#sum_price').text(pricesum);
         // console.log("원가격합" +totalprice);
+
+        for (var i = 0; i < cal.length; i++) {
+          p_name[i] = cal[i].p_name;
+          $('.p_name').html(p_name);
+        }
+
+
 
         var o_dcnt_sum = 0;
         for(var i=0; i<cal.length; i++){
@@ -177,17 +184,6 @@
         // $('#sum_o_dcnt_totalprice').text(o_dcnt_sum);
         // var realprice = o_dcnt_sum - delsum;
         // console.log(realprice);
-
-        var ono =0;
-        var o = [];
-        for (var i = 0; i < cal.length; i++) {
-          o_no[i] = cal[i].o_dcnt_totalprice;
-          console.log(o_no[i]);
-          ono = o_no[i]
-          console.log("하이"+ono);
-
-        }
-        console.log(o_no);
 
       },
       error: function(cal) {
