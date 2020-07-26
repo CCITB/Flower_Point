@@ -41,22 +41,26 @@
                         <th>이름</th>
                         <th>전화번호</th>
                         <th>이메일</th>
-                        <th>포인트</th>
                         <th>성별</th>
                         <th>생일</th>
+                        <th>포인트</th>
+                        <th>포인트 지급</th>
                     </tr>
                 </thead>
                 <tbody>
                   @foreach ($customer as $cus)
                     <tr>
-                        <td>{{$cus->c_no}}</td>
+                        <td style="width:10%;">{{$cus->c_no}}</td>
                         <td>{{$cus->c_id}}</td>
                         <td>{{$cus->c_name}}</td>
                         <td>{{$cus->c_phonenum}}</td>
                         <td>{{$cus->c_email}}</td>
-                        <td>{{$cus->c_point}}</td>
                         <td>{{$cus->c_gender}}</td>
                         <td>{{$cus->c_birth}}</td>
+                        <td>{{number_format($cus->c_point)}}P</td>
+                        <td style="padding-left:20px;">
+                          <button type="button" onclick="pointpop({{$cus->c_no}});">지급</button>
+                        </td>
                     </tr>
                   @endforeach
                 </tbody>
@@ -93,6 +97,17 @@
 <script src="lib/jquery.scrollTo.min.js"></script>
 <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
 <script>
+
+var openWin;
+function pointpop(cno)
+{
+  // window.name = "부모창 이름";
+  window.name = "parentForm";
+  // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+  openWin = window.open("/ad_point"+cno,
+  "childpoint", "width=600px, height=200px, left=50px, top=50px ");
+}
+
 $(document).ready(function(){
 	$("#customer").DataTable({
     "language": {

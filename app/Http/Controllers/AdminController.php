@@ -169,6 +169,71 @@ class AdminController extends Controller
     return response()->json($calculate);
   }
 
+  public function sales($id){
+
+    $calculate = DB::table('seller')->where('s_no',$id)
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('product','store.st_no','=','product.store_no')
+    ->join('payment','product.p_no','=','payment.product_no')
+    ->join('paymentjoin','payment.pm_no','=','paymentjoin.payment_no')
+    ->join('order','paymentjoin.order_no','=','order.o_no')
+    ->get();
+
+    $calculat = DB::table('seller')->where('s_no',$id)
+    ->distinct()->select('o_no','o_dcnt_totalprice','o_point','o_dcnt_coupon')
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')
+    ->join('product','store.st_no','=','product.store_no')
+    ->join('payment','product.p_no','=','payment.product_no')
+    ->join('paymentjoin','payment.pm_no','=','paymentjoin.payment_no')
+    ->join('order','paymentjoin.order_no','=','order.o_no')
+    ->get();
+
+    $o_dcnt_sum = 0;
+    $o_point_sum = 0;
+    $o_coupon_sum=0;
+    for ($i=0; $i <count($calculat) ; $i++) {
+      $o_dcnt_total = $calculat[$i]->o_dcnt_totalprice;
+      $o_dcnt_sum += $o_dcnt_total; // 주문총금액 합
+
+      $o_point = $calculat[$i]->o_point;
+      $o_point_sum +=$o_point; // 주문 포인트 합
+
+      $o_coupon = $calculat[$i]->o_dcnt_coupon;
+      $o_coupon_sum += $o_coupon; // 주문 쿠폰 합
+    }
+
+    $order_total_price = $o_dcnt_sum - $o_point_sum - $o_coupon_sum;
+    // return $order_total_price;
+
+    return view('admin.cal', compact('calculate','calculat','order_total_price'));
+  }
+
+  public function showpoint($id){
+
+    $customer = DB::table('customer')->where('c_no',$id)->get();
+    return view('admin.point', compact('customer'));
+  }
+
+  public function pointinput(Request $request){
+
+    $c_no = $_POST['c_no'];
+    $c_point = $_POST['c_point'];
+    $inputP = preg_replace("/[^0-9]/", "",$request->input('p_input'));
+
+    $pay_point = $c_point + $inputP;
+
+
+    DB::table('customer')->where('c_no',$c_no)
+    ->update([
+      'c_point' =>$pay_point
+    ]);
+
+    return "<script>alert('적립금이 지금되었습니다.');opener.parent.location.reload();
+    window.close();</script>";
+  }
+
+
+
   public function login(){
     return view('admin.login');
   }

@@ -351,6 +351,12 @@ Route::group(['middleware' => ['admin'],['preventBackHistory']], function () {
     Route::get('/ad_calculate', 'AdminController@choice_st');
 
     Route::post('/show_calculate', 'AdminController@calculate');
+
+    Route::get('/ad_point{id}', 'AdminController@showpoint');
+
+    Route::post('/ad_points', 'AdminController@pointinput');
+
+    Route::get('/hihi{id}', 'AdminController@sales');
 });
 
 

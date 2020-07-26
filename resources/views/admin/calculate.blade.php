@@ -43,6 +43,7 @@
                     <th>가게 번호</th>
                     <th>판매자 고유번호</th>
                     <th>정산 내역 보기</th>
+                    <th>정산 내역 보기</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,9 @@
                       <td>{{$sel->s_no}}</td>
                       <td>
                         <button type="submit" name="show_ca" id="show_ca{{$sel->s_no}}" value="{{$sel->s_no}}" onclick="calculate({{$sel->s_no}});">정산내역 보기</button>
+                      </td>
+                      <td>
+                          <button type="button" name="button" onclick="showcal({{$sel->s_no}});">정산하기</button>
                       </td>
                     </tr>
                   @endforeach
@@ -124,6 +128,16 @@
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script>
 
+  var openWin;
+  function showcal(sno)
+  {
+    // window.name = "부모창 이름";
+    window.name = "parentForm";
+    // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+    openWin = window.open("/hihi"+sno,
+    "childpoint", "width=600px, height=200px, left=50px, top=50px ");
+  }
+
   var p_no;
   var pm_no;
 
@@ -173,13 +187,15 @@
 
 
 
-        var o_dcnt_sum = 0;
-        for(var i=0; i<cal.length; i++){
-          o_dcnt_totalprice[i] = cal[i].o_dcnt_totalprice;
-          // console.log(o_dcnt_totalprice[i]);
-
-          o_dcnt_sum= o_dcnt_sum+o_dcnt_totalprice[i]; //o_dcnt_totalprice 총 합
-        }
+        // var o_dcnt_sum = 0;
+        // for(var i=0; i<cal.length; i++){
+        //   o_no[i] = cal[i].o_no;
+        //   var hi = Array.from(new Set(o_no));
+        //   console.log(hi);
+        //   // console.log(o_dcnt_totalprice[i]);
+        //
+        //   // o_dcnt_sum= o_dcnt_sum+o_dcnt_totalprice[i]; //o_dcnt_totalprice 총 합
+        // }
         // console.log("실 총 가격"+o_dcnt_sum);
         // $('#sum_o_dcnt_totalprice').text(o_dcnt_sum);
         // var realprice = o_dcnt_sum - delsum;

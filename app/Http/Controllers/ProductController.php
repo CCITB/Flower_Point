@@ -27,6 +27,7 @@ class ProductController extends Controller
   public function seller_product_register(Request $request)
   {
     $now = new DateTime();
+    $today = date("Ymd");
     // return $picture;
     $storeno = auth()->guard('seller')->user()->s_no;
     $comparison = DB::table('store')->where('seller_no','=', $storeno)->first();
@@ -47,7 +48,8 @@ class ProductController extends Controller
       'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
       'p_filename' =>$path,
-      'created_at' =>$now->format('yy-m-d H:i:s')
+      'created_at' =>$now->format('yy-m-d H:i:s'),
+      'p_date' => $today
     ]);
 
 
