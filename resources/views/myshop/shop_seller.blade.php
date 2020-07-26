@@ -56,7 +56,7 @@
                 </th>
                 <td class="st_td1">
                   <div class="addresswrap" id="addresswrap" style="display:none;">
-                    <form action="/newaddress" method="get">
+                    <form action="/newaddress"onsubmit="return address_checkform()" method="post">
                       <div class="delivery_wrap" style="margin-bottom:10px;">
                         <strong class="info">새 주소</strong>
                       </div>
@@ -115,7 +115,7 @@
                 <tbody id="tdbody">
                   @foreach ($proro as $data3)
                     <tr>
-                      <td class="upload">{{$data3->p_date}}</td>
+                      <td class="upload">{{$data3->created_at}}</td>
                       <td class="upload" onclick="location.href = '/product/{{$data3->p_no}}'">{{$data3->p_name}}</td>
                       <td class="upload">{{$data3->p_price}}</td>
                       <td class="upload">
@@ -168,7 +168,7 @@ $('#removel').click(function(){
 
 function showPopup() {
   var url="image_popup";
-  var option="width=300, height=300, top=200"
+  var option="width=500, height=300, top=200"
   window.open(url, "", option);
 }
 
@@ -245,6 +245,13 @@ function readURL(el) {
     }
 
     reader.readAsDataURL(el.files[0]);
+  }
+}
+function address_checkform(){
+  var address = document.getElementById("postcode");
+  if((address.value)==""){
+    alert("새 주소를 입력해주세요");
+    return false;
   }
 }
 

@@ -192,7 +192,7 @@ class InformationController extends Controller
         ->join('store','product.store_no','=','store.st_no')
         ->where('c_no',$cus)->get();
 
-        return view('myQna', ['myqn' => $myqna]);
+        return view('myqna', ['myqn' => $myqna]);
       } else{
         return redirect('/login_customer');
       }
@@ -222,7 +222,7 @@ class InformationController extends Controller
         ->select('*')->where('s_no', '=', $sellerprimary)->get();
         $proro = DB::table('product')
         ->join('store','product.store_no','=','store.st_no')
-        ->select('*')->where('st_no' ,'=', $data[0]->st_no)->where('p_status','등록')->get();
+        ->select('*','product.created_at')->where('st_no' ,'=', $data[0]->st_no)->where('p_status','등록')->get();
         $introduce = DB::table('store')->select('st_introduce')->where('st_no' ,'=' , $data[0]->st_no )->get();
         $detail_address = DB::table('store_address')->select('a_detail')->where('st_no' ,'=', $data[0]->st_no)->get();
         return view('myshop/shop_seller' , compact('data', 'proro','introduce','detail_address'));
@@ -401,11 +401,14 @@ class InformationController extends Controller
           ->get();
           $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
           $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
-          $price = $total-$point;
+          $customer_point = preg_replace("/[^0-9]/", "", $data[0]->c_point);
+          $delivery = preg_replace("/[^0-9]/", "", $data[0]->pm_deliverypay);
+          $price = $total-$point-$delivery;
           $currentcash = $data[0]->c_cash;
 
           $updateprice = DB::table('customer')->where('c_no','=',$customerprimary)->update([
-            'c_cash'=>$price+$currentcash
+            'c_cash'=>$price+$currentcash,
+            'c_point'=>$customer_point-($price* 2 / 100)
           ]);
           DB::table('payment')->where('pm_no',$number)->
           update(['pm_status'=>'결제 취소','pm_d_status' => '결제 취소']);
@@ -415,12 +418,15 @@ class InformationController extends Controller
         // return response()->json($data);
         $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
         $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
+        $customer_point = preg_replace("/[^0-9]/", "", $data[0]->c_point);
         $coupon = preg_replace("/[^0-9]/", "", $data[0]->cp_flatrate);
-        $price = $total-$point-$coupon;
+        $delivery = preg_replace("/[^0-9]/", "", $data[0]->pm_deliverypay);
+        $price = $total-$point-$coupon-$delivery;
         $currentcash = $data[0]->c_cash;
 
         $updateprice = DB::table('customer')->where('c_no','=',$customerprimary)->update([
-          'c_cash'=>$price+$currentcash
+          'c_cash'=>$price+$currentcash,
+          'c_point'=>$customer_point-($price* 2 / 100)
         ]);
         DB::table('payment')->where('pm_no',$number)->
         update(['pm_status'=>'결제 취소','pm_d_status' => '결제 취소']);

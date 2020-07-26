@@ -9,7 +9,7 @@
   <body>
 
           @foreach ($data as $data1)
-    <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return postcheck();">
+    <form action="{{url('image')}}" method="post" id="send-text" name="index" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return check();">
       @csrf
     <div class="preview-wrap">
       <div class="preview-left">
@@ -30,7 +30,7 @@
 <input type="file" onchange="checkFile(this);" id="real-input" name="picture" class="image_inputType_file" accept="image/*">
 <div class="postbutton">
   <input type="submit" name="" value="저장" id="save" >
-  <input type="submit" value="창닫기"  id="close" onclick="window.close()">
+  <input type="button" value="창닫기"  id="close" onclick="window.close()">
 </div>
 
 
@@ -83,8 +83,8 @@
     }
   }
   function check(){
-    if($('#registration').val()==""){
-      $('#registration').focus();
+    if($('#real-input').val()==""){
+      $('#real-input').focus();
       alert('사진을 업로드 해주세요');
       return false;
     }

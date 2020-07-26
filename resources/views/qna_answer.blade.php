@@ -17,7 +17,7 @@
         상품, 배송, 취소, A/S 등의 문의를 남겨주시면 판매자가 직접 답변을 드립니다.
       </div>
       @foreach ($answer as $an)
-        <form action="/answer/{{$an->q_no}}" method="post">
+        <form action="/answer/{{$an->q_no}}" method="post" onsubmit="return check();">
           @csrf
           <table>
             <tr class="an_name">
@@ -46,7 +46,7 @@
 
 
       <div class="bottom1">
-        <input class="q_bt" id="sub" type='submit' value="확인">
+        <input class="q_bt" id="sub" type='submit'  value="확인">
         <input class="q_bt" type="button" value="취소" onclick="self.close();" />
       </div>
     </form>
@@ -57,6 +57,15 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
+
+  function check(){
+    if($("#a_text").val()==""){
+      $("#a_text").focus();
+      alert("답변을 입력 해주세요");
+      return false;
+    }
+  }
+
   $(document).ready(function(){
     $("#sub").click(function(){
       if($("#q_title").val().length==0){
@@ -71,6 +80,7 @@
       }
     });
   });
+
   </script>
 </body>
 </html>
