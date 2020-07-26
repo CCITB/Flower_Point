@@ -194,7 +194,7 @@ function initMap() {
     }
     //사용자 아이콘
     // var input = $("#search_input").val();
-    var store_Icon = new google.maps.MarkerImage("/img/store_icon.png", null, null, null, new google.maps.Size(30,40));
+    var store_Icon = new google.maps.MarkerImage("/imglib/flower_icon.png", null, null, null, new google.maps.Size(120,80));
 
     for( i=0 ; i < arr.length; i++){
       // $("#search_btn").click(function(){
