@@ -83,21 +83,15 @@ class PaymentController extends Controller
     //   return "<script>alert('요청이 실행중입니다!');</script>";
     // }
     // 유저포인트
-    $userpoint = $request->userpoint;
-    if($userpoint == null){
-      $userpoint = 0;
+    $user_use_point = $request->userpoint;
+    if($user_use_point == null){
+      $user_use_point = 0;
     }
-    else if(auth()->guard('customer')->user()->c_point<$userpoint){
+    else if(auth()->guard('customer')->user()->c_point<$user_use_point){
       return "<script>alert('비정상적인 접근 방법입니다.')</script>";
     }
-    // return $userpoint;
     DB::beginTransaction();
-    // 사용한 쿠폰번호
-    $coupon_no = $request->coupon_no;
-    $getcoupon = DB::table('couponbox')->where('cpb_no',$coupon_no)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
-    // return 1;
-
-    // return $flatrate;
+    //현재날짜 및 시간
     $now = new DateTime();
     // 수령인 이름
     $recipient = $request->input('recipient');
@@ -115,8 +109,8 @@ class PaymentController extends Controller
     $detailAddress = $request->input('detailAddress');
     $extraAddress = $request->input('extraAddress');
     //사용자 요청사항
-    $userrequest = $request->input('request');
-    //단일상품 번호 넘김
+    $user_request = $request->input('request');
+    //단일주문 상품번호
     $product_no = json_decode($request->input('getarray'));
     //장바구니 테이블에서 주문완료상태로 처리하기 위한 넘버 배열로 담겨있음
     $basket_no = json_decode($request->input('basketarray'));
@@ -126,11 +120,14 @@ class PaymentController extends Controller
     $flatrate = 0;
     //로그인 유저 기본키 추출
     if(auth()->guard('customer')->check()){
-      $customerprimary = auth()->guard('customer')->user()->c_no;
+      $customer_primary = auth()->guard('customer')->user()->c_no;
       //유저 기본배송지 추출
-      $useraddress = DB::table('customer_address')->where('c_no',$customerprimary)->get();
+      $useraddress = DB::table('customer_address')->where('c_no',$customer_primary)->get();
     }
-    //주문한 사람의 주소 저장
+    // 사용한 쿠폰번호
+    $coupon_no = $request->coupon_no;
+    $getcoupon = DB::table('couponbox')->where('cpb_no',$coupon_no)->where('customer_no',$customer_primary)->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+    // 주문한 사람의 주소 저장
     if($request->delivery=='신규배송지'){
       DB::table('delivery')->insert([
         'd_name' => $recipient,
@@ -139,18 +136,18 @@ class PaymentController extends Controller
         'd_address' => $address,
         'd_detailaddress' => $detailAddress,
         'd_extraaddress' => $extraAddress,
-        'customer_no' => $customerprimary,
+        'customer_no' => $customer_primary,
       ]);
     }
     //delivery테이블에서 기본키를 가져오기위해 $deliverytable변수 선언
-    $deliverytable[] = DB::table('delivery')->where('customer_no',$customerprimary)->orderBy('d_no','desc')->first();
+    $deliverytable[] = DB::table('delivery')->where('customer_no',$customer_primary)->orderBy('d_no','desc')->first();
     //주문번호
-    $orderNO = DB::table('order')->insertGetid([
-      'customer_no' => $customerprimary,
-      'o_request' => $userrequest,
-      'created_at' => $now->format('yy-m-d H:i:s'),
-      'o_point' => $userpoint,
-      'couponbox_no' => $coupon_no,
+    $orderNO = DB::table('order')->insertGetid([            //$orderNO = 주문번호
+      'customer_no' => $customer_primary,                   //$customer_primary = 유저 기본키
+      'o_request' => $user_request,                         //$user_request = 유저 요청사항
+      'created_at' => $now->format('yy-m-d H:i:s'),         //$now->format('yy-m-d H:i:s') = ex)2000-01-01 12:05:09
+      'o_point' => $user_use_point,                         //$user_use_point = 결제시 사용된 포인트
+      'couponbox_no' => $coupon_no,                         //$coupon_no = 결제시 사용된 쿠폰
     ]);
     //장바구니 테이블에 담긴 기본키로 기존 상품번호 찾기
     //만약 존재하면 장바구니에서 선택한 상품 기준으로 결제 진행
@@ -173,7 +170,7 @@ class PaymentController extends Controller
           'pm_count' => $proarray[$i][0]->b_count,
           'pm_pay' => $eachprice,
           'pm_deliverypay' => $deliveryprice,
-          'customer_no' => $customerprimary,
+          'customer_no' => $customer_primary,
           'product_no' => $proarray[$i][0]->product_no,
           'created_at' => $now->format('yy-m-d H:i:s'),
           'pm_date' =>  $today = date("Ymd")
@@ -196,6 +193,10 @@ class PaymentController extends Controller
       }
       // 쿠폰사용시에
       if(isset($coupon_no)){
+        // 클라이언트 쿠폰 위조하는지 검사
+        if($getcoupon->isEmpty()){
+          return "<script>alert('비정상적인 접근 방법입니다.')</script>";
+        }
         //정률 쿠폰일 경우
         if($getcoupon[0]->cp_percent>0){
           //최대 할인적용시
@@ -217,21 +218,21 @@ class PaymentController extends Controller
         ]);
       }
       // 적립포인트 계산
-      $reserve = ($pricesum-$userpoint-$flatrate) * 2 / 100;
-      if(auth()->guard('customer')->user()->c_cash+$userpoint+$flatrate-$sum<0){
+      $reserve = ($pricesum-$user_use_point-$flatrate) * 2 / 100;
+      if(auth()->guard('customer')->user()->c_cash+$user_use_point+$flatrate-$sum<0){
         DB::rollBack();
         return "<script>alert('알 수 없는 오류입니다.')</script>";
       }
       // 장바구니에서 구입한 물품들 가격을 구해 유저의 재화 차감하기
-      DB::table('customer')->where('c_no',$customerprimary)->update([
-        'c_cash' => DB::raw('c_cash'.'-'.($sum-$userpoint-$flatrate)),
-        'c_point'=> DB::raw('c_point'.'-'.($userpoint).'+'.($reserve))
+      DB::table('customer')->where('c_no',$customer_primary)->update([
+        'c_cash' => DB::raw('c_cash'.'-'.($sum-$user_use_point-$flatrate)),
+        'c_point'=> DB::raw('c_point'.'-'.($user_use_point).'+'.($reserve))
       ]);
       DB::table('order')->where('o_no',$orderNO)->update([
         'o_totalprice' => $sum,
         'o_reserve' => $reserve,
         'o_dcnt_coupon' => $flatrate,
-        'o_dcnt_totalprice' => $sum-$userpoint-$flatrate
+        'o_dcnt_totalprice' => $sum-$user_use_point-$flatrate
       ]);
       for($i=0; $i<count($basket_no);$i++){
         DB::table('paymentjoin')->insert([
@@ -252,12 +253,18 @@ class PaymentController extends Controller
     }
     // 상품테이블 정보 가져오기
     $prodata = DB::table('product')->where('p_no',$product_no[0])->get();
-    //상품페이지에서 단품 결제시에 사용되는 코드, 칼럼 pm_count는 임시용으로 1이지만 상품페이지에 수량선택 기능이 추가되면 수정이 필요함.
+    // 상품수량
+    $product_count = $request->productcount;
+    // 상품 가격
+    $product_price = $prodata[0]->p_price;
+    // 상품 배송비
+    $product_delivery = $prodata[0]->p_delivery;
+    // 결제테이블
     $insertid =  DB::table('payment')->insertGetid([
-      'pm_count' => $request->productcount,
-      'pm_pay' => $request->productcount*$prodata[0]->p_price,
-      'pm_deliverypay' => $prodata[0]->p_delivery,
-      'customer_no' => $customerprimary,
+      'pm_count' => $product_count,
+      'pm_pay' => $product_count * $product_price,
+      'pm_deliverypay' => $product_delivery,
+      'customer_no' => $customer_primary,
       'product_no' => $product_no[0],
       'created_at' => $now->format('yy-m-d H:i:s'),
       'pm_date' =>  $today = date("Ymd")
@@ -279,15 +286,19 @@ class PaymentController extends Controller
     ]);
     // 쿠폰사용시에
     if(isset($coupon_no)){
+      //클라이언트 쿠폰 위조하는지 검사
+      if($getcoupon->isEmpty()){
+        return "<script>alert('비정상적인 접근 방법입니다.')</script>";
+      }
       //정률 쿠폰일 경우
       if($getcoupon[0]->cp_percent>0){
         //최대 할인적용시
-        if($request->productcount*$prodata[0]->p_price * $getcoupon[0]->cp_percent / 100 > $getcoupon[0]->cp_flatrate){
+        if($product_count * $product_price * $getcoupon[0]->cp_percent / 100 > $getcoupon[0]->cp_flatrate){
           $flatrate = $getcoupon[0]->cp_flatrate;
         }
         //최대 할인 미적용시
         else {
-          $flatrate = $request->productcount*$prodata[0]->p_price * $getcoupon[0]->cp_percent / 100;
+          $flatrate = $product_count * $product_price * $getcoupon[0]->cp_percent / 100;
         }
       }
       // 정액 쿠폰일 경우
@@ -299,25 +310,25 @@ class PaymentController extends Controller
         'cpb_state' => '사용'
       ]);
     }
-    $reserve = ($prodata[0]->p_price*$request->productcount-$userpoint-$flatrate)* 2 / 100;
-    // return $userpoint;
+    $reserve = ($product_price * $product_count - $user_use_point - $flatrate) * 2 / 100;
+    // return $user_use_point;
     DB::table('order')->where('o_no',$orderNO)->update([
-      'o_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery,
+      'o_totalprice' => $product_count * $product_price + $product_delivery,
       'o_reserve' => $reserve,
       'o_dcnt_coupon' => $flatrate,
-      'o_dcnt_totalprice' => $request->productcount*$prodata[0]->p_price+$prodata[0]->p_delivery-$flatrate-$userpoint
+      'o_dcnt_totalprice' => $product_count * $product_price + $product_delivery - $flatrate - $user_use_point
     ]);
 
     $data = DB::table('payment')->where('pm_no',$insertid)
     ->join('product','payment.product_no','=','product.p_no')
     ->join('paymentjoin','payment.pm_no','paymentjoin.payment_no')
     ->join('order','paymentjoin.order_no','order.o_no')->get();
-    DB::table('customer')->where('c_no',$customerprimary)->update([
-      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$userpoint-$flatrate)),
-      'c_point'=> DB::raw('c_point'.'-'.($userpoint).'+'.($reserve))
+    DB::table('customer')->where('c_no',$customer_primary)->update([
+      'c_cash' => DB::raw('c_cash'.'-'.($data[0]->pm_pay-$user_use_point-$flatrate)),
+      'c_point'=> DB::raw('c_point'.'-'.($user_use_point).'+'.($reserve))
     ]);
 
-    if(auth()->guard('customer')->user()->c_cash + $userpoint + $flatrate - $data[0]->pm_pay<0){
+    if(auth()->guard('customer')->user()->c_cash + $user_use_point + $flatrate - $data[0]->pm_pay<0){
       DB::rollBack();
       return "<script>alert('알 수 없는 오류입니다.')</script>";
     }
@@ -360,8 +371,8 @@ class PaymentController extends Controller
   }
   public function layerpopup(Request $request){
     session()->put('productprice',$request->price);
-    $customerprimary = auth()->guard('customer')->user()->c_no;
-    $coupon = DB::table('couponbox')->where('customer_no',$customerprimary)->where('cpb_state','미사용')->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
+    $customer_primary = auth()->guard('customer')->user()->c_no;
+    $coupon = DB::table('couponbox')->where('customer_no',$customer_primary)->where('cpb_state','미사용')->join('coupon','couponbox.coupon_no','coupon.cp_no')->get();
     $returnHTML = view('couponapply',compact('coupon'))->render();
     return response()->json($returnHTML);
   }
