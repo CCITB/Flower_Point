@@ -192,7 +192,7 @@ class InformationController extends Controller
         ->join('store','product.store_no','=','store.st_no')
         ->where('c_no',$cus)->get();
 
-        return view('myqna', ['myqn' => $myqna]);
+        return view('myQna', ['myqn' => $myqna]);
       } else{
         return redirect('/login_customer');
       }

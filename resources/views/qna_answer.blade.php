@@ -66,21 +66,6 @@
     }
   }
 
-  $(document).ready(function(){
-    $("#sub").click(function(){
-      if($("#q_title").val().length==0){
-        alert("제목을 입력하세요.");
-        $("#q_title").focus();
-        return false;
-      }
-      if($("#q_text").val().length==0){
-        alert("내용을 입력하세요.");
-        $("#q_text").focus();
-        return false;
-      }
-    });
-  });
-
   </script>
 </body>
 </html>
