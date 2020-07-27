@@ -58,6 +58,15 @@
           <li class="head_sub_title"><a href="/ad_coupon">쿠폰 발급</a></li>
         </ul>
       </li>
+      <li class="sub-menu">
+        <a href="javascript:;">
+          <i class="fa fa-th"></i>
+          <span class="head_title"><strong>정산 관리</strong></span>
+          </a>
+        <ul class="sub">
+          <li class="head_sub_title"><a href="/ad_calculate">가게 별 정산 관리</a></li>
+        </ul>
+      </li>
     </ul>
     <!-- sidebar menu end-->
   </div>

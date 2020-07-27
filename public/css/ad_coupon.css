@@ -123,3 +123,30 @@ body{
   font-size: 20px;
 }
 /*  포인트 끝 */
+
+/*  정산내역  */
+.cal_title{
+  font-size: 1.7em;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.ca_table{
+  min-height: 445px;
+}
+.price_total{
+  margin-top: 40px;
+  font-size: 1.5em;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.prices{
+  padding-right: 25px;
+}
+.ad_footer{
+  background: #B4D7C4;
+  color: #fff;
+  padding: 15px 20px;
+  line-height: 1.5em;
+}
+
+/*  정산내역 끝  */

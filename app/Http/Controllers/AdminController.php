@@ -171,7 +171,11 @@ class AdminController extends Controller
 
   public function sales($id){
 
-    $calculate = DB::table('seller')->where('s_no',$id)
+    $st_name = DB::table('seller')->where('s_no',$id)
+    ->join('store', 'seller.s_no', '=', 'store.seller_no')->get();
+
+    $calculate = DB::table('seller')->where('s_no',$id)->select('*','payment.created_at as cre')
+    ->where('pm_status','구매 확정')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->join('product','store.st_no','=','product.store_no')
     ->join('payment','product.p_no','=','payment.product_no')
@@ -179,8 +183,8 @@ class AdminController extends Controller
     ->join('order','paymentjoin.order_no','=','order.o_no')
     ->get();
 
-    $calculat = DB::table('seller')->where('s_no',$id)
-    ->distinct()->select('o_no','o_dcnt_totalprice','o_point','o_dcnt_coupon')
+    $calculat = DB::table('seller')->where('s_no',$id)->where('pm_status','구매 확정')
+    ->distinct()->select('o_no','o_dcnt_totalprice')
     ->join('store', 'seller.s_no', '=', 'store.seller_no')
     ->join('product','store.st_no','=','product.store_no')
     ->join('payment','product.p_no','=','payment.product_no')
@@ -189,23 +193,36 @@ class AdminController extends Controller
     ->get();
 
     $o_dcnt_sum = 0;
-    $o_point_sum = 0;
-    $o_coupon_sum=0;
     for ($i=0; $i <count($calculat) ; $i++) {
       $o_dcnt_total = $calculat[$i]->o_dcnt_totalprice;
       $o_dcnt_sum += $o_dcnt_total; // 주문총금액 합
-
-      $o_point = $calculat[$i]->o_point;
-      $o_point_sum +=$o_point; // 주문 포인트 합
-
-      $o_coupon = $calculat[$i]->o_dcnt_coupon;
-      $o_coupon_sum += $o_coupon; // 주문 쿠폰 합
     }
 
-    $order_total_price = $o_dcnt_sum - $o_point_sum - $o_coupon_sum;
-    // return $order_total_price;
+    $pm_deli_sum = 0;
+    $pm_pay_sum = 0;
+    for ($i=0; $i <count($calculate) ; $i++) {
+      $pm_deliverypay = $calculate[$i]->pm_deliverypay;
+      $pm_pay = $calculate[$i]->pm_pay;
 
-    return view('admin.cal', compact('calculate','calculat','order_total_price'));
+      $pm_deli_sum += $pm_deliverypay; // 배달비 합
+      $pm_pay_sum += $pm_pay; //판매금액 합
+    }
+
+    $order_total_price = $o_dcnt_sum - $pm_deli_sum; //판매 총 금액
+
+    if($order_total_price >= 3000000){
+      $percent = $order_total_price*7 / 100;
+      $realprice = $order_total_price - $percent;
+    } else if(3000000 > $order_total_price && $order_total_price >= 1000000){
+      $percent = $order_total_price*5 / 100;
+      $realprice = $order_total_price - $percent;
+    }
+    else{
+      $percent = $order_total_price*3 / 100;
+      $realprice = $order_total_price - $percent;
+    }
+
+    return view('admin.cal', compact('calculate','calculat','st_name','order_total_price','pm_pay_sum','realprice'));
   }
 
   public function showpoint($id){

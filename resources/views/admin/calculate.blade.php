@@ -29,7 +29,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper site-min-height">
-        <h2><i class="fa fa-angle-right"></i> 가게별 정산</h2>
+        <h2><i class="fa fa-angle-right"></i> 가게 별 정산</h2>
         <div class="row mt">
           <div class="col-lg-12">
 
@@ -43,7 +43,6 @@
                     <th>가게 번호</th>
                     <th>판매자 고유번호</th>
                     <th>정산 내역 보기</th>
-                    <th>정산 내역 보기</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,44 +53,10 @@
                       <td>{{$sel->st_tel}} 원</td>
                       <td>{{$sel->s_no}}</td>
                       <td>
-                        <button type="submit" name="show_ca" id="show_ca{{$sel->s_no}}" value="{{$sel->s_no}}" onclick="calculate({{$sel->s_no}});">정산내역 보기</button>
-                      </td>
-                      <td>
-                          <button type="button" name="button" onclick="showcal({{$sel->s_no}});">정산하기</button>
+                        <button type="button" name="button" onclick="showcal({{$sel->s_no}});">정산내역 보기</button>
                       </td>
                     </tr>
                   @endforeach
-                </tbody>
-              </table>
-            </div>
-
-
-            <div class="se_table">
-
-              <h2><i class="fa fa-angle-right"></i>"" 정산관리</h2><br>
-
-              <table id="calculate" class="display">
-                <thead>
-                  <tr>
-                    <th>상품 고유번호</th>
-                    <th>주문번호</th>
-                    <th>결제번호</th>
-                    <th>상품가격</th>
-                    <th>실제 판매가</th>
-                    <th>총 판매가</th>
-                    <th>총 실제 판매가</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td ><span id="p_no"></span></td>
-                    <td><span class="p_name" id="p_name"></span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><span id="sum_price"></span></td>
-                    <td><span id="sum_o_dcnt_totalprice"></span></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -135,7 +100,7 @@
     window.name = "parentForm";
     // window.open("open할 window", "자식창 이름", "팝업창 옵션");
     openWin = window.open("/hihi"+sno,
-    "childpoint", "width=600px, height=200px, left=50px, top=50px ");
+    "childpoint", "width=1000px, height=735px, left=50px, top=50px ");
   }
 
   var p_no;
