@@ -67,7 +67,7 @@
               <div class="sellerorderlist">
                 <!-- <form class="" action="index.html" method="post" name="mycheck"> -->
                 <div class="orderlist-bottom">
-                  <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button>
+                  <!-- <button type="submit" name="button" id="check" class="ordercheck" form="order_list">발주확인</button> -->
                   <button type="submit" name="button" id="send" class="sendmessage" form="order_list">발송처리</button>
                 </div>
 
