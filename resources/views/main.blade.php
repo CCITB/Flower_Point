@@ -170,6 +170,39 @@
         </div>
 
       </div>
+      {{-- <div class="swiper-slide">
+
+        <div class="container-wrap">
+          <div class="container-wrapping">
+            @if(isset($popularityArray))
+              @foreach ($popularityArray as $productlist)
+                <div class="hot-container-image">
+                  <div class="hot-image">
+                    <div class="hot-image-in" >
+                      <div class="hot-imagewrap" style="cursor:pointer;" url="/product/{{$productlist[0]->p_no}}">
+                        <img class="hot-imagewrap" src="\imglib\{{$productlist[0]->p_filename}}" alt="꽃" >
+                      </div>
+
+                      <div class="hot-image-in-font">
+                        <div class="hot-image-in-container">
+                          <div class="hot-image-in-bottom">
+                            {{$productlist[0]->p_name}}
+                          </div>
+                        </div>
+                        <div class="hot-image-in-price">
+                          <strong>{{number_format($productlist[0]->p_price)}}원</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+            @else
+            @endif
+          </div>
+        </div>
+
+      </div> --}}
     </div>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>

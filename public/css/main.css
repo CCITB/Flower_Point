@@ -168,6 +168,12 @@ div.hot-container-image{
   position: relative;
   overflow: hidden;
 }
+div.hot-image-in-bottom{
+  width:170px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 div.hot-image-in-price{
   margin-top:10px;
   font-size: 25px;
