@@ -49,7 +49,7 @@
                   <td class="myflw_remove">
                     <form action="/star2/{{$data1->p_no}}" method="post">
                       @csrf
-                      <button class="bt_ch" type="submit">내 상품 삭제</button>
+                      <button class="bt_ch" type="submit">즐겨찾기 삭제</button>
                     </td>
                   </tr>
                 @endforeach
@@ -59,7 +59,7 @@
         @else
           <div class="flowercart-infor" id="remove" style="height:400px; position:relative;">
             <div class="" style="top:180px; position:absolute; left:300px; ">
-              내상품이 비어있습니다.
+              즐겨찾기가 비어있습니다.
             </div>
           </div>
         @endif
