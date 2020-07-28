@@ -41,7 +41,7 @@ class CouponStatus extends Command
       // DB::table('coupon')->where('end_date','<','NOW()')
       DB::table('coupon')
       ->select('*')
-      ->where('end_date','<','NOW()')
+      ->where('end_date','<','CONVERT(date, GETDATE())')
       ->update([
       'cp_expiration'=>'Y'
       ]);
