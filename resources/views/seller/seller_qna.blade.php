@@ -26,10 +26,9 @@
                 <table id="myTable" style="border-collapse: collapse;">
                   <thead class="sel_qna">
                   <tr>
-                    <th class="title">번호</th>
+                    <th class="title">답변상태</th>
                     <th class="title">제목</th>
                     <th class="title">문의내용</th>
-                    <th class="title">답변상태</th>
                     <th class="title">작성자</th>
                     <th class="title">작성일</th>
                   </tr>
@@ -37,16 +36,13 @@
 
                   <tbody>
                   @foreach ($data as $data)
-
-                    <tr style="height: 45px;">
-                      <td><a href="/product/{{$data->p_no}}">{{$data->q_no}}</a></td>
-                      <td style="text-align:left;"><a href="/product/{{$data->p_no}}">{{$data->q_title}}</a></td>
-                      <td style="text-align:left;"><a href="/product/{{$data->p_no}}">{{$data->q_contents}}</a></td>
-                      <td><a href="/product/{{$data->p_no}}">{{$data->an_state}}</a></td>
-                      <td><a href="/product/{{$data->p_no}}">{{$data->c_name}}</a></td>
-                      <td><a href="/product/{{$data->p_no}}">{{$data->q_date}}</a></td>
+                    <tr style="height: 45px;" onclick="location.href='/product/{{$data->p_no}}#que'">
+                      <td style="width:10%;">{{$data->an_state}}</td>
+                      <td style="width:15%;">{{$data->q_title}}</td>
+                      <td style="text-align:left;"><div class="r_con">{{$data->q_contents}}</div></td>
+                      <td style="width:10%;">{{$data->c_name}}</td>
+                      <td style="width:15%;">{{$data->q_date}}</td>
                     </tr>
-
                   @endforeach
                 </tbody>
                 </table>

@@ -153,3 +153,9 @@ thead.sel_qna{
   color: #212121;
   opacity: 0.8;
 }
+.r_con{
+  width:450px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

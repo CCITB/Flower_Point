@@ -188,7 +188,7 @@
               @endforeach
             </table>
           </div>
-
+          {{$review->links()}}
         </div>
       </div>
 
@@ -290,6 +290,7 @@
                           <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
                         @endif
                       </div>
+                      {{$SellerAllInfor->links()}}
                     </div>
 
                     <div class="pd_component">
