@@ -31,13 +31,13 @@ class MainController extends Controller
                   ->join('paymentjoin', 'payment.pm_no','=','paymentjoin.payment_no')
                   ->join('order', 'paymentjoin.order_no', '=', 'order.o_no')
                   ->groupBy('p_no')
-                  ->get();
+                  ->limit(8)->get();
                   // return $product;
                   $popularityArray = null;
                   for($i=0;$i<count($popularity);$i++){
                   $popularityArray[] =  DB::table('product')->where('p_status','등록')->where('p_no',$popularity[$i]->p_no)
                     ->join('store', 'product.store_no', '=', 'store.st_no')
-                    ->limit(6)->get();
+                    ->limit(8)->get();
                   }
                   // return $popularityArray;
                   // return $popularity[0]->p_no;
