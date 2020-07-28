@@ -389,7 +389,7 @@ class InformationController extends Controller
         ->join('customer','order.customer_no','customer.c_no','left outer')
         ->join('couponbox','order.couponbox_no','couponbox.cpb_no')
         ->join('coupon','couponbox.coupon_no','coupon.cp_no')
-        ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
+        ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_d_status','결제 완료')
         ->get();
         //쿠폰안썻을때
         if($data->isEmpty()){
@@ -397,7 +397,7 @@ class InformationController extends Controller
           ->join('payment','payment.pm_no','paymentjoin.payment_no')
           ->join('order','paymentjoin.order_no','order.o_no')
           ->join('customer','order.customer_no','customer.c_no','left outer')
-          ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
+          ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_d_status','결제 완료')
           ->get();
           $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
           $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
