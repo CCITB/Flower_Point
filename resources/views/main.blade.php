@@ -91,40 +91,40 @@
 
     </div>
 
-    {{-- <div class="swiper-slide">
+    <div class="swiper-slide">
 
-    <div class="container-wrap">
-    <div class="container-wrapping">
-    @foreach ($pro as $productlist)
-    <div class="container-image">
-    <div class="image">
-    <div class="image-in" url="/product/{{$productlist->p_no}}">
-    <div class="imagewrap" >
-    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
-  </div>
+      <div class="container-wrap">
+        <div class="container-wrapping">
+          @foreach ($pro as $productlist)
+            <div class="container-image">
+              <div class="image">
+                <div class="image-in" url="/product/{{$productlist->p_no}}">
+                  <div class="imagewrap" >
+                    <img src="\imglib\{{$productlist->p_filename}}" alt="꽃" >
+                  </div>
 
-  <div class="image-in-font">
-  <div class="image-in-post">
-  {{$productlist->st_name}}
-</div>
-<div class="image-in-container">
-<div class="image-in-star">
-</div>
-<div class="image-in-bottom">
-{{$productlist->p_name}}
-</div>
-</div>
-<div class="image-in-price">
-<strong>{{number_format($productlist->p_price)}}원</strong>
-</div>
-</div>
-</div>
-</div>
-</div>
-@endforeach
-</div>
-</div>
-</div> --}}
+                  <div class="image-in-font">
+                    <div class="image-in-post">
+                      {{$productlist->st_name}}
+                    </div>
+                    <div class="image-in-container">
+                      <div class="image-in-star">
+                      </div>
+                      <div class="image-in-bottom">
+                        {{$productlist->p_name}}
+                      </div>
+                    </div>
+                    <div class="image-in-price">
+                      <strong>{{number_format($productlist->p_price)}}원</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
 
 </div>
 <div class="swiper-button-prev"></div>
@@ -183,7 +183,7 @@ var mySwiper = new Swiper('.swiper-container', {
   slidesPerView: 1, // 보여지는 슬라이드 수
   slidesPerGroup: 1, // 넘어가는 한 그룹 당 슬라이드 수
   spaceBetween: 20, // 슬라이드 간의 거리(px 단위)
-  // loop: true, // 슬라이드 무한 반복
+  loop: true, // 슬라이드 무한 반복
   // centeredSlides: true, // 다음 슬라이드의 모습이 50%만 보입니다.(중앙)
   navigation: {
     prevEl: '.swiper-button-prev',

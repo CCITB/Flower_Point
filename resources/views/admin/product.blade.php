@@ -107,7 +107,7 @@
                       <td>
                         <form name="delete" action="/ad_remove{{$sel->p_no}}" method="post">
                           @csrf
-                          <input type="submit" name="remove" id="remove{{$sel->p_no}}" onclick="confrim_remove({{$sel->p_no}})" value="삭제">
+                          <input type="submit" name="remove" id="removes" value="삭제">
                         </form>
                       </td>
                       <td>
@@ -187,15 +187,15 @@ $(document).ready(function(){
   });
 });
 
-function confrim_remove(pno){
 
-  var test = confirm("상품을 등록하시겠습니까?");
+$('#removes').click(function(){
+  var test = confirm("상품을 삭제하시겠습니까?");
   if(test == true){
-    alert("해당 상품이 삭제되었습니다.");
-  }else if(test == false){
+    alert("삭제되었습니다.");
+  }else{
     return false;
   }
-}
+});
 
 </script>
 
