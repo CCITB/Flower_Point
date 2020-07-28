@@ -51,7 +51,7 @@
                 @else
                   <td></td>
                 @endif
-                @if($data2->pm_status == '결제 대기')
+                @if($data2->pm_d_status == '결제 완료')
                   <td>
                     {{-- <form action="/pd_cancel{{$data2->pm_no}}" method="post">
                     @csrf --}}
@@ -69,8 +69,8 @@
                   </td>
                 @elseif($data2->pm_status == '구매 확정')
                   <td>구매확정 완료</td>
-                @elseif($data2->pm_status == '결제 취소')
-                  <td>결제 취소</td>
+                {{-- @elseif($data2->pm_status == '결제 취소')
+                  <td>결제 취소</td> --}}
                 @else
                   <td></td>
                 @endif
