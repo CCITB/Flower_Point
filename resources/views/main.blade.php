@@ -17,7 +17,7 @@
 
   <div class="hr-sect">최신상품 <img id="new_icon" src="/imglib/newicon.png"></div>
   <!-- 상품진열 테이블입니다. -->
-  <div class="swiper-container">
+  <div class="swiper-container swiper1">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
 
@@ -126,44 +126,55 @@
       </div>
     </div>
 
-</div>
-<div class="swiper-button-prev"></div>
-<div class="swiper-button-next"></div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>
 
 <!-- 인기 상품-->
 <div class="hot_div">
   <div class="hr-sect">인기상품 <img id="star_icon" src="/imglib/staricon.png"></div>
 
-  <div class="container-wrap">
-    <div class="container-wrapping">
-      @if(isset($popularityArray))
-      @foreach ($popularityArray as $productlist)
-        <div class="hot-container-image">
-          <div class="hot-image">
-            <div class="hot-image-in" >
-              <div class="hot-imagewrap" style="cursor:pointer;" url="/product/{{$productlist[0]->p_no}}">
-                <img class="hot-imagewrap" src="\imglib\{{$productlist[0]->p_filename}}" alt="꽃" >
-              </div>
+  <div class="swiper-container swiper2">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
 
-              <div class="hot-image-in-font">
-                <div class="hot-image-in-container">
-                  <div class="hot-image-in-bottom">
-                    {{$productlist[0]->p_name}}
+        <div class="container-wrap">
+          <div class="container-wrapping">
+            @if(isset($popularityArray))
+              @foreach ($popularityArray as $productlist)
+                <div class="hot-container-image">
+                  <div class="hot-image">
+                    <div class="hot-image-in" >
+                      <div class="hot-imagewrap" style="cursor:pointer;" url="/product/{{$productlist[0]->p_no}}">
+                        <img class="hot-imagewrap" src="\imglib\{{$productlist[0]->p_filename}}" alt="꽃" >
+                      </div>
+
+                      <div class="hot-image-in-font">
+                        <div class="hot-image-in-container">
+                          <div class="hot-image-in-bottom">
+                            {{$productlist[0]->p_name}}
+                          </div>
+                        </div>
+                        <div class="hot-image-in-price">
+                          <strong>{{number_format($productlist[0]->p_price)}}원</strong>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="hot-image-in-price">
-                  <strong>{{number_format($productlist[0]->p_price)}}원</strong>
-                </div>
-              </div>
-            </div>
+              @endforeach
+            @else
+            @endif
           </div>
         </div>
-      @endforeach
-    @else
-    @endif
+
+      </div>
     </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
+
 </div>
 
 
@@ -178,7 +189,20 @@
 <script>
 
 // 메인 슬라이드
-var mySwiper = new Swiper('.swiper-container', {
+var swiper1 = new Swiper('.swiper1', {
+
+  slidesPerView: 1, // 보여지는 슬라이드 수
+  slidesPerGroup: 1, // 넘어가는 한 그룹 당 슬라이드 수
+  spaceBetween: 20, // 슬라이드 간의 거리(px 단위)
+  loop: true, // 슬라이드 무한 반복
+  // centeredSlides: true, // 다음 슬라이드의 모습이 50%만 보입니다.(중앙)
+  navigation: {
+    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+  },
+});
+
+var swiper2 = new Swiper('.swiper2', {
 
   slidesPerView: 1, // 보여지는 슬라이드 수
   slidesPerGroup: 1, // 넘어가는 한 그룹 당 슬라이드 수

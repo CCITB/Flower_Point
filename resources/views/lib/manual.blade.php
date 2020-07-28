@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div class="register_manual_h">
-      <img class="register_manual" id="register" src="/imglib/register.png" >
+      <img class="register_manual" id="register" src="/imglib/coupon.png" >
     </div>
     <div class="invoice_manual_h">
       <img class="invoice_manual" id="invoice_num" src="/imglib/invoice_num.png" >

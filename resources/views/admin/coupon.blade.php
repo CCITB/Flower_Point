@@ -215,7 +215,7 @@
         $("#end").focus();
         return false;
       }
-      if($("#end").val() > $("#start").val()){
+      if($("#start").val() > $("#end").val()){
         alert("적용할 수 없습니다.");
         $("#start").focus();
         return false;
@@ -285,7 +285,7 @@
         $("#end1").focus();
         return false;
       }
-      if($("#end1").val() > $("#start1").val()){
+      if($("#start1").val() > $("#end1").val()){
         alert("적용할 수 없습니다.");
         $("#start1").focus();
         return false;
