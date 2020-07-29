@@ -77,10 +77,10 @@
               <th class="th-css">판매금액</th>
               <td><input type="text" class="input-length" id="sellingprice" numberonly="true" name="sellingprice" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="{{number_format($pd->p_price)}}" maxlength="10" placeholder="0"style="text-align:right;" >원</td>
             </tr>
-            <tr>
+            {{-- <tr>
               <th class="th-css">적립금</th>
               <td><input type="text" class="input-length" id="" numberonly="true" name="" onkeyup="removeChar(event)" onkeydown="return onlyNumber(event)" value="" maxlength="10" style="text-align:right;">원</td>
-            </tr>
+            </tr> --}}
           </table>
         </div>
         <div class="postbutton">
