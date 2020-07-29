@@ -158,7 +158,7 @@
             <li class="submenu" style="height:17.6px; padding-top:18px;"><a href="/c_mypage">내 정보</a></li>
             <li class="submenu" style="height:17.6px;"><a href="/star">즐겨찾기</a></li>
             <li class="submenu" style="height:17.6px;"><a href="/coupon">내쿠폰</a></li>
-            <li class="submenu" style="height:17.6px;"><a href="/myorderlist">내 주문관리</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/myorderlist">나의 주문관리</a></li>
           </ul>
         </li>
       @else

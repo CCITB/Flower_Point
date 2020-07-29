@@ -12,7 +12,7 @@
 <body>
   @include('lib.header')
   <div class="myorder">
-    <span class="mytitle" align="left">나의 주문 현황</span>
+    <span class="mytitle" align="left">나의 주문관리</span>
     <div class="ordertable">
       @if(count($data2))
         <table class="order" border="0" width="100%" id="myorders">
