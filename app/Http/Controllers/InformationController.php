@@ -438,7 +438,7 @@ class InformationController extends Controller
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
         $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
-        ->select('*')->where('customer_no','=',$customerprimary)->where('cpb_state','=','미사용')->get();
+        ->select('*')->where('customer_no','=',$customerprimary)->where('cp_status','발급')->where('cpb_state','=','미사용')->get();
         $coupon2 = count($coupon);
         return view('coupon',compact('coupon','coupon2'));
       }
@@ -450,7 +450,7 @@ class InformationController extends Controller
     public function recievecoupon(Request $request){
       // if($customerinfo = auth()->guard('customer')->user()){
       //    $customerprimary = $customerinfo->c_no;
-      $coupon = DB::table('coupon')->select('*')->where('cp_expiration','=','N')->get();
+      $coupon = DB::table('coupon')->select('*')->where('cp_status','발급')->where('cp_expiration','=','N')->get();
       // $coupon2 = DB::table('coupon')->select('*')->where('customer_no','=',$customerprimary)->get();
       return view('recievecoupon',compact('coupon'));
       // }
