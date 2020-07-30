@@ -10,7 +10,7 @@
     <div class="slides">
       <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
-        <img class="ad_img" src="/imglib/중고땅땅.png" >
+        <a href="http://ccit2020.cafe24.com:8080/"><img class="ad_img" src="/imglib/중고땅땅.png"></a>
         <div class="text"></div>
       </div>
 

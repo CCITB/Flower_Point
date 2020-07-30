@@ -23,7 +23,7 @@
             <label><input type="radio" name="money2" id="money6" value="50,000" >50,000</label>
             <label><input type="radio" name="money2" id="money7" value="100,000" >100,000</label>
             <button type="submit" onclick="alert('충전되었습니다.')" class="money3">충전하기</button>
-            <button type="submit" onclick="window.close()" class="money4" >창닫기</button>
+            <button type="submit" onclick="pop_close()" class="money4" >창닫기</button>
           </div>
         </div>
       </div>
@@ -31,4 +31,13 @@
   </form>
 </div>
 </body>
+
+	<script type="text/javascript">
+  function pop_close(){
+		opener.parent.location.reload();
+
+	   window.close();
+  }
+
+	</script>
 </html>

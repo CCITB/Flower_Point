@@ -28,18 +28,18 @@
       </ul>
     </div>
     <div class="register_manual_h">
-      <img class="register_manual" id="register" src="\imglib\register.png" >
+      <img class="register_manual" id="register" src="/imglib/h.PNG" width="100%" height="100%">
     </div>
     <div class="invoice_manual_h">
-      <img class="invoice_manual" id="invoice_num" src="\imglib\invoice_num.png" >
-      <img class="invoice_manual" id="invoice_num1" src="\imglib\invoice_num1.png" >
-      <img class="invoice_manual" id="invoice_num2" src="\imglib\invoice_num2.png" >
+      <img class="invoice_manual" id="invoice_num"  src="/imglib/a.PNG" width="100%" height="100%">
+      <img class="invoice_manual"  src="/imglib/b.PNG" width="100%" height="100%">
+      <img class="invoice_manual"  src="/imglib/c.PNG" width="100%" height="100%">
     </div>
     <div class="product_manual_h">
-      <img class="product_manual" id="product" src="\imglib\product.png" >
-      <img class="product_manual" id="product2" src="\imglib\product2.png" >
-      <img class="product_manual" id="product3" src="\imglib\product3.png" >
-      <img class="product_manual" id="product4" src="\imglib\product4.png" >
+      <img class="product_manual" id="product" src="/imglib/d.PNG" width="100%" height="100%">
+      <img class="product_manual" src="/imglib/e.PNG" width="100%" height="100%">
+      <img class="product_manual"  src="/imglib/f.PNG" width="100%" height="100%">
+      <img class="product_manual"  src="/imglib/g.PNG" width="100%" height="100%">
     </div>
   </div>
   @include('lib.footer')

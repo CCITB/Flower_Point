@@ -10,9 +10,6 @@
   letter-spacing: 2px;
   margin-right: 20px;
 }
-img{
-  opacity: 70%;
-}
 .shopname {
     width: 500px;
     float: left;
@@ -192,11 +189,11 @@ table.order{
   margin-right: 60%;
   margin-left: 0.75rem;
 }
-h1{
+h1.h1h1{
   margin: 0;
   display:inline-block;
 }
-a{
+a.ba{
   margin-left: 1em;
 }
 /* locate - jisu */

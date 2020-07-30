@@ -186,7 +186,7 @@ function initMap() {
 
     for(var a=0; a<arr_name.length; a++){
       div.push('<div id="main">'+
-      '<p><h1>'+arr_name[a]+'</h1><a href="store/'+arr_url[a]+'">< 바로가기</a><h5>'+arr_tel[a]+'</h5></p><hr>'+
+      '<p><h1 class="h1h1">'+arr_name[a]+'</h1><a class="ba" href="store/'+arr_url[a]+'">< 바로가기</a><h5>'+arr_tel[a]+'</h5></p><hr>'+
       '<div id="bodyContent">'
       +'<p><h4 id="intro"><b>'+arr_intro[a]+'</b></h4></p>'+"</div>"+
       '<div id="address"><h4 id="array">'+arr[a]+', '+arr_detail[a]+arr_extra[a]+'<h4></div>'

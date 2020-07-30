@@ -12,7 +12,7 @@
 <body>
   @include('lib.header')
   <div class="myorder">
-    <span class="mytitle" align="left">나의 주문 현황</span>
+    <span class="mytitle" align="left">나의 주문관리</span>
     <div class="ordertable">
       @if(count($data2))
         <table class="order" border="0" width="100%" id="myorders">
@@ -51,7 +51,7 @@
                 @else
                   <td></td>
                 @endif
-                @if($data2->pm_status == '결제 대기')
+                @if($data2->pm_d_status == '결제 완료')
                   <td>
                     {{-- <form action="/pd_cancel{{$data2->pm_no}}" method="post">
                     @csrf --}}
@@ -69,8 +69,8 @@
                   </td>
                 @elseif($data2->pm_status == '구매 확정')
                   <td>구매확정 완료</td>
-                @elseif($data2->pm_status == '결제 취소')
-                  <td>결제 취소</td>
+                {{-- @elseif($data2->pm_status == '결제 취소')
+                  <td>결제 취소</td> --}}
                 @else
                   <td></td>
                 @endif

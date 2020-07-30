@@ -120,7 +120,7 @@
         @elseif(auth()->guard('customer')->user())
 
           <ul class="submenu_list">
-            <li class="submenu" style="height:17.6px;"><a href="/myqna">내 문의관리</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/myqna">나의 문의관리</a></li>
           </ul>
           <ul class="submenu_list">
             <li class="submenu" style="height:17.6px;"><a href="#" style="display:none;">문의관리</a></li>
@@ -158,7 +158,7 @@
             <li class="submenu" style="height:17.6px; padding-top:18px;"><a href="/c_mypage">내 정보</a></li>
             <li class="submenu" style="height:17.6px;"><a href="/star">즐겨찾기</a></li>
             <li class="submenu" style="height:17.6px;"><a href="/coupon">내쿠폰</a></li>
-            <li class="submenu" style="height:17.6px;"><a href="/myorderlist">내 주문관리</a></li>
+            <li class="submenu" style="height:17.6px;"><a href="/myorderlist">나의 주문관리</a></li>
           </ul>
         </li>
       @else

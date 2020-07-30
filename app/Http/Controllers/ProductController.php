@@ -107,7 +107,7 @@ class ProductController extends Controller
       ->join('question', 'customer.c_no', '=', 'question.customer_no')
       ->leftjoin('answer','question.q_no', '=', 'answer.question_no')
       ->select('*')
-      ->where('product_no', $pro_no)->get();
+      ->where('product_no', $pro_no)->paginate(5);
 
     }elseif($sno = auth()->guard('seller')->user()){
       $hihi = $sno->s_no;
@@ -117,13 +117,13 @@ class ProductController extends Controller
       ->join('question','product.p_no','=','question.product_no','left outer')
       ->join('customer','question.customer_no','=','customer.c_no')
       ->join('answer','question.q_no','=','answer.question_no','left outer')
-      ->where('product_no', $pro_no)->get();
+      ->where('product_no', $pro_no)->paginate(5);
     } else{
       $SellerAllInfor = DB::table('customer')
       ->join('question', 'customer.c_no', '=', 'question.customer_no')
       ->leftjoin('answer','question.q_no', '=', 'answer.question_no')
       ->select('*')
-      ->where('product_no', $pro_no)->get();
+      ->where('product_no', $pro_no)->paginate(5);
     }
 
      //상품의 p_no조건

@@ -192,7 +192,7 @@ class InformationController extends Controller
         ->join('store','product.store_no','=','store.st_no')
         ->where('c_no',$cus)->get();
 
-        return view('myqna', ['myqn' => $myqna]);
+        return view('myQnA', ['myqn' => $myqna]);
       } else{
         return redirect('/login_customer');
       }
@@ -389,7 +389,7 @@ class InformationController extends Controller
         ->join('customer','order.customer_no','customer.c_no','left outer')
         ->join('couponbox','order.couponbox_no','couponbox.cpb_no')
         ->join('coupon','couponbox.coupon_no','coupon.cp_no')
-        ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
+        ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_d_status','결제 완료')
         ->get();
         //쿠폰안썻을때
         if($data->isEmpty()){
@@ -397,7 +397,7 @@ class InformationController extends Controller
           ->join('payment','payment.pm_no','paymentjoin.payment_no')
           ->join('order','paymentjoin.order_no','order.o_no')
           ->join('customer','order.customer_no','customer.c_no','left outer')
-          ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_status','결제 대기')
+          ->select('*')->where('pm_no','=',$number)->where('c_no',$customerprimary)->where('pm_d_status','결제 완료')
           ->get();
           $total = preg_replace("/[^0-9]/", "", $data[0]->o_totalprice);
           $point = preg_replace("/[^0-9]/", "", $data[0]->o_point);
@@ -438,7 +438,11 @@ class InformationController extends Controller
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
         $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
+<<<<<<< HEAD
         ->select('*')->where('customer_no','=',$customerprimary)->where('cp_status','발급')->where('cpb_state','=','미사용')->get();
+=======
+        ->select('*')->where('customer_no','=',$customerprimary)->where('cp_expiration','=','N')->where('cpb_state','=','미사용')->get();
+>>>>>>> c169346c029610307f05d0bce5b1cdc9cb052797
         $coupon2 = count($coupon);
         return view('coupon',compact('coupon','coupon2'));
       }

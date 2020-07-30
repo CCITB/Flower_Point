@@ -26,7 +26,7 @@
             <div class="pd_basic">
               <div class="pd_name">{{$protb->p_name}}</div>
               <div class="star">
-                <button class="convenience" onclick="alert('내 상품에 추가되었습니다!')" type="submit">내 상품</button>
+                <button class="convenience" onclick="alert(즐겨찾기에 추가되었습니다!')" type="submit">즐겨찾기</button>
               </div>
             </div>
           </form>
@@ -38,7 +38,7 @@
           <div class="pd_basic">
             <div class="pd_name">{{$protb->p_name}}</div>
             <div class="star">
-              <button class="convenience" onclick="alert('로그인 후에 이용해주세요!')" type="submit">내 상품</button>
+              <button class="convenience" onclick="alert('로그인 후에 이용해주세요!')" type="submit">즐겨찾기</button>
             </div>
           </div>
         @endif
@@ -188,7 +188,7 @@
               @endforeach
             </table>
           </div>
-
+          {{$review->links()}}
         </div>
       </div>
 
@@ -290,6 +290,7 @@
                           <button type="button" class="product-question-btn" onclick="fake()">상품 문의하기</button>
                         @endif
                       </div>
+                      {{$SellerAllInfor->links()}}
                     </div>
 
                     <div class="pd_component">
