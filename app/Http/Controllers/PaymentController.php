@@ -372,7 +372,7 @@ class PaymentController extends Controller
   public function layerpopup(Request $request){
     session()->put('productprice',$request->price);
     $customer_primary = auth()->guard('customer')->user()->c_no;
-    $coupon = DB::table('couponbox')->where('customer_no',$customer_primary)->where('cpb_state','미사용')->join('coupon','couponbox.coupon_no','coupon.cp_no')->where('cp_expiration','N')->get();
+    $coupon = DB::table('coupon_box')->where('customer_no',$customer_primary)->where('cpb_state','미사용')->join('coupon','coupon_box.coupon_no','coupon.cp_no')->where('cp_expiration','N')->get();
     $returnHTML = view('couponapply',compact('coupon'))->render();
     return response()->json($returnHTML);
   }

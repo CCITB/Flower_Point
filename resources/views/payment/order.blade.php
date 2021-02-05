@@ -613,9 +613,9 @@ function insertpoint(){
   var nowprice = $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
   // console.log(point);
-  if({{$point}}<point){
+  if({{number_format($point)}}<point){
     alert('사용하실 수 있는 포인트보다 많이 입력하셧습니다.');
-    point = {{$point}};
+    point = {{number_format($point)}};
     $('#userpoint').val(AddComma(point));
     $('#priceall').text(AddComma(price - point - coupon));
     $('#paymentpoint').text(AddComma(point));
@@ -634,9 +634,9 @@ function insertpoint(){
   }
 }
 function pointall(){
-  $('#userpoint').val({{$point}});
-  $('#priceall').text(AddComma(price - {{$point}} - coupon));
-  $('#paymentpoint').text(AddComma({{$point}}));
+  $('#userpoint').val({{number_format($point)}});
+  $('#priceall').text(AddComma(price - {{number_format($point)}} - coupon));
+  $('#paymentpoint').text(AddComma({{number_format($point)}}));
   point = Number($('#userpoint').val().replace(/[^0-9]/g,''));
   replaceprice(cash,point);
 }
@@ -650,8 +650,8 @@ $('#userpoint').blur(function(){
     $('#userpoint').val('0');
   }
   $('#userpoint').val($('#userpoint').val().replace(/[^0-9]/g,''));
-  if($('#userpoint').val()>{{$point}}){
-    $('#userpoint').val({{$point}});
+  if($('#userpoint').val()>{{number_format($point)}}){
+    $('#userpoint').val({{number_format($point)}});
   }
   // if($('#userpoint').val()<1000){
   //   alert('포인트 최소 사용량은 1,000원 입니다.');
