@@ -220,6 +220,7 @@ class InformationController extends Controller
         ->join('store', 'seller.s_no', '=', 'store.seller_no')
         ->join('store_address', 'store.st_no', '=', 'store_address.st_no')
         ->select('*')->where('s_no', '=', $sellerprimary)->get();
+        // return $data;
         $proro = DB::table('product')
         ->join('store','product.store_no','=','store.st_no')
         ->select('*','product.created_at')->where('st_no' ,'=', $data[0]->st_no)->where('p_status','등록')->get();
@@ -438,11 +439,11 @@ class InformationController extends Controller
       if($customerinfo = auth()->guard('customer')->user()){
         $customerprimary = $customerinfo->c_no;
         $coupon = DB::table('couponbox')->join('coupon','coupon.cp_no','couponbox.coupon_no')
-<<<<<<< HEAD
-        ->select('*')->where('customer_no','=',$customerprimary)->where('cp_status','발급')->where('cpb_state','=','미사용')->get();
-=======
+
+        // ->select('*')->where('customer_no','=',$customerprimary)->where('cp_status','발급')->where('cpb_state','=','미사용')->get();
+
         ->select('*')->where('customer_no','=',$customerprimary)->where('cp_expiration','=','N')->where('cpb_state','=','미사용')->get();
->>>>>>> c169346c029610307f05d0bce5b1cdc9cb052797
+
         $coupon2 = count($coupon);
         return view('coupon',compact('coupon','coupon2'));
       }

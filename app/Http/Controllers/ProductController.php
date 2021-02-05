@@ -48,7 +48,7 @@ class ProductController extends Controller
       'p_price' =>preg_replace("/[^0-9]/", "", $request->input('sellingprice')),
       'store_no' => $comparison->st_no,
       'p_filename' =>$path,
-      'created_at' =>$now->format('yy-m-d H:i:s'),
+      'created_at' =>$now->format('y-m-d H:i:s'),
       'p_date' => $today
     ]);
 
